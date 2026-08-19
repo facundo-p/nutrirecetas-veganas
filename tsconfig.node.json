@@ -16,5 +16,5 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "scripts"]
+  "include": ["vite.config.ts", "scripts", "src/seed/schema.ts"]
 }
