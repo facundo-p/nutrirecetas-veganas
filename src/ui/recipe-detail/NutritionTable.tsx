@@ -1,6 +1,6 @@
 import type { RecipeNutrition } from '../../domain/nutrition';
 import type { Seed } from '../../seed/schema';
-import { formatNumber, icSprouts } from '../common/format';
+import { amountUnit, formatNumber, icSprouts } from '../common/format';
 import { IconBrotesIc, IconCobertura, IconHojaPunteada, IconSemanaArco, IconSol } from '../icons/icons';
 import { IntervalBand } from './IntervalBand';
 
@@ -59,7 +59,7 @@ export function NutritionTable({ nutrition, seed, titulo }: Props) {
                       </span>
                     ) : (
                       <>
-                        <IntervalBand intervalo={r.intervalo} unidad={n.unidad} />
+                        <IntervalBand intervalo={r.intervalo} unidad={amountUnit(n.clave_ingrediente)} />
                         <span
                           className="nutriente-calidad"
                           title={`IC ${r.ic}/10 · calculado sobre el ${formatNumber(r.cobertura_pct, 0)} % del peso`}

@@ -3,7 +3,7 @@ import { getSeedIndex } from '../../seed';
 import { INGREDIENT_CATEGORIES, type Ingredient } from '../../seed/schema';
 import { midpoint } from '../../domain/interval';
 import { routeHash } from '../../app/router';
-import { formatNumber, icSprouts, normalize } from '../common/format';
+import { amountUnit, formatNumber, icSprouts, normalize } from '../common/format';
 import { ingredientInSeason } from '../common/season';
 import { IconBrotesIc, IconTemporada } from '../icons/icons';
 
@@ -97,7 +97,7 @@ export function IngredientList() {
                 <span className="fila-ingrediente-meta">
                   {valor !== null && nutrient && (
                     <span className="cifra">
-                      {formatNumber(valor, valor < 10 ? 1 : 0)} {nutrient.unidad}
+                      {formatNumber(valor, valor < 10 ? 1 : 0)} {amountUnit(nutrient.clave_ingrediente)}
                     </span>
                   )}
                   <span className="chip chip-mini">{ing.categoria.replaceAll('_', ' ')}</span>

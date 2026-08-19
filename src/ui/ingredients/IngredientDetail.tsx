@@ -1,7 +1,7 @@
 import { getSeedIndex } from '../../seed';
 import type { Ingredient } from '../../seed/schema';
 import { routeHash } from '../../app/router';
-import { icSprouts, MONTH_NAMES } from '../common/format';
+import { amountUnit, icSprouts, MONTH_NAMES } from '../common/format';
 import { ingredientInSeason } from '../common/season';
 import { IconBrotesIc, IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
 import { IntervalBand } from '../recipe-detail/IntervalBand';
@@ -70,7 +70,9 @@ export function IngredientDetail({ id }: { id: string }) {
           <ul className="nutricion-lista">
             {valores.map(([clave, value]) => {
               const cat = byClave.get(clave as never);
-              const label = cat ? { nombre: cat.nombre, unidad: cat.unidad } : (EXTRA_LABELS[clave] ?? { nombre: clave, unidad: '' });
+              const label = cat
+                ? { nombre: cat.nombre, unidad: amountUnit(cat.clave_ingrediente) }
+                : (EXTRA_LABELS[clave] ?? { nombre: clave, unidad: '' });
               return (
                 <li key={clave} className="nutriente">
                   <span className="nutriente-nombre">{label.nombre}</span>
