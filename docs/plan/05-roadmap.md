@@ -22,7 +22,7 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 
 **Criterio de cierre cumplido**: la app navega el recetario completo offline con nutrición honesta.
 
-## Fase 2 — Perfil, cocinar y registrar ✦ en curso
+## Fase 2 — Perfil, cocinar y registrar ✦ implementada, pendiente de revisión
 
 Plan detallado en `fase2-implementacion.md`. **Decisiones de producto tomadas con Facu al arrancar**: (1) el semáforo cuenta *porciones comidas*, no cocciones — al registrar se declara cuántas se comieron y el resto queda como sobras que se registran después; (2) en esta fase el semáforo mide solo cocciones de la app, con aviso explícito de que es parcial (los ingredientes sueltos se evalúan más adelante, con uso real).
 
@@ -32,7 +32,7 @@ Plan detallado en `fase2-implementacion.md`. **Decisiones de producto tomadas co
 - Overlays: subir IC al probar y aprobar; notas y favoritas.
 - **Export/import + recordatorio de backup** (el primer dato de usuario estrena la red de seguridad).
 
-**Criterio de cierre**: ciclo completo cocinar→registrar→semáforo del día funcionando; backup round-trip testeado; renders revisados.
+**Criterio de cierre**: ciclo completo cocinar→registrar→semáforo del día funcionando ✅; backup round-trip testeado ✅; renders revisados ← **acá estamos**.
 
 ## Fase 3 — Compras y semana
 
