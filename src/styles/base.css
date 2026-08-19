@@ -12,23 +12,18 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Fondo de verduras de Facu (trazos fundidos 62 %). El asset lleva su mitad de
+   abajo espejada, así que al repetirse en vertical no se ve costura; el ancho se
+   ajusta al viewport (sin repetición horizontal, que delataría el espejo).
+   Vive en el body, no en un pseudo-elemento fijo: cubre la página entera por
+   larga que sea, no solo el primer viewport. */
 body {
   font-family: var(--font-data);
   font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--tinta);
-  background-color: var(--papel);
+  background: var(--papel) url('/fondo.webp') top center / 100% auto repeat-y;
   min-height: 100dvh;
-}
-
-/* Fondo de verduras de Facu (trazos fundidos 62 %), fijo detrás de todo.
-   Pseudo-elemento fijo en vez de background-attachment: fixed (jank en iOS). */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: var(--papel) url('/fondo.webp') center / cover no-repeat;
 }
 
 h1,
