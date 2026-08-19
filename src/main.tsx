@@ -4,6 +4,7 @@ import '@fontsource-variable/fraunces';
 import '@fontsource-variable/schibsted-grotesk';
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/app.css';
 import { App } from './app/App';
 
 createRoot(document.getElementById('root')!).render(
