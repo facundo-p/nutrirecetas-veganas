@@ -1,8 +1,8 @@
 import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Recipe } from '../../seed/schema';
-import { computeNutrition, type RecipeNutrition } from '../../domain/nutrition';
 import { isRichIn } from '../../domain/rda';
 import { normalize } from '../common/format';
+import { nutritionOf } from '../common/nutritionCache';
 import { recipeInSeason } from '../common/season';
 
 /** Lógica de filtrado del recetario, pura y testeable. */
@@ -28,17 +28,6 @@ export const EMPTY_FILTERS: RecipeFiltersState = {
   estado: '',
   ricaEn: '',
 };
-
-const nutritionCache = new Map<string, RecipeNutrition>();
-
-export function nutritionOf(idx: SeedIndex, recipeId: string): RecipeNutrition {
-  let n = nutritionCache.get(recipeId);
-  if (!n) {
-    n = computeNutrition(recipeId, idx);
-    nutritionCache.set(recipeId, n);
-  }
-  return n;
-}
 
 /** ids de ingredientes cuyo nombre o sinónimos matchean la búsqueda */
 function matchingIngredientIds(idx: SeedIndex, q: string): Set<string> {
