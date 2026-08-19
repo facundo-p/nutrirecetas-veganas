@@ -26,30 +26,53 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
-## 3. Estética: "Botánica editorial"
+## 3. Estética: dos propuestas registradas (decisión pendiente del checkpoint de Fase 0)
 
-Elegida por Facu entre tres direcciones. Cálida pero seria; los datos nutricionales respiran porque el fondo es calmo.
+Tras la primera iteración del Render 0, Facu pidió una alternativa con más personalidad y saturación (la paleta de A coincidía casi 1:1 con otra app suya de huerta). **Ambas propuestas quedan registradas como viables**; se elige (o se híbrida) en el checkpoint. Ver ambas completas en el [Render 0](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525).
 
-### Tokens de diseño (punto de partida, se pulen con el Render 0)
+### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
-| Token | Valor aprox. | Uso |
+1. **Prohibido el reborde lateral de acento en tarjetas** — es el "tell" clásico de UI generada. El tipo de receta lo comunica el ícono.
+2. **Comprometerse con un mundo de color propio**, no repartir colores "de buen gusto" en partes iguales.
+3. **Firmas de dominio propias**: semáforo-hoja, bandas de incertidumbre, brotes de IC — elementos que ningún template trae.
+4. **Tipografía con opinión**: nada de Inter/Roboto/Space Grotesk como default.
+5. **Cero emoji como íconos, cero gradientes decorativos**; jerarquía derivada del uso real.
+6. El semáforo **nunca comunica solo con color**: siempre ícono + texto.
+7. Tipografías self-hosted (offline). Modo cocina: contraste reforzado y cuerpo tipográfico +2 escalas.
+
+### Propuesta A — "Botánica editorial" (registrada, viable)
+
+Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif display) + Schibsted Grotesk (datos).
+
+| Token | Valor | Uso |
 |---|---|---|
-| `--papel` | `#F7F3EA` | fondo general (crema papel) |
-| `--tinta` | `#2E2B24` | texto principal (tinta cálida) |
-| `--oliva` | `#6B7A45` | acento primario, navegación activa |
-| `--salvia` | `#9BAA88` | acentos suaves, bordes, tags |
-| `--terracota` | `#C0603C` | acciones destacadas, énfasis |
-| `--verde-profundo` | `#3D5637` | headers, contraste alto |
-| Semáforo verde | `#4C7C4A` | objetivo cubierto (≥90 %) |
-| Semáforo ámbar | `#D29A3A` | parcial (60-90 %) |
-| Semáforo rojo | `#B0492F` | insuficiente (<60 %) |
-| Suplemento | `#5B7A9E` | cubierto por suplemento |
-| Sin datos | `#8F8A7E` | ventana sin registros |
+| `--papel` | `#F6F1E5` | fondo (crema papel) |
+| `--tinta` | `#2C2A22` | texto principal |
+| `--oliva` | `#6B7A45` | acento primario |
+| `--salvia` | `#9BAA88` | bordes suaves, tags |
+| `--terracota` | `#BE5B35` | acción |
+| `--verde-profundo` | `#37502F` | headers |
+| Semáforo | `#4C7C4A` / `#C98F2E` / `#B0492F` | cubierto / parcial / insuficiente |
+| Suplemento / sin datos | `#5B7A9E` / `#8F8A7E` | estados especiales |
 
-- El semáforo **nunca comunica solo con color**: siempre ícono + texto (accesibilidad y honestidad).
-- Tipografías self-hosted (offline): **Fraunces** (serif display, títulos con carácter) + una sans muy legible para datos y UI (a definir en Render 0 entre Inter ajustada u otra menos estándar).
-- Ilustración botánica de línea fina como ornamento (vacíos, headers, estados vacíos) — jamás compitiendo con datos.
-- Modo cocina: contraste reforzado y cuerpo tipográfico +2 escalas.
+Estructura: tarjetas crema con borde fino, sombra apenas presente, radios generosos. Ilustración botánica de línea fina como ornamento.
+
+### Propuesta B — "Tinta fresca" (nueva, responde al pedido de saturación y carácter)
+
+Colores de verdulería real a plena saturación sobre blanco verdoso; estructura de imprenta. Bricolage Grotesque (display) + Archivo (datos; fundición porteña Omnibus-Type).
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--fondo` | `#F3F7EA` | fondo (blanco verdoso) |
+| `--tinta` | `#16231B` | texto y contornos (verde-negra) |
+| `--clorofila` | `#2C9C43` | acento primario |
+| `--verde-profundo` | `#17572A` | navegación activa, timers |
+| `--remolacha` | `#C21E56` | acción |
+| `--limon` | `#F6E74A` | resaltador de números clave, tags activos |
+| Semáforo | `#23913B` / `#E9A00F` / `#D64524` | cubierto / parcial / insuficiente |
+| Suplemento / sin datos | `#3B6FD1` / `#7E8878` | estados especiales |
+
+Estructura: tarjetas blancas con **contorno de tinta 1.5 px + sombra dura desplazada** (etiqueta impresa), esquinas contenidas (8–10 px), chips como sellos en mayúsculas, **resaltador limón** sobre los números que importan (kcal, punto clave del paso). Íconos con trazo 2 px (vs 1.7 en A).
 
 ## 4. Iconografía propia
 
