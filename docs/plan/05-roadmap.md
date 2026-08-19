@@ -10,7 +10,7 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 4. ✅ **Render 0**: mockups HTML de 5 vistas con estética botánica editorial + primer set de íconos → [Artifact publicado](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525).
 5. ✅ **Checkpoint**: estética aprobada por Facu tras 5 iteraciones → Propuesta C "Carta de estación" con su fondo de verduras.
 
-## Fase 1 — Reorganización del dataset + cimientos + explorar el recetario ✦ en curso
+## Fase 1 — Reorganización del dataset + cimientos + explorar el recetario ✅ cerrada (2026-08-19)
 
 - ✅ Scaffolding (Vite + React 19 + TS + vite-plugin-pwa + Vitest) y estructura de carpetas. Plan detallado en `fase1-implementacion.md`.
 - ✅ **Pipeline `build-seed`**: semilla canónica commiteada (`src/seed/seed.json`, 308 KB) con todas las transformaciones de la auditoría, migración de preparados (incluye p08 y la masa faltante de p22), AST de reglas, RDA canónicas, diff de ids inmutables. Tablas curadas en `scripts/build-seed/curated-tables.ts`. Con tests.
@@ -18,11 +18,13 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 - ✅ Motor nutricional puro (`src/domain/`) con golden tests: intervalos, cobertura, IC ponderado, RDA canónicas, recursión de preparados, alerta B12.
 - ✅ UI: navegación general, Recetario (búsqueda por nombre/ingrediente/sinónimo, filtros, rica-en, variantes agrupadas), Detalle (nutrición en vivo con bandas/IC/cobertura, alerta B12, preparados navegables, tips de reglas), Ingredientes (fichas completas, fuentes-de), Glosario (íconos + términos).
 - ✅ Skills de proyecto: `/renders` (Playwright, `docs/renders/fase-1/`) y `/cierre-fase`.
-- **Checkpoint**: renders publicados + gate de datos revisado por Facu. ← **acá estamos**
+- ✅ **Checkpoint**: renders publicados (temas C y D) y gate de datos revisado y aplicado. Facu dio el OK para seguir.
 
-**Criterio de cierre**: la app navega el recetario completo offline con nutrición honesta; renders revisados; gate de datos resuelto o evaluado con Facu.
+**Criterio de cierre cumplido**: la app navega el recetario completo offline con nutrición honesta.
 
-## Fase 2 — Perfil, cocinar y registrar
+## Fase 2 — Perfil, cocinar y registrar ✦ en curso
+
+Plan detallado en `fase2-implementacion.md`. **Decisiones de producto tomadas con Facu al arrancar**: (1) el semáforo cuenta *porciones comidas*, no cocciones — al registrar se declara cuántas se comieron y el resto queda como sobras que se registran después; (2) en esta fase el semáforo mide solo cocciones de la app, con aviso explícito de que es parcial (los ingredientes sueltos se evalúan más adelante, con uso real).
 
 - Onboarding de perfil real (datos + suplementos; placeholders fuera) → RDA personalizadas y semáforo por porción.
 - Escalado con avisos (política acordada) en Detalle.
