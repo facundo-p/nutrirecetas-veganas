@@ -526,3 +526,165 @@
   font-size: var(--fs-xs);
   color: var(--chia);
 }
+
+/* ============ Ingredientes ============ */
+
+.lista-ingredientes {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+}
+
+@media (min-width: 900px) {
+  .lista-ingredientes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fila-ingrediente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  text-decoration: none;
+  color: inherit;
+}
+
+.fila-ingrediente-nombre {
+  font-family: var(--font-display);
+  font-weight: 540;
+  color: var(--tinta);
+  display: inline-flex;
+  align-items: center;
+}
+
+.fila-ingrediente-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.nota-ingrediente {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.lista-conservacion {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.conservacion {
+  display: grid;
+  gap: 2px;
+  border-bottom: var(--borde-suave);
+  padding-bottom: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+
+.conservacion-item {
+  font-weight: 600;
+}
+
+.chip-alerta {
+  background: color-mix(in srgb, var(--rabanito) 12%, var(--tofu));
+  border-color: color-mix(in srgb, var(--rabanito) 45%, transparent);
+  color: var(--rabanito);
+  justify-self: start;
+}
+
+.lista-equivalencias {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+
+/* ============ Glosario ============ */
+
+.pestanas {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+  padding-bottom: var(--sp-2);
+}
+
+.pestana {
+  appearance: none;
+  border: var(--borde);
+  background: var(--tofu);
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-4);
+  min-height: 36px;
+  cursor: pointer;
+  color: var(--tinta-suave);
+}
+
+.pestana[aria-selected='true'] {
+  background: var(--espinaca);
+  border-color: var(--espinaca);
+  color: var(--tofu);
+  font-weight: 600;
+}
+
+.lista-iconos {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--sp-2);
+}
+
+.ficha-icono {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.ficha-icono-svg {
+  font-size: 26px;
+  color: var(--espinaca);
+  flex-shrink: 0;
+}
+
+.lista-terminos {
+  display: grid;
+  gap: var(--sp-3);
+  margin: 0;
+}
+
+.termino dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--berenjena);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.termino-ic {
+  color: var(--tinta-suave);
+  font-size: 13px;
+  display: inline-flex;
+}
+
+.termino dd {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
