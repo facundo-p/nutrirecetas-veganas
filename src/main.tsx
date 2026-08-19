@@ -5,6 +5,7 @@ import '@fontsource-variable/schibsted-grotesk';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/app.css';
+import './styles/screens.css';
 import { App } from './app/App';
 
 createRoot(document.getElementById('root')!).render(
