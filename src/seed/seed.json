@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "fcd8c9e0d25d0a492421ddf0bd93f575c37262c880ab7792ca80c8c04146fa8c",
+ "content_hash": "a584bbee2b54c8934664bb759cf1c7e3f027deeaa938d8f84b0ff6c15fd9de5c",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -5709,6 +5709,8 @@
     }
    ],
    "ajuste_vegano": {
+    "factor": 2,
+    "factor_de_prosa": true,
     "descripcion": "Si no se suplementa EPA/DHA: duplicar ALA (~2.2-4.4 g/día). Opcional por consenso experto: EPA+DHA algal 200-300 mg 2-3x/semana (diario en >60, embarazo/lactancia)",
     "ic": 6
    },
@@ -5750,6 +5752,8 @@
     }
    ],
    "ajuste_vegano": {
+    "factor": 1.25,
+    "factor_de_prosa": true,
     "descripcion": "Práctico: ~1.0 g/kg (digestibilidad vegetal algo menor); 1.0-1.2 en >60 años o entrenamiento de fuerza. Asegurar lisina: ~3 porciones/día de legumbres/soja/quinoa",
     "ic": 6
    },

@@ -18,6 +18,7 @@ import {
   NUTRIENT_INGREDIENT_KEY,
   PHANTOM_LINES,
   STORAGE_GROUPS,
+  VEGAN_FACTORS_FROM_PROSE,
 } from './curated-tables';
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
@@ -68,6 +69,7 @@ export function transformIngredient(raw: RawIngredient): Ingredient {
 export function transformNutrient(raw: RawNutrient): Nutrient {
   const clave = NUTRIENT_INGREDIENT_KEY[raw.id];
   if (!clave) throw new Error(`Nutriente "${raw.id}" sin clave de ingrediente mapeada`);
+  const desdeProsa = VEGAN_FACTORS_FROM_PROSE[raw.id];
   return {
     id: raw.id,
     nombre: raw.nombre,
@@ -78,7 +80,11 @@ export function transformNutrient(raw: RawNutrient): Nutrient {
     ...(raw.ajuste_vegano !== undefined
       ? {
           ajuste_vegano: {
-            ...(raw.ajuste_vegano.factor !== undefined ? { factor: raw.ajuste_vegano.factor } : {}),
+            ...(raw.ajuste_vegano.factor !== undefined
+              ? { factor: raw.ajuste_vegano.factor }
+              : desdeProsa !== undefined
+                ? { factor: desdeProsa.factor, factor_de_prosa: true as const }
+                : {}),
             descripcion: raw.ajuste_vegano.descripcion,
             ...(raw.ajuste_vegano.confianza !== undefined ? { ic: raw.ajuste_vegano.confianza } : {}),
           },

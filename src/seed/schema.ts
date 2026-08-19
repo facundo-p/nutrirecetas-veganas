@@ -115,6 +115,8 @@ export const nutrientSchema = z.strictObject({
   ajuste_vegano: z
     .strictObject({
       factor: z.number().optional(),
+      /** El factor no venía como número: se transcribió de la descripción (ver T8). */
+      factor_de_prosa: z.literal(true).optional(),
       descripcion: z.string(),
       ic: z.int().min(1).max(10).optional(),
     })

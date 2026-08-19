@@ -246,3 +246,30 @@ export const NUTRIENT_INGREDIENT_KEY: Record<string, string> = {
   fibra: 'fibra_g',
   colina: 'colina_mg',
 };
+
+// ---------- T8: factores veganos que el dataset declara en prosa ----------
+
+/**
+ * `ajuste_vegano` casi siempre trae `factor` numérico (hierro ×1.8, zinc ×1.5) y
+ * la regla del proyecto es NO inventar factores donde no los hay. Pero dos
+ * nutrientes traen el multiplicador escrito en la descripción, y el propio
+ * dataset lo confirma en `perfil.json → objetivos_derivados_del_ejemplo`
+ * (proteína 75 g y ALA 3.2 g para un varón de 75 kg). Formalizarlos acá es
+ * transcribir el dato, no fabricarlo; cualquier otro caso sigue siendo guía
+ * textual sin número.
+ */
+export interface ProseVeganFactor {
+  factor: number;
+  base: string;
+}
+
+export const VEGAN_FACTORS_FROM_PROSE: Record<string, ProseVeganFactor> = {
+  proteina: {
+    factor: 1.25, // 0.8 g/kg × 1.25 = 1.0 g/kg
+    base: '"Práctico: ~1.0 g/kg (digestibilidad vegetal algo menor)" sobre una RDA de 0.8 g/kg; el ejemplo del dataset deriva 75 g para 75 kg',
+  },
+  omega3: {
+    factor: 2, // "duplicar ALA"
+    base: '"Si no se suplementa EPA/DHA: duplicar ALA"; el ejemplo del dataset deriva 3.2 g desde una RDA de 1.6 g',
+  },
+};

@@ -172,6 +172,23 @@ describe('nutrientes del catálogo', () => {
     const magnesio = all.find((n) => n.id === 'magnesio')!;
     expect(magnesio.ul_nota).toBeDefined(); // el UL de Mg aplica solo a suplementos
   });
+
+  test('los factores veganos que el dataset trae en prosa quedan explícitos (T8)', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    const proteina = all.find((n) => n.id === 'proteina')!;
+    expect(proteina.ajuste_vegano?.factor).toBe(1.25); // 0.8 g/kg → 1.0 g/kg
+    expect(proteina.ajuste_vegano?.factor_de_prosa).toBe(true);
+    const omega3 = all.find((n) => n.id === 'omega3')!;
+    expect(omega3.ajuste_vegano?.factor).toBe(2); // "duplicar ALA"
+    expect(omega3.ajuste_vegano?.factor_de_prosa).toBe(true);
+  });
+
+  test('los nutrientes cuya guía vegana no trae número siguen sin factor', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    for (const id of ['b12', 'vitd', 'calcio', 'yodo', 'selenio']) {
+      expect(all.find((n) => n.id === id)!.ajuste_vegano?.factor).toBeUndefined();
+    }
+  });
 });
 
 describe('estacionalidad y conservación', () => {
