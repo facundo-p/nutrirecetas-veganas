@@ -26,9 +26,13 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
-## 3. Estética: dos propuestas registradas (decisión pendiente del checkpoint de Fase 0)
+## 3. Estética: propuestas registradas (decisión pendiente del checkpoint de Fase 0)
 
-Tras la primera iteración del Render 0, Facu pidió una alternativa con más personalidad y saturación (la paleta de A coincidía casi 1:1 con otra app suya de huerta). **Ambas propuestas quedan registradas como viables**; se elige (o se híbrida) en el checkpoint. Ver ambas completas en el [Render 0](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525).
+Historial de iteraciones del Render 0 ([artifact](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525)):
+
+- **Iteración 1** → Propuesta A (Botánica editorial). Facu la valoró como viable pero pidió más personalidad y notó que la paleta desaturada coincidía con otra app suya de huerta.
+- **Iteración 2** → Propuesta B (Tinta fresca): saturación plena + estructura de imprenta. Veredicto de Facu: carácter sí, dirección no — quería algo **sofisticado/elegante/gourmet**; rechazó los contornos negros gruesos y prefirió las tipografías de A. De la B sobrevive la idea central: **los colores de la app son los colores de las verduras**.
+- **Iteración 3** → **Propuesta C (Carta de estación)**, la candidata actual: brief de Facu "tan hermosa como un plato vegano colorido y saludable, sin sobresaturar".
 
 ### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
@@ -57,7 +61,28 @@ Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif di
 
 Estructura: tarjetas crema con borde fino, sombra apenas presente, radios generosos. Ilustración botánica de línea fina como ornamento.
 
-### Propuesta B — "Tinta fresca" (nueva, responde al pedido de saturación y carácter)
+### Propuesta C — "Carta de estación" (candidata actual, gourmet)
+
+Sofisticada como la carta de un restaurante de estación. Base de A (papel ocre, Fraunces + Schibsted Grotesk, bordes finos — **confirmados por Facu**) + sistema de colores-verdura. Regla que ordena el color: **cada verdura tiene un rol, y cada rol tiene su verdura** — en una pantalla cualquiera dominan ocre y tinta, y el color aparece solo donde significa algo.
+
+| Token | Valor | Verdura / rol |
+|---|---|---|
+| `--papel` | `#F4EEE1` | fondo ocre desaturado (pedido de Facu) |
+| `--tofu` | `#FDFAF1` | superficie de tarjetas |
+| `--tinta` | `#2C2A22` | texto |
+| `--espinaca` | `#466F3D` | identidad, marca, navegación |
+| `--zanahoria` | `#C96E2F` | **acción** (botones, énfasis) |
+| `--zapallito` | `#4C8044` | semáforo: cubierto |
+| `--garbanzo` | `#C68F3B` | semáforo: parcial |
+| `--rabanito` | `#C2434E` | semáforo: insuficiente / dulce |
+| `--repollo-colorado` | `#7B4B77` | cubierto por suplemento (reemplaza el azul genérico) |
+| `--chia` | `#75787D` | sin datos |
+| `--lechuga` | `#ADBE8C` | tags y bordes suaves |
+| `--soja` | `#A67C52` | preparados |
+
+Elementos distintivos: **fondo con patrón de siluetas de verduras** (zanahoria, rabanito, ramita, arvejas, cebolla — solo línea, apenas más oscuras que el papel, pedido de Facu); puntos de guía tipo carta de restaurante entre ingrediente y cantidad; filetes dobles de menú impreso; cifras clave en itálica serif zanahoria; íconos de tipo de receta coloreados por verdura. Sin contornos gruesos, sin sombras duras (rechazados de B).
+
+### Propuesta B — "Tinta fresca" (registrada, dirección descartada por Facu)
 
 Colores de verdulería real a plena saturación sobre blanco verdoso; estructura de imprenta. Bricolage Grotesque (display) + Archivo (datos; fundición porteña Omnibus-Type).
 
