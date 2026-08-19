@@ -65,22 +65,26 @@ Estructura: tarjetas crema con borde fino, sombra apenas presente, radios genero
 
 Sofisticada como la carta de un restaurante de estación. Base de A (papel ocre, Fraunces + Schibsted Grotesk, bordes finos — **confirmados por Facu**) + sistema de colores-verdura. Regla que ordena el color: **cada verdura tiene un rol, y cada rol tiene su verdura** — en una pantalla cualquiera dominan ocre y tinta, y el color aparece solo donde significa algo.
 
+Tokens vigentes (iteración 4: saturación +1 pedida por Facu, papel calibrado al crema de su imagen de fondo):
+
 | Token | Valor | Verdura / rol |
 |---|---|---|
-| `--papel` | `#F4EEE1` | fondo ocre desaturado (pedido de Facu) |
-| `--tofu` | `#FDFAF1` | superficie de tarjetas |
+| `--papel` | `#F5EFDC` | fondo ocre (calibrado a la imagen de fondo) |
+| `--tofu` | `#FDFAF0` | superficie de tarjetas |
 | `--tinta` | `#2C2A22` | texto |
-| `--espinaca` | `#466F3D` | identidad, marca, navegación |
-| `--zanahoria` | `#C96E2F` | **acción** (botones, énfasis) |
-| `--zapallito` | `#4C8044` | semáforo: cubierto |
-| `--garbanzo` | `#C68F3B` | semáforo: parcial |
-| `--rabanito` | `#C2434E` | semáforo: insuficiente / dulce |
-| `--repollo-colorado` | `#7B4B77` | cubierto por suplemento (reemplaza el azul genérico) |
+| `--espinaca` | `#427A3A` | identidad, marca, etiquetas de sección |
+| `--zanahoria` | `#D06A24` | **acción** (botones, énfasis, nav activa) |
+| `--zapallito` | `#47903F` | semáforo: cubierto |
+| `--garbanzo` | `#D1942C` | semáforo: parcial |
+| `--rabanito` | `#CF3D4D` | semáforo: insuficiente / dulce |
+| `--repollo-colorado` | `#85477F` | cubierto por suplemento (reemplaza el azul genérico) |
 | `--chia` | `#75787D` | sin datos |
-| `--lechuga` | `#ADBE8C` | tags y bordes suaves |
-| `--soja` | `#A67C52` | preparados |
+| `--lechuga` | `#A5C179` | tags y bordes suaves |
+| `--soja` | `#AB7442` | preparados |
 
-Elementos distintivos: **fondo con patrón de siluetas de verduras** (zanahoria, rabanito, ramita, arvejas, cebolla — solo línea, apenas más oscuras que el papel, pedido de Facu); puntos de guía tipo carta de restaurante entre ingrediente y cantidad; filetes dobles de menú impreso; cifras clave en itálica serif zanahoria; íconos de tipo de receta coloreados por verdura. Sin contornos gruesos, sin sombras duras (rechazados de B).
+**Fondo**: ilustración de verduras provista por Facu (línea sobre crema, generada con Gemini), guardada como asset maestro en `docs/assets/fondo-verduras.png` (1536×2752). Se aplica en todas las pantallas con `background-size: cover` y un **velo de papel al 38 %** encima para que el contenido respire; la app deberá servir versiones optimizadas (WebP/AVIF comprimidas) desde el build.
+
+Elementos distintivos: puntos de guía tipo carta de restaurante entre ingrediente y cantidad; filetes dobles de menú impreso; cifras clave en itálica serif zanahoria; íconos de tipo de receta coloreados por verdura; píldoras del semáforo teñidas con su propio color (`color-mix`). Sin contornos gruesos, sin sombras duras (rechazados de B).
 
 ### Propuesta B — "Tinta fresca" (registrada, dirección descartada por Facu)
 
