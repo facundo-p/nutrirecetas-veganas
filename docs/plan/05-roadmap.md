@@ -7,8 +7,8 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 1. ✅ Rama `staging`; commit raíz en `main` solo con `.gitignore` (base del futuro PR).
 2. ✅ Plan en `docs/plan/` + `README.md`.
 3. ✅ `CLAUDE.md`, `lessons.md`, hook `guard-main` (bloquea commits/push a `main`).
-4. **Render 0**: mockups HTML de 5 vistas con estética botánica editorial + primer set de íconos → Artifact.
-5. **Checkpoint**: pulir estética/íconos con Facu antes de escribir código de app.
+4. ✅ **Render 0**: mockups HTML de 5 vistas con estética botánica editorial + primer set de íconos → [Artifact publicado](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525).
+5. **Checkpoint**: pulir estética/íconos con Facu antes de escribir código de app. ← **acá estamos**
 
 **Criterio de cierre**: Facu aprueba (o ajustamos) la dirección visual.
 
