@@ -74,15 +74,17 @@ Tokens vigentes (iteración 4: saturación +1 pedida por Facu, papel calibrado a
 | `--tinta` | `#2C2A22` | texto |
 | `--espinaca` | `#427A3A` | identidad, marca, etiquetas de sección |
 | `--zanahoria` | `#D06A24` | **acción** (botones, énfasis, nav activa) |
+| `--berenjena` | `#5C3A63` | **títulos display** (voz de recetas y pantallas) |
+| `--remolacha` | `#A82D52` | **lo dulce e indulgente** (flor de dulces, cuchara) |
 | `--zapallito` | `#47903F` | semáforo: cubierto |
 | `--garbanzo` | `#D1942C` | semáforo: parcial |
-| `--rabanito` | `#CF3D4D` | semáforo: insuficiente / dulce |
+| `--rabanito` | `#CF3D4D` | semáforo: insuficiente (solo alerta; lo dulce pasó a remolacha) |
 | `--repollo-colorado` | `#85477F` | cubierto por suplemento (reemplaza el azul genérico) |
 | `--chia` | `#75787D` | sin datos |
 | `--lechuga` | `#A5C179` | tags y bordes suaves |
 | `--soja` | `#AB7442` | preparados |
 
-**Fondo**: ilustración de verduras provista por Facu (línea sobre crema, generada con Gemini), guardada como asset maestro en `docs/assets/fondo-verduras.png` (1536×2752). Se aplica en todas las pantallas con `background-size: cover` y un **velo de papel al 38 %** encima para que el contenido respire; la app deberá servir versiones optimizadas (WebP/AVIF comprimidas) desde el build.
+**Fondo**: ilustración de verduras provista por Facu (línea sobre crema, generada con Gemini). Asset maestro intacto en `docs/assets/fondo-verduras.png` (1536×2752); la versión de uso es `docs/assets/fondo-verduras-suave.png` — **trazos fundidos 62 % hacia el crema del fondo** (pedido de Facu: que apenas se distingan), aplicada directa con `background-size: cover`, sin velo. La app deberá servir versiones optimizadas (WebP/AVIF comprimidas) desde el build.
 
 Elementos distintivos: puntos de guía tipo carta de restaurante entre ingrediente y cantidad; filetes dobles de menú impreso; cifras clave en itálica serif zanahoria; íconos de tipo de receta coloreados por verdura; píldoras del semáforo teñidas con su propio color (`color-mix`). Sin contornos gruesos, sin sombras duras (rechazados de B).
 
