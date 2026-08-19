@@ -10,9 +10,9 @@ import { chromium } from 'playwright';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const fase = args.find((a) => !a.startsWith('--')) ?? 'fase-1';
-// TEMPORAL: mientras convivan las propuestas C y D, cada tema tiene su carpeta.
-const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'c';
-const carpeta = tema === 'c' ? fase : `${fase}-tema-${tema}`;
+// Cada tema visual tiene su carpeta: el default es el tema activo de la app.
+const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'd';
+const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });
 

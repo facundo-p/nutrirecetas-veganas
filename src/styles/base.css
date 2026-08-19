@@ -37,7 +37,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: 560;
   line-height: 1.15;
-  color: var(--berenjena);
+  color: var(--titulo-seccion);
   text-wrap: balance;
 }
 
@@ -46,7 +46,7 @@ p {
 }
 
 a {
-  color: var(--espinaca);
+  color: var(--link, var(--espinaca));
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
@@ -84,11 +84,11 @@ svg {
   background: none;
 }
 
-/* Cifra clave en itálica serif zanahoria (detalle gourmet de la C) */
+/* Cifra clave en itálica serif: el tema decide el color */
 .cifra {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--zanahoria);
+  color: var(--cifra);
   font-variant-numeric: proportional-nums;
 }
 

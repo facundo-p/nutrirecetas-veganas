@@ -22,6 +22,22 @@ Idioma del proyecto: **español rioplatense** (código en inglés, UI y docs en 
 7. El UL de magnesio aplica solo a suplementos: el semáforo no alerta exceso de Mg alimentario.
 8. **La app informa, no diagnostica.** Fuera de alcance: embarazo, lactancia, menores, condiciones médicas.
 
+## Temas visuales (intercambiables)
+
+La app tiene **dos temas**: **D "el color dice de qué se trata"** (activo por defecto, el que usa Facu) y **C "carta de estación"**. Se alternan con `?tema=c` / `?tema=d`; la elección queda en `localStorage` y se aplica antes de pintar (script inline de `index.html`).
+
+**La regla del sistema: ninguna regla de la app nombra una verdura.** Los selectores usan **tokens de rol** (`--titulo-seccion`, `--titulo-receta`, `--cifra`, `--navegar`, `--aviso`, `--tip-*`, `--kicker`, `--funcion-ingrediente`, `--cat-*`) y cada tema decide qué verdura cumple cada rol.
+
+- `src/styles/tokens.css` — la paleta base (verduras, tipografía, espaciado). Igual en todos los temas.
+- `src/styles/temas.css` — quién cumple qué rol, un bloque por tema. **Agregar un tema es agregar un bloque acá**, sin tocar ningún componente.
+- `src/app/tema.ts` — lectura y aplicación del tema.
+
+Al tocar color: cambiar el token de rol en `temas.css`, nunca un hex suelto en un componente. Si un rol nuevo hace falta, se declara en ambos temas. Los colores de ícono van en clases (`.icono-*` en `app.css`), nunca inline en el TSX.
+
+**Cuidado con las custom properties anidadas**: una property que contiene `var()` se resuelve **en el elemento donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root` (si no, `var(--cat-actual)` cae siempre al fallback).
+
+Renders: `npm run renders -- fase-N` (tema D) y `--tema=c` para el otro; salen a `docs/renders/fase-N-tema-{c,d}/`.
+
 ## Arquitectura (resumen; detalle en docs/plan/02-arquitectura.md)
 
 - Stack: TypeScript + React 19 + Vite (SPA estática) + vite-plugin-pwa + Dexie.js + Zod + Zustand + Vitest.

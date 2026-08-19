@@ -6,6 +6,16 @@
     <meta name="theme-color" content="#F5EFDC" />
     <meta name="description" content="Recetario vegano personal con base nutricional. Offline, sin cuentas, sin backend." />
     <title>Nutrirecetas</title>
+    <!-- Aplica el tema guardado antes de pintar: sin esto, elegir la C haría
+         que la app cargue en D y saltara de color. Ver src/app/tema.ts -->
+    <script>
+      (function () {
+        try {
+          var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('tema');
+          if (t === 'c') document.documentElement.dataset.tema = 'c';
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

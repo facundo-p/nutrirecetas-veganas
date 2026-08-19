@@ -1,5 +1,6 @@
-/* Propuesta C "Carta de estación" — cada verdura tiene un rol, cada rol su verdura.
-   Fuente de verdad visual: docs/plan/04-interaccion-y-estetica.md §3 (iteraciones 4 y 5). */
+/* Paleta base — las verduras y la materia prima, iguales en todos los temas.
+   Qué color cumple qué rol lo deciden los temas: ver temas.css.
+   Fuente de verdad visual: docs/plan/04-interaccion-y-estetica.md §3. */
 :root {
   /* Base papel y tinta */
   --papel: #f5efdc;
@@ -20,13 +21,8 @@
   --lechuga: #a5c179; /* tags y bordes suaves */
   --soja: #ab7442; /* preparados */
 
-  /* Categoría de receta: escala propia para que el tipo no pise colores con otro rol.
-     En la C apuntan a los colores-verdura de siempre; el tema D las redefine. */
-  --cat-principal: var(--espinaca);
-  --cat-dulce: var(--remolacha);
-  --cat-pan: var(--garbanzo);
-  --cat-preparado: var(--soja);
-  --cat-conserva: var(--soja);
+  /* Tonos que solo existen para cumplir contraste como texto */
+  --zanahoria-honda: #b85718; /* la zanahoria cuando es tipografía */
 
   /* Tipografía */
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;

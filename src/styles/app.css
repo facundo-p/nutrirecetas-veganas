@@ -116,7 +116,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--espinaca);
+  color: var(--kicker);
 }
 
 /* ---------- íconos con rol propio ----------
@@ -124,7 +124,7 @@
    el tema decide el color, el componente solo dice qué significa. */
 
 .icono-imprescindible {
-  color: var(--zanahoria);
+  color: var(--icono-imprescindible);
 }
 
 .icono-temporada {

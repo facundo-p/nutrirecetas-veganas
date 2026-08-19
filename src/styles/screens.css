@@ -93,7 +93,7 @@
   font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 560;
-  color: var(--berenjena);
+  color: var(--titulo-receta);
   line-height: 1.2;
 }
 
@@ -139,7 +139,7 @@
   padding: var(--sp-2) var(--sp-4);
   font: inherit;
   font-size: var(--fs-sm);
-  color: var(--espinaca);
+  color: var(--navegar);
   cursor: pointer;
 }
 
@@ -186,7 +186,12 @@
   margin-top: var(--sp-2);
 }
 
+[data-cat] .encabezado-pantalla h1 {
+  color: var(--titulo-receta);
+}
+
 .volver a {
+  color: var(--navegar);
   text-decoration: none;
   font-size: var(--fs-sm);
 }
@@ -246,15 +251,15 @@
   display: flex;
   gap: var(--sp-3);
   align-items: flex-start;
-  background: color-mix(in srgb, var(--rabanito) 9%, var(--tofu));
-  border: 1px solid color-mix(in srgb, var(--rabanito) 45%, transparent);
+  background: color-mix(in srgb, var(--aviso) 9%, var(--tofu));
+  border: 1px solid color-mix(in srgb, var(--aviso) 45%, transparent);
   border-radius: var(--radio);
   padding: var(--sp-3) var(--sp-4);
   font-size: var(--fs-sm);
 }
 
 .alerta-b12-icono {
-  color: var(--rabanito);
+  color: var(--aviso);
   font-size: 30px;
   flex-shrink: 0;
 }
@@ -308,7 +313,7 @@
 }
 
 .linea-funcion {
-  color: var(--espinaca);
+  color: var(--funcion-ingrediente);
 }
 
 .chip-texto {
@@ -461,12 +466,18 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--espinaca);
+  color: var(--tip-positivo);
 }
 
 .tip-tipo.tip-precaucion,
-.tip-tipo.tip-inhibidor {
-  color: var(--garbanzo);
+.tip-tipo.tip-inhibidor,
+.tip-tipo.tip-correccion {
+  color: var(--tip-atencion);
+}
+
+.tip-tipo.tip-tecnica,
+.tip-tipo.tip-dato {
+  color: var(--tip-neutro);
 }
 
 .tip.no-aplica {
@@ -595,9 +606,9 @@
 }
 
 .chip-alerta {
-  background: color-mix(in srgb, var(--rabanito) 12%, var(--tofu));
-  border-color: color-mix(in srgb, var(--rabanito) 45%, transparent);
-  color: var(--rabanito);
+  background: color-mix(in srgb, var(--aviso) 12%, var(--tofu));
+  border-color: color-mix(in srgb, var(--aviso) 45%, transparent);
+  color: var(--aviso);
   justify-self: start;
 }
 
@@ -661,6 +672,11 @@
   flex-shrink: 0;
 }
 
+/* los íconos de tipo enseñan el color de su categoría */
+.ficha-icono[data-cat] .ficha-icono-svg {
+  color: var(--cat-actual);
+}
+
 .lista-terminos {
   display: grid;
   gap: var(--sp-3);
@@ -670,7 +686,7 @@
 .termino dt {
   font-family: var(--font-display);
   font-weight: 600;
-  color: var(--berenjena);
+  color: var(--titulo-seccion);
   display: flex;
   align-items: center;
   gap: var(--sp-2);

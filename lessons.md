@@ -56,3 +56,11 @@ Al cierre de cada fase se anota: qué funcionó, qué se rompió, qué decisión
 - **Refactor neutro primero, cambio visual después.** Mover los 15 colores inline de los TSX a clases CSS (paso sin ningún cambio visual, verificado comparando PNG pixel a pixel) hizo que el tema entero fuera 100 % CSS. La única diferencia esperada fue el ícono de la Picada vegana, por la fusión combo→principal.
 - Los temas conviven con `?tema=d` y `tema-d.css`. **Ambos son temporales**: al decidir, la ganadora se muda a `tokens.css` y el switch se borra. Si esto sigue acá en Fase 3, es deuda.
 - El dataset no tiene ninguna conserva ni fermento (busqué kimchi, escabeche, pickle, chucrut, encurtido en las 84 recetas). La categoría quedó declarada igual, con color e ícono, para las recetas propias de Fase 4.
+
+### Los temas quedan como sistema permanente (2026-08-19)
+
+- Facu eligió la **D para seguir el desarrollo** y pidió conservar la C como tema intercambiable. Los temas dejaron de ser un andamio temporal: pasaron a ser parte de la arquitectura visual.
+- El refactor que lo hizo sano: **tokens de rol** (`--titulo-seccion`, `--cifra`, `--aviso`, `--navegar`…) declarados por tema en `temas.css`, en vez de overrides por selector bajo `[data-tema=d]`. Ninguna regla de la app nombra una verdura; agregar un tema (un dark mode, por ejemplo) es agregar un bloque.
+- **Bug aprendido, vale para cualquier sistema de temas**: una custom property cuyo valor contiene `var()` se resuelve **en el elemento donde se declara**, no donde se usa. `--titulo-receta: var(--cat-actual)` declarado en `:root` caía siempre al fallback porque `--cat-actual` recién existe sobre `[data-cat]`. Se declara sobre `[data-cat]` y listo. Lo detecté comparando renders pixel a pixel antes y después del refactor: sin esa comparación pasaba desapercibido.
+- El default sin atributo es la D; la C se marca con `data-tema="c"`. Un script inline en `index.html` lo aplica antes de pintar para que elegir la C no produzca un salto de color.
+- Renders por tema en `docs/renders/fase-N-tema-{c,d}/`; `npm run renders` usa el tema activo y `--tema=c` el otro.

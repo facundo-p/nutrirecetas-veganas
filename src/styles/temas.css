@@ -1,0 +1,95 @@
+/* Temas: qué color cumple cada rol. La paleta vive en tokens.css; acá se reparte.
+   Fuente de verdad visual: docs/plan/04-interaccion-y-estetica.md §3.
+
+   Regla del sistema: ninguna regla de la app nombra una verdura. Los selectores
+   usan tokens de rol (--titulo-seccion, --aviso, --cifra…) y cada tema decide
+   qué verdura los cumple. Agregar un tema nuevo = agregar un bloque acá.
+
+   Activo por defecto: D. Se alterna con ?tema=c | ?tema=d (ver main.tsx). */
+
+/* ══════════ Tema D — "el color dice de qué se trata" (default) ══════════
+   Cada receta dice su categoría con el color de su título; espinaca y zanahoria
+   son los protagonistas; berenjena pasa a cifras y navegación; remolacha queda
+   reservada para lo que pide atención. */
+:root {
+  /* Categoría de receta: escala propia, desacoplada de los roles funcionales.
+     Elegidas midiendo: ningún par baja de ΔE 26 entre sí ni contra sus vecinos. */
+  --cat-principal: #9a3a2c; /* tomate — saladas y combos */
+  --cat-dulce: #5e4126; /* cacao amargo */
+  --cat-preparado: #5a5f72; /* chía */
+  --cat-pan: #8a6520; /* trigo tostado */
+  --cat-conserva: #1f6b5e; /* kombu — fermentos y escabeches */
+
+  /* Tipografía y datos */
+  --titulo-seccion: var(--zanahoria-honda);
+  --cifra: var(--berenjena);
+  --kicker: var(--espinaca);
+
+  /* Navegación: volver, atrás, cancelar */
+  --navegar: var(--berenjena);
+
+  /* Avisos que piden atención */
+  --aviso: var(--remolacha);
+  --tip-positivo: var(--espinaca); /* potenciador, sugerencia */
+  --tip-atencion: var(--remolacha); /* precaución, inhibidor, corrección */
+  --tip-neutro: var(--tinta-suave); /* técnica, dato */
+
+  /* Íconos de atributo */
+  --icono-imprescindible: var(--zanahoria-honda);
+  --funcion-ingrediente: var(--tinta-suave);
+}
+
+/* ══════════ Tema C — "carta de estación" ══════════
+   Los títulos son la voz berenjena, la espinaca conduce y la zanahoria acentúa
+   las cifras. El tipo de receta lo comunica solo el ícono. */
+:root[data-tema='c'] {
+  --cat-principal: var(--espinaca);
+  --cat-dulce: var(--remolacha);
+  --cat-preparado: var(--soja);
+  --cat-pan: var(--garbanzo);
+  --cat-conserva: var(--soja);
+
+  --titulo-seccion: var(--berenjena);
+  --cifra: var(--zanahoria);
+  --kicker: var(--espinaca);
+
+  --navegar: var(--espinaca);
+
+  --aviso: var(--rabanito);
+  --tip-positivo: var(--espinaca);
+  --tip-atencion: var(--garbanzo);
+  --tip-neutro: var(--espinaca);
+
+  --icono-imprescindible: var(--zanahoria);
+  --funcion-ingrediente: var(--espinaca);
+}
+
+/* ---------- el color de la categoría, disponible para toda la rama ----------
+   Ojo: `--titulo-receta` se declara acá y no en `:root` a propósito. Una custom
+   property que contiene var() se resuelve en el elemento donde se declara, no
+   donde se usa: declarada en `:root`, `var(--cat-actual)` no existiría todavía
+   y caería al fallback. Declarada sobre [data-cat], resuelve la categoría real. */
+
+[data-cat] {
+  --titulo-receta: var(--cat-actual);
+}
+
+:root[data-tema='c'] [data-cat] {
+  --titulo-receta: var(--berenjena);
+}
+
+[data-cat='principal'] {
+  --cat-actual: var(--cat-principal);
+}
+[data-cat='dulce'] {
+  --cat-actual: var(--cat-dulce);
+}
+[data-cat='preparado'] {
+  --cat-actual: var(--cat-preparado);
+}
+[data-cat='pan'] {
+  --cat-actual: var(--cat-pan);
+}
+[data-cat='conserva'] {
+  --cat-actual: var(--cat-conserva);
+}

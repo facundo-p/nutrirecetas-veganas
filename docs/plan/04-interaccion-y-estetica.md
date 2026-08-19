@@ -26,13 +26,16 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
-## 3. Estética: propuestas registradas (decisión pendiente del checkpoint de Fase 0)
+## 3. Estética: dos temas intercambiables
 
-Historial de iteraciones del Render 0 ([artifact](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525)):
+**Estado actual: la app tiene dos temas vivos.** El activo es la **D**; la **C** queda disponible con `?tema=c`. Las propuestas A y B quedan registradas como historia, sin implementar. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+
+Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525) para las de Fase 0, [comparativa C vs D](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d) para la última):
 
 - **Iteración 1** → Propuesta A (Botánica editorial). Facu la valoró como viable pero pidió más personalidad y notó que la paleta desaturada coincidía con otra app suya de huerta.
 - **Iteración 2** → Propuesta B (Tinta fresca): saturación plena + estructura de imprenta. Veredicto de Facu: carácter sí, dirección no — quería algo **sofisticado/elegante/gourmet**; rechazó los contornos negros gruesos y prefirió las tipografías de A. De la B sobrevive la idea central: **los colores de la app son los colores de las verduras**.
-- **Iteración 3** → **Propuesta C (Carta de estación)**, la candidata actual: brief de Facu "tan hermosa como un plato vegano colorido y saludable, sin sobresaturar".
+- **Iteraciones 3 a 5** → **Propuesta C (Carta de estación)**: brief de Facu "tan hermosa como un plato vegano colorido y saludable, sin sobresaturar". Suma su ilustración de fondo, saturación +1, berenjena y remolacha. Con ella se construyó la Fase 1.
+- **Iteración 6** → **Propuesta D**, a partir de los renders reales: la categoría de cada receta se lee en el color de su título, espinaca y zanahoria pasan al frente. **Es el tema activo desde el 19/8/2026.**
 
 ### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
@@ -61,7 +64,7 @@ Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif di
 
 Estructura: tarjetas crema con borde fino, sombra apenas presente, radios generosos. Ilustración botánica de línea fina como ornamento.
 
-### Propuesta D — "El color dice de qué se trata" (en evaluación, iteración 6)
+### Propuesta D — "El color dice de qué se trata" (**tema activo**, iteración 6)
 
 Sobre la base de la C (mismo papel, mismas tipografías, mismo fondo), reordena **quién dice qué**. Nace de un diagnóstico de Facu sobre los renders reales de Fase 1: la interfaz se veía dominada por berenjena y espinaca. La causa era estructural, no de gusto — dos reglas globales pintaban todos los encabezados de violeta (`base.css` `h1,h2,h3`) y todos los links de verde (`base.css` `a`) — más tres colisiones de rol (`--garbanzo` servía a la vez para el tipo `pan`, la estrella de clásica y los tips de precaución).
 
@@ -89,9 +92,9 @@ Elegidas **midiendo**: ningún par baja de ΔE 26 entre sí, y todas cumplen AA 
 
 Los 7 tipos de regla (`RuleTips`) ya emitían clase propia pero solo 2 tenían color: la D cubre los siete. Ícono nuevo `IconFrascoFermento` para la categoría conserva.
 
-**Cómo se prueba**: `src/styles/tema-d.css` con overrides bajo `:root[data-tema='d']`, activable con `?tema=d` (queda en `localStorage`). La C sigue siendo el default. **Ambos archivos son temporales hasta que Facu elija**: la ganadora se muda a `tokens.css` y el switch se elimina. Renders de cada tema en `docs/renders/fase-1/` (C) y `docs/renders/fase-1-tema-d/` (D); comparativa publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
+**Estado**: Facu la eligió para seguir el desarrollo, y **los dos temas quedan como sistema permanente** (no se descarta la C). Implementación en `src/styles/temas.css`: la paleta base vive en `tokens.css` y cada tema declara qué verdura cumple cada **token de rol** (`--titulo-seccion`, `--titulo-receta`, `--cifra`, `--navegar`, `--aviso`, `--tip-*`…). Ninguna regla de la app nombra una verdura, así que agregar un tema es agregar un bloque. Se alternan con `?tema=c` / `?tema=d` (ver `src/app/tema.ts`; el script inline de `index.html` lo aplica antes de pintar para que no salte el color). Renders de cada tema en `docs/renders/fase-1-tema-c/` y `docs/renders/fase-1-tema-d/`; comparativa publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
 
-### Propuesta C — "Carta de estación" (implementada, default actual)
+### Propuesta C — "Carta de estación" (tema alternativo, `?tema=c`)
 
 Sofisticada como la carta de un restaurante de estación. Base de A (papel ocre, Fraunces + Schibsted Grotesk, bordes finos — **confirmados por Facu**) + sistema de colores-verdura. Regla que ordena el color: **cada verdura tiene un rol, y cada rol tiene su verdura** — en una pantalla cualquiera dominan ocre y tinta, y el color aparece solo donde significa algo.
 
