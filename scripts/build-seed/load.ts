@@ -37,7 +37,7 @@ export interface RawRecipe {
   ingredientes: RawLine[];
   pasos: string[];
   secretos_chef?: string[];
-  guarda?: { heladera_dias?: number; freezer?: boolean };
+  guarda?: { heladera_dias?: number; freezer?: boolean | string };
   reglas_disparadas?: string[];
   utensilio_recomendado?: string[];
   perfil_nutricional_porcion_aprox?: unknown; // descartado (auditoría §2.4)
@@ -51,7 +51,10 @@ export interface RawRecipe {
   nota?: string;
 }
 
-export type RawNutrientValue = number | { min: number; max: number; tipico?: number; nota?: string };
+export type RawNutrientValue =
+  | number
+  | null // null explícito = sin dato (se omite; la cobertura lo reporta)
+  | { min: number; max: number; tipico?: number; nota?: string };
 
 export interface RawIngredient {
   id: string;
@@ -82,7 +85,7 @@ export interface RawNutrient {
   ventana_nota?: string;
   confianza_rda: number;
   fuentes?: unknown;
-  notas?: string;
+  notas?: Array<{ texto: string; confianza?: number; fuentes?: unknown }>;
 }
 
 export interface RawRule {

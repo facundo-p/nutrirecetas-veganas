@@ -101,7 +101,8 @@ export type RdaEntry = z.infer<typeof rdaEntrySchema>;
 export const nutrientSchema = z.strictObject({
   id: z.string().min(1),
   nombre: z.string().min(1),
-  grupo: z.enum(['A', 'B']),
+  /** El README decía A/B; los datos reales usan critico/importante. */
+  grupo: z.enum(['critico', 'importante']),
   unidad: z.string(),
   /** Clave con la que este nutriente aparece en `ingrediente.nutrientes`. */
   clave_ingrediente: z.enum(INGREDIENT_NUTRIENT_KEYS),
@@ -118,7 +119,9 @@ export const nutrientSchema = z.strictObject({
   ventana: z.enum(['dia', 'semana']),
   ventana_nota: z.string().optional(),
   ic: z.int().min(1).max(10),
-  notas: z.string().optional(),
+  notas: z
+    .array(z.strictObject({ texto: z.string(), ic: z.int().min(1).max(10).optional() }))
+    .optional(),
 });
 export type Nutrient = z.infer<typeof nutrientSchema>;
 
@@ -240,7 +243,12 @@ export const recipeSchema = z.strictObject({
   pasos: z.array(z.string()).min(1),
   secretos_chef: z.array(z.string()),
   guarda: z
-    .strictObject({ heladera_dias: z.number().optional(), freezer: z.boolean().optional() })
+    .strictObject({
+      heladera_dias: z.number().optional(),
+      freezer: z.boolean().optional(),
+      /** El dataset a veces dice "solo el pesto": freezer=true + la salvedad acá. */
+      freezer_nota: z.string().optional(),
+    })
     .optional(),
   reglas: z.array(recipeRuleRefSchema),
   utensilios: z.array(recipeUtensilSchema),
@@ -281,7 +289,12 @@ export type StorageItem = z.infer<typeof storageItemSchema>;
 export const equivalencesSchema = z.strictObject({
   volumen_ml: z.record(
     z.string(),
-    z.strictObject({ ml: z.number(), nota: z.string().optional(), confianza: z.number() }),
+    z.strictObject({
+      ml: z.number(),
+      rango: z.tuple([z.number(), z.number()]).optional(),
+      nota: z.string().optional(),
+      confianza: z.number(),
+    }),
   ),
   peso_por_volumen: z.array(
     z.strictObject({
@@ -317,8 +330,8 @@ export const equivalencesSchema = z.strictObject({
   envases_locales_ar: z.array(
     z.strictObject({
       nombre: z.string(),
-      g_bruto: z.number().optional(),
-      g_escurrido: z.number().optional(),
+      g_bruto: z.union([z.number(), z.tuple([z.number(), z.number()])]).optional(),
+      g_escurrido: z.union([z.number(), z.tuple([z.number(), z.number()])]).optional(),
       equivalencia: z.string().optional(),
       confianza: z.number(),
     }),

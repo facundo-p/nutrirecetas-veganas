@@ -28,7 +28,8 @@ export interface TransformNotes {
 
 // ---------- valores ----------
 
-export function toNutrientValue(raw: RawNutrientValue): NutrientValue {
+export function toNutrientValue(raw: RawNutrientValue): NutrientValue | undefined {
+  if (raw === null) return undefined; // null explícito = sin dato, jamás cero en silencio
   if (typeof raw === 'number') return { intervalo: { min: raw, max: raw } };
   const { min, max, nota } = raw; // `tipico` se descarta: el punto medio es (min+max)/2
   return nota === undefined ? { intervalo: { min, max } } : { intervalo: { min, max }, nota };
@@ -39,15 +40,17 @@ export function toNutrientValue(raw: RawNutrientValue): NutrientValue {
 export function transformIngredient(raw: RawIngredient): Ingredient {
   const nutrientes: Ingredient['nutrientes'] = {};
   for (const [clave, valor] of Object.entries(raw.nutrientes ?? {})) {
-    nutrientes[clave as keyof Ingredient['nutrientes']] = toNutrientValue(valor);
+    const value = toNutrientValue(valor);
+    if (value !== undefined) nutrientes[clave as keyof Ingredient['nutrientes']] = value;
   }
+  const kcal = raw.kcal !== undefined ? toNutrientValue(raw.kcal) : undefined;
   return {
     id: raw.id,
     nombre: raw.nombre,
     sinonimos: raw.sinonimos ?? [],
     categoria: raw.categoria as Ingredient['categoria'],
     ...(raw.base !== undefined ? { base: raw.base } : {}),
-    ...(raw.kcal !== undefined ? { kcal: toNutrientValue(raw.kcal) } : {}),
+    ...(kcal !== undefined ? { kcal } : {}),
     nutrientes,
     ...(raw.destacados !== undefined ? { destacados: raw.destacados } : {}),
     ic: raw.confianza,
@@ -84,7 +87,14 @@ export function transformNutrient(raw: RawNutrient): Nutrient {
     ventana: raw.ventana_evaluacion as Nutrient['ventana'],
     ...(raw.ventana_nota !== undefined ? { ventana_nota: raw.ventana_nota } : {}),
     ic: raw.confianza_rda,
-    ...(raw.notas !== undefined ? { notas: raw.notas } : {}),
+    ...(raw.notas !== undefined
+      ? {
+          notas: raw.notas.map((n) => ({
+            texto: n.texto,
+            ...(n.confianza !== undefined ? { ic: n.confianza } : {}),
+          })),
+        }
+      : {}),
   };
 }
 
@@ -226,7 +236,18 @@ export function transformRecipe(
     lineas,
     pasos: raw.pasos,
     secretos_chef: raw.secretos_chef ?? [],
-    ...(raw.guarda !== undefined ? { guarda: raw.guarda } : {}),
+    ...(raw.guarda !== undefined
+      ? {
+          guarda: {
+            ...(raw.guarda.heladera_dias !== undefined ? { heladera_dias: raw.guarda.heladera_dias } : {}),
+            ...(typeof raw.guarda.freezer === 'string'
+              ? { freezer: true, freezer_nota: raw.guarda.freezer }
+              : raw.guarda.freezer !== undefined
+                ? { freezer: raw.guarda.freezer }
+                : {}),
+          },
+        }
+      : {}),
     reglas,
     utensilios,
     ...(objetivo !== undefined ? { objetivo } : {}),
