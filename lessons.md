@@ -47,3 +47,12 @@ Al cierre de cada fase se anota: qué funcionó, qué se rompió, qué decisión
 - Los renders con Playwright + revisión visual propia antes de publicar funcionan como control de calidad real: el bug de unidades y la nav flotando en el screenshot salieron de mirar los PNG, no de los tests.
 - Dexie y Zustand quedaron fuera a propósito (YAGNI hasta Fase 2): la Fase 1 no tiene datos de usuario. Deps de runtime: react, react-dom, zod.
 - `garbanzos` no tiene el sinónimo "chickpeas" que promete el README (86/158 ingredientes sí traen sinónimos): los tests que asumen ejemplos de la doc deben verificarse contra la semilla real.
+
+### Iteración 6 del sistema de color — Propuesta D (2026-08-19)
+
+- **El exceso de un color casi nunca es una decisión estética: es una regla global.** Facu vio "mucho berenjena y espinaca" en los renders de Fase 1; la causa eran dos reglas de `base.css` (`h1,h2,h3` → berenjena, `a` → espinaca) que repartían color sin criterio. Antes de repintar, buscar la regla que reparte.
+- **Montar la escala de tipos sobre tokens con otro rol genera colisiones.** En la C, `--garbanzo` pintaba el tipo `pan`, la estrella de clásica y los tips de precaución. La D introduce `--cat-*`, una escala propia: **la escala de categorías se mantiene desacoplada de la escala de roles**.
+- **Elegir colores de categoría se hace midiendo ΔE, no mirando.** La primera escala (lenteja para principales, como pidió Facu) quedaba a ΔE 13 del encabezado de abajo: indistinguible. Regla para el futuro: contra los colores funcionales vecinos y entre sí, ΔE ≥ 26; y verificar contraste WCAG antes de escribir el CSS, no después.
+- **Refactor neutro primero, cambio visual después.** Mover los 15 colores inline de los TSX a clases CSS (paso sin ningún cambio visual, verificado comparando PNG pixel a pixel) hizo que el tema entero fuera 100 % CSS. La única diferencia esperada fue el ícono de la Picada vegana, por la fusión combo→principal.
+- Los temas conviven con `?tema=d` y `tema-d.css`. **Ambos son temporales**: al decidir, la ganadora se muda a `tokens.css` y el switch se borra. Si esto sigue acá en Fase 3, es deuda.
+- El dataset no tiene ninguna conserva ni fermento (busqué kimchi, escabeche, pickle, chucrut, encurtido en las 84 recetas). La categoría quedó declarada igual, con color e ícono, para las recetas propias de Fase 4.

@@ -61,7 +61,37 @@ Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif di
 
 Estructura: tarjetas crema con borde fino, sombra apenas presente, radios generosos. Ilustración botánica de línea fina como ornamento.
 
-### Propuesta C — "Carta de estación" (candidata actual, gourmet)
+### Propuesta D — "El color dice de qué se trata" (en evaluación, iteración 6)
+
+Sobre la base de la C (mismo papel, mismas tipografías, mismo fondo), reordena **quién dice qué**. Nace de un diagnóstico de Facu sobre los renders reales de Fase 1: la interfaz se veía dominada por berenjena y espinaca. La causa era estructural, no de gusto — dos reglas globales pintaban todos los encabezados de violeta (`base.css` `h1,h2,h3`) y todos los links de verde (`base.css` `a`) — más tres colisiones de rol (`--garbanzo` servía a la vez para el tipo `pan`, la estrella de clásica y los tips de precaución).
+
+**Escala de categorías** (`--cat-*`, desacoplada de los roles funcionales para que el tipo de receta no pise colores con otro significado). Se aplica al título de la receta y a su ícono de tipo:
+
+| Token | Verdura | Valor | Recetas |
+|---|---|---|---|
+| `--cat-principal` | Tomate | `#9A3A2C` | 46 (saladas + combo) |
+| `--cat-dulce` | Cacao amargo | `#5E4126` | 25 |
+| `--cat-preparado` | Chía | `#5A5F72` | 11 |
+| `--cat-pan` | Trigo tostado | `#8A6520` | 3 |
+| `--cat-conserva` | Kombu | `#1F6B5E` | 0 — declarada para las recetas propias |
+
+Elegidas **midiendo**: ningún par baja de ΔE 26 entre sí, y todas cumplen AA sobre el papel. La primera versión de la escala se descartó porque la lenteja propuesta para los principales quedaba a ΔE 13 del encabezado que va debajo. Por eso el principal es tomate (la lenteja se pisaba con la zanahoria), el cacao es amargo (un chocolate claro se pisaba con el tomate) y el combo comparte color con las saladas (una sola receta; un sexto color empeoraba el conjunto).
+
+**Reasignación de roles:**
+
+| Token | Rol en C | Rol en D |
+|---|---|---|
+| `--zanahoria` | cifras, nav activa | protagonista: **encabezados de sección**, números de paso, nav activa. Con `--zanahoria-honda` `#B85718` cuando es texto (el tono base no llega a contraste) |
+| `--espinaca` | todo link, funciones, tipos, tips | protagonista: marca, kicker, filtros y pestañas activas, potenciadores y consejos del chef |
+| `--berenjena` | todos los encabezados | **cifras de nutrientes** y navegación (volver, atrás, cancelar) |
+| `--remolacha` | dulces e indulgente | **avisos clave**: alerta B12, precauciones, inhibidores, correcciones |
+| `--tinta-suave` | texto secundario | suma la función del ingrediente (era el mayor foco de verde del detalle) |
+
+Los 7 tipos de regla (`RuleTips`) ya emitían clase propia pero solo 2 tenían color: la D cubre los siete. Ícono nuevo `IconFrascoFermento` para la categoría conserva.
+
+**Cómo se prueba**: `src/styles/tema-d.css` con overrides bajo `:root[data-tema='d']`, activable con `?tema=d` (queda en `localStorage`). La C sigue siendo el default. **Ambos archivos son temporales hasta que Facu elija**: la ganadora se muda a `tokens.css` y el switch se elimina. Renders de cada tema en `docs/renders/fase-1/` (C) y `docs/renders/fase-1-tema-d/` (D); comparativa publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
+
+### Propuesta C — "Carta de estación" (implementada, default actual)
 
 Sofisticada como la carta de un restaurante de estación. Base de A (papel ocre, Fraunces + Schibsted Grotesk, bordes finos — **confirmados por Facu**) + sistema de colores-verdura. Regla que ordena el color: **cada verdura tiene un rol, y cada rol tiene su verdura** — en una pantalla cualquiera dominan ocre y tinta, y el color aparece solo donde significa algo.
 
