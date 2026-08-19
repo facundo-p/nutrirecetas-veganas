@@ -1,45 +1,72 @@
 import { useSyncExternalStore } from 'react';
 
 /**
- * Router hash propio (~40 líneas, sin dependencia): la app es una SPA estática
- * offline y el hash sobrevive a cualquier hosting sin configurar rewrites.
+ * Router hash propio (sin dependencia): la app es una SPA estática offline y el
+ * hash sobrevive a cualquier hosting sin configurar rewrites.
  */
 
 export type Route =
+  | { screen: 'today' }
   | { screen: 'recipes' }
   | { screen: 'recipe'; id: string }
+  | { screen: 'cook'; id: string }
   | { screen: 'ingredients' }
   | { screen: 'ingredient'; id: string }
-  | { screen: 'glossary' };
+  | { screen: 'glossary' }
+  | { screen: 'diary' }
+  | { screen: 'profile' }
+  | { screen: 'settings' };
 
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   switch (parts[0]) {
+    case 'hoy':
+      return { screen: 'today' };
     case 'receta':
       return parts[1] ? { screen: 'recipe', id: decodeURIComponent(parts[1]) } : { screen: 'recipes' };
+    case 'cocinar':
+      return parts[1] ? { screen: 'cook', id: decodeURIComponent(parts[1]) } : { screen: 'recipes' };
     case 'ingredientes':
       return { screen: 'ingredients' };
     case 'ingrediente':
       return parts[1] ? { screen: 'ingredient', id: decodeURIComponent(parts[1]) } : { screen: 'ingredients' };
     case 'glosario':
       return { screen: 'glossary' };
-    default:
+    case 'diario':
+      return { screen: 'diary' };
+    case 'perfil':
+      return { screen: 'profile' };
+    case 'ajustes':
+      return { screen: 'settings' };
+    case 'recetario':
       return { screen: 'recipes' };
+    default:
+      return { screen: 'today' };
   }
 }
 
 export function routeHash(route: Route): string {
   switch (route.screen) {
+    case 'today':
+      return '#/hoy';
     case 'recipes':
       return '#/recetario';
     case 'recipe':
       return `#/receta/${encodeURIComponent(route.id)}`;
+    case 'cook':
+      return `#/cocinar/${encodeURIComponent(route.id)}`;
     case 'ingredients':
       return '#/ingredientes';
     case 'ingredient':
       return `#/ingrediente/${encodeURIComponent(route.id)}`;
     case 'glossary':
       return '#/glosario';
+    case 'diary':
+      return '#/diario';
+    case 'profile':
+      return '#/perfil';
+    case 'settings':
+      return '#/ajustes';
   }
 }
 

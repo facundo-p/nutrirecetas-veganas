@@ -7,6 +7,7 @@ import './styles/temas.css';
 import './styles/base.css';
 import './styles/app.css';
 import './styles/screens.css';
+import './styles/fase2.css';
 import { App } from './app/App';
 import { aplicarTema } from './app/tema';
 

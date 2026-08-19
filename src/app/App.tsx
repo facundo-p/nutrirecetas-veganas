@@ -7,9 +7,27 @@ import { RecipeDetail } from '../ui/recipe-detail/RecipeDetail';
 import { IngredientList } from '../ui/ingredients/IngredientList';
 import { IngredientDetail } from '../ui/ingredients/IngredientDetail';
 import { Glossary } from '../ui/glossary/Glossary';
+import { TodayScreen } from '../ui/today/TodayScreen';
+import { ProfileScreen } from '../ui/profile/ProfileScreen';
+import { CookSession } from '../ui/cook/CookSession';
+import { DiaryScreen } from '../ui/diary/DiaryScreen';
+import { SettingsScreen } from '../ui/settings/SettingsScreen';
+import { useMeta } from '../db/hooks';
+import { hayQueRecordarBackup } from '../db/backup';
+import { routeHash } from './router';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
   switch (route.screen) {
+    case 'today':
+      return <TodayScreen />;
+    case 'profile':
+      return <ProfileScreen />;
+    case 'cook':
+      return <CookSession recetaId={route.id} />;
+    case 'diary':
+      return <DiaryScreen />;
+    case 'settings':
+      return <SettingsScreen />;
     case 'recipes':
       return <RecipeList />;
     case 'recipe':
@@ -21,6 +39,26 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
     case 'glossary':
       return <Glossary />;
   }
+}
+
+/**
+ * Recordatorio de backup: insistente a propósito. Sin backend, un borrado de
+ * sitio (o el ITP de Safari) se lleva todo, y el archivo exportado es lo único
+ * que lo devuelve.
+ */
+function BackupReminder() {
+  const meta = useMeta();
+  if (!meta || !hayQueRecordarBackup(meta.ultimo_backup, meta.cambios_desde_backup)) return null;
+  return (
+    <div className="banner-backup" role="status">
+      <span>
+        Hace rato que no hacés una copia de tus datos, y ya hay {meta.cambios_desde_backup} cambios sin respaldar.
+      </span>
+      <a className="boton-chico" href={routeHash({ screen: 'settings' })}>
+        Exportar
+      </a>
+    </div>
+  );
 }
 
 export function App() {
@@ -39,6 +77,7 @@ export function App() {
   return (
     <div className="app">
       <Nav route={route} />
+      <BackupReminder />
       <main className="contenido">
         <Screen route={route} />
       </main>

@@ -37,6 +37,13 @@
   /* Íconos de atributo */
   --icono-imprescindible: var(--zanahoria-honda);
   --funcion-ingrediente: var(--tinta-suave);
+
+  /* Semáforo: nunca comunica solo con color, pero el color acompaña */
+  --semaforo-cubierto: var(--zapallito);
+  --semaforo-parcial: var(--garbanzo);
+  --semaforo-insuficiente: var(--rabanito);
+  --semaforo-suplemento: var(--repollo-colorado);
+  --semaforo-sin-datos: var(--chia);
 }
 
 /* ══════════ Tema C — "carta de estación" ══════════
@@ -62,6 +69,12 @@
 
   --icono-imprescindible: var(--zanahoria);
   --funcion-ingrediente: var(--espinaca);
+
+  --semaforo-cubierto: var(--zapallito);
+  --semaforo-parcial: var(--garbanzo);
+  --semaforo-insuficiente: var(--rabanito);
+  --semaforo-suplemento: var(--repollo-colorado);
+  --semaforo-sin-datos: var(--chia);
 }
 
 /* ---------- el color de la categoría, disponible para toda la rama ----------

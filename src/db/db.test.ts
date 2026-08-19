@@ -42,8 +42,9 @@ const coccionBase: CoccionData = {
 };
 
 beforeEach(async () => {
-  await db.delete();
-  await db.open();
+  // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo
+  if (!db.isOpen()) await db.open();
+  await Promise.all(db.tables.map((t) => t.clear()));
 });
 
 describe('perfil', () => {

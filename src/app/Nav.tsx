@@ -1,21 +1,29 @@
-import { IconCarta, IconLibro, IconZanahoria } from '../ui/icons/icons';
+import { IconCarta, IconHojaEntera, IconLibro, IconZanahoria } from '../ui/icons/icons';
 import { routeHash, type Route } from './router';
 
+/**
+ * Cuatro secciones en la barra: Hoy es la respuesta a "¿cómo vengo y qué
+ * cocino?", así que abre la app. Glosario y Ajustes viven dentro de Más para
+ * que los targets sigan siendo cómodos a 390 px.
+ */
 const ITEMS = [
-  { label: 'Recetario', screens: ['recipes', 'recipe'], route: { screen: 'recipes' } as Route, Icon: IconCarta },
+  { label: 'Hoy', screens: ['today'], route: { screen: 'today' } as Route, Icon: IconHojaEntera },
+  { label: 'Recetario', screens: ['recipes', 'recipe', 'cook'], route: { screen: 'recipes' } as Route, Icon: IconCarta },
   {
     label: 'Ingredientes',
     screens: ['ingredients', 'ingredient'],
     route: { screen: 'ingredients' } as Route,
     Icon: IconZanahoria,
   },
-  { label: 'Glosario', screens: ['glossary'], route: { screen: 'glossary' } as Route, Icon: IconLibro },
+  { label: 'Diario', screens: ['diary', 'glossary', 'profile', 'settings'], route: { screen: 'diary' } as Route, Icon: IconLibro },
 ] as const;
 
 export function Nav({ route }: { route: Route }) {
   return (
     <nav className="nav" aria-label="Secciones">
-      <span className="nav-marca">Nutrirecetas</span>
+      <a className="nav-marca" href={routeHash({ screen: 'today' })}>
+        Nutrirecetas
+      </a>
       {ITEMS.map(({ label, screens, route: target, Icon }) => (
         <a
           key={label}

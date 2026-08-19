@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
@@ -20,6 +21,11 @@ import {
   IconSustituir,
   IconTemporada,
 } from '../icons/icons';
+import { avisosDeEscalado, escalarLineas } from '../../domain/scaling';
+import { computeNutrition } from '../../domain/nutrition';
+import { useOverlay } from '../../db/hooks';
+import { saveOverlay } from '../../db/repos';
+import { PortionScaler } from './PortionScaler';
 import { B12Alert } from './B12Alert';
 import { NutritionTable } from './NutritionTable';
 import { RuleTips } from './RuleTips';
@@ -141,7 +147,34 @@ function RelatedLinks({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
 export function RecipeDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
   const recipe = idx.recipeById.get(id);
-  if (!recipe) {
+
+  const [factor, setFactor] = useState(1);
+  const overlay = useOverlay(id);
+
+  const escalada = useMemo(() => {
+    if (!recipe || factor === 1) return null;
+    return {
+      lineas: escalarLineas(recipe.lineas, factor),
+      avisos: avisosDeEscalado(recipe, factor, idx.seed),
+    };
+  }, [recipe, factor, idx]);
+
+  const nutrition = useMemo(() => {
+    if (!recipe) return null;
+    if (factor === 1) return nutritionOf(idx, id);
+    // receta sintética escalada: la nutrición por porción no cambia, pero los totales sí
+    const sintetica = {
+      ...recipe,
+      id: `${recipe.id}__x${factor}`,
+      lineas: escalarLineas(recipe.lineas, factor),
+      porciones_num: recipe.porciones_num === null ? null : recipe.porciones_num * factor,
+    };
+    const recipeById = new Map(idx.recipeById);
+    recipeById.set(sintetica.id, sintetica);
+    return computeNutrition(sintetica.id, { ...idx, recipeById });
+  }, [recipe, factor, idx, id]);
+
+  if (!recipe || !nutrition) {
     return (
       <>
         <header className="encabezado-pantalla">
@@ -154,7 +187,6 @@ export function RecipeDetail({ id }: { id: string }) {
     );
   }
 
-  const nutrition = nutritionOf(idx, id);
   const portion = perPortion(nutrition);
   const shown = portion ?? per100g(nutrition);
   const nutricionTitulo = portion
@@ -203,10 +235,28 @@ export function RecipeDetail({ id }: { id: string }) {
           <span className="meta-item">
             <IconPlato /> {recipe.porciones_display}
           </span>
-          <span className="meta-item" title={`índice de confianza ${recipe.ic}/10`}>
-            <IconBrotesIc nivel={icSprouts(recipe.ic)} /> IC {recipe.ic}
+          <span
+            className="meta-item"
+            title={
+              overlay?.ic_usuario
+                ? `tu confianza: ${overlay.ic_usuario}/10 (la de la receta era ${recipe.ic})`
+                : `índice de confianza ${recipe.ic}/10`
+            }
+          >
+            <IconBrotesIc nivel={icSprouts(overlay?.ic_usuario ?? recipe.ic)} /> IC{' '}
+            {overlay?.ic_usuario ?? recipe.ic}
+            {overlay?.ic_usuario !== undefined && <em className="meta-suave">tuyo</em>}
           </span>
+          <button
+            type="button"
+            className="boton-enlace"
+            aria-pressed={overlay?.favorita === true}
+            onClick={() => void saveOverlay(recipe.id, { favorita: !(overlay?.favorita ?? false) })}
+          >
+            <IconEstrellaBrotada className="inline-icono" /> {overlay?.favorita ? 'favorita' : 'marcar favorita'}
+          </button>
         </p>
+        {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
       </header>
 
       <RelatedLinks idx={idx} recipe={recipe} />
@@ -214,11 +264,20 @@ export function RecipeDetail({ id }: { id: string }) {
 
       <section>
         <h2>Ingredientes</h2>
+        <PortionScaler
+          porcionesBase={recipe.porciones_num}
+          factor={factor}
+          onFactor={setFactor}
+          avisos={escalada?.avisos ?? []}
+        />
         <ul className="lista-lineas">
-          {recipe.lineas.map((line, i) => (
+          {(escalada?.lineas ?? recipe.lineas).map((line, i) => (
             <IngredientLine key={i} idx={idx} line={line} />
           ))}
         </ul>
+        <a className="boton-principal boton-cocinar" href={`${routeHash({ screen: 'cook', id: recipe.id })}`}>
+          Cocinar ahora
+        </a>
       </section>
 
       <NutritionTable nutrition={shown} seed={idx.seed} titulo={nutricionTitulo} />

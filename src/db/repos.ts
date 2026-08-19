@@ -28,17 +28,24 @@ function ahora(): string {
 
 // ---------- meta ----------
 
+/** Estado inicial de meta, sin escribir: sirve para leer antes de que exista. */
+export const META_POR_DEFECTO: Meta = {
+  id: SINGLETON_ID,
+  user_schema_version: USER_SCHEMA_VERSION,
+  seed_version: '',
+  cambios_desde_backup: 0,
+};
+
+/**
+ * Ojo: esto ESCRIBE si el registro no existe, así que no puede usarse dentro de
+ * un `liveQuery` (contexto de solo lectura). Para leer, `db.meta.get` + el valor
+ * por defecto.
+ */
 export async function getMeta(): Promise<Meta> {
   const meta = await db.meta.get(SINGLETON_ID);
   if (meta) return meta;
-  const inicial: Meta = {
-    id: SINGLETON_ID,
-    user_schema_version: USER_SCHEMA_VERSION,
-    seed_version: '',
-    cambios_desde_backup: 0,
-  };
-  await db.meta.put(inicial);
-  return inicial;
+  await db.meta.put(META_POR_DEFECTO);
+  return META_POR_DEFECTO;
 }
 
 /** Suma cambios pendientes de backup: alimenta el recordatorio de Ajustes. */
