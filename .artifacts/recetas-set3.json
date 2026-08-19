@@ -1,0 +1,1803 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "fuente_libro": {
+   "ref": "libro_vgourmet",
+   "nombre": "250 Recetas Veganas Proteicas (Vegano Gourmet)",
+   "confianza": 5,
+   "nota": "autoeditado sin certificación: todas entran como por-probar; subir IC al validarlas en cocina"
+  },
+  "adaptaciones": "reescritas; rioplatense; sirope→mascabo/miel de caña; funciones, sustitutos, secretos, reglas y utensilios agregados"
+ },
+ "recetas": [
+  {
+   "id": "r21",
+   "nombre": "Milanesas de tofu al horno",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 37,
+    "pagina_pdf": 47,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 30,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 28,
+    "calcio_mg": {
+     "min": 200,
+     "max": 500,
+     "nota": "según coagulante del tofu"
+    },
+    "b2_mg": 0.6
+   },
+   "reglas_disparadas": [
+    "U2_si_sarten"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 2,
+     "unidad": "bloque_prensado",
+     "g_aprox": 750,
+     "funcion": "la 'carne' en láminas de 1 cm",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 60,
+     "unidad": "ml",
+     "g_aprox": 60,
+     "funcion": "base del batido de rebozado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_garbanzo",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "el 'huevo' del empanado",
+     "imprescindible": true,
+     "sustitutos": [
+      "fécula + más líquido"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "sabor de fondo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "cdta_polvo",
+     "g_aprox": 3,
+     "funcion": "sazón del batido",
+     "imprescindible": true,
+     "sustitutos": [
+      "ajo fresco muy picado"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "cdta_polvo",
+     "g_aprox": 3,
+     "funcion": "sazón del batido",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1.5,
+     "funcion": "color",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pan_integral",
+     "cantidad": 150,
+     "unidad": "g_rallado",
+     "g_aprox": 150,
+     "funcion": "costra",
+     "imprescindible": true,
+     "sustitutos": [
+      "copos de maíz + harina de almendras (sin gluten)"
+     ]
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "funcion": "el 'queso' del empanado: umami de milanesa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "perfume",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomillo",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "perfume",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "perfume",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda_pincelado",
+     "g_aprox": 40,
+     "funcion": "dorado al horno",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "en_gajos",
+     "g_aprox": 40,
+     "funcion": "el clásico al servir",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Prensar el tofu 20 min y cortar en láminas de 1 cm",
+    "Batido: bebida vegetal + harina de garbanzo + soja + polvos",
+    "Empanado: pan rallado + levadura + hierbas",
+    "Pasar por batido y empanado presionando",
+    "Placa con papel; pincelar ambas caras con aceite",
+    "Horno 200°: 15 min + vuelta + 10-15 min hasta dorar"
+   ],
+   "secretos_chef": [
+    "El prensado separa milanesa crocante de esponja húmeda",
+    "La levadura nutricional en el empanado es lo que hace que 'sepa a milanesa'",
+    "Marinar 2 h en soja+limón+ajo antes de empanar la eleva",
+    "A la napolitana: salsa + 'queso' de cajú + 5 min de horno"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "placa_horno"
+   ],
+   "objetivo": "plato-puente cultural argentino"
+  },
+  {
+   "id": "r22",
+   "nombre": "Tacos de lentejas con palta y crema de limón",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 22,
+    "pagina_pdf": 27,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 25,
+   "tiempo_coccion_min": 15,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 5,
+    "prot_g": 16
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas",
+     "cantidad": 400,
+     "unidad": "g_cocidas",
+     "g_aprox": 400,
+     "funcion": "relleno proteico",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos_negros"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "rallada",
+     "g_aprox": 70,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "extracto_tomate",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "funcion": "umami: tostar",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "perfil mexicano",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "salsa_tomate",
+     "cantidad": 200,
+     "unidad": "ml",
+     "g_aprox": 200,
+     "funcion": "liga el relleno",
+     "imprescindible": true,
+     "sustitutos": [
+      "tomate triturado reducido"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1.5,
+     "unidad": "jugo_y_ralladura",
+     "g_aprox": 60,
+     "funcion": "acidez (rol de la lima)",
+     "imprescindible": true,
+     "sustitutos": [
+      "lima"
+     ]
+    },
+    {
+     "ingrediente_id": "tortillas",
+     "cantidad": 12,
+     "unidad": "maiz_chicas",
+     "g_aprox": 360,
+     "funcion": "vehículo",
+     "imprescindible": true,
+     "sustitutos": [
+      "integrales",
+      "hojas de lechuga"
+     ]
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 2,
+     "unidad": "unidad",
+     "g_aprox": 280,
+     "funcion": "cremosidad",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "repollo",
+     "cantidad": 200,
+     "unidad": "g_colorado_fino",
+     "g_aprox": 200,
+     "funcion": "crocante crudo + color",
+     "imprescindible": true,
+     "sustitutos": [
+      "zanahoria"
+     ]
+    },
+    {
+     "ingrediente_id": "rabanito",
+     "cantidad": 4,
+     "unidad": "en_laminas",
+     "g_aprox": 60,
+     "funcion": "picante fresco",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "yogur_vegano",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "crema de limón (+ajo+cilantro)",
+     "imprescindible": true,
+     "sustitutos": [
+      "crema de cajú"
+     ]
+    },
+    {
+     "ingrediente_id": "cilantro",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "firma del taco",
+     "imprescindible": false,
+     "sustitutos": [
+      "perejil + ralladura de limón"
+     ]
+    }
+   ],
+   "pasos": [
+    "Crema: yogur + jugo y ralladura + ajo + cilantro; heladera",
+    "Sofrito 4 min; extracto y especias 1 min",
+    "Lentejas + salsa de tomate 5-7 min hasta espesar; limón y cilantro fuera del fuego",
+    "Tortillas por sartén seca",
+    "Armar: relleno, palta, repollo, rabanitos, crema"
+   ],
+   "secretos_chef": [
+    "El relleno debe quedar espeso: si chorrea, el taco muere",
+    "Tortillas siempre calientes y de a una",
+    "La gracia es el contraste: caliente especiado / crema fría ácida / crudos crocantes"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": "solo el relleno"
+   }
+  },
+  {
+   "id": "r23",
+   "nombre": "Burritos de porotos negros con arroz al limón",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 36,
+    "pagina_pdf": 46,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 18,
+    "hierro_mg": 4.5,
+    "fibra_g": 14
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 500,
+     "unidad": "g_cocidos",
+     "g_aprox": 500,
+     "funcion": "relleno",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos_colorados"
+     ]
+    },
+    {
+     "ingrediente_id": "arroz_integral",
+     "cantidad": 200,
+     "unidad": "g_crudo",
+     "g_aprox": 200,
+     "funcion": "capa de arroz al limón con cilantro",
+     "imprescindible": true,
+     "sustitutos": [
+      "arroz_blanco"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_y_aji_fresco_opcional",
+     "g_aprox": 2,
+     "funcion": "perfil tex-mex",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 0.5,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 200,
+     "unidad": "ml",
+     "g_aprox": 200,
+     "funcion": "cocción del relleno",
+     "imprescindible": true,
+     "sustitutos": [
+      "agua"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 2,
+     "unidad": "jugo_y_ralladura",
+     "g_aprox": 80,
+     "funcion": "arroz + relleno",
+     "imprescindible": true,
+     "sustitutos": [
+      "lima"
+     ]
+    },
+    {
+     "ingrediente_id": "tortillas",
+     "cantidad": 8,
+     "unidad": "integrales_grandes",
+     "g_aprox": 400,
+     "funcion": "envoltura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 140,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "choclo",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 150,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "hojas_verdes",
+     "cantidad": 1,
+     "unidad": "puñados",
+     "g_aprox": 30,
+     "funcion": "fresco",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cilantro",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "firma",
+     "imprescindible": false,
+     "sustitutos": [
+      "perejil"
+     ]
+    }
+   ],
+   "pasos": [
+    "Arroz cocido; al final ralladura+jugo de limón y cilantro",
+    "Sofrito; especias 30 s; porotos + caldo 10 min PISANDO parte",
+    "Limón y cilantro fuera del fuego",
+    "Tortilla tibia: arroz, porotos, frescos; doblar laterales y enrollar apretado"
+   ],
+   "secretos_chef": [
+    "El pisado parcial de porotos evita que el burrito se desarme",
+    "No sobrecargar: el que no cierra no es generosidad, es derrota",
+    "⭐ Batch: armados sin frescos, al freezer envueltos; 15 min de horno los revive"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   },
+   "objetivo": "batch cooking estrella"
+  },
+  {
+   "id": "r24",
+   "nombre": "Ensalada mediterránea con tofu marinado al horno",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 18,
+    "pagina_pdf": 22,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 25,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 20,
+    "calcio_mg": {
+     "min": 150,
+     "max": 350
+    }
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 400,
+     "unidad": "g_prensado_cubos",
+     "g_aprox": 400,
+     "funcion": "proteína marinada + horneada crocante",
+     "imprescindible": true,
+     "sustitutos": [
+      "garbanzos especiados"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda_marinada",
+     "g_aprox": 40,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo_2cdas",
+     "g_aprox": 30,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cda_aceto",
+     "g_aprox": 15,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomillo",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "romero",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 0.5,
+     "funcion": "marinada",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 0.25,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 0.5,
+     "funcion": "marinada",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "quinoa",
+     "cantidad": 200,
+     "unidad": "g_cruda_en_caldo",
+     "g_aprox": 200,
+     "funcion": "base proteica",
+     "imprescindible": true,
+     "sustitutos": [
+      "cuscus",
+      "burgol"
+     ]
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 300,
+     "unidad": "g_cherry",
+     "g_aprox": 300,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_morada",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 75,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceitunas",
+     "cantidad": 100,
+     "unidad": "g_negras",
+     "g_aprox": 100,
+     "funcion": "sal/grasa mediterránea",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceitunas",
+     "cantidad": 2,
+     "unidad": "cda_alcaparras_opc",
+     "g_aprox": 20,
+     "funcion": "chispazo salado (alcaparras si conseguís)",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "albahaca",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "hierba en cantidad",
+     "imprescindible": true,
+     "sustitutos": [
+      "menta"
+     ]
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "hierba",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "girasol",
+     "cantidad": 40,
+     "unidad": "g_tostadas",
+     "g_aprox": 40,
+     "funcion": "crocante (rol de los piñones)",
+     "imprescindible": false,
+     "sustitutos": [
+      "almendras"
+     ]
+    }
+   ],
+   "pasos": [
+    "Prensar tofu, cubos, marinar 2 h (ideal noche)",
+    "Horno 200°: tofu 20-25 min con vuelta",
+    "Quinoa en caldo; enfriar",
+    "Mezclar; hierbas y tofu al final"
+   ],
+   "secretos_chef": [
+    "La marinada penetra solo con tofu prensado (o congelado/descongelado: esponja)",
+    "Tofu y hierbas al final para que no se ablanden",
+    "La marinada sobrante es el aliño"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "placa_horno"
+   ],
+   "objetivo": "técnica de marinado de tofu"
+  },
+  {
+   "id": "r25",
+   "nombre": "Ensalada tibia de quinoa, garbanzos y verduras asadas",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 11,
+    "pagina_pdf": 15,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 17,
+    "hierro_mg": 5,
+    "vita_ug_rae": 300
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R6"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "quinoa",
+     "cantidad": 200,
+     "unidad": "g_cruda_en_caldo",
+     "g_aprox": 200,
+     "funcion": "base",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "funcion": "proteína",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "berenjena",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 270,
+     "funcion": "asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 2,
+     "unidad": "unidad",
+     "g_aprox": 260,
+     "funcion": "asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zucchini",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 200,
+     "funcion": "asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_morada",
+     "cantidad": 1,
+     "unidad": "en_gajos",
+     "g_aprox": 150,
+     "funcion": "asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente_en_camisa",
+     "g_aprox": 12,
+     "funcion": "asado: se vuelve crema dulce del aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "especias del asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "especias",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "la firma árabe del asado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo_y_ralladura",
+     "g_aprox": 40,
+     "funcion": "aliño (R1)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 6,
+     "unidad": "cda_total",
+     "g_aprox": 80,
+     "funcion": "asado + aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tahini",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 15,
+     "funcion": "cremosidad del aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "redondeo del aliño (rol del sirope)",
+     "imprescindible": false,
+     "sustitutos": [
+      "miel_de_cana"
+     ]
+    },
+    {
+     "ingrediente_id": "hojas_verdes",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "frescura",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "aceitunas",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "funcion": "sal",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "hierba",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "menta",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "hierba",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pistachos",
+     "cantidad": 40,
+     "unidad": "g_tostados",
+     "g_aprox": 40,
+     "funcion": "remate",
+     "imprescindible": false,
+     "sustitutos": [
+      "almendras",
+      "girasol"
+     ]
+    }
+   ],
+   "pasos": [
+    "Horno 200°: verduras + ajos en camisa con oliva y especias, 25-30 min",
+    "Quinoa en caldo",
+    "Aliño: pisar ajos asados + limón + oliva + tahini + mascabo + comino; emulsionar",
+    "Mezclar tibio; hierbas y pistachos al final"
+   ],
+   "secretos_chef": [
+    "El ajo asado pisado EN el aliño es el truco del plato",
+    "La canela en el asado no endulza: perfuma (cocina árabe)",
+    "Rica tibia o fría al día siguiente"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "placa_horno"
+   ]
+  },
+  {
+   "id": "r26",
+   "nombre": "Guiso de quinoa con verduras y garbanzos",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 26,
+    "pagina_pdf": 32,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 18,
+    "hierro_mg": 5
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3",
+    "R7"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "quinoa",
+     "cantidad": 200,
+     "unidad": "g_cruda",
+     "g_aprox": 200,
+     "funcion": "el 'grano' del guiso: 18 min",
+     "imprescindible": true,
+     "sustitutos": [
+      "burgol"
+     ]
+    },
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "funcion": "legumbre",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 250,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente",
+     "g_aprox": 12,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 2,
+     "unidad": "mediana",
+     "g_aprox": 140,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "apio",
+     "cantidad": 2,
+     "unidad": "rama",
+     "g_aprox": 100,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zucchini",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 200,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "berenjena",
+     "cantidad": 1,
+     "unidad": "chica",
+     "g_aprox": 230,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 400,
+     "unidad": "g",
+     "g_aprox": 400,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 750,
+     "unidad": "ml",
+     "g_aprox": 750,
+     "funcion": "medio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "perfil cálido",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "la firma",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "laurel",
+     "cantidad": 2,
+     "unidad": "hoja",
+     "g_aprox": 1,
+     "funcion": "fondo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "espinaca",
+     "cantidad": 100,
+     "unidad": "g",
+     "g_aprox": 100,
+     "funcion": "verde final",
+     "imprescindible": true,
+     "sustitutos": [
+      "acelga",
+      "kale"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo",
+     "g_aprox": 40,
+     "funcion": "levantada final (R1)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "funcion": "hierbas",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "menta",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "hierbas",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "almendras",
+     "cantidad": 50,
+     "unidad": "g_laminadas_tostadas",
+     "g_aprox": 50,
+     "funcion": "crocante de servicio",
+     "imprescindible": false,
+     "sustitutos": [
+      "girasol"
+     ]
+    }
+   ],
+   "pasos": [
+    "Sofrito 5 min; verduras duras 5; blandas 5",
+    "Especias 1 min (bloom)",
+    "Quinoa + garbanzos + tomate + caldo + laurel: 15-18 min tapado fuego bajo",
+    "Espinaca hasta colapsar; limón y hierbas fuera del fuego"
+   ],
+   "secretos_chef": [
+    "La quinoa absorbe muchísimo: al recalentar, sumar caldo",
+    "Yogur vegano por encima al servir: contraste ácido-cremoso",
+    "Es el guiso express: 35 min contra 65 del de lentejas"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U3"
+   ]
+  },
+  {
+   "id": "r27",
+   "nombre": "Ensalada de arroz integral, lentejas y aliño cítrico",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 16,
+    "pagina_pdf": 20,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 40,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 15,
+    "hierro_mg": 4,
+    "fibra_g": 10,
+    "vitc_mg": 45
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "arroz_integral",
+     "cantidad": 250,
+     "unidad": "g_crudo_en_caldo",
+     "g_aprox": 250,
+     "funcion": "base masticable",
+     "imprescindible": true,
+     "sustitutos": [
+      "burgol",
+      "cuscus"
+     ]
+    },
+    {
+     "ingrediente_id": "lentejas",
+     "cantidad": 400,
+     "unidad": "g_cocidas",
+     "g_aprox": 400,
+     "funcion": "proteína",
+     "imprescindible": true,
+     "sustitutos": [
+      "garbanzos"
+     ]
+    },
+    {
+     "ingrediente_id": "zucchini",
+     "cantidad": 1,
+     "unidad": "en_cubitos_crudo",
+     "g_aprox": 200,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "rallada",
+     "g_aprox": 70,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 4,
+     "unidad": "unidad",
+     "g_aprox": 60,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "brocoli",
+     "cantidad": 150,
+     "unidad": "g_vapor_3min",
+     "g_aprox": 150,
+     "funcion": "verde firme (U6)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "dulzor puntual",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "naranja",
+     "cantidad": 1,
+     "unidad": "jugo_y_ralladura",
+     "g_aprox": 80,
+     "funcion": "⭐ el diferencial del aliño: C doble sobre hierro",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo",
+     "g_aprox": 40,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 40,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "mostaza",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 5,
+     "funcion": "emulsiona el aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 1,
+     "unidad": "cdta_rallado",
+     "g_aprox": 3,
+     "funcion": "chispa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "redondeo (rol del sirope)",
+     "imprescindible": false,
+     "sustitutos": [
+      "miel_de_cana"
+     ]
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "hierba en cantidad",
+     "imprescindible": true,
+     "sustitutos": [
+      "cilantro"
+     ]
+    },
+    {
+     "ingrediente_id": "almendras",
+     "cantidad": 50,
+     "unidad": "g_laminadas_tostadas",
+     "g_aprox": 50,
+     "funcion": "crocante",
+     "imprescindible": false,
+     "sustitutos": [
+      "girasol"
+     ]
+    }
+   ],
+   "pasos": [
+    "Arroz en caldo 35-40 min; enfriar extendido",
+    "Brócoli al vapor 3 min + shock frío",
+    "Aliño a frasco: agitar",
+    "Mezclar; perejil y almendras al final; 30 min de heladera"
+   ],
+   "secretos_chef": [
+    "Jugo Y ralladura de naranja es lo que la distingue de toda ensalada de arroz",
+    "Nutricionalmente: vitamina C doble sobre hierro de lentejas (R1 de manual)",
+    "Mejora hasta el día 3: reina de las viandas"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "r28",
+   "nombre": "Ensalada de cuscús con verduras, hierbas y pasas",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 20,
+    "pagina_pdf": 24,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 0,
+   "dificultad": "muy fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 14,
+    "selenio_ug": 25
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "cuscus",
+     "cantidad": 250,
+     "unidad": "g_integral",
+     "g_aprox": 250,
+     "funcion": "base instantánea: se hidrata en 10 min",
+     "imprescindible": true,
+     "sustitutos": [
+      "quinoa o mijo (sin gluten, +15 min)"
+     ]
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 350,
+     "unidad": "ml_caliente",
+     "g_aprox": 350,
+     "funcion": "hidratación con sabor",
+     "imprescindible": true,
+     "sustitutos": [
+      "agua + sal"
+     ]
+    },
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "funcion": "proteína",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zucchini",
+     "cantidad": 1,
+     "unidad": "chico_cubitos",
+     "g_aprox": 170,
+     "funcion": "crudo finito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "crudo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "rallada",
+     "g_aprox": 70,
+     "funcion": "crudo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 75,
+     "funcion": "crudo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 4,
+     "unidad": "unidad",
+     "g_aprox": 60,
+     "funcion": "crudo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomates_secos",
+     "cantidad": 100,
+     "unidad": "g_escurridos",
+     "g_aprox": 100,
+     "funcion": "bomba umami-dulce",
+     "imprescindible": false,
+     "sustitutos": [
+      "aceitunas + ½ cda extracto de tomate en el aliño"
+     ]
+    },
+    {
+     "ingrediente_id": "aceitunas",
+     "cantidad": 60,
+     "unidad": "g_verdes",
+     "g_aprox": 60,
+     "funcion": "sal mediterránea",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "funcion": "contrapunto dulce",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "menta",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "acá las hierbas son verdura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "hierba",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cilantro",
+     "cantidad": 2,
+     "unidad": "cda_opcional",
+     "g_aprox": 8,
+     "funcion": "hierba",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo_y_ralladura",
+     "g_aprox": 40,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 54,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "perfil magrebí",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 0.25,
+     "unidad": "cdta",
+     "g_aprox": 0.5,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.25,
+     "unidad": "cdta",
+     "g_aprox": 0.7,
+     "funcion": "perfil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta_opcional",
+     "g_aprox": 4,
+     "funcion": "redondeo",
+     "imprescindible": false,
+     "sustitutos": [
+      "miel_de_cana"
+     ]
+    },
+    {
+     "ingrediente_id": "almendras",
+     "cantidad": 50,
+     "unidad": "g_fileteadas",
+     "g_aprox": 50,
+     "funcion": "crocante",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Cuscús en bol + caldo hirviendo encima; tapar 10 min",
+    "Esponjar con TENEDOR",
+    "Aliño agitado en frasco",
+    "Todo junto; hierbas al final; reposo 15 min"
+   ],
+   "secretos_chef": [
+    "Esponjar con tenedor, jamás cuchara (engrudo)",
+    "Absorbe aliño con el tiempo: guardar aliño extra para el día siguiente",
+    "La receta 'no tengo tiempo ni ganas' oficial"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "r29",
+   "nombre": "Ensalada de garbanzos, palta y tomate con aliño de comino",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "libro_vgourmet",
+    "receta_original_num": 15,
+    "pagina_pdf": 19,
+    "nota": "reescrita y adaptada (rioplatense, sustitutos locales, funciones/reglas propias); IC 5: validar en cocina"
+   },
+   "confianza_adaptacion": 5,
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 13,
+    "hierro_mg": 3.5
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 500,
+     "unidad": "g_cocidos",
+     "g_aprox": 500,
+     "funcion": "cuerpo proteico",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos_alubia"
+     ]
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 2,
+     "unidad": "en_cubos_AL_FINAL",
+     "g_aprox": 280,
+     "funcion": "cremosidad",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 300,
+     "unidad": "g_cherry",
+     "g_aprox": 300,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_morada",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 75,
+     "funcion": "fresco",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceitunas",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "sal/grasa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 2,
+     "unidad": "jugo",
+     "g_aprox": 80,
+     "funcion": "aliño (R1 asegurada)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 54,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "especia central",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1.5,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta_opcional",
+     "g_aprox": 4,
+     "funcion": "redondeo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cilantro",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "funcion": "frescura",
+     "imprescindible": false,
+     "sustitutos": [
+      "perejil"
+     ]
+    },
+    {
+     "ingrediente_id": "menta",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "frescura",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Todo menos palta y hierbas al bol",
+    "Aliño agitado; mezclar",
+    "Palta y hierbas al final, mezcla envolvente",
+    "Reposo 10-15 min a temperatura ambiente"
+   ],
+   "secretos_chef": [
+    "La palta SIEMPRE última y con movimientos envolventes",
+    "De vianda: palta aparte, cortada en el momento con limón extra",
+    "Con pan tostado frotado con ajo pasa de ensalada a cena"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   }
+  }
+ ]
+}

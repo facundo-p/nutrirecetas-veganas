@@ -1,0 +1,462 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08"
+ },
+ "fuentes": {
+  "larousse": {
+   "nombre": "Larousse Gastronomique",
+   "url": null
+  },
+  "mcgee": {
+   "nombre": "Harold McGee - On Food and Cooking",
+   "url": null
+  },
+  "serious": {
+   "nombre": "Serious Eats (técnica con base científica)",
+   "url": "https://www.seriouseats.com/"
+  },
+  "usda_ret": {
+   "nombre": "USDA Nutrient Retention Factors",
+   "url": "https://www.ars.usda.gov/"
+  },
+  "zahav": {
+   "nombre": "Michael Solomonov - Zahav (técnica hummus)",
+   "url": null
+  }
+ },
+ "terminos": [
+  {
+   "id": "sofreir",
+   "termino": "Sofreír / rehogar",
+   "sinonimos": [
+    "rehogar",
+    "pochar (cebolla)"
+   ],
+   "categoria": "tecnica_calor",
+   "definicion": "Cocinar a fuego medio-bajo en poca grasa hasta ablandar y perfumar sin dorar demasiado. Base de sabor de guisos y salsas.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "sudar",
+   "termino": "Sudar",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Rehogar tapado a fuego bajo para que el vegetal largue su agua sin dorarse.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "saltear",
+   "termino": "Saltear",
+   "sinonimos": [
+    "stir-fry"
+   ],
+   "categoria": "tecnica_calor",
+   "definicion": "Fuego fuerte, poca grasa, movimiento constante, poco tiempo. Sella y mantiene textura.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "sellar",
+   "termino": "Sellar / dorar",
+   "sinonimos": [
+    "dorar"
+   ],
+   "categoria": "tecnica_calor",
+   "definicion": "Fuego fuerte para crear costra dorada vía reacción de Maillard (>140°C). En cocina vegana es la herramienta central de profundidad de sabor: tofu, hongos, cebolla.",
+   "nota": "Maillard: aminoácidos + azúcares generan cientos de compuestos de sabor",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "caramelizar",
+   "termino": "Caramelizar",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Dorado de los azúcares propios del alimento. Cebolla caramelizada real: 30-45 min a fuego medio-bajo.",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "desglasar",
+   "termino": "Desglasar",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Tras dorar, agregar líquido y raspar el fondo (fond) para disolver el sabor concentrado pegado.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "reducir",
+   "termino": "Reducir",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Hervir destapado para evaporar agua y concentrar sabor y cuerpo.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "blanquear",
+   "termino": "Blanquear",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Hervir 30 s a 2 min y cortar cocción en agua helada. Fija color y textura de verdes.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "escaldar",
+   "termino": "Escaldar",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Pasar por agua hirviendo segundos (p.ej. pelar tomates).",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "vapor",
+   "termino": "Cocción al vapor",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Cocinar sin contacto con el agua. Mejor retención de vitamina C y folato (~85% vs ~55% hervido).",
+   "nota": "conecta con factores de retención del doc de ingredientes",
+   "confianza": 8,
+   "fuentes": [
+    "usda_ret"
+   ]
+  },
+  {
+   "id": "tostar_seco",
+   "termino": "Tostar en seco",
+   "sinonimos": [],
+   "categoria": "tecnica_calor",
+   "definicion": "Calentar especias enteras o semillas en sartén sin aceite 1-2 min hasta que perfumen.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "bloom",
+   "termino": "Bloom de especias",
+   "sinonimos": [
+    "freír especias"
+   ],
+   "categoria": "tecnica_calor",
+   "definicion": "Freír especias molidas en la grasa caliente 30-60 s antes de los líquidos: los aromas son liposolubles. Técnica central de curries.",
+   "confianza": 7,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "punto_humo",
+   "termino": "Punto de humo",
+   "sinonimos": [],
+   "categoria": "concepto",
+   "definicion": "Temperatura a la que el aceite humea y se degrada. Oliva virgen ~190-210°C (apto uso hogareño general); lino ~107°C (jamás calentar).",
+   "confianza": 7,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "juliana",
+   "termino": "Juliana",
+   "sinonimos": [],
+   "categoria": "corte",
+   "definicion": "Tiras finas tipo fósforo.",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "brunoise",
+   "termino": "Brunoise",
+   "sinonimos": [],
+   "categoria": "corte",
+   "definicion": "Cubos chicos (~3 mm).",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "concasse",
+   "termino": "Concassé",
+   "sinonimos": [],
+   "categoria": "corte",
+   "definicion": "Tomate pelado, sin semillas, en cubos.",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "chiffonade",
+   "termino": "Chiffonade",
+   "sinonimos": [],
+   "categoria": "corte",
+   "definicion": "Hojas enrolladas y cortadas en tiras finas.",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "mise",
+   "termino": "Mise en place",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Todo cortado, medido y a mano antes de encender el fuego.",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "marinar",
+   "termino": "Marinar / macerar",
+   "sinonimos": [
+    "macerar"
+   ],
+   "categoria": "preparacion",
+   "definicion": "Remojar en líquido saborizante. En tofu: mejor tras prensar o congelar (absorbe más).",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "prensar_tofu",
+   "termino": "Prensar tofu",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Quitar agua con peso 15-30 min: dora mejor y absorbe marinadas.",
+   "confianza": 7,
+   "fuentes": [
+    "serious"
+   ]
+  },
+  {
+   "id": "remojar",
+   "termino": "Remojar / activar",
+   "sinonimos": [
+    "activar"
+   ],
+   "categoria": "preparacion",
+   "definicion": "Hidratar legumbres, frutos secos o semillas. Acorta cocción y degrada fitatos → más absorción de hierro y zinc.",
+   "nota": "conecta con regla R4 de nutrientes",
+   "confianza": 8,
+   "fuentes": [
+    "serious"
+   ]
+  },
+  {
+   "id": "germinar",
+   "termino": "Germinar",
+   "sinonimos": [
+    "brotar"
+   ],
+   "categoria": "preparacion",
+   "definicion": "Remojar y dejar brotar 1-3 días. Reduce fitatos aún más.",
+   "confianza": 7,
+   "fuentes": [
+    "serious"
+   ]
+  },
+  {
+   "id": "fermentar",
+   "termino": "Fermentar",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Transformación por microorganismos (masa madre, chucrut, tempeh). Reduce fitatos, aporta ácidos y umami.",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "ligar",
+   "termino": "Ligar / espesar",
+   "sinonimos": [
+    "espesar"
+   ],
+   "categoria": "preparacion",
+   "definicion": "Dar cuerpo a un líquido: fécula en frío, roux, licuar parte de la preparación, agua de pasta.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "roux",
+   "termino": "Roux",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Harina cocida en grasa como espesante; con aceite queda vegano (base de bechamel vegana).",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "emulsionar",
+   "termino": "Emulsionar",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Unir grasa y agua en mezcla estable batiendo (vinagreta, mayonesa con aquafaba).",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "montar",
+   "termino": "Montar",
+   "sinonimos": [
+    "batir a nieve"
+   ],
+   "categoria": "preparacion",
+   "definicion": "Batir incorporando aire (aquafaba a nieve).",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "rectificar",
+   "termino": "Rectificar la sazón",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Probar al final y ajustar sal, ácido, picante.",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "reposar",
+   "termino": "Reposar",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Dejar descansar: masas relajan gluten; guisos integran sabores (mejores al día siguiente).",
+   "confianza": 7,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "al_dente",
+   "termino": "Al dente",
+   "sinonimos": [],
+   "categoria": "concepto",
+   "definicion": "Cocido pero firme al morder (pasta, verduras).",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "bouquet",
+   "termino": "Bouquet garni",
+   "sinonimos": [],
+   "categoria": "preparacion",
+   "definicion": "Atado de hierbas que se cocina dentro y se retira.",
+   "confianza": 8,
+   "fuentes": [
+    "larousse"
+   ]
+  },
+  {
+   "id": "umami",
+   "termino": "Umami",
+   "sinonimos": [],
+   "categoria": "sabor",
+   "definicion": "Quinto gusto (glutamato/nucleótidos). Fuentes veganas: extracto de tomate tostado, salsa de soja, hongos, levadura nutricional, miso, aceitunas, algas. Dos fuentes combinadas producen sinergia multiplicadora.",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "aquafaba",
+   "termino": "Aquafaba",
+   "sinonimos": [],
+   "categoria": "sabor",
+   "definicion": "Líquido de cocción/lata de garbanzos: emulsiona y monta como clara. 3 cdas ≈ 1 huevo.",
+   "confianza": 7,
+   "fuentes": [
+    "serious"
+   ]
+  },
+  {
+   "id": "kala_namak",
+   "termino": "Kala namak",
+   "sinonimos": [
+    "sal negra india"
+   ],
+   "categoria": "sabor",
+   "definicion": "Sal sulfurosa con gusto a huevo: el secreto del tofu revuelto convincente. Se consigue en dietéticas de BA.",
+   "confianza": 7,
+   "fuentes": [
+    "serious"
+   ]
+  },
+  {
+   "id": "acido_final",
+   "termino": "Balance ácido",
+   "sinonimos": [],
+   "categoria": "sabor",
+   "definicion": "Limón o vinagre al final levanta platos apagados. Bonus: la vitamina C del limón crudo potencia el hierro del plato (regla R1).",
+   "confianza": 8,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "mito_sal",
+   "termino": "Mito: la sal endurece las legumbres",
+   "sinonimos": [],
+   "categoria": "mito",
+   "definicion": "Falso: salar remojo y cocción da pieles más tiernas. Lo que sí retrasa el ablandamiento es el ácido: el tomate va cuando la legumbre ya está tierna.",
+   "confianza": 7,
+   "fuentes": [
+    "serious",
+    "mcgee"
+   ]
+  },
+  {
+   "id": "bicarbonato",
+   "termino": "Bicarbonato en legumbres",
+   "sinonimos": [],
+   "categoria": "mito",
+   "definicion": "Una pizca acelera el ablandamiento y da garbanzos ultracremosos (técnica Zahav para hummus). En exceso: gusto jabonoso y pérdida de B1.",
+   "confianza": 7,
+   "fuentes": [
+    "zahav"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,358 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08"
+ },
+ "fuentes": {
+  "mcgee": {
+   "nombre": "Harold McGee - On Food and Cooking",
+   "url": null
+  },
+  "serious": {
+   "nombre": "Serious Eats / America's Test Kitchen (equipamiento y técnica)",
+   "url": "https://www.seriouseats.com/"
+  },
+  "ptfe2024": {
+   "nombre": "Estudio degradación térmica PTFE (Heliyon, 2024)",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11324993/"
+  },
+  "nutritionfacts": {
+   "nombre": "NutritionFacts.org + estudios de transferencia de hierro de utensilios",
+   "url": "https://nutritionfacts.org/blog/is-stainless-steel-or-cast-iron-cookware-best-is-teflon-safe/"
+  },
+  "fda": {
+   "nombre": "FDA (seguridad PTFE en uso normal)",
+   "url": null
+  }
+ },
+ "materiales": [
+  {
+   "id": "antiadherente_ptfe",
+   "nombre": "Antiadherente (teflón/PTFE)",
+   "fortalezas": [
+    "tofu revuelto",
+    "panqueques",
+    "omelette de garbanzo",
+    "dorados delicados con poco aceite"
+   ],
+   "limites": [
+    "inerte < ~260 °C; degradación y humos tóxicos > 350-400 °C",
+    "no precalentar vacía a fuego máximo",
+    "no utensilios de metal",
+    "reemplazar si se descascara"
+   ],
+   "nota": "PFOA eliminado de la producción desde ~2013; seguro en uso normal a fuego bajo-medio",
+   "regla_simple": "fuego bajo-medio, siempre con algo adentro",
+   "confianza": 7,
+   "fuentes": [
+    "ptfe2024",
+    "fda"
+   ]
+  },
+  {
+   "id": "acero_inoxidable",
+   "nombre": "Acero inoxidable (con fondo difusor)",
+   "fortalezas": [
+    "sellar a fuego fuerte",
+    "sofritos",
+    "salsas ácidas (no reactivo)",
+    "desglasar: deja fond"
+   ],
+   "limites": [
+    "sin fondo grueso calienta desparejo",
+    "se pega si no se precalienta"
+   ],
+   "tecnica_clave": "anti-pegado: precalentar VACÍA a fuego medio 2-3 min; gota de agua que baila (Leidenfrost) = lista; recién ahí aceite y alimento",
+   "confianza": 7,
+   "fuentes": [
+    "serious",
+    "mcgee"
+   ]
+  },
+  {
+   "id": "hierro_fundido",
+   "nombre": "Hierro fundido / bifera",
+   "fortalezas": [
+    "retención de calor: sellados y costras",
+    "tostado en seco de especias",
+    "va al horno"
+   ],
+   "limites": [
+    "ácido prolongado (tomate 40 min) desgasta curado y da gusto metálico",
+    "requiere mantenimiento: secar, film de aceite, re-curar"
+   ],
+   "cruce_nutricional": "transfiere hierro no-hemo a la comida (más con ácido y cocción larga); estudios muestran mejora del estado de hierro con uso regular: potenciador pasivo para dieta vegana",
+   "confianza": 7,
+   "fuentes": [
+    "nutritionfacts",
+    "mcgee"
+   ]
+  },
+  {
+   "id": "aluminio_fino",
+   "nombre": "Aluminio fino (ollas económicas)",
+   "fortalezas": [
+    "hervir agua: pasta, blanqueados (calienta rapidísimo)"
+   ],
+   "limites": [
+    "desparejo, sin inercia: se pega y quema",
+    "reacciona con ácidos: salsa de tomate larga = gusto metálico y migración de aluminio"
+   ],
+   "regla_simple": "agua sí, sofrito no",
+   "confianza": 7,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "enlozado",
+   "nombre": "Enlozado (esmaltado)",
+   "fortalezas": [
+    "guisos y cocciones largas con tomate (no reactivo)",
+    "horno"
+   ],
+   "limites": [
+    "esmalte se astilla con golpes y cambios bruscos; astillado en zona de contacto = retirar"
+   ],
+   "nota": "la cacerola enlozada de fondo grueso es la olla de guiso argentina",
+   "confianza": 7,
+   "fuentes": [
+    "mcgee"
+   ]
+  },
+  {
+   "id": "ceramica_antiadherente",
+   "nombre": "Cerámica antiadherente",
+   "fortalezas": [
+    "alternativa sin PTFE",
+    "algo más tolerante al calor"
+   ],
+   "limites": [
+    "más frágil: pierde antiadherencia por rayado antes",
+    "fórmulas propietarias poco transparentes"
+   ],
+   "regla_simple": "mismas reglas de uso suave que el teflón",
+   "confianza": 6,
+   "fuentes": [
+    "serious"
+   ]
+  }
+ ],
+ "equipos": [
+  {
+   "id": "olla_fondo_grueso",
+   "nombre": "Olla de fondo grueso/triple fondo",
+   "para": "guisos, legumbres, arroces, boloñesa",
+   "nota": "difunde el calor: no se pega en cocciones largas",
+   "confianza": 8
+  },
+  {
+   "id": "olla_presion",
+   "nombre": "Olla a presión",
+   "para": "legumbres en 1/3 del tiempo",
+   "nota": "garbanzos 20-25 min vs 90; no llenar >2/3 con legumbres (espuman)",
+   "confianza": 7
+  },
+  {
+   "id": "wok",
+   "nombre": "Wok / sartén amplia de paredes altas",
+   "para": "salteados a fuego máximo",
+   "nota": "con espacio: amontonada la comida se hierve",
+   "confianza": 7
+  },
+  {
+   "id": "placa_horno",
+   "nombre": "Placa de horno amplia",
+   "para": "verduras y garbanzos asados",
+   "nota": "una capa, aire entre piezas",
+   "confianza": 8
+  },
+  {
+   "id": "vaporera",
+   "nombre": "Vaporera (o colador metálico sobre olla tapada)",
+   "para": "verduras verdes",
+   "nota": "~85% retención de vitamina C vs ~55% hervido",
+   "confianza": 8
+  },
+  {
+   "id": "procesadora",
+   "nombre": "Procesadora / licuadora potente",
+   "para": "hummus, mousses, nice cream, masas",
+   "nota": "el hummus Zahav y el nice cream NO salen con minipimer",
+   "confianza": 7
+  },
+  {
+   "id": "minipimer",
+   "nombre": "Minipimer",
+   "para": "sopas crema en la olla",
+   "confianza": 8
+  },
+  {
+   "id": "balanza",
+   "nombre": "Balanza de cocina digital",
+   "para": "convertir volumen en dato nutricional real",
+   "nota": "el utensilio más importante para esta app: elimina la incertidumbre de tazas/unidades",
+   "confianza": 9
+  },
+  {
+   "id": "budinera_muffinera",
+   "nombre": "Molde budinera / muffinera",
+   "para": "budines y muffins",
+   "nota": "antiadherente o aceitado+enharinado",
+   "confianza": 8
+  },
+  {
+   "id": "frascos",
+   "nombre": "Frascos de vidrio",
+   "para": "budín de chía, overnight oats",
+   "nota": "porción = frasco: simplifica el cálculo por porción",
+   "confianza": 7
+  }
+ ],
+ "reglas_utensilio": [
+  {
+   "id": "U1",
+   "condicion": "tofu (dorar/revolver), panqueques, omelette de garbanzo",
+   "recomendacion": "antiadherente a fuego medio, o hierro muy bien curado; en acero solo con técnica de precalentado",
+   "confianza": 7
+  },
+  {
+   "id": "U2",
+   "condicion": "sellado fuerte (hamburguesas, plancha)",
+   "recomendacion": "hierro/bifera o acero precalentado; NO antiadherente a fuego máximo",
+   "confianza": 7
+  },
+  {
+   "id": "U3",
+   "condicion": "guiso o salsa con tomate >20 min",
+   "recomendacion": "enlozada, acero o fondo grueso; NO aluminio fino, NO hierro sin esmaltar",
+   "confianza": 7
+  },
+  {
+   "id": "U4",
+   "condicion": "legumbres desde secas",
+   "recomendacion": "olla a presión si hay (1/3 del tiempo) o fondo grueso",
+   "confianza": 7
+  },
+  {
+   "id": "U5",
+   "condicion": "receta rica en hierro de cocción húmeda ácida corta",
+   "recomendacion": "cocinarla en hierro fundido suma hierro extra al plato",
+   "confianza": 6
+  },
+  {
+   "id": "U6",
+   "condicion": "verdura verde como fuente de vitamina C",
+   "recomendacion": "vapor o salteado corto; evitar hervido largo",
+   "confianza": 8
+  },
+  {
+   "id": "U7",
+   "condicion": "cremas/purés totales (hummus, mousse, nice cream)",
+   "recomendacion": "procesadora o licuadora potente; minipimer solo para sopas",
+   "confianza": 7
+  },
+  {
+   "id": "U8",
+   "condicion": "salteado tipo wok",
+   "recomendacion": "fuego máximo, tandas chicas, ingredientes secos",
+   "confianza": 7
+  },
+  {
+   "id": "U9",
+   "condicion": "antiadherente en cualquier receta",
+   "recomendacion": "nunca precalentar vacía a fuego fuerte; sin metal",
+   "confianza": 7
+  },
+  {
+   "id": "U10",
+   "condicion": "horneados dulces",
+   "recomendacion": "respetar el molde indicado: el tiempo depende del volumen/superficie",
+   "confianza": 7
+  }
+ ],
+ "kit_minimo": [
+  "sartén antiadherente 24-26 cm",
+  "olla fondo grueso 4-6 L",
+  "sartén o bifera de hierro",
+  "placa de horno + budinera/muffinera",
+  "balanza digital",
+  "procesadora o licuadora",
+  "minipimer",
+  "opcionales top: olla a presión, vaporera"
+ ],
+ "recomendaciones_por_receta": {
+  "r01": [
+   "olla_fondo_grueso",
+   "minipimer_opcional"
+  ],
+  "r03": [
+   "U7"
+  ],
+  "r04": [
+   "U3"
+  ],
+  "r05": [
+   "U1"
+  ],
+  "r06": [
+   "U2"
+  ],
+  "r07": [
+   "placa_horno"
+  ],
+  "r08": [
+   "minipimer"
+  ],
+  "r09": [
+   "U3",
+   "U4"
+  ],
+  "r11": [
+   "U1",
+   "U8"
+  ],
+  "r13": [],
+  "r14": [
+   "U7"
+  ],
+  "r15": [
+   "U3"
+  ],
+  "r16": [
+   "U1_critico"
+  ],
+  "r17": [
+   "U3"
+  ],
+  "r18": [],
+  "r20": [
+   "U8"
+  ],
+  "d01": [
+   "U7",
+   "budinera_muffinera"
+  ],
+  "d03": [
+   "U7"
+  ],
+  "d05": [
+   "U7"
+  ],
+  "d06": [
+   "placa_horno"
+  ],
+  "d07": [
+   "U7_critico"
+  ],
+  "d08": [
+   "U3"
+  ],
+  "d09": [
+   "frascos"
+  ],
+  "d10": [
+   "budinera_muffinera"
+  ]
+ }
+}

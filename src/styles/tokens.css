@@ -1,0 +1,51 @@
+/* Propuesta C "Carta de estación" — cada verdura tiene un rol, cada rol su verdura.
+   Fuente de verdad visual: docs/plan/04-interaccion-y-estetica.md §3 (iteraciones 4 y 5). */
+:root {
+  /* Base papel y tinta */
+  --papel: #f5efdc;
+  --tofu: #fdfaf0;
+  --tinta: #2c2a22;
+  --tinta-suave: #5d594c;
+
+  /* Colores-verdura con rol semántico */
+  --espinaca: #427a3a; /* identidad, marca, etiquetas de sección */
+  --zanahoria: #d06a24; /* acción: botones, énfasis, nav activa */
+  --berenjena: #5c3a63; /* títulos display */
+  --remolacha: #a82d52; /* lo dulce e indulgente */
+  --zapallito: #47903f; /* semáforo: cubierto */
+  --garbanzo: #d1942c; /* semáforo: parcial */
+  --rabanito: #cf3d4d; /* alerta / insuficiente */
+  --repollo-colorado: #85477f; /* cubierto por suplemento */
+  --chia: #75787d; /* sin datos */
+  --lechuga: #a5c179; /* tags y bordes suaves */
+  --soja: #ab7442; /* preparados */
+
+  /* Tipografía */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Escala tipográfica (mobile-first) */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.1875rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.9375rem;
+  --fs-3xl: 2.5rem;
+
+  /* Espaciado y forma */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --radio: 10px;
+  --radio-chico: 6px;
+  --borde: 1px solid color-mix(in srgb, var(--tinta) 14%, transparent);
+  --borde-suave: 1px solid color-mix(in srgb, var(--tinta) 8%, transparent);
+
+  /* Alturas fijas */
+  --alto-nav: 3.75rem;
+}

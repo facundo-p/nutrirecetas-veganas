@@ -1,0 +1,110 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "nota": "esquema + ejemplo PLACEHOLDER: completar con datos reales en la app",
+  "fuera_de_alcance_v1": [
+   "embarazo",
+   "lactancia",
+   "menores de 19",
+   "condiciones médicas: derivar a profesional"
+  ]
+ },
+ "logica_objetivo": [
+  "1. valor base RDA según sexo_para_requerimientos y edad (doc nutrientes)",
+  "2. x ajuste vegano si existe (hierro x1.8, zinc x1.5)",
+  "3. ajuste por peso si aplica (proteína: g/kg x peso_kg x multiplicador_actividad)",
+  "4. si suplemento declarado cumple esquema mínimo -> estado 'cubierto_por_suplemento'",
+  "5. overrides manuales pisan todo (requieren campo motivo)"
+ ],
+ "semaforo": {
+  "verde": ">=90% del objetivo en la ventana",
+  "amarillo": "60-90%",
+  "rojo": "<60%",
+  "cubierto_por_suplemento": "suplemento declarado cumple esquema",
+  "sin_datos": "ventana sin registros suficientes",
+  "regla": "evaluar SIEMPRE en la ventana_evaluacion del nutriente (v1.1), nunca por comida individual"
+ },
+ "schema": {
+  "nombre": "string",
+  "sexo_para_requerimientos": "masculino | femenino (parámetro fisiológico de tablas RDA, no identidad)",
+  "fecha_nacimiento": "YYYY-MM-DD (edad derivada)",
+  "peso_kg": "number",
+  "altura_cm": "number (opcional)",
+  "multiplicador_actividad": "1.0 sedentario | 1.1 activo | 1.2 fuerza o >60 años",
+  "suplementos": [
+   {
+    "nutriente_id": "string (id del doc nutrientes)",
+    "dosis": "number",
+    "unidad": "string",
+    "frecuencia": "diaria | 2x_semana | 3x_semana | semanal"
+   }
+  ],
+  "exclusiones": [
+   "ingrediente_id o categoria (no me gusta / no consumo)"
+  ],
+  "alergias": [
+   "ingrediente_id o categoria (filtro duro, sin excepciones)"
+  ],
+  "overrides": [
+   {
+    "nutriente_id": "string",
+    "objetivo": "number",
+    "unidad": "string",
+    "motivo": "string (ej: indicación médica)"
+   }
+  ],
+  "preferencias_ui": {
+   "nutrientes_destacados": [
+    "ids a mostrar primero en el tablero"
+   ]
+  }
+ },
+ "perfil_ejemplo": {
+  "nombre": "Facu (EJEMPLO: completar)",
+  "sexo_para_requerimientos": "masculino",
+  "fecha_nacimiento": "1990-01-01",
+  "peso_kg": 75,
+  "multiplicador_actividad": 1.0,
+  "suplementos": [
+   {
+    "nutriente_id": "b12",
+    "dosis": 1000,
+    "unidad": "µg",
+    "frecuencia": "2x_semana"
+   },
+   {
+    "nutriente_id": "vitd",
+    "dosis": 15,
+    "unidad": "µg",
+    "frecuencia": "diaria",
+    "nota": "solo mayo-agosto"
+   }
+  ],
+  "exclusiones": [],
+  "alergias": [],
+  "overrides": [],
+  "preferencias_ui": {
+   "nutrientes_destacados": [
+    "hierro",
+    "b12",
+    "calcio",
+    "zinc",
+    "yodo",
+    "omega3"
+   ]
+  }
+ },
+ "objetivos_derivados_del_ejemplo": {
+  "nota": "lo que la app calcularía para el perfil de ejemplo",
+  "hierro_mg": 14.4,
+  "zinc_mg": 16.5,
+  "calcio_mg": 1000,
+  "yodo_ug": 150,
+  "selenio_ug": 55,
+  "proteina_g": 75,
+  "ala_g": 3.2,
+  "b12": "cubierto_por_suplemento (1000 µg 2x/semana cumple esquema)",
+  "vitd": "cubierto_por_suplemento en invierno; resto del año: sol + fortificados"
+ }
+}

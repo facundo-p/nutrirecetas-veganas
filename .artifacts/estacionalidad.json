@@ -1,0 +1,652 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "zona": "AMBA / zona núcleo",
+  "convencion": "meses 1-12; meses_pico = mejor calidad y precio, no disponibilidad binaria",
+  "uso": [
+   "bonus de ranking a recetas con frescos en temporada",
+   "aviso (no bloqueo) fuera de temporada + sustituto de estación",
+   "items de despensa: sin estacionalidad"
+  ],
+  "fuentes": [
+   {
+    "nombre": "Mercado Central de Buenos Aires - calendarios INTA-CMCBA",
+    "url": "https://mercadocentral.gob.ar/publicaciones/calendario-de-las-principales-frutas-y-hortalizas"
+   },
+   {
+    "nombre": "guías estacionales argentinas de divulgación",
+    "url": null
+   }
+  ]
+ },
+ "sin_estacionalidad": [
+  "legumbre",
+  "cereal",
+  "pseudocereal",
+  "semilla",
+  "fruto_seco",
+  "derivado_soja",
+  "alga",
+  "fortificado",
+  "aceite",
+  "especia",
+  "condimento",
+  "otro",
+  "fruta_seca",
+  "hongo"
+ ],
+ "items": [
+  {
+   "ingrediente_id": "tomate",
+   "meses_pico": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "fuera de pico: caro y desabrido; en salsa gana la lata de perita"
+  },
+  {
+   "ingrediente_id": "morron_rojo",
+   "meses_pico": [
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "berenjena",
+   "meses_pico": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "zucchini",
+   "meses_pico": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "pepino",
+   "meses_pico": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "choclo",
+   "meses_pico": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "congelado todo el año"
+  },
+  {
+   "ingrediente_id": "espinaca",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "con calor florece y amarga"
+  },
+  {
+   "ingrediente_id": "acelga",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "kale",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "más dulce tras heladas"
+  },
+  {
+   "ingrediente_id": "brocoli",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "coliflor",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "repollo",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "rucula",
+   "meses_pico": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "con calor pica más"
+  },
+  {
+   "ingrediente_id": "zanahoria",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "papa",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "batata",
+   "meses_pico": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "calabaza",
+   "meses_pico": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "cosecha de otoño con guarda larga"
+  },
+  {
+   "ingrediente_id": "remolacha",
+   "meses_pico": [
+    10,
+    11,
+    12,
+    1
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "cebolla",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "cebolla_morada",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "ajo",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "puerro",
+   "meses_pico": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "apio",
+   "meses_pico": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "champinones",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "cultivo bajo techo"
+  },
+  {
+   "ingrediente_id": "girgolas",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "perejil",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "cebolla_verdeo",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "albahaca",
+   "meses_pico": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "el pesto es de verano; congelar en cubitos de aceite para invierno"
+  },
+  {
+   "ingrediente_id": "menta",
+   "meses_pico": [
+    10,
+    11,
+    12,
+    1,
+    2,
+    3,
+    4
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "frutilla",
+   "meses_pico": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "congelada sirve para budines y licuados"
+  },
+  {
+   "ingrediente_id": "arandanos",
+   "meses_pico": [
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "congelados: idéntico valor"
+  },
+  {
+   "ingrediente_id": "kiwi",
+   "meses_pico": [
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "fuente de vitamina C invernal"
+  },
+  {
+   "ingrediente_id": "naranja",
+   "meses_pico": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "C barata justo en invierno"
+  },
+  {
+   "ingrediente_id": "mandarina",
+   "meses_pico": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7
+  },
+  {
+   "ingrediente_id": "limon",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "pico may-sep"
+  },
+  {
+   "ingrediente_id": "banana",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "tropical: norte argentino e importación"
+  },
+  {
+   "ingrediente_id": "manzana",
+   "meses_pico": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "guarda en frío todo el año"
+  },
+  {
+   "ingrediente_id": "uva",
+   "meses_pico": [
+    1,
+    2,
+    3
+   ],
+   "disponible_todo_ano": false,
+   "confianza": 7,
+   "nota": "pasas todo el año"
+  },
+  {
+   "ingrediente_id": "higos_secos",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "higo fresco: ene-mar"
+  },
+  {
+   "ingrediente_id": "orejones",
+   "meses_pico": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "damasco fresco: nov-ene"
+  },
+  {
+   "ingrediente_id": "palta",
+   "meses_pico": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "disponible_todo_ano": true,
+   "confianza": 7,
+   "nota": "Hass local otoño-invierno"
+  }
+ ],
+ "insight": "invierno: cítricos+kiwi (C para el hierro), crucíferas (calcio), calabaza/batata (A). Verano: tomate/morrón/frutilla (C), hojas escasean. Las sustituciones deberían preferir el sustituto DE ESTACIÓN."
+}

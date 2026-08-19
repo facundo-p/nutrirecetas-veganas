@@ -1,0 +1,1251 @@
+{
+ "meta": {
+  "fecha": "2026-08",
+  "fuente_evaluada": "250 Recetas Veganas Proteicas (Vegano Gourmet)",
+  "recetas_reales": 99,
+  "confianza_fuente": 5,
+  "nota": "autoeditado sin certificación ni comunidad verificable: todo entra como por-probar"
+ },
+ "metricas": {
+  "parseadas_exacto": 29,
+  "evaluadas_aproximado": 70,
+  "cobertura_media_base_actual": 0.85,
+  "cobertura_media_con_nuevos": 0.96,
+  "cien_pct_cubiertas_con_nuevos": 17
+ },
+ "ingredientes_faltantes_frecuentes": {
+  "sirope": 11,
+  "cilantro": 6,
+  "proteina_polvo": 5,
+  "yogur_vegano": 3,
+  "aceite_coco": 3,
+  "mostaza": 2,
+  "tomillo": 2,
+  "miso": 1,
+  "cuscus": 1
+ },
+ "recomendadas_grupo_a": [
+  16,
+  18,
+  26,
+  11,
+  37,
+  15,
+  22,
+  36,
+  20
+ ],
+ "recomendadas_grupo_b": [
+  42,
+  63,
+  33,
+  71,
+  39,
+  46,
+  52,
+  59,
+  62,
+  32,
+  86
+ ],
+ "duplicadas_descartar": [
+  2,
+  3,
+  5,
+  13,
+  14,
+  21,
+  23,
+  24,
+  27,
+  28,
+  31
+ ],
+ "detalle_por_receta": [
+  {
+   "num": 1,
+   "titulo": "Smoothie Proteico de Frutilla y Avena",
+   "pagina": 5,
+   "metodo": "exacto",
+   "cobertura": 0.75,
+   "nuevos": [
+    "proteina_polvo",
+    "sirope"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 2,
+   "titulo": "Tostadas Integrales con Hummus y Palta",
+   "pagina": 6,
+   "metodo": "exacto",
+   "cobertura": 0.93,
+   "nuevos": [
+    "brotes"
+   ],
+   "similar_a": "R03"
+  },
+  {
+   "num": 3,
+   "titulo": "Avena Nocturna con Frutos Rojos y Semillas de Chía",
+   "pagina": 7,
+   "metodo": "exacto",
+   "cobertura": 0.9,
+   "nuevos": [
+    "sirope"
+   ],
+   "similar_a": "R10"
+  },
+  {
+   "num": 4,
+   "titulo": "Panqueques de Banana y Proteína Vegetal",
+   "pagina": 8,
+   "metodo": "exacto",
+   "cobertura": 0.76,
+   "nuevos": [
+    "aceite_coco",
+    "proteina_polvo",
+    "sirope",
+    "yogur_vegano"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 5,
+   "titulo": "Pudín de Chía con Cacao y Mantequilla de Maní",
+   "pagina": 9,
+   "metodo": "exacto",
+   "cobertura": 0.91,
+   "nuevos": [
+    "sirope"
+   ],
+   "similar_a": "D09"
+  },
+  {
+   "num": 6,
+   "titulo": "Smoothie Verde de Espinaca y Mango",
+   "pagina": 10,
+   "metodo": "exacto",
+   "cobertura": 0.58,
+   "nuevos": [
+    "canamo",
+    "espirulina",
+    "mango",
+    "proteina_polvo"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 7,
+   "titulo": "Tostadas de Centeno con Mantequilla de Almendra",
+   "pagina": 11,
+   "metodo": "exacto",
+   "cobertura": 0.73,
+   "nuevos": [
+    "centeno",
+    "granada",
+    "sirope"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 8,
+   "titulo": "Bowl de Yogur Vegano con Granola Casera",
+   "pagina": 12,
+   "metodo": "aproximado",
+   "cobertura": 0.78,
+   "nuevos": [
+    "aceite_coco",
+    "proteina_polvo",
+    "sirope",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 9,
+   "titulo": "Crepes Integrales Rellenos de Frutas",
+   "pagina": 13,
+   "metodo": "exacto",
+   "cobertura": 0.69,
+   "nuevos": [
+    "aceite_coco",
+    "durazno",
+    "proteina_polvo",
+    "sirope"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 10,
+   "titulo": "Batido Proteico de Cacao y Dátiles",
+   "pagina": 14,
+   "metodo": "exacto",
+   "cobertura": 0.61,
+   "nuevos": [
+    "mostaza",
+    "proteina_polvo"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 11,
+   "titulo": "Ensalada de Quinoa con Garbanzos y Verduras Asadas",
+   "pagina": 15,
+   "metodo": "exacto",
+   "cobertura": 0.95,
+   "nuevos": [
+    "sirope"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 12,
+   "titulo": "Tabulé con Lentejas Verdes",
+   "pagina": 16,
+   "metodo": "aproximado",
+   "cobertura": 0.94,
+   "nuevos": [
+    "sirope"
+   ]
+  },
+  {
+   "num": 13,
+   "titulo": "Ensalada de Pasta Integral con Pesto Vegano",
+   "pagina": 17,
+   "metodo": "exacto",
+   "cobertura": 0.76,
+   "nuevos": [
+    "esparragos",
+    "pinones"
+   ],
+   "similar_a": "R14"
+  },
+  {
+   "num": 14,
+   "titulo": "Ensalada de Kale con Aderezo de Tahini",
+   "pagina": 18,
+   "metodo": "exacto",
+   "cobertura": 1.0,
+   "nuevos": [],
+   "similar_a": "R12"
+  },
+  {
+   "num": 15,
+   "titulo": "Ensalada de Garbanzos con Palta y Tomate",
+   "pagina": 19,
+   "metodo": "exacto",
+   "cobertura": 0.83,
+   "nuevos": [
+    "cilantro"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 16,
+   "titulo": "Ensalada de Arroz Integral con Vegetales",
+   "pagina": 20,
+   "metodo": "exacto",
+   "cobertura": 1.0,
+   "nuevos": [],
+   "similar_a": null
+  },
+  {
+   "num": 17,
+   "titulo": "Ensalada de Lentejas Rojas y Menta Fresca",
+   "pagina": 21,
+   "metodo": "aproximado",
+   "cobertura": 0.94,
+   "nuevos": [
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 18,
+   "titulo": "Ensalada Mediterránea con Tofu Marinado",
+   "pagina": 22,
+   "metodo": "exacto",
+   "cobertura": 1.0,
+   "nuevos": [],
+   "similar_a": null
+  },
+  {
+   "num": 19,
+   "titulo": "Ensalada de Espinaca con Fresas y Nueces",
+   "pagina": 23,
+   "metodo": "exacto",
+   "cobertura": 0.73,
+   "nuevos": [
+    "mostaza",
+    "rucula",
+    "sirope"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 20,
+   "titulo": "Ensalada de Couscous con Vegetales y Hierbas",
+   "pagina": 24,
+   "metodo": "exacto",
+   "cobertura": 0.82,
+   "nuevos": [
+    "cuscus"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 21,
+   "titulo": "Curry de Garbanzos con Espinaca",
+   "pagina": 25,
+   "metodo": "exacto",
+   "cobertura": 0.82,
+   "nuevos": [
+    "aceite_coco",
+    "cardamomo",
+    "cilantro"
+   ],
+   "similar_a": "R02"
+  },
+  {
+   "num": 22,
+   "titulo": "Tacos Veganos de Lentejas y Palta",
+   "pagina": 26,
+   "metodo": "exacto",
+   "cobertura": 0.85,
+   "nuevos": [
+    "cilantro",
+    "yogur_vegano"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 23,
+   "titulo": "Hamburguesas de Porotos Negros",
+   "pagina": 27,
+   "metodo": "exacto",
+   "cobertura": 1.0,
+   "nuevos": [],
+   "similar_a": "R06"
+  },
+  {
+   "num": 24,
+   "titulo": "Pasta Integral con Salsa Boloñesa de Lentejas",
+   "pagina": 28,
+   "metodo": "exacto",
+   "cobertura": 0.93,
+   "nuevos": [
+    "tomillo"
+   ],
+   "similar_a": "R04"
+  },
+  {
+   "num": 25,
+   "titulo": "Pizza Vegana con Vegetales y Queso de Castañas",
+   "pagina": 29,
+   "metodo": "exacto",
+   "cobertura": 0.83,
+   "nuevos": [
+    "alcaparras"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 26,
+   "titulo": "Guiso de Quinoa con Verduras",
+   "pagina": 30,
+   "metodo": "exacto",
+   "cobertura": 1.0,
+   "nuevos": [],
+   "similar_a": null
+  },
+  {
+   "num": 27,
+   "titulo": "Wrap Integral de Hummus y Vegetales",
+   "pagina": 31,
+   "metodo": "exacto",
+   "cobertura": 0.9,
+   "nuevos": [
+    "brotes",
+    "sirope"
+   ],
+   "similar_a": "R03"
+  },
+  {
+   "num": 28,
+   "titulo": "Salteado de Tofu con Brócoli y Zanahoria",
+   "pagina": 32,
+   "metodo": "exacto",
+   "cobertura": 0.82,
+   "nuevos": [
+    "aceite_sesamo",
+    "cilantro",
+    "miso",
+    "sirope"
+   ],
+   "similar_a": "R11"
+  },
+  {
+   "num": 29,
+   "titulo": "Fajitas de Seitán con Pimientos",
+   "pagina": 33,
+   "metodo": "exacto",
+   "cobertura": 0.75,
+   "nuevos": [
+    "cilantro",
+    "seitan",
+    "sirope",
+    "yogur_vegano"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 30,
+   "titulo": "Risotto Cremoso de Hongos",
+   "pagina": 34,
+   "metodo": "aproximado",
+   "cobertura": 0.74,
+   "nuevos": [
+    "miso",
+    "mostaza",
+    "pinones",
+    "shiitake",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 31,
+   "titulo": "Chili Vegano con Porotos Rojos",
+   "pagina": 35,
+   "metodo": "exacto",
+   "cobertura": 0.94,
+   "nuevos": [],
+   "similar_a": "R15"
+  },
+  {
+   "num": 32,
+   "titulo": "Lasaña de Berenjena con Ricotta de Tofu Preparación de la ricotta de tofu",
+   "pagina": 36,
+   "metodo": "aproximado",
+   "cobertura": 0.88,
+   "nuevos": [
+    "mostaza",
+    "pinones"
+   ]
+  },
+  {
+   "num": 33,
+   "titulo": "Wok de Fideos de Arroz con Vegetales",
+   "pagina": 37,
+   "metodo": "aproximado",
+   "cobertura": 0.89,
+   "nuevos": [
+    "cilantro",
+    "sirope"
+   ]
+  },
+  {
+   "num": 34,
+   "titulo": "Canelones de Espinaca con Salsa de Tomate",
+   "pagina": 38,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "sirope"
+   ]
+  },
+  {
+   "num": 35,
+   "titulo": "Pastel de Papas Vegano",
+   "pagina": 39,
+   "metodo": "aproximado",
+   "cobertura": 0.81,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 36,
+   "titulo": "Burritos Integrales con Porotos Negros",
+   "pagina": 40,
+   "metodo": "exacto",
+   "cobertura": 0.87,
+   "nuevos": [
+    "cilantro"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 37,
+   "titulo": "Milanesas de Tofu al Horno",
+   "pagina": 41,
+   "metodo": "exacto",
+   "cobertura": 0.95,
+   "nuevos": [
+    "tomillo"
+   ],
+   "similar_a": null
+  },
+  {
+   "num": 38,
+   "titulo": "Arroz Frito con Verduras y Anacardos",
+   "pagina": 42,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "cilantro",
+    "mostaza",
+    "sirope"
+   ]
+  },
+  {
+   "num": 39,
+   "titulo": "Tofu Teriyaki con Arroz Jazmín",
+   "pagina": 43,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "cilantro",
+    "sirope"
+   ]
+  },
+  {
+   "num": 40,
+   "titulo": "Sopa Ramen Vegana con Miso y Tofu Caldo",
+   "pagina": 44,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "cilantro",
+    "miso",
+    "mostaza",
+    "pinones",
+    "shiitake"
+   ]
+  },
+  {
+   "num": 41,
+   "titulo": "Crema de Lentejas con Cúrcuma",
+   "pagina": 46,
+   "metodo": "aproximado",
+   "cobertura": 0.84,
+   "nuevos": [
+    "esparragos",
+    "mango",
+    "miso",
+    "mostaza",
+    "pinones",
+    "seitan",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 42,
+   "titulo": "Sopa de Miso con Edamame y Fideos Soba",
+   "pagina": 48,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "miso",
+    "shiitake"
+   ]
+  },
+  {
+   "num": 43,
+   "titulo": "Crema de Arvejas con Menta El verde esmeralda de esta exquisita crema es tan solo un preludio de la frescura que despertará en tu paladar. Las",
+   "pagina": 49,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "mostaza"
+   ]
+  },
+  {
+   "num": 44,
+   "titulo": "Sopa de Quinoa con Vegetales",
+   "pagina": 50,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "mostaza",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 45,
+   "titulo": "Guiso de Garbanzos y Calabaza Preparación Inicial Comienza salteando cebolla, ajo,",
+   "pagina": 51,
+   "metodo": "aproximado",
+   "cobertura": 0.9,
+   "nuevos": [
+    "mostaza",
+    "romero"
+   ]
+  },
+  {
+   "num": 46,
+   "titulo": "Sopa Minestrone Vegana",
+   "pagina": 52,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 47,
+   "titulo": "Crema de Champiñones y Leche de Almendras Una sinfonía aterciopelada de sabores terrosos donde los",
+   "pagina": 53,
+   "metodo": "aproximado",
+   "cobertura": 0.73,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "shiitake",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 48,
+   "titulo": "Sopa Picante de Tofu y Jengibre",
+   "pagina": 54,
+   "metodo": "aproximado",
+   "cobertura": 0.77,
+   "nuevos": [
+    "cilantro",
+    "miso",
+    "shiitake"
+   ]
+  },
+  {
+   "num": 49,
+   "titulo": "Crema de Batata y Zanahoria Asar Vegetales",
+   "pagina": 55,
+   "metodo": "aproximado",
+   "cobertura": 0.81,
+   "nuevos": [
+    "aceite_coco",
+    "mostaza",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 50,
+   "titulo": "Sopa Fría de Pepino y Eneldo Esta sopa veraniega es un bálsamo refrescante que cautiva por su delicadeza y elegancia. El pepino, protagonista",
+   "pagina": 56,
+   "metodo": "aproximado",
+   "cobertura": 0.85,
+   "nuevos": [
+    "mostaza",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 51,
+   "titulo": "Sopa de Lentejas Rojas al Curry Esta sopa evoca los aromas exóticos de la India, donde las",
+   "pagina": 57,
+   "metodo": "aproximado",
+   "cobertura": 0.78,
+   "nuevos": [
+    "aceite_coco",
+    "cilantro",
+    "mostaza",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 52,
+   "titulo": "Caldo de Verduras con Albóndigas Veganas",
+   "pagina": 58,
+   "metodo": "aproximado",
+   "cobertura": 0.9,
+   "nuevos": [
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 53,
+   "titulo": "Crema de Coliflor y Ajo Asado Esta crema etérea cautiva por su elegante sencillez y su profundidad de sabor. La coliflor, humilde protagonista, se",
+   "pagina": 59,
+   "metodo": "aproximado",
+   "cobertura": 0.71,
+   "nuevos": [
+    "mostaza",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 54,
+   "titulo": "Sopa de Tomate Asado con Albahaca Asar los Tomates",
+   "pagina": 60,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 55,
+   "titulo": "Crema de Espárragos Verdes Esta crema sedosa celebra la fugaz temporada de los espárragos con una preparación que preserva su delicado",
+   "pagina": 61,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "esparragos",
+    "miso",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 56,
+   "titulo": "Paella Vegana de Verduras y Garbanzos",
+   "pagina": 62,
+   "metodo": "aproximado",
+   "cobertura": 0.75,
+   "nuevos": [
+    "esparragos",
+    "mostaza",
+    "romero"
+   ]
+  },
+  {
+   "num": 57,
+   "titulo": "Cazuela de Seitán con Papas y Zanahorias",
+   "pagina": 63,
+   "metodo": "aproximado",
+   "cobertura": 0.76,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "seitan",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 58,
+   "titulo": "Estofado de Berenjenas y Garbanzos La Berenjena",
+   "pagina": 64,
+   "metodo": "aproximado",
+   "cobertura": 0.82,
+   "nuevos": [
+    "cilantro",
+    "cuscus",
+    "mostaza",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 59,
+   "titulo": "Moussaka Vegana con Bechamel de Soja",
+   "pagina": 65,
+   "metodo": "aproximado",
+   "cobertura": 0.95,
+   "nuevos": [
+    "mostaza"
+   ]
+  },
+  {
+   "num": 60,
+   "titulo": "Pastel de Lentejas con Puré de Batata",
+   "pagina": 66,
+   "metodo": "aproximado",
+   "cobertura": 0.81,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "sirope",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 61,
+   "titulo": "Brochetas de Tofu Marinado y Vegetales Estas coloridas brochetas transforman el humilde tofu en un",
+   "pagina": 67,
+   "metodo": "aproximado",
+   "cobertura": 0.77,
+   "nuevos": [
+    "cilantro",
+    "mostaza",
+    "pinones",
+    "sirope",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 62,
+   "titulo": "Canelones de Calabaza y Ricotta Vegana 01",
+   "pagina": 68,
+   "metodo": "aproximado",
+   "cobertura": 0.91,
+   "nuevos": [
+    "mostaza"
+   ]
+  },
+  {
+   "num": 63,
+   "titulo": "Pimientos Rellenos de Quinoa y Champiñones Estos pimientos son pequeñas obras de arte culinario donde",
+   "pagina": 69,
+   "metodo": "aproximado",
+   "cobertura": 0.91,
+   "nuevos": [
+    "pinones",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 64,
+   "titulo": "Curry de Lentejas y Coco Base Aromática",
+   "pagina": 70,
+   "metodo": "aproximado",
+   "cobertura": 0.75,
+   "nuevos": [
+    "aceite_coco",
+    "cilantro",
+    "mostaza",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 65,
+   "titulo": "Guiso de Tempeh con Vegetales al Wok",
+   "pagina": 71,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "cilantro",
+    "miso",
+    "mostaza",
+    "sirope"
+   ]
+  },
+  {
+   "num": 66,
+   "titulo": "Pizza de Masa Integral con Hummus y Vegetales",
+   "pagina": 72,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "alcaparras",
+    "mostaza",
+    "pinones",
+    "rucula",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 67,
+   "titulo": "Lasaña de Calabacín con Boloñesa de Soja Esta reinterpretación contemporánea de la clásica lasaña",
+   "pagina": 73,
+   "metodo": "aproximado",
+   "cobertura": 0.88,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero"
+   ]
+  },
+  {
+   "num": 68,
+   "titulo": "Polenta Cremosa con Ragú de Setas Preparación del Ragú de Setas",
+   "pagina": 74,
+   "metodo": "aproximado",
+   "cobertura": 0.75,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "shiitake",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 69,
+   "titulo": "Hamburguesas de Garbanzos y Espinaca Estas hamburguesas gourmet elevan el concepto de burger",
+   "pagina": 75,
+   "metodo": "aproximado",
+   "cobertura": 0.85,
+   "nuevos": [
+    "cilantro",
+    "rucula",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 70,
+   "titulo": "Ravioles Veganos Rellenos de Ricotta de Almendra Preparación de la Masa",
+   "pagina": 76,
+   "metodo": "aproximado",
+   "cobertura": 0.94,
+   "nuevos": [
+    "mostaza"
+   ]
+  },
+  {
+   "num": 71,
+   "titulo": "Wok de Fideos Integrales con Salsa de Maní",
+   "pagina": 77,
+   "metodo": "aproximado",
+   "cobertura": 0.88,
+   "nuevos": [
+    "cilantro",
+    "sirope"
+   ]
+  },
+  {
+   "num": 72,
+   "titulo": "Curry Tailandés con Tofu y Verduras 01",
+   "pagina": 78,
+   "metodo": "aproximado",
+   "cobertura": 0.83,
+   "nuevos": [
+    "aceite_coco",
+    "cilantro",
+    "sirope"
+   ]
+  },
+  {
+   "num": 73,
+   "titulo": "Arroz con Leche de Coco y Mango Salteado",
+   "pagina": 79,
+   "metodo": "aproximado",
+   "cobertura": 0.82,
+   "nuevos": [
+    "mango",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 74,
+   "titulo": "Milanesas de Seitán con Puré de Papas",
+   "pagina": 80,
+   "metodo": "aproximado",
+   "cobertura": 0.78,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "rucula",
+    "seitan",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 75,
+   "titulo": "Rollitos de Primavera con Salsa de Maní Hidratación del Papel de Arroz",
+   "pagina": 81,
+   "metodo": "aproximado",
+   "cobertura": 0.84,
+   "nuevos": [
+    "cilantro",
+    "mostaza",
+    "sirope"
+   ]
+  },
+  {
+   "num": 76,
+   "titulo": "Guiso de Lentejas y Batata Picante",
+   "pagina": 82,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "aceite_coco",
+    "cilantro",
+    "mango",
+    "mostaza",
+    "sirope",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 77,
+   "titulo": "Croquetas de Quinoa y Calabaza 45",
+   "pagina": 83,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "mostaza",
+    "sirope",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 78,
+   "titulo": "Enchiladas Veganas con Salsa Roja Preparación de la Salsa Roja",
+   "pagina": 84,
+   "metodo": "aproximado",
+   "cobertura": 0.9,
+   "nuevos": [
+    "cilantro",
+    "sirope"
+   ]
+  },
+  {
+   "num": 79,
+   "titulo": "Ratatouille Provenzal Esta interpretación del clásico provenzal celebra la abundancia del huerto mediterráneo en una sinfonía de",
+   "pagina": 85,
+   "metodo": "aproximado",
+   "cobertura": 0.81,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 80,
+   "titulo": "Tofu en Salsa Barbacoa con Batatas al Horno Preparación del Tofu",
+   "pagina": 86,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "sirope",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 81,
+   "titulo": "Risotto de Espinaca y Almendras",
+   "pagina": 87,
+   "metodo": "aproximado",
+   "cobertura": 0.91,
+   "nuevos": [
+    "mostaza"
+   ]
+  },
+  {
+   "num": 82,
+   "titulo": "Curry de Garbanzos y Berenjena Perfil de Sabor",
+   "pagina": 88,
+   "metodo": "aproximado",
+   "cobertura": 0.77,
+   "nuevos": [
+    "aceite_coco",
+    "cilantro",
+    "mango",
+    "mostaza",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 83,
+   "titulo": "Arroz Frito con Tofu y Piña Preparación del Tofu",
+   "pagina": 89,
+   "metodo": "aproximado",
+   "cobertura": 0.8,
+   "nuevos": [
+    "cilantro",
+    "mostaza",
+    "sirope"
+   ]
+  },
+  {
+   "num": 84,
+   "titulo": "Fideos Udon Salteados con Verduras Este plato vibrante y reconfortante fusiona la sustanciosa textura de los fideos udon con un arcoíris de vegetales",
+   "pagina": 90,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "cilantro",
+    "miso",
+    "shiitake",
+    "sirope"
+   ]
+  },
+  {
+   "num": 85,
+   "titulo": "Estofado de Porotos Blancos con Acelga Base Aromática",
+   "pagina": 91,
+   "metodo": "aproximado",
+   "cobertura": 0.86,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 86,
+   "titulo": "Hummus de Remolacha 15%",
+   "pagina": 92,
+   "metodo": "aproximado",
+   "cobertura": 0.89,
+   "nuevos": [
+    "cilantro",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 87,
+   "titulo": "Chips de Kale al Horno Estas crujientes hojas transforman el humilde kale en un aperitivo adictivo que rivaliza con las patatas fritas",
+   "pagina": 93,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "mostaza",
+    "tomillo",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 88,
+   "titulo": "Palitos de Zanahoria con Dip de Tahini 01",
+   "pagina": 94,
+   "metodo": "aproximado",
+   "cobertura": 0.75,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "sirope",
+    "tomillo",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 89,
+   "titulo": "Crackers Integrales de Semillas Preparación de Ingredientes Secos",
+   "pagina": 95,
+   "metodo": "aproximado",
+   "cobertura": 0.83,
+   "nuevos": [
+    "mostaza",
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 90,
+   "titulo": "Paté Vegano de Champiñones Este paté sedoso representa la alquimia culinaria en su máxima expresión, transformando humildes ingredientes",
+   "pagina": 96,
+   "metodo": "aproximado",
+   "cobertura": 0.67,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "shiitake",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 91,
+   "titulo": "Muffins Salados de Espinaca y Tomate Seco",
+   "pagina": 97,
+   "metodo": "aproximado",
+   "cobertura": 0.79,
+   "nuevos": [
+    "mostaza",
+    "pinones",
+    "romero",
+    "sirope",
+    "tomillo",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 92,
+   "titulo": "Bolitas Energéticas de Cacao y Avena 15",
+   "pagina": 98,
+   "metodo": "aproximado",
+   "cobertura": 0.94,
+   "nuevos": [
+    "aceite_coco"
+   ]
+  },
+  {
+   "num": 93,
+   "titulo": "Tostadas de Batata con Palta Preparación de las Rebanadas de Batata",
+   "pagina": 99,
+   "metodo": "aproximado",
+   "cobertura": 0.89,
+   "nuevos": [
+    "cilantro",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 94,
+   "titulo": "Falafel al Horno con Salsa de Yogur Vegano",
+   "pagina": 100,
+   "metodo": "aproximado",
+   "cobertura": 0.82,
+   "nuevos": [
+    "cilantro",
+    "mostaza",
+    "tomillo",
+    "yogur_vegano"
+   ]
+  },
+  {
+   "num": 95,
+   "titulo": "Guacamole con Chips de Maíz Integral",
+   "pagina": 101,
+   "metodo": "aproximado",
+   "cobertura": 0.82,
+   "nuevos": [
+    "cilantro",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 96,
+   "titulo": "Bruschettas de Tomate y Albahaca Esta interpretación vegana del clásico aperitivo italiano",
+   "pagina": 102,
+   "metodo": "aproximado",
+   "cobertura": 0.76,
+   "nuevos": [
+    "alcaparras",
+    "mostaza",
+    "pinones",
+    "romero",
+    "tomillo"
+   ]
+  },
+  {
+   "num": 97,
+   "titulo": "Mantequilla de Maní Casera Selección y Tostado",
+   "pagina": 103,
+   "metodo": "aproximado",
+   "cobertura": 0.7,
+   "nuevos": [
+    "aceite_coco",
+    "mostaza",
+    "sirope"
+   ]
+  },
+  {
+   "num": 98,
+   "titulo": "Batido de Proteína Vegetal con Frutos Tropicales",
+   "pagina": 104,
+   "metodo": "aproximado",
+   "cobertura": 0.81,
+   "nuevos": [
+    "canamo",
+    "mango",
+    "mostaza"
+   ]
+  },
+  {
+   "num": 99,
+   "titulo": "Galletas Proteicas de Avena y Banana",
+   "pagina": 105,
+   "metodo": "aproximado",
+   "cobertura": 0.78,
+   "nuevos": [
+    "aceite_coco",
+    "mostaza",
+    "proteina_polvo",
+    "sirope"
+   ]
+  }
+ ]
+}

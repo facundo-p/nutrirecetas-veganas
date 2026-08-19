@@ -1,0 +1,2521 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "diseño_nutricional": "el set salado ataca los huecos del set 1: yodo (r13), calcio biodisponible (r11,r12,r17), selenio (r14), B2+folato (r20), omega-3 (r14); las dulces priorizan fruta, integral, legumbre escondida y porciones razonables",
+  "nota_derechos": "recetas reescritas y adaptadas; la fuente indica inspiración/técnica de origen"
+ },
+ "fuentes": {
+  "rpl": {
+   "nombre": "Rainbow Plant Life (Nisha Vora)",
+   "url": "https://rainbowplantlife.com/"
+  },
+  "mb": {
+   "nombre": "Minimalist Baker (Dana Shultz)",
+   "url": "https://minimalistbaker.com/"
+  },
+  "ck": {
+   "nombre": "Cookie and Kate",
+   "url": "https://cookieandkate.com/"
+  },
+  "bbc": {
+   "nombre": "BBC Good Food",
+   "url": "https://www.bbcgoodfood.com/"
+  },
+  "trad_ar": {
+   "nombre": "Tradición argentina (adaptación propia)",
+   "url": null
+  }
+ },
+ "recetas": [
+  {
+   "id": "r11",
+   "nombre": "Salteado de tofu y brócoli al sésamo con arroz integral",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Sesame tofu stir-fry"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 20,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "calcio_mg": 350,
+    "prot_g": 20,
+    "hierro_mg": 4
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 400,
+     "unidad": "g",
+     "g_aprox": 400,
+     "funcion": "proteína y calcio (prensado, en cubos)",
+     "imprescindible": true,
+     "sustitutos": [
+      "garbanzos"
+     ]
+    },
+    {
+     "ingrediente_id": "brocoli",
+     "cantidad": 1,
+     "unidad": "planta",
+     "g_aprox": 400,
+     "funcion": "calcio biodisponible + vitamina C",
+     "imprescindible": true,
+     "sustitutos": [
+      "coliflor + kale"
+     ]
+    },
+    {
+     "ingrediente_id": "sesamo_integral",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 18,
+     "funcion": "calcio + remate tostado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 48,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente",
+     "g_aprox": 12,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 1,
+     "unidad": "cda_rallado",
+     "g_aprox": 6,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "costra del tofu y liga de la salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cda_arroz",
+     "g_aprox": 15,
+     "funcion": "balance agridulce",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "balance",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "arroz_integral",
+     "cantidad": 1,
+     "unidad": "taza_cruda",
+     "g_aprox": 190,
+     "funcion": "base",
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Tofu secado + fécula + sal; dorar en tandas y reservar",
+    "Brócoli al vapor 3 min o salteado tapado con chorrito de agua",
+    "Todo al wok a fuego máximo con la salsa 1 min hasta espesar",
+    "Sésamo al final; servir sobre arroz"
+   ],
+   "secretos_chef": [
+    "La fécula es la costra crocante de restaurante",
+    "El brócoli llega casi cocido al wok: el salteado solo lo laquea",
+    "Sésamo recién tostado en seco = otro plato"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "U1",
+    "U8"
+   ],
+   "objetivo_nutricional": "calcio biodisponible (hueco del set 1)"
+  },
+  {
+   "id": "r12",
+   "nombre": "Ensalada de kale masajeado, garbanzos y naranja",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "ck",
+    "titulo_original": "Kale salad (técnica de masajeado)"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 0,
+   "dificultad": "muy fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "calcio_mg": 250,
+    "vitc_mg": 120,
+    "hierro_mg": 3
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "kale",
+     "cantidad": 1,
+     "unidad": "atado_sin_tallos",
+     "g_aprox": 200,
+     "funcion": "base: calcio de alta absorción",
+     "imprescindible": true,
+     "sustitutos": [
+      "rúcula + repollo fino"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 13,
+     "funcion": "masajeado: ablanda la hoja",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 250,
+     "unidad": "g_cocidos",
+     "g_aprox": 250,
+     "funcion": "proteína e hierro",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "naranja",
+     "cantidad": 1,
+     "unidad": "en_gajos",
+     "g_aprox": 130,
+     "funcion": "vitamina C (activa el hierro: R1) + dulzor",
+     "imprescindible": true,
+     "sustitutos": [
+      "mandarina",
+      "kiwi"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.5,
+     "unidad": "jugo",
+     "g_aprox": 20,
+     "funcion": "aliño ácido",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "semillas_zapallo",
+     "cantidad": 2,
+     "unidad": "cda_tostadas",
+     "g_aprox": 20,
+     "funcion": "zinc + crocante",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 70,
+     "funcion": "cremosidad",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Masajear kale con aceite y sal 2-3 min hasta que oscurezca y ablande",
+    "Sumar el resto",
+    "Aliñar al servir"
+   ],
+   "secretos_chef": [
+    "El masajeado rompe la celulosa: kale crudo comestible de verdad",
+    "Gajos de naranja 'a vivo' (sin membrana) elevan el plato"
+   ],
+   "guarda": {
+    "heladera_dias": 1,
+    "freezer": false
+   },
+   "objetivo_nutricional": "calcio biodisponible + C"
+  },
+  {
+   "id": "r13",
+   "nombre": "Rolls de nori con palta, pepino y arroz",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Vegan sushi"
+   },
+   "confianza_adaptacion": 7,
+   "porciones": 3,
+   "tiempo_prep_min": 40,
+   "tiempo_coccion_min": 15,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "yodo_ug": {
+     "min": 100,
+     "max": 250
+    },
+    "selenio_ug": 15
+   },
+   "reglas_disparadas": [
+    "R11_no_aplica_es_nori"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "nori",
+     "cantidad": 6,
+     "unidad": "hoja",
+     "g_aprox": 15,
+     "funcion": "envoltura + YODO: la receta que cubre el nutriente más difícil",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 1.5,
+     "unidad": "taza_cruda",
+     "g_aprox": 300,
+     "funcion": "cuerpo pegajoso (grano corto: doble carolina)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 3,
+     "unidad": "cda_arroz",
+     "g_aprox": 45,
+     "funcion": "sazón del arroz",
+     "imprescindible": true,
+     "sustitutos": [
+      "vinagre de manzana diluido"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "funcion": "sazón del arroz",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 140,
+     "funcion": "cremosidad y grasa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 1,
+     "unidad": "en_bastones",
+     "g_aprox": 150,
+     "funcion": "frescura crocante",
+     "imprescindible": true,
+     "sustitutos": [
+      "morrón"
+     ]
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "en_juliana",
+     "g_aprox": 70,
+     "funcion": "color y crocante",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "sesamo_integral",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 9,
+     "funcion": "remate",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 2,
+     "unidad": "cda_para_mojar",
+     "g_aprox": 32,
+     "funcion": "acompañamiento",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Lavar el arroz hasta agua clara; cocinar; sazonar con el vinagre EN CALIENTE; enfriar abanicando",
+    "Nori lado brillante abajo; capa fina de arroz dejando 2 cm libres",
+    "Relleno en línea; enrollar apretando con esterilla o repasador",
+    "Cortar con cuchillo mojado"
+   ],
+   "secretos_chef": [
+    "Lavar el arroz y sazonarlo caliente son el 80% del sushi",
+    "Cuchillo mojado entre corte y corte",
+    "No sobrecargar el relleno: error #1",
+    "Dosis de yodo excelente y segura: 1-2 rolls por semana"
+   ],
+   "guarda": {
+    "heladera_dias": 1,
+    "freezer": false
+   },
+   "objetivo_nutricional": "YODO (el gran hueco del recetario)"
+  },
+  {
+   "id": "r14",
+   "nombre": "Fideos al pesto de albahaca y nueces con tomates asados",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Vegan pesto pasta"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "selenio_ug": 35,
+    "ala_g": 2,
+    "prot_g": 13
+   },
+   "reglas_disparadas": [
+    "R10"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "fideos",
+     "cantidad": 400,
+     "unidad": "g_secos",
+     "g_aprox": 400,
+     "funcion": "base + selenio del trigo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "albahaca",
+     "cantidad": 2,
+     "unidad": "taza",
+     "g_aprox": 50,
+     "funcion": "el alma del pesto",
+     "imprescindible": true,
+     "sustitutos": [
+      "mitad espinaca (rinde más, pierde perfume)"
+     ]
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "cuerpo graso + omega-3 (rol del piñón)",
+     "imprescindible": true,
+     "sustitutos": [
+      "girasol tostado (económico)"
+     ]
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "funcion": "el 'parmesano' umami",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "funcion": "pungencia",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.5,
+     "unidad": "jugo",
+     "g_aprox": 20,
+     "funcion": "frescura y anti-oxidación",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 80,
+     "unidad": "ml",
+     "g_aprox": 73,
+     "funcion": "estructura de la salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 300,
+     "unidad": "g_cherry_asados",
+     "g_aprox": 300,
+     "funcion": "dulzor ácido + licopeno (R10)",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Tomates a horno fuerte 20-25 min con oliva y sal",
+    "Procesar albahaca, nueces, ajo, levadura, limón; oliva en hilo",
+    "Pasta al dente reservando 1 taza de agua de cocción",
+    "Mezclar FUERA del fuego, soltando con agua de pasta"
+   ],
+   "secretos_chef": [
+    "El pesto nunca toca el fuego: la pasta caliente lo templa",
+    "El agua de cocción almidonosa hace que la salsa abrace el fideo",
+    "Blanquear la albahaca 10 s mantiene el verde si lo guardás"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": "solo el pesto"
+   },
+   "utensilio_recomendado": [
+    "U7"
+   ],
+   "objetivo_nutricional": "selenio + omega-3"
+  },
+  {
+   "id": "r15",
+   "nombre": "Chili sin carne con cacao",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "ck",
+    "titulo_original": "Homemade Vegan Chili"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 6,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 40,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 5,
+    "zinc_mg": 2.5,
+    "fibra_g": 13,
+    "prot_g": 14
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3",
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 250,
+     "unidad": "g_cocidos",
+     "g_aprox": 250,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "porotos_colorados",
+     "cantidad": 250,
+     "unidad": "g_cocidos",
+     "g_aprox": 250,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente",
+     "g_aprox": 16,
+     "funcion": "sofrito",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 800,
+     "unidad": "g",
+     "g_aprox": 800,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "perfil tex-mex",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 2,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 4,
+     "funcion": "perfil tex-mex",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 5,
+     "funcion": "profundidad: el secreto del chili serio",
+     "imprescindible": true,
+     "sustitutos": [
+      "chocolate 70%: 2 cuadraditos"
+     ]
+    },
+    {
+     "ingrediente_id": "soja_texturizada",
+     "cantidad": 60,
+     "unidad": "g_secos",
+     "g_aprox": 60,
+     "funcion": "mordida",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "choclo",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 150,
+     "funcion": "dulzor",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "al_servir",
+     "g_aprox": 40,
+     "funcion": "R1 + frescura (con palta)",
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Sofrito bien dorado",
+    "Especias en bloom 30 s",
+    "Tomate + porotos + texturizada hidratada + cacao: 35-40 min fuego bajo",
+    "Reposo 15 min; servir con palta y lima/limón"
+   ],
+   "secretos_chef": [
+    "El cacao no endulza: redondea y oscurece (efecto mole)",
+    "Pisar 1/2 taza de porotos espesa sin fécula",
+    "Mejor al día siguiente; congela perfecto"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U3"
+   ],
+   "objetivo_nutricional": "hierro + zinc"
+  },
+  {
+   "id": "r16",
+   "nombre": "Omelette de harina de garbanzo con verduras",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Chickpea omelet / besan chilla"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 10,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 14,
+    "hierro_mg": 3.5
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_garbanzo",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "funcion": "el 'huevo' vegetal",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 240,
+     "funcion": "batido (reposar 10 min)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.25,
+     "unidad": "cdta",
+     "g_aprox": 0.7,
+     "funcion": "color",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "calidez",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "kala_namak",
+     "cantidad": 0.25,
+     "unidad": "cdta_al_final",
+     "g_aprox": 1.5,
+     "funcion": "efecto huevo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 2,
+     "unidad": "unidad",
+     "g_aprox": 30,
+     "funcion": "relleno",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 1,
+     "unidad": "picado",
+     "g_aprox": 125,
+     "funcion": "relleno",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "espinaca",
+     "cantidad": 1,
+     "unidad": "puñado",
+     "g_aprox": 30,
+     "funcion": "relleno",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "cda_por_omelette",
+     "g_aprox": 13,
+     "funcion": "cocción",
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Batir harina + agua + especias; reposar 10 min",
+    "Sartén antiadherente a fuego medio con aceite",
+    "Verter fino; verduras encima; tapar 3-4 min",
+    "Doblar cuando el borde se despega solo"
+   ],
+   "secretos_chef": [
+    "El reposo del batido evita gusto a crudo",
+    "Paciencia antes de doblar: si lo apurás se rompe",
+    "Fuego medio: fuerte lo quema crudo por dentro"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "U1_critico"
+   ],
+   "objetivo_nutricional": "proteína sin gluten"
+  },
+  {
+   "id": "r17",
+   "nombre": "Guiso toscano de alubias y kale",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "bbc",
+    "titulo_original": "Ribollita simplificada / white bean kale stew"
+   },
+   "confianza_adaptacion": 7,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "calcio_mg": 200,
+    "hierro_mg": 5,
+    "potasio_mg": 1000
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_alubia",
+     "cantidad": 500,
+     "unidad": "g_cocidos",
+     "g_aprox": 500,
+     "funcion": "cuerpo cremoso + calcio/hierro",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "kale",
+     "cantidad": 1,
+     "unidad": "atado",
+     "g_aprox": 200,
+     "funcion": "calcio biodisponible",
+     "imprescindible": true,
+     "sustitutos": [
+      "acelga (su calcio no computa: R7)"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "soffritto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 70,
+     "funcion": "soffritto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "apio",
+     "cantidad": 1,
+     "unidad": "rama",
+     "g_aprox": 50,
+     "funcion": "soffritto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente",
+     "g_aprox": 16,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "fondo (poco: no es guiso rojo)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 750,
+     "unidad": "ml",
+     "g_aprox": 750,
+     "funcion": "medio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda_cruda_al_servir",
+     "g_aprox": 40,
+     "funcion": "el toque toscano",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "perfume",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pan_integral",
+     "cantidad": 4,
+     "unidad": "rebanada_tostada_con_ajo",
+     "g_aprox": 120,
+     "funcion": "la versión completa",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Soffritto 10 min",
+    "Ajo y tomate 5 min",
+    "Porotos + caldo 15 min, pisando 1/3 para cremosidad",
+    "Kale 5 min finales",
+    "Oliva cruda encima al servir"
+   ],
+   "secretos_chef": [
+    "Pisar porotos EN la olla es la cremosidad toscana (sin crema)",
+    "El hilo de oliva crudo final es el sabor del plato, no decoración"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U3"
+   ],
+   "objetivo_nutricional": "calcio + hierro"
+  },
+  {
+   "id": "r18",
+   "nombre": "Dal de lentejas turcas con tadka",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "rpl",
+    "titulo_original": "Red lentil dal"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 5,
+    "prot_g": 13,
+    "folato_ug": 150
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R8"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas_turcas",
+     "cantidad": 300,
+     "unidad": "g_secas",
+     "g_aprox": 300,
+     "funcion": "se deshacen en crema",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "funcion": "en el agua de cocción",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda_para_tadka",
+     "g_aprox": 40,
+     "funcion": "vehículo del tadka",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta_en_grano",
+     "g_aprox": 2,
+     "funcion": "tadka",
+     "imprescindible": true,
+     "sustitutos": [
+      "mostaza en grano"
+     ]
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente_laminado",
+     "g_aprox": 16,
+     "funcion": "tadka: dorar SEGUNDOS",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 6,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimienta_negra",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "activa curcumina (R8)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 1,
+     "unidad": "picado_en_tadka",
+     "g_aprox": 125,
+     "funcion": "acidez",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "al_final",
+     "g_aprox": 40,
+     "funcion": "R1",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 1,
+     "unidad": "taza_cruda",
+     "g_aprox": 198,
+     "funcion": "acompañamiento",
+     "imprescindible": false,
+     "sustitutos": [
+      "pan"
+     ]
+    }
+   ],
+   "pasos": [
+    "Lentejas + 900 ml agua + cúrcuma: 20-25 min hasta crema, batiendo al final",
+    "Tadka aparte: aceite caliente, comino hasta crujir, ajo hasta apenas dorar, ají",
+    "Volcar el tadka hirviente sobre el dal (el 'tsss' es el plato)",
+    "Limón y sal"
+   ],
+   "secretos_chef": [
+    "El tadka es técnica, no ingrediente: especias fritas 30 s y volcadas al final elevan cualquier legumbre",
+    "El ajo pasa de dorado a amargo en 5 segundos: sacarlo antes de lo que creés"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "objetivo_nutricional": "hierro con técnica nueva"
+  },
+  {
+   "id": "r19",
+   "nombre": "Tabule de quinoa con menta",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "ck",
+    "titulo_original": "Quinoa tabbouleh"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 15,
+   "dificultad": "muy fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 8,
+    "vitc_mg": 60,
+    "magnesio_mg": 100
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "quinoa",
+     "cantidad": 1,
+     "unidad": "taza_cruda_cocida_fria",
+     "g_aprox": 170,
+     "funcion": "base con proteína completa (rol del burgol, sin gluten)",
+     "imprescindible": true,
+     "sustitutos": [
+      "burgol fino (versión clásica)"
+     ]
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 1,
+     "unidad": "taza_picada",
+     "g_aprox": 60,
+     "funcion": "acá es verdura, no adorno: C + hierro",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "menta",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 25,
+     "funcion": "la frescura que define el tabule",
+     "imprescindible": true,
+     "sustitutos": [
+      "más perejil (pierde identidad)"
+     ]
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 2,
+     "unidad": "en_cubitos",
+     "g_aprox": 250,
+     "funcion": "jugosidad",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 1,
+     "unidad": "en_cubitos",
+     "g_aprox": 150,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1.5,
+     "unidad": "jugo",
+     "g_aprox": 60,
+     "funcion": "aliño abundante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 54,
+     "funcion": "aliño",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_morada",
+     "cantidad": 0.25,
+     "unidad": "fina",
+     "g_aprox": 40,
+     "funcion": "pungencia",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Quinoa enjuagada, cocida, extendida en placa para enfriar rápido",
+    "Picar todo chico",
+    "Mezclar y aliñar",
+    "30 min de heladera antes de servir"
+   ],
+   "secretos_chef": [
+    "Enfriar la quinoa extendida evita el engrudo",
+    "El tabule real es ensalada de perejil con granos, no al revés",
+    "A las 24 h el pepino larga agua: si va a sobrar, sumarlo al día"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   },
+   "objetivo_nutricional": "plato fresco + C"
+  },
+  {
+   "id": "r20",
+   "nombre": "Arroz integral salteado con edamame, champiñones y maní",
+   "tipo": "salada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Vegan fried rice"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 3,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 15,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "folato_ug": 180,
+    "b2_mg": 0.5,
+    "prot_g": 16
+   },
+   "reglas_disparadas": [
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "arroz_integral",
+     "cantidad": 3,
+     "unidad": "taza_cocido_FRIO",
+     "g_aprox": 520,
+     "funcion": "requisito innegociable: del día anterior",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "edamame",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "proteína + folato",
+     "imprescindible": true,
+     "sustitutos": [
+      "arvejas"
+     ]
+    },
+    {
+     "ingrediente_id": "champinones",
+     "cantidad": 200,
+     "unidad": "g_laminados",
+     "g_aprox": 200,
+     "funcion": "B2 + umami (dorar sin apurar)",
+     "imprescindible": true,
+     "sustitutos": [
+      "girgolas"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 48,
+     "funcion": "sazón (por los bordes del wok)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 6,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente",
+     "g_aprox": 12,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "mani",
+     "cantidad": 40,
+     "unidad": "g_tostado",
+     "g_aprox": 40,
+     "funcion": "crocante y grasa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 3,
+     "unidad": "unidad",
+     "g_aprox": 45,
+     "funcion": "frescura final",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 27,
+     "funcion": "salteado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sesamo_integral",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 9,
+     "funcion": "remate",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Champiñones solos a fuego fuerte hasta dorar (esperar que evapore el agua)",
+    "Ajo y jengibre 30 s",
+    "Arroz frío desgranado, aplastando contra el wok para tostar",
+    "Salsa de soja por los bordes (se carameliza)",
+    "Edamame, verdeo y maní al final"
+   ],
+   "secretos_chef": [
+    "Arroz recién hecho = engrudo; frío del día anterior = granos que tuestan",
+    "La soja por el borde del wok se tuesta y perfuma",
+    "El dorado del champiñón es su única diferencia con el cartón"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "U8"
+   ],
+   "objetivo_nutricional": "folato + B2 (huecos del set 1)"
+  },
+  {
+   "id": "d01",
+   "nombre": "Brownies de porotos negros",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Vegan GF Black Bean Brownies"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 12,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "fibra_g": 4,
+    "hierro_mg": 1.5,
+    "prot_g": 4
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 400,
+     "unidad": "g_cocidos_enjuagados",
+     "g_aprox": 400,
+     "funcion": "cuerpo húmedo invisible (enjuague serio)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "sabor dominante: tapa el poroto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 50,
+     "unidad": "g_procesada",
+     "g_aprox": 50,
+     "funcion": "estructura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 120,
+     "unidad": "g",
+     "g_aprox": 120,
+     "funcion": "dulzor (menos que un brownie clásico)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 2,
+     "unidad": "cda_molida",
+     "g_aprox": 14,
+     "funcion": "liga (hidratar con 5 cdas agua)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 40,
+     "funcion": "humedad grasa",
+     "imprescindible": true,
+     "sustitutos": [
+      "aceite neutro"
+     ]
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "leve levantado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "redondeo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 30,
+     "unidad": "g_arriba",
+     "g_aprox": 30,
+     "funcion": "remate",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Procesar TODO hasta liso total (2-3 min)",
+    "Moldes aceitados a 2/3 de altura",
+    "Horno moderado (180°) 22-26 min: centro apenas húmedo",
+    "Enfriar COMPLETO antes de desmoldar"
+   ],
+   "secretos_chef": [
+    "Nadie detecta el poroto si el enjuague es serio y el procesado total",
+    "Mejor sacarlos un pelo antes: el punto es húmedo, no crudo",
+    "Al día siguiente están más ricos"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U7",
+    "budinera_muffinera"
+   ]
+  },
+  {
+   "id": "d02",
+   "nombre": "Galletitas de banana y avena",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Banana oat cookies"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 10,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 15,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "fibra_g": 2
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 2,
+     "unidad": "muy_maduras",
+     "g_aprox": 236,
+     "funcion": "endulzante y liga: el dulzor está en las manchas",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 150,
+     "unidad": "g",
+     "g_aprox": 150,
+     "funcion": "estructura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "aroma",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "funcion": "dulzor extra",
+     "imprescindible": false,
+     "sustitutos": [
+      "chips de chocolate",
+      "nueces",
+      "coco rallado"
+     ]
+    },
+    {
+     "ingrediente_id": "pasta_mani",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "riqueza",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Pisar bananas",
+    "Mezclar con avena y extras",
+    "Cucharadas en placa con papel manteca, aplastadas (no se expanden solas)",
+    "15 min a 180°"
+   ],
+   "secretos_chef": [
+    "Banana verde = galletita triste: tiene que estar MUY madura",
+    "Húmedas por diseño; más firmes: 5 min extra y rejilla"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   }
+  },
+  {
+   "id": "d03",
+   "nombre": "Mousse de chocolate y palta",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Chocolate avocado mousse"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "magnesio_mg": 80
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 2,
+     "unidad": "maduras",
+     "g_aprox": 280,
+     "funcion": "la crema invisible",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 5,
+     "unidad": "cda",
+     "g_aprox": 25,
+     "funcion": "sabor dominante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "datiles",
+     "cantidad": 6,
+     "unidad": "remojados",
+     "g_aprox": 50,
+     "funcion": "dulzor",
+     "imprescindible": true,
+     "sustitutos": [
+      "mascabo 4 cdas"
+     ]
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 5,
+     "unidad": "cda",
+     "g_aprox": 75,
+     "funcion": "textura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "redondeo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "funcion": "hace que sepa a postre serio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "chocolate_amargo",
+     "cantidad": 30,
+     "unidad": "g_derretido",
+     "g_aprox": 30,
+     "funcion": "versión lujosa",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "frutilla",
+     "cantidad": 1,
+     "unidad": "taza_para_servir",
+     "g_aprox": 150,
+     "funcion": "frescura + C",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Procesar todo hasta seda absoluta (raspar bordes 2-3 veces)",
+    "Probar y ajustar dulzor",
+    "Heladera 1 h mínimo"
+   ],
+   "secretos_chef": [
+    "Palta en su punto: dura = grumos, pasada = gusto",
+    "La pizca de sal es el postre serio",
+    "El frío de 1 h la vuelve mousse"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "U7"
+   ]
+  },
+  {
+   "id": "d04",
+   "nombre": "Budín de banana integral",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Vegan banana bread"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 10,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 55,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "fibra_g": 3,
+    "ala_g": 0.6
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 3,
+     "unidad": "muy_maduras",
+     "g_aprox": 354,
+     "funcion": "humedad y dulzor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "estructura + fibra",
+     "imprescindible": true,
+     "sustitutos": [
+      "mitad blanca fortificada"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 80,
+     "unidad": "g",
+     "g_aprox": 80,
+     "funcion": "dulzor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 60,
+     "unidad": "ml",
+     "g_aprox": 55,
+     "funcion": "humedad",
+     "imprescindible": true,
+     "sustitutos": [
+      "aceite neutro"
+     ]
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 1,
+     "unidad": "cda_molida",
+     "g_aprox": 7,
+     "funcion": "liga (con 3 cdas agua)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 8,
+     "funcion": "leudado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bicarbonato",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "leudado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "aroma",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "ALA + crocante",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "chocolate_amargo",
+     "cantidad": 40,
+     "unidad": "g_chips",
+     "g_aprox": 40,
+     "funcion": "vicio",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Húmedos por un lado (banana, aceite, lino), secos por otro",
+    "Unir SIN batir de más: hasta que justo no haya harina visible",
+    "Budinera; nueces arriba",
+    "50-60 min a 175°; palillo seco",
+    "10 min en molde, luego rejilla"
+   ],
+   "secretos_chef": [
+    "Sobremezclar = gluten = budín gomoso: 15 movimientos de espátula",
+    "Bananas congeladas y descongeladas rinden más dulzor",
+    "Rebanado al freezer: desayunos resueltos"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "budinera_muffinera",
+    "U10"
+   ]
+  },
+  {
+   "id": "d05",
+   "nombre": "Bolitas de dátiles, cacao y maní",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Energy balls"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 14,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "fibra_g": 2,
+    "prot_g": 3
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "datiles",
+     "cantidad": 200,
+     "unidad": "g",
+     "g_aprox": 200,
+     "funcion": "pegamento dulce (remojar 10 min si duros)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "mani",
+     "cantidad": 100,
+     "unidad": "g_tostado",
+     "g_aprox": 100,
+     "funcion": "cuerpo y proteína",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 15,
+     "funcion": "sabor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "regula humedad",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "funcion": "clave del sabor",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 3,
+     "unidad": "cda_rebozar",
+     "g_aprox": 15,
+     "funcion": "terminación",
+     "imprescindible": false,
+     "sustitutos": [
+      "sésamo"
+     ]
+    },
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "funcion": "minerales extra",
+     "imprescindible": false,
+     "sustitutos": [
+      "lino molido"
+     ]
+    }
+   ],
+   "pasos": [
+    "Procesar maní y avena a arena gruesa",
+    "Dátiles y cacao hasta masa que se pega al apretar",
+    "Bolitas; rebozar; heladera"
+   ],
+   "secretos_chef": [
+    "No liga: 1 cdta de agua o un dátil más; empasta: más avena",
+    "2 semanas en heladera, meses en freezer: el arma anti-kiosco"
+   ],
+   "guarda": {
+    "heladera_dias": 14,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U7"
+   ]
+  },
+  {
+   "id": "d06",
+   "nombre": "Crumble de manzana y avena",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "bbc",
+    "titulo_original": "Vegan apple crumble"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 6,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 35,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "fibra_g": 5
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "manzana",
+     "cantidad": 4,
+     "unidad": "grandes_en_gajos",
+     "g_aprox": 720,
+     "funcion": "la fruta (verde/ácida equilibra mejor)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.5,
+     "unidad": "jugo",
+     "g_aprox": 20,
+     "funcion": "frescura anti-oxidación",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "aroma",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 90,
+     "unidad": "g_total",
+     "g_aprox": 90,
+     "funcion": "dulzor base + cobertura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 100,
+     "unidad": "g_cobertura",
+     "g_aprox": 100,
+     "funcion": "crocante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 60,
+     "unidad": "g_cobertura",
+     "g_aprox": 60,
+     "funcion": "estructura de la arena",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 60,
+     "unidad": "ml_cobertura",
+     "g_aprox": 55,
+     "funcion": "la 'arena' grasa",
+     "imprescindible": true,
+     "sustitutos": [
+      "margarina vegetal"
+     ]
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "funcion": "dulzor",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 40,
+     "unidad": "g_cobertura",
+     "g_aprox": 40,
+     "funcion": "crocante",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Manzanas con limón, canela y azúcar a la fuente",
+    "Frotar cobertura con las manos hasta arena gruesa con grumos",
+    "Cubrir sin apretar",
+    "35 min a 180° hasta burbujeo en bordes y dorado"
+   ],
+   "secretos_chef": [
+    "Los grumos grandes de cobertura (apretar puñados y romperlos) son el crocante",
+    "Reposo 10 min: hirviente no se siente el sabor"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "placa_horno"
+   ]
+  },
+  {
+   "id": "d07",
+   "nombre": "Helado de banana (nice cream)",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Nice cream"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "potasio_mg": 420
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 3,
+     "unidad": "maduras_congeladas_en_rodajas",
+     "g_aprox": 354,
+     "funcion": "todo el helado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 3,
+     "unidad": "cda_solo_si_hace_falta",
+     "g_aprox": 45,
+     "funcion": "ayuda a la máquina",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 10,
+     "funcion": "sabor chocolate",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pasta_mani",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "sabor maní",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "frutilla",
+     "cantidad": 0.5,
+     "unidad": "taza_congelada",
+     "g_aprox": 75,
+     "funcion": "sabor frutal",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Procesar las rodajas congeladas: arena → grumos → de golpe, crema (2-4 min raspando bordes)",
+    "Comer ya (soft) o 1 h de freezer (firme)"
+   ],
+   "secretos_chef": [
+    "Congelar SIEMPRE en rodajas",
+    "El momento 'de golpe se hace crema' es real: no abandonar antes",
+    "Bananas pasadas al freezer = helado perpetuo"
+   ],
+   "guarda": {
+    "heladera_dias": 0,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U7_critico"
+   ]
+  },
+  {
+   "id": "d08",
+   "nombre": "Arroz con leche vegetal y canela",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "trad_ar",
+    "titulo_original": "Arroz con leche criollo (adaptación)",
+    "nota": "sin certificador: validar en casa"
+   },
+   "confianza_adaptacion": 6,
+   "porciones": 4,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 40,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "calcio_mg": 300
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 100,
+     "unidad": "g_grano_corto",
+     "g_aprox": 100,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 1000,
+     "unidad": "ml_CON_calcio",
+     "g_aprox": 1000,
+     "funcion": "cremosidad + calcio: el postre de abuela como fuente de calcio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 70,
+     "unidad": "g",
+     "g_aprox": 70,
+     "funcion": "dulzor (entra al FINAL)",
+     "imprescindible": true,
+     "sustitutos": [
+      "azúcar común"
+     ]
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "rama",
+     "g_aprox": 2,
+     "funcion": "perfume clásico",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cascara_citrico",
+     "cantidad": 1,
+     "unidad": "tira_sin_lo_blanco",
+     "g_aprox": 3,
+     "funcion": "el alma del de abuela",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "redondeo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "cdta_molida_al_servir",
+     "g_aprox": 2,
+     "funcion": "terminación",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Todo menos el azúcar a fuego MÍNIMO, revolviendo seguido, 35-40 min",
+    "Azúcar en los últimos 10 min",
+    "Apagar más líquido de lo deseado: espesa al enfriar",
+    "Heladera"
+   ],
+   "secretos_chef": [
+    "El azúcar temprano endurece el grano: siempre al final",
+    "Revolver libera almidón = cremosidad sin crema",
+    "La cáscara de cítrico no se saltea"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "U3"
+   ]
+  },
+  {
+   "id": "d09",
+   "nombre": "Budín de chía al cacao",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Chocolate chia pudding"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "perfil_nutricional_porcion_aprox": {
+    "ala_g": 2.5,
+    "calcio_mg": 250
+   },
+   "reglas_disparadas": [
+    "R9_no_lino_pero_analogo"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 48,
+     "funcion": "gel + ALA + calcio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 10,
+     "funcion": "sabor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 300,
+     "unidad": "ml",
+     "g_aprox": 300,
+     "funcion": "líquido + calcio",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "datiles",
+     "cantidad": 3,
+     "unidad": "procesados",
+     "g_aprox": 25,
+     "funcion": "dulzor",
+     "imprescindible": true,
+     "sustitutos": [
+      "mascabo 2 cdas"
+     ]
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "redondeo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 1,
+     "unidad": "arriba",
+     "g_aprox": 118,
+     "funcion": "terminación",
+     "imprescindible": false,
+     "sustitutos": [
+      "frutilla"
+     ]
+    }
+   ],
+   "pasos": [
+    "Disolver primero cacao y endulzante en un poco de bebida tibia (en frío hace grumos)",
+    "Sumar resto y chía; revolver, y OTRA VEZ a los 10 min",
+    "Noche en heladera"
+   ],
+   "secretos_chef": [
+    "La pasta previa de cacao evita el gran fracaso: grumos amargos",
+    "Licuar a la mañana = textura mousse"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "utensilio_recomendado": [
+    "frascos"
+   ]
+  },
+  {
+   "id": "d10",
+   "nombre": "Muffins integrales de zanahoria y nueces",
+   "tipo": "dulce",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Carrot muffins (veganizados)"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 12,
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 22,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "vita_ug_rae": 250,
+    "fibra_g": 3,
+    "ala_g": 0.5
+   },
+   "reglas_disparadas": [
+    "R6"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 2,
+     "unidad": "taza_rallada_fina",
+     "g_aprox": 200,
+     "funcion": "humedad + caroteno (la grasa de la masa resuelve R6)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 220,
+     "unidad": "g",
+     "g_aprox": 220,
+     "funcion": "estructura",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 100,
+     "unidad": "g",
+     "g_aprox": 100,
+     "funcion": "dulzor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 80,
+     "unidad": "ml",
+     "g_aprox": 73,
+     "funcion": "humedad + vehículo del caroteno",
+     "imprescindible": true,
+     "sustitutos": [
+      "aceite neutro"
+     ]
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 120,
+     "unidad": "ml",
+     "g_aprox": 120,
+     "funcion": "líquido: con 1 cdta de vinagre = suero vegano",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 5,
+     "funcion": "activa el leudado con el bicarbonato",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 1,
+     "unidad": "cda_molida",
+     "g_aprox": 7,
+     "funcion": "liga",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 8,
+     "funcion": "leudado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bicarbonato",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "leudado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "aroma",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 60,
+     "unidad": "g",
+     "g_aprox": 60,
+     "funcion": "ALA + crocante",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 40,
+     "unidad": "g",
+     "g_aprox": 40,
+     "funcion": "dulzor",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Bebida + vinagre: reposar 5 min (corta como suero)",
+    "Húmedos y secos por separado; unir sin sobremezclar",
+    "Zanahoria y nueces con movimientos envolventes",
+    "Moldes a 3/4; 20-24 min a 190° hasta palillo seco"
+   ],
+   "secretos_chef": [
+    "Vinagre + bicarbonato = buttermilk vegano: miga esponjosa sin huevo",
+    "Rallado fino: el grueso queda crudo",
+    "Horno más fuerte que un budín (190°): el golpe inicial hace el copete"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "budinera_muffinera",
+    "U10"
+   ]
+  }
+ ],
+ "ingredientes_nuevos_para_base": [
+  {
+   "id": "pasta_mani",
+   "nombre": "Pasta de maní",
+   "sinonimos": [
+    "mantequilla de maní"
+   ],
+   "categoria": "fruto_seco",
+   "base": "tal cual",
+   "kcal": 588,
+   "nutrientes": {
+    "prot_g": 25,
+    "magnesio_mg": 154
+   },
+   "notas": "sin azúcar agregada ideal",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "harina_integral",
+   "nombre": "Harina integral",
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 340,
+   "nutrientes": {
+    "prot_g": 13,
+    "fibra_g": 11,
+    "magnesio_mg": 137,
+    "selenio_ug": {
+     "min": 30,
+     "max": 70,
+     "tipico": 60
+    }
+   },
+   "notas": "en AR no siempre fortificada, a diferencia de la blanca",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "azucar_mascabo",
+   "nombre": "Azúcar mascabo",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 380,
+   "notas": "trazas minerales no relevantes: azúcar al fin",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "azucar",
+   "nombre": "Azúcar común",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 387,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "fecula_maiz",
+   "nombre": "Fécula de maíz",
+   "sinonimos": [
+    "maicena"
+   ],
+   "categoria": "otro",
+   "base": "seca",
+   "kcal": 381,
+   "notas": "almidón puro: costras y ligues",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "albahaca",
+   "nombre": "Albahaca fresca",
+   "categoria": "condimento",
+   "base": "fresca",
+   "kcal": 23,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "menta",
+   "nombre": "Menta fresca",
+   "categoria": "condimento",
+   "base": "fresca",
+   "kcal": 44,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pepino",
+   "nombre": "Pepino",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 15,
+   "nutrientes": {
+    "potasio_mg": 147
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "vinagre",
+   "nombre": "Vinagre (manzana/arroz/aceto)",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "kcal": 21,
+   "notas": "el de arroz es más suave",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "polvo_hornear",
+   "nombre": "Polvo de hornear",
+   "categoria": "otro",
+   "base": "seco",
+   "notas": "leudante; sodio: contar",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "esencia_vainilla",
+   "nombre": "Esencia de vainilla",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "coco_rallado",
+   "nombre": "Coco rallado",
+   "categoria": "fruto_seco",
+   "base": "seco",
+   "kcal": 660,
+   "nutrientes": {
+    "grasa_saturada_g": 57,
+    "fibra_g": 16
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cebolla_morada",
+   "nombre": "Cebolla morada",
+   "categoria": "verdura",
+   "base": "cruda",
+   "kcal": 40,
+   "notas": "como cebolla + antocianinas",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cascara_citrico",
+   "nombre": "Cáscara de cítricos",
+   "categoria": "condimento",
+   "base": "fresca",
+   "notas": "sin lo blanco: amarga",
+   "confianza": 8,
+   "fuentes": []
+  },
+  {
+   "id": "pasas",
+   "nombre": "(ya en base: pasas)",
+   "categoria": "ref",
+   "confianza": 8
+  },
+  {
+   "id": "agua",
+   "nombre": "Agua",
+   "categoria": "otro",
+   "base": "líquida",
+   "kcal": 0,
+   "confianza": 9
+  }
+ ]
+}

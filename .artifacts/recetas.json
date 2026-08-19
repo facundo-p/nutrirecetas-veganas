@@ -1,0 +1,1608 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "nota_derechos": "recetas reescritas y adaptadas al mercado porteño; la fuente indica inspiración/técnica de origen para comparar con el original"
+ },
+ "fuentes": {
+  "rpl": {
+   "nombre": "Rainbow Plant Life (Nisha Vora)",
+   "url": "https://rainbowplantlife.com/",
+   "credencial": "recetas testeadas; autora NYT best-seller, nominada James Beard"
+  },
+  "mb": {
+   "nombre": "Minimalist Baker (Dana Shultz)",
+   "url": "https://minimalistbaker.com/",
+   "credencial": "referente vegano; miles de valoraciones por receta"
+  },
+  "ck": {
+   "nombre": "Cookie and Kate",
+   "url": "https://cookieandkate.com/",
+   "credencial": "recetas testeadas con ratings masivos"
+  },
+  "bbc": {
+   "nombre": "BBC Good Food",
+   "url": "https://www.bbcgoodfood.com/",
+   "credencial": "test kitchen profesional"
+  },
+  "zahav": {
+   "nombre": "Michael Solomonov - Zahav",
+   "url": null,
+   "credencial": "libro premiado James Beard; técnica de hummus de referencia"
+  },
+  "trad_ar": {
+   "nombre": "Tradición argentina (adaptación propia)",
+   "url": null,
+   "credencial": "sin certificador: validar en casa"
+  }
+ },
+ "recetas": [
+  {
+   "id": "r01",
+   "nombre": "Sopa de lentejas rojas al estilo turco",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "rpl",
+    "titulo_original": "Red Lentil Soup",
+    "nota": "reescrita y adaptada; buscar título en el sitio"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 5.5,
+    "folato_ug": 180,
+    "prot_g": 14,
+    "fibra_g": 9
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas_turcas",
+     "cantidad": 1.5,
+     "unidad": "taza_seca",
+     "g_aprox": 300,
+     "funcion": "proteína y cuerpo; se deshacen dando cremosidad sin licuar",
+     "imprescindible": true,
+     "sustitutos": [
+      "lentejas (menos cremosa, +15 min)"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 250,
+     "funcion": "base de sabor",
+     "imprescindible": true,
+     "sustitutos": [
+      "puerro"
+     ]
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 2,
+     "unidad": "mediana",
+     "g_aprox": 140,
+     "funcion": "dulzor de fondo",
+     "imprescindible": true,
+     "sustitutos": [
+      "calabaza"
+     ]
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente",
+     "g_aprox": 16,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "extracto_tomate",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "funcion": "umami y color; TOSTAR",
+     "imprescindible": true,
+     "sustitutos": [
+      "tomate rallado (menos intenso)"
+     ]
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "funcion": "especia estructural",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "profundidad",
+     "imprescindible": false,
+     "sustitutos": [
+      "ají molido"
+     ]
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 1200,
+     "unidad": "ml",
+     "g_aprox": 1200,
+     "funcion": "medio de cocción",
+     "imprescindible": true,
+     "sustitutos": [
+      "agua + más sal"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 40,
+     "funcion": "vehículo del bloom de especias",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo_de_1",
+     "g_aprox": 40,
+     "funcion": "ácido final; activa el hierro (R1)",
+     "imprescindible": true,
+     "sustitutos": [
+      "vinagre de manzana"
+     ]
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "frescura + vitamina C extra",
+     "imprescindible": false,
+     "sustitutos": [
+      "cilantro"
+     ]
+    }
+   ],
+   "pasos": [
+    "Sofreír cebolla y zanahoria en el aceite 6-8 min hasta dorar levemente",
+    "Sumar ajo, comino y pimentón: bloom 45 s",
+    "Agregar extracto de tomate y tostarlo 1-2 min revolviendo hasta que oscurezca",
+    "Lentejas enjuagadas + caldo; hervor suave 20-25 min hasta que se deshagan",
+    "Rectificar sal; fuera del fuego el limón; servir con perejil"
+   ],
+   "secretos_chef": [
+    "Tostar el extracto de tomate (Maillard + umami) es lo que separa una sopa correcta de una memorable",
+    "El limón siempre fuera del fuego",
+    "Para textura aterciopelada: licuar la mitad y devolverla a la olla"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r02",
+   "nombre": "Curry de garbanzos y espinaca",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "rpl",
+    "ref_secundaria": "mb",
+    "titulo_original": "Chickpea Curry / Chickpea Spinach Curry"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 4.5,
+    "folato_ug": 230,
+    "prot_g": 12
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R7",
+    "R8"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 2,
+     "unidad": "lata_escurrida",
+     "g_aprox": 500,
+     "funcion": "proteína central",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos_alubia"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 250,
+     "funcion": "base",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente",
+     "g_aprox": 16,
+     "funcion": "dúo aromático del curry",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 2,
+     "unidad": "cda_rallado",
+     "g_aprox": 12,
+     "funcion": "dúo aromático del curry",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curry_polvo",
+     "cantidad": 1.5,
+     "unidad": "cda",
+     "g_aprox": 9,
+     "funcion": "perfil del plato",
+     "imprescindible": true,
+     "sustitutos": [
+      "comino+coriandro+cúrcuma"
+     ]
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "funcion": "color + curcumina",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimienta_negra",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "piperina: activa la curcumina (R8)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 400,
+     "unidad": "g",
+     "g_aprox": 400,
+     "funcion": "acidez y cuerpo",
+     "imprescindible": true,
+     "sustitutos": [
+      "tomates frescos rallados"
+     ]
+    },
+    {
+     "ingrediente_id": "leche_coco",
+     "cantidad": 400,
+     "unidad": "ml",
+     "g_aprox": 400,
+     "funcion": "cremosidad; grasa que absorbe especias",
+     "imprescindible": true,
+     "sustitutos": [
+      "crema de cajú"
+     ]
+    },
+    {
+     "ingrediente_id": "espinaca",
+     "cantidad": 1,
+     "unidad": "paquete",
+     "g_aprox": 250,
+     "funcion": "hierro/folato; entra al final",
+     "imprescindible": true,
+     "sustitutos": [
+      "kale",
+      "acelga"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.5,
+     "unidad": "jugo",
+     "g_aprox": 20,
+     "funcion": "balance final + vitamina C",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 1,
+     "unidad": "taza_cruda",
+     "g_aprox": 198,
+     "funcion": "base para servir",
+     "imprescindible": false,
+     "sustitutos": [
+      "quinoa (sube proteína)"
+     ]
+    }
+   ],
+   "pasos": [
+    "Dorar bien la cebolla 8-10 min sin apurar",
+    "Ajo y jengibre 1 min; especias en bloom 30-60 s",
+    "Tomate: cocinar ~5 min hasta que la grasa corte la salsa",
+    "Garbanzos + leche de coco: 10 min a fuego suave",
+    "Espinaca en tandas 2 min hasta colapsar",
+    "Limón fuera del fuego; rectificar"
+   ],
+   "secretos_chef": [
+    "Cuando el aceite aparece en los bordes de la salsa de tomate, la base está lista (indicador índico clásico)",
+    "Pisar unos pocos garbanzos espesa la salsa naturalmente",
+    "Guardar el aquafaba de las latas para otra receta"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r03",
+   "nombre": "Hummus cremoso técnica Zahav",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "zahav",
+    "ref_secundaria": "ck",
+    "titulo_original": "Zahav hummus / Best Hummus (Cookie and Kate)"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 8,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 20,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 1.8,
+    "prot_g": 5
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bicarbonato",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "ablanda pieles: cremosidad extrema",
+     "imprescindible": true,
+     "nota": "en la cocción; omitir da resultado más rústico"
+    },
+    {
+     "ingrediente_id": "tahini",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 120,
+     "funcion": "grasa y sabor estructural",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1.5,
+     "unidad": "jugo",
+     "g_aprox": 60,
+     "funcion": "ácido estructural",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "funcion": "picante aromático",
+     "imprescindible": true,
+     "sustitutos": [
+      "ajo confitado (más suave)"
+     ]
+    },
+    {
+     "ingrediente_id": "agua_helada",
+     "cantidad": 90,
+     "unidad": "ml",
+     "g_aprox": 90,
+     "funcion": "emulsión: vuelve el tahini sedoso",
+     "imprescindible": true,
+     "sustitutos": [
+      "aquafaba (aún más cremoso)"
+     ]
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "calidez",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 13,
+     "funcion": "terminación",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Hervir los garbanzos cocidos 15-20 min extra con bicarbonato hasta que se deshagan al apretar",
+    "Procesar tahini + limón + ajo primero hasta pasta clara",
+    "Sumar garbanzos calientes; procesar 3-4 minutos",
+    "Agua helada de a chorros hasta textura de mousse",
+    "Sal, comino, rectificar"
+   ],
+   "secretos_chef": [
+    "Los 3 no negociables de Solomonov: garbanzos pasados de cocción, procesar mucho más de lo razonable, agua helada al final",
+    "Ajo: licuar primero con el limón, reposar 10 min y colar: pica menos y perfuma más"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": false
+   }
+  },
+  {
+   "id": "r04",
+   "nombre": "Boloñesa de lentejas y nueces",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "rpl",
+    "titulo_original": "Vegan Lentil Bolognese"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 6,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 45,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 4,
+    "prot_g": 13,
+    "ala_g": 1.5
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3",
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas",
+     "cantidad": 250,
+     "unidad": "g_secas",
+     "g_aprox": 250,
+     "funcion": "la 'carne' del plato",
+     "imprescindible": true,
+     "sustitutos": [
+      "soja_texturizada hidratada en caldo"
+     ]
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 60,
+     "unidad": "g_picadas",
+     "g_aprox": 60,
+     "funcion": "textura granulada + grasa + ALA",
+     "imprescindible": true,
+     "sustitutos": [
+      "champiñones picados"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "soffritto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 70,
+     "funcion": "soffritto",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "apio",
+     "cantidad": 1,
+     "unidad": "rama",
+     "g_aprox": 50,
+     "funcion": "soffritto",
+     "imprescindible": true,
+     "sustitutos": [
+      "más cebolla"
+     ]
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente",
+     "g_aprox": 12,
+     "funcion": "aromático",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "extracto_tomate",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "funcion": "umami: tostar",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 800,
+     "unidad": "g",
+     "g_aprox": 800,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vino_tinto",
+     "cantidad": 100,
+     "unidad": "ml",
+     "g_aprox": 100,
+     "funcion": "desglasado y profundidad",
+     "imprescindible": false,
+     "sustitutos": [
+      "caldo + 1 cdta aceto"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1.5,
+     "unidad": "cda",
+     "g_aprox": 24,
+     "funcion": "segunda fuente de umami (sinergia)",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "laurel",
+     "cantidad": 1,
+     "unidad": "hoja",
+     "g_aprox": 0.5,
+     "funcion": "perfil mediterráneo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "perfil mediterráneo",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "'queso' umami final",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Soffritto (cebolla, zanahoria, apio) a fuego medio 10 min",
+    "Ajo 1 min; extracto de tomate tostado 2 min",
+    "Desglasar con vino; reducir a la mitad",
+    "Lentejas, nueces, tomate, laurel y 600 ml de caldo: 35-40 min a fuego bajo",
+    "Salsa de soja y orégano; rectificar; reposar 10 min"
+   ],
+   "secretos_chef": [
+    "Extracto tostado + salsa de soja = sinergia umami: nadie pregunta por la carne",
+    "Mejor al día siguiente, como toda boloñesa",
+    "El ácido del tomate retrasa el ablandamiento: en cocciones lentas, sumarlo con las lentejas casi tiernas"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r05",
+   "nombre": "Tofu revuelto (scramble)",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Southwest Tofu Scramble"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 10,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 18,
+    "calcio_mg": {
+     "min": 150,
+     "max": 300,
+     "nota": "si el tofu es con sales de calcio"
+    }
+   },
+   "reglas_disparadas": [],
+   "ingredientes": [
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 1,
+     "unidad": "bloque",
+     "g_aprox": 350,
+     "funcion": "base proteica",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1.5,
+     "funcion": "color 'huevo'",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "kala_namak",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "funcion": "gusto sulfuroso a huevo: EL secreto; agregar al final, fuera del fuego",
+     "imprescindible": true,
+     "sustitutos": [
+      "sal común (pierde efecto huevo)"
+     ]
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "funcion": "umami cremoso",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 0.5,
+     "unidad": "mediana",
+     "g_aprox": 75,
+     "funcion": "relleno",
+     "imprescindible": false,
+     "sustitutos": [
+      "champiñones",
+      "verdeo"
+     ]
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 0.5,
+     "unidad": "mediano",
+     "g_aprox": 65,
+     "funcion": "relleno",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1.5,
+     "unidad": "cda",
+     "g_aprox": 20,
+     "funcion": "dorado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 30,
+     "funcion": "humedad cremosa",
+     "imprescindible": false,
+     "sustitutos": [
+      "agua"
+     ]
+    }
+   ],
+   "pasos": [
+    "Sofreír cebolla y morrón",
+    "Desmenuzar el tofu A MANO en trozos irregulares",
+    "Dorar el tofu 5-6 min sin revolver de más",
+    "Cúrcuma + levadura + leche vegetal, 1 min",
+    "Apagar el fuego y recién ahí el kala namak"
+   ],
+   "secretos_chef": [
+    "El kala namak pierde el azufre con el calor: siempre fuera del fuego",
+    "Prensar el tofu 15 min antes: dora en vez de hervirse",
+    "Versión jugosa: mixear 1/3 del tofu con la leche vegetal y sumarlo al final"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "r06",
+   "nombre": "Hamburguesas de porotos negros",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Easy Grillable Veggie Burgers"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 6,
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 20,
+   "dificultad": "media",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 3,
+    "prot_g": 10,
+    "zinc_mg": 1.8
+   },
+   "reglas_disparadas": [
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "funcion": "cuerpo",
+     "imprescindible": true,
+     "sustitutos": [
+      "porotos_colorados"
+     ]
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 80,
+     "unidad": "g_procesada",
+     "g_aprox": 80,
+     "funcion": "liga seca: absorbe humedad",
+     "imprescindible": true,
+     "sustitutos": [
+      "pan_rallado",
+      "harina_garbanzo"
+     ]
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 60,
+     "unidad": "g_tostadas_molidas",
+     "g_aprox": 60,
+     "funcion": "textura + grasa + sabor",
+     "imprescindible": true,
+     "sustitutos": [
+      "girasol"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "chica_sofrita",
+     "g_aprox": 110,
+     "funcion": "dulzor (cruda suelta agua)",
+     "imprescindible": true,
+     "sustitutos": [
+      "verdeo"
+     ]
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "perfil parrilla",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "perfil parrilla",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 1,
+     "unidad": "cda_molida",
+     "g_aprox": 7,
+     "funcion": "'huevo' de lino: liga húmeda (hidratar con 3 cdas agua 5 min)",
+     "imprescindible": true,
+     "sustitutos": [
+      "3 cdas aquafaba"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "funcion": "umami y sal",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Secar los porotos: horno 10 min a 150 °C",
+    "Pisarlos dejando textura, no puré",
+    "Mezclar todo (lino ya hidratado)",
+    "Formar y enfriar 30 min",
+    "Plancha bien caliente 4-5 min por lado sin toquetear, o horno fuerte 10 min por lado"
+   ],
+   "secretos_chef": [
+    "Los 2 errores universales: porotos húmedos y no enfriar antes de cocinar",
+    "Voltear UNA vez, cuando la costra se despega sola",
+    "Congelan crudas perfecto: cocinar directo del freezer, +2 min"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r07",
+   "nombre": "Bowl de quinoa con garbanzos crocantes y salsa de tahini",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Roasted chickpea buddha bowl (variantes)"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 20,
+    "hierro_mg": 6,
+    "magnesio_mg": 150
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R4",
+    "R6"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "quinoa",
+     "cantidad": 1,
+     "unidad": "taza_cruda",
+     "g_aprox": 170,
+     "funcion": "base con proteína completa",
+     "imprescindible": true,
+     "sustitutos": [
+      "arroz_integral",
+      "burgol"
+     ]
+    },
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 250,
+     "unidad": "g_cocidos",
+     "g_aprox": 250,
+     "funcion": "crocante proteico",
+     "imprescindible": true,
+     "sustitutos": [
+      "tofu en cubos horneado"
+     ]
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "funcion": "costra de sabor",
+     "imprescindible": true,
+     "sustitutos": [
+      "curry_polvo"
+     ]
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "costra de sabor",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "batata",
+     "cantidad": 2,
+     "unidad": "mediana",
+     "g_aprox": 300,
+     "funcion": "dulzor asado + vitamina A",
+     "imprescindible": true,
+     "sustitutos": [
+      "calabaza",
+      "zanahoria"
+     ]
+    },
+    {
+     "ingrediente_id": "hojas_verdes",
+     "cantidad": 2,
+     "unidad": "puñado",
+     "g_aprox": 60,
+     "funcion": "frescura",
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "tahini",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 45,
+     "funcion": "salsa cremosa",
+     "imprescindible": true,
+     "sustitutos": [
+      "manteca de maní (giro asiático)"
+     ]
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "jugo_de_1",
+     "g_aprox": 40,
+     "funcion": "corta el tahini + activa el hierro",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente_chico",
+     "g_aprox": 3,
+     "funcion": "salsa",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "semillas_zapallo",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 10,
+     "funcion": "remate mineral (zinc)",
+     "imprescindible": false,
+     "sustitutos": [
+      "girasol"
+     ]
+    }
+   ],
+   "pasos": [
+    "Horno a 210 °C: batata en cubos 25-30 min; garbanzos secados con repasador + aceite + especias 20-25 min hasta crocantes",
+    "Quinoa: enjuagar; 1 taza + 1.75 de agua; 15 min y reposo tapada 5",
+    "Salsa: tahini + limón + ajo + agua de a poco (espesa primero, luego se suelta: es normal)",
+    "Armar el bowl y regar con la salsa"
+   ],
+   "secretos_chef": [
+    "Enjuagar la quinoa elimina saponinas amargas",
+    "Garbanzos crocantes: van SECOS al horno y con espacio en la placa (amontonados se hierven)",
+    "La salsa de tahini se 'corta' antes de emulsionar: seguir agregando agua"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "r08",
+   "nombre": "Sopa crema de calabaza asada",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "ck",
+    "ref_secundaria": "bbc",
+    "titulo_original": "Roasted Butternut Squash Soup"
+   },
+   "confianza_adaptacion": 7,
+   "porciones": 4,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 50,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "vita_ug_rae": 700,
+    "potasio_mg": 600
+   },
+   "reglas_disparadas": [
+    "R6",
+    "R10"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "calabaza",
+     "cantidad": 1,
+     "unidad": "entera",
+     "g_aprox": 1000,
+     "funcion": "cuerpo y dulzor (ASADA, no hervida)",
+     "imprescindible": true,
+     "sustitutos": [
+      "zapallo cabutia"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "base",
+     "imprescindible": true,
+     "sustitutos": [
+      "puerro"
+     ]
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 3,
+     "unidad": "diente",
+     "g_aprox": 12,
+     "funcion": "aromático; asado en camisa queda dulce",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "jengibre",
+     "cantidad": 1,
+     "unidad": "cda_rallado",
+     "g_aprox": 6,
+     "funcion": "chispa que corta el dulzor",
+     "imprescindible": true,
+     "sustitutos": [
+      "curry_polvo"
+     ]
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 750,
+     "unidad": "ml",
+     "g_aprox": 750,
+     "funcion": "medio",
+     "imprescindible": true,
+     "sustitutos": [
+      "agua + sal"
+     ]
+    },
+    {
+     "ingrediente_id": "leche_coco",
+     "cantidad": 200,
+     "unidad": "ml",
+     "g_aprox": 200,
+     "funcion": "cremosidad + grasa para absorber carotenos (R6)",
+     "imprescindible": true,
+     "sustitutos": [
+      "crema de cajú",
+      "oliva generosa"
+     ]
+    },
+    {
+     "ingrediente_id": "semillas_zapallo",
+     "cantidad": 2,
+     "unidad": "cda_tostadas",
+     "g_aprox": 20,
+     "funcion": "contraste crocante + zinc",
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Asar la calabaza en mitades boca abajo 40 min a 200 °C; ajos en camisa los últimos 20",
+    "Sofreír cebolla; jengibre 1 min",
+    "Pulpa + ajos pelados + caldo: 10 min",
+    "Licuar con la leche de coco hasta textura seda",
+    "Rectificar: sal, pimienta, gotas de limón"
+   ],
+   "secretos_chef": [
+    "Asar en lugar de hervir concentra azúcares y suma Maillard: cambia la sopa por completo",
+    "Las semillas de la propia calabaza, lavadas y tostadas con sal, son el topping gratis"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r09",
+   "nombre": "Guiso de lentejas argentino (veganizado)",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "trad_ar",
+    "titulo_original": "Guiso de lentejas criollo",
+    "nota": "adaptación propia sin certificador: validar en casa"
+   },
+   "confianza_adaptacion": 6,
+   "porciones": 6,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 50,
+   "dificultad": "fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "hierro_mg": 6,
+    "prot_g": 15,
+    "potasio_mg": 900
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3",
+    "R4"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas",
+     "cantidad": 400,
+     "unidad": "g_secas",
+     "g_aprox": 400,
+     "funcion": "protagonista",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "sofrito criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mediano",
+     "g_aprox": 130,
+     "funcion": "sofrito criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 4,
+     "unidad": "diente",
+     "g_aprox": 16,
+     "funcion": "sofrito criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 2,
+     "unidad": "mediana",
+     "g_aprox": 140,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 190,
+     "funcion": "cuerpo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "batata",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "funcion": "cuerpo",
+     "imprescindible": true,
+     "sustitutos": [
+      "calabaza"
+     ]
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 400,
+     "unidad": "g",
+     "g_aprox": 400,
+     "funcion": "salsa: entra al final",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 2,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 4,
+     "funcion": "el 'chorizo fantasma': aporta el ahumado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "soja_texturizada",
+     "cantidad": 80,
+     "unidad": "g_secos_gruesa",
+     "g_aprox": 80,
+     "funcion": "mordida cárnica",
+     "imprescindible": false,
+     "sustitutos": [
+      "champiñones dorados"
+     ]
+    },
+    {
+     "ingrediente_id": "laurel",
+     "cantidad": 2,
+     "unidad": "hoja",
+     "g_aprox": 1,
+     "funcion": "perfil criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "perfil criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "funcion": "perfil criollo",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "funcion": "umami de fondo",
+     "imprescindible": true,
+     "sustitutos": [
+      "levadura_nutricional"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 2,
+     "unidad": "unidad",
+     "g_aprox": 30,
+     "funcion": "frescura al servir",
+     "imprescindible": false,
+     "sustitutos": [
+      "perejil"
+     ]
+    }
+   ],
+   "pasos": [
+    "Sofrito de cebolla, morrón y ajo hasta bien dorado",
+    "Pimentón fuera del fuego 30 s (se quema fácil y amarga)",
+    "Lentejas + verduras duras + caldo hirviendo: 30 min",
+    "Tomate + papa y batata: 20 min más",
+    "Texturizada hidratada en caldo con salsa de soja, dorada aparte y sumada al final",
+    "Reposo 15 min antes de servir"
+   ],
+   "secretos_chef": [
+    "Pimentón ahumado + texturizada dorada aparte reconstruyen el rol del chorizo (ahumado + mordida)",
+    "El tomate va cuando la lenteja está casi tierna: el ácido retrasa la cocción",
+    "Mejor al día siguiente"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   }
+  },
+  {
+   "id": "r10",
+   "nombre": "Budín de chía y avena nocturno",
+   "estado_sugerido": "por-probar",
+   "fuente": {
+    "ref": "mb",
+    "titulo_original": "Overnight Chia Oats"
+   },
+   "confianza_adaptacion": 8,
+   "porciones": 2,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 0,
+   "dificultad": "muy fácil",
+   "perfil_nutricional_porcion_aprox": {
+    "ala_g": 2.5,
+    "calcio_mg": 250,
+    "fibra_g": 10
+   },
+   "reglas_disparadas": [
+    "R4",
+    "R9"
+   ],
+   "ingredientes": [
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 80,
+     "unidad": "g",
+     "g_aprox": 80,
+     "funcion": "base saciante",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 36,
+     "funcion": "gelifica + ALA + calcio",
+     "imprescindible": true,
+     "sustitutos": [
+      "lino molido (menos gel)"
+     ]
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 400,
+     "unidad": "ml",
+     "g_aprox": 400,
+     "funcion": "líquido + calcio: elegir CON calcio agregado",
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 118,
+     "funcion": "dulzor y cremosidad",
+     "imprescindible": false,
+     "sustitutos": [
+      "pasta de maní",
+      "dátiles"
+     ]
+    },
+    {
+     "ingrediente_id": "kiwi",
+     "cantidad": 1,
+     "unidad": "taza_fruta_fresca",
+     "g_aprox": 150,
+     "funcion": "vitamina C + frescura al servir",
+     "imprescindible": false,
+     "sustitutos": [
+      "frutilla",
+      "naranja"
+     ]
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "funcion": "aroma",
+     "imprescindible": false,
+     "sustitutos": [
+      "cacao_amargo"
+     ]
+    }
+   ],
+   "pasos": [
+    "Mezclar seco con líquido, revolver bien",
+    "Revolver OTRA VEZ a los 10 min (evita el bloque de chía en el fondo)",
+    "Heladera toda la noche (mínimo 4 h)",
+    "Fruta fresca al servir"
+   ],
+   "secretos_chef": [
+    "El segundo revuelto a los 10 min es la diferencia entre budín parejo y bloque pegado",
+    "Dura 3 días en heladera: hacer tandas",
+    "El remojo nocturno reduce fitatos de la avena: más minerales absorbidos"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  }
+ ],
+ "ingredientes_nuevos_para_base": [
+  {
+   "id": "leche_coco",
+   "nombre": "Leche de coco (lata)",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 230,
+   "nutrientes": {
+    "grasa_saturada_g": 21
+   },
+   "notas": "vehículo de sabores liposolubles; moderación",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "extracto_tomate",
+   "nombre": "Extracto de tomate",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 82,
+   "nutrientes": {
+    "hierro_mg": 3.0,
+    "potasio_mg": 1010
+   },
+   "notas": "licopeno concentrado; umami tostable",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "salsa_soja",
+   "nombre": "Salsa de soja",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "kcal": 53,
+   "nutrientes": {
+    "sodio_mg": 5500
+   },
+   "notas": "~900 mg Na por cda: contar como sal",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "comino",
+   "nombre": "Comino",
+   "categoria": "especia",
+   "base": "molido",
+   "notas": "sabor; trazas minerales en dosis culinarias",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pimenton",
+   "nombre": "Pimentón (dulce/ahumado)",
+   "categoria": "especia",
+   "base": "molido",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "laurel",
+   "nombre": "Laurel",
+   "categoria": "especia",
+   "base": "hoja seca",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "oregano",
+   "nombre": "Orégano",
+   "categoria": "especia",
+   "base": "seco",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "canela",
+   "nombre": "Canela",
+   "categoria": "especia",
+   "base": "molida",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "curry_polvo",
+   "nombre": "Curry en polvo / garam masala",
+   "categoria": "especia",
+   "base": "molido",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "kala_namak",
+   "nombre": "Kala namak (sal negra india)",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "notas": "gusto sulfuroso a huevo; en dietéticas de BA",
+   "confianza": 7,
+   "fuentes": []
+  },
+  {
+   "id": "apio",
+   "nombre": "Apio",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 14,
+   "nutrientes": {
+    "potasio_mg": 260
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "vino_tinto",
+   "nombre": "Vino tinto (cocción)",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 85,
+   "notas": "el alcohol se evapora mayormente al cocinar; siempre opcional",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "datiles",
+   "nombre": "Dátiles",
+   "categoria": "fruta_seca",
+   "base": "tal cual",
+   "kcal": 277,
+   "nutrientes": {
+    "potasio_mg": 696,
+    "fibra_g": 6.7
+   },
+   "notas": "endulzante entero",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "harina_garbanzo",
+   "nombre": "Harina de garbanzo",
+   "categoria": "legumbre",
+   "base": "seca",
+   "kcal": 387,
+   "nutrientes": {
+    "prot_g": 22,
+    "hierro_mg": 4.9
+   },
+   "notas": "liga vegana; omelettes",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "puerro",
+   "nombre": "Puerro",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 61,
+   "nutrientes": {
+    "folato_ug": 64
+   },
+   "notas": "prebióticos; sustituto suave de cebolla",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "caldo_verduras",
+   "nombre": "Caldo de verduras",
+   "categoria": "otro",
+   "base": "líquido",
+   "kcal": 5,
+   "notas": "casero preferible; de cubito: contar el sodio",
+   "confianza": 6,
+   "fuentes": []
+  },
+  {
+   "id": "bicarbonato",
+   "nombre": "Bicarbonato de sodio",
+   "categoria": "otro",
+   "base": "tal cual",
+   "notas": "ablanda legumbres (pizca); contar sodio",
+   "confianza": 8,
+   "fuentes": []
+  }
+ ],
+ "campos_sugeridos_app": {
+  "estado": "clásico | probado | por-probar (+ rating y notas personales)",
+  "aptitudes": "sin gluten / sin soja / sin frutos secos (derivable de ingredientes)",
+  "escalabilidad": "sal, picante y especias escalan x1.5 al duplicar, no x2",
+  "guarda": "días en heladera y aptitud freezer",
+  "reglas_disparadas": "cruce automático con reglas R1-R15 del doc de nutrientes"
+ }
+}
