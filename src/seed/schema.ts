@@ -78,6 +78,11 @@ export const ingredientSchema = z.strictObject({
   base: z.string().optional(),
   kcal: nutrientValueSchema.optional(),
   nutrientes: z.partialRecord(z.enum(INGREDIENT_NUTRIENT_KEYS), nutrientValueSchema),
+  /**
+   * El ingrediente aporta cero de verdad (agua), no "no tenemos el dato": su
+   * masa cuenta como cubierta en el cálculo en vez de bajar la cobertura.
+   */
+  aporte_nulo: z.literal(true).optional(),
   destacados: z.array(z.string()).optional(),
   ic: z.int().min(1).max(10),
   fuentes: z.array(z.string()),

@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "cac7cd5689e79c81bbd4f8513179ee9a2db7ad5e42e9ae4689f34955ba462afc",
+ "content_hash": "fcd8c9e0d25d0a492421ddf0bd93f575c37262c880ab7792ca80c8c04146fa8c",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -3576,6 +3576,7 @@
     }
    },
    "nutrientes": {},
+   "aporte_nulo": true,
    "ic": 9,
    "fuentes": [],
    "origen": "anexo_recetas"
@@ -3593,6 +3594,7 @@
     }
    },
    "nutrientes": {},
+   "aporte_nulo": true,
    "ic": 9,
    "fuentes": [],
    "notas": "funcional en emulsiones (hummus)"
@@ -16022,7 +16024,7 @@
    "nombre": "Relleno de soja texturizada y hongos",
    "tipo": "preparado",
    "es_preparado": true,
-   "rendimiento_g": 550,
+   "rendimiento_g": 650,
    "porciones_num": null,
    "porciones_display": "~4 porciones de relleno",
    "estado": "probada",
@@ -16144,7 +16146,7 @@
    "nombre": "Hamburguesas de texturizada y remolacha",
    "tipo": "salada",
    "es_preparado": false,
-   "porciones_num": 5,
+   "porciones_num": 3,
    "porciones_display": "~15 unidades",
    "estado": "probada",
    "ic": 8,
@@ -16879,7 +16881,7 @@
    "nombre": "Burgers de aduki",
    "tipo": "salada",
    "es_preparado": false,
-   "porciones_num": 7,
+   "porciones_num": 4,
    "porciones_display": "6-8 medallones",
    "estado": "probada",
    "ic": 8,
@@ -17941,7 +17943,7 @@
    "nombre": "Panqueques de avena y banana",
    "tipo": "dulce",
    "es_preparado": false,
-   "porciones_num": 4,
+   "porciones_num": 2,
    "porciones_display": "4 panqueques",
    "estado": "probada",
    "ic": 8,
@@ -18391,9 +18393,13 @@
       {
        "tipo": "texto",
        "valor": "manteca vegana P03: preferible"
+      },
+      {
+       "tipo": "id",
+       "valor": "margarina"
       }
      ],
-     "nota": "Facu usa su manteca vegana (p03) en vez de margarina comprada"
+     "nota": "Facu usa su manteca vegana (p03); la margarina comprada sirve igual, al mismo peso"
     },
     {
      "ref": {
@@ -18964,7 +18970,7 @@
    "nombre": "Torta de mandioca y coco",
    "tipo": "dulce",
    "es_preparado": false,
-   "porciones_num": 10,
+   "porciones_num": 12,
    "porciones_display": "molde 24 cm",
    "estado": "probada",
    "ic": 8,
@@ -19236,7 +19242,7 @@
    "nombre": "Bocaditos helados de banana y chocolate",
    "tipo": "dulce",
    "es_preparado": false,
-   "porciones_num": 12,
+   "porciones_num": 6,
    "porciones_display": "~12 bocaditos",
    "estado": "probada",
    "ic": 8,
@@ -19399,9 +19405,13 @@
       {
        "tipo": "texto",
        "valor": "manteca P03: la receta la usa"
+      },
+      {
+       "tipo": "id",
+       "valor": "margarina"
       }
      ],
-     "nota": "ídem p31"
+     "nota": "ídem p31: la margarina comprada sirve igual, al mismo peso"
     },
     {
      "ref": {

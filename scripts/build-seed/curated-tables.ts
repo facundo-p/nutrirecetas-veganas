@@ -40,20 +40,20 @@ export const CURATED_PORTIONS: Record<string, PortionsEntry> = {
   p42: { porciones_num: 12, estimada: false, base: '1 placa (12)' },
   p44: { porciones_num: 5, estimada: false, base: '5 bollos (1 pizza c/u)' },
   // propuestas para revisar con Facu
-  p10: { porciones_num: 4, estimada: true, base: '~8 milanesas, 2 por porción' },
-  p11: { porciones_num: null, estimada: true, base: '"libre": se muestra por 100 g' },
-  p17: { porciones_num: 5, estimada: true, base: '~15 unidades, 3 por porción' },
-  p18: { porciones_num: 3, estimada: true, base: '3 rolls, 1 por porción' },
-  p21: { porciones_num: 7, estimada: true, base: 'punto medio de "6-8 medallones"' },
-  p28: { porciones_num: 4, estimada: true, base: '4 panqueques, 1 por porción' },
-  p29: { porciones_num: 8, estimada: true, base: '1 budinera ≈ 8 rodajas' },
-  p30: { porciones_num: 8, estimada: true, base: '1 budinera ≈ 8 rodajas' },
-  p34: { porciones_num: 8, estimada: true, base: '1 molde chico ≈ 8 brownies' },
-  p36: { porciones_num: 10, estimada: true, base: 'molde 24 cm ≈ 10 porciones' },
-  p38: { porciones_num: 12, estimada: true, base: '~12 bocaditos, 1 por porción' },
-  p41: { porciones_num: 8, estimada: true, base: '1 budinera ≈ 8 rodajas' },
-  p43: { porciones_num: 8, estimada: true, base: '1 budinera ≈ 8 rodajas' },
-  p45: { porciones_num: null, estimada: true, base: '1 frasco grande: se muestra por 100 g' },
+  p10: { porciones_num: 4, estimada: false, base: '~8 milanesas, 2 por porción (Facu)' },
+  p11: { porciones_num: null, estimada: false, base: '"libre": se muestra por 100 g (Facu)' },
+  p17: { porciones_num: 3, estimada: false, base: '~15 unidades, 5 por porción (Facu)' },
+  p18: { porciones_num: 3, estimada: false, base: '3 rolls, 1 por porción (Facu)' },
+  p21: { porciones_num: 4, estimada: false, base: '~7 medallones, 2 por porción (Facu)' },
+  p28: { porciones_num: 2, estimada: false, base: '4 panqueques, 2 por porción (Facu)' },
+  p29: { porciones_num: 8, estimada: false, base: '1 budinera = 16 rodajas, 2 por porción (Facu)' },
+  p30: { porciones_num: 8, estimada: false, base: '1 budinera = 16 rodajas, 2 por porción (Facu)' },
+  p34: { porciones_num: 8, estimada: false, base: '1 molde chico = 8 brownies (Facu)' },
+  p36: { porciones_num: 12, estimada: false, base: 'molde 24 cm = 12 porciones (Facu)' },
+  p38: { porciones_num: 6, estimada: false, base: '~12 bocaditos, 2 por porción (Facu)' },
+  p41: { porciones_num: 8, estimada: false, base: '1 budinera = 16 rodajas, 2 por porción (Facu)' },
+  p43: { porciones_num: 8, estimada: false, base: '1 budinera = 16 rodajas, 2 por porción (Facu)' },
+  p45: { porciones_num: null, estimada: false, base: '1 frasco grande: se muestra por 100 g (Facu)' },
 };
 
 // ---------- T2: rendimiento en gramos de los 11 preparados ----------
@@ -70,10 +70,10 @@ export const CURATED_YIELDS: Record<string, YieldEntry> = {
   p03: { rendimiento_g: 200, estimada: false, base: '"~200 g"' },
   p04: { rendimiento_g: 500, estimada: false, base: '"~500 g"' },
   p05: { rendimiento_g: 350, estimada: false, base: '"~350 g"' },
-  p06: { rendimiento_g: 480, estimada: true, base: '530 g de insumos menos merma de horno' },
-  p07: { rendimiento_g: 370, estimada: true, base: 'suma de insumos (masa cruda)' },
-  p08: { rendimiento_g: 750, estimada: true, base: '375 g de masa de seitán + absorción de caldo' },
-  p16: { rendimiento_g: 550, estimada: true, base: '322 g de insumos + hidratación de la texturizada' },
+  p06: { rendimiento_g: 480, estimada: false, base: '530 g de insumos menos merma de horno (confirmado)' },
+  p07: { rendimiento_g: 370, estimada: false, base: 'suma de insumos, masa cruda (confirmado)' },
+  p08: { rendimiento_g: 750, estimada: false, base: '375 g de masa de seitán + absorción de caldo (confirmado)' },
+  p16: { rendimiento_g: 650, estimada: false, base: '322 g de insumos + hidratación de la texturizada (Facu)' },
   p26: { rendimiento_g: 700, estimada: false, base: '"~700 g"' },
   p27: { rendimiento_g: 500, estimada: false, base: '"~500 g"' },
 };
@@ -91,17 +91,43 @@ export interface PhantomLineEntry {
   ref_receta_id: string;
   flag_gate: boolean;
   nota?: string;
+  /** ids de ingrediente que quedan como sustituto de la línea migrada (mismo peso) */
+  sustitutos_id?: string[];
 }
 
 export const PHANTOM_LINES: PhantomLineEntry[] = [
   { receta_id: 'p12', ingrediente_id: 'gluten_trigo', unidad: 'g_seitan_en_cubos', ref_receta_id: 'p08', flag_gate: false, nota: 'seitán ya cocido' },
   { receta_id: 'p19', ingrediente_id: 'mani', unidad: 'g_como_queso_P04', ref_receta_id: 'p04', flag_gate: false },
   { receta_id: 'p20', ingrediente_id: 'gluten_trigo', unidad: 'g_seitan_SALSA', ref_receta_id: 'p08', flag_gate: false },
-  { receta_id: 'p31', ingrediente_id: 'margarina', unidad: 'g', ref_receta_id: 'p03', flag_gate: true, nota: 'Facu usa su manteca vegana (p03) en vez de margarina comprada' },
+  {
+    receta_id: 'p31',
+    ingrediente_id: 'margarina',
+    unidad: 'g',
+    ref_receta_id: 'p03',
+    flag_gate: false,
+    nota: 'Facu usa su manteca vegana (p03); la margarina comprada sirve igual, al mismo peso',
+    sustitutos_id: ['margarina'],
+  },
   { receta_id: 'p34', ingrediente_id: 'porotos_negros', unidad: 'taza_de_crema_P26_sin_aceite_coco', ref_receta_id: 'p26', flag_gate: false },
   { receta_id: 'p39', ingrediente_id: 'porotos_alubia', unidad: 'g_como_crema_P27', ref_receta_id: 'p27', flag_gate: false },
-  { receta_id: 'p39', ingrediente_id: 'margarina', unidad: 'g_masa + 150 crumble', ref_receta_id: 'p03', flag_gate: true, nota: 'ídem p31' },
+  {
+    receta_id: 'p39',
+    ingrediente_id: 'margarina',
+    unidad: 'g_masa + 150 crumble',
+    ref_receta_id: 'p03',
+    flag_gate: false,
+    nota: 'ídem p31: la margarina comprada sirve igual, al mismo peso',
+    sustitutos_id: ['margarina'],
+  },
 ];
+
+/**
+ * Ingredientes que aportan cero de verdad, no "sin dato" (decisión de Facu en el
+ * gate): el agua se cuenta como cobertura completa con valor 0, así una sopa no
+ * reporta 17 % de cobertura por el peso del líquido. El caldo NO entra: depende
+ * de con qué se hizo, así que sigue siendo "sin datos".
+ */
+export const APORTE_NULO_IDS = ['agua', 'agua_helada'];
 
 /** Líneas que el dataset omite y hay que agregar (la tarta p22 no lista su masa). */
 export interface AddedLineEntry {

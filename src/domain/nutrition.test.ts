@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { Ingredient, Recipe } from '../seed/schema';
 import { midpoint } from './interval';
-import { computeNutrition, per100g, perPortion, type NutritionSource } from './nutrition';
+import { computeNutrition, hasReportableValue, per100g, perPortion, type NutritionSource } from './nutrition';
 
 // ---------- fixtures sintéticos ----------
 
@@ -125,6 +125,32 @@ describe('computeNutrition — casos sintéticos', () => {
     expect(computeNutrition('a', s).alerta_b12).toBe(true);
     expect(computeNutrition('b', s).alerta_b12).toBe(true);
     expect(computeNutrition('c', s).alerta_b12).toBe(false);
+  });
+
+  test('el agua aporta cero de verdad: cuenta en la cobertura en vez de bajarla', () => {
+    const agua = ing('agua', { kcal: { intervalo: { min: 0, max: 0 } }, aporte_nulo: true, ic: 9 });
+    const receta = rec('x', { lineas: [linea('lentejas', 200), linea('agua', 800)] });
+    const n = computeNutrition('x', source([conHierro, agua], [receta]));
+    expect(n.por_nutriente.hierro_mg.intervalo).toEqual({ min: 6, max: 6 });
+    expect(n.por_nutriente.hierro_mg.cobertura_pct).toBe(100);
+    // sin la regla, 800 g de agua dejarían la cobertura en 20 %
+  });
+
+  test('un cero con cobertura mínima no se afirma: es "sin datos"', () => {
+    const agua = ing('agua', { kcal: { intervalo: { min: 0, max: 0 } }, aporte_nulo: true, ic: 9 });
+    const receta = rec('x', { lineas: [linea('especia_x', 900), linea('agua', 100)] });
+    const n = computeNutrition('x', source([sinDatos, agua], [receta]));
+    const calcio = n.por_nutriente.calcio_mg;
+    expect(calcio.intervalo.max).toBe(0);
+    expect(calcio.cobertura_pct).toBe(10);
+    expect(hasReportableValue(calcio)).toBe(false);
+  });
+
+  test('un cero con cobertura casi total sí se afirma', () => {
+    const agua = ing('agua', { kcal: { intervalo: { min: 0, max: 0 } }, aporte_nulo: true, ic: 9 });
+    const receta = rec('x', { lineas: [linea('agua', 1000)] });
+    const n = computeNutrition('x', source([agua], [receta]));
+    expect(hasReportableValue(n.por_nutriente.calcio_mg)).toBe(true);
   });
 
   test('un ciclo artificial revienta con mensaje claro', () => {

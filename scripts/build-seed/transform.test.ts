@@ -110,10 +110,17 @@ describe('preparados (T2/T3)', () => {
 });
 
 describe('sustitutos', () => {
-  test('66 resolubles a id y 100 de texto libre (auditoría §2.3)', () => {
+  test('68 resolubles a id y 100 de texto libre (66 del dataset + margarina en p31/p39)', () => {
     const all = recipes.flatMap((r) => r.lineas.flatMap((l) => l.sustitutos));
-    expect(all.filter((s) => s.tipo === 'id')).toHaveLength(66);
+    expect(all.filter((s) => s.tipo === 'id')).toHaveLength(68);
     expect(all.filter((s) => s.tipo === 'texto')).toHaveLength(100);
+  });
+
+  test('las líneas migradas a manteca vegana ofrecen margarina como sustituto', () => {
+    for (const id of ['p31', 'p39']) {
+      const linea = byId.get(id)!.lineas.find((l) => l.ref.tipo === 'receta' && l.ref.id === 'p03');
+      expect(linea?.sustitutos).toContainEqual({ tipo: 'id', valor: 'margarina' });
+    }
   });
 });
 

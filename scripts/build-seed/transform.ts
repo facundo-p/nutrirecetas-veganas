@@ -11,6 +11,7 @@ import type {
 } from '../../src/seed/schema';
 import {
   ADDED_LINES,
+  APORTE_NULO_IDS,
   CURATED_PORTIONS,
   CURATED_YIELDS,
   DE_FACTO_PREPARADOS,
@@ -52,6 +53,7 @@ export function transformIngredient(raw: RawIngredient): Ingredient {
     ...(raw.base !== undefined ? { base: raw.base } : {}),
     ...(kcal !== undefined ? { kcal } : {}),
     nutrientes,
+    ...(APORTE_NULO_IDS.includes(raw.id) ? { aporte_nulo: true as const } : {}),
     ...(raw.destacados !== undefined ? { destacados: raw.destacados } : {}),
     ic: raw.confianza,
     fuentes: raw.fuentes ?? [],
@@ -107,7 +109,7 @@ function transformLine(recipeId: string, raw: RawLine, ingredientIds: Set<string
   const phantom = PHANTOM_LINES.find(
     (p) => p.receta_id === recipeId && p.ingrediente_id === raw.ingrediente_id && p.unidad === raw.unidad,
   );
-  const sustitutos = (raw.sustitutos ?? []).map((s) => ({
+  const sustitutos = [...(raw.sustitutos ?? []), ...(phantom?.sustitutos_id ?? [])].map((s) => ({
     tipo: ingredientIds.has(s) ? ('id' as const) : ('texto' as const),
     valor: s,
   }));

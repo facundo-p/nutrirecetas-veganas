@@ -1,4 +1,4 @@
-import type { RecipeNutrition } from '../../domain/nutrition';
+import { hasReportableValue, type RecipeNutrition } from '../../domain/nutrition';
 import type { Seed } from '../../seed/schema';
 import { amountUnit, formatNumber, icSprouts } from '../common/format';
 import { IconBrotesIc, IconCobertura, IconHojaPunteada, IconSemanaArco, IconSol } from '../icons/icons';
@@ -42,7 +42,7 @@ export function NutritionTable({ nutrition, seed, titulo }: Props) {
               .filter((n) => n.grupo === filtro)
               .map((n) => {
                 const r = nutrition.por_nutriente[n.clave_ingrediente];
-                const sinDatos = r.ic === null;
+                const sinDatos = !hasReportableValue(r);
                 return (
                   <li key={n.id} className={sinDatos ? 'nutriente sin-datos' : 'nutriente'}>
                     <span className="nutriente-nombre">

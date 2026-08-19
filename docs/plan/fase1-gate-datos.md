@@ -1,6 +1,18 @@
-# Fase 1 — Gate de datos (para revisión de Facu)
+# Fase 1 — Gate de datos ✅ resuelto (revisado por Facu el 2026-08-19)
 
-Todas las decisiones de datos tomadas a mano durante la ingesta viven en `scripts/build-seed/curated-tables.ts` y se listan acá para tu revisión. **Marcá la columna "¿OK?"** (o corregí el valor y lo ajusto en la tabla curada — jamás en `.artifacts/`). Nada de esto bloquea el uso de la app; sí afecta la precisión de la nutrición por porción.
+Todas las decisiones de datos tomadas a mano durante la ingesta viven en `scripts/build-seed/curated-tables.ts`. Facu revisó cada fila; **sus respuestas quedan en la columna "¿OK?"** y ya están aplicadas en la semilla (`npm run seed`). Este documento pasa a ser el registro de por qué cada dato es como es.
+
+## 0. Qué cambió al aplicar la revisión
+
+| cambio | antes → después |
+|---|---|
+| Porciones de p17, p21, p28, p36, p38 | 5→**3**, 7→**4**, 4→**2**, 10→**12**, 12→**6** |
+| Rendimiento de p16 (relleno de soja texturizada) | 550 g → **650 g** |
+| Margarina en p31 y p39 | la línea usa la manteca vegana p03 y ahora **ofrece margarina como sustituto** al mismo peso |
+| Agua (`agua`, `agua_helada`) | pasa a contar como **aporte cero real**: suma cobertura en vez de restarla. El caldo sigue como "sin datos" |
+| Ceros con cobertura baja | dejan de mostrarse como "0 mg": si no hay cobertura para afirmarlo, la app dice **"sin datos"** |
+
+Las porciones y rendimientos que Facu confirmó sin cambios dejaron de estar marcados como estimación: ya son dato del recetario.
 
 ## 1. Porciones parseadas (34 recetas con `porciones` string)
 
@@ -8,17 +20,17 @@ Las que traen número explícito entre paréntesis las tomé tal cual (no las li
 
 | id | receta | dato original | porciones propuestas | criterio | ¿OK? |
 |---|---|---|---|---|---|
-| p10 | Milanesas de soja (de okara) | "~8 unidades" | **4** | 2 milanesas por porción | |
-| p11 | (untable) | "libre" | **sin porciones** → nutrición por 100 g | | |
-| p17 | (nuggets, familia hamburguesas) | "~15 unidades" | **5** | 3 por porción | |
-| p18 | Rolls de nori | "3 rolls" | **3** | 1 roll por porción | |
-| p21 | Medallones | "6-8 medallones" | **7** | punto medio, 1 por porción | |
-| p28 | Panqueques de avena y banana | "4 panqueques" | **4** | 1 por porción | |
-| p29/p30/p41/p43 | budineras (banana, carrot, etc.) | "1 budinera" | **8** | 8 rodajas por budinera | |
-| p34 | Brownies chocoporotos | "1 molde chico" | **8** | 8 brownies | |
-| p36 | Torta (molde 24 cm) | "molde 24 cm" | **10** | | |
-| p38 | Bocaditos helados | "~12 bocaditos" | **12** | 1 por porción | |
-| p45 | (frasco: ¿granola?) | "1 frasco grande" | **sin porciones** → por 100 g | | |
+| p10 | Milanesas de soja (de okara) | "~8 unidades" | **4** | 2 milanesas por porción | OK|
+| p11 | (untable) | "libre" | **sin porciones** → nutrición por 100 g | | OK|
+| p17 | (nuggets, familia hamburguesas) | "~15 unidades" | **3** | 5 por porción | ✅ corregido (era 5) |
+| p18 | Rolls de nori | "3 rolls" | **3** | 1 roll por porción |OK |
+| p21 | Medallones | "6-8 medallones" | **4** | ~7 medallones, 2 por porción | ✅ corregido (era 7) |
+| p28 | Panqueques de avena y banana | "4 panqueques" | **2** | 2 por porción | ✅ corregido (era 4) |
+| p29/p30/p41/p43 | budineras (banana, carrot, etc.) | "1 budinera" | **8** | 16 rodajas por budinera |OK |
+| p34 | Brownies chocoporotos | "1 molde chico" | **8** | 8 brownies | OK|
+| p36 | Torta (molde 24 cm) | "molde 24 cm" | **12** | | ✅ corregido (era 10) |
+| p38 | Bocaditos helados | "~12 bocaditos" | **6** | 2 por porción | ✅ corregido (era 12) |
+| p45 | (frasco: ¿granola?) | "1 frasco grande" | **sin porciones** → por 100 g | | OK|
 
 ## 2. Rendimiento en gramos de los 11 preparados
 
@@ -26,17 +38,17 @@ Necesario para encadenar nutrición (p. ej. 250 g de queso de maní dentro del p
 
 | id | preparado | rendimiento_g | base | ¿OK? |
 |---|---|---|---|---|
-| p01 | Leche de soja | 1800 | "~1.8 L" | |
-| p02 | Leche de coco | 500 | "~500 ml" | |
-| p03 | Manteca vegana | 200 | "~200 g" | |
-| p04 | Queso de maní | 500 | "~500 g" | |
-| p05 | Quesofu | 350 | "~350 g" | |
-| p06 | Queso de papa | **480** ⚠ | 530 g de insumos − merma de horno | |
-| p07 | Masa integral para tartas | **370** ⚠ | suma de insumos (masa cruda) | |
-| p08 | Bifecitos de seitán | **750** ⚠ | 375 g de masa + absorción de caldo al hervir | |
-| p16 | Relleno de soja texturizada | **550** ⚠ | 322 g de insumos + hidratación de la texturizada | |
-| p26 | Crema chocoporotos | 700 | "~700 g" | |
-| p27 | Crema de vainilegumbres | 500 | "~500 g" | |
+| p01 | Leche de soja | 1800 | "~1.8 L" |OK |
+| p02 | Leche de coco | 500 | "~500 ml" | OK|
+| p03 | Manteca vegana | 200 | "~200 g" |OK |
+| p04 | Queso de maní | 500 | "~500 g" |OK |
+| p05 | Quesofu | 350 | "~350 g" |OK |
+| p06 | Queso de papa | **480** ⚠ | 530 g de insumos − merma de horno | OK|
+| p07 | Masa integral para tartas | **370** ⚠ | suma de insumos (masa cruda) |OK |
+| p08 | Bifecitos de seitán | **750** ⚠ | 375 g de masa + absorción de caldo al hervir | OK|
+| p16 | Relleno de soja texturizada | **650** | 322 g de insumos + hidratación de la texturizada | ✅ corregido (era 550) |
+| p26 | Crema chocoporotos | 700 | "~700 g" | OK|
+| p27 | Crema de vainilegumbres | 500 | "~500 g" | OK|
 
 ## 3. Líneas migradas a preparados (modelo nuevo)
 
@@ -46,21 +58,21 @@ Mapeos directos que no necesitan revisión (la unidad original los declara): p12
 
 | receta | decisión | consecuencia nutricional | ¿OK? |
 |---|---|---|---|
-| p31 Pastafrola | la línea `margarina 250 g` ahora referencia **tu manteca vegana (p03)** | cuenta la nutrición de p03 (base coco), no margarina comprada | |
-| p39 Crumble | ídem: `margarina 275 g` → p03 | ídem | |
-| p22 Tarta de zapallitos | **agregué una línea**: 1 masa p07 entera (370 g) — el dataset lista solo el relleno | la tarta ahora suma la masa (+~1100 kcal totales) | |
-| p10 / p30 / p44 | `usa_preparados` queda solo como enlace navegable (okara ≠ leche; la leche de coco ya está desagregada; el queso va sobre la pizza armada) | sin cambio nutricional | |
+| p31 Pastafrola | la línea `margarina 250 g` referencia **la manteca vegana (p03)** | cuenta la nutrición de p03 (base coco) | ✅ + margarina queda como sustituto al mismo peso |
+| p39 Crumble | ídem: `margarina 275 g` → p03 | ídem | ✅ ídem p31 |
+| p22 Tarta de zapallitos | **agregué una línea**: 1 masa p07 entera (370 g) — el dataset lista solo el relleno | la tarta ahora suma la masa (+~1100 kcal totales) | OK|
+| p10 / p30 / p44 | `usa_preparados` queda solo como enlace navegable (okara ≠ leche; la leche de coco ya está desagregada; el queso va sobre la pizza armada) | sin cambio nutricional | OK|
 
 ## 4. Preguntas abiertas menores
 
 | tema | situación | propuesta | ¿OK? |
 |---|---|---|---|
-| Sustitutos texto libre | 100 de 166 no resuelven a un ingrediente ("copos de maíz + harina de almendras") | quedan como sugerencia textual en v1; se mapean a ids después, empezando por las recetas más cocinadas | |
-| `uva` | está en estacionalidad pero no tiene ficha de ingrediente | queda fuera de la app hasta que exista la ficha (¿la agregamos como tarea de datos?) | |
-| Cobertura con agua/caldo | el agua no lista minerales ⇒ en sopas la cobertura de hierro da ~17 % aunque el dato real es bueno (el agua aporta ~0) | la app muestra la cobertura honesta tal cual; alternativa: tratar agua/caldo como "cero real" en vez de "sin dato" (subiría la cobertura reportada) — decidilo vos | |
-| Vitamina K | ningún ingrediente trae `vitk_ug` ⇒ siempre "sin datos" | mostrar "sin datos" es honesto; cargar vitk de hojas verdes queda como tarea de datos | |
-| Sinónimos | el README prometía "chickpeas" en garbanzos; los datos no lo traen (86/158 sí tienen sinónimos) | nada que hacer en la app; anotado como imprecisión de la doc | |
-| Peso por unidad | 17 frescos usados en recetas no tienen `peso_por_unidad` | afecta la lista de compras (Fase 3): mostrará solo gramos para esos | |
+| Sustitutos texto libre | 100 de 166 no resuelven a un ingrediente ("copos de maíz + harina de almendras") | quedan como sugerencia textual en v1; se mapean a ids después, empezando por las recetas más cocinadas | sin objeción — queda así |
+| `uva` | está en estacionalidad pero no tiene ficha de ingrediente | queda fuera de la app hasta que exista la ficha | ✅ anotado en el backlog del roadmap |
+| Cobertura con agua/caldo | el agua no lista minerales ⇒ la cobertura bajaba por el peso del líquido | **agua = cero real** (suma cobertura), **caldo = sin datos** (varía según con qué se hizo) | ✅ aplicado. Efecto colateral que trajo: un cero con cobertura baja ya no se muestra como "0 mg" sino como "sin datos" |
+| Vitamina K | ningún ingrediente trae `vitk_ug` ⇒ siempre "sin datos" | mostrar "sin datos" es honesto; cargar vitk de hojas verdes queda como tarea de datos | OK |
+| Sinónimos | el README prometía "chickpeas" en garbanzos; los datos no lo traen (86/158 sí tienen sinónimos) | la app busca por los sinónimos que el dataset sí trae; el nombre canónico es el porteño (garbanzos) | ✅ |
+| Peso por unidad | 17 frescos usados en recetas no tienen `peso_por_unidad` | afecta la lista de compras (Fase 3): mostrará solo gramos para esos | ✅ anotado en el backlog del roadmap |
 
 ## 5. Correcciones a la documentación del dataset detectadas en la ingesta
 

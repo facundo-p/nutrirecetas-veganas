@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import { midpoint } from './interval';
-import { computeNutrition, perPortion } from './nutrition';
+import { computeNutrition, hasReportableValue, perPortion } from './nutrition';
 
 /**
  * Golden tests contra la semilla real. Los valores esperados fueron calculados
@@ -52,10 +52,18 @@ describe('golden: p19 pastel de papas (encadena p04 queso de maní y usa levadur
     expect(n.kcal.intervalo.max).toBeCloseTo(2825.93, 1);
   });
 
-  test('proteína total [172.57, 182.57] g con cobertura ~84.1 %', () => {
+  test('proteína total [172.57, 182.57] g con cobertura ~91.5 %', () => {
     expect(n.por_nutriente.prot_g.intervalo.min).toBeCloseTo(172.567, 2);
     expect(n.por_nutriente.prot_g.intervalo.max).toBeCloseTo(182.567, 2);
-    expect(n.por_nutriente.prot_g.cobertura_pct).toBeCloseTo(84.12, 1);
+    // el agua del queso de maní (p04) cuenta como cubierta: aporta cero de verdad
+    expect(n.por_nutriente.prot_g.cobertura_pct).toBeCloseTo(91.53, 1);
+  });
+
+  test('el calcio no se afirma como cero: cobertura mínima ⇒ sin datos', () => {
+    const calcio = n.por_nutriente.calcio_mg;
+    expect(calcio.intervalo.max).toBe(0);
+    expect(calcio.cobertura_pct).toBeLessThan(10);
+    expect(hasReportableValue(calcio)).toBe(false);
   });
 
   test('alerta B12: p19 usa levadura nutricional directa', () => {

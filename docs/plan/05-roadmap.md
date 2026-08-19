@@ -14,7 +14,7 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 
 - ✅ Scaffolding (Vite + React 19 + TS + vite-plugin-pwa + Vitest) y estructura de carpetas. Plan detallado en `fase1-implementacion.md`.
 - ✅ **Pipeline `build-seed`**: semilla canónica commiteada (`src/seed/seed.json`, 308 KB) con todas las transformaciones de la auditoría, migración de preparados (incluye p08 y la masa faltante de p22), AST de reglas, RDA canónicas, diff de ids inmutables. Tablas curadas en `scripts/build-seed/curated-tables.ts`. Con tests.
-- ✅ **Gate de datos**: `fase1-gate-datos.md` con todas las decisiones para revisión de Facu.
+- ✅ **Gate de datos**: `fase1-gate-datos.md` revisado por Facu (2026-08-19) y aplicado: porciones corregidas, rendimiento de p16, margarina como sustituto de la manteca vegana, agua como aporte cero real.
 - ✅ Motor nutricional puro (`src/domain/`) con golden tests: intervalos, cobertura, IC ponderado, RDA canónicas, recursión de preparados, alerta B12.
 - ✅ UI: navegación general, Recetario (búsqueda por nombre/ingrediente/sinónimo, filtros, rica-en, variantes agrupadas), Detalle (nutrición en vivo con bandas/IC/cobertura, alerta B12, preparados navegables, tips de reglas), Ingredientes (fichas completas, fuentes-de), Glosario (íconos + términos).
 - ✅ Skills de proyecto: `/renders` (Playwright, `docs/renders/fase-1/`) y `/cierre-fase`.
@@ -51,4 +51,11 @@ Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fas
 
 ## Backlog (post-v1, no descartado)
 
-Modo cocina manos libres completo · despensa/freezer · detección automática de variaciones repetidas · reglas de utensilios como avisos · sync opcional vía archivo en nube del usuario · ampliación de `equivalencias.json` (17 frescos sin peso por unidad) · auditoría USDA de los ~20 ingredientes más usados · ficha para `uva`.
+Modo cocina manos libres completo · despensa/freezer · detección automática de variaciones repetidas · reglas de utensilios como avisos · sync opcional vía archivo en nube del usuario · auditoría USDA de los ~20 ingredientes más usados.
+
+**Tareas de datos pendientes** (del gate de Fase 1, a revisar al final del proyecto):
+
+- `equivalencias.json`: **17 frescos usados en recetas sin `peso_por_unidad`** (apio, coliflor, puerro, repollo…). Mientras tanto la lista de compras muestra solo gramos para esos.
+- Ficha de ingrediente para **`uva`**: hoy aparece en estacionalidad pero se descarta al construir la semilla.
+- **Vitamina K**: ningún ingrediente trae `vitk_ug`, así que siempre se muestra "sin datos". Cargarla para hojas verdes la volvería útil.
+- **Sustitutos de texto libre**: 100 de 166 no resuelven a un id; se mapean progresivamente, empezando por las recetas más cocinadas.

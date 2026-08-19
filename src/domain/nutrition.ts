@@ -80,9 +80,12 @@ function computeTotals(
       if (ing.id === B12_ALERT_INGREDIENT) alertaB12 = true;
       for (const key of ACC_KEYS) {
         const value = key === 'kcal' ? ing.kcal : ing.nutrientes[key as IngredientNutrientKey];
-        if (value === undefined) continue; // sin dato: la masa queda fuera de la cobertura
+        // Sin dato: la masa queda fuera de la cobertura. Salvo el agua y compañía,
+        // que aportan cero de verdad (`aporte_nulo`) y sí cuentan como cubiertas:
+        // si no, una sopa reportaría cobertura ínfima por el peso del líquido.
+        if (value === undefined && !ing.aporte_nulo) continue;
         const slot = acc[key]!;
-        slot.valor = sum([slot.valor, scale(value.intervalo, m / 100)]);
+        if (value !== undefined) slot.valor = sum([slot.valor, scale(value.intervalo, m / 100)]);
         slot.masa_cubierta_g += m;
         slot.ic_ponderado += ing.ic * m;
       }
@@ -111,6 +114,21 @@ function computeTotals(
 
   visited.delete(recipe.id);
   return { acc, masa, alertaB12 };
+}
+
+/** Cobertura desde la que un cero se puede afirmar como "no tiene", no como "no sabemos". */
+const COBERTURA_PARA_AFIRMAR_CERO = 90;
+
+/**
+ * ¿Hay algo que informar, o corresponde decir "sin datos"? Un valor mayor a cero
+ * siempre se informa (con su cobertura al lado, para que se lea con pinzas). Un
+ * cero solo se afirma cuando casi toda la masa tiene dato: sin eso, "0 mg" sería
+ * decir "no tiene" cuando lo cierto es "no sabemos".
+ */
+export function hasReportableValue(r: NutrientResult): boolean {
+  if (r.ic === null) return false;
+  if (r.intervalo.max > 0) return true;
+  return r.cobertura_pct >= COBERTURA_PARA_AFIRMAR_CERO;
 }
 
 function toResult(a: Accumulator, masaTotal: number): NutrientResult {
