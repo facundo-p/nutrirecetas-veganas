@@ -2,24 +2,23 @@
 
 Desarrollo incremental. **Cada fase cierra con renders** (Render 0: mockups; fases 1-4: screenshots reales mobile 390 px + desktop 1280 px publicados como Artifact), una entrada en `lessons.md`, y revisión de Facu antes de seguir. Todo el trabajo en la rama `staging`; a `main` solo por PR aprobado (v1 = cierre de Fase 4).
 
-## Fase 0 — Plan y dirección visual ✦ en curso
+## Fase 0 — Plan y dirección visual ✅ cerrada (2026-08-19)
 
 1. ✅ Rama `staging`; commit raíz en `main` solo con `.gitignore` (base del futuro PR).
 2. ✅ Plan en `docs/plan/` + `README.md`.
 3. ✅ `CLAUDE.md`, `lessons.md`, hook `guard-main` (bloquea commits/push a `main`).
 4. ✅ **Render 0**: mockups HTML de 5 vistas con estética botánica editorial + primer set de íconos → [Artifact publicado](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525).
-5. **Checkpoint**: pulir estética/íconos con Facu antes de escribir código de app. ← **acá estamos**
+5. ✅ **Checkpoint**: estética aprobada por Facu tras 5 iteraciones → Propuesta C "Carta de estación" con su fondo de verduras.
 
-**Criterio de cierre**: Facu aprueba (o ajustamos) la dirección visual.
+## Fase 1 — Reorganización del dataset + cimientos + explorar el recetario ✦ en curso
 
-## Fase 1 — Reorganización del dataset + cimientos + explorar el recetario
-
-- Scaffolding (Vite + React + TS + PWA base offline + Vitest) y estructura de carpetas.
-- **Pipeline `build-seed`**: reorganización de los JSON crudos a una semilla canónica, coherente y consistente (los `.artifacts/` quedan intactos). Todas las transformaciones de la auditoría + migración de preparados (incluye p08) + validaciones. Con tests.
-- **Gate de datos**: si quedan inconsistencias del dataset sin resolver, se reportan en detalle a Facu **antes de pasar a Fase 2** (probable: `rendimiento_g` faltante de algunos preparados, confirmación de la tabla de porciones parseadas).
-- Motor nutricional puro (`src/domain/`) con golden tests: intervalos, cobertura, RDA canónicas, recursión de preparados.
-- UI: navegación general, Recetario (búsqueda + filtros, incluye por ingrediente y por nutriente; variantes agrupadas), Detalle de receta (nutrición en vivo con bandas/IC/cobertura, alerta B12, preparados navegables), Ingredientes (búsqueda por nombre/sinónimo, filtros), Glosario (íconos + culinario).
-- Skills de proyecto: `/renders` (Playwright) y `/cierre-fase`.
+- ✅ Scaffolding (Vite + React 19 + TS + vite-plugin-pwa + Vitest) y estructura de carpetas. Plan detallado en `fase1-implementacion.md`.
+- ✅ **Pipeline `build-seed`**: semilla canónica commiteada (`src/seed/seed.json`, 308 KB) con todas las transformaciones de la auditoría, migración de preparados (incluye p08 y la masa faltante de p22), AST de reglas, RDA canónicas, diff de ids inmutables. Tablas curadas en `scripts/build-seed/curated-tables.ts`. Con tests.
+- ✅ **Gate de datos**: `fase1-gate-datos.md` con todas las decisiones para revisión de Facu.
+- ✅ Motor nutricional puro (`src/domain/`) con golden tests: intervalos, cobertura, IC ponderado, RDA canónicas, recursión de preparados, alerta B12.
+- ✅ UI: navegación general, Recetario (búsqueda por nombre/ingrediente/sinónimo, filtros, rica-en, variantes agrupadas), Detalle (nutrición en vivo con bandas/IC/cobertura, alerta B12, preparados navegables, tips de reglas), Ingredientes (fichas completas, fuentes-de), Glosario (íconos + términos).
+- ✅ Skills de proyecto: `/renders` (Playwright, `docs/renders/fase-1/`) y `/cierre-fase`.
+- **Checkpoint**: renders publicados + gate de datos revisado por Facu. ← **acá estamos**
 
 **Criterio de cierre**: la app navega el recetario completo offline con nutrición honesta; renders revisados; gate de datos resuelto o evaluado con Facu.
 
