@@ -91,7 +91,7 @@ export function IngredientList() {
                 <span className="fila-ingrediente-nombre">
                   {ing.nombre}
                   {ingredientInSeason(idx, ing.id) && (
-                    <IconTemporada className="inline-icono" style={{ color: 'var(--zapallito)' }} aria-label="en temporada" />
+                    <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
                   )}
                 </span>
                 <span className="fila-ingrediente-meta">

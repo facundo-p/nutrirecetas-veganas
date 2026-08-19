@@ -90,7 +90,7 @@ export function IngredientDetail({ id }: { id: string }) {
           <h2>Estacionalidad (AMBA)</h2>
           <p className="detalle-meta">
             <span className="meta-item">
-              <IconTemporada style={{ color: ingredientInSeason(idx, ing.id) ? 'var(--zapallito)' : 'var(--chia)' }} />
+              <IconTemporada className={ingredientInSeason(idx, ing.id) ? 'icono-temporada' : 'icono-fuera-temporada'} />
               pico: {season.meses_pico.map((m) => MONTH_NAMES[m - 1]?.slice(0, 3)).join(', ')}
             </span>
             {season.disponible_todo_ano && <span className="chip chip-mini">disponible todo el año</span>}

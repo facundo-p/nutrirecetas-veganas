@@ -1,22 +1,33 @@
 import type { Recipe } from '../../seed/schema';
-import { IconBandeja, IconEspiga, IconFlor, IconFrasco, IconMortero, type IconProps } from '../icons/icons';
+import {
+  IconBandeja,
+  IconEspiga,
+  IconFlor,
+  IconFrasco,
+  IconFrascoFermento,
+  IconMortero,
+  type IconProps,
+} from '../icons/icons';
 
 /**
- * Ícono de tipo de receta coloreado por verdura con rol (04 §3): el tipo lo
- * comunica el ícono — jamás un reborde lateral en la tarjeta.
+ * Categoría de receta: el ícono y el color del título hablan el mismo idioma (04 §3).
+ * El tipo lo comunican ícono y color — jamás un reborde lateral en la tarjeta.
+ * El combo comparte color con las saladas: es un plato salado y hay una sola receta.
  */
 
 const BY_TYPE = {
-  salada: { Icon: IconMortero, color: 'var(--espinaca)', label: 'salada' },
-  dulce: { Icon: IconFlor, color: 'var(--remolacha)', label: 'dulce' },
-  pan: { Icon: IconEspiga, color: 'var(--garbanzo)', label: 'pan / masa' },
-  preparado: { Icon: IconFrasco, color: 'var(--soja)', label: 'preparado' },
-  combo: { Icon: IconBandeja, color: 'var(--berenjena)', label: 'combo' },
+  salada: { Icon: IconMortero, slug: 'principal', label: 'salada' },
+  combo: { Icon: IconBandeja, slug: 'principal', label: 'combo' },
+  dulce: { Icon: IconFlor, slug: 'dulce', label: 'dulce' },
+  pan: { Icon: IconEspiga, slug: 'pan', label: 'pan / masa' },
+  preparado: { Icon: IconFrasco, slug: 'preparado', label: 'preparado' },
+  conserva: { Icon: IconFrascoFermento, slug: 'conserva', label: 'conserva / fermento' },
 } as const;
 
 export function typeInfo(recipe: Pick<Recipe, 'tipo' | 'es_preparado'>) {
   // p08 es preparado de facto: el frasco manda sobre el mortero
-  return recipe.es_preparado ? BY_TYPE.preparado : BY_TYPE[recipe.tipo];
+  const { Icon, slug, label } = recipe.es_preparado ? BY_TYPE.preparado : BY_TYPE[recipe.tipo];
+  return { Icon, slug, label, color: `var(--cat-${slug})` };
 }
 
 export function TypeIcon({ recipe, ...props }: IconProps & { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {

@@ -119,6 +119,34 @@
   color: var(--espinaca);
 }
 
+/* ---------- íconos con rol propio ----------
+   Los íconos heredan currentColor, así que el rol se declara acá y no inline:
+   el tema decide el color, el componente solo dice qué significa. */
+
+.icono-imprescindible {
+  color: var(--zanahoria);
+}
+
+.icono-temporada {
+  color: var(--zapallito);
+}
+
+.icono-fuera-temporada {
+  color: var(--chia);
+}
+
+.icono-freezer {
+  color: var(--repollo-colorado);
+}
+
+.icono-clasica {
+  color: var(--garbanzo);
+}
+
+.icono-indulgente {
+  color: var(--remolacha);
+}
+
 /* ---------- chips y badges ---------- */
 
 .chip {

@@ -1,6 +1,6 @@
 // Renders reproducibles de cierre de fase: screenshots reales de la app
 // (build de producción servido con vite preview) a 390 px y 1280 px.
-// Uso: npm run build && npm run renders [-- fase-1]
+// Uso: npm run build && npm run renders [-- fase-1] [--tema=d]
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -8,8 +8,12 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const fase = process.argv[2] ?? 'fase-1';
-const OUT = join(ROOT, 'docs', 'renders', fase);
+const args = process.argv.slice(2);
+const fase = args.find((a) => !a.startsWith('--')) ?? 'fase-1';
+// TEMPORAL: mientras convivan las propuestas C y D, cada tema tiene su carpeta.
+const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'c';
+const carpeta = tema === 'c' ? fase : `${fase}-tema-${tema}`;
+const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });
 
 const PORT = 4173;
@@ -45,7 +49,7 @@ try {
   for (const [vpName, viewport] of VIEWPORTS) {
     const page = await browser.newPage({ viewport, deviceScaleFactor: 2 });
     for (const [name, hash] of RUTAS) {
-      await page.goto(`${BASE}/${hash}`, { waitUntil: 'networkidle' });
+      await page.goto(`${BASE}/?tema=${tema}${hash}`, { waitUntil: 'networkidle' });
       // la nav fija flotaría a mitad del screenshot fullPage: se ancla al fondo real
       await page.addStyleTag({ content: 'body{position:relative}.nav{position:absolute;top:auto;bottom:0}' });
       await page.waitForTimeout(350); // fuentes variables
@@ -58,4 +62,4 @@ try {
   await browser.close();
   server.kill();
 }
-console.log(`\nRenders en docs/renders/${fase}/`);
+console.log(`\nRenders en docs/renders/${carpeta}/`);

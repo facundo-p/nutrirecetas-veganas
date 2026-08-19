@@ -46,10 +46,10 @@ function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
           <a href={href}>{nombre}</a>
           {esPreparado && <span className="chip chip-mini chip-preparado">preparado</span>}
           {line.imprescindible && (
-            <IconAsterisco className="inline-icono" style={{ color: 'var(--zanahoria)' }} aria-label="imprescindible" />
+            <IconAsterisco className="inline-icono icono-imprescindible" aria-label="imprescindible" />
           )}
           {enPico && (
-            <IconTemporada className="inline-icono" style={{ color: 'var(--zapallito)' }} aria-label="en temporada" />
+            <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
           )}
         </span>
         <span className="puntos-guia" aria-hidden="true" />
@@ -160,11 +160,11 @@ export function RecipeDetail({ id }: { id: string }) {
   const nutricionTitulo = portion
     ? `Nutrición por porción (rinde ${recipe.porciones_display})`
     : `Nutrición por 100 g (rinde ${recipe.porciones_display})`;
-  const { label } = typeInfo(recipe);
+  const { label, slug } = typeInfo(recipe);
   const totalMin = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
 
   return (
-    <article className="detalle">
+    <article className="detalle" data-cat={slug}>
       <p className="volver">
         <a href={routeHash({ screen: 'recipes' })}>‹ Recetario</a>
       </p>
@@ -181,10 +181,10 @@ export function RecipeDetail({ id }: { id: string }) {
         <h1>
           {recipe.nombre}
           {recipe.candidata_clasica && (
-            <IconEstrellaBrotada className="inline-icono" style={{ color: 'var(--garbanzo)' }} aria-label="candidata a clásica" />
+            <IconEstrellaBrotada className="inline-icono icono-clasica" aria-label="candidata a clásica" />
           )}
           {recipe.indulgente && (
-            <IconCuchara className="inline-icono" style={{ color: 'var(--remolacha)' }} aria-label="indulgente" />
+            <IconCuchara className="inline-icono icono-indulgente" aria-label="indulgente" />
           )}
         </h1>
         <p className="detalle-meta">
@@ -255,7 +255,7 @@ export function RecipeDetail({ id }: { id: string }) {
             )}
             {recipe.guarda.freezer && (
               <span className="meta-item">
-                <IconCopoNieve style={{ color: 'var(--repollo-colorado)' }} /> va al freezer
+                <IconCopoNieve className="icono-freezer" /> va al freezer
                 {recipe.guarda.freezer_nota && <span className="meta-suave">({recipe.guarda.freezer_nota})</span>}
               </span>
             )}

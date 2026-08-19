@@ -24,9 +24,9 @@ interface Props {
 export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggleVariants, variantsOpen }: Props) {
   const flames = difficultyFlames(recipe.dificultad);
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
-  const { label } = typeInfo(recipe);
+  const { label, slug } = typeInfo(recipe);
   return (
-    <article className="tarjeta tarjeta-receta">
+    <article className="tarjeta tarjeta-receta" data-cat={slug}>
       <a className="tarjeta-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
         <span className="tarjeta-receta-tipo" title={label}>
           <TypeIcon recipe={recipe} />
@@ -34,10 +34,8 @@ export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggl
         <span className="tarjeta-receta-textos">
           <span className="tarjeta-receta-nombre">
             {recipe.nombre}
-            {recipe.candidata_clasica && (
-              <IconEstrellaBrotada className="inline-icono" style={{ color: 'var(--garbanzo)' }} />
-            )}
-            {recipe.indulgente && <IconCuchara className="inline-icono" style={{ color: 'var(--remolacha)' }} />}
+            {recipe.candidata_clasica && <IconEstrellaBrotada className="inline-icono icono-clasica" />}
+            {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
           </span>
           <span className="tarjeta-receta-meta">
             <span className="meta-item">
@@ -55,12 +53,12 @@ export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggl
             )}
             {recipe.guarda?.freezer && (
               <span className="meta-item" title="va bien al freezer">
-                <IconCopoNieve style={{ color: 'var(--repollo-colorado)' }} />
+                <IconCopoNieve className="icono-freezer" />
               </span>
             )}
             {inSeason && (
               <span className="meta-item" title="con ingredientes en temporada">
-                <IconTemporada style={{ color: 'var(--zapallito)' }} />
+                <IconTemporada className="icono-temporada" />
               </span>
             )}
             <span className="meta-item" title={`índice de confianza ${recipe.ic}/10`}>

@@ -184,6 +184,19 @@ export function IconFrasco(props: IconProps) {
   );
 }
 
+/** Conserva o fermento: el mismo frasco del preparado, pero burbujeando. */
+export function IconFrascoFermento(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="8" y="3.5" width="8" height="3" rx="1.2" />
+      <path d="M8.5 6.5 7 9.5v8A3.5 3.5 0 0 0 10.5 21h3A3.5 3.5 0 0 0 17 17.5v-8l-1.5-3" />
+      <path d="M7 15.5c1.4-1 2.6-1 4 0s2.6 1 4 0" />
+      <circle cx="10.4" cy="11.4" r="1.1" />
+      <circle cx="13.9" cy="12.6" r="0.8" />
+    </Base>
+  );
+}
+
 export function IconRamaBifurca(props: IconProps) {
   return (
     <Base {...props}>

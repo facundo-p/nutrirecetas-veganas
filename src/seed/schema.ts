@@ -222,7 +222,9 @@ export const recipeUtensilSchema = z.discriminatedUnion('tipo', [
 export const recipeSchema = z.strictObject({
   id: z.string().min(1),
   nombre: z.string().min(1),
-  tipo: z.enum(['salada', 'dulce', 'preparado', 'combo', 'pan']),
+  // 'conserva' (fermentos, escabeches, encurtidos) todavía no tiene recetas en la
+  // semilla: queda declarado para las que cargue el usuario.
+  tipo: z.enum(['salada', 'dulce', 'preparado', 'combo', 'pan', 'conserva']),
   es_preparado: z.boolean(),
   rendimiento_g: z.number().positive().optional(),
   porciones_num: z.number().positive().nullable(),

@@ -20,6 +20,14 @@
   --lechuga: #a5c179; /* tags y bordes suaves */
   --soja: #ab7442; /* preparados */
 
+  /* Categoría de receta: escala propia para que el tipo no pise colores con otro rol.
+     En la C apuntan a los colores-verdura de siempre; el tema D las redefine. */
+  --cat-principal: var(--espinaca);
+  --cat-dulce: var(--remolacha);
+  --cat-pan: var(--garbanzo);
+  --cat-preparado: var(--soja);
+  --cat-conserva: var(--soja);
+
   /* Tipografía */
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
   --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
