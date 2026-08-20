@@ -19,7 +19,7 @@
 - **Invariante 7**: el UL de magnesio aplica solo a suplementos; el semáforo no alerta exceso de Mg alimentario. Regla general: respetar `ul_nota`.
 - **Invariante 8**: la app informa, no diagnostica. Sin embarazo/lactancia/menores/condiciones médicas.
 - El semáforo **nunca comunica solo con color**: siempre ícono + texto (regla anti-look-IA 6).
-- Toda pantalla usable a 390 px. Sin reborde lateral de acento en tarjetas. Los colores se piden por token de rol (`--semaforo-cubierto`, etc.), jamás nombrando una verdura: el tema decide (ver `src/styles/temas.css`).
+- Toda pantalla usable a 390 px. Sin reborde lateral de acento en tarjetas. Los colores se piden por token de rol (`--semaforo-cubierto`, etc.), jamás nombrando un color: el tema decide (ver `src/styles/temas/`).
 - Código en inglés; campos de datos de usuario en castellano (como la semilla). UI y docs en castellano rioplatense.
 - **Decisiones de producto tomadas por Facu para esta fase** (2026-08-19):
   1. **Consumo**: al registrar una cocción se declara cuántas porciones se comieron en el momento; el resto queda como **sobras**, que se registran los días que se comen. El semáforo suma consumos, no cocciones.

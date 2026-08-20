@@ -26,16 +26,19 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
-## 3. Estética: dos temas intercambiables
+## 3. Estética: tres temas intercambiables
 
-**Estado actual: la app tiene dos temas vivos.** El activo es la **D**; la **C** queda disponible con `?tema=c`. Las propuestas A y B quedan registradas como historia, sin implementar. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+**Estado actual: la app tiene tres temas vivos.** El default es la **D**; la **C** y la **A** se eligen desde Ajustes o con `?tema=c` / `?tema=a`. La propuesta B queda registrada como historia, sin implementar. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+
+Desde el 20/8/2026 el sistema son **tres capas** (forma / temas / app) y un test que las hace cumplir: la capa de la app no puede escribir un color ni nombrar un tema, y cada tema debe declarar el contrato de roles completo. Agregar un tema es crear un archivo y sumarlo a tres listas.
 
 Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-deb5-430c-b227-b2f1791b6525) para las de Fase 0, [comparativa C vs D](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d) para la última):
 
-- **Iteración 1** → Propuesta A (Botánica editorial). Facu la valoró como viable pero pidió más personalidad y notó que la paleta desaturada coincidía con otra app suya de huerta.
+- **Iteración 1** → Propuesta A (Botánica editorial). Facu la valoró como viable pero pidió más personalidad y notó que la paleta desaturada coincidía con otra app suya de huerta. **Volvió como tema vivo en la iteración 7**, ya no como default sino como una opción más.
 - **Iteración 2** → Propuesta B (Tinta fresca): saturación plena + estructura de imprenta. Veredicto de Facu: carácter sí, dirección no — quería algo **sofisticado/elegante/gourmet**; rechazó los contornos negros gruesos y prefirió las tipografías de A. De la B sobrevive la idea central: **los colores de la app son los colores de las verduras**.
 - **Iteraciones 3 a 5** → **Propuesta C (Carta de estación)**: brief de Facu "tan hermosa como un plato vegano colorido y saludable, sin sobresaturar". Suma su ilustración de fondo, saturación +1, berenjena y remolacha. Con ella se construyó la Fase 1.
-- **Iteración 6** → **Propuesta D**, a partir de los renders reales: la categoría de cada receta se lee en el color de su título, espinaca y zanahoria pasan al frente. **Es el tema activo desde el 19/8/2026.**
+- **Iteración 6** → **Propuesta D**, a partir de los renders reales: la categoría de cada receta se lee en el color de su título, espinaca y zanahoria pasan al frente. **Es el tema default desde el 19/8/2026.**
+- **Iteración 7** (20/8/2026) → el sistema de temas se vuelve de verdad extensible: tres capas, contrato de 39 roles y un test que lo hace cumplir. Con eso entra la **A** como tercer tema y aparece el selector en Ajustes.
 
 ### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
@@ -47,9 +50,11 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 6. El semáforo **nunca comunica solo con color**: siempre ícono + texto.
 7. Tipografías self-hosted (offline). Modo cocina: contraste reforzado y cuerpo tipográfico +2 escalas.
 
-### Propuesta A — "Botánica editorial" (registrada, viable)
+### Propuesta A — "Botánica editorial" (**tema vivo** desde el 20/8/2026, `?tema=a`)
 
 Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif display) + Schibsted Grotesk (datos).
+
+Volvió como tema alternativo a pedido de Facu: **solo la paleta**, con el mismo fondo ilustrado, la misma estructura de pantallas y las mismas tipografías que los otros dos. Implementada en `src/styles/temas/tema-a.css`.
 
 | Token | Valor | Uso |
 |---|---|---|
@@ -63,6 +68,33 @@ Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif di
 | Suplemento / sin datos | `#5B7A9E` / `#8F8A7E` | estados especiales |
 
 Estructura: tarjetas crema con borde fino, sombra apenas presente, radios generosos. Ilustración botánica de línea fina como ornamento.
+
+**Lo que hubo que agregar para cubrir los 39 roles** (la paleta A trae 10 colores). Contrastes medidos sobre el papel `#F6F1E5`, fórmula WCAG con sRGB linearizado:
+
+| Agregado | Valor | Por qué | Contraste |
+|---|---|---|---|
+| `--p-crema-claro` | `#FCFAF2` | A describe "tarjetas crema" en prosa, sin dar el hex de la superficie | — |
+| `--p-tinta-suave` | `#5C5A4E` | A no trae texto secundario | 6.15 |
+| `--p-oliva-honda` | `#57663A` | la oliva base da 4.15: no llega a 4.5:1 como texto | 5.53 |
+| `--p-terracota-honda` | `#A24824` | la terracota base da 3.93; queda como relleno de acción | 5.34 |
+| `--p-piedra-honda` | `#7C776B` | la piedra base da 3.05; la vara es la chía actual (3.85) | 3.96 |
+| `--p-ciruela` | `#7D3F55` | **la única invención cromática** — ver abajo | 6.86 |
+
+**Por qué la ciruela.** La paleta A no tiene ninguna familia berry, que es el lugar del que la D saca la berenjena para las cifras y la remolacha para los avisos. Sin ella, cifras, avisos, acción y título de las recetas principales caían todos en la banda cálida: **cuatro significados distintos a ΔE menor que 6**. Es exactamente la colisión de roles que causó el rediseño de la D. Una invención bien puesta resolvió lo que cinco derivaciones forzadas no.
+
+**Escala de categorías**, derivada porque la paleta A es anterior a la idea de categoría-por-color:
+
+| Token | Valor | Materia | Contraste | ΔE vs. encabezado |
+|---|---|---|---|---|
+| `--cat-principal` | `#A1584D` | ladrillo suave | 4.64 | 61.2 |
+| `--cat-dulce` | `#543113` | tierra tostada | 10.21 | 27.9 |
+| `--cat-preparado` | `#3F4D62` | pizarra honda | 7.61 | 25.1 |
+| `--cat-pan` | `#876725` | trigo | 4.66 | 36.0 |
+| `--cat-conserva` | `#1B7969` | verde petróleo | 4.67 | 25.0 |
+
+Elegidas con una búsqueda sobre grilla HSL, contra **la vara real que cumple el tema D medida sobre sus propios valores**: ΔE mínimo 26.3 entre categorías, 13.1 contra los roles funcionales vecinos y 4.61:1 de contraste. La escala de A da **27.4 / 20.0 / 4.64** — mejor en las tres. El caso difícil fue conserva: en la A los encabezados son verde profundo, así que un verde de categoría se pisaba con ellos (los primeros intentos daban ΔE 15-21); se resolvió corriendo el petróleo hacia el turquesa.
+
+**Sobre el semáforo**: los cuatro colores de estado de la A dan 4.34 / 2.50 / 4.85 / 3.95, por debajo de AA — igual que los de la D hoy (3.43 / 2.29 / 4.12 / 5.70) y por el mismo motivo: **el semáforo nunca comunica solo con color**, siempre ícono + palabra (invariante 6). Son tinte de píldora y color de ícono, no texto.
 
 ### Propuesta D — "El color dice de qué se trata" (**tema activo**, iteración 6)
 
@@ -92,7 +124,7 @@ Elegidas **midiendo**: ningún par baja de ΔE 26 entre sí, y todas cumplen AA 
 
 Los 7 tipos de regla (`RuleTips`) ya emitían clase propia pero solo 2 tenían color: la D cubre los siete. Ícono nuevo `IconFrascoFermento` para la categoría conserva.
 
-**Estado**: Facu la eligió para seguir el desarrollo, y **los dos temas quedan como sistema permanente** (no se descarta la C). Implementación en `src/styles/temas.css`: la paleta base vive en `tokens.css` y cada tema declara qué verdura cumple cada **token de rol** (`--titulo-seccion`, `--titulo-receta`, `--cifra`, `--navegar`, `--aviso`, `--tip-*`…). Ninguna regla de la app nombra una verdura, así que agregar un tema es agregar un bloque. Se alternan con `?tema=c` / `?tema=d` (ver `src/app/tema.ts`; el script inline de `index.html` lo aplica antes de pintar para que no salte el color). Renders de cada tema en `docs/renders/fase-1-tema-c/` y `docs/renders/fase-1-tema-d/`; comparativa publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
+**Estado**: Facu la eligió para seguir el desarrollo, y **los temas quedan como sistema permanente**. Implementación en `src/styles/temas/tema-d.css`, que declara su propia paleta cruda (`--p-*`) y el contrato de roles completo. Renders de cada tema en `docs/renders/fase-N-tema-{a,c,d}/`; comparativa C vs D publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
 
 ### Propuesta C — "Carta de estación" (tema alternativo, `?tema=c`)
 
