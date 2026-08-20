@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  background: var(--tofu);
+  background: var(--superficie);
   border-top: var(--borde);
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -62,7 +62,7 @@
 }
 
 .nav-item[aria-current='true'] {
-  color: var(--zanahoria);
+  color: var(--accion-texto);
   font-weight: 600;
 }
 
@@ -77,7 +77,7 @@
     padding: var(--sp-3) var(--sp-6);
     border-top: none;
     border-bottom: 3px double color-mix(in srgb, var(--tinta) 35%, transparent);
-    background: color-mix(in srgb, var(--tofu) 88%, transparent);
+    background: color-mix(in srgb, var(--superficie) 88%, transparent);
     backdrop-filter: blur(6px);
   }
   .nav-marca {
@@ -85,7 +85,7 @@
     font-family: var(--font-display);
     font-size: var(--fs-xl);
     font-weight: 600;
-    color: var(--espinaca);
+    color: var(--marca);
     margin-right: auto;
   }
   .nav-item {
@@ -119,86 +119,3 @@
   color: var(--kicker);
 }
 
-/* ---------- íconos con rol propio ----------
-   Los íconos heredan currentColor, así que el rol se declara acá y no inline:
-   el tema decide el color, el componente solo dice qué significa. */
-
-.icono-imprescindible {
-  color: var(--icono-imprescindible);
-}
-
-.icono-temporada {
-  color: var(--zapallito);
-}
-
-.icono-fuera-temporada {
-  color: var(--chia);
-}
-
-.icono-freezer {
-  color: var(--repollo-colorado);
-}
-
-.icono-clasica {
-  color: var(--garbanzo);
-}
-
-.icono-indulgente {
-  color: var(--remolacha);
-}
-
-/* ---------- chips y badges ---------- */
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  padding: 2px 10px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--lechuga) 70%, var(--tinta) 8%);
-  background: color-mix(in srgb, var(--lechuga) 18%, var(--tofu));
-  font-size: var(--fs-xs);
-  color: var(--tinta);
-  white-space: nowrap;
-}
-
-.chip-boton {
-  appearance: none;
-  cursor: pointer;
-  font: inherit;
-  font-size: var(--fs-sm);
-  min-height: 34px;
-}
-
-.chip-boton[aria-pressed='true'] {
-  background: var(--espinaca);
-  border-color: var(--espinaca);
-  color: var(--tofu);
-}
-
-/* ---------- toast de actualización ---------- */
-
-.toast-actualizacion {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom) + var(--sp-4));
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  max-width: min(92vw, 26rem);
-}
-
-.toast-actualizacion button {
-  appearance: none;
-  border: none;
-  border-radius: var(--radio-chico);
-  background: var(--zanahoria);
-  color: var(--tofu);
-  font: inherit;
-  font-weight: 600;
-  padding: var(--sp-2) var(--sp-3);
-  cursor: pointer;
-}

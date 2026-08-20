@@ -27,10 +27,19 @@ const BY_TYPE = {
 export function typeInfo(recipe: Pick<Recipe, 'tipo' | 'es_preparado'>) {
   // p08 es preparado de facto: el frasco manda sobre el mortero
   const { Icon, slug, label } = recipe.es_preparado ? BY_TYPE.preparado : BY_TYPE[recipe.tipo];
-  return { Icon, slug, label, color: `var(--cat-${slug})` };
+  return { Icon, slug, label };
 }
 
-export function TypeIcon({ recipe, ...props }: IconProps & { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {
-  const { Icon, color } = typeInfo(recipe);
-  return <Icon style={{ color }} {...props} />;
+/**
+ * El color no se pasa inline: el ícono lo hereda del `data-cat` de su tarjeta
+ * vía `--cat-actual` (ver temas/categorias.css). Así el tema decide el color y
+ * el componente solo dice qué significa.
+ */
+export function TypeIcon({
+  recipe,
+  className,
+  ...props
+}: IconProps & { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {
+  const { Icon } = typeInfo(recipe);
+  return <Icon className={['icono-tipo', className].filter(Boolean).join(' ')} {...props} />;
 }

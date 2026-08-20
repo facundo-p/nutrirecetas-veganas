@@ -22,7 +22,7 @@ body {
   font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--tinta);
-  background: var(--papel) url('/fondo.webp') top center / 100% auto repeat-y;
+  background: var(--papel) var(--fondo-imagen) top center / 100% auto repeat-y;
   min-height: 100dvh;
 }
 
@@ -41,7 +41,7 @@ p {
 }
 
 a {
-  color: var(--link, var(--espinaca));
+  color: var(--link);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
@@ -57,14 +57,14 @@ svg {
 }
 
 :focus-visible {
-  outline: 2px solid var(--zanahoria);
+  outline: 2px solid var(--foco);
   outline-offset: 2px;
 }
 
 /* Tarjeta base: superficie tofu, borde fino, sombra apenas presente.
    Prohibido el reborde lateral de acento (regla anti-look-IA del proyecto). */
 .tarjeta {
-  background: var(--tofu);
+  background: var(--superficie);
   border: var(--borde);
   border-radius: var(--radio);
   box-shadow: 0 1px 2px color-mix(in srgb, var(--tinta) 5%, transparent);

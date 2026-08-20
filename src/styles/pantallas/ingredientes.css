@@ -1,0 +1,82 @@
+/* ============ Ingredientes ============ */
+
+.lista-ingredientes {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+}
+
+@media (min-width: 900px) {
+  .lista-ingredientes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fila-ingrediente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  text-decoration: none;
+  color: inherit;
+}
+
+.fila-ingrediente-nombre {
+  font-family: var(--font-display);
+  font-weight: 540;
+  color: var(--tinta);
+  display: inline-flex;
+  align-items: center;
+}
+
+.fila-ingrediente-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.nota-ingrediente {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.lista-conservacion {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.conservacion {
+  display: grid;
+  gap: 2px;
+  border-bottom: var(--borde-suave);
+  padding-bottom: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+
+.conservacion-item {
+  font-weight: 600;
+}
+
+.chip-alerta {
+  background: color-mix(in srgb, var(--aviso) 12%, var(--superficie));
+  border-color: color-mix(in srgb, var(--aviso) 45%, transparent);
+  color: var(--aviso);
+  justify-self: start;
+}
+
+.lista-equivalencias {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+

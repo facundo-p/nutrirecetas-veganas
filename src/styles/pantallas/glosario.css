@@ -1,0 +1,84 @@
+/* ============ Glosario ============ */
+
+.pestanas {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+  padding-bottom: var(--sp-2);
+}
+
+.pestana {
+  appearance: none;
+  border: var(--borde);
+  background: var(--superficie);
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-4);
+  min-height: 36px;
+  cursor: pointer;
+  color: var(--tinta-suave);
+}
+
+.pestana[aria-selected='true'] {
+  background: var(--seleccion);
+  border-color: var(--seleccion);
+  color: var(--sobre-accion);
+  font-weight: 600;
+}
+
+.lista-iconos {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--sp-2);
+}
+
+.ficha-icono {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.ficha-icono-svg {
+  font-size: 26px;
+  color: var(--marca);
+  flex-shrink: 0;
+}
+
+/* los íconos de tipo enseñan el color de su categoría */
+.ficha-icono[data-cat] .ficha-icono-svg {
+  color: var(--cat-actual);
+}
+
+.lista-terminos {
+  display: grid;
+  gap: var(--sp-3);
+  margin: 0;
+}
+
+.termino dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--titulo-seccion);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.termino-ic {
+  color: var(--tinta-suave);
+  font-size: 13px;
+  display: inline-flex;
+}
+
+.termino dd {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}

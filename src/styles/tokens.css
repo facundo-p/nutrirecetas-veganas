@@ -1,29 +1,15 @@
-/* Paleta base — las verduras y la materia prima, iguales en todos los temas.
-   Qué color cumple qué rol lo deciden los temas: ver temas.css.
-   Fuente de verdad visual: docs/plan/04-interaccion-y-estetica.md §3. */
+/* ══════════════════ Capa 1: forma ══════════════════
+   Tipografía, escala, espaciado y bordes. Igual en todos los temas.
+
+   REGLA DURA: esta capa no puede contener un color. Ni un hex, ni un rgb(),
+   ni un nombre de color. Todo lo que sea color vive en temas/ y llega acá
+   como token de rol. El test src/styles/contrato-de-temas.test.ts lo verifica.
+
+   `--borde` y `--borde-suave` sí hacen color-mix() con var(--tinta), y está
+   bien: una custom property se resuelve en el elemento donde se declara, y
+   estas se declaran en :root — el mismo elemento donde el tema declara
+   --tinta. Verificado en Chromium: el borde toma la tinta del tema activo. */
 :root {
-  /* Base papel y tinta */
-  --papel: #f5efdc;
-  --tofu: #fdfaf0;
-  --tinta: #2c2a22;
-  --tinta-suave: #5d594c;
-
-  /* Colores-verdura con rol semántico */
-  --espinaca: #427a3a; /* identidad, marca, etiquetas de sección */
-  --zanahoria: #d06a24; /* acción: botones, énfasis, nav activa */
-  --berenjena: #5c3a63; /* títulos display */
-  --remolacha: #a82d52; /* lo dulce e indulgente */
-  --zapallito: #47903f; /* semáforo: cubierto */
-  --garbanzo: #d1942c; /* semáforo: parcial */
-  --rabanito: #cf3d4d; /* alerta / insuficiente */
-  --repollo-colorado: #85477f; /* cubierto por suplemento */
-  --chia: #75787d; /* sin datos */
-  --lechuga: #a5c179; /* tags y bordes suaves */
-  --soja: #ab7442; /* preparados */
-
-  /* Tonos que solo existen para cumplir contraste como texto */
-  --zanahoria-honda: #b85718; /* la zanahoria cuando es tipografía */
-
   /* Tipografía */
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
   --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;

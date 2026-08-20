@@ -1,0 +1,106 @@
+/* ============ Diario ============ */
+
+.enlaces-secundarios {
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-4);
+  color: var(--tinta-suave);
+}
+
+.lista-cocciones {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 900px) {
+  .lista-cocciones {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.tarjeta-coccion {
+  padding: var(--sp-3) var(--sp-4);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.coccion-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.coccion-nombre {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 560;
+  color: var(--titulo-seccion);
+  text-decoration: none;
+}
+
+.coccion-fecha {
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+}
+
+.coccion-porciones {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  flex-wrap: wrap;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.coccion-kcal {
+  margin-left: auto;
+}
+
+.icono-aviso {
+  color: var(--aviso);
+}
+
+.coccion-variaciones {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.coccion-variaciones li::before {
+  content: '· ';
+}
+
+.coccion-nota {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.coccion-detalle {
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+}
+
+.coccion-acciones-sobra {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  border-top: var(--borde-suave);
+  padding-top: var(--sp-2);
+}
+
+.nota-usuario {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  margin-top: var(--sp-2);
+}
+

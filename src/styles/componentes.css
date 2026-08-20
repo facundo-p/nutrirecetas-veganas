@@ -1,0 +1,327 @@
+/* ---------- íconos con rol propio ----------
+   Los íconos heredan currentColor, así que el rol se declara acá y no inline:
+   el tema decide el color, el componente solo dice qué significa. */
+
+.icono-imprescindible {
+  color: var(--icono-imprescindible);
+}
+
+.icono-temporada {
+  color: var(--confirmado);
+}
+
+.icono-fuera-temporada {
+  color: var(--dato-suave);
+}
+
+.icono-freezer {
+  color: var(--icono-freezer);
+}
+
+.icono-clasica {
+  color: var(--icono-clasica);
+}
+
+.icono-indulgente {
+  color: var(--icono-indulgente);
+}
+
+/* ---------- chips y badges ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--chip) 70%, var(--tinta) 8%);
+  background: color-mix(in srgb, var(--chip) 18%, var(--superficie));
+  font-size: var(--fs-xs);
+  color: var(--tinta);
+  white-space: nowrap;
+}
+
+.chip-boton {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fs-sm);
+  min-height: 34px;
+}
+
+.chip-boton[aria-pressed='true'] {
+  background: var(--seleccion);
+  border-color: var(--seleccion);
+  color: var(--sobre-accion);
+}
+
+/* ---------- toast de actualización ---------- */
+
+.toast-actualizacion {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom) + var(--sp-4));
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  max-width: min(92vw, 26rem);
+}
+
+.toast-actualizacion button {
+  appearance: none;
+  border: none;
+  border-radius: var(--radio-chico);
+  background: var(--accion);
+  color: var(--sobre-accion);
+  font: inherit;
+  font-weight: 600;
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+}
+
+/* el ícono de tipo hereda la categoría del data-cat de su tarjeta */
+.icono-tipo {
+  color: var(--cat-actual);
+}
+
+/* ============ Formularios (perfil, registro, ajustes) ============ */
+
+.formulario {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 34rem;
+  margin-bottom: var(--sp-6);
+}
+
+.campo {
+  display: grid;
+  gap: var(--sp-1);
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.campo-etiqueta {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.campo-ayuda {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+  font-style: italic;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  font: inherit;
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--superficie);
+  color: var(--tinta);
+  min-height: 44px;
+  width: 100%;
+}
+
+.campo textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.campos-fila {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.campos-fila .campo {
+  flex: 1 1 9rem;
+}
+
+.campo-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.campo-inline input {
+  font: inherit;
+  width: 4.5rem;
+  padding: var(--sp-1) var(--sp-2);
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--superficie);
+  min-height: 40px;
+}
+
+.opciones {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.opciones-columna {
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.opcion {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  min-height: 32px;
+}
+
+.opcion input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--seleccion);
+  flex-shrink: 0;
+}
+
+/* ============ Botones ============ */
+
+.boton-principal,
+.boton-secundario {
+  appearance: none;
+  border: none;
+  border-radius: var(--radio-chico);
+  font: inherit;
+  font-weight: 600;
+  padding: var(--sp-3) var(--sp-5);
+  min-height: 48px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.boton-principal {
+  background: var(--accion);
+  color: var(--sobre-accion);
+}
+
+.boton-principal:disabled {
+  background: color-mix(in srgb, var(--dato-suave) 40%, var(--superficie));
+  color: var(--tinta-suave);
+  cursor: not-allowed;
+}
+
+.boton-secundario {
+  background: var(--superficie);
+  border: 1px solid color-mix(in srgb, var(--tinta) 25%, transparent);
+  color: var(--tinta);
+}
+
+.boton-chico {
+  appearance: none;
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-3);
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--tinta) 22%, transparent);
+  background: var(--superficie);
+  color: var(--tinta);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.boton-enlace {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--link);
+  cursor: pointer;
+  padding: var(--sp-1) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  text-align: left;
+}
+
+.boton-redondo {
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--tinta) 25%, transparent);
+  background: var(--superficie);
+  font-size: var(--fs-xl);
+  line-height: 1;
+  color: var(--tinta);
+  cursor: pointer;
+}
+
+.boton-redondo:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.boton-grande {
+  font-size: var(--fs-lg);
+  min-height: 60px;
+  flex: 1;
+}
+
+.boton-cocinar {
+  margin-top: var(--sp-4);
+  width: 100%;
+}
+
+.input-archivo {
+  display: none;
+}
+
+.mensaje-ok,
+.mensaje-error {
+  font-size: var(--fs-sm);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radio-chico);
+}
+
+.mensaje-ok {
+  background: color-mix(in srgb, var(--semaforo-cubierto) 12%, var(--superficie));
+  color: var(--tinta);
+}
+
+.mensaje-error {
+  background: color-mix(in srgb, var(--aviso) 12%, var(--superficie));
+  color: var(--tinta);
+}
+
+.intro-vacia {
+  color: var(--tinta-suave);
+  max-width: 46ch;
+  margin-bottom: var(--sp-4);
+}
+
+.cargando {
+  color: var(--dato-suave);
+  font-style: italic;
+  padding: var(--sp-6) 0;
+}
+
+.disclaimer {
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+  max-width: 52ch;
+  margin-top: var(--sp-6);
+  border-top: var(--borde-suave);
+  padding-top: var(--sp-3);
+}
+

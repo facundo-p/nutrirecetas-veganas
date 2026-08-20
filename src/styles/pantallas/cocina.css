@@ -1,0 +1,173 @@
+/* ============ Sesión de cocina ============ */
+
+.sesion-cocina {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.lista-lineas-sesion {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.linea-sesion {
+  padding-bottom: var(--sp-2);
+  border-bottom: var(--borde-suave);
+}
+
+.linea-sesion.inactiva {
+  opacity: 0.45;
+}
+
+.linea-sesion.inactiva .linea-sesion-nombre {
+  text-decoration: line-through;
+}
+
+.linea-sesion-check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.linea-sesion-check input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--seleccion);
+  flex-shrink: 0;
+}
+
+.linea-sesion-nombre {
+  flex: 1;
+  font-size: var(--fs-base);
+}
+
+.linea-sesion-original {
+  color: var(--dato-suave);
+  font-size: var(--fs-xs);
+}
+
+.linea-sesion-cantidad {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.linea-sustitutos {
+  margin-left: calc(22px + var(--sp-2));
+}
+
+.sustitutos-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-1);
+}
+
+.confirmacion {
+  background: color-mix(in srgb, var(--aviso) 8%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--aviso) 40%, transparent);
+  border-radius: var(--radio-chico);
+  padding: var(--sp-3);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.confirmacion-acciones {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.agregar-ingrediente {
+  border-top: var(--borde-suave);
+  padding-top: var(--sp-3);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.panel-nutricion-vivo {
+  position: sticky;
+  bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom));
+  background: var(--superficie);
+  border: var(--borde);
+  border-radius: var(--radio);
+  padding: var(--sp-3);
+  display: grid;
+  gap: 2px;
+  box-shadow: 0 -2px 8px color-mix(in srgb, var(--tinta) 8%, transparent);
+}
+
+.panel-nutricion-cifra {
+  font-size: var(--fs-xl);
+}
+
+.panel-nutricion-cifra em {
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  font-family: var(--font-data);
+  font-style: normal;
+  margin-left: var(--sp-1);
+}
+
+.panel-nutricion-detalle {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+/* modo cocción: tipografía grande, manos ocupadas */
+
+.modo-coccion {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.coccion-progreso {
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.coccion-paso {
+  font-size: var(--fs-2xl);
+  line-height: 1.35;
+  font-family: var(--font-display);
+  color: var(--tinta);
+}
+
+.coccion-secreto {
+  background: var(--superficie);
+  border: var(--borde);
+  border-radius: var(--radio);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-lg);
+}
+
+.coccion-acciones {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+/* registro */
+
+.registro h2 {
+  font-size: var(--fs-xl);
+}
+
+.variaciones-resumen {
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.variaciones-resumen ul {
+  padding-left: 1.2rem;
+  color: var(--tinta-suave);
+}
+
