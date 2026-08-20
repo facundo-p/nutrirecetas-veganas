@@ -70,6 +70,12 @@ const archivos = archivosCss(ESTILOS).map((ruta) => ({
   css: sinComentarios(readFileSync(ruta, 'utf8')),
 }));
 
+function archivosTsx(dir: string): string[] {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory() ? archivosTsx(join(dir, e.name)) : /\.tsx?$/.test(e.name) ? [join(dir, e.name)] : [],
+  );
+}
+
 const nombreDeTema = (n: string) => /^temas\/tema-([a-z0-9-]+)\.css$/.exec(n)?.[1];
 const deTema = archivos.filter((a) => nombreDeTema(a.nombre));
 const temaCompartido = archivos.filter((a) => a.nombre.startsWith('temas/') && !nombreDeTema(a.nombre));
@@ -148,6 +154,17 @@ describe('el contrato de temas', () => {
     const enScript = /var TEMAS = \[([^\]]*)\]/.exec(html)?.[1] ?? '';
     expect([...enScript.matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1]!).sort()).toEqual(esperados);
     expect(/<html[^>]*\sdata-tema="([a-z0-9-]+)"/.exec(html)?.[1]).toBe(TEMA_DEFAULT);
+  });
+
+  test('ningún .tsx escribe estilo: eso vive en los .css', () => {
+    const yo = relative(RAIZ, fileURLToPath(import.meta.url)).split(sep).join('/');
+    const sospechosos = archivosTsx(join(RAIZ, 'src'))
+      .map((ruta) => [relative(RAIZ, ruta).split(sep).join('/'), readFileSync(ruta, 'utf8')] as const)
+      .filter(([nombre]) => nombre !== yo) // este archivo nombra los patrones que busca
+      .flatMap(([nombre, src]) =>
+        lineas(src, /style=\{|<style|dangerouslySetInnerHTML|\.style\.|setProperty\(/).map((l) => `${nombre}:${l}`),
+      );
+    expect(sospechosos).toEqual([]);
   });
 
   test('index.css es el único punto de entrada y no se olvida de ningún archivo', () => {

@@ -22,6 +22,17 @@ Idioma del proyecto: **español rioplatense** (código en inglés, UI y docs en 
 7. El UL de magnesio aplica solo a suplementos: el semáforo no alerta exceso de Mg alimentario.
 8. **La app informa, no diagnostica.** Fuera de alcance: embarazo, lactancia, menores, condiciones médicas.
 
+## Estilos (reglas duras al escribir código nuevo)
+
+1. **Cero estilo en los `.tsx`.** Ni `style={{ }}`, ni objetos de estilo, ni `<style>`, ni CSS-in-JS, ni CSS Modules. El TSX pone `className` y atributos; el color, el tamaño y la forma los decide el CSS. (Hoy hay exactamente cero `style={{` en `src/`; que siga así.)
+2. **Una hoja por carpeta de `src/ui/`**, en `src/styles/pantallas/`: `cook/`→`cocina.css`, `diary/`→`diario.css`, `recipes/`→`recetario.css`, `recipe-detail/`→`receta.css`, `today/`→`hoy.css`, `profile/`→`perfil.css`, `settings/`→`ajustes.css`, `ingredients/`→`ingredientes.css`, `glossary/`→`glosario.css`. Lo que se comparte entre pantallas (formularios, botones, chips, íconos) va en `componentes.css`; el chrome (estructura, nav, encabezados) en `layout.css`.
+3. **Pantalla nueva = hoja nueva + su `@import` en `src/styles/index.css`.** Ese archivo es el único que importa `main.tsx`, y el orden de la cascada se lee ahí. El test avisa si la hoja quedó sin importar.
+4. **Nada de valores mágicos**: espaciado con `--sp-*`, tipografía con `--fs-*` y `--font-*`, radios y bordes con `--radio*` / `--borde*`. Si hace falta una medida nueva, se agrega a `tokens.css` (que no puede tener colores).
+5. **El estado se comunica con atributos, no con estilos calculados**: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.
+6. **Nombres de clase en castellano, kebab-case, BEM liviano**: bloque (`semaforo`, `tarjeta-receta`), elemento como `bloque-elemento` (`semaforo-icono`, `banda-rango`), variante como `bloque-variante` (`chip-mini`) y estado como clase suelta adicional (`sin-datos`, `no-aplica`, `inactiva`). Cero clases utilitarias.
+7. **Prohibido el reborde lateral de acento en tarjetas** y el emoji como ícono (reglas anti-look-IA, pedido explícito de Facu). Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
+8. **Al terminar**: `npm test` (el contrato de estilos corre ahí) y, si tocaste algo visual, renders. Si el cambio *no* debía verse, generá un baseline antes y comparalo con `cmp`.
+
 ## Temas visuales (intercambiables)
 
 La app tiene **tres temas**: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen desde Ajustes o con `?tema=a|c|d`; la elección queda en `localStorage` y se aplica antes de pintar (script inline de `index.html`).
