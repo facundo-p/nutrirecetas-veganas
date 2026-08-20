@@ -117,9 +117,10 @@ describe('el contrato de temas', () => {
     expect(CONTRATO.filter((t) => !declarados.has(t))).toEqual([]);
   });
 
-  test.each(deTema.map((a) => [a.nombre, a.css] as const))('%s no declara roles muertos', (_n, css) => {
-    const muertos = [...declara(css)].filter((t) => !t.startsWith('--p-') && !usadoEnAlgunLado.has(t));
-    expect(muertos).toEqual([]);
+  test.each(deTema.map((a) => [a.nombre, a.css] as const))('%s no declara tokens muertos', (_n, css) => {
+    // un --p-* solo se usa dentro de su propio archivo; un rol, en cualquier lado
+    const usados = new Set([...usadoEnAlgunLado, ...usa(css)]);
+    expect([...declara(css)].filter((t) => !usados.has(t))).toEqual([]);
   });
 
   test.each(deTema.map((a) => [a.nombre, a.css, nombreDeTema(a.nombre)!] as const))(

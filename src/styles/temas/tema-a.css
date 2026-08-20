@@ -16,8 +16,7 @@
   --p-crema-claro: #fcfaf2; /* derivado: A describe "tarjetas crema" sin dar hex */
   --p-tinta: #2c2a22; /* 12.75 — igual que en la paleta A */
   --p-tinta-suave: #5c5a4e; /*  6.15 — derivado: A no trae texto secundario */
-  --p-oliva: #6b7a45; /*  4.15 — acento primario de la paleta A */
-  --p-oliva-honda: #57663a; /*  5.53 — la oliva cuando es texto */
+  --p-oliva-honda: #57663a; /*  5.53 — la oliva de A (#6b7a45) da 4.15: no llega como texto */
   --p-salvia: #9baa88; /*  2.19 — solo como tinte de chip, nunca texto */
   --p-terracota: #be5b35; /*  3.93 — la acción de la paleta A; solo relleno */
   --p-terracota-honda: #a24824; /*  5.34 — la terracota cuando es texto */
