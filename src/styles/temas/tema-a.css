@@ -1,0 +1,100 @@
+/* ══════════ Tema A — "botánica editorial" ══════════
+   La paleta de la iteración 1 (04 §3), que quedó registrada sin implementar y
+   vuelve como tema alternativo. Cálida y seria: los datos respiran porque el
+   fondo es calmo. Mismo papel ilustrado, misma estructura, mismas tipografías
+   que los otros temas — lo único propio es el color.
+
+   La paleta A trae 10 colores y la app necesita cubrir 39 roles, así que hay
+   cuatro derivaciones y una invención, todas anotadas abajo. Los tonos "hondos"
+   son el mismo patrón que ya justifica la zanahoria-honda del tema D: el tono
+   base no llega a 4.5:1 como texto sobre el papel.
+
+   Contrastes medidos sobre el papel #f6f1e5 (fórmula WCAG, sRGB linearizado). */
+:root[data-tema='a'] {
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-crema: #f6f1e5; /* el papel de la paleta A */
+  --p-crema-claro: #fcfaf2; /* derivado: A describe "tarjetas crema" sin dar hex */
+  --p-tinta: #2c2a22; /* 12.75 — igual que en la paleta A */
+  --p-tinta-suave: #5c5a4e; /*  6.15 — derivado: A no trae texto secundario */
+  --p-oliva: #6b7a45; /*  4.15 — acento primario de la paleta A */
+  --p-oliva-honda: #57663a; /*  5.53 — la oliva cuando es texto */
+  --p-salvia: #9baa88; /*  2.19 — solo como tinte de chip, nunca texto */
+  --p-terracota: #be5b35; /*  3.93 — la acción de la paleta A; solo relleno */
+  --p-terracota-honda: #a24824; /*  5.34 — la terracota cuando es texto */
+  --p-verde-profundo: #37502f; /*  7.93 — los headers de la paleta A */
+  --p-piedra: #8f8a7e; /*  3.05 — el "sin datos" de la paleta A */
+  --p-piedra-honda: #7c776b; /*  3.96 — la piedra cuando es texto */
+  --p-ciruela: #7d3f55; /*  6.86 — LA ÚNICA INVENCIÓN: ver nota abajo */
+  --p-musgo: #4c7c4a; /*  4.34 — semáforo: cubierto */
+  --p-mostaza: #c98f2e; /*  2.50 — semáforo: parcial */
+  --p-ladrillo: #b0492f; /*  4.85 — semáforo: insuficiente */
+  --p-pizarra: #5b7a9e; /*  3.95 — semáforo: cubierto por suplemento */
+
+  /* Nota sobre la ciruela: la paleta A no tiene ninguna familia berry, que es
+     el lugar del que la D saca la berenjena para las cifras y la remolacha para
+     los avisos. Sin ella, cifras y avisos caían las dos en la banda cálida ya
+     ocupada por la acción y el título de las recetas principales: cuatro
+     significados distintos a ΔE menor que 6. Es exactamente la colisión de
+     roles que causó el rediseño de la D. */
+
+  /* ── contrato de roles ── */
+
+  /* Superficie y tinta */
+  --papel: var(--p-crema);
+  --superficie: var(--p-crema-claro);
+  --tinta: var(--p-tinta);
+  --tinta-suave: var(--p-tinta-suave);
+  --fondo-imagen: url('/fondo.webp');
+
+  /* Identidad y acción */
+  --marca: var(--p-verde-profundo);
+  --kicker: var(--p-oliva-honda);
+  --titulo-seccion: var(--p-verde-profundo);
+  --accion: var(--p-terracota); /* relleno: piso 3:1 */
+  --accion-texto: var(--p-terracota-honda); /* texto y marcadores: piso 4.5:1 */
+  --sobre-accion: var(--p-crema-claro);
+  --seleccion: var(--p-verde-profundo);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-oliva-honda);
+  --link: var(--p-oliva-honda);
+  --foco: var(--p-terracota);
+
+  /* Datos */
+  --cifra: var(--p-ciruela);
+  --dato-suave: var(--p-piedra-honda);
+  --chip: var(--p-salvia);
+
+  /* Avisos y tips */
+  --aviso: var(--p-ladrillo);
+  --tip-positivo: var(--p-oliva-honda);
+  --tip-atencion: var(--p-ladrillo);
+  --tip-neutro: var(--p-tinta-suave);
+
+  /* Atributos de receta e ingrediente */
+  --icono-imprescindible: var(--p-terracota-honda);
+  --funcion-ingrediente: var(--p-tinta-suave);
+  --confirmado: var(--p-musgo);
+  --icono-freezer: var(--p-pizarra);
+  --icono-clasica: var(--p-mostaza);
+  --icono-indulgente: var(--p-ciruela);
+  --chip-preparado: var(--p-piedra-honda);
+
+  /* Semáforo */
+  --semaforo-cubierto: var(--p-musgo);
+  --semaforo-parcial: var(--p-mostaza);
+  --semaforo-insuficiente: var(--p-ladrillo);
+  --semaforo-suplemento: var(--p-pizarra);
+  --semaforo-sin-datos: var(--p-piedra);
+
+  /* Categoría de receta. La paleta A es anterior a la idea de categoría-por-color
+     y no trae escala, así que esta se derivó midiendo contra la vara real que
+     cumple el tema D: ΔE mínimo 26.3 entre categorías, 13.1 contra los roles
+     funcionales vecinos y 4.61:1 de contraste. Esta escala da 27.4 / 20.0 / 4.64
+     — mejor que la D en las tres. */
+  --cat-principal: #a1584d; /* 4.64 — ladrillo suave: el plato caliente */
+  --cat-dulce: #543113; /* 10.21 — tierra tostada */
+  --cat-preparado: #3f4d62; /*  7.61 — pizarra honda: el frasco */
+  --cat-pan: #876725; /*  4.66 — trigo */
+  --cat-conserva: #1b7969; /*  4.67 — verde petróleo: fermentos */
+}
