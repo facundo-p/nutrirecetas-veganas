@@ -1,0 +1,131 @@
+name: Pages
+
+# Publica las dos versiones juntas, siempre: main en /app/ y staging en /staging/.
+# Un push a cualquiera de las dos redespliega el sitio entero, así nunca queda
+# con mitades de momentos distintos.
+on:
+  push:
+    branches: [main, staging]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un deploy por vez. Sin cancel-in-progress: cancelar a mitad publicaría un sitio
+# incompleto.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: main
+
+      - uses: actions/checkout@v5
+        with:
+          ref: staging
+          path: staging
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            main/package-lock.json
+            staging/package-lock.json
+
+      - name: Build de main
+        working-directory: main
+        env:
+          VITE_BASE: /nutrirecetas-veganas/app/
+        run: npm ci && npm run build
+
+      - name: Build de staging
+        working-directory: staging
+        env:
+          VITE_BASE: /nutrirecetas-veganas/staging/
+          VITE_ENTORNO: staging
+        run: npm ci && npm run build
+
+      # Lo que de verdad protege los datos de Facu. IndexedDB es por origen, así
+      # que si staging se publicara con el nombre de base de producción,
+      # escribiría sobre su historial de cocciones real. Un test no alcanza: pasa
+      # aunque el flag nunca haya llegado al build. Esto mira el bundle que se
+      # está por publicar.
+      - name: Verificar que las dos bases no se pisan
+        run: |
+          if ! grep -rq 'nutrirecetas_user_staging' staging/dist/assets/; then
+            echo "::error::El build de staging NO usa la base de staging. Abortado para no pisar los datos reales."
+            exit 1
+          fi
+          if grep -rq 'nutrirecetas_user_staging' main/dist/assets/; then
+            echo "::error::El build de main contiene la base de staging."
+            exit 1
+          fi
+          echo "Bases separadas: staging usa nutrirecetas_user_staging, main no."
+
+      # staging es falla dura: si quedó mal, no se publica. main no, y esa
+      # diferencia es deliberada — son artefactos independientes, y abortar el
+      # deploy entero porque main no está listo bloquea el release que lo
+      # arreglaría, empujando a mergear en rojo.
+      - name: Verificar que cada build conoce su ruta
+        id: rutas
+        run: |
+          grep -q '/nutrirecetas-veganas/staging/' staging/dist/index.html \
+            || { echo "::error::staging no quedó construido para /staging/"; exit 1; }
+
+          if grep -q '/nutrirecetas-veganas/app/' main/dist/index.html; then
+            echo "main_listo=si" >> "$GITHUB_OUTPUT"
+            echo "Cada build apunta a su propia ruta."
+          else
+            echo "main_listo=no" >> "$GITHUB_OUTPUT"
+            echo "::warning::main todavía no sabe construirse para /app/: le falta el soporte de VITE_BASE, que llega con el próximo release. Se publica staging y /app/ queda con una página de espera."
+          fi
+
+      # La landing sale de staging: siempre tiene lo mismo que main o más nuevo.
+      - name: Armar el sitio
+        run: |
+          mkdir -p sitio/app sitio/staging
+          cp -r staging/dist/. sitio/staging/
+          cp staging/.github/pages-landing.html sitio/index.html
+
+          if [ "${{ steps.rutas.outputs.main_listo }}" = "si" ]; then
+            cp -r main/dist/. sitio/app/
+          else
+            # Página de espera en vez de un 404: la ventana dura un release.
+            cat > sitio/app/index.html <<'HTML'
+          <!doctype html>
+          <html lang="es-AR"><head><meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Todavía no publicada</title></head>
+          <body style="margin:0;min-height:100vh;display:grid;place-content:center;gap:1rem;padding:2rem;background:#f5efdc;color:#2b2622;font-family:system-ui,sans-serif;line-height:1.5;text-align:center">
+          <h1 style="margin:0;font-size:1.25rem">La app se publica con el próximo release</h1>
+          <p style="margin:0;max-width:34ch;color:#6b625a">Mientras tanto podés usar <a href="../staging/" style="color:inherit">la versión de prueba</a>. Ojo: tiene su propia base de datos.</p>
+          </body></html>
+          HTML
+          fi
+
+          find sitio -maxdepth 2 -name index.html
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: sitio
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
