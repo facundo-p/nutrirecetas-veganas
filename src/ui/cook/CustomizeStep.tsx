@@ -4,7 +4,7 @@ import { advertenciaDesmarcar, type LineaSesion } from '../../domain/session';
 import type { RecipeNutrition } from '../../domain/nutrition';
 import { midpoint } from '../../domain/interval';
 import { getSeedIndex } from '../../seed';
-import { formatNumber, normalize } from '../common/format';
+import { formatGramos, formatNumber, normalize } from '../common/format';
 import { IconAsterisco, IconSustituir } from '../icons/icons';
 
 /** Paso 1 de la sesión: qué va a la olla hoy. La nutrición se mueve en vivo. */
@@ -41,7 +41,7 @@ function LineaEditable({ linea }: { linea: LineaSesion }) {
           {linea.original && <em className="linea-sesion-original"> (en vez de {linea.original.nombre})</em>}
           {linea.agregada && <em className="linea-sesion-original"> (agregado)</em>}
         </span>
-        <span className="linea-sesion-cantidad">{formatNumber(linea.g_aprox, 0)} g</span>
+        <span className="linea-sesion-cantidad">{formatGramos(linea.g_aprox)} g</span>
       </label>
 
       {linea.funcion && <p className="linea-funcion">{linea.funcion}</p>}

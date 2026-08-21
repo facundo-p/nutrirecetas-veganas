@@ -20,6 +20,24 @@ export function formatNumber(value: number, decimals = 1): string {
   return String(rounded).replace('.', ',');
 }
 
+const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.75': '¾' };
+
+/**
+ * Cantidad de una línea de receta. Media cebolla se escribe ½, no 0,5: las
+ * fracciones de cocina se leen de un vistazo y el decimal obliga a traducir.
+ */
+export function formatCantidad(valor: number): string {
+  const entero = Math.floor(valor);
+  const glifo = GLIFO_DE_CUARTO[String(Number((valor - entero).toFixed(2)))];
+  if (glifo === undefined) return formatNumber(valor, 1);
+  return entero === 0 ? glifo : `${entero}${glifo}`;
+}
+
+/** Debajo del gramo el entero miente: 0,5 g de azafrán no es 1 g. */
+export function formatGramos(gramos: number): string {
+  return formatNumber(gramos, gramos > 0 && gramos < 1 ? 1 : 0);
+}
+
 export const MONTH_NAMES = [
   'enero',
   'febrero',
