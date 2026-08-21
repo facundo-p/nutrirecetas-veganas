@@ -1,0 +1,55 @@
+name: Tag y Release
+
+# Al mergear el PR de release, la versión ya está en package.json: de ahí sale
+# el tag. Si el push a main no trae una versión nueva, no hace nada.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Leer la versión
+        id: v
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: ¿El tag ya existe?
+        id: tag
+        run: |
+          if git rev-parse "v${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
+            echo "existe=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "existe=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      # La sección del changelog de esta versión, sin su encabezado: va como
+      # cuerpo del Release. El separador es una raya (—), no un guion.
+      - name: Extraer la sección del changelog
+        if: steps.tag.outputs.existe == 'no'
+        run: |
+          awk -v v="${{ steps.v.outputs.version }}" '
+            $0 ~ "^## \\[" v "\\]" { dentro = 1; next }
+            dentro && /^## \[/     { exit }
+            dentro                 { print }
+          ' CHANGELOG.md > cuerpo.md
+          test -s cuerpo.md || { echo "CHANGELOG.md no tiene sección para v${{ steps.v.outputs.version }}"; exit 1; }
+          cat cuerpo.md
+
+      - name: Crear el tag y publicar el Release
+        if: steps.tag.outputs.existe == 'no'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git tag "v${{ steps.v.outputs.version }}"
+          git push origin "v${{ steps.v.outputs.version }}"
+          gh release create "v${{ steps.v.outputs.version }}" \
+            --title "v${{ steps.v.outputs.version }}" \
+            --notes-file cuerpo.md
