@@ -9,6 +9,29 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.3.0] — 2026-08-21
+
+La app pasa a estar en internet: se puede usar desde el celular sin la compu
+prendida, e instalarla desde el navegador.
+
+### Agregado
+
+- **La app publicada** en `facundo-p.github.io/nutrirecetas-veganas/app/`. Es la
+  que tiene tus datos reales. Instalala desde el menú del navegador y queda como
+  un ícono más; instalada, además, Safari deja de purgarte los datos por no
+  usarla una semana. (#38)
+- **Una versión de prueba** en `.../staging/`, con lo que todavía no se publicó.
+  Usa **una base de datos aparte**: nada de lo que cargues ahí toca tu app. Se
+  distingue por el nombre debajo del ícono y por una banda de aviso adentro. (#38)
+- Un índice en la raíz del sitio con los links a las dos. (#25)
+
+### Cambiado
+
+- Las dos versiones se publican solas con cada cambio, y el publicador **verifica
+  que no compartan base de datos antes de subir nada**: si esa separación se
+  rompiera, el deploy falla en vez de dejar que la versión de prueba escriba
+  sobre tu historial de cocciones.
+
 ## [0.2.0] — 2026-08-21
 
 Primera versión que llega a `main`. Cierra la Fase 2: el ciclo completo de
