@@ -2,6 +2,7 @@
 import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
+import { routeHash } from '../../app/router';
 import { useSession } from '../../app/store';
 import { db } from '../../db/db';
 import { CookSession } from './CookSession';
@@ -10,6 +11,14 @@ import { CookSession } from './CookSession';
  * El ciclo que define la Fase 2: personalizar → cocinar → registrar, y que lo
  * registrado sea exactamente lo que se comió.
  */
+
+/**
+ * `registrar` escribe en la base y recién después navega. Esperar solo la
+ * escritura deja la navegación corriendo después del fin del test, contra un
+ * jsdom ya desmontado: unhandled rejection que rompe el CI de forma intermitente.
+ */
+const esperarQueTermineElRegistro = () =>
+  waitFor(() => expect(window.location.hash).toBe(routeHash({ screen: 'today' })));
 
 beforeEach(async () => {
   // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo
@@ -87,6 +96,7 @@ describe('sesión de cocina', () => {
       expect(consumos).toHaveLength(1);
       expect(consumos[0]!.porciones).toBe(2);
     });
+    await esperarQueTermineElRegistro();
   });
 
   test('el registro guarda las variaciones que se hicieron', async () => {
@@ -108,6 +118,7 @@ describe('sesión de cocina', () => {
       const cocciones = await db.cocciones.toArray();
       expect(cocciones[0]!.variaciones).toContainEqual({ tipo: 'desmarcado', nombre: 'Perejil' });
     });
+    await esperarQueTermineElRegistro();
   });
 
   test('una receta por probar ofrece subirle la confianza al registrarla', async () => {
@@ -124,5 +135,6 @@ describe('sesión de cocina', () => {
     await waitFor(async () => {
       expect((await db.overlays.get('r01'))?.ic_usuario).toBe(8);
     });
+    await esperarQueTermineElRegistro();
   });
 });
