@@ -38,7 +38,7 @@ Al cierre de cada fase se anota: qué funcionó, qué se rompió, qué decisión
 
 ---
 
-## Fase 1 — Dataset + cimientos + recetario (2026-08-19, pendiente de OK de Facu)
+## Fase 1 — Dataset + cimientos + recetario (2026-08-19, ✅ cerrada)
 
 - **El validador de la semilla pagó el primer día**: forma desconocida = build roto encontró de una que `grupo` de nutrientes es `critico|importante` (el README decía A/B), que `notas` de nutrientes es una lista estructurada, que `guarda.freezer` a veces es texto ("solo el pesto"), que los envases traen rangos `[min,max]` y que hay un kcal `null` explícito. Lección reforzada de Fase 0: la doc del dataset siempre pierde contra el JSON real.
 - **La migración de preparados fue más profunda que las 5 líneas fantasma detectadas**: la unidad original (`g_como_queso_P04`) delató los mapeos directos, pero p22 (tarta) directamente **no lista su masa** — hubo que agregar una línea entera (p07, 370 g). Y p31/p39 usan `margarina` donde Facu usa su manteca vegana p03: decisión flageada en el gate.
@@ -74,7 +74,7 @@ Al cierre de cada fase se anota: qué funcionó, qué se rompió, qué decisión
 
 ---
 
-## Fase 2 — Perfil, cocinar y registrar (2026-08-19, pendiente de OK de Facu)
+## Fase 2 — Perfil, cocinar y registrar (2026-08-19, ✅ cerrada — renders aprobados el 2026-08-21)
 
 - **Las dos decisiones de producto que definieron el modelo de datos las tomó Facu antes de escribir código**: (1) el semáforo cuenta *porciones comidas*, no cocciones — al registrar se declara cuánto se comió y el resto queda como sobras que se registran después; (2) en esta fase el semáforo solo ve cocciones de la app, con aviso explícito de que es parcial. Preguntar primero evitó una migración: la tabla `consumos` no existía en el plan original.
 - **El dataset declara dos factores veganos en prosa** (proteína "~1.0 g/kg", omega-3 "duplicar ALA") que su propio ejemplo de objetivos confirma numéricamente (75 g y 3,2 g para 75 kg). Formalizarlos en una tabla curada (T8) no contradice la regla de "no inventar factores": lo inventado sería ignorar el dato porque venía en una oración en vez de en un campo.
@@ -96,3 +96,16 @@ Al cierre de cada fase se anota: qué funcionó, qué se rompió, qué decisión
 - **El diff de renders pixel a pixel es lo que permite refactorizar sin miedo.** Los tres commits de refactor (mover 141 tokens, partir seis archivos CSS en quince, sacar el último estilo inline) cerraron con los 48 renders de C y D **idénticos byte por byte** a un baseline tomado antes de empezar. Ningún test unitario podía dar esa garantía. Ojo: hay que generar el baseline en el momento, porque los renders sembrados usan fechas relativas y los textos "hace N días" cambian de un día para el otro.
 - **El anti-FOUC era el punto de fricción escondido.** El script inline de `index.html` hardcodeaba `if (t === 'c')`. Corre antes del bundle, así que no puede importar `tema.ts` y la lista se repite sí o sí. La solución no fue eliminar la duplicación sino **hacerla verificable**: el test compara los temas de `tema.ts`, los archivos de `temas/` y el array del script. Cuando no se puede tener una sola fuente de verdad, que la divergencia falle en CI.
 - **El default deja de ser un caso especial.** Antes, la D era "ausencia de atributo". Ahora los tres temas son `:root[data-tema='X']` con la misma especificidad, mutuamente excluyentes, así que el orden de los `@import` entre temas es irrelevante — eso es lo que hace barato agregar el tema N+1. El archivo del default suma `:root` como red de seguridad: con un `data-tema` inválido la app renderiza un tema completo en vez de quedarse sin colores.
+
+---
+
+## Issues, PRs, tablero y versionado (2026-08-20)
+
+La planificación se muda de `docs/plan/` a Issues con sub-issues, el trabajo entra por PR con CI, y los releases se arman con `/release`. Lecciones, casi todas de cosas que la API de GitHub no hace y el diseño daba por sentadas:
+
+- **`Closes #N` solo cierra contra la rama por defecto.** Todo el trabajo entra por `staging`, así que la promesa de "el squash merge cierra el issue solo" era falsa y el workflow *Item closed → Hecho* del tablero nunca se iba a disparar. Lo resuelve `.github/workflows/cerrar-issues.yml`. Lección general: **verificar las promesas de automatización de la plataforma antes de construir encima**, sobre todo cuando el proyecto no usa la rama por defecto para trabajar.
+- **Los workflows nativos de Projects solo escriben en el campo de estado del proyecto**, nunca en un campo single-select propio. El diseño daba a los PRs sus columnas dedicadas (Borrador · CI corriendo · Listo para mergear · Mergeado); el campo llegó a existir, acumuló **0 items seteados** y se borró. Regla: **un campo que ninguna automatización puede tocar se desactualiza solo, y un tablero que miente es peor que uno impreciso.**
+- **La API de Projects deja crear vistas y filtros pero no la agrupación** (`ProjectV2ViewConfigurationInput` solo acepta `visibleFieldIds`), y **acepta cambiarle las opciones al campo `Status` pero descarta el cambio de nombre**. Las dos cosas se descubren probando, no leyendo la doc.
+- **El CI encontró un bug latente en su primera hora.** Los 264 tests pasaban pero quedaba una promesa colgada: `registrar` escribía en la base y recién después navegaba; el test esperaba solo la escritura, vitest desmontaba jsdom y `navigate()` corría contra un `window` inexistente. Pasaba en local y falló en el runner, más lento. Lección: **un test que espera un efecto intermedio no espera al handler**; hay que esperar el último efecto observable.
+- **El repo nunca se había pusheado**: origin estaba vacío y los 43 commits vivían solo en la máquina de Facu. El push inicial de 198 MB falló con HTTP 400 hasta subir `http.postBuffer`. Vale revisar `git ls-remote` antes de asumir que "está en GitHub".
+- **Comprimir `CLAUDE.md` sin perder nada se verifica, no se estima.** El primer intento quedó *más largo* que el original. Un chequeo automático de 45 datos duros (nombres de hoja, umbrales ΔE, tokens) permitió apretar hasta −14 % con la certeza de que ninguna regla se había caído.
