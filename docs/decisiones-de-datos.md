@@ -1,6 +1,8 @@
-# Fase 1 — Gate de datos ✅ resuelto (revisado por Facu el 2026-08-19)
+# Gate de datos
 
-Todas las decisiones de datos tomadas a mano durante la ingesta viven en `scripts/build-seed/curated-tables.ts`. Facu revisó cada fila; **sus respuestas quedan en la columna "¿OK?"** y ya están aplicadas en la semilla (`npm run seed`). Este documento pasa a ser el registro de por qué cada dato es como es.
+Todas las decisiones de datos tomadas a mano viven en `scripts/build-seed/curated-tables.ts`. Facu revisa cada fila; **sus respuestas quedan en la columna "¿OK?"** y se aplican a la semilla (`npm run seed`). Este documento es el registro de por qué cada dato es como es.
+
+Las secciones 1 a 5 son de la **Fase 1** y están ✅ resueltas (revisadas por Facu el 2026-08-19). La 6 es de la **Fase 2** y espera revisión.
 
 ## 0. Qué cambió al aplicar la revisión
 
@@ -77,3 +79,18 @@ Mapeos directos que no necesitan revisión (la unidad original los declara): p12
 ## 5. Correcciones a la documentación del dataset detectadas en la ingesta
 
 Ninguna requiere acción tuya; quedan registradas: `grupo` de nutrientes es `critico|importante` (no A/B) · `notas` de nutrientes es una lista estructurada con confianza · `guarda.freezer` a veces es texto ("solo el pesto") → se canonizó a `freezer: true` + nota · `envases_locales_ar` trae rangos `[min,max]` · 1 kcal explícitamente `null` (se trata como sin dato).
+
+## 6. Fase 2 — factores veganos que el dataset declara en prosa ⏳ pendiente
+
+`ajuste_vegano` casi siempre trae un `factor` numérico (hierro ×1.8, zinc ×1.5) y la regla del proyecto es **no inventar factores donde no los hay**. Pero dos nutrientes traen el multiplicador escrito en la descripción en vez de en un campo, y el propio dataset lo confirma numéricamente en `perfil.json → objetivos_derivados_del_ejemplo`.
+
+Estos dos factores **multiplican tus RDA**, así que se ven en el semáforo todos los días. Viven en `VEGAN_FACTORS_FROM_PROSE` (tabla T8).
+
+| nutriente | factor | de dónde sale | qué te da a vos | ¿OK? |
+|---|---|---|---|---|
+| Proteína | **×1.25** | *"Práctico: ~1.0 g/kg (digestibilidad vegetal algo menor)"* sobre una RDA de 0.8 g/kg. El ejemplo del dataset deriva **75 g para 75 kg** | 1.0 g/kg en vez de 0.8 | |
+| Omega-3 (ALA) | **×2** | *"Si no se suplementa EPA/DHA: duplicar ALA"*. El ejemplo del dataset deriva **3.2 g** desde una RDA de 1.6 g | 3.2 g/día en vez de 1.6, salvo que declares un suplemento de EPA/DHA | |
+
+**Por qué esto no viola la regla de no inventar**: transcribir un número que el dataset escribió en una oración y confirmó en su propio ejemplo es leer el dato, no fabricarlo. Lo inventado sería ignorarlo por venir en prosa. Cualquier otro `ajuste_vegano` sin número sigue siendo guía textual, sin multiplicador.
+
+**Si alguno no te cierra**: se saca de la tabla y ese nutriente vuelve a su RDA base sin ajuste.
