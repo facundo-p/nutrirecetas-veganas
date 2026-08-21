@@ -76,6 +76,26 @@ describe('perfil', () => {
     await waitFor(async () => expect((await db.perfil.get(1))!.peso_kg).toBe(80));
   });
 
+  test('el selector pregunta por el entrenamiento, no por la edad', () => {
+    render(<ProfileScreen />);
+    expect(screen.getByRole('radio', { name: /Sedentario/ })).toBeDefined();
+    expect(screen.getByRole('radio', { name: /Activo/ })).toBeDefined();
+    expect(screen.getByRole('radio', { name: /Entrenás fuerza/ })).toBeDefined();
+    expect(screen.getByRole('radio', { name: /Entrenamiento intenso/ })).toBeDefined();
+    // la edad ya está en el perfil: pedirla de nuevo acá era pedir un dato dos veces
+    expect(screen.queryByRole('radio', { name: /60/ })).toBeNull();
+  });
+
+  test('entrenamiento intenso lleva la proteína a 2 g/kg', async () => {
+    render(<ProfileScreen />);
+    await completarDatosMinimos();
+    fireEvent.click(screen.getByRole('radio', { name: /Entrenamiento intenso/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Calcular mis objetivos/ }));
+
+    await waitFor(() => expect(screen.getByText('Tus objetivos diarios')).toBeDefined());
+    expect(screen.getByText('150 g')).toBeDefined();
+  });
+
   test('deja claro que la app informa y no diagnostica', () => {
     render(<ProfileScreen />);
     expect(screen.getByText(/informa, no diagnostica/i)).toBeDefined();

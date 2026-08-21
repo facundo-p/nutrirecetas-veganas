@@ -9,6 +9,43 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.4.0] — 2026-08-21
+
+Dos números que la app venía diciendo mal: cuánta proteína necesitás si entrenás,
+y cuánto de cada ingrediente lleva una receta reescalada.
+
+### Agregado
+
+- **Niveles de entrenamiento en el perfil.** El selector de actividad topeaba en
+  1,2 g/kg de proteína y mezclaba "entrenás fuerza" con "tenés más de 60" en la
+  misma opción. Ahora son cuatro niveles y los dos de entrenamiento salen de la
+  literatura deportiva: **1,6 g/kg** si entrenás fuerza y **2,0 g/kg** si
+  entrenás intenso, contra el 1,0-1,2 que el dataset recomienda para un vegano
+  promedio. A 75 kg el objetivo pasa de 90 a 150 g por día, así que esperá ver
+  amarillo o rojo en proteína bastante más seguido: es información correcta, no
+  un problema a maquillar. (#47)
+- **La edad ya no se declara a mano.** El "+60" salió del selector porque la app
+  lo sabe por tu fecha de nacimiento. Se aplica como piso y gana el más alto de
+  los dos: 61 años entrenando intenso pide 2,0 g/kg, no 1,2. (#47)
+- Cada nivel guarda de dónde salió su número y con cuánta confianza, y hay un
+  test que no deja agregar un nivel sin fuente. El detalle está en
+  `docs/decisiones-de-datos.md`. (#47)
+
+### Corregido
+
+- **Las cantidades al reescalar porciones.** Bajar la boloñesa de 6 a 5 porciones
+  mostraba `0.8333333333333334 mediana` y `208.33333333333334 g secas`. Ahora
+  cada unidad se redondea según lo que significa — peso, medida de cocina, pieza
+  o cantidad a ojo — y manda la cantidad redondeada: los gramos se derivan de
+  ella, así lo que leés, lo que cocinás y lo que calcula la nutrición son el
+  mismo número. (#46)
+
+### Cambiado
+
+- Tu perfil ahora guarda el nivel elegido en vez del multiplicador numérico. La
+  base local se migra sola al abrir la app, y los backups viejos siguen
+  entrando: se convierten al importarlos.
+
 ## [0.3.0] — 2026-08-21
 
 La app pasa a estar en internet: se puede usar desde el celular sin la compu

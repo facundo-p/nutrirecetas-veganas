@@ -12,7 +12,7 @@ const perfil: Perfil = {
   sexo_para_requerimientos: 'masculino',
   fecha_nacimiento: '1990-01-01',
   peso_kg: 75,
-  multiplicador_actividad: 1,
+  nivel_entrenamiento: 'sedentario',
   suplementos: [],
   overrides: [],
   nutrientes_destacados: [],

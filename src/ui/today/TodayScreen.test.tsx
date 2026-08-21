@@ -11,7 +11,7 @@ const perfil: ProfileData = {
   sexo_para_requerimientos: 'masculino',
   fecha_nacimiento: '1990-01-01',
   peso_kg: 75,
-  multiplicador_actividad: 1,
+  nivel_entrenamiento: 'sedentario',
   suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
   overrides: [],
   nutrientes_destacados: ['hierro', 'b12', 'proteina'],

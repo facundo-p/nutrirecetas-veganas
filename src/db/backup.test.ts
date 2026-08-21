@@ -2,14 +2,14 @@ import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { analizarImport, exportar, hayQueRecordarBackup, importar } from './backup';
 import { db } from './db';
-import { addCoccion, addConsumo, getMeta, savePerfil, saveOverlay } from './repos';
+import { addCoccion, addConsumo, getMeta, getPerfil, savePerfil, saveOverlay } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 
 const perfil: ProfileData = {
   sexo_para_requerimientos: 'masculino',
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
-  multiplicador_actividad: 1.1,
+  nivel_entrenamiento: 'activo',
   suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
   overrides: [],
   nutrientes_destacados: ['hierro'],
@@ -113,6 +113,41 @@ describe('export / import', () => {
     expect((await getMeta()).cambios_desde_backup).toBeGreaterThan(0);
     await importar(backup, '1.0.0');
     expect((await getMeta()).cambios_desde_backup).toBe(0);
+  });
+});
+
+describe('backups de esquemas viejos', () => {
+  const backupV1 = {
+    user_schema_version: 1,
+    seed_version: '1.0.0',
+    exported_at: '2026-08-01T00:00:00.000Z',
+    data: {
+      perfil: {
+        id: 1,
+        sexo_para_requerimientos: 'masculino',
+        fecha_nacimiento: '1990-05-02',
+        peso_kg: 78,
+        multiplicador_actividad: 1.2,
+        suplementos: [],
+        overrides: [],
+        nutrientes_destacados: ['hierro'],
+        creado_en: '2026-07-01T00:00:00.000Z',
+        actualizado_en: '2026-08-01T00:00:00.000Z',
+      },
+      cocciones: [],
+      consumos: [],
+      overlays: [],
+    },
+  };
+
+  test('un backup v1 sigue entrando: es la única red de seguridad que hay', async () => {
+    await importar(backupV1, '1.0.0');
+    expect((await getPerfil())!.nivel_entrenamiento).toBe('fuerza');
+  });
+
+  test('el dry-run de un backup v1 no lo confunde con uno del futuro', () => {
+    expect(analizarImport(backupV1).esquema_futuro).toBe(false);
+    expect(analizarImport(backupV1).perfil).toBe(true);
   });
 });
 
