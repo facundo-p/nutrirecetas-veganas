@@ -1,0 +1,30 @@
+name: Tarea
+description: Un entregable revisable, hijo de una épica
+body:
+  - type: input
+    id: epica
+    attributes:
+      label: Épica
+      description: Número del issue de la fase a la que pertenece.
+      placeholder: "#5"
+
+  - type: textarea
+    id: que
+    attributes:
+      label: Qué hay que hacer
+    validations:
+      required: true
+
+  - type: textarea
+    id: verificacion
+    attributes:
+      label: Cómo se verifica
+      description: Qué test, qué pantalla o qué render prueba que está hecho.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notas
+    attributes:
+      label: Notas
+      description: Decisiones ya tomadas, invariantes que toca, cosas a no romper.
