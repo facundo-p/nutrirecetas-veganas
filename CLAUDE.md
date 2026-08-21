@@ -87,6 +87,15 @@ Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el 
 - Toda pantalla es **mobile-first y 100 % usable desde el celular**.
 - Detalle en `docs/arquitectura.md`.
 
+## Entornos
+
+Las dos versiones se publican juntas en GitHub Pages con cada push:
+
+- **`/nutrirecetas-veganas/app/`** — `main`, la que usa Facu. Base `nutrirecetas_user`.
+- **`/nutrirecetas-veganas/staging/`** — `staging`, para probar. Base `nutrirecetas_user_staging`, nombre propio en el manifest y banda de aviso.
+
+**IndexedDB es por origen, no por ruta**: sin esa separación, probar en staging escribiría sobre el historial real. La hace cumplir `pages.yml`, que verifica el bundle antes de publicarlo. Rutas hermanas y no anidadas para que los service workers no se pisen. `localStorage` sí se comparte: la preferencia de tema es común a las dos.
+
 ## Cierre de fase
 
 Cada fase cierra con **renders** publicados para revisión de Facu, una entrada en `lessons.md` y su OK explícito: la skill `/cierre-fase`. No se pasa a la fase siguiente sin ese cierre. Aprobada la fase, `/release`.

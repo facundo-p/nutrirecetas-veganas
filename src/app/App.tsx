@@ -61,6 +61,20 @@ function BackupReminder() {
   );
 }
 
+/**
+ * main y staging se instalan como dos PWA en el mismo celular. El nombre del
+ * manifest las distingue en la pantalla de inicio; esta banda las distingue una
+ * vez adentro, que es donde importa: acá se cocina y se registra de verdad.
+ */
+function BandaDeStaging() {
+  if (import.meta.env.VITE_ENTORNO !== 'staging') return null;
+  return (
+    <div className="banda-entorno" role="status">
+      Estás en <strong>staging</strong>. Los datos que cargues acá no son los de tu app.
+    </div>
+  );
+}
+
 export function App() {
   const route = useRoute();
   const [applyUpdate, setApplyUpdate] = useState<(() => void) | null>(null);
@@ -76,6 +90,7 @@ export function App() {
 
   return (
     <div className="app">
+      <BandaDeStaging />
       <Nav route={route} />
       <BackupReminder />
       <main className="contenido">
