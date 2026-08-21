@@ -162,10 +162,29 @@ gh pr checks --watch
 Verde → pasarle el link a Facu y **parar ahí**. Rojo → decir qué falló y no
 tocar nada más.
 
-## Después, sin intervención
+## Mientras tanto, sin intervención
 
 Facu mergea con **merge commit**. `tag-release.yml` detecta el push a `main`, lee
 la versión de `package.json`, crea el tag `vX.Y.Z` y publica el GitHub Release con
 la sección del changelog.
 
-Al terminar: mover a **Publicado** los issues del release en el tablero.
+## 10. Cerrar el tablero, ya mergeado
+
+Corre **cuando Facu avisa que mergeó**, no al abrir el PR: antes del merge no hay
+nada publicado que marcar.
+
+```bash
+git fetch origin --tags
+npm run tablero -- --seco   # qué se va a mover
+npm run tablero             # moverlo
+```
+
+Mueve a **Publicado** los issues cuyo cierre ya está en `main`. Es idempotente:
+lo que ya está en la columna no se vuelve a tocar, así que se puede correr de
+nuevo sin miedo.
+
+Si falla nombrando un campo o una columna, alguien renombró algo en el tablero.
+Arreglar el nombre en `scripts/tablero-publicado.ts`; no buscar el id a mano.
+
+Esto era una línea suelta debajo de "sin intervención" y se saltó en v0.2.0 y en
+v0.3.0. Es un paso numerado por esa razón.
