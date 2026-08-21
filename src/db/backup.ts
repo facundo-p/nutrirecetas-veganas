@@ -1,4 +1,5 @@
 import { db } from './db';
+import { migrarBackup } from './migrations';
 import { registrarBackup } from './repos';
 import { USER_SCHEMA_VERSION, backupSchema, type Backup } from './schema';
 
@@ -43,7 +44,7 @@ export interface ReporteImport {
 
 /** Dry-run: qué trae el archivo, antes de tocar nada. */
 export function analizarImport(json: unknown): ReporteImport {
-  const backup = backupSchema.parse(json);
+  const backup = backupSchema.parse(migrarBackup(json));
   return {
     perfil: backup.data.perfil !== null,
     cocciones: backup.data.cocciones.length,
@@ -62,7 +63,7 @@ export interface ResultadoImport {
 }
 
 export async function importar(json: unknown, seed_version: string): Promise<ResultadoImport> {
-  const backup = backupSchema.parse(json);
+  const backup = backupSchema.parse(migrarBackup(json));
   const reporte = analizarImport(backup);
   if (reporte.esquema_futuro) {
     throw new Error(

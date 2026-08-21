@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { NIVELES_ENTRENAMIENTO } from '../domain/actividad';
 import { intervalSchema } from '../seed/schema';
 
 /**
@@ -7,7 +8,8 @@ import { intervalSchema } from '../seed/schema';
  * Los campos van en castellano, como los de la semilla: son datos, no código.
  */
 
-export const USER_SCHEMA_VERSION = 1;
+/** v2: el perfil guarda `nivel_entrenamiento` en vez de `multiplicador_actividad`. */
+export const USER_SCHEMA_VERSION = 2;
 
 // ---------- perfil ----------
 
@@ -29,8 +31,6 @@ export const overrideSchema = z.strictObject({
 });
 export type ObjetivoManual = z.infer<typeof overrideSchema>;
 
-export const ACTIVITY_LEVELS = [1, 1.1, 1.2] as const;
-
 export const profileDataSchema = z.strictObject({
   nombre: z.string().optional(),
   /** Parámetro fisiológico de las tablas RDA, no identidad (así lo declara el dataset). */
@@ -38,7 +38,8 @@ export const profileDataSchema = z.strictObject({
   fecha_nacimiento: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   peso_kg: z.number().positive(),
   altura_cm: z.number().positive().optional(),
-  multiplicador_actividad: z.union([z.literal(1), z.literal(1.1), z.literal(1.2)]),
+  /** La elección, no el número: el g/kg y su fuente viven en `domain/actividad`. */
+  nivel_entrenamiento: z.enum(NIVELES_ENTRENAMIENTO),
   suplementos: z.array(supplementSchema),
   overrides: z.array(overrideSchema),
   nutrientes_destacados: z.array(z.string()),

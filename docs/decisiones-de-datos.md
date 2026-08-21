@@ -94,3 +94,25 @@ Estos dos factores **multiplican tus RDA**, así que se ven en el semáforo todo
 **Por qué esto no viola la regla de no inventar**: transcribir un número que el dataset escribió en una oración y confirmó en su propio ejemplo es leer el dato, no fabricarlo. Lo inventado sería ignorarlo por venir en prosa. Cualquier otro `ajuste_vegano` sin número sigue siendo guía textual, sin multiplicador.
 
 **Si alguno no te cierra**: se saca de la tabla y ese nutriente vuelve a su RDA base sin ajuste.
+
+## 7. Fase 2 — la proteína de quien entrena sale de la evidencia deportiva, no del dataset
+
+El dataset topea la proteína en **1.0-1.2 g/kg** y mete en la misma casilla a alguien que entrena fuerza y a alguien de más de 60 sedentario (*"1.0-1.2 en >60 años o entrenamiento de fuerza"*, confianza **6/10**, fuente AND Position Vegetarian Diets 2016). Es una recomendación de población general vegana: no describe a quien entrena en serio.
+
+Para los dos niveles de entrenamiento manda la literatura deportiva, que es más específica y más fuerte. La escalera vive en `src/domain/actividad.ts`, con la cita al lado de cada número.
+
+| nivel | g/kg | de dónde sale | confianza |
+|---|---|---|---|
+| Sedentario | 1.0 | dataset (AND 2016) | 6 |
+| Activo | 1.1 | dataset | 6 |
+| Entrenás fuerza | **1.6** | ISSN Position Stand: 1.4-2.0 g/kg para quien entrena; el punto de rendimientos decrecientes cae cerca de 1.6 | 8 |
+| Entrenamiento intenso | **2.0** | ISSN: extremo alto del rango para entrenados de fuerza, y una dieta vegana suma 10-20 % por digestibilidad (DIAAS más bajo) | 8 |
+| piso 60+ (automático) | 1.2 | dataset | 6 |
+
+**Por qué el dataset no gana acá**: la regla del proyecto es *no inventar factores*, no *no usar otra fuente*. Estos números tienen cita y confianza declaradas, más altas que la prosa que reemplazan. Lo que sí se mantiene: sin fuente no entra un nivel, y `actividad.test.ts` lo verifica.
+
+**La edad salió del selector**: el "+60" era una opción a mano pudiendo derivarse de `fecha_nacimiento`. Ahora es un piso automático y gana el más alto de los dos, así que 61 años entrenando intenso pide 2.0 y no 1.2. El dataset dice ">60" y se cuenta desde los 60 cumplidos: redondear para el lado de pedir más proteína es el error barato.
+
+**Qué cambia en el día a día**: a 75 kg, el nivel intenso pide 150 g/día contra los 90 g del techo anterior. Es esperable ver amarillo o rojo en proteína bastante seguido — es información correcta, no un problema a maquillar.
+
+**Si no te cierra**: se cambia el factor en `ENTRENAMIENTO` y el test dice qué g/kg quedó. El escape individual sigue siendo un `override` con motivo, que pisa todo.

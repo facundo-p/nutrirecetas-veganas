@@ -18,7 +18,7 @@ const perfilBase: ProfileData = {
   sexo_para_requerimientos: 'masculino',
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
-  multiplicador_actividad: 1.1,
+  nivel_entrenamiento: 'activo',
   suplementos: [],
   overrides: [],
   nutrientes_destacados: [],

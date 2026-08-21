@@ -19,7 +19,7 @@ const perfilEjemplo: Perfil = {
   sexo_para_requerimientos: 'masculino',
   fecha_nacimiento: '1990-01-01',
   peso_kg: 75,
-  multiplicador_actividad: 1,
+  nivel_entrenamiento: 'sedentario',
   suplementos: [
     { nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' },
     { nutriente_id: 'vitd', dosis: 15, unidad: 'µg', frecuencia: 'diaria' },
@@ -31,6 +31,9 @@ const perfilEjemplo: Perfil = {
 };
 
 const objetivos = objetivosDelPerfil(perfilEjemplo, idx.seed.nutrientes, HOY);
+
+const proteinaDe = (cambios: Partial<Perfil>) =>
+  objetivosDelPerfil({ ...perfilEjemplo, ...cambios }, idx.seed.nutrientes, HOY);
 
 describe('edad', () => {
   test('se deriva de la fecha de nacimiento', () => {
@@ -56,7 +59,7 @@ describe('objetivos del perfil de ejemplo (golden de perfil.json)', () => {
     expect(objetivos.get('yodo')!.valor).toBeCloseTo(150, 0);
   });
 
-  test('proteína: 0.8 g/kg × 1.25 (guía vegana) × 75 kg × actividad 1.0 = 75 g', () => {
+  test('proteína: 0.8 g/kg × 1.25 (guía vegana) × 75 kg, sedentario = 75 g', () => {
     expect(objetivos.get('proteina')!.valor).toBeCloseTo(75, 0);
   });
 
@@ -64,11 +67,29 @@ describe('objetivos del perfil de ejemplo (golden de perfil.json)', () => {
     expect(objetivos.get('omega3')!.valor).toBeCloseTo(3.2, 1);
   });
 
-  test('la actividad solo mueve la proteína, no el resto', () => {
-    const activo: Perfil = { ...perfilEjemplo, multiplicador_actividad: 1.2 };
-    const conActividad = objetivosDelPerfil(activo, idx.seed.nutrientes, HOY);
-    expect(conActividad.get('proteina')!.valor).toBeCloseTo(90, 0);
-    expect(conActividad.get('hierro')!.valor).toBeCloseTo(14.4, 2);
+  test('el entrenamiento solo mueve la proteína, no el resto', () => {
+    const conFuerza = proteinaDe({ nivel_entrenamiento: 'fuerza' });
+    expect(conFuerza.get('proteina')!.valor).toBeCloseTo(120, 0);
+    expect(conFuerza.get('hierro')!.valor).toBeCloseTo(14.4, 2);
+  });
+
+  test('el g/kg de cada nivel es el que declara su fuente, sobre 75 kg', () => {
+    // Fija el resultado, no el factor: si el ajuste vegano cambiara, los
+    // números deportivos se moverían solos y este test lo canta.
+    expect(proteinaDe({ nivel_entrenamiento: 'sedentario' }).get('proteina')!.valor).toBeCloseTo(75, 0);
+    expect(proteinaDe({ nivel_entrenamiento: 'activo' }).get('proteina')!.valor).toBeCloseTo(82.5, 1);
+    expect(proteinaDe({ nivel_entrenamiento: 'fuerza' }).get('proteina')!.valor).toBeCloseTo(120, 0);
+    expect(proteinaDe({ nivel_entrenamiento: 'intenso' }).get('proteina')!.valor).toBeCloseTo(150, 0);
+  });
+
+  test('a los 60 el piso por edad sube la proteína sin pedirlo en el selector', () => {
+    const mayor = { fecha_nacimiento: '1960-01-01', nivel_entrenamiento: 'sedentario' } as const;
+    expect(proteinaDe(mayor).get('proteina')!.valor).toBeCloseTo(90, 0);
+  });
+
+  test('el piso por edad no le baja el objetivo a quien entrena', () => {
+    const mayorQueEntrena = { fecha_nacimiento: '1960-01-01', nivel_entrenamiento: 'intenso' } as const;
+    expect(proteinaDe(mayorQueEntrena).get('proteina')!.valor).toBeCloseTo(150, 0);
   });
 
   test('las unidades son de cantidad, no de RDA (proteína en g, no g/kg)', () => {
