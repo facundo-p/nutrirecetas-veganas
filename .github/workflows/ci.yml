@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [staging, main]
+  push:
+    branches: [staging, main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Incluye el contrato de temas y el de estilos.
+      - name: Tests
+        run: npm test
+
+      # Regenera la semilla desde .artifacts/, valida el diff de ids inmutables,
+      # compila TS y buildea Vite. Es el gate que /cierre-fase corre a mano.
+      - name: Build
+        run: npm run build

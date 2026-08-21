@@ -1,0 +1,51 @@
+/* ============ Ajustes ============ */
+
+.bloque-ajustes {
+  margin-bottom: var(--sp-6);
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 40rem;
+}
+
+.bloque-ajustes h2 {
+  font-size: var(--fs-xl);
+}
+
+.estado-backup {
+  font-size: var(--fs-sm);
+  background: var(--superficie);
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  padding: var(--sp-3);
+}
+
+.acciones-ajustes {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.lista-versiones {
+  list-style: none;
+  padding: 0;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  display: grid;
+  gap: var(--sp-1);
+}
+
+/* banner de recordatorio de backup */
+
+.banner-backup {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  background: color-mix(in srgb, var(--semaforo-parcial) 16%, var(--superficie));
+  border-bottom: 1px solid color-mix(in srgb, var(--semaforo-parcial) 45%, transparent);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+}

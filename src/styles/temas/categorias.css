@@ -1,0 +1,33 @@
+/* ══════════ El puente entre la categoría de receta y el color ══════════
+   Compartido por todos los temas: acá no se nombra ninguno.
+
+   Ojo: `--titulo-receta` se declara sobre [data-cat] y no en :root a propósito.
+   Una custom property que contiene var() se resuelve en el elemento donde se
+   declara, no donde se usa: declarada en :root, `var(--cat-actual)` todavía no
+   existiría y caería al fallback. Sobre [data-cat] resuelve la categoría real.
+
+   El fallback es lo que hace que un tema no tenga que nombrarse a sí mismo:
+   quien quiere el título en un color fijo declara --titulo-receta-fijo en su
+   bloque (la C); quien quiere el color de la categoría no declara nada (D y A)
+   y cae a --cat-actual. Verificado en Chromium en los cuatro casos, incluido
+   el de un data-tema inválido. */
+
+[data-cat] {
+  --titulo-receta: var(--titulo-receta-fijo, var(--cat-actual));
+}
+
+[data-cat='principal'] {
+  --cat-actual: var(--cat-principal);
+}
+[data-cat='dulce'] {
+  --cat-actual: var(--cat-dulce);
+}
+[data-cat='preparado'] {
+  --cat-actual: var(--cat-preparado);
+}
+[data-cat='pan'] {
+  --cat-actual: var(--cat-pan);
+}
+[data-cat='conserva'] {
+  --cat-actual: var(--cat-conserva);
+}

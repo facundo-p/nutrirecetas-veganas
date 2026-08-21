@@ -1,0 +1,90 @@
+/* ══════════ Tema D — "el color dice de qué se trata" (default) ══════════
+   Cada receta dice su categoría con el color de su título; espinaca y zanahoria
+   son los protagonistas; berenjena pasa a cifras y navegación; remolacha queda
+   reservada para lo que pide atención. Documentado en 04 §3.
+
+   Estructura de todo archivo de tema:
+     1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
+     2) el contrato de roles, que es lo único que la app puede nombrar
+
+   Este archivo lista `:root` además de su propio atributo porque D es el
+   default: si el atributo falta o trae un valor inválido, la app igual
+   renderiza un tema completo en vez de quedarse sin ningún color. */
+:root,
+:root[data-tema='d'] {
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-papel: #f5efdc;
+  --p-tofu: #fdfaf0;
+  --p-tinta: #2c2a22;
+  --p-tinta-suave: #5d594c;
+  --p-espinaca: #427a3a;
+  --p-zanahoria: #d06a24;
+  --p-zanahoria-honda: #b85718; /* la zanahoria cuando es tipografía */
+  --p-berenjena: #5c3a63;
+  --p-remolacha: #a82d52;
+  --p-zapallito: #47903f;
+  --p-garbanzo: #d1942c;
+  --p-rabanito: #cf3d4d;
+  --p-repollo-colorado: #85477f;
+  --p-chia: #75787d;
+  --p-lechuga: #a5c179;
+  --p-soja: #ab7442;
+
+  /* ── contrato de roles ── */
+
+  /* Superficie y tinta */
+  --papel: var(--p-papel);
+  --superficie: var(--p-tofu);
+  --tinta: var(--p-tinta);
+  --tinta-suave: var(--p-tinta-suave);
+  --fondo-imagen: url('/fondo.webp');
+
+  /* Identidad y acción */
+  --marca: var(--p-espinaca);
+  --kicker: var(--p-espinaca);
+  --titulo-seccion: var(--p-zanahoria-honda);
+  --accion: var(--p-zanahoria); /* relleno: hace de fondo, piso 3:1 */
+  --accion-texto: var(--p-zanahoria); /* la acción cuando es texto o marcador */
+  --sobre-accion: var(--p-tofu); /* lo que va encima de un relleno de acción */
+  --seleccion: var(--p-espinaca);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-berenjena); /* volver, atrás, cancelar */
+  --link: var(--p-espinaca);
+  --foco: var(--p-zanahoria);
+
+  /* Datos */
+  --cifra: var(--p-berenjena);
+  --dato-suave: var(--p-chia); /* lo apagado: metadato, sin datos, no aplica */
+  --chip: var(--p-lechuga);
+
+  /* Avisos y tips */
+  --aviso: var(--p-remolacha);
+  --tip-positivo: var(--p-espinaca); /* potenciador, sugerencia, secreto del chef */
+  --tip-atencion: var(--p-remolacha); /* precaución, inhibidor, corrección */
+  --tip-neutro: var(--p-tinta-suave); /* técnica, dato */
+
+  /* Atributos de receta e ingrediente */
+  --icono-imprescindible: var(--p-zanahoria-honda);
+  --funcion-ingrediente: var(--p-tinta-suave);
+  --confirmado: var(--p-zapallito); /* receta probada, ingrediente en temporada */
+  --icono-freezer: var(--p-repollo-colorado);
+  --icono-clasica: var(--p-garbanzo);
+  --icono-indulgente: var(--p-remolacha);
+  --chip-preparado: var(--p-soja);
+
+  /* Semáforo: nunca comunica solo con color, pero el color acompaña */
+  --semaforo-cubierto: var(--p-zapallito);
+  --semaforo-parcial: var(--p-garbanzo);
+  --semaforo-insuficiente: var(--p-rabanito);
+  --semaforo-suplemento: var(--p-repollo-colorado);
+  --semaforo-sin-datos: var(--p-chia);
+
+  /* Categoría de receta: escala propia, desacoplada de los roles funcionales.
+     Elegidas midiendo: ningún par baja de ΔE 26 entre sí ni contra sus vecinos. */
+  --cat-principal: #9a3a2c; /* tomate — saladas y combos */
+  --cat-dulce: #5e4126; /* cacao amargo */
+  --cat-preparado: #5a5f72; /* chía */
+  --cat-pan: #8a6520; /* trigo tostado */
+  --cat-conserva: #1f6b5e; /* kombu — fermentos y escabeches */
+}

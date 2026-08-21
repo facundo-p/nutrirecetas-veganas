@@ -1,0 +1,1080 @@
+{
+ "meta": {
+  "version": "1.1",
+  "fecha": "2026-08",
+  "poblacion_referencia": "adultos sanos 19-50, no embarazo/lactancia",
+  "escala_confianza": {
+   "9-10": "valor oficial (NASEM/NIH ODS/EFSA/OMS) verificado ago-2026",
+   "7-8": "consenso científico fuerte o base de datos oficial con variabilidad natural",
+   "5-6": "recomendación de expertos reconocidos en nutrición vegana, sin RDA oficial",
+   "3-4": "evidencia emergente o limitada"
+  },
+  "disclaimer": "Orientativo. No reemplaza laboratorio ni consulta profesional. Controlar B12 (MMA), vitamina D y ferritina con análisis.",
+  "nota_version": "agrega ventana_evaluacion (dia|semana) por nutriente: el semáforo evalúa cada nutriente en SU ventana, nunca por comida individual"
+ },
+ "fuentes": {
+  "1": {
+   "nombre": "NIH ODS - Vitamin B12 HP Fact Sheet",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"
+  },
+  "2": {
+   "nombre": "Today's Dietitian - Vitamin B12 and the Vegan Diet",
+   "url": "https://www.todaysdietitian.com/vitamin-b12-and-the-vegan-diet/"
+  },
+  "3": {
+   "nombre": "VeganHealth.org - B12 Recommendations",
+   "url": "https://veganhealth.org/vitamin-b12/"
+  },
+  "4": {
+   "nombre": "VeganHealth.org - Rationale B12",
+   "url": "https://veganhealth.org/vitamin-b12/explanation-of-vitamin-b12-recommendations/"
+  },
+  "5": {
+   "nombre": "NIH ODS - Vitamin D",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"
+  },
+  "6": {
+   "nombre": "NIH ODS - Iron",
+   "url": "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/"
+  },
+  "7": {
+   "nombre": "Hunt JR, Am J Clin Nutr 2003 - Bioavailability vegetarian diets",
+   "url": "https://www.sciencedirect.com/science/article/pii/S0002916522033652"
+  },
+  "8": {
+   "nombre": "Hallberg et al / Nutrient Index - Iron & Vitamin C",
+   "url": "https://thenutrientindex.com/nutrients/iron-absorption-and-vitamin-c/"
+  },
+  "9": {
+   "nombre": "NIH ODS - Vitamin A; Layrisse 1997",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/"
+  },
+  "10": {
+   "nombre": "Gibson RS - fitato, remojo, fermentación",
+   "url": null
+  },
+  "11": {
+   "nombre": "NIH ODS - Calcium",
+   "url": "https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/"
+  },
+  "12": {
+   "nombre": "ScienceInsights - iron inhibitors",
+   "url": "https://scienceinsights.org/what-foods-interfere-with-iron-absorption-and-why/"
+  },
+  "13": {
+   "nombre": "NIH ODS - Zinc",
+   "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/"
+  },
+  "14": {
+   "nombre": "IOM 2001 DRIs; VeganHealth - Zinc",
+   "url": "https://veganhealth.org/zinc/"
+  },
+  "15": {
+   "nombre": "Plant Nutrition & Wellness - Vegan Zinc",
+   "url": "https://www.plantnutritionwellness.com/vegan-zinc-sources-absorption-and-deficiency/"
+  },
+  "16": {
+   "nombre": "Weaver CM - Dietary calcium vegetarian diet, AJCN 1994",
+   "url": null
+  },
+  "17": {
+   "nombre": "NIH ODS - Iodine",
+   "url": "https://ods.od.nih.gov/factsheets/Iodine-HealthProfessional/"
+  },
+  "18": {
+   "nombre": "Ley 17.259 (Argentina) - yodación de sal",
+   "url": null
+  },
+  "19": {
+   "nombre": "Teas J, Thyroid 2004 - iodine in seaweed",
+   "url": null
+  },
+  "20": {
+   "nombre": "NIH ODS - Selenium",
+   "url": "https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/"
+  },
+  "21": {
+   "nombre": "USDA FoodData Central - Brazil nuts",
+   "url": "https://fdc.nal.usda.gov/"
+  },
+  "22": {
+   "nombre": "NASEM DRIs Macronutrients 2005",
+   "url": "https://nap.nationalacademies.org/catalog/10490"
+  },
+  "23": {
+   "nombre": "Pick Up Limes - Omega-3 for vegans",
+   "url": "https://www.pickuplimes.com/article/omega-3-22"
+  },
+  "24": {
+   "nombre": "Today's Dietitian - Algae DHA+EPA (Messina)",
+   "url": "https://www.todaysdietitian.com/comparing-algae-based-dhaepa-supplements/"
+  },
+  "25": {
+   "nombre": "Revisiones conversión ALA→EPA/DHA, aceite algal",
+   "url": null
+  },
+  "26": {
+   "nombre": "AND Position Vegetarian Diets 2016; Messina & Norris",
+   "url": null
+  },
+  "27": {
+   "nombre": "NIH ODS - Vitamin C",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/"
+  },
+  "28": {
+   "nombre": "NIH ODS - Folate",
+   "url": "https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/"
+  },
+  "29": {
+   "nombre": "NIH ODS - Riboflavin / B6",
+   "url": "https://ods.od.nih.gov/factsheets/Riboflavin-HealthProfessional/"
+  },
+  "30": {
+   "nombre": "NIH ODS - Vitamin E",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/"
+  },
+  "31": {
+   "nombre": "NIH ODS - Vitamin K",
+   "url": "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/"
+  },
+  "32": {
+   "nombre": "NIH ODS - Magnesium",
+   "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/"
+  },
+  "33": {
+   "nombre": "NASEM DRIs Sodium & Potassium 2019",
+   "url": null
+  },
+  "34": {
+   "nombre": "NuEva Study - fiber/Se/Zn in vegans",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10459941/"
+  },
+  "35": {
+   "nombre": "NIH ODS - Choline",
+   "url": "https://ods.od.nih.gov/factsheets/Choline-HealthProfessional/"
+  }
+ },
+ "nutrientes": [
+  {
+   "id": "b12",
+   "nombre": "Vitamina B12",
+   "grupo": "critico",
+   "unidad": "µg",
+   "rda": {
+    "hombre": 2.4,
+    "mujer": 2.4
+   },
+   "ajuste_vegano": {
+    "descripcion": "Suplementación obligatoria. Cianocobalamina: 25-100 µg/día, o 1000 µg 2x/semana, o 2-3.5 µg 2x/día vía fortificados",
+    "confianza": 8,
+    "fuentes": [
+     2,
+     3
+    ]
+   },
+   "ul": null,
+   "confianza_rda": 10,
+   "fuentes": [
+    1
+   ],
+   "notas": [
+    {
+     "texto": "Sin fuente vegetal confiable; espirulina contiene análogos inactivos",
+     "confianza": 8,
+     "fuentes": [
+      3
+     ]
+    },
+    {
+     "texto": "Transporte activo satura en ~1.5-2 µg/toma; el excedente se absorbe ~1% (por eso las megadosis)",
+     "confianza": 8,
+     "fuentes": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "texto": "Recarga si >3 meses sin fuente: 2000 µg/día x 2 semanas",
+     "confianza": 7,
+     "fuentes": [
+      3
+     ]
+    },
+    {
+     "texto": "En Argentina muchas levaduras nutricionales NO están fortificadas: verificar por marca",
+     "confianza": 7,
+     "fuentes": []
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "reservas hepáticas de años: lo que importa es sostener el esquema suplementario, no el día puntual"
+  },
+  {
+   "id": "vitd",
+   "nombre": "Vitamina D",
+   "grupo": "critico",
+   "unidad": "µg",
+   "rda": {
+    "hombre": 15,
+    "mujer": 15,
+    "mayores_70": 20
+   },
+   "ajuste_vegano": {
+    "descripcion": "Sin ajuste de dosis; en invierno (Buenos Aires, lat 34°S) la síntesis solar cae: considerar fortificados o suplemento D2/D3 vegano",
+    "confianza": 6,
+    "fuentes": [
+     5
+    ]
+   },
+   "ul": 100,
+   "confianza_rda": 10,
+   "fuentes": [
+    5
+   ],
+   "notas": [
+    {
+     "texto": "Equivalencia: 1 µg = 40 UI (RDA = 600 UI)",
+     "confianza": 10,
+     "fuentes": [
+      5
+     ]
+    },
+    {
+     "texto": "Liposoluble: suplemento con comida con grasa",
+     "confianza": 7,
+     "fuentes": [
+      5
+     ]
+    },
+    {
+     "texto": "Hongos expuestos a UV son la única fuente vegetal relevante (D2, muy variable)",
+     "confianza": 7,
+     "fuentes": [
+      5
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "reserva corporal amplia; evaluar el esquema sol/suplemento/fortificados"
+  },
+  {
+   "id": "hierro",
+   "nombre": "Hierro",
+   "grupo": "critico",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 8,
+    "mujer_19_50": 18,
+    "mujer_posmenopausia": 8
+   },
+   "ajuste_vegano": {
+    "descripcion": "x1.8 por menor biodisponibilidad del hierro no-hemo: hombre ~14 mg, mujer 19-50 ~32 mg",
+    "factor": 1.8,
+    "confianza": 9,
+    "fuentes": [
+     6
+    ]
+   },
+   "ul": 45,
+   "confianza_rda": 10,
+   "fuentes": [
+    6
+   ],
+   "notas": [
+    {
+     "texto": "Absorción no-hemo 2-20% según composición de la comida y reservas propias",
+     "confianza": 9,
+     "fuentes": [
+      6,
+      7
+     ]
+    },
+    {
+     "texto": "El cuerpo regula al alza la absorción cuando la ferritina baja",
+     "confianza": 8,
+     "fuentes": [
+      6
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "promediar la semana es aceptable; lo puntual por comida solo importa para las reglas de absorción R1-R5"
+  },
+  {
+   "id": "zinc",
+   "nombre": "Zinc",
+   "grupo": "critico",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 11,
+    "mujer": 8
+   },
+   "ajuste_vegano": {
+    "descripcion": "Hasta x1.5 en dietas altas en fitato (estimación IOM, no RDA oficial): hombre ~16.5 mg, mujer ~12 mg",
+    "factor": 1.5,
+    "confianza": 7,
+    "fuentes": [
+     13,
+     14
+    ]
+   },
+   "ul": 40,
+   "confianza_rda": 10,
+   "fuentes": [
+    13
+   ],
+   "notas": [
+    {
+     "texto": "Regla práctica: incluir ≥2 mg de zinc por comida",
+     "confianza": 5,
+     "fuentes": [
+      14
+     ]
+    },
+    {
+     "texto": "Sin biomarcador individual confiable: la estrategia es la ingesta consistente",
+     "confianza": 6,
+     "fuentes": [
+      14
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "idealmente repartido entre comidas (sin biomarcador: la consistencia es la estrategia)"
+  },
+  {
+   "id": "calcio",
+   "nombre": "Calcio",
+   "grupo": "critico",
+   "unidad": "mg",
+   "rda": {
+    "adultos_19_50": 1000,
+    "mujer_mayor_50": 1200,
+    "mayores_70": 1200
+   },
+   "ajuste_vegano": {
+    "descripcion": "Sin ajuste de dosis; priorizar fuentes de alta biodisponibilidad (crucíferas bajas en oxalato, tofu con calcio, bebidas fortificadas)",
+    "confianza": 8,
+    "fuentes": [
+     11,
+     16
+    ]
+   },
+   "ul": 2500,
+   "confianza_rda": 10,
+   "fuentes": [
+    11
+   ],
+   "notas": [
+    {
+     "texto": "Absorción fraccional cae en dosis grandes: repartir en tomas ≤500 mg",
+     "confianza": 8,
+     "fuentes": [
+      11
+     ]
+    },
+    {
+     "texto": "Biodisponibilidad: kale/brócoli/rúcula ~40-60%; espinaca/acelga ~5% (oxalatos)",
+     "confianza": 8,
+     "fuentes": [
+      11,
+      16
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "mejor repartido en tomas <=500 mg"
+  },
+  {
+   "id": "yodo",
+   "nombre": "Yodo",
+   "grupo": "critico",
+   "unidad": "µg",
+   "rda": {
+    "adultos": 150
+   },
+   "ajuste_vegano": {
+    "descripcion": "Usar sal yodada como fuente principal (Argentina: yodación obligatoria, ~30 µg/g de sal). Sales marinas/rosadas NO suelen estar yodadas",
+    "confianza": 8,
+    "fuentes": [
+     17,
+     18
+    ]
+   },
+   "ul": 1100,
+   "confianza_rda": 10,
+   "fuentes": [
+    17
+   ],
+   "notas": [
+    {
+     "texto": "Nori: ~16-43 µg/g (dosis razonable); kombu puede superar 1000 µg/g: solo saborizar y retirar",
+     "confianza": 7,
+     "fuentes": [
+      17,
+      19
+     ]
+    },
+    {
+     "texto": "Goitrógenos (crucíferas/soja) solo problemáticos si el yodo ya es deficiente",
+     "confianza": 7,
+     "fuentes": [
+      17
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "la tiroides tiene reserva: el promedio semanal manda; sal yodada diaria lo resuelve solo"
+  },
+  {
+   "id": "selenio",
+   "nombre": "Selenio",
+   "grupo": "critico",
+   "unidad": "µg",
+   "rda": {
+    "adultos": 55
+   },
+   "ajuste_vegano": {
+    "descripcion": "Regla práctica: 1-2 castañas de Pará/día cubren la RDA sin riesgo de exceso",
+    "confianza": 8,
+    "fuentes": [
+     20,
+     21
+    ]
+   },
+   "ul": 400,
+   "confianza_rda": 10,
+   "fuentes": [
+    20
+   ],
+   "notas": [
+    {
+     "texto": "Contenido vegetal depende del suelo: los valores de tabla para granos/verduras son poco confiables individualmente",
+     "confianza": 8,
+     "fuentes": [
+      20
+     ]
+    },
+    {
+     "texto": "Castaña de Pará: ~70-95 µg/unidad promedio, rango documentado enorme; no exceder 2/día",
+     "confianza": 8,
+     "fuentes": [
+      20,
+      21
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "1-2 castañas de Pará por día o el promedio semanal equivalente"
+  },
+  {
+   "id": "omega3",
+   "nombre": "Omega-3 (ALA / EPA+DHA)",
+   "grupo": "critico",
+   "unidad": "g ALA",
+   "rda": {
+    "hombre_ala_g": 1.6,
+    "mujer_ala_g": 1.1
+   },
+   "ajuste_vegano": {
+    "descripcion": "Si no se suplementa EPA/DHA: duplicar ALA (~2.2-4.4 g/día). Opcional por consenso experto: EPA+DHA algal 200-300 mg 2-3x/semana (diario en >60, embarazo/lactancia)",
+    "confianza": 6,
+    "fuentes": [
+     23,
+     24
+    ]
+   },
+   "ul": null,
+   "confianza_rda": 10,
+   "fuentes": [
+    22
+   ],
+   "notas": [
+    {
+     "texto": "Conversión ALA→EPA ~5-10% (rango 0.3-21%), ALA→DHA <1-9%",
+     "confianza": 7,
+     "fuentes": [
+      23,
+      25
+     ]
+    },
+    {
+     "texto": "Reducir exceso de omega-6 (girasol/maíz) mejora la conversión: compiten por las mismas enzimas",
+     "confianza": 7,
+     "fuentes": [
+      23,
+      25
+     ]
+    },
+    {
+     "texto": "Lino debe consumirse molido y conservarse en frío",
+     "confianza": 8,
+     "fuentes": [
+      25
+     ]
+    },
+    {
+     "texto": "Aceite de microalgas equivale a aceite de pescado en biodisponibilidad",
+     "confianza": 8,
+     "fuentes": [
+      25
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "el esquema es semanal por diseño (ALA diario o EPA/DHA 2-3x/semana)"
+  },
+  {
+   "id": "proteina",
+   "nombre": "Proteína (lisina)",
+   "grupo": "critico",
+   "unidad": "g/kg",
+   "rda": {
+    "adultos_g_kg": 0.8
+   },
+   "ajuste_vegano": {
+    "descripcion": "Práctico: ~1.0 g/kg (digestibilidad vegetal algo menor); 1.0-1.2 en >60 años o entrenamiento de fuerza. Asegurar lisina: ~3 porciones/día de legumbres/soja/quinoa",
+    "confianza": 6,
+    "fuentes": [
+     26
+    ]
+   },
+   "ul": null,
+   "confianza_rda": 10,
+   "fuentes": [
+    22
+   ],
+   "notas": [
+    {
+     "texto": "No hace falta combinar proteínas en la misma comida: el pool de aminoácidos se completa en el día",
+     "confianza": 8,
+     "fuentes": [
+      26
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "el pool de aminoácidos se completa en el día; lisina: mirar el acumulado diario"
+  },
+  {
+   "id": "vitc",
+   "nombre": "Vitamina C",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 90,
+    "mujer": 75
+   },
+   "ul": 2000,
+   "confianza_rda": 10,
+   "fuentes": [
+    27
+   ],
+   "notas": [
+    {
+     "texto": "Rol estratégico: potenciador de hierro en cada comida (25-100 mg multiplican absorción x2-4)",
+     "confianza": 9,
+     "fuentes": [
+      7,
+      8,
+      27
+     ]
+    },
+    {
+     "texto": "Termolábil e hidrosoluble: pérdidas 30-60% con hervido largo; preferir vapor/crudo",
+     "confianza": 8,
+     "fuentes": [
+      27
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "hidrosoluble sin reserva; además, su rol potenciador de hierro es POR COMIDA (R1)"
+  },
+  {
+   "id": "vita",
+   "nombre": "Vitamina A (carotenoides)",
+   "grupo": "importante",
+   "unidad": "µg RAE",
+   "rda": {
+    "hombre": 900,
+    "mujer": 700
+   },
+   "ul": 3000,
+   "ul_nota": "el UL aplica solo a retinol preformado, no a carotenos",
+   "confianza_rda": 10,
+   "fuentes": [
+    9
+   ],
+   "notas": [
+    {
+     "texto": "Conversión β-caroteno alimentario→retinol: 12:1",
+     "confianza": 9,
+     "fuentes": [
+      9
+     ]
+    },
+    {
+     "texto": "Requiere grasa en la comida; cocción y procesado (puré, salsa) aumentan disponibilidad",
+     "confianza": 8,
+     "fuentes": [
+      9
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana",
+   "ventana_nota": "el hígado almacena meses: el promedio semanal es lo relevante"
+  },
+  {
+   "id": "folato",
+   "nombre": "Folato (B9)",
+   "grupo": "importante",
+   "unidad": "µg DFE",
+   "rda": {
+    "adultos": 400
+   },
+   "ul": 1000,
+   "ul_nota": "el UL aplica solo a ácido fólico sintético",
+   "confianza_rda": 10,
+   "fuentes": [
+    28
+   ],
+   "notas": [
+    {
+     "texto": "Legumbres y hojas verdes lo cubren de sobra; termolábil",
+     "confianza": 8,
+     "fuentes": [
+      28
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  },
+  {
+   "id": "b2",
+   "nombre": "Riboflavina (B2)",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 1.3,
+    "mujer": 1.1
+   },
+   "ul": null,
+   "confianza_rda": 10,
+   "fuentes": [
+    29
+   ],
+   "notas": [
+    {
+     "texto": "Atención menor en veganos (fuente omnívora: lácteos). Fuentes: almendras, hongos, levadura nutricional",
+     "confianza": 7,
+     "fuentes": [
+      29
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  },
+  {
+   "id": "vite",
+   "nombre": "Vitamina E",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "adultos": 15
+   },
+   "ul": 1000,
+   "confianza_rda": 10,
+   "fuentes": [
+    30
+   ],
+   "notas": [
+    {
+     "texto": "Girasol, almendras, avellanas, palta, oliva",
+     "confianza": 8,
+     "fuentes": [
+      30
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana"
+  },
+  {
+   "id": "vitk",
+   "nombre": "Vitamina K",
+   "grupo": "importante",
+   "unidad": "µg",
+   "rda": {
+    "hombre": 120,
+    "mujer": 90
+   },
+   "ul": null,
+   "confianza_rda": 9,
+   "fuentes": [
+    31
+   ],
+   "notas": [
+    {
+     "texto": "Hojas verdes la cubren; liposoluble, mejor con grasa",
+     "confianza": 8,
+     "fuentes": [
+      31
+     ]
+    }
+   ],
+   "ventana_evaluacion": "semana"
+  },
+  {
+   "id": "b6",
+   "nombre": "Vitamina B6",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "adultos_19_50": 1.3
+   },
+   "ul": 100,
+   "confianza_rda": 10,
+   "fuentes": [
+    29
+   ],
+   "notas": [
+    {
+     "texto": "Banana, papa, garbanzos, pistachos",
+     "confianza": 8,
+     "fuentes": [
+      29
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  },
+  {
+   "id": "magnesio",
+   "nombre": "Magnesio",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 410,
+    "mujer": 315
+   },
+   "ul": 350,
+   "ul_nota": "el UL aplica solo a suplementos",
+   "confianza_rda": 10,
+   "fuentes": [
+    32
+   ],
+   "notas": [
+    {
+     "texto": "Dieta vegana suele ser rica: semillas de zapallo, lino, cacao, almendras, legumbres, integrales",
+     "confianza": 8,
+     "fuentes": [
+      32
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  },
+  {
+   "id": "potasio",
+   "nombre": "Potasio",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 3400,
+    "mujer": 2600
+   },
+   "ul": null,
+   "confianza_rda": 9,
+   "fuentes": [
+    33
+   ],
+   "notas": [
+    {
+     "texto": "Papa, batata, banana, legumbres, palta, tomate; la dieta vegana tiende a ser alta (favorable)",
+     "confianza": 8,
+     "fuentes": [
+      33
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  },
+  {
+   "id": "fibra",
+   "nombre": "Fibra",
+   "grupo": "importante",
+   "unidad": "g",
+   "rda": {
+    "hombre": 38,
+    "mujer": 25
+   },
+   "ul": null,
+   "confianza_rda": 9,
+   "fuentes": [
+    22
+   ],
+   "notas": [
+    {
+     "texto": "Los veganos típicamente la superan (mediana ~37 g/día); aumentar gradualmente si hay malestar",
+     "confianza": 8,
+     "fuentes": [
+      34
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia",
+   "ventana_nota": "subas graduales si venís de poca fibra"
+  },
+  {
+   "id": "colina",
+   "nombre": "Colina",
+   "grupo": "importante",
+   "unidad": "mg",
+   "rda": {
+    "hombre": 550,
+    "mujer": 425
+   },
+   "ul": 3500,
+   "confianza_rda": 9,
+   "fuentes": [
+    35
+   ],
+   "notas": [
+    {
+     "texto": "Nutriente emergente a vigilar; fuentes veganas: soja, maní, quinoa, brócoli, papa. Evidencia de deficiencia real en veganos: limitada",
+     "confianza": 5,
+     "fuentes": [
+      35
+     ]
+    }
+   ],
+   "ventana_evaluacion": "dia"
+  }
+ ],
+ "reglas_combinacion": [
+  {
+   "id": "R1",
+   "tipo": "potenciador",
+   "condicion": {
+    "receta_rica_en": "hierro",
+    "umbral_mg_porcion": 3,
+    "y_contiene_nutriente": {
+     "vitc_mg": 25
+    }
+   },
+   "mensaje": "✔ Combinación que multiplica la absorción del hierro (vitamina C x2-4)",
+   "confianza": 9,
+   "fuentes": [
+    7,
+    8
+   ]
+  },
+  {
+   "id": "R2",
+   "tipo": "sugerencia",
+   "condicion": {
+    "receta_rica_en": "hierro",
+    "sin_nutriente": "vitc"
+   },
+   "mensaje": "Sumale un cítrico, morrón crudo o ensalada con limón para absorber el hierro",
+   "confianza": 9,
+   "fuentes": [
+    7,
+    8
+   ]
+  },
+  {
+   "id": "R3",
+   "tipo": "inhibidor",
+   "condicion": {
+    "receta_rica_en": "hierro"
+   },
+   "mensaje": "Evitá mate, té o café hasta 1 h después: reducen la absorción 50-70%",
+   "confianza": 8,
+   "confianza_mate": 5,
+   "fuentes": [
+    7,
+    8,
+    12
+   ]
+  },
+  {
+   "id": "R4",
+   "tipo": "tecnica",
+   "condicion": {
+    "receta_rica_en": [
+     "hierro",
+     "zinc"
+    ],
+    "contiene_categoria": [
+     "legumbre",
+     "cereal_integral"
+    ]
+   },
+   "mensaje": "Remojar, germinar o fermentar (masa madre) degrada fitatos y mejora la absorción",
+   "confianza": 8,
+   "fuentes": [
+    7,
+    10
+   ]
+  },
+  {
+   "id": "R5",
+   "tipo": "inhibidor",
+   "condicion": {
+    "calcio_simultaneo_mg": 300,
+    "receta_rica_en": "hierro"
+   },
+   "mensaje": "Separá el calcio (suplemento o comida muy rica) de esta comida: inhibe el hierro",
+   "confianza": 8,
+   "fuentes": [
+    7,
+    11
+   ]
+  },
+  {
+   "id": "R6",
+   "tipo": "potenciador",
+   "condicion": {
+    "contiene_ingrediente": [
+     "zanahoria",
+     "calabaza",
+     "batata",
+     "hojas_verdes"
+    ],
+    "sin_grasa_agregada": true
+   },
+   "mensaje": "Un chorro de aceite mejora la absorción de los carotenos (vitamina A)",
+   "confianza": 8,
+   "fuentes": [
+    9
+   ]
+  },
+  {
+   "id": "R7",
+   "tipo": "correccion",
+   "condicion": {
+    "contiene_ingrediente": [
+     "espinaca",
+     "acelga"
+    ]
+   },
+   "mensaje": "El calcio de espinaca/acelga casi no se absorbe (oxalatos): no cuenta como fuente de calcio",
+   "confianza": 8,
+   "fuentes": [
+    11,
+    16
+   ]
+  },
+  {
+   "id": "R8",
+   "tipo": "potenciador",
+   "condicion": {
+    "contiene_ingrediente": "curcuma",
+    "sin_ingrediente": "pimienta_negra"
+   },
+   "mensaje": "La piperina de la pimienta negra multiplica la absorción de curcumina; sumá también una grasa",
+   "confianza": 5,
+   "fuentes": []
+  },
+  {
+   "id": "R9",
+   "tipo": "tecnica",
+   "condicion": {
+    "contiene_ingrediente": "lino_entero"
+   },
+   "mensaje": "El lino entero pasa de largo: molelo antes de usar",
+   "confianza": 8,
+   "fuentes": [
+    25
+   ]
+  },
+  {
+   "id": "R10",
+   "tipo": "dato",
+   "condicion": {
+    "contiene_ingrediente": [
+     "tomate_cocido",
+     "zanahoria_cocida"
+    ]
+   },
+   "mensaje": "La cocción aumenta la disponibilidad de licopeno/betacaroteno",
+   "confianza": 7,
+   "fuentes": [
+    9
+   ]
+  },
+  {
+   "id": "R11",
+   "tipo": "precaucion",
+   "condicion": {
+    "contiene_ingrediente": "kombu"
+   },
+   "mensaje": "Kombu: usar solo para saborizar y retirar; su yodo puede superar el límite diario",
+   "confianza": 7,
+   "fuentes": [
+    17,
+    19
+   ]
+  },
+  {
+   "id": "R12",
+   "tipo": "precaucion",
+   "condicion": {
+    "ingrediente": "castana_para",
+    "cantidad_unidades_porcion_mayor_a": 2
+   },
+   "mensaje": "Cuidado con el selenio: con 2 castañas de Pará ya estás cerca del límite diario",
+   "confianza": 8,
+   "fuentes": [
+    20,
+    21
+   ]
+  },
+  {
+   "id": "R13",
+   "tipo": "inhibidor",
+   "condicion": {
+    "suplementos_simultaneos": [
+     "hierro",
+     "zinc"
+    ]
+   },
+   "mensaje": "Hierro y zinc suplementarios compiten: tomarlos en momentos distintos del día",
+   "confianza": 8,
+   "fuentes": [
+    6,
+    13
+   ]
+  },
+  {
+   "id": "R14",
+   "tipo": "potenciador",
+   "condicion": {
+    "suplemento": "vitd"
+   },
+   "mensaje": "Tomá la vitamina D con una comida que tenga grasa",
+   "confianza": 7,
+   "fuentes": [
+    5
+   ]
+  },
+  {
+   "id": "R15",
+   "tipo": "dato",
+   "condicion": {
+    "uso_habitual_aceite": [
+     "girasol",
+     "maiz"
+    ]
+   },
+   "mensaje": "El exceso de omega-6 compite con la conversión de omega-3: preferí oliva para uso general",
+   "confianza": 7,
+   "fuentes": [
+    23,
+    25
+   ]
+  }
+ ]
+}

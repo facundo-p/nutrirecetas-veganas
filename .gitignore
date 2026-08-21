@@ -1,2 +1,15 @@
 # Artefactos de Claude
-.artifacts/
+.artifacts/.DS_Store
+
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Build
+dist/
+dev-dist/
+
+# Renders locales intermedios (los finales se commitean en docs/renders/)
+.tmp/

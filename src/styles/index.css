@@ -1,0 +1,39 @@
+/* Único punto de entrada de estilos: main.tsx importa este archivo y nada más.
+   Vite (postcss-import) inlinea estos @import en este orden.
+
+   Las tres capas, de arriba hacia abajo:
+
+     1. FORMA    tokens.css      tipografía, escala, espaciado. Cero color.
+     2. TEMAS    temas/          la única capa que escribe colores. Un tema es
+                                 un archivo: su paleta cruda (--p-*, privada) y
+                                 el contrato de roles, que es lo único que la
+                                 app puede nombrar.
+     3. APP      el resto        solo tokens de rol. Ninguna regla de acá nombra
+                                 un color ni un tema.
+
+   Lo hace cumplir src/styles/contrato-de-temas.test.ts, no la buena voluntad.
+
+   La única dependencia de orden que importa: componentes antes que pantallas
+   (las variantes .chip-* pisan a .chip con la misma especificidad). Entre temas
+   el orden es indiferente: sus selectores son mutuamente excluyentes. */
+
+@import './tokens.css';
+
+@import './temas/tema-a.css';
+@import './temas/tema-d.css';
+@import './temas/tema-c.css';
+@import './temas/categorias.css';
+
+@import './base.css';
+@import './layout.css';
+@import './componentes.css';
+
+@import './pantallas/recetario.css';
+@import './pantallas/receta.css';
+@import './pantallas/ingredientes.css';
+@import './pantallas/glosario.css';
+@import './pantallas/hoy.css';
+@import './pantallas/perfil.css';
+@import './pantallas/cocina.css';
+@import './pantallas/diario.css';
+@import './pantallas/ajustes.css';

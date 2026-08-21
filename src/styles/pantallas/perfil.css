@@ -1,0 +1,57 @@
+/* ============ Perfil: objetivos ============ */
+
+.objetivos {
+  margin-top: var(--sp-5);
+}
+
+.lista-objetivos {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-2);
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.objetivo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-1);
+  border-bottom: var(--borde-suave);
+  font-size: var(--fs-sm);
+}
+
+.objetivo-origen {
+  color: var(--dato-suave);
+  font-size: var(--fs-xs);
+}
+
+.objetivo-suplemento {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--semaforo-suplemento);
+  font-size: var(--fs-xs);
+}
+
+.lista-suplementos {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+
+.suplemento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  background: var(--superficie);
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  padding: var(--sp-2) var(--sp-3);
+}
+

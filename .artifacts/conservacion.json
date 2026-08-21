@@ -1,0 +1,292 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "fuentes": [
+   {
+    "nombre": "USDA FoodKeeper",
+    "url": "https://www.foodsafety.gov/keep-food-safe/foodkeeper-app"
+   },
+   {
+    "nombre": "FDA (arroz cocido, sobras)",
+    "url": null
+   },
+   {
+    "nombre": "McGee / Serious Eats",
+    "url": null
+   }
+  ],
+  "reglas_oro": [
+   "freezer en porciones de uso, no en bloque",
+   "etiquetar con fecha (la app lo hace al registrar)",
+   "grasa molida o expuesta = frío y compra chica"
+  ],
+  "uso_app": [
+   "alerta de vencimiento útil desde fecha de compra",
+   "sugerencia de freezer",
+   "lista de compras inteligente (tamaño acorde a duración)"
+  ]
+ },
+ "items": [
+  {
+   "item": "legumbres_secas",
+   "despensa_dias": 545,
+   "nota": "tras 1 año cuestan más ablandar",
+   "confianza": 7
+  },
+  {
+   "item": "granos_pastas_arroz",
+   "despensa_dias": 545,
+   "confianza": 7
+  },
+  {
+   "item": "avena",
+   "despensa_dias": 270,
+   "confianza": 7
+  },
+  {
+   "item": "harina_trigo_fortificada",
+   "despensa_dias": 270,
+   "confianza": 7
+  },
+  {
+   "item": "harina_integral",
+   "despensa_dias": 75,
+   "freezer_dias": 180,
+   "nota": "el germen se enrancia: comprar chico",
+   "confianza": 7
+  },
+  {
+   "item": "azucar_sal_cacao",
+   "despensa_dias": 1095,
+   "confianza": 7
+  },
+  {
+   "item": "especias_molidas",
+   "despensa_dias": 270,
+   "nota": "pierden potencia, no se vencen",
+   "confianza": 7
+  },
+  {
+   "item": "especias_enteras",
+   "despensa_dias": 912,
+   "nota": "moler al usar",
+   "confianza": 7
+  },
+  {
+   "item": "aceite_oliva",
+   "despensa_dias": 90,
+   "nota": "abierto, en oscuridad, lejos de la hornalla; cerrado 12-18 meses",
+   "confianza": 7
+  },
+  {
+   "item": "fruta_seca",
+   "despensa_dias": 270,
+   "heladera_dias": 365,
+   "nota": "dátiles, pasas, orejones, higos",
+   "confianza": 7
+  },
+  {
+   "item": "chia",
+   "despensa_dias": 545,
+   "nota": "antioxidantes propios: la semilla más estable",
+   "confianza": 7
+  },
+  {
+   "item": "lino_entero",
+   "despensa_dias": 270,
+   "nota": "comprar SIEMPRE entero",
+   "confianza": 7
+  },
+  {
+   "item": "lino_molido",
+   "heladera_dias": 7,
+   "freezer_dias": 30,
+   "nota": "omega-3 se oxidan al moler: moler de a poco, frasco opaco",
+   "confianza": 8
+  },
+  {
+   "item": "aceite_lino",
+   "heladera_dias": 45,
+   "nota": "SIEMPRE heladera; olor a pintura = oxidado: descartar",
+   "confianza": 8
+  },
+  {
+   "item": "levadura_nutricional",
+   "despensa_dias": 270,
+   "nota": "frasco hermético OSCURO: la B12 es fotosensible",
+   "confianza": 7
+  },
+  {
+   "item": "frutos_secos",
+   "despensa_dias": 60,
+   "freezer_dias": 270,
+   "nota": "rancidez sutil: probar uno antes de usar",
+   "confianza": 7
+  },
+  {
+   "item": "semillas_peladas",
+   "despensa_dias": 75,
+   "freezer_dias": 180,
+   "nota": "girasol y zapallo peladas",
+   "confianza": 7
+  },
+  {
+   "item": "tahini",
+   "heladera_dias": 135,
+   "nota": "separación de aceite normal: revolver",
+   "confianza": 7
+  },
+  {
+   "item": "pasta_mani",
+   "despensa_dias": 120,
+   "nota": "heladera si es 100% maní",
+   "confianza": 7
+  },
+  {
+   "item": "algas",
+   "despensa_dias": 545,
+   "nota": "enemigo: humedad; nori revenida se retosta 10 s",
+   "confianza": 7
+  },
+  {
+   "item": "tofu_abierto",
+   "heladera_dias": 4,
+   "freezer_dias": 60,
+   "nota": "sumergido en agua cambiada a diario; congelado cambia a esponjoso: ideal marinados",
+   "confianza": 7
+  },
+  {
+   "item": "tempeh_abierto",
+   "heladera_dias": 5,
+   "freezer_dias": 90,
+   "confianza": 7
+  },
+  {
+   "item": "bebida_vegetal_abierta",
+   "heladera_dias": 4,
+   "confianza": 7
+  },
+  {
+   "item": "leche_coco_abierta",
+   "heladera_dias": 4,
+   "freezer_dias": 60,
+   "nota": "sobrante a cubetera",
+   "confianza": 7
+  },
+  {
+   "item": "extracto_tomate_abierto",
+   "heladera_dias": 6,
+   "freezer_dias": 90,
+   "nota": "cubrir con film de aceite, o congelar en cucharadas",
+   "confianza": 7
+  },
+  {
+   "item": "aquafaba",
+   "heladera_dias": 4,
+   "freezer_dias": 60,
+   "nota": "cubetera: 1 cubo ~ 2 cdas",
+   "confianza": 7
+  },
+  {
+   "item": "hierbas_frescas",
+   "heladera_dias": 6,
+   "freezer_dias": 90,
+   "nota": "ramo en vaso con agua tapado; o picadas en aceite al freezer",
+   "confianza": 7
+  },
+  {
+   "item": "albahaca",
+   "despensa_dias": 3,
+   "freezer_dias": 90,
+   "nota": "NO heladera entera (se ennegrece): vaso con agua a temperatura ambiente",
+   "confianza": 7
+  },
+  {
+   "item": "hojas_verdes_frescas",
+   "heladera_dias": 5,
+   "freezer_dias": 60,
+   "nota": "bolsa con papel absorbente; blanquear antes de congelar",
+   "confianza": 7
+  },
+  {
+   "item": "raices",
+   "heladera_dias": 21,
+   "nota": "sin las hojas: les chupan agua",
+   "confianza": 7
+  },
+  {
+   "item": "champinones",
+   "heladera_dias": 6,
+   "nota": "bolsa de PAPEL, nunca plástico cerrado",
+   "confianza": 7
+  },
+  {
+   "item": "palta_madura",
+   "heladera_dias": 3,
+   "nota": "madurar afuera; cortada: carozo + limón + film al ras",
+   "confianza": 7
+  },
+  {
+   "item": "jengibre",
+   "heladera_dias": 25,
+   "freezer_dias": 90,
+   "nota": "o rallado y congelado en porciones",
+   "confianza": 7
+  },
+  {
+   "item": "limon",
+   "heladera_dias": 25,
+   "confianza": 7
+  },
+  {
+   "item": "legumbres_cocidas",
+   "heladera_dias": 4,
+   "freezer_dias": 90,
+   "nota": "congelar en porciones CON su líquido",
+   "confianza": 7
+  },
+  {
+   "item": "arroz_granos_cocidos",
+   "heladera_dias": 4,
+   "freezer_dias": 45,
+   "nota": "⚠️ enfriar dentro de la hora: B. cereus produce toxina termorresistente si queda tibio horas; recalentar NO la destruye",
+   "seguridad_critica": true,
+   "confianza": 9
+  },
+  {
+   "item": "guisos_sopas",
+   "heladera_dias": 5,
+   "freezer_dias": 150,
+   "nota": "enfriar destapado antes de tapar",
+   "confianza": 7
+  },
+  {
+   "item": "caldo_casero",
+   "heladera_dias": 4,
+   "freezer_dias": 150,
+   "nota": "cubetera para desglasados",
+   "confianza": 7
+  },
+  {
+   "item": "hamburguesas_crudas",
+   "heladera_dias": 2,
+   "freezer_dias": 90,
+   "nota": "cocinar directo del freezer +2 min",
+   "confianza": 7
+  },
+  {
+   "item": "panificados",
+   "despensa_dias": 3,
+   "freezer_dias": 90,
+   "nota": "rebanar ANTES de congelar",
+   "confianza": 7
+  },
+  {
+   "item": "banana_muy_madura",
+   "freezer_dias": 90,
+   "nota": "pelada en rodajas: materia prima del nice cream",
+   "confianza": 7
+  }
+ ]
+}

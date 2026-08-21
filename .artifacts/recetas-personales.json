@@ -1,0 +1,4386 @@
+{
+ "meta": {
+  "version": "1.0",
+  "fecha": "2026-08",
+  "origen": "recetario personal de Facu (Google Doc)",
+  "total": 45,
+  "estatus": "todas probadas y aprobadas por el usuario: estado 'probada', confianza 8 (la más alta del sistema)",
+  "no_cargadas": [
+   {
+    "nombre": "Pan de molde integral proteico",
+    "motivo": "texto cortado en el doc + fuente externa + ingredientes de especialidad; completar a pedido"
+   }
+  ],
+  "nuevos_conceptos": [
+   "tipo:preparado (componentes reutilizables)",
+   "tipo:combo",
+   "variante_de / familia",
+   "usa_preparados (encadenamiento)",
+   "indulgente:true",
+   "candidata_clasica"
+  ]
+ },
+ "recetas": [
+  {
+   "id": "p01",
+   "nombre": "Leche de soja casera",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~1.8 L",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 45,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "soja_grano",
+     "cantidad": 250,
+     "unidad": "g_secos",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "base (pesada antes de remojar)"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 2150,
+     "unidad": "ml",
+     "g_aprox": 2150,
+     "imprescindible": true,
+     "funcion": "650 licuado + 1500 en olla"
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "gotas",
+     "g_aprox": 1,
+     "imprescindible": false,
+     "funcion": "aroma"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "imprescindible": false,
+     "funcion": "redondeo"
+    }
+   ],
+   "pasos": [
+    "Remojar porotos 10-12 h; enjuagar",
+    "Licuar en 2 tandas con 325 ml c/u, 2-3 min",
+    "A olla grande + 1.5 L extra; hervir DESTAPADA 40-45 min espumando (sube mucho al romper hervor)",
+    "Enfriar y filtrar con tela, escurriendo bien",
+    "Opcional: vainilla y pizca de sal"
+   ],
+   "secretos_chef": [
+    "⚠️ El hervor de 40-45 min es OBLIGATORIO: inactiva los antinutrientes de la soja cruda",
+    "El bagazo (okara) NO se tira: alimenta las milanesas P10 (heladera 3 días / freezer 3 meses)",
+    "Guardar en botella: 3-4 días de heladera"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": false
+   },
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 3,
+    "nota": "por 100 ml; sin calcio: la comprada fortificada gana en calcio"
+   },
+   "candidata_clasica": true
+  },
+  {
+   "id": "p02",
+   "nombre": "Leche de coco casera",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~500 ml",
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 85,
+     "imprescindible": true,
+     "funcion": "base"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 2,
+     "unidad": "taza_tibia_caliente",
+     "g_aprox": 480,
+     "imprescindible": true,
+     "funcion": "1 sola para versión concentrada"
+    }
+   ],
+   "pasos": [
+    "Licuar mucho hasta romper las fibras",
+    "Reposo 5 min",
+    "Filtrar con tela"
+   ],
+   "secretos_chef": [
+    "El bagazo va a galletitas (D02)",
+    "En heladera separa una capa de crema: es crema de coco montable (técnica de P30)"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p03",
+   "nombre": "Manteca vegana",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~200 g",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "bebida_soja",
+     "cantidad": 0.25,
+     "unidad": "taza",
+     "g_aprox": 60,
+     "imprescindible": true,
+     "funcion": "base que cuaja (tiene que ser soja o almendras)"
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 0.5,
+     "unidad": "cda_de_manzana",
+     "g_aprox": 8,
+     "imprescindible": true,
+     "funcion": "corta la leche (tiene que ser de manzana)"
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 0.5,
+     "unidad": "taza_liquido",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "cuerpo sólido",
+     "sustitutos": [
+      "⅓ reemplazable por girasol: más untable"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "cda_girasol",
+     "g_aprox": 13,
+     "imprescindible": true,
+     "funcion": "afina"
+    },
+    {
+     "ingrediente_id": "lecitina_soja",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false,
+     "funcion": "EL emulsionante: evita que se separe"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 4,
+     "imprescindible": false,
+     "funcion": "sabor + vitaminas B"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 0.25,
+     "unidad": "cdta",
+     "g_aprox": 1.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.2,
+     "imprescindible": false,
+     "funcion": "color"
+    }
+   ],
+   "pasos": [
+    "Batir leche + vinagre + sal 1 min; reposar 10 min (corta)",
+    "Todo a la licuadora: 30 s baja + 1 min alta",
+    "A molde y heladera hasta solidificar"
+   ],
+   "secretos_chef": [
+    "La lecitina es opcional en la lista pero obligatoria en la práctica si no querés que se separe",
+    "Variante untable: reemplazar ⅓ del coco por girasol",
+    "Base de P31 (pastafrola) y P39 (crumble)"
+   ],
+   "guarda": {
+    "heladera_dias": 15,
+    "freezer": true
+   },
+   "candidata_clasica": true
+  },
+  {
+   "id": "p04",
+   "nombre": "Queso de maní (muzza fundente)",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~500 g",
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 15,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "mani",
+     "cantidad": 1,
+     "unidad": "taza_crudo_pelado",
+     "g_aprox": 145,
+     "imprescindible": true,
+     "funcion": "base (remojo 4 h)"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 2,
+     "unidad": "taza_caliente",
+     "g_aprox": 480,
+     "imprescindible": true,
+     "funcion": "leche de maní"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 4,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "imprescindible": true,
+     "funcion": "sabor queso"
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 2,
+     "unidad": "cda_jugo",
+     "g_aprox": 30,
+     "imprescindible": true,
+     "funcion": "acidez que cuaja"
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cda_manzana",
+     "g_aprox": 15,
+     "imprescindible": true,
+     "funcion": "acidez"
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 0.25,
+     "unidad": "taza",
+     "g_aprox": 55,
+     "imprescindible": true,
+     "funcion": "untuosidad"
+    },
+    {
+     "ingrediente_id": "fecula_mandioca",
+     "cantidad": 4,
+     "unidad": "cda + 4 de agua",
+     "g_aprox": 40,
+     "imprescindible": true,
+     "funcion": "la elasticidad fundente"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 6,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Remojar maní 4 h; colar",
+    "Licuar con el agua caliente 1 min; filtrar",
+    "La leche de maní al fuego con limón, vinagre, sal, levadura y aceite; al romper hervor bajar fuego",
+    "Fécula disuelta en agua; agregar y revolver 5 min hasta elástico"
+   ],
+   "secretos_chef": [
+    "Usar inmediato sobre pizza, o enfriar en recipiente aceitado",
+    "Es la capa del pastel de papas P19"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": false
+   }
+  },
+  {
+   "id": "p05",
+   "nombre": "Quesofu (untable de tofu)",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~350 g",
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 5,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 200,
+     "unidad": "g_escurrido",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "base proteica"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true,
+     "funcion": "sabor"
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "cda_jugo",
+     "g_aprox": 15,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 27,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 0.25,
+     "unidad": "cdta",
+     "g_aprox": 0.7,
+     "imprescindible": false,
+     "funcion": "color"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 0.5,
+     "unidad": "taza_o_bebida_vegetal",
+     "g_aprox": 120,
+     "imprescindible": true,
+     "funcion": "textura"
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "imprescindible": true,
+     "funcion": "espesa",
+     "sustitutos": [
+      "fecula_mandioca"
+     ]
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cdta_manzana",
+     "g_aprox": 5,
+     "imprescindible": false,
+     "funcion": "potencia lo 'quesoso'"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Procesar todo menos la fécula hasta crema",
+    "Al fuego medio revolviendo; al burbujear, fécula disuelta",
+    "Espesar unos minutos; moldear (bloque) o usar caliente (dip)"
+   ],
+   "secretos_chef": [
+    "El más rápido y proteico de los quesos del recetario"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": false
+   }
+  },
+  {
+   "id": "p06",
+   "nombre": "Queso de papa (paparella)",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 pizza grande",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 10,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 2,
+     "unidad": "medianas",
+     "g_aprox": 325,
+     "imprescindible": true,
+     "funcion": "base (300-350 g)"
+    },
+    {
+     "ingrediente_id": "fecula_mandioca",
+     "cantidad": 2,
+     "unidad": "cda_colmadas",
+     "g_aprox": 25,
+     "imprescindible": true,
+     "funcion": "LA elasticidad"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true,
+     "funcion": "sabor queso"
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 27,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "cda_jugo",
+     "g_aprox": 15,
+     "imprescindible": true,
+     "sustitutos": [
+      "vinagre de manzana"
+     ]
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente_chico",
+     "g_aprox": 3,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 0.5,
+     "unidad": "taza_de_coccion_papa",
+     "g_aprox": 120,
+     "imprescindible": true,
+     "funcion": "ajustar textura de a poco"
+    }
+   ],
+   "pasos": [
+    "Hervir papas peladas en cubos; reservar ½ taza del agua",
+    "Procesar calientes con todo, agua de a poco: crema espesa",
+    "A olla fuego medio-bajo revolviendo sin parar 3-5 min hasta brillante y elástico (se despega del fondo)",
+    "Sobre la pizza con cuchara húmeda; horno fuerte 220-250°"
+   ],
+   "secretos_chef": [
+    "Gratina y toma color; pincelar apenas con aceite para más dorado",
+    "Con la masa P44: pizza 100% del recetario"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "p07",
+   "nombre": "Masa integral para tartas",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 tarta",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 10,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 113,
+     "imprescindible": true,
+     "funcion": "base"
+    },
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 60,
+     "imprescindible": true,
+     "sustitutos": [
+      "más integral para 100%"
+     ]
+    },
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 3,
+     "unidad": "cda_mezcla_semillas",
+     "g_aprox": 30,
+     "imprescindible": true,
+     "funcion": "semillas: chía/sésamo/lino/amapola",
+     "nota": "lino mejor molido (R9)"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "imprescindible": true,
+     "funcion": "(o 1 cdta azúcar si es dulce)"
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 40,
+     "imprescindible": true,
+     "funcion": "arenado"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 0.5,
+     "unidad": "taza_aprox",
+     "g_aprox": 120,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false,
+     "funcion": "esponjosa"
+    }
+   ],
+   "pasos": [
+    "Secos mezclados; aceite hasta arenar",
+    "Agua de a poco amasando suave: masa tierna, NO sobreamasar",
+    "Reposo 10 min tapada; estirar a 3-4 mm",
+    "Forrar molde aceitado; pinchar base; prehornear 10 min a 180° o rellenar directo"
+   ],
+   "secretos_chef": [
+    "Base de la tarta P22 y de cualquier tarta salada del sistema"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p08",
+   "nombre": "Bifecitos de seitán",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 6,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 40,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "gluten_trigo",
+     "cantidad": 250,
+     "unidad": "g (1.5 taza)",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "la proteína"
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 125,
+     "unidad": "g (3/4 taza)",
+     "g_aprox": 125,
+     "imprescindible": true,
+     "funcion": "suaviza (proporción 2:1)",
+     "sustitutos": [
+      "pan_integral rallado"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 10,
+     "unidad": "cda",
+     "g_aprox": 160,
+     "imprescindible": true,
+     "funcion": "sabor de la masa"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 120,
+     "imprescindible": true,
+     "funcion": "c/n"
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "condimentos: + ajo/cebolla en polvo, curry, orégano"
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 2,
+     "unidad": "taza_para_hervir",
+     "g_aprox": 480,
+     "imprescindible": true,
+     "funcion": "medio de cocción + ½ taza salsa de soja"
+    }
+   ],
+   "pasos": [
+    "Secos + condimentos; soja y agua de a poco: masa pesada y algo pegajosa; amasar SOLO hasta integrar",
+    "Reposo 10-20 min tapado",
+    "Hervir en caldo+soja a fuego medio: 20 min por lado",
+    "Enfriar; cortar bifecitos; saltear vuelta y vuelta o empanar (batido harina:agua + pan rallado)"
+   ],
+   "secretos_chef": [
+    "Proporción gluten:harina 2:1 y hervor suave = seitán tierno (la técnica correcta, la tenías)",
+    "Sellado final en sartén = Maillard = otro nivel",
+    "Freezer perfecto en porciones"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 23,
+    "nota": "por 100 g: el campeón proteico del recetario"
+   },
+   "candidata_clasica": true
+  },
+  {
+   "id": "p09",
+   "nombre": "Guiso de lentejas liviano (base licuada)",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 2,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 45,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "lentejas",
+     "cantidad": 150,
+     "unidad": "g_secas (3/4 taza)",
+     "g_aprox": 150,
+     "imprescindible": true,
+     "funcion": "remojo 8 h recomendado (R4)"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 5,
+     "unidad": "taza",
+     "g_aprox": 1200,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 75,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 70,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1.5,
+     "unidad": "verde+medio rojo",
+     "g_aprox": 195,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "salsa_tomate",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "imprescindible": true,
+     "sustitutos": [
+      "extracto_tomate"
+     ]
+    },
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 450,
+     "unidad": "g (2 grandes)",
+     "g_aprox": 450,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cda_dulce",
+     "g_aprox": 7,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 6,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Hervir verduras (no papa) en 2 tazas 10 min; licuar = base cremosa sin aceite",
+    "Base + tomate + lentejas + 3 tazas de agua",
+    "Papas en cubos: 20 min",
+    "Orégano, pimentón, sal: 5 min más"
+   ],
+   "secretos_chef": [
+    "El diferencial: verduras licuadas como caldo-crema, guiso bajo en grasa sin sofrito",
+    "Tu nota de mezclar legumbres (pre-cocinando garbanzos/porotos aparte) quedó como variante",
+    "Mejor con caldo en lugar de agua"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "reglas_disparadas": [
+    "R1",
+    "R3",
+    "R4"
+   ],
+   "variante_de": "r09"
+  },
+  {
+   "id": "p10",
+   "nombre": "Milanesas de soja (de okara)",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~8 unidades",
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 0,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "soja_grano",
+     "cantidad": 300,
+     "unidad": "g_cocidos_triturados",
+     "g_aprox": 300,
+     "imprescindible": true,
+     "funcion": "el bagazo de P01 sirve tal cual",
+     "nota": "residuo cero: okara de la leche"
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 125,
+     "unidad": "g_instantanea",
+     "g_aprox": 125,
+     "imprescindible": true,
+     "funcion": "liga seca"
+    },
+    {
+     "ingrediente_id": "harina_maiz_blanca",
+     "cantidad": 125,
+     "unidad": "g",
+     "g_aprox": 125,
+     "imprescindible": true,
+     "funcion": "liga y cuerpo"
+    },
+    {
+     "ingrediente_id": "provenzal",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "+ sal, curry, ajo en polvo"
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 100,
+     "unidad": "ml_hasta_unificar",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "ajustar masa"
+    },
+    {
+     "ingrediente_id": "pan_integral",
+     "cantidad": 100,
+     "unidad": "g_rebozador",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "empanado final"
+    }
+   ],
+   "pasos": [
+    "Mezclar okara + avena + harina de maíz + condimentos",
+    "Leche vegetal de a poco hasta masa moldeable",
+    "Formar milanesas; freezar SIN empanar",
+    "Congeladas: empanar y volver al freezer"
+   ],
+   "secretos_chef": [
+    "Congelar ANTES de empanar es tu técnica y es la correcta: sólidas no se rompen",
+    "Doble freezado = stock permanente de milanesas",
+    "Cocinar del freezer: horno fuerte o sartén"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   },
+   "usa_preparados": [
+    "p01"
+   ],
+   "candidata_clasica": true
+  },
+  {
+   "id": "p11",
+   "nombre": "Picada vegana",
+   "tipo": "combo",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "libre",
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 0,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 150,
+     "unidad": "g_cherry",
+     "g_aprox": 150,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "bastones",
+     "g_aprox": 70,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "bastones",
+     "g_aprox": 130,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pan_integral",
+     "cantidad": 150,
+     "unidad": "g_tostado",
+     "g_aprox": 150,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "berenjena",
+     "cantidad": 200,
+     "unidad": "g_en_escabeche",
+     "g_aprox": 200,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "mandioca",
+     "cantidad": 300,
+     "unidad": "g_bastones_al_horno",
+     "g_aprox": 300,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 300,
+     "unidad": "g_bastones_al_horno",
+     "g_aprox": 300,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cajus",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 1,
+     "unidad": "guacamole",
+     "g_aprox": 140,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Armar tabla combinando crudos, tostados, untables y proteicos",
+    "Referencias del sistema: hummus (R03), garbanzos crocantes (R07), seitán salteado (P08), queso de maní (P04), quesofu (P05)"
+   ],
+   "secretos_chef": [
+    "Regla de picada: algo crocante + algo untable + algo ácido + algo proteico",
+    "Los bastones de mandioca al horno son el diferencial argento"
+   ],
+   "guarda": {
+    "heladera_dias": 0,
+    "freezer": false
+   },
+   "nota": "combo componible: la app la arma como checklist referenciando otras recetas"
+  },
+  {
+   "id": "p12",
+   "nombre": "Curry de garbanzos y seitán con durazno",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 3,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 35,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 400,
+     "unidad": "g_cocidos",
+     "g_aprox": 400,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "gluten_trigo",
+     "cantidad": 100,
+     "unidad": "g_seitan_en_cubos",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "P08 en cubos tamaño garbanzo"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "aji_o_cayena",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "picante"
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 4,
+     "unidad": "g (2 cdta)",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "durazno_almibar",
+     "cantidad": 400,
+     "unidad": "g_lata",
+     "g_aprox": 240,
+     "imprescindible": true,
+     "funcion": "la rareza golosa: escurrido y picado; el almíbar aparte"
+    },
+    {
+     "ingrediente_id": "tomate_triturado",
+     "cantidad": 400,
+     "unidad": "g",
+     "g_aprox": 400,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimienta_negra",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "imprescindible": true,
+     "funcion": "activa curcumina (R8)"
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 0.5,
+     "unidad": "cubito_bajo_sodio",
+     "g_aprox": 2,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Sofrito suave de cebolla, ajo y ají hasta transparentar",
+    "Comino y sal; duraznos picados + garbanzos: unas vueltas",
+    "Tomate + cúrcuma + pimienta; fuego lento 30 min",
+    "Regular líquido con el agua del tomate y DE A POCO el almíbar"
+   ],
+   "secretos_chef": [
+    "El almíbar entra al final y de a poco: regula dulzor sin empalagar",
+    "El seitán absorbe el curry: mejor si reposa",
+    "Fuente citada: Directo al Paladar (Jack Monroe)"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "reglas_disparadas": [
+    "R8"
+   ],
+   "usa_preparados": [
+    "p08"
+   ]
+  },
+  {
+   "id": "p13",
+   "nombre": "Coliflor en adobo filipino",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 4,
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 40,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "coliflor",
+     "cantidad": 1,
+     "unidad": "entera_en_8_gajos",
+     "g_aprox": 800,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 40,
+     "unidad": "ml",
+     "g_aprox": 40,
+     "imprescindible": true,
+     "funcion": "dorado inicial"
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 125,
+     "unidad": "ml_arroz",
+     "g_aprox": 125,
+     "imprescindible": true,
+     "funcion": "el ácido del adobo",
+     "sustitutos": [
+      "vinagre de manzana"
+     ]
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 75,
+     "unidad": "ml_baja_en_sal",
+     "g_aprox": 75,
+     "imprescindible": true,
+     "funcion": "importante: baja en sal"
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 5,
+     "unidad": "g",
+     "g_aprox": 5,
+     "imprescindible": true,
+     "funcion": "toque"
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 6,
+     "unidad": "diente_enteros_pelados",
+     "g_aprox": 24,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "laurel",
+     "cantidad": 3,
+     "unidad": "hoja",
+     "g_aprox": 1.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "aji_fresco",
+     "g_aprox": 5,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 2,
+     "unidad": "picada_final",
+     "g_aprox": 30,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "arroz_integral",
+     "cantidad": 1,
+     "unidad": "taza_para_acompanar",
+     "g_aprox": 190,
+     "imprescindible": false,
+     "nota": "con garbanzos: plato completo cereal+legumbre"
+    }
+   ],
+   "pasos": [
+    "Gajos salpimentados; dorar fuerte 4 min de un lado (en tandas)",
+    "Volver a sartén lado crudo abajo + 60 ml agua",
+    "Ajos, laurel, ají; batir vinagre+soja+azúcar y volcar",
+    "Tapado a fuego medio-bajo 30 min agitando; debe quedar algo crocante",
+    "Destapar y reducir a fuego fuerte; verdeo al servir"
+   ],
+   "secretos_chef": [
+    "El balance agridulce-salado-ácido ES el adobo: no corregirlo hasta el final",
+    "La coliflor pasada pierde todo: crocante interior es el punto"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   }
+  },
+  {
+   "id": "p14",
+   "nombre": "Sopa crema de garbanzo, espinaca y manzana",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 2,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 5,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "garbanzos",
+     "cantidad": 2,
+     "unidad": "taza_cocidos",
+     "g_aprox": 328,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "espinaca",
+     "cantidad": 1,
+     "unidad": "taza_cruda",
+     "g_aprox": 30,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "manzana",
+     "cantidad": 1,
+     "unidad": "roja_pelada",
+     "g_aprox": 180,
+     "imprescindible": true,
+     "funcion": "la 'crema dulce' contra el amargor"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "taza_caliente_o_aquafaba",
+     "g_aprox": 240,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "chorro_generoso",
+     "g_aprox": 20,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.5,
+     "unidad": "jugo",
+     "g_aprox": 20,
+     "imprescindible": false,
+     "funcion": "redondea + R1"
+    }
+   ],
+   "pasos": [
+    "Todo a la licuadora",
+    "2 min hasta crema homogénea",
+    "Servir directo o calentar en cacerola"
+   ],
+   "secretos_chef": [
+    "La manzana es el truco: dulzor que balancea la espinaca",
+    "Con comino y limón sube dos escalones (y activa el hierro)"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "utensilio_recomendado": [
+    "minipimer"
+   ]
+  },
+  {
+   "id": "p15",
+   "nombre": "Ñoquis de calabaza con crema de frutos secos",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 4,
+   "tiempo_prep_min": 40,
+   "tiempo_coccion_min": 30,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "calabaza",
+     "cantidad": 500,
+     "unidad": "g_ASADA",
+     "g_aprox": 500,
+     "imprescindible": true,
+     "funcion": "asada, no hervida: menos agua = menos harina"
+    },
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 500,
+     "unidad": "g_hervida_con_cascara",
+     "g_aprox": 500,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 700,
+     "unidad": "g_aprox_segun_humedad",
+     "g_aprox": 700,
+     "imprescindible": true,
+     "funcion": "LA MENOR POSIBLE",
+     "sustitutos": [
+      "semola"
+     ]
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 6,
+     "imprescindible": true,
+     "funcion": "+ nuez moscada + ajo en polvo"
+    },
+    {
+     "ingrediente_id": "almendras",
+     "cantidad": 2,
+     "unidad": "taza_mix_con_nueces_cajus",
+     "g_aprox": 280,
+     "imprescindible": true,
+     "funcion": "salsa: remojo 4 h"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "imprescindible": true,
+     "funcion": "salsa"
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 15,
+     "imprescindible": true,
+     "funcion": "salsa"
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "mitad_rojo_mitad_verde",
+     "g_aprox": 130,
+     "imprescindible": true,
+     "funcion": "salsa"
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 27,
+     "imprescindible": true,
+     "funcion": "salsa"
+    }
+   ],
+   "pasos": [
+    "Calabaza al horno hasta tierna; papa hervida con cáscara",
+    "Puré de ambas; harina DE A POCO hasta masa blanda amasable",
+    "Choricitos sobre mesada MUY enharinada (la forma se da con la harina de afuera, no de adentro); cortar y marcar",
+    "Salsa: frutos secos remojados licuados con agua a crema; sofrito de verduras; unir y condimentar",
+    "Hervir ñoquis: flotan = listos (despegar del fondo si hace falta)"
+   ],
+   "secretos_chef": [
+    "Tu regla escrita es LA regla del ñoqui: mínima harina en la masa, forma con la de la mesada",
+    "Congelan crudos en placa y después a bolsa",
+    "La crema de frutos secos es salsa comodín para pastas del sistema"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p16",
+   "nombre": "Relleno de soja texturizada y hongos",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~4 porciones de relleno",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 15,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "soja_texturizada",
+     "cantidad": 100,
+     "unidad": "g_secos",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "hongos_secos",
+     "cantidad": 0.5,
+     "unidad": "taza_de_pino",
+     "g_aprox": 20,
+     "imprescindible": true,
+     "funcion": "remojar; EL AGUA SE GUARDA",
+     "sustitutos": [
+      "champinones frescos"
+     ]
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vino_tinto",
+     "cantidad": 1,
+     "unidad": "chorro",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "chorro",
+     "g_aprox": 16,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "+ sal, pimienta, ajo en polvo"
+    }
+   ],
+   "pasos": [
+    "Hidratar texturizada y hongos por separado; RESERVAR agua de hongos",
+    "Texturizada escurrida salteada con ajo + vino + soja hasta secar y tomar sabor; reservar",
+    "Sofreír cebolla y hongos picados",
+    "Unir todo + ~¼ taza del agua de hongos colada; ajustar sabor y consistencia"
+   ],
+   "secretos_chef": [
+    "El agua de remojo de hongos devuelta al final es umami líquido: técnica seria",
+    "Alimenta tartas, empanadas, canelones y el pastel P19"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p17",
+   "nombre": "Hamburguesas de texturizada y remolacha",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~15 unidades",
+   "tiempo_prep_min": 25,
+   "tiempo_coccion_min": 0,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "soja_texturizada",
+     "cantidad": 200,
+     "unidad": "g_secos",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "hidratada y salteada con cebolla"
+    },
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 1,
+     "unidad": "grande_RALLADA_CRUDA",
+     "g_aprox": 190,
+     "imprescindible": true,
+     "funcion": "jugosidad"
+    },
+    {
+     "ingrediente_id": "remolacha",
+     "cantidad": 1,
+     "unidad": "grande_RALLADA_CRUDA",
+     "g_aprox": 110,
+     "imprescindible": true,
+     "funcion": "color 'meat' + dulzor"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "grande_salteada",
+     "g_aprox": 250,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_garbanzo",
+     "cantidad": 100,
+     "unidad": "g",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "liga proteica"
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 100,
+     "unidad": "g_instantanea",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "liga"
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "+ sal, pimienta, ajo/cebolla en polvo, orégano"
+    },
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 24,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "chorro_al_saltear",
+     "g_aprox": 16,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Hidratar y escurrir texturizada; saltear con cebolla (+chorro de soja)",
+    "Papa y remolacha ralladas crudas al bowl; sumar texturizada, harinas, condimentos",
+    "Reposo 20 min en heladera (queda chirlo: está bien)",
+    "Formar; freezar en placa con separadores",
+    "Cocinar CONGELADAS: se aglutinan durante la cocción"
+   ],
+   "secretos_chef": [
+    "'No os preocupéis si está chirlo' — cierto: el reposo y la cocción del freezer resuelven",
+    "15 unidades = batch total del mes"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   },
+   "variante_de": "r06",
+   "familia": "hamburguesas"
+  },
+  {
+   "id": "p18",
+   "nombre": "Sushi — técnica maestra de arroz",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "3 rolls",
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 25,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 250,
+     "unidad": "g_doble_carolina",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "lavado hasta agua transparente"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 300,
+     "unidad": "ml (20% más que arroz)",
+     "g_aprox": 300,
+     "imprescindible": true,
+     "funcion": "regla: por kilo, 1200 ml"
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 50,
+     "unidad": "ml_sushizu",
+     "g_aprox": 50,
+     "imprescindible": true,
+     "funcion": "80% alcohol + 20% manzana"
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 25,
+     "unidad": "g",
+     "g_aprox": 25,
+     "imprescindible": true,
+     "funcion": "del sushizu"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 6,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nori",
+     "cantidad": 3,
+     "unidad": "hoja",
+     "g_aprox": 7.5,
+     "imprescindible": true,
+     "funcion": "yodo ⭐"
+    },
+    {
+     "ingrediente_id": "tomates_secos",
+     "cantidad": 30,
+     "unidad": "g_relleno",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "hongos_secos",
+     "cantidad": 20,
+     "unidad": "g_shiitake",
+     "g_aprox": 20,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pepino",
+     "cantidad": 0.5,
+     "unidad": "bastones",
+     "g_aprox": 75,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 0.5,
+     "unidad": "juliana",
+     "g_aprox": 35,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "champinones",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Lavar arroz hasta agua transparente",
+    "OLLA TAPADA SIEMPRE: hervor → 11 min fuego minimísimo → 15 s fuego alto → 10 min reposo apagado. Sin pispear",
+    "Sushizu: batir vinagres+azúcar+sal 5-10 min hasta disolver total",
+    "Sushizu al arroz CALIENTE, mezclando sin aplastar",
+    "Frío: armar rolls (nori brillante abajo, arroz fino, 2 cm libres)"
+   ],
+   "secretos_chef": [
+    "Esta técnica de arroz DESTRONA a la del set 2: promovida a oficial de la familia sushi",
+    "El 15 s de fuego fuerte final seca el fondo: arroz suelto",
+    "Relleno criollo tuyo (tomate seco + shiitake) validado"
+   ],
+   "guarda": {
+    "heladera_dias": 1,
+    "freezer": false
+   },
+   "perfil_nutricional_porcion_aprox": {
+    "yodo_ug": {
+     "min": 50,
+     "max": 130
+    }
+   },
+   "variante_de": "r13"
+  },
+  {
+   "id": "p19",
+   "nombre": "Pastel de papas",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "bandeja 28x22 (6 porciones)",
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 40,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "papa",
+     "cantidad": 1000,
+     "unidad": "g",
+     "g_aprox": 1000,
+     "imprescindible": true,
+     "funcion": "puré con aceite + levadura + nuez moscada"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 3,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true,
+     "funcion": "en el puré"
+    },
+    {
+     "ingrediente_id": "soja_texturizada",
+     "cantidad": 250,
+     "unidad": "g_secos",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "relleno"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 250,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 1,
+     "unidad": "grande",
+     "g_aprox": 160,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_llena_ahumado",
+     "g_aprox": 3,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "chorrito",
+     "g_aprox": 16,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vino_tinto",
+     "cantidad": 1,
+     "unidad": "chorrito",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "extracto_tomate",
+     "cantidad": 4,
+     "unidad": "cda_pure_de_tomate",
+     "g_aprox": 64,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "cda_jugo_AL_FINAL",
+     "g_aprox": 15,
+     "imprescindible": true,
+     "funcion": "tu firma: levanta el relleno (y R1)"
+    },
+    {
+     "ingrediente_id": "mani",
+     "cantidad": 250,
+     "unidad": "g_como_queso_P04",
+     "g_aprox": 250,
+     "imprescindible": false,
+     "funcion": "capa de muzza de maní al medio"
+    }
+   ],
+   "pasos": [
+    "Puré maleable pero consistente (conserva forma en el plato)",
+    "Relleno: texturizada hidratada salteada con cebolla/morrón/ajo + soja + vino + puré de tomate + pimentón, 10 min fuego bajo",
+    "Limón fuera del fuego",
+    "Armar: puré / relleno / capa de queso P04 / puré",
+    "Horno moderado hasta gratinar; reposar antes de cortar"
+   ],
+   "secretos_chef": [
+    "La capa de queso de maní al medio es el lujo del sistema de preparados",
+    "Frío corta perfecto: mejor al día siguiente"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   },
+   "reglas_disparadas": [
+    "R1"
+   ],
+   "usa_preparados": [
+    "p04",
+    "p16"
+   ],
+   "candidata_clasica": true
+  },
+  {
+   "id": "p20",
+   "nombre": "Locro vegano",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 5,
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 120,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "maiz_blanco",
+     "cantidad": 2,
+     "unidad": "taza_partido",
+     "g_aprox": 380,
+     "imprescindible": true,
+     "funcion": "remojo 24 h"
+    },
+    {
+     "ingrediente_id": "porotos_pallares",
+     "cantidad": 1,
+     "unidad": "taza_secos",
+     "g_aprox": 180,
+     "imprescindible": true,
+     "funcion": "remojo 24 h"
+    },
+    {
+     "ingrediente_id": "calabaza",
+     "cantidad": 750,
+     "unidad": "g_cabutia_o_plomo",
+     "g_aprox": 750,
+     "imprescindible": true,
+     "funcion": "se deshace = la crema del locro"
+    },
+    {
+     "ingrediente_id": "batata",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "puerro",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 90,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "hongos_secos",
+     "cantidad": 100,
+     "unidad": "g_de_pino",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "contra el final"
+    },
+    {
+     "ingrediente_id": "nori",
+     "cantidad": 1,
+     "unidad": "punado_de_algas",
+     "g_aprox": 5,
+     "imprescindible": false,
+     "funcion": "ablanda legumbres + yodo/umami",
+     "sustitutos": [
+      "1 cdta bicarbonato"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 14,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 7,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta_marina",
+     "g_aprox": 6,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 4,
+     "unidad": "cda_SALSA",
+     "g_aprox": 56,
+     "imprescindible": true,
+     "funcion": "salsita picante"
+    },
+    {
+     "ingrediente_id": "cebolla_verdeo",
+     "cantidad": 2,
+     "unidad": "medianas_SALSA",
+     "g_aprox": 30,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente_SALSA",
+     "g_aprox": 8,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "gluten_trigo",
+     "cantidad": 200,
+     "unidad": "g_seitan_SALSA",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "cubos P08"
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cda + ají molido_SALSA",
+     "g_aprox": 8,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Remojar maíz y pallares 24 h; desechar agua; cocinar con agua nueva + algas (o bicarbonato) a fuego moderado",
+    "A mitad de cocción: zapallo, batata, cebolla, puerro + aceite de coco; salpimentar",
+    "Contra el final: hongos; cuando el zapallo se deshace: pimentón y comino, apagar",
+    "Salsa aparte: rehogar verdeo + seitán + ajo en aceite de coco; pimentón + ají + sal",
+    "Servir bien caliente con la salsa aparte"
+   ],
+   "secretos_chef": [
+    "El zapallo deshecho ES el espesante: no apurarlo",
+    "El puñado de algas ablanda las legumbres y suma yodo: tu truco quedó como regla",
+    "La salsita picante aparte respeta la liturgia del locro: cada uno se pica lo suyo"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "perfil_nutricional_porcion_aprox": {
+    "prot_g": 16,
+    "fibra_g": 15
+   },
+   "usa_preparados": [
+    "p08"
+   ],
+   "candidata_clasica": true
+  },
+  {
+   "id": "p21",
+   "nombre": "Burgers de aduki",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "6-8 medallones",
+   "tiempo_prep_min": 25,
+   "tiempo_coccion_min": 10,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_aduki",
+     "cantidad": 2,
+     "unidad": "taza_cocidos",
+     "g_aprox": 480,
+     "imprescindible": true,
+     "funcion": "pisados parcial: textura"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "imprescindible": true,
+     "funcion": "rehogada"
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 2,
+     "unidad": "diente",
+     "g_aprox": 8,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "morron_rojo",
+     "cantidad": 0.5,
+     "unidad": "unidad",
+     "g_aprox": 65,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "rallada_fina",
+     "g_aprox": 70,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 0.5,
+     "unidad": "taza_arrollada_fina",
+     "g_aprox": 45,
+     "imprescindible": true,
+     "funcion": "aglutinante"
+    },
+    {
+     "ingrediente_id": "pan_integral",
+     "cantidad": 0.5,
+     "unidad": "taza_rallado",
+     "g_aprox": 54,
+     "imprescindible": true,
+     "funcion": "ajustar consistencia"
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 2,
+     "unidad": "cda_molidas + 5 agua",
+     "g_aprox": 14,
+     "imprescindible": true,
+     "funcion": "huevo vegano"
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pimenton",
+     "cantidad": 1,
+     "unidad": "cdta_ahumado",
+     "g_aprox": 2,
+     "imprescindible": true,
+     "funcion": "'secreto gourmet: parrilla' (tu nota)"
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 2,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 4,
+     "imprescindible": false,
+     "funcion": "umami"
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "chorrito_final",
+     "g_aprox": 10,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 1,
+     "unidad": "cdas_o_cilantro",
+     "g_aprox": 4,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Rehogar cebolla+ajo+morrón; zanahoria 2 min",
+    "Pisar aduki dejando enteros",
+    "Todo junto a mano: masa húmeda que no se desarma (ajustar con pan/avena)",
+    "Reposo 20-30 min en heladera",
+    "Sartén 3-4 min/lado o horno 200° 20-25 min con vuelta"
+   ],
+   "secretos_chef": [
+    "Coincidís con el estándar del set 1 sin haberlo leído: pisado parcial + reposo + pimentón ahumado",
+    "El aduki es más dulzón y cocina más rápido que el poroto común"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   },
+   "variante_de": "r06",
+   "familia": "hamburguesas",
+   "utensilio_recomendado": [
+    "U2"
+   ]
+  },
+  {
+   "id": "p22",
+   "nombre": "Tarta de zapallitos, zanahoria y tofu",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 tarta mediana (6 porciones)",
+   "tiempo_prep_min": 25,
+   "tiempo_coccion_min": 40,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "zapallito_redondo",
+     "cantidad": 3,
+     "unidad": "medianos",
+     "g_aprox": 500,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "grande_rallada",
+     "g_aprox": 85,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 200,
+     "unidad": "g_desmenuzado",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "la 'ricota'"
+    },
+    {
+     "ingrediente_id": "cebolla",
+     "cantidad": 1,
+     "unidad": "mediana",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "ajo",
+     "cantidad": 1,
+     "unidad": "diente",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 27,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "imprescindible": false,
+     "funcion": "sabor queso"
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "imprescindible": true,
+     "funcion": "liga",
+     "sustitutos": [
+      "harina_garbanzo"
+     ]
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 3,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "cda_jugo",
+     "g_aprox": 15,
+     "imprescindible": true,
+     "sustitutos": [
+      "vinagre de manzana"
+     ]
+    },
+    {
+     "ingrediente_id": "oregano",
+     "cantidad": 1,
+     "unidad": "cdta + nuez moscada",
+     "g_aprox": 1,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Saltear cebolla+ajo; zapallitos 5-7 min hasta soltar agua; zanahoria 3 min",
+    "Tofu desmenuzado + levadura + fécula + cúrcuma + limón: 'ricota' (ajustar con 1-2 cdas de líquido)",
+    "Unir; rectificar",
+    "Masa P07 en molde; relleno; semillas por encima; 180° 35-40 min"
+   ],
+   "secretos_chef": [
+    "El tofu+fécula+limón ES la técnica de ricota vegana que buscábamos: la tenías",
+    "Licuar la mitad del relleno = versión más cremosa (tu tip)",
+    "Fría tipo picnic: excelente"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": true
+   },
+   "usa_preparados": [
+    "p07"
+   ]
+  },
+  {
+   "id": "p23",
+   "nombre": "Vitel toné vegano de seitán",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "8-10 porciones fiesta",
+   "tiempo_prep_min": 40,
+   "tiempo_coccion_min": 60,
+   "dificultad": "difícil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "gluten_trigo",
+     "cantidad": 1.5,
+     "unidad": "taza",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "seitán 'peceto'"
+    },
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 0.75,
+     "unidad": "taza_000",
+     "g_aprox": 90,
+     "imprescindible": true,
+     "funcion": "proporción 2:1 = suavidad"
+    },
+    {
+     "ingrediente_id": "levadura_nutricional",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 8,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "caldo_verduras",
+     "cantidad": 0.75,
+     "unidad": "taza_frio + caldo de cocción 2 L",
+     "g_aprox": 180,
+     "imprescindible": true,
+     "funcion": "NO sal en la masa: la aporta el caldo"
+    },
+    {
+     "ingrediente_id": "salsa_soja",
+     "cantidad": 2,
+     "unidad": "cda + 2 en caldo",
+     "g_aprox": 64,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "mostaza",
+     "cantidad": 1,
+     "unidad": "cdta_suave",
+     "g_aprox": 5,
+     "imprescindible": true,
+     "funcion": "estructura"
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "cda_neutro",
+     "g_aprox": 13,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "mayonesa_vegana",
+     "cantidad": 1,
+     "unidad": "taza_SALSA",
+     "g_aprox": 220,
+     "imprescindible": true,
+     "funcion": "tonnata"
+    },
+    {
+     "ingrediente_id": "tofu_firme",
+     "cantidad": 0.5,
+     "unidad": "taza_SALSA",
+     "g_aprox": 120,
+     "imprescindible": true,
+     "funcion": "cuerpo"
+    },
+    {
+     "ingrediente_id": "alcaparras",
+     "cantidad": 2,
+     "unidad": "cda_SALSA_lavadas",
+     "g_aprox": 20,
+     "imprescindible": true,
+     "funcion": "el carácter 'tonnato'"
+    },
+    {
+     "ingrediente_id": "mostaza",
+     "cantidad": 1,
+     "unidad": "cda_colmada_SALSA_dijon",
+     "g_aprox": 15,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "cda_SALSA",
+     "g_aprox": 15,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "vinagre",
+     "cantidad": 1,
+     "unidad": "cdta_SALSA_vino_blanco",
+     "g_aprox": 5,
+     "imprescindible": true,
+     "sustitutos": [
+      "¾ cdta limón",
+      "vinagre de manzana"
+     ]
+    },
+    {
+     "ingrediente_id": "miso",
+     "cantidad": 1,
+     "unidad": "cdta_SALSA_blanco",
+     "g_aprox": 6,
+     "imprescindible": false,
+     "funcion": "microdetalle marino",
+     "sustitutos": [
+      "pizca de nori molida"
+     ]
+    },
+    {
+     "ingrediente_id": "perejil",
+     "cantidad": 2,
+     "unidad": "cda_terminacion",
+     "g_aprox": 8,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Seitán: secos + líquidos, amasar 2 MIN MÁXIMO (más = goma); reposo 20 min; formar cilindro (film apto cocción o gasa, flojo)",
+    "Caldo a hervor → fuego MÍNIMO → seitán 60 min SIN hervir (apenas burbujea)",
+    "Enfriar DENTRO del caldo; heladera 6-12 h",
+    "Salsa: procesar todo hasta lisa, espesa pero fluida; ajustar limón/aceite/alcaparras",
+    "Fetas finas + capa generosa de salsa + heladera 6-24 h",
+    "Terminar: alcaparras enteras, perejil, hilo de oliva, pimienta"
+   ],
+   "secretos_chef": [
+    "Los tres NO: no sal en la masa, no amasar de más, no hervir",
+    "El reposo armado de 6-24 h es donde 'madura': planificarlo la víspera",
+    "Tu análisis del ácido (corta grasa, resalta alcaparras) quedó documentado como está"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": "solo el seitán"
+   },
+   "candidata_clasica": true,
+   "nota": "plato de fiesta: diciembre resuelto"
+  },
+  {
+   "id": "p24",
+   "nombre": "Ensalada de hojas, rabanito y manzana",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 2,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "hojas_verdes",
+     "cantidad": 100,
+     "unidad": "g_lechugas_moradas_y_mantecosa",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "rabanito",
+     "cantidad": 4,
+     "unidad": "unidad",
+     "g_aprox": 60,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "palta",
+     "cantidad": 1,
+     "unidad": "unidad",
+     "g_aprox": 140,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "manzana",
+     "cantidad": 1,
+     "unidad": "roja",
+     "g_aprox": 180,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 1,
+     "unidad": "rallada",
+     "g_aprox": 70,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "tomate",
+     "cantidad": 100,
+     "unidad": "g_cherry",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sesamo_integral",
+     "cantidad": 1,
+     "unidad": "cda_tostado_al_momento",
+     "g_aprox": 9,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "chorrito",
+     "g_aprox": 13,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Todo al bol; sésamo tostado en seco al momento; aliñar"
+   ],
+   "secretos_chef": [
+    "El sésamo recién tostado es la diferencia"
+   ],
+   "guarda": {
+    "heladera_dias": 0,
+    "freezer": false
+   }
+  },
+  {
+   "id": "p25",
+   "nombre": "Ensalada de banana y remolacha",
+   "tipo": "salada",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 1,
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 20,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "remolacha",
+     "cantidad": 1,
+     "unidad": "hervida_en_cubitos",
+     "g_aprox": 80,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 1,
+     "unidad": "pisada",
+     "g_aprox": 118,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "chorrito",
+     "g_aprox": 10,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "comino",
+     "cantidad": 0.5,
+     "unidad": "cdta + sal",
+     "g_aprox": 1,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Remolacha hervida en cubos + banana pisada + limón + comino y sal"
+   ],
+   "secretos_chef": [
+    "Funciona por el trío dulce-terroso-ácido (primo del beet-banana bowl nórdico)",
+    "Folato + potasio en un bowl improbable"
+   ],
+   "guarda": {
+    "heladera_dias": 1,
+    "freezer": false
+   },
+   "nota": "la curiosa del recetario: probada y aprobada por el dueño, entra tal cual"
+  },
+  {
+   "id": "p26",
+   "nombre": "Crema chocoporotos",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~700 g",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 2,
+     "unidad": "taza_cocidos_calientes",
+     "g_aprox": 350,
+     "imprescindible": true,
+     "funcion": "o aduki o blancos; calientes = más sedoso"
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 42,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "taza_o_menos",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "sustitutos": [
+      "datiles 1 taza"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "más coco = más sólida al enfriar",
+     "sustitutos": [
+      "mitad girasol: más blanda"
+     ]
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 0.5,
+     "unidad": "cdta",
+     "g_aprox": 1,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Licuar todo (mejor con porotos calientes) hasta crema tersa; agua de cocción si hace falta aflojar"
+   ],
+   "secretos_chef": [
+    "Dura ~10 días en heladera; congelable en bomboncitos",
+    "Base de P34; 'nutella' honesta del sistema"
+   ],
+   "guarda": {
+    "heladera_dias": 10,
+    "freezer": true
+   },
+   "candidata_clasica": true
+  },
+  {
+   "id": "p27",
+   "nombre": "Crema de vainilegumbres",
+   "tipo": "preparado",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~500 g",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_alubia",
+     "cantidad": 1.5,
+     "unidad": "taza_cocidos_tibios",
+     "g_aprox": 260,
+     "imprescindible": true,
+     "funcion": "blancos = color crema"
+    },
+    {
+     "ingrediente_id": "datiles",
+     "cantidad": 0.33,
+     "unidad": "taza_pure",
+     "g_aprox": 55,
+     "imprescindible": true,
+     "funcion": "endulzante",
+     "sustitutos": [
+      "azucar",
+      "miel_de_cana 2 cdas (reemplaza la miel original: veganización)"
+     ]
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1,
+     "unidad": "chorrito_o_coco",
+     "g_aprox": 15,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "chorrito",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cascara_citrico",
+     "cantidad": 1,
+     "unidad": "cda_ralladura_naranja",
+     "g_aprox": 4,
+     "imprescindible": false,
+     "sustitutos": [
+      "limón",
+      "canela",
+      "café: crema de café"
+     ]
+    }
+   ],
+   "pasos": [
+    "Licuar todo; contenerse"
+   ],
+   "secretos_chef": [
+    "⚠️ AJUSTADA: la receta original llevaba miel (no vegana); tu propio texto habilitaba 'el endulzante que prefieras'",
+    "Para freezar (helados/bombones): subir la materia grasa para que no cristalice (tu nota)",
+    "Base del crumble P39"
+   ],
+   "guarda": {
+    "heladera_dias": 7,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p28",
+   "nombre": "Panqueques de avena y banana",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "4 panqueques",
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 10,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 45,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 0.5,
+     "unidad": "unidad (o 1 chica)",
+     "g_aprox": 60,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_soja",
+     "cantidad": 0.25,
+     "unidad": "taza",
+     "g_aprox": 60,
+     "imprescindible": true,
+     "sustitutos": [
+      "agua"
+     ]
+    },
+    {
+     "ingrediente_id": "lino",
+     "cantidad": 1,
+     "unidad": "cdta_o_chia",
+     "g_aprox": 3,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 5,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 3,
+     "unidad": "gotas",
+     "g_aprox": 1,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Licuar todo sin grumos (más líquido si espesa)",
+    "Reposo 5 min (la avena hidrata: no se rompen)",
+    "2-3 cdas por panqueque, fuego medio; burbujitas = dar vuelta"
+   ],
+   "secretos_chef": [
+    "El reposo de 5 min es la magia agregada: panqueques que no se quiebran"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   },
+   "utensilio_recomendado": [
+    "U1"
+   ]
+  },
+  {
+   "id": "p29",
+   "nombre": "Budín de banana clásico",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 budinera",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 40,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 2,
+     "unidad": "maduras",
+     "g_aprox": 236,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 200,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 0.5,
+     "unidad": "taza_neutro_girasol",
+     "g_aprox": 109,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 0.66,
+     "unidad": "taza",
+     "g_aprox": 160,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 1,
+     "unidad": "taza_superfina",
+     "g_aprox": 113,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_leudante",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 120,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 42,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Puré de banana + aceite + azúcar + leche",
+    "Secos aparte; integrar suave SIN batir",
+    "Budinera aceitada; horno bajo 40 min; palillo seco",
+    "Enfriar antes de desmoldar"
+   ],
+   "secretos_chef": [
+    "La versión 'domingo' (azúcar entera + leudante); D04 es la integral: la app muestra ambas como familia"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "variante_de": "d04",
+   "indulgente": true
+  },
+  {
+   "id": "p30",
+   "nombre": "Carrot cake liviana",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 budinera",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 1,
+     "unidad": "taza_harina_de_avena",
+     "g_aprox": 90,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 57,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 0.33,
+     "unidad": "taza",
+     "g_aprox": 28,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "zanahoria",
+     "cantidad": 2,
+     "unidad": "ralladas",
+     "g_aprox": 170,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 14,
+     "imprescindible": true,
+     "funcion": "única grasa: liviana"
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 240,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 40,
+     "unidad": "g_trituradas",
+     "g_aprox": 40,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Zanahoria + agua + aceite",
+    "Secos; unir; budinera; horno moderado 20-30 min"
+   ],
+   "secretos_chef": [
+    "Crema de coco PRO: leche de coco casera 12-24 h en heladera, separar la capa espesa con cuchara; procesable con cajús remojados 8-12 h para más cuerpo",
+    "Variante de D10 con casi nada de grasa"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "variante_de": "d10",
+   "usa_preparados": [
+    "p02"
+   ]
+  },
+  {
+   "id": "p31",
+   "nombre": "Pastafrola",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "molde 22-25 cm (10 porciones)",
+   "tiempo_prep_min": 25,
+   "tiempo_coccion_min": 30,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 2,
+     "unidad": "taza",
+     "g_aprox": 240,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 120,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "margarina",
+     "cantidad": 250,
+     "unidad": "g",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "sustitutos": [
+      "manteca vegana P03: preferible"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar_impalpable",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 150,
+     "imprescindible": true,
+     "sustitutos": [
+      "azucar"
+     ]
+    },
+    {
+     "ingrediente_id": "cascara_citrico",
+     "cantidad": 1,
+     "unidad": "ralladura_limon",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "dulce_membrillo",
+     "cantidad": 500,
+     "unidad": "g",
+     "g_aprox": 500,
+     "imprescindible": true,
+     "funcion": "relleno"
+    }
+   ],
+   "pasos": [
+    "Azúcar + manteca + ralladura: pasta",
+    "Harina+fécula de a poco: bollo tierno (gotas de agua fría si hace falta)",
+    "Reposo 10 min heladera; forrar molde",
+    "Membrillo aflojado a fuego bajo con chorrito de agua; rellenar",
+    "Enrejado; 200° 25-30 min hasta dorar"
+   ],
+   "secretos_chef": [
+    "Con TU manteca P03: cadena de preparados en acción",
+    "Indulgente y gloriosa: así debe quedar registrada"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "usa_preparados": [
+    "p03"
+   ],
+   "indulgente": true,
+   "candidata_clasica": true
+  },
+  {
+   "id": "p32",
+   "nombre": "Brownies de aduki y avena",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 placa (12)",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 20,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_aduki",
+     "cantidad": 2,
+     "unidad": "taza_cocidos",
+     "g_aprox": 480,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "avena",
+     "cantidad": 1,
+     "unidad": "taza_harina",
+     "g_aprox": 90,
+     "imprescindible": true,
+     "sustitutos": [
+      "harina de arroz/sarraceno/garbanzo: sin gluten"
+     ]
+    },
+    {
+     "ingrediente_id": "datiles",
+     "cantidad": 1,
+     "unidad": "taza_remojados",
+     "g_aprox": 165,
+     "imprescindible": true,
+     "sustitutos": [
+      "azucar"
+     ]
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 42,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 0.25,
+     "unidad": "taza_girasol",
+     "g_aprox": 55,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 240,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nibs_cacao",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 20,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Procesar todo a pasta homogénea",
+    "Placa con papel manteca; 180° 20 min: HÚMEDO",
+    "Enfriar antes de cortar"
+   ],
+   "secretos_chef": [
+    "Endulzado con dátiles: el más 'limpio' de la familia brownies"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "variante_de": "d01"
+  },
+  {
+   "id": "p33",
+   "nombre": "Brownies de poroto y girasol",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 placa (12)",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 25,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "girasol",
+     "cantidad": 1,
+     "unidad": "taza_remojadas_escurridas",
+     "g_aprox": 140,
+     "imprescindible": true,
+     "funcion": "textura fudge"
+    },
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 1,
+     "unidad": "taza_cocidos",
+     "g_aprox": 175,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 0.25,
+     "unidad": "taza",
+     "g_aprox": 55,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 0.25,
+     "unidad": "taza",
+     "g_aprox": 21,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 0.66,
+     "unidad": "taza",
+     "g_aprox": 130,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "cn_hasta_consistencia_budin",
+     "g_aprox": 100,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Procesar todo menos el agua",
+    "Agua de a poco hasta consistencia de mezcla de budín",
+    "Placa aceitada espolvoreada con cacao; 180° 20-30 min"
+   ],
+   "secretos_chef": [
+    "El girasol remojado reemplaza harina Y parte de la grasa: fudge denso",
+    "Espolvorear la placa con cacao (no harina): no deja borde blanco"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "variante_de": "d01"
+  },
+  {
+   "id": "p34",
+   "nombre": "Brownies chocoporotos sin harina",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 molde chico",
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 25,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "porotos_negros",
+     "cantidad": 1,
+     "unidad": "taza_de_crema_P26_sin_aceite_coco",
+     "g_aprox": 250,
+     "imprescindible": true,
+     "funcion": "la crema chocoporotos hecha con girasol"
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 0.5,
+     "unidad": "madura (o 1 chica)",
+     "g_aprox": 60,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "pasta_mani",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 32,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "chocolate_amargo",
+     "cantidad": 30,
+     "unidad": "g_chips",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "cda_espolvoreada",
+     "g_aprox": 12,
+     "imprescindible": false,
+     "funcion": "corteza crocante (tu tip general de dulces)"
+    }
+   ],
+   "pasos": [
+    "Pisar banana e integrar a la crema P26",
+    "Resto de ingredientes; a molde aceitado",
+    "Azúcar espolvoreada arriba si se quiere corteza",
+    "190° 20-40 min según molde"
+   ],
+   "secretos_chef": [
+    "Tres ingredientes estructurales + un preparado: la receta más corta de la familia",
+    "Tu tip de la corteza azucarada quedó como campo general de dulces"
+   ],
+   "guarda": {
+    "heladera_dias": 5,
+    "freezer": true
+   },
+   "variante_de": "d01",
+   "usa_preparados": [
+    "p26"
+   ]
+  },
+  {
+   "id": "p35",
+   "nombre": "Arroz con leche de coco",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 4,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 35,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "arroz_blanco",
+     "cantidad": 200,
+     "unidad": "g_doble_carolina",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "que largue almidón"
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 100,
+     "unidad": "g",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "leche_coco",
+     "cantidad": 650,
+     "unidad": "ml (500 cocción + 150 al final)",
+     "g_aprox": 650,
+     "imprescindible": true,
+     "funcion": "en dos tiempos",
+     "sustitutos": [
+      "otras leches vegetales (no probado)"
+     ]
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cascara_citrico",
+     "cantidad": 3,
+     "unidad": "tiras_limon_sin_lo_blanco",
+     "g_aprox": 9,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "canela",
+     "cantidad": 0.5,
+     "unidad": "cdta_o_rama",
+     "g_aprox": 1,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Pre-hervir el arroz 10 min en agua (2:1) revolviendo; colar",
+    "500 ml de leche de coco + azúcar + canela + cáscara al fuego",
+    "Al hervir: arroz; cocinar hasta tierno (apagar y dejar que termine con calor residual si reduce mucho)",
+    "Frío: los 150 ml de leche de coco restantes"
+   ],
+   "secretos_chef": [
+    "Tu doble técnica destrona a D08: pre-hervor (almidón sin cortar la leche) + leche fría final (cremosidad fresca) → promovida a técnica oficial de la familia",
+    "La cáscara sin lo blanco: lo amargo queda afuera"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": false
+   },
+   "variante_de": "d08",
+   "utensilio_recomendado": [
+    "U3"
+   ]
+  },
+  {
+   "id": "p36",
+   "nombre": "Torta de mandioca y coco",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "molde 24 cm",
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 40,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "mandioca",
+     "cantidad": 500,
+     "unidad": "g_cruda_rallada",
+     "g_aprox": 500,
+     "imprescindible": true,
+     "funcion": "sin harina de trigo: sin gluten"
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 0.5,
+     "unidad": "madura",
+     "g_aprox": 60,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 6,
+     "unidad": "cda_neutro",
+     "g_aprox": 80,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 100,
+     "unidad": "g + extra arriba",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 250,
+     "unidad": "g (o menos)",
+     "g_aprox": 250,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_soja",
+     "cantidad": 200,
+     "unidad": "ml",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "sustitutos": [
+      "mitad leche de coco (original)"
+     ]
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 8,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "margarina",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": true,
+     "sustitutos": [
+      "manteca P03",
+      "aceite"
+     ]
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.5,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_impalpable",
+     "cantidad": 1,
+     "unidad": "poquita_decorar",
+     "g_aprox": 5,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Licuar mandioca + banana + leche + aceite + manteca hasta crema (lleva su tiempo)",
+    "Azúcar, sal, polvo: licuar más",
+    "A bowl + coco rallado con cuchara",
+    "Molde 24 cm (ideal con chimenea) aceitado y enharinado con fécula de mandioca; coco extra arriba",
+    "180° 35-45 min; palillo seco; enfriar, desmoldar, impalpable"
+   ],
+   "secretos_chef": [
+    "La mandioca cruda licuada ES la masa: sin gluten por diseño",
+    "La exótica del recetario: única con mandioca"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "indulgente": true
+  },
+  {
+   "id": "p37",
+   "nombre": "Lemonies",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "fuente chica (9)",
+   "tiempo_prep_min": 15,
+   "tiempo_coccion_min": 30,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 200,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 1,
+     "unidad": "ralladura_y_jugo",
+     "g_aprox": 50,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "margarina",
+     "cantidad": 80,
+     "unidad": "g",
+     "g_aprox": 80,
+     "imprescindible": true,
+     "sustitutos": [
+      "manteca P03"
+     ]
+    },
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 1.5,
+     "unidad": "taza_0000",
+     "g_aprox": 220,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 2,
+     "unidad": "cda",
+     "g_aprox": 16,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "polvo_hornear",
+     "cantidad": 1,
+     "unidad": "cda",
+     "g_aprox": 12,
+     "imprescindible": true
+    }
+   ],
+   "pasos": [
+    "Secos mezclados",
+    "Margarina derretida + ralladura + jugo; unir",
+    "Fuente aceitada y enharinada; horno bajo ~30 min"
+   ],
+   "secretos_chef": [
+    "Blondie de limón sin huevo; variante: base de masa de pastafrola (tu nota)",
+    "Indulgente declarado: sin disfraz"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "indulgente": true
+  },
+  {
+   "id": "p38",
+   "nombre": "Bocaditos helados de banana y chocolate",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "~12 bocaditos",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 3,
+     "unidad": "maduras",
+     "g_aprox": 354,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 42,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "la 'mordida' de bombón helado",
+     "sustitutos": [
+      "girasol u oliva (más blandos)"
+     ]
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "pasas",
+     "cantidad": 30,
+     "unidad": "g",
+     "g_aprox": 30,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Procesar todo",
+    "A molde de silicona o papel manteca; freezer 1-1.5 h (sólidos pero blandos)",
+    "Cortar; guardar en freezer; sacar unos minutos antes de comer"
+   ],
+   "secretos_chef": [
+    "El aceite de coco solidifica en frío: eso los vuelve 'bombón' y no puré congelado",
+    "Familia 'banana congelada' con D07 (nice cream)"
+   ],
+   "guarda": {
+    "heladera_dias": 0,
+    "freezer": true
+   },
+   "familia": "banana_congelada"
+  },
+  {
+   "id": "p39",
+   "nombre": "Crumble de manzana con crema de vainiporotos",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "molde 28 cm (8)",
+   "tiempo_prep_min": 40,
+   "tiempo_coccion_min": 30,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 150,
+     "unidad": "g_masa + 150 crumble",
+     "g_aprox": 300,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 50,
+     "unidad": "g_masa",
+     "g_aprox": 50,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "margarina",
+     "cantidad": 125,
+     "unidad": "g_masa + 150 crumble",
+     "g_aprox": 275,
+     "imprescindible": true,
+     "sustitutos": [
+      "manteca P03: la receta la usa"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar_impalpable",
+     "cantidad": 75,
+     "unidad": "g_masa",
+     "g_aprox": 75,
+     "imprescindible": true,
+     "sustitutos": [
+      "azucar"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 150,
+     "unidad": "g_crumble",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "gotas",
+     "g_aprox": 2,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "manzana",
+     "cantidad": 3,
+     "unidad": "verdes_en_rodajas_finas",
+     "g_aprox": 540,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "porotos_alubia",
+     "cantidad": 200,
+     "unidad": "g_como_crema_P27",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "crema de vainiporotos entre capas"
+    }
+   ],
+   "pasos": [
+    "Masa sablée: manteca pomada + impalpable + vainilla + harina; film y 30 min de frío",
+    "Crumble: desgranar manteca fría + azúcar + harina a granulado grueso (o procesador frío); reposo en freezer",
+    "Forrar molde; poco crumble en la base (absorbe jugo); capas de manzana finas",
+    "Crema P27 entre capas (sin exceso: humedad)",
+    "Crumble arriba; horno suave-moderado ~30 min hasta dorar"
+   ],
+   "secretos_chef": [
+    "Tres preparados encadenados (P03 + P27 + esta): el sistema funcionando en un postre",
+    "Tu opción de hornear todo junto (sin prehornear la base) quedó como la recomendada: la base no se seca"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "variante_de": "d06",
+   "usa_preparados": [
+    "p03",
+    "p27"
+   ],
+   "indulgente": true
+  },
+  {
+   "id": "p40",
+   "nombre": "Pudding de chía y chocolate",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": 1,
+   "tiempo_prep_min": 5,
+   "tiempo_coccion_min": 0,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 3,
+     "unidad": "cda (1/4 vaso)",
+     "g_aprox": 36,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_soja",
+     "cantidad": 1,
+     "unidad": "vaso",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "sustitutos": [
+      "otra vegetal"
+     ]
+    },
+    {
+     "ingrediente_id": "cacao_amargo",
+     "cantidad": 2,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "esencia_vainilla",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_mascabo",
+     "cantidad": 1,
+     "unidad": "cdta_o_stevia",
+     "g_aprox": 4,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "frutilla",
+     "cantidad": 0.5,
+     "unidad": "taza_topping",
+     "g_aprox": 75,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "nibs_cacao",
+     "cantidad": 1,
+     "unidad": "cda_topping",
+     "g_aprox": 10,
+     "imprescindible": false
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 1,
+     "unidad": "cda_topping",
+     "g_aprox": 7,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Mezclar todo en frasco",
+    "Remover bien (semillas al fondo = enemigo), tapar, noche en heladera",
+    "Toppings al servir"
+   ],
+   "secretos_chef": [
+    "Casi idéntica a D09: queda como variante con tus toppings (nibs + coco en escamas)"
+   ],
+   "guarda": {
+    "heladera_dias": 3,
+    "freezer": false
+   },
+   "variante_de": "d09",
+   "utensilio_recomendado": [
+    "frascos"
+   ]
+  },
+  {
+   "id": "p41",
+   "nombre": "Torta/budín de coco",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 budinera",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 40,
+   "dificultad": "trivial",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_leudante",
+     "cantidad": 1.5,
+     "unidad": "taza",
+     "g_aprox": 180,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "coco_rallado",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 85,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 0.5,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 0.33,
+     "unidad": "taza_neutro",
+     "g_aprox": 72,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "taza_o_leche_vegetal",
+     "g_aprox": 240,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "banana",
+     "cantidad": 1,
+     "unidad": "madura_pisada",
+     "g_aprox": 118,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Secos; aceite y líquido hasta homogéneo (ajustar líquido: cada harina absorbe distinto)",
+    "Batir unos minutos; banana pisada si va",
+    "Budinera aceitada y enharinada; 180° ~40 min; palillo seco"
+   ],
+   "secretos_chef": [
+    "El budín de un bowl: cero técnica, funciona siempre"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": true
+   },
+   "indulgente": true
+  },
+  {
+   "id": "p42",
+   "nombre": "Cuadrados de limón (agar)",
+   "tipo": "dulce",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 placa (12)",
+   "tiempo_prep_min": 30,
+   "tiempo_coccion_min": 45,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 1.75,
+     "unidad": "taza_base",
+     "g_aprox": 210,
+     "imprescindible": true,
+     "sustitutos": [
+      "masa de pastafrola P31 (tu preferida)"
+     ]
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 0.66,
+     "unidad": "taza_base + 1.25 relleno",
+     "g_aprox": 380,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "fecula_maiz",
+     "cantidad": 0.25,
+     "unidad": "taza_base + 3 cda relleno",
+     "g_aprox": 55,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_coco",
+     "cantidad": 1,
+     "unidad": "taza_neutro_base",
+     "g_aprox": 200,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1.33,
+     "unidad": "taza_relleno",
+     "g_aprox": 320,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agar_agar",
+     "cantidad": 1,
+     "unidad": "cdta_polvo",
+     "g_aprox": 3,
+     "imprescindible": true,
+     "funcion": "gelificante vegetal"
+    },
+    {
+     "ingrediente_id": "curcuma",
+     "cantidad": 1,
+     "unidad": "pizca",
+     "g_aprox": 0.2,
+     "imprescindible": true,
+     "funcion": "el amarillo"
+    },
+    {
+     "ingrediente_id": "limon",
+     "cantidad": 0.66,
+     "unidad": "taza_jugo + 1 cda ralladura",
+     "g_aprox": 170,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "bebida_vegetal_fortificada",
+     "cantidad": 0.25,
+     "unidad": "taza_relleno",
+     "g_aprox": 60,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "azucar_impalpable",
+     "cantidad": 1,
+     "unidad": "cda_servir",
+     "g_aprox": 12,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Base: harina+azúcar+fécula + aceite a granulado fino; compactar en molde con borde; 30 min frío + horno mínimo 35 min; enfriar",
+    "Relleno: jugo + agua + agar + azúcar + fécula a fuego suave revolviendo hasta hervir; leche vegetal; 2 min más; ralladura fuera del fuego",
+    "Volcar sobre base fría; alisar; heladera 3 h mínimo",
+    "Cortar; impalpable"
+   ],
+   "secretos_chef": [
+    "Doble gelificación (agar en caliente + maicena): curd sin huevo que corta limpio",
+    "La cúrcuma es el amarillo: una pizca, invisible al gusto"
+   ],
+   "guarda": {
+    "heladera_dias": 4,
+    "freezer": false
+   },
+   "indulgente": true
+  },
+  {
+   "id": "p43",
+   "nombre": "Pan proteico de calabaza",
+   "tipo": "pan",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 budinera",
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 25,
+   "dificultad": "media",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 1,
+     "unidad": "taza_superfina",
+     "g_aprox": 113,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_garbanzo",
+     "cantidad": 1,
+     "unidad": "taza",
+     "g_aprox": 100,
+     "imprescindible": true,
+     "funcion": "legumbre en el pan: lisina + hierro"
+    },
+    {
+     "ingrediente_id": "calabaza",
+     "cantidad": 4,
+     "unidad": "rodajas_cocidas",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "puré"
+    },
+    {
+     "ingrediente_id": "levadura_fresca",
+     "cantidad": 1,
+     "unidad": "cdta_en_polvo",
+     "g_aprox": 4,
+     "imprescindible": true,
+     "funcion": "activar con azúcar y agua tibia 15 min"
+    },
+    {
+     "ingrediente_id": "azucar",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 4,
+     "imprescindible": true,
+     "funcion": "alimento de levadura"
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 1,
+     "unidad": "cdta",
+     "g_aprox": 6,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 1.5,
+     "unidad": "cda_girasol",
+     "g_aprox": 20,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 1,
+     "unidad": "cn",
+     "g_aprox": 150,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "nueces",
+     "cantidad": 30,
+     "unidad": "g_picadas",
+     "g_aprox": 30,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Activar levadura con azúcar y agua tibia 15 min",
+    "Todo al bowl; agua de a poco amasando: ni seca ni acuosa",
+    "Calabaza en puré integrada",
+    "Levar 1 h tapado",
+    "Budinera engrasada (o bollitos); 160-180° ~20-25 min"
+   ],
+   "secretos_chef": [
+    "Harina de garbanzo 1:1 con integral: pan con lisina (complementa el día)",
+    "Dura 4-5 días ambiente, 30 en freezer (tu dato, coincide con conservación)"
+   ],
+   "guarda": {
+    "heladera_dias": 7,
+    "freezer": true
+   }
+  },
+  {
+   "id": "p44",
+   "nombre": "Masa de pizza de masa madre (sin amasado)",
+   "tipo": "pan",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "5 bollos",
+   "tiempo_prep_min": 10,
+   "tiempo_coccion_min": 720,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 500,
+     "unidad": "g",
+     "g_aprox": 500,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "harina_trigo_fortificada",
+     "cantidad": 300,
+     "unidad": "g_000",
+     "g_aprox": 300,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "semola",
+     "cantidad": 200,
+     "unidad": "g_fina",
+     "g_aprox": 200,
+     "imprescindible": true,
+     "funcion": "el crocante"
+    },
+    {
+     "ingrediente_id": "agua",
+     "cantidad": 650,
+     "unidad": "ml",
+     "g_aprox": 650,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 50,
+     "unidad": "ml",
+     "g_aprox": 50,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 4,
+     "unidad": "cdta",
+     "g_aprox": 24,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "masa_madre",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": true,
+     "sustitutos": [
+      "levadura fresca 10 g",
+      "levadura seca 3 g"
+     ]
+    }
+   ],
+   "pasos": [
+    "Mezclar todo hasta unir: NO amasar",
+    "Film y heladera toda la noche (fermentación fría)",
+    "Al día siguiente: dividir en 5 bollos"
+   ],
+   "secretos_chef": [
+    "La noche de heladera hace el trabajo del amasado Y degrada fitatos (R4 en panificación)",
+    "Bollos sobrantes al freezer",
+    "Con paparella P06: pizza 100% del sistema"
+   ],
+   "guarda": {
+    "heladera_dias": 2,
+    "freezer": true
+   },
+   "reglas_disparadas": [
+    "R4"
+   ],
+   "usa_preparados": [
+    "p06"
+   ],
+   "candidata_clasica": true
+  },
+  {
+   "id": "p45",
+   "nombre": "Crackers de masa madre",
+   "tipo": "pan",
+   "estado": "probada",
+   "confianza": 8,
+   "fuente": {
+    "ref": "recetario_personal",
+    "nota": "validada en cocina por el usuario"
+   },
+   "porciones": "1 frasco grande",
+   "tiempo_prep_min": 20,
+   "tiempo_coccion_min": 25,
+   "dificultad": "fácil",
+   "ingredientes": [
+    {
+     "ingrediente_id": "masa_madre",
+     "cantidad": 500,
+     "unidad": "g (o 250 harina + 250 agua + 1 g levadura, duplicada)",
+     "g_aprox": 500,
+     "imprescindible": true,
+     "funcion": "destino noble del descarte"
+    },
+    {
+     "ingrediente_id": "harina_integral",
+     "cantidad": 250,
+     "unidad": "g",
+     "g_aprox": 250,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "sal_yodada",
+     "cantidad": 15,
+     "unidad": "g",
+     "g_aprox": 15,
+     "imprescindible": true
+    },
+    {
+     "ingrediente_id": "aceite_oliva",
+     "cantidad": 50,
+     "unidad": "g",
+     "g_aprox": 50,
+     "imprescindible": true,
+     "funcion": "de a poco al final"
+    },
+    {
+     "ingrediente_id": "chia",
+     "cantidad": 2,
+     "unidad": "cda_mix_semillas",
+     "g_aprox": 24,
+     "imprescindible": false
+    }
+   ],
+   "pasos": [
+    "Masa madre + harina + sal + semillas: masa homogénea (algo seca es normal); reposo 5-10 min",
+    "Aceite de a poco amasando",
+    "Estirar a 2 mm; marcar cuadrícula SIN cortar (cuchillo sin filo)",
+    "180-200° hasta crocante; horno apagado un rato más para secar"
+   ],
+   "secretos_chef": [
+    "Se separan solos por las marcas durante la cocción",
+    "En frasco duran semanas: la vianda crocante permanente"
+   ],
+   "guarda": {
+    "heladera_dias": 21,
+    "freezer": false
+   }
+  }
+ ]
+}

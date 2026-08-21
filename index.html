@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es-AR" data-tema="d">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F5EFDC" />
+    <meta name="description" content="Recetario vegano personal con base nutricional. Offline, sin cuentas, sin backend." />
+    <title>Nutrirecetas</title>
+    <!-- Aplica el tema guardado antes de pintar: sin esto la app cargaría en el
+         default y saltaría de color. Corre antes del bundle, así que la lista
+         se repite acá; que no se desincronice de src/app/tema.ts lo verifica
+         src/styles/contrato-de-temas.test.ts. -->
+    <script>
+      (function () {
+        var TEMAS = ['a', 'c', 'd'];
+        try {
+          var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('tema');
+          if (TEMAS.indexOf(t) !== -1) document.documentElement.dataset.tema = t;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

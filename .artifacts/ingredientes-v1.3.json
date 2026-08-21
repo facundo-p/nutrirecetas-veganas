@@ -1,0 +1,3282 @@
+{
+ "meta": {
+  "version": "1.3",
+  "fecha": "2026-08",
+  "base_valores": "por 100 g en el estado indicado en 'base'",
+  "unidades": {
+   "prot_g": "g",
+   "hierro_mg": "mg",
+   "zinc_mg": "mg",
+   "calcio_mg": "mg",
+   "magnesio_mg": "mg",
+   "potasio_mg": "mg",
+   "selenio_ug": "µg",
+   "yodo_ug": "µg",
+   "folato_ug": "µg DFE",
+   "vitc_mg": "mg",
+   "vita_ug_rae": "µg RAE",
+   "vite_mg": "mg",
+   "vitd_ug": "µg",
+   "b2_mg": "mg",
+   "b6_mg": "mg",
+   "ala_g": "g",
+   "fibra_g": "g",
+   "colina_mg": "mg",
+   "kcal": "kcal"
+  },
+  "convencion_rangos": "valores puntuales = promedio USDA; objetos {min,max,tipico} = variación relevante documentada",
+  "escala_confianza": {
+   "8": "USDA estándar, variación ±15%",
+   "7": "variación natural relevante (suelo/madurez): valor = centro del rango",
+   "5-6": "muy variable por marca/proceso/suelo: usar rango, no valor puntual"
+  },
+  "factores_conversion": {
+   "legumbre_seca_a_cocida_peso": 2.75,
+   "arroz_seco_a_cocido_peso": 3.0,
+   "pasta_seca_a_cocida_peso": 2.25
+  },
+  "factores_retencion_coccion": {
+   "descripcion": "fracción del nutriente retenida tras cocción típica",
+   "minerales_hervido": {
+    "valor": 0.9,
+    "nota": "migran al agua: usar el caldo",
+    "confianza": 7
+   },
+   "vitc_hervido": {
+    "valor": 0.55,
+    "confianza": 7
+   },
+   "vitc_vapor": {
+    "valor": 0.85,
+    "confianza": 7
+   },
+   "folato_hervido": {
+    "valor": 0.65,
+    "confianza": 7
+   },
+   "liposolubles_calor_moderado": {
+    "valor": 0.95,
+    "confianza": 7
+   }
+  },
+  "nota_version": "v1.2 + 24 ingredientes del recetario personal (Set P): seitán casero, quesos veganos, locro, panificación con masa madre"
+ },
+ "fuentes": {
+  "usda": {
+   "nombre": "USDA FoodData Central",
+   "url": "https://fdc.nal.usda.gov/"
+  },
+  "argenfoods": {
+   "nombre": "ARGENFOODS - UNLu",
+   "url": "http://www.argenfoods.unlu.edu.ar/"
+  },
+  "nih": {
+   "nombre": "NIH ODS Fact Sheets",
+   "url": "https://ods.od.nih.gov/"
+  },
+  "ley25630": {
+   "nombre": "Ley 25.630 fortificación harinas (AR)",
+   "url": null
+  },
+  "ley17259": {
+   "nombre": "Ley 17.259 yodación de sal (AR)",
+   "url": null
+  },
+  "teas2004": {
+   "nombre": "Teas J et al., Thyroid 2004 (yodo en algas)",
+   "url": null
+  },
+  "usda_ret": {
+   "nombre": "USDA Nutrient Retention Factors R6",
+   "url": "https://www.ars.usda.gov/"
+  }
+ },
+ "ingredientes": [
+  {
+   "id": "aceite_coco",
+   "nombre": "Aceite de coco",
+   "sinonimos": [],
+   "categoria": "aceite",
+   "base": "tal cual",
+   "kcal": 892,
+   "nutrientes": {
+    "grasa_saturada_g": 82
+   },
+   "notas": "grasa saturada muy alta: uso puntual (repostería, curries), no aceite de cabecera; sólido bajo ~24 °C",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "aceite_lino",
+   "nombre": "Aceite de lino",
+   "sinonimos": [
+    "aceite de linaza"
+   ],
+   "categoria": "aceite",
+   "base": "tal cual, SOLO EN FRÍO",
+   "kcal": 884,
+   "nutrientes": {
+    "ala_g": 53
+   },
+   "destacados": [
+    "omega3"
+   ],
+   "notas": "1 cda ≈ 7 g ALA; no calentar; refrigerar",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "aceite_oliva",
+   "nombre": "Aceite de oliva virgen",
+   "sinonimos": [],
+   "categoria": "aceite",
+   "base": "tal cual",
+   "kcal": 884,
+   "nutrientes": {
+    "vite_mg": 14
+   },
+   "destacados": [
+    "grasa_mono",
+    "vite"
+   ],
+   "notas": "aceite de uso general recomendado (baja carga omega-6)",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "margarina",
+   "nombre": "Margarina vegetal",
+   "sinonimos": [],
+   "categoria": "aceite",
+   "base": "tal cual",
+   "kcal": 717,
+   "notas": "verificar 'libre de grasas trans' / no hidrogenada; la manteca vegana casera P03 es preferible",
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "agar_agar",
+   "nombre": "Agar-agar",
+   "sinonimos": [],
+   "categoria": "alga",
+   "base": "polvo",
+   "notas": "gelificante de algas: gelifica en caliente y cuaja al enfriar (a diferencia de la gelatina); trazas de yodo",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "kombu",
+   "nombre": "Alga kombu",
+   "sinonimos": [],
+   "categoria": "alga",
+   "base": "seca",
+   "kcal": null,
+   "nutrientes": {
+    "yodo_ug": {
+     "min": 1000,
+     "max": 2500,
+     "nota": "POR GRAMO: supera el UL con facilidad"
+    }
+   },
+   "destacados": [
+    "yodo_precaucion"
+   ],
+   "notas": "solo saborizar caldos y retirar; no comer la hoja regularmente",
+   "confianza": 7,
+   "fuentes": [
+    "teas2004",
+    "nih"
+   ]
+  },
+  {
+   "id": "nori",
+   "nombre": "Alga nori",
+   "sinonimos": [
+    "hojas para sushi"
+   ],
+   "categoria": "alga",
+   "base": "seca, POR GRAMO",
+   "kcal": 3.5,
+   "nutrientes": {
+    "yodo_ug": {
+     "min": 16,
+     "max": 43,
+     "nota": "por gramo; 1 hoja ≈ 2.5 g ≈ 40-110 µg"
+    }
+   },
+   "destacados": [
+    "yodo"
+   ],
+   "confianza": 6,
+   "fuentes": [
+    "teas2004",
+    "nih"
+   ]
+  },
+  {
+   "id": "arroz_blanco",
+   "nombre": "Arroz blanco",
+   "sinonimos": [],
+   "categoria": "cereal",
+   "base": "cocido",
+   "kcal": 130,
+   "nutrientes": {
+    "prot_g": 2.7
+   },
+   "destacados": [],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "arroz_integral",
+   "nombre": "Arroz integral",
+   "sinonimos": [
+    "arroz yamaní (variedad local)"
+   ],
+   "categoria": "cereal",
+   "base": "cocido",
+   "kcal": 123,
+   "nutrientes": {
+    "prot_g": 2.7,
+    "magnesio_mg": 39,
+    "selenio_ug": {
+     "min": 4,
+     "max": 15,
+     "tipico": 10,
+     "nota": "depende del suelo"
+    }
+   },
+   "destacados": [],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "avena",
+   "nombre": "Avena arrollada",
+   "sinonimos": [
+    "hojuelas de avena",
+    "rolled oats"
+   ],
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 389,
+   "nutrientes": {
+    "prot_g": 16.9,
+    "hierro_mg": 4.7,
+    "zinc_mg": 4.0,
+    "magnesio_mg": 177,
+    "fibra_g": 10.6
+   },
+   "destacados": [
+    "hierro",
+    "zinc",
+    "fibra"
+   ],
+   "notas": "remojo previo (avena nocturna) reduce fitatos",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "burgol",
+   "nombre": "Trigo burgol",
+   "sinonimos": [
+    "bulgur"
+   ],
+   "categoria": "cereal",
+   "base": "cocido",
+   "kcal": 83,
+   "nutrientes": {
+    "prot_g": 3.1,
+    "fibra_g": 4.5,
+    "magnesio_mg": 32
+   },
+   "destacados": [
+    "fibra"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cebada",
+   "nombre": "Cebada perlada",
+   "sinonimos": [],
+   "categoria": "cereal",
+   "base": "cocida",
+   "kcal": 123,
+   "nutrientes": {
+    "prot_g": 2.3,
+    "fibra_g": 3.8,
+    "selenio_ug": {
+     "min": 4,
+     "max": 14,
+     "tipico": 9
+    }
+   },
+   "destacados": [
+    "fibra"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cuscus",
+   "nombre": "Cuscús integral",
+   "sinonimos": [
+    "couscous"
+   ],
+   "categoria": "cereal",
+   "base": "seco",
+   "kcal": 376,
+   "nutrientes": {
+    "prot_g": 12.8,
+    "fibra_g": 8,
+    "selenio_ug": {
+     "min": 15,
+     "max": 40,
+     "nota": "trigo: depende del suelo"
+    }
+   },
+   "notas": "se hidrata en 10 min con líquido caliente (1 parte cuscús : 1.4 líquido); esponjar con tenedor; contiene gluten",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "fideos",
+   "nombre": "Fideos de trigo",
+   "sinonimos": [
+    "pasta seca"
+   ],
+   "categoria": "cereal",
+   "base": "cocidos",
+   "kcal": 158,
+   "nutrientes": {
+    "prot_g": 5.8,
+    "selenio_ug": {
+     "min": 15,
+     "max": 35,
+     "tipico": 26
+    }
+   },
+   "destacados": [
+    "selenio"
+   ],
+   "notas": "en Argentina la harina es fortificada (hierro/fólico): las pastas locales aportan extra",
+   "confianza": 7,
+   "fuentes": [
+    "usda",
+    "ley25630"
+   ]
+  },
+  {
+   "id": "gluten_trigo",
+   "nombre": "Gluten de trigo (vital)",
+   "sinonimos": [
+    "gluten puro",
+    "seitán en polvo"
+   ],
+   "categoria": "cereal",
+   "base": "seco",
+   "kcal": 370,
+   "nutrientes": {
+    "prot_g": 75,
+    "hierro_mg": 5.2
+   },
+   "notas": "base del seitán casero; en dietéticas",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "harina_integral",
+   "nombre": "Harina integral",
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 340,
+   "nutrientes": {
+    "prot_g": 13,
+    "fibra_g": 11,
+    "magnesio_mg": 137,
+    "selenio_ug": {
+     "min": 30,
+     "max": 70,
+     "tipico": 60
+    }
+   },
+   "notas": "en AR no siempre fortificada, a diferencia de la blanca",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "harina_leudante",
+   "nombre": "Harina leudante",
+   "sinonimos": [],
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 360,
+   "nutrientes": {
+    "hierro_mg": 3.0,
+    "folato_ug": 220
+   },
+   "notas": "harina 0000 fortificada (Ley 25.630) + leudante + sal: no sumar sal aparte sin probar",
+   "confianza": 7,
+   "fuentes": [
+    "ley25630"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "harina_maiz_blanca",
+   "nombre": "Harina de maíz blanca",
+   "sinonimos": [
+    "harina paraguaya"
+   ],
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 370,
+   "notas": "distinta de la polenta (amarilla, gruesa); liga las milanesas de okara P10",
+   "confianza": 6,
+   "fuentes": [],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "harina_trigo_fortificada",
+   "nombre": "Harina de trigo 000/0000",
+   "sinonimos": [
+    "harina común fortificada"
+   ],
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 364,
+   "nutrientes": {
+    "prot_g": 10.3,
+    "hierro_mg": 3.0,
+    "folato_ug": 220
+   },
+   "destacados": [
+    "hierro_fortificado",
+    "folato_fortificado"
+   ],
+   "notas": "Argentina Ley 25.630: fortificación obligatoria con hierro (30 mg/kg), ácido fólico, B1, B2, B3",
+   "confianza": 7,
+   "fuentes": [
+    "ley25630",
+    "argenfoods"
+   ]
+  },
+  {
+   "id": "maiz_blanco",
+   "nombre": "Maíz blanco pisado",
+   "sinonimos": [
+    "maíz para locro"
+   ],
+   "categoria": "cereal",
+   "base": "seco",
+   "kcal": 365,
+   "nutrientes": {
+    "prot_g": 8.7,
+    "fibra_g": 7
+   },
+   "notas": "remojo 24 h; el alma del locro",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "pan_integral",
+   "nombre": "Pan integral",
+   "sinonimos": [],
+   "categoria": "cereal",
+   "base": "tal cual",
+   "kcal": 247,
+   "nutrientes": {
+    "prot_g": 13.0,
+    "hierro_mg": 2.5,
+    "fibra_g": {
+     "min": 6,
+     "max": 7
+    },
+    "selenio_ug": {
+     "min": 25,
+     "max": 40
+    }
+   },
+   "destacados": [
+    "fibra"
+   ],
+   "notas": "masa madre: fermentación degrada fitatos, mejora absorción mineral",
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "polenta",
+   "nombre": "Polenta",
+   "sinonimos": [
+    "harina de maíz"
+   ],
+   "categoria": "cereal",
+   "base": "cocida",
+   "kcal": 70,
+   "nutrientes": {
+    "prot_g": 1.6
+   },
+   "destacados": [],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "semola",
+   "nombre": "Sémola de trigo",
+   "sinonimos": [
+    "semolín (más fino)"
+   ],
+   "categoria": "cereal",
+   "base": "seca",
+   "kcal": 360,
+   "nutrientes": {
+    "prot_g": 12.7,
+    "selenio_ug": {
+     "min": 40,
+     "max": 90
+    }
+   },
+   "notas": "da estructura crocante a masas de pizza; alta en selenio",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "tortillas",
+   "nombre": "Tortillas (maíz o integrales)",
+   "sinonimos": [
+    "rapiditas",
+    "fajitas",
+    "wraps"
+   ],
+   "categoria": "cereal",
+   "base": "tal cual",
+   "kcal": {
+    "min": 218,
+    "max": 300
+   },
+   "nutrientes": {
+    "prot_g": {
+     "min": 5,
+     "max": 8
+    }
+   },
+   "notas": "unidad maíz chica ~30 g; integral grande ~45-60 g; las de trigo AR: harina fortificada (hierro+fólico)",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "ajo",
+   "nombre": "Ajo",
+   "sinonimos": [],
+   "categoria": "condimento",
+   "base": "crudo",
+   "kcal": 149,
+   "nutrientes": {
+    "prot_g": 6.4
+   },
+   "destacados": [],
+   "notas": "alicina; posible mejora de absorción Fe/Zn (evidencia moderada); picar y dejar reposar 10 min antes de cocinar preserva alicina",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "albahaca",
+   "nombre": "Albahaca fresca",
+   "categoria": "condimento",
+   "base": "fresca",
+   "kcal": 23,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "alcaparras",
+   "nombre": "Alcaparras",
+   "sinonimos": [],
+   "categoria": "condimento",
+   "base": "en salmuera, lavadas",
+   "kcal": 23,
+   "nutrientes": {
+    "sodio_mg": 2350
+   },
+   "notas": "lavar antes de usar; contar como sal; firma del vitel toné",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "cascara_citrico",
+   "nombre": "Cáscara de cítricos",
+   "categoria": "condimento",
+   "base": "fresca",
+   "notas": "sin lo blanco: amarga",
+   "confianza": 8,
+   "fuentes": [],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "cilantro",
+   "nombre": "Cilantro fresco",
+   "sinonimos": [
+    "coriandro fresco",
+    "culantro"
+   ],
+   "categoria": "condimento",
+   "base": "fresco",
+   "kcal": 23,
+   "nutrientes": {
+    "vitc_mg": 27,
+    "vita_ug_rae": 337
+   },
+   "notas": "a ~10% de la gente le sabe a jabón (genético): sustituir por perejil + ralladura de limón",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "curcuma",
+   "nombre": "Cúrcuma",
+   "sinonimos": [
+    "turmeric",
+    "palillo"
+   ],
+   "categoria": "condimento",
+   "base": "en polvo",
+   "kcal": 312,
+   "nutrientes": {
+    "hierro_mg": 55
+   },
+   "destacados": [],
+   "notas": "curcumina de biodisponibilidad muy baja sola: combinar con pimienta negra + grasa; el hierro en dosis culinarias aporta poco",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "esencia_vainilla",
+   "nombre": "Esencia de vainilla",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "jengibre",
+   "nombre": "Jengibre",
+   "sinonimos": [
+    "kion"
+   ],
+   "categoria": "condimento",
+   "base": "crudo",
+   "kcal": 80,
+   "nutrientes": {},
+   "destacados": [],
+   "notas": "gingeroles: digestivo, antiinflamatorio leve",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "kala_namak",
+   "nombre": "Kala namak (sal negra india)",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "notas": "gusto sulfuroso a huevo; en dietéticas de BA",
+   "confianza": 7,
+   "fuentes": [],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "menta",
+   "nombre": "Menta fresca",
+   "categoria": "condimento",
+   "base": "fresca",
+   "kcal": 44,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "mostaza",
+   "nombre": "Mostaza (Dijon o común)",
+   "sinonimos": [],
+   "categoria": "condimento",
+   "base": "preparada",
+   "kcal": 66,
+   "nutrientes": {
+    "sodio_mg": 1100
+   },
+   "notas": "emulsionante natural de aliños (la lecitina de la semilla estabiliza vinagretas)",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "perejil",
+   "nombre": "Perejil",
+   "sinonimos": [],
+   "categoria": "condimento",
+   "base": "fresco",
+   "kcal": 36,
+   "nutrientes": {
+    "vitc_mg": 133,
+    "hierro_mg": 6.2
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "notas": "en dosis culinarias el aporte absoluto es moderado, pero suma C a platos de legumbres",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pimienta_negra",
+   "nombre": "Pimienta negra",
+   "sinonimos": [],
+   "categoria": "condimento",
+   "base": "en grano/molida",
+   "kcal": 251,
+   "nutrientes": {},
+   "destacados": [],
+   "notas": "piperina: multiplica la absorción de curcumina",
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "sal_yodada",
+   "nombre": "Sal yodada",
+   "sinonimos": [
+    "sal fina común"
+   ],
+   "categoria": "condimento",
+   "base": "por gramo",
+   "kcal": 0,
+   "nutrientes": {
+    "yodo_ug": {
+     "min": 25,
+     "max": 40,
+     "tipico": 30,
+     "nota": "por gramo, Ley 17.259; sales marinas/rosadas NO yodadas"
+    }
+   },
+   "destacados": [
+    "yodo"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "ley17259",
+    "nih"
+   ]
+  },
+  {
+   "id": "salsa_soja",
+   "nombre": "Salsa de soja",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "kcal": 53,
+   "nutrientes": {
+    "sodio_mg": 5500
+   },
+   "notas": "~900 mg Na por cda: contar como sal",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "vinagre",
+   "nombre": "Vinagre (manzana/arroz/aceto)",
+   "categoria": "condimento",
+   "base": "tal cual",
+   "kcal": 21,
+   "notas": "el de arroz es más suave",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "brocoli",
+   "nombre": "Brócoli",
+   "sinonimos": [
+    "brécol"
+   ],
+   "categoria": "crucifera",
+   "base": "cocido",
+   "kcal": 35,
+   "nutrientes": {
+    "prot_g": 2.4,
+    "vitc_mg": 65,
+    "folato_ug": 108,
+    "calcio_mg": 40
+   },
+   "destacados": [
+    "vitc",
+    "calcio_biodisponible"
+   ],
+   "notas": "calcio de alta absorción (~50%)",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "coliflor",
+   "nombre": "Coliflor",
+   "sinonimos": [],
+   "categoria": "crucifera",
+   "base": "cocida",
+   "kcal": 23,
+   "nutrientes": {
+    "prot_g": 1.8,
+    "vitc_mg": 44,
+    "folato_ug": 44,
+    "colina_mg": 39
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "kale",
+   "nombre": "Kale",
+   "sinonimos": [
+    "col rizada",
+    "berza"
+   ],
+   "categoria": "crucifera",
+   "base": "crudo",
+   "kcal": 43,
+   "nutrientes": {
+    "prot_g": 2.9,
+    "calcio_mg": {
+     "min": 150,
+     "max": 254,
+     "nota": "alta absorción ~50%"
+    },
+    "vitc_mg": 93
+   },
+   "destacados": [
+    "calcio_biodisponible",
+    "vitc"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "repollo",
+   "nombre": "Repollo",
+   "sinonimos": [
+    "col"
+   ],
+   "categoria": "crucifera",
+   "base": "crudo",
+   "kcal": 25,
+   "nutrientes": {
+    "prot_g": 1.3,
+    "vitc_mg": 37
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "notas": "fermentado (chucrut): probióticos y mejor absorción de Fe/Zn",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "rucula",
+   "nombre": "Rúcula",
+   "sinonimos": [
+    "arúgula"
+   ],
+   "categoria": "crucifera",
+   "base": "cruda",
+   "kcal": 25,
+   "nutrientes": {
+    "prot_g": 2.6,
+    "calcio_mg": 160,
+    "folato_ug": 97
+   },
+   "destacados": [
+    "calcio_biodisponible"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "bebida_soja",
+   "nombre": "Bebida de soja",
+   "sinonimos": [
+    "leche de soja"
+   ],
+   "categoria": "derivado_soja",
+   "base": "por 100 ml",
+   "kcal": {
+    "min": 33,
+    "max": 45
+   },
+   "nutrientes": {
+    "prot_g": {
+     "min": 2.9,
+     "max": 3.3
+    },
+    "calcio_mg": {
+     "min": 0,
+     "max": 125,
+     "nota": "fortificada ~120; ver etiqueta, también B12/D/B2 a veces"
+    }
+   },
+   "destacados": [
+    "proteina",
+    "calcio_condicional"
+   ],
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "edamame",
+   "nombre": "Edamame",
+   "sinonimos": [
+    "soja verde"
+   ],
+   "categoria": "derivado_soja",
+   "base": "cocido",
+   "kcal": 121,
+   "nutrientes": {
+    "prot_g": 11.9,
+    "folato_ug": 311,
+    "hierro_mg": 2.3,
+    "potasio_mg": 436
+   },
+   "destacados": [
+    "folato",
+    "proteina"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "soja_texturizada",
+   "nombre": "Soja texturizada",
+   "sinonimos": [
+    "carne de soja",
+    "TVP",
+    "proteína vegetal texturizada"
+   ],
+   "categoria": "derivado_soja",
+   "base": "seca",
+   "kcal": {
+    "min": 330,
+    "max": 360
+   },
+   "nutrientes": {
+    "prot_g": {
+     "min": 48,
+     "max": 52
+    },
+    "hierro_mg": {
+     "min": 7,
+     "max": 9
+    }
+   },
+   "destacados": [
+    "proteina",
+    "hierro"
+   ],
+   "notas": "hidratada: dividir valores ~÷3",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "tempeh",
+   "nombre": "Tempeh",
+   "sinonimos": [],
+   "categoria": "derivado_soja",
+   "base": "tal cual",
+   "kcal": 192,
+   "nutrientes": {
+    "prot_g": 20.3,
+    "hierro_mg": 2.7,
+    "magnesio_mg": 81,
+    "zinc_mg": 1.1
+   },
+   "destacados": [
+    "proteina"
+   ],
+   "notas": "fermentado: fitatos parcialmente degradados, mejor absorción mineral",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "tofu_firme",
+   "nombre": "Tofu firme",
+   "sinonimos": [
+    "queso de soja"
+   ],
+   "categoria": "derivado_soja",
+   "base": "tal cual",
+   "kcal": {
+    "min": 70,
+    "max": 145
+   },
+   "nutrientes": {
+    "prot_g": {
+     "min": 8,
+     "max": 17
+    },
+    "calcio_mg": {
+     "min": 30,
+     "max": 350,
+     "nota": "200-350 si coagulado con sales de calcio; 30-80 con nigari: LEER ETIQUETA"
+    },
+    "hierro_mg": {
+     "min": 1.6,
+     "max": 2.7
+    }
+   },
+   "destacados": [
+    "proteina",
+    "calcio_condicional"
+   ],
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "canela",
+   "nombre": "Canela",
+   "categoria": "especia",
+   "base": "molida",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "comino",
+   "nombre": "Comino",
+   "categoria": "especia",
+   "base": "molido",
+   "notas": "sabor; trazas minerales en dosis culinarias",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "curry_polvo",
+   "nombre": "Curry en polvo / garam masala",
+   "categoria": "especia",
+   "base": "molido",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "laurel",
+   "nombre": "Laurel",
+   "categoria": "especia",
+   "base": "hoja seca",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "oregano",
+   "nombre": "Orégano",
+   "categoria": "especia",
+   "base": "seco",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "pimenton",
+   "nombre": "Pimentón (dulce/ahumado)",
+   "categoria": "especia",
+   "base": "molido",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "provenzal",
+   "nombre": "Provenzal (ajo y perejil secos)",
+   "sinonimos": [],
+   "categoria": "especia",
+   "base": "seco",
+   "confianza": 7,
+   "fuentes": [],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "romero",
+   "nombre": "Romero",
+   "sinonimos": [],
+   "categoria": "especia",
+   "base": "seco",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "tomillo",
+   "nombre": "Tomillo",
+   "sinonimos": [],
+   "categoria": "especia",
+   "base": "seco",
+   "notas": "trazas minerales en dosis culinarias; rol: aroma",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "bebida_vegetal_fortificada",
+   "nombre": "Bebida vegetal fortificada",
+   "sinonimos": [
+    "leche de almendras/avena/soja fortificada"
+   ],
+   "categoria": "fortificado",
+   "base": "por 100 ml",
+   "kcal": {
+    "min": 25,
+    "max": 45
+   },
+   "nutrientes": {
+    "calcio_mg": {
+     "min": 100,
+     "max": 125,
+     "tipico": 120
+    },
+    "b12_ug": {
+     "min": 0,
+     "max": 1.5,
+     "nota": "solo algunas marcas"
+    },
+    "vitd_ug": {
+     "min": 0,
+     "max": 1.5,
+     "nota": "solo algunas marcas"
+    }
+   },
+   "destacados": [
+    "calcio"
+   ],
+   "notas": "leer etiqueta siempre: la fortificación varía por marca y línea",
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "levadura_nutricional",
+   "nombre": "Levadura nutricional",
+   "sinonimos": [
+    "levadura de cerveza desamargada en copos",
+    "nooch"
+   ],
+   "categoria": "fortificado",
+   "base": "seca",
+   "kcal": {
+    "min": 325,
+    "max": 370
+   },
+   "nutrientes": {
+    "prot_g": 50,
+    "b2_mg": {
+     "min": 4,
+     "max": 20,
+     "nota": "según marca"
+    },
+    "b12_ug": {
+     "min": 0,
+     "max": 100,
+     "nota": "SOLO si fortificada; en Argentina muchas NO lo están: leer etiqueta"
+    }
+   },
+   "destacados": [
+    "proteina",
+    "b2",
+    "b12_condicional"
+   ],
+   "confianza": 5,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "miso",
+   "nombre": "Miso",
+   "sinonimos": [
+    "pasta de miso"
+   ],
+   "categoria": "fortificado",
+   "base": "pasta",
+   "kcal": 199,
+   "nutrientes": {
+    "prot_g": 12,
+    "sodio_mg": 3700
+   },
+   "notas": "fermentado de soja: umami profundo + probióticos si no hierve (agregar fuera del fuego); contar su sodio como sal; en dietéticas",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "yogur_vegano",
+   "nombre": "Yogur vegano natural",
+   "sinonimos": [
+    "yogur de soja",
+    "yogur de coco",
+    "yogur de almendras"
+   ],
+   "categoria": "fortificado",
+   "base": "tal cual",
+   "kcal": {
+    "min": 45,
+    "max": 90
+   },
+   "nutrientes": {
+    "prot_g": {
+     "min": 1,
+     "max": 4,
+     "nota": "soja: 3-4 g; coco/almendra: ~1 g"
+    },
+    "calcio_mg": {
+     "min": 0,
+     "max": 120,
+     "nota": "solo si fortificado: leer etiqueta"
+    }
+   },
+   "notas": "variación enorme por marca y base; preferir sin azúcar; algunos con probióticos vivos",
+   "confianza": 5,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "arandanos",
+   "nombre": "Arándanos",
+   "sinonimos": [
+    "blueberries"
+   ],
+   "categoria": "fruta",
+   "base": "crudos",
+   "kcal": 57,
+   "nutrientes": {
+    "vitc_mg": 9.7
+   },
+   "destacados": [],
+   "notas": "antocianinas",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "banana",
+   "nombre": "Banana",
+   "sinonimos": [
+    "plátano"
+   ],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 89,
+   "nutrientes": {
+    "potasio_mg": 358,
+    "b6_mg": 0.37
+   },
+   "destacados": [
+    "potasio",
+    "b6"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "durazno_almibar",
+   "nombre": "Durazno en almíbar",
+   "sinonimos": [
+    "melocotón en almíbar"
+   ],
+   "categoria": "fruta",
+   "base": "escurrido",
+   "kcal": 74,
+   "notas": "lata AR ~400 g bruto; el almíbar se dosifica aparte",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "frutilla",
+   "nombre": "Frutilla",
+   "sinonimos": [
+    "fresa"
+   ],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 32,
+   "nutrientes": {
+    "vitc_mg": 59,
+    "folato_ug": 24
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "kiwi",
+   "nombre": "Kiwi",
+   "sinonimos": [],
+   "categoria": "fruta",
+   "base": "crudo",
+   "kcal": 61,
+   "nutrientes": {
+    "vitc_mg": 93,
+    "fibra_g": 3.0
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "limon",
+   "nombre": "Limón (jugo)",
+   "sinonimos": [],
+   "categoria": "fruta",
+   "base": "jugo",
+   "kcal": 22,
+   "nutrientes": {
+    "vitc_mg": 39
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "notas": "el activador de hierro más versátil: exprimir sobre legumbres y hojas",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "mandarina",
+   "nombre": "Mandarina",
+   "sinonimos": [],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 53,
+   "nutrientes": {
+    "vitc_mg": 27,
+    "vita_ug_rae": 34
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "manzana",
+   "nombre": "Manzana",
+   "sinonimos": [],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 52,
+   "nutrientes": {
+    "fibra_g": 2.4
+   },
+   "destacados": [],
+   "notas": "pectina; quercetina en la piel",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "naranja",
+   "nombre": "Naranja",
+   "sinonimos": [],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 47,
+   "nutrientes": {
+    "vitc_mg": 53,
+    "folato_ug": 30,
+    "calcio_mg": 40
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "palta",
+   "nombre": "Palta",
+   "sinonimos": [
+    "aguacate"
+   ],
+   "categoria": "fruta",
+   "base": "cruda",
+   "kcal": 160,
+   "nutrientes": {
+    "prot_g": 2.0,
+    "potasio_mg": 485,
+    "folato_ug": 81,
+    "vite_mg": 2.1
+   },
+   "destacados": [
+    "potasio",
+    "grasa_mono"
+   ],
+   "notas": "vehículo ideal para absorber carotenos de la misma comida",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "datiles",
+   "nombre": "Dátiles",
+   "categoria": "fruta_seca",
+   "base": "tal cual",
+   "kcal": 277,
+   "nutrientes": {
+    "potasio_mg": 696,
+    "fibra_g": 6.7
+   },
+   "notas": "endulzante entero",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "higos_secos",
+   "nombre": "Higos secos",
+   "sinonimos": [],
+   "categoria": "fruta_seca",
+   "base": "tal cual",
+   "kcal": 249,
+   "nutrientes": {
+    "calcio_mg": 162,
+    "hierro_mg": 2.0,
+    "potasio_mg": 680,
+    "fibra_g": 9.8
+   },
+   "destacados": [
+    "calcio"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "orejones",
+   "nombre": "Damascos secos",
+   "sinonimos": [
+    "orejones"
+   ],
+   "categoria": "fruta_seca",
+   "base": "tal cual",
+   "kcal": 241,
+   "nutrientes": {
+    "vita_ug_rae": 180,
+    "hierro_mg": 2.7,
+    "potasio_mg": 1162
+   },
+   "destacados": [
+    "potasio",
+    "vita"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pasas",
+   "nombre": "Pasas de uva",
+   "sinonimos": [],
+   "categoria": "fruta_seca",
+   "base": "tal cual",
+   "kcal": 299,
+   "nutrientes": {
+    "hierro_mg": 1.9,
+    "potasio_mg": 749
+   },
+   "destacados": [],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "almendras",
+   "nombre": "Almendras",
+   "sinonimos": [],
+   "categoria": "fruto_seco",
+   "base": "crudas",
+   "kcal": 579,
+   "nutrientes": {
+    "prot_g": 21.2,
+    "vite_mg": 25.6,
+    "calcio_mg": 269,
+    "magnesio_mg": 270,
+    "hierro_mg": 3.7,
+    "zinc_mg": 3.1,
+    "b2_mg": 1.1
+   },
+   "destacados": [
+    "vite",
+    "calcio",
+    "b2"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "avellanas",
+   "nombre": "Avellanas",
+   "sinonimos": [],
+   "categoria": "fruto_seco",
+   "base": "crudas",
+   "kcal": 628,
+   "nutrientes": {
+    "prot_g": 15.0,
+    "vite_mg": 15.0,
+    "magnesio_mg": 163
+   },
+   "destacados": [
+    "vite"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cajus",
+   "nombre": "Castañas de cajú",
+   "sinonimos": [
+    "anacardo",
+    "marañón",
+    "cajú"
+   ],
+   "categoria": "fruto_seco",
+   "base": "crudas",
+   "kcal": 553,
+   "nutrientes": {
+    "prot_g": 18.2,
+    "hierro_mg": 6.7,
+    "zinc_mg": 5.8,
+    "magnesio_mg": 292
+   },
+   "destacados": [
+    "hierro",
+    "zinc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "castanas_para",
+   "nombre": "Castañas de Pará",
+   "sinonimos": [
+    "nuez de Brasil",
+    "coquito de Brasil",
+    "castaña amazónica"
+   ],
+   "categoria": "fruto_seco",
+   "base": "crudas",
+   "kcal": 659,
+   "nutrientes": {
+    "prot_g": 14.3,
+    "selenio_ug": {
+     "min": 500,
+     "max": 4000,
+     "tipico": 1900,
+     "nota": "1 unidad (~5 g) ≈ 70-95 µg; NO exceder 2/día (UL 400 µg)"
+    },
+    "magnesio_mg": 376
+   },
+   "destacados": [
+    "selenio"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "usda",
+    "nih"
+   ]
+  },
+  {
+   "id": "coco_rallado",
+   "nombre": "Coco rallado",
+   "categoria": "fruto_seco",
+   "base": "seco",
+   "kcal": 660,
+   "nutrientes": {
+    "grasa_saturada_g": 57,
+    "fibra_g": 16
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "mani",
+   "nombre": "Maní",
+   "sinonimos": [
+    "cacahuate",
+    "cacahuete"
+   ],
+   "categoria": "fruto_seco",
+   "base": "crudo",
+   "kcal": 567,
+   "nutrientes": {
+    "prot_g": 25.8,
+    "magnesio_mg": 168,
+    "zinc_mg": 3.3,
+    "colina_mg": 52
+   },
+   "destacados": [
+    "proteina"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "nueces",
+   "nombre": "Nueces",
+   "sinonimos": [
+    "nuez mariposa",
+    "nuez de nogal"
+   ],
+   "categoria": "fruto_seco",
+   "base": "crudas",
+   "kcal": 654,
+   "nutrientes": {
+    "prot_g": 15.2,
+    "ala_g": 9.1,
+    "magnesio_mg": 158
+   },
+   "destacados": [
+    "omega3"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pasta_mani",
+   "nombre": "Pasta de maní",
+   "sinonimos": [
+    "mantequilla de maní"
+   ],
+   "categoria": "fruto_seco",
+   "base": "tal cual",
+   "kcal": 588,
+   "nutrientes": {
+    "prot_g": 25,
+    "magnesio_mg": 154
+   },
+   "notas": "sin azúcar agregada ideal",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "pistachos",
+   "nombre": "Pistachos",
+   "sinonimos": [],
+   "categoria": "fruto_seco",
+   "base": "crudos",
+   "kcal": 560,
+   "nutrientes": {
+    "prot_g": 20.2,
+    "b6_mg": 1.7,
+    "potasio_mg": 1025
+   },
+   "destacados": [
+    "b6"
+   ],
+   "notas": "lisina alta para ser fruto seco",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "champinones",
+   "nombre": "Champiñones",
+   "sinonimos": [
+    "champignon",
+    "hongos de París"
+   ],
+   "categoria": "hongo",
+   "base": "crudos",
+   "kcal": 22,
+   "nutrientes": {
+    "prot_g": 3.1,
+    "selenio_ug": 9,
+    "b2_mg": 0.4,
+    "vitd_ug": {
+     "min": 0,
+     "max": 10,
+     "nota": "SOLO si expuestos a UV o sol (30-60 min al sol laminados sube D2)"
+    }
+   },
+   "destacados": [
+    "b2",
+    "vitd_condicional"
+   ],
+   "confianza": 6,
+   "fuentes": [
+    "usda",
+    "nih"
+   ]
+  },
+  {
+   "id": "girgolas",
+   "nombre": "Gírgolas",
+   "sinonimos": [
+    "hongo ostra",
+    "portobello (afín)"
+   ],
+   "categoria": "hongo",
+   "base": "crudas",
+   "kcal": 33,
+   "nutrientes": {
+    "prot_g": 3.3,
+    "b2_mg": 0.35
+   },
+   "destacados": [
+    "b2"
+   ],
+   "notas": "ergotioneína; misma lógica de vitamina D por UV",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "hongos_secos",
+   "nombre": "Hongos secos (pino/shiitake)",
+   "sinonimos": [
+    "hongos de pino",
+    "boletus secos"
+   ],
+   "categoria": "hongo",
+   "base": "secos",
+   "kcal": 296,
+   "nutrientes": {
+    "b2_mg": 1.3
+   },
+   "notas": "rehidratar; el agua de remojo es umami líquido: usarla (colada)",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "arvejas_partidas",
+   "nombre": "Arvejas partidas",
+   "sinonimos": [
+    "guisantes secos",
+    "split peas"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidas",
+   "kcal": 118,
+   "nutrientes": {
+    "prot_g": 8.3,
+    "hierro_mg": 1.3,
+    "zinc_mg": 1.0,
+    "folato_ug": 65,
+    "fibra_g": 8.3
+   },
+   "destacados": [
+    "fibra"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "garbanzos",
+   "nombre": "Garbanzos",
+   "sinonimos": [],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 164,
+   "nutrientes": {
+    "prot_g": 8.9,
+    "hierro_mg": 2.9,
+    "zinc_mg": 1.5,
+    "folato_ug": 172,
+    "fibra_g": 7.6,
+    "magnesio_mg": 48,
+    "b6_mg": 0.14
+   },
+   "destacados": [
+    "folato",
+    "zinc"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "harina_garbanzo",
+   "nombre": "Harina de garbanzo",
+   "categoria": "legumbre",
+   "base": "seca",
+   "kcal": 387,
+   "nutrientes": {
+    "prot_g": 22,
+    "hierro_mg": 4.9
+   },
+   "notas": "liga vegana; omelettes",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "lentejas",
+   "nombre": "Lentejas",
+   "sinonimos": [
+    "lenteja común"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidas",
+   "kcal": 116,
+   "nutrientes": {
+    "prot_g": 9.0,
+    "hierro_mg": 3.3,
+    "zinc_mg": 1.3,
+    "folato_ug": 181,
+    "fibra_g": 7.9,
+    "potasio_mg": 369,
+    "magnesio_mg": 36
+   },
+   "destacados": [
+    "hierro",
+    "folato",
+    "fibra"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "lentejas_turcas",
+   "nombre": "Lentejas turcas",
+   "sinonimos": [
+    "lenteja roja",
+    "lenteja coral"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidas",
+   "kcal": 115,
+   "nutrientes": {
+    "prot_g": 9.0,
+    "hierro_mg": 3.0,
+    "folato_ug": 100,
+    "fibra_g": {
+     "min": 4,
+     "max": 8
+    }
+   },
+   "destacados": [
+    "hierro"
+   ],
+   "notas": "peladas: menos fibra, cocción más rápida",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "porotos_aduki",
+   "nombre": "Porotos aduki",
+   "sinonimos": [
+    "adzuki",
+    "azuki"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 128,
+   "nutrientes": {
+    "prot_g": 7.5,
+    "hierro_mg": 2.0,
+    "folato_ug": 121,
+    "potasio_mg": 532
+   },
+   "notas": "dulzón; cocción más corta que porotos comunes; ideal en dulces (D01/P32)",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "porotos_alubia",
+   "nombre": "Porotos alubia",
+   "sinonimos": [
+    "poroto blanco",
+    "judía blanca",
+    "navy bean"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 139,
+   "nutrientes": {
+    "prot_g": 9.7,
+    "hierro_mg": 3.7,
+    "calcio_mg": 90,
+    "folato_ug": 102,
+    "potasio_mg": 561,
+    "fibra_g": 6.3
+   },
+   "destacados": [
+    "hierro",
+    "calcio"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "porotos_colorados",
+   "nombre": "Porotos colorados",
+   "sinonimos": [
+    "kidney",
+    "frijol rojo"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 127,
+   "nutrientes": {
+    "prot_g": 8.7,
+    "hierro_mg": 2.9,
+    "folato_ug": 130,
+    "fibra_g": 7.4
+   },
+   "destacados": [
+    "hierro"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "porotos_negros",
+   "nombre": "Porotos negros",
+   "sinonimos": [
+    "frijol negro",
+    "caraota"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 132,
+   "nutrientes": {
+    "prot_g": 8.9,
+    "hierro_mg": 2.1,
+    "zinc_mg": 1.1,
+    "folato_ug": 149,
+    "fibra_g": 8.7,
+    "magnesio_mg": 70
+   },
+   "destacados": [
+    "fibra",
+    "folato"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "porotos_pallares",
+   "nombre": "Porotos pallares",
+   "sinonimos": [
+    "habas lima",
+    "pallar"
+   ],
+   "categoria": "legumbre",
+   "base": "cocidos",
+   "kcal": 115,
+   "nutrientes": {
+    "prot_g": 7.8,
+    "hierro_mg": 2.4,
+    "potasio_mg": 508,
+    "fibra_g": 7
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "soja_grano",
+   "nombre": "Soja en grano",
+   "sinonimos": [
+    "poroto de soja"
+   ],
+   "categoria": "legumbre",
+   "base": "cocida",
+   "kcal": 172,
+   "nutrientes": {
+    "prot_g": 18.2,
+    "hierro_mg": 5.1,
+    "calcio_mg": 102,
+    "magnesio_mg": 86,
+    "zinc_mg": 1.2,
+    "colina_mg": 48
+   },
+   "destacados": [
+    "proteina",
+    "hierro"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "aceitunas",
+   "nombre": "Aceitunas",
+   "sinonimos": [
+    "olivas"
+   ],
+   "categoria": "otro",
+   "base": "en salmuera",
+   "kcal": 115,
+   "nutrientes": {},
+   "destacados": [
+    "grasa_mono"
+   ],
+   "notas": "sodio alto: contar en el total de sal",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "agua",
+   "nombre": "Agua",
+   "categoria": "otro",
+   "base": "líquida",
+   "kcal": 0,
+   "confianza": 9,
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "agua_helada",
+   "nombre": "Agua helada",
+   "categoria": "otro",
+   "base": "líquida",
+   "kcal": 0,
+   "notas": "funcional en emulsiones (hummus)",
+   "confianza": 9,
+   "fuentes": []
+  },
+  {
+   "id": "azucar",
+   "nombre": "Azúcar común",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 387,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "azucar_impalpable",
+   "nombre": "Azúcar impalpable",
+   "sinonimos": [
+    "azúcar glass",
+    "azúcar en polvo"
+   ],
+   "categoria": "otro",
+   "base": "seca",
+   "kcal": 389,
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "azucar_mascabo",
+   "nombre": "Azúcar mascabo",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 380,
+   "notas": "trazas minerales no relevantes: azúcar al fin",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "bicarbonato",
+   "nombre": "Bicarbonato de sodio",
+   "categoria": "otro",
+   "base": "tal cual",
+   "notas": "ablanda legumbres (pizca); contar sodio",
+   "confianza": 8,
+   "fuentes": [],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "cacao_amargo",
+   "nombre": "Cacao amargo en polvo",
+   "sinonimos": [],
+   "categoria": "otro",
+   "base": "seco",
+   "kcal": 228,
+   "nutrientes": {
+    "hierro_mg": 13.9,
+    "magnesio_mg": 499
+   },
+   "destacados": [
+    "magnesio"
+   ],
+   "notas": "hierro con absorción limitada (fitatos/polifenoles); flavanoles",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "caldo_verduras",
+   "nombre": "Caldo de verduras",
+   "categoria": "otro",
+   "base": "líquido",
+   "kcal": 5,
+   "notas": "casero preferible; de cubito: contar el sodio",
+   "confianza": 6,
+   "fuentes": [],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "chocolate_amargo",
+   "nombre": "Chocolate amargo ≥70%",
+   "sinonimos": [],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 598,
+   "nutrientes": {
+    "hierro_mg": 11.9,
+    "magnesio_mg": 228
+   },
+   "destacados": [
+    "magnesio"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "dulce_membrillo",
+   "nombre": "Dulce de membrillo",
+   "sinonimos": [],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 230,
+   "notas": "azúcar concentrada: indulgente",
+   "confianza": 8,
+   "fuentes": [
+    "argenfoods"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "extracto_tomate",
+   "nombre": "Extracto de tomate",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 82,
+   "nutrientes": {
+    "hierro_mg": 3.0,
+    "potasio_mg": 1010
+   },
+   "notas": "licopeno concentrado; umami tostable",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "fecula_maiz",
+   "nombre": "Fécula de maíz",
+   "sinonimos": [
+    "maicena"
+   ],
+   "categoria": "otro",
+   "base": "seca",
+   "kcal": 381,
+   "notas": "almidón puro: costras y ligues",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "fecula_mandioca",
+   "nombre": "Fécula de mandioca",
+   "sinonimos": [
+    "almidón de mandioca",
+    "tapioca"
+   ],
+   "categoria": "otro",
+   "base": "seca",
+   "kcal": 358,
+   "notas": "la elasticidad de los quesos veganos caseros; sin gluten",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "leche_coco",
+   "nombre": "Leche de coco (lata)",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 230,
+   "nutrientes": {
+    "grasa_saturada_g": 21
+   },
+   "notas": "vehículo de sabores liposolubles; moderación",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "lecitina_soja",
+   "nombre": "Lecitina de soja",
+   "sinonimos": [],
+   "categoria": "otro",
+   "base": "líquida o granulada",
+   "notas": "emulsionante: estabiliza la manteca vegana P03; fuente de colina",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "levadura_fresca",
+   "nombre": "Levadura fresca / seca de panadería",
+   "sinonimos": [
+    "levadura de cerveza fresca"
+   ],
+   "categoria": "otro",
+   "base": "tal cual",
+   "notas": "equivalencia: 10 g fresca ≈ 3 g seca; distinta de la levadura nutricional (esta está viva)",
+   "confianza": 8,
+   "fuentes": [],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "masa_madre",
+   "nombre": "Masa madre",
+   "sinonimos": [
+    "sourdough starter"
+   ],
+   "categoria": "otro",
+   "base": "activa 100% hidratación",
+   "notas": "fermento natural: degrada fitatos (R4 aplicada a pan) y mejora digestibilidad; el descarte alimenta P45",
+   "confianza": 7,
+   "fuentes": [],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "mayonesa_vegana",
+   "nombre": "Mayonesa vegana",
+   "sinonimos": [],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": {
+    "min": 300,
+    "max": 700
+   },
+   "notas": "variación enorme por marca (o casera con aquafaba); base de la tonnata P23",
+   "confianza": 5,
+   "fuentes": [],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "miel_de_cana",
+   "nombre": "Miel de caña",
+   "sinonimos": [
+    "melaza de caña"
+   ],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 290,
+   "nutrientes": {
+    "hierro_mg": {
+     "min": 1,
+     "max": 4.7,
+     "nota": "la melaza oscura concentra minerales; la clara casi no"
+    },
+    "calcio_mg": {
+     "min": 40,
+     "max": 200
+    }
+   },
+   "notas": "el endulzante líquido local y vegano; la variante oscura (melaza) aporta minerales reales",
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "nibs_cacao",
+   "nombre": "Nibs de cacao",
+   "sinonimos": [
+    "puntas de cacao"
+   ],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 600,
+   "nutrientes": {
+    "magnesio_mg": 300,
+    "fibra_g": 30
+   },
+   "notas": "cacao puro crocante sin azúcar",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "polvo_hornear",
+   "nombre": "Polvo de hornear",
+   "categoria": "otro",
+   "base": "seco",
+   "notas": "leudante; sodio: contar",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "sirope",
+   "nombre": "Sirope (arce/agave)",
+   "sinonimos": [
+    "jarabe de arce",
+    "maple syrup",
+    "sirope de agave"
+   ],
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": {
+    "min": 260,
+    "max": 310
+   },
+   "notas": "caro/importado en AR: sustitutos locales registrados: miel de caña (vegana) o mascabo disuelto en partes iguales de agua; funcionalmente = endulzante líquido",
+   "sustituto_local": "miel_de_cana",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "vino_tinto",
+   "nombre": "Vino tinto (cocción)",
+   "categoria": "otro",
+   "base": "tal cual",
+   "kcal": 85,
+   "notas": "el alcohol se evapora mayormente al cocinar; siempre opcional",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "quinoa",
+   "nombre": "Quinoa",
+   "sinonimos": [
+    "quinua"
+   ],
+   "categoria": "pseudocereal",
+   "base": "cocida",
+   "kcal": 120,
+   "nutrientes": {
+    "prot_g": 4.4,
+    "magnesio_mg": 64,
+    "hierro_mg": 1.5,
+    "folato_ug": 42,
+    "zinc_mg": 1.1
+   },
+   "destacados": [
+    "proteina_completa"
+   ],
+   "notas": "perfil de aminoácidos completo, lisina alta",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "trigo_sarraceno",
+   "nombre": "Trigo sarraceno",
+   "sinonimos": [
+    "alforfón",
+    "kasha"
+   ],
+   "categoria": "pseudocereal",
+   "base": "cocido",
+   "kcal": 92,
+   "nutrientes": {
+    "prot_g": 3.4,
+    "magnesio_mg": 51
+   },
+   "destacados": [],
+   "notas": "sin gluten; rutina (flavonoide)",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "amapola",
+   "nombre": "Semillas de amapola",
+   "sinonimos": [],
+   "categoria": "semilla",
+   "base": "crudas",
+   "kcal": 525,
+   "nutrientes": {
+    "calcio_mg": 1438
+   },
+   "notas": "calcio altísimo por 100 g, pero se usa en cditas: aporte real moderado",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "chia",
+   "nombre": "Chía",
+   "sinonimos": [
+    "salvia hispánica"
+   ],
+   "categoria": "semilla",
+   "base": "cruda",
+   "kcal": 486,
+   "nutrientes": {
+    "prot_g": 16.5,
+    "ala_g": 17.8,
+    "calcio_mg": 631,
+    "fibra_g": 34,
+    "hierro_mg": 7.7,
+    "magnesio_mg": 335
+   },
+   "destacados": [
+    "omega3",
+    "calcio",
+    "fibra"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "girasol",
+   "nombre": "Semillas de girasol",
+   "sinonimos": [
+    "pipas"
+   ],
+   "categoria": "semilla",
+   "base": "crudas",
+   "kcal": 584,
+   "nutrientes": {
+    "prot_g": 20.8,
+    "vite_mg": 35,
+    "selenio_ug": 53,
+    "magnesio_mg": 325,
+    "zinc_mg": 5.0,
+    "folato_ug": 227
+   },
+   "destacados": [
+    "vite",
+    "selenio"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "lino",
+   "nombre": "Lino",
+   "sinonimos": [
+    "linaza",
+    "semilla de lino"
+   ],
+   "categoria": "semilla",
+   "base": "cruda (consumir MOLIDA)",
+   "kcal": 534,
+   "nutrientes": {
+    "prot_g": 18.3,
+    "ala_g": 22.8,
+    "fibra_g": 27,
+    "magnesio_mg": 392
+   },
+   "destacados": [
+    "omega3"
+   ],
+   "notas": "1 cda molida ≈ 2.3 g ALA (cubre la AI diaria); entera no se digiere; molida se oxida: guardar en frío",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "semillas_zapallo",
+   "nombre": "Semillas de zapallo",
+   "sinonimos": [
+    "pepitas",
+    "semillas de calabaza"
+   ],
+   "categoria": "semilla",
+   "base": "crudas",
+   "kcal": 559,
+   "nutrientes": {
+    "prot_g": 30.2,
+    "zinc_mg": 7.8,
+    "magnesio_mg": 592,
+    "hierro_mg": 8.8
+   },
+   "destacados": [
+    "zinc",
+    "magnesio",
+    "hierro",
+    "proteina"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "sesamo_integral",
+   "nombre": "Sésamo integral",
+   "sinonimos": [
+    "ajonjolí con cáscara"
+   ],
+   "categoria": "semilla",
+   "base": "crudo",
+   "kcal": 573,
+   "nutrientes": {
+    "prot_g": 17.7,
+    "calcio_mg": 975,
+    "hierro_mg": 14.6,
+    "zinc_mg": 7.8
+   },
+   "destacados": [
+    "calcio",
+    "hierro",
+    "zinc"
+   ],
+   "notas": "el calcio está en la cáscara: pelado baja a ~60 mg",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "tahini",
+   "nombre": "Tahini",
+   "sinonimos": [
+    "tahina",
+    "pasta de sésamo"
+   ],
+   "categoria": "semilla",
+   "base": "tal cual",
+   "kcal": 595,
+   "nutrientes": {
+    "prot_g": 17.0,
+    "calcio_mg": {
+     "min": 64,
+     "max": 426,
+     "nota": "según sea de sésamo pelado (bajo) o integral (alto): leer etiqueta"
+    },
+    "hierro_mg": 9.0,
+    "zinc_mg": 4.6
+   },
+   "destacados": [
+    "hierro"
+   ],
+   "confianza": 6,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "apio",
+   "nombre": "Apio",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 14,
+   "nutrientes": {
+    "potasio_mg": 260
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "batata",
+   "nombre": "Batata",
+   "sinonimos": [
+    "boniato",
+    "camote"
+   ],
+   "categoria": "verdura",
+   "base": "horneada",
+   "kcal": 90,
+   "nutrientes": {
+    "prot_g": 2.0,
+    "vita_ug_rae": 961,
+    "potasio_mg": 475,
+    "vitc_mg": 20,
+    "fibra_g": 3.3
+   },
+   "destacados": [
+    "vita",
+    "potasio"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "berenjena",
+   "nombre": "Berenjena",
+   "sinonimos": [],
+   "categoria": "verdura",
+   "base": "cocida",
+   "kcal": 35,
+   "nutrientes": {
+    "prot_g": 0.8,
+    "fibra_g": 2.5
+   },
+   "destacados": [],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "calabaza",
+   "nombre": "Calabaza",
+   "sinonimos": [
+    "anco",
+    "anquito",
+    "butternut",
+    "zapallo anco"
+   ],
+   "categoria": "verdura",
+   "base": "cocida",
+   "kcal": 40,
+   "nutrientes": {
+    "prot_g": 0.9,
+    "vita_ug_rae": {
+     "min": 400,
+     "max": 700,
+     "tipico": 550
+    },
+    "vitc_mg": 15,
+    "potasio_mg": 284
+   },
+   "destacados": [
+    "vita"
+   ],
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cebolla",
+   "nombre": "Cebolla",
+   "sinonimos": [],
+   "categoria": "verdura",
+   "base": "cruda",
+   "kcal": 40,
+   "nutrientes": {
+    "prot_g": 1.1
+   },
+   "destacados": [],
+   "notas": "quercetina, fructanos prebióticos; posible mejora de absorción Fe/Zn de la comida (evidencia moderada)",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "cebolla_morada",
+   "nombre": "Cebolla morada",
+   "categoria": "verdura",
+   "base": "cruda",
+   "kcal": 40,
+   "notas": "como cebolla + antocianinas",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "cebolla_verdeo",
+   "nombre": "Cebolla de verdeo",
+   "sinonimos": [
+    "cebollita de verdeo",
+    "cebolleta"
+   ],
+   "categoria": "verdura",
+   "base": "cruda",
+   "kcal": 32,
+   "nutrientes": {
+    "vitc_mg": 19,
+    "folato_ug": 64
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "choclo",
+   "nombre": "Choclo",
+   "sinonimos": [
+    "maíz dulce",
+    "elote"
+   ],
+   "categoria": "verdura",
+   "base": "cocido",
+   "kcal": 96,
+   "nutrientes": {
+    "prot_g": 3.4,
+    "fibra_g": 2.4
+   },
+   "destacados": [],
+   "notas": "luteína/zeaxantina",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "mandioca",
+   "nombre": "Mandioca",
+   "sinonimos": [
+    "yuca",
+    "cassava"
+   ],
+   "categoria": "verdura",
+   "base": "cruda pelada",
+   "kcal": 160,
+   "nutrientes": {
+    "vitc_mg": 20
+   },
+   "notas": "siempre cocida (cruda contiene glucósidos cianogénicos); base de P36",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "morron_rojo",
+   "nombre": "Morrón rojo",
+   "sinonimos": [
+    "pimiento rojo",
+    "ají morrón",
+    "pimentón (fruto)"
+   ],
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 31,
+   "nutrientes": {
+    "prot_g": 1.0,
+    "vitc_mg": 128,
+    "vita_ug_rae": 157
+   },
+   "destacados": [
+    "vitc"
+   ],
+   "notas": "el potenciador de hierro más práctico de la cocina",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "papa",
+   "nombre": "Papa",
+   "sinonimos": [
+    "patata"
+   ],
+   "categoria": "verdura",
+   "base": "hervida con piel",
+   "kcal": 87,
+   "nutrientes": {
+    "prot_g": 1.9,
+    "potasio_mg": {
+     "min": 379,
+     "max": 535,
+     "nota": "horneada con piel: 535"
+    },
+    "vitc_mg": 13,
+    "b6_mg": 0.3
+   },
+   "destacados": [
+    "potasio"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "pepino",
+   "nombre": "Pepino",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 15,
+   "nutrientes": {
+    "potasio_mg": 147
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "puerro",
+   "nombre": "Puerro",
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 61,
+   "nutrientes": {
+    "folato_ug": 64
+   },
+   "notas": "prebióticos; sustituto suave de cebolla",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "anexo_recetas"
+  },
+  {
+   "id": "rabanito",
+   "nombre": "Rabanitos",
+   "sinonimos": [
+    "rábanos"
+   ],
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 16,
+   "nutrientes": {
+    "vitc_mg": 15
+   },
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "remolacha",
+   "nombre": "Remolacha",
+   "sinonimos": [
+    "betarraga",
+    "betabel"
+   ],
+   "categoria": "verdura",
+   "base": "cocida",
+   "kcal": 44,
+   "nutrientes": {
+    "prot_g": 1.7,
+    "folato_ug": 80
+   },
+   "destacados": [
+    "folato"
+   ],
+   "notas": "nitratos: vasodilatación, rendimiento deportivo",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "salsa_tomate",
+   "nombre": "Salsa de tomate (casera o pura)",
+   "sinonimos": [
+    "salsa portuguesa base"
+   ],
+   "categoria": "verdura",
+   "base": "tal cual",
+   "kcal": 35,
+   "nutrientes": {
+    "potasio_mg": 300
+   },
+   "notas": "si es comprada: mirar sodio y azúcar",
+   "confianza": 7,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "tomate",
+   "nombre": "Tomate",
+   "sinonimos": [
+    "jitomate"
+   ],
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 18,
+   "nutrientes": {
+    "prot_g": 0.9,
+    "vitc_mg": 14,
+    "potasio_mg": 237
+   },
+   "destacados": [],
+   "notas": "licopeno: disponibilidad sube mucho cocido con aceite",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "tomate_triturado",
+   "nombre": "Tomate triturado (lata/cartón)",
+   "sinonimos": [
+    "puré de tomate",
+    "tomate perita triturado"
+   ],
+   "categoria": "verdura",
+   "base": "tal cual",
+   "kcal": 32,
+   "nutrientes": {
+    "vitc_mg": 9,
+    "potasio_mg": 220
+   },
+   "notas": "licopeno alto por procesamiento; en AR viene en lata 400 g o cartón 520 g",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "tomates_secos",
+   "nombre": "Tomates secos (en aceite)",
+   "sinonimos": [
+    "tomates deshidratados"
+   ],
+   "categoria": "verdura",
+   "base": "en aceite, escurridos",
+   "kcal": 213,
+   "nutrientes": {
+    "potasio_mg": 1565
+   },
+   "notas": "umami-dulce concentrado; licopeno",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ],
+   "origen": "set3_libro"
+  },
+  {
+   "id": "zanahoria",
+   "nombre": "Zanahoria",
+   "sinonimos": [],
+   "categoria": "verdura",
+   "base": "cruda",
+   "kcal": 41,
+   "nutrientes": {
+    "prot_g": 0.9,
+    "vita_ug_rae": 835,
+    "potasio_mg": 320
+   },
+   "destacados": [
+    "vita"
+   ],
+   "notas": "β-caroteno: absorción mejora con cocción y grasa",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "zapallito_redondo",
+   "nombre": "Zapallito redondo",
+   "sinonimos": [
+    "zapallito verde",
+    "zapallito de tronco"
+   ],
+   "categoria": "verdura",
+   "base": "crudo",
+   "kcal": 17,
+   "notas": "distinto del zucchini (más acuoso y dulce); el de la tarta P22",
+   "confianza": 7,
+   "fuentes": [
+    "argenfoods"
+   ],
+   "origen": "setP_personal"
+  },
+  {
+   "id": "zucchini",
+   "nombre": "Zucchini",
+   "sinonimos": [
+    "zapallito largo",
+    "calabacín"
+   ],
+   "categoria": "verdura",
+   "base": "cocido",
+   "kcal": 16,
+   "nutrientes": {
+    "prot_g": 1.1,
+    "potasio_mg": 264
+   },
+   "destacados": [],
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "acelga",
+   "nombre": "Acelga",
+   "sinonimos": [],
+   "categoria": "verdura_hoja",
+   "base": "cocida",
+   "kcal": 20,
+   "nutrientes": {
+    "prot_g": 1.9,
+    "magnesio_mg": 86,
+    "vita_ug_rae": 306,
+    "hierro_mg": 2.3
+   },
+   "destacados": [
+    "magnesio"
+   ],
+   "notas": "oxalatos: calcio no computable, como espinaca",
+   "confianza": 8,
+   "fuentes": [
+    "usda"
+   ]
+  },
+  {
+   "id": "espinaca",
+   "nombre": "Espinaca",
+   "sinonimos": [],
+   "categoria": "verdura_hoja",
+   "base": "cocida",
+   "kcal": 23,
+   "nutrientes": {
+    "prot_g": 3.0,
+    "folato_ug": 146,
+    "hierro_mg": 3.6,
+    "vita_ug_rae": 524,
+    "calcio_mg": {
+     "min": 136,
+     "max": 136,
+     "nota": "NO computar como fuente: oxalatos reducen absorción a ~5%"
+    }
+   },
+   "destacados": [
+    "folato",
+    "vita"
+   ],
+   "confianza": 8,
+   "fuentes": [
+    "usda",
+    "nih"
+   ]
+  },
+  {
+   "id": "hojas_verdes",
+   "nombre": "Hojas verdes (mix)",
+   "sinonimos": [
+    "mezcla de hojas",
+    "verdes de estación"
+   ],
+   "categoria": "verdura_hoja",
+   "base": "crudas",
+   "kcal": 20,
+   "notas": "comodín: la app puede resolverlo al ingrediente concreto (espinaca, rúcula, lechuga) al cargar",
+   "confianza": 6,
+   "fuentes": []
+  }
+ ]
+}

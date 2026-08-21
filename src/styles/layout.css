@@ -1,0 +1,121 @@
+/* ---------- estructura general ---------- */
+
+.app {
+  min-height: 100dvh;
+  padding-bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom) + var(--sp-4));
+}
+
+.contenido {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--sp-4);
+}
+
+@media (min-width: 900px) {
+  .app {
+    padding-bottom: var(--sp-7);
+  }
+  .contenido {
+    padding: var(--sp-5) var(--sp-6);
+  }
+}
+
+/* ---------- navegación: barra inferior en mobile, cabecera en desktop ---------- */
+
+.nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  background: var(--superficie);
+  border-top: var(--borde);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-marca {
+  display: none;
+}
+
+.nav-item {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--sp-2) var(--sp-4);
+  min-width: 44px;
+  min-height: calc(var(--alto-nav) - 2px);
+  justify-content: center;
+  color: var(--tinta-suave);
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  text-decoration: none;
+}
+
+.nav-item svg {
+  font-size: 24px;
+}
+
+.nav-item[aria-current='true'] {
+  color: var(--accion-texto);
+  font-weight: 600;
+}
+
+@media (min-width: 900px) {
+  .nav {
+    position: sticky;
+    top: 0;
+    inset: auto;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-3) var(--sp-6);
+    border-top: none;
+    border-bottom: 3px double color-mix(in srgb, var(--tinta) 35%, transparent);
+    background: color-mix(in srgb, var(--superficie) 88%, transparent);
+    backdrop-filter: blur(6px);
+  }
+  .nav-marca {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    color: var(--marca);
+    margin-right: auto;
+  }
+  .nav-item {
+    flex-direction: row;
+    gap: var(--sp-2);
+    font-size: var(--fs-sm);
+    min-height: 44px;
+    letter-spacing: 0.01em;
+  }
+  .nav-item svg {
+    font-size: 20px;
+  }
+}
+
+/* ---------- encabezados de pantalla ---------- */
+
+.encabezado-pantalla {
+  margin: var(--sp-3) 0 var(--sp-4);
+}
+
+.encabezado-pantalla h1 {
+  font-size: var(--fs-2xl);
+}
+
+.etiqueta-seccion {
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kicker);
+}
+

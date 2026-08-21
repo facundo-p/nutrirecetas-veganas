@@ -1,0 +1,42 @@
+name: Cerrar issues al mergear
+
+# GitHub solo auto-cierra issues cuando el PR mergea a la rama por defecto (main).
+# Acá todo el trabajo entra por staging, así que sin esto "Closes #N" no cerraría
+# nunca nada — y el workflow "Item closed → Hecho" del tablero nunca se dispararía.
+on:
+  pull_request:
+    types: [closed]
+    branches: [staging]
+
+permissions:
+  issues: write
+
+jobs:
+  cerrar:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      # El cuerpo del PR entra por env, no interpolado en el script: es texto que
+      # escribe cualquiera y no tiene por qué llegar al shell.
+      - name: Cerrar los issues que el PR declara
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CUERPO: ${{ github.event.pull_request.body }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          printf '%s' "$CUERPO" \
+            | grep -oiE '\b(close[sd]?|fixe?[sd]?|resolve[sd]?) +#[0-9]+' \
+            | grep -oE '[0-9]+' | sort -u > issues.txt
+
+          if [ ! -s issues.txt ]; then
+            echo "El PR #$PR no declara ningún issue."
+            exit 0
+          fi
+
+          while read -r n; do
+            gh issue close "$n" --repo "$REPO" --reason completed \
+              --comment "Cerrado por el PR #$PR al mergear a \`staging\`." \
+              && echo "#$n cerrado" \
+              || echo "#$n no se pudo cerrar (¿ya estaba cerrado?)"
+          done < issues.txt
