@@ -3,7 +3,7 @@ import type { IngredientCategory } from '../../src/seed/schema';
 /**
  * TODAS las decisiones de datos tomadas a mano viven acá, en un solo lugar,
  * para que Facu las revise en el gate de datos de Fase 1
- * (docs/plan/fase1-gate-datos.md). Cada `estimada: true` es una propuesta,
+ * (docs/decisiones-de-datos.md). Cada `estimada: true` es una propuesta,
  * no un dato del recetario.
  */
 

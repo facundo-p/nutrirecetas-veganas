@@ -1,0 +1,40 @@
+name: Épica de fase
+description: Agrupa los entregables de una fase del roadmap
+title: "Fase N — "
+labels: ["épica"]
+body:
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: Qué tiene que poder hacer la app al terminar esta fase, en una o dos oraciones.
+    validations:
+      required: true
+
+  - type: textarea
+    id: cierre
+    attributes:
+      label: Criterio de cierre
+      description: Cómo se sabe que la fase terminó. Concreto y verificable.
+      placeholder: "Planificar una semana real y hacer una compra real con la app."
+    validations:
+      required: true
+
+  - type: textarea
+    id: entregables
+    attributes:
+      label: Entregables
+      description: Uno por sub-issue. Se vinculan como sub-issues una vez creados.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checkpoint
+    attributes:
+      label: Checkpoint de cierre
+      options:
+        - label: "`npm test` y `npm run build` en verde"
+        - label: "Renders generados y publicados (`/renders`)"
+        - label: "Entrada en `lessons.md`"
+        - label: "OK explícito de Facu"
+        - label: "`/release` corrido"

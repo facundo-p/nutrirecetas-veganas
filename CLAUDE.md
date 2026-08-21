@@ -1,94 +1,100 @@
 # CLAUDE.md — Nutrirecetas Veganas
 
-PWA personal de recetas veganas con base nutricional. Un solo usuario por dispositivo (Facu; potencialmente amigos con su propia instalación). Sin backend, offline-first real, mantenida por una persona en su tiempo libre: **simplicidad de mantenimiento por sobre sofisticación, siempre**.
+PWA personal de recetas veganas con base nutricional. Un usuario por dispositivo, sin backend, offline-first, mantenida por una persona en su tiempo libre: **simplicidad de mantenimiento por sobre sofisticación, siempre**.
 
-Idioma del proyecto: **español rioplatense** (código en inglés, UI y docs en castellano).
+Idioma: código en inglés, UI y docs en **español rioplatense**.
 
-## Reglas de git (duras)
+## Git y flujo de trabajo (duras)
 
-- **Todo el trabajo ocurre en la rama `staging`.** Nunca commitear, mergear ni pushear a `main` directamente.
-- `main` solo recibe versiones completas vía **PR desde `staging` aprobado explícitamente por Facu**.
-- El hook `.claude/hooks/guard-main.sh` bloquea operaciones sobre `main`; si bloquea algo, no es un bug: cambiá a `staging`.
-- Los archivos de `.artifacts/` son **read-only**: jamás editarlos. Cualquier corrección de datos se hace en la capa de ingesta (`scripts/build-seed`) o se reporta a Facu.
+- **La planificación vive en Issues**, no en markdown: una épica por fase, sub-issues por entregable.
+- **Una rama por issue**: `gh issue develop N --checkout`. Nunca commitear directo a `staging`; el hook `.claude/hooks/guard-main.sh` lo bloquea.
+- **El trabajo entra a `staging` por PR** con `Closes #N`, CI en verde y squash merge.
+- **`main` solo recibe releases**: el PR que abre `/release`, mergeado a mano por Facu con merge commit. Nunca commitear ni pushear a `main`.
+- `.artifacts/` es **read-only**. Toda corrección de datos va a `scripts/build-seed/curated-tables.ts`.
+
+## Versionado
+
+`MAJOR.MINOR.PATCH` redefinido para una app sin API pública:
+
+- **MAJOR** — **si antes de actualizar hay que hacer algo** (backup, rehacer el onboarding), es major. También cerrar una etapa completa de roadmap.
+- **MINOR** — funcionalidad nueva y visible que no obliga a nada.
+- **PATCH** — todo lo demás.
+
+Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, salvo que cambie un id o borre un ingrediente o receta → major; (3) tema nuevo es minor, ajustar tokens es patch; (4) antes de 1.0.0 no hay major derivado — una ruptura sube el minor, y el salto a 1.0.0 se pide a mano con `/release 1.0.0`; (5) las dependencias solas no justifican un release.
+
+`/release` propone el número, escribe `CHANGELOG.md` y abre el PR a `main`. No mergea.
 
 ## Invariantes del dominio (no negociables, vienen del dataset)
 
-1. **El gramo es la unidad canónica**: `g_aprox` es la ÚNICA fuente de verdad para cálculo. El campo `unidad` (295 valores de texto libre) es solo display.
-2. La nutrición de una receta **se calcula desde los ingredientes**, nunca se usa `perfil_nutricional_porcion_aprox` (la auditoría mostró 45 % de desvíos >30 %; es solo referencia histórica).
-3. **El semáforo evalúa cada nutriente en SU ventana** (`dia` | `semana`, semana = móvil de 7 días). Nunca por comida individual.
-4. **Un suplemento declarado apaga la exigencia alimentaria** de ese nutriente (estado `cubierto_por_suplemento`).
-5. **La incertidumbre se muestra**: rangos {min,max} como bandas (punto medio + banda visible), índice de confianza (IC 1-10) visible, cobertura de cálculo reportada. Nulos jamás son cero en silencio.
-6. **Alerta B12 obligatoria**: si una receta usa levadura nutricional como fuente de B12, advertir que muchas marcas argentinas NO están fortificadas. Es un invariante de seguridad, no cosmético.
-7. El UL de magnesio aplica solo a suplementos: el semáforo no alerta exceso de Mg alimentario.
+1. **El gramo es la unidad canónica**: `g_aprox` es la única fuente de verdad para cálculo; `unidad` (295 valores de texto libre) es solo display.
+2. La nutrición **se calcula desde los ingredientes**; `perfil_nutricional_porcion_aprox` no se usa (45 % de desvíos >30 %).
+3. **El semáforo evalúa cada nutriente en SU ventana** (`dia` | `semana` móvil de 7 días), nunca por comida individual.
+4. **Un suplemento declarado apaga la exigencia alimentaria** de ese nutriente (`cubierto_por_suplemento`).
+5. **La incertidumbre se muestra**: rangos {min,max} como bandas con punto medio, IC 1-10 visible, cobertura reportada. Nulos jamás son cero en silencio.
+6. **Alerta B12 obligatoria**: si una receta usa levadura nutricional como fuente de B12, advertir que muchas marcas argentinas NO están fortificadas. Es seguridad, no cosmética.
+7. El UL de magnesio aplica solo a suplementos: nunca alertar exceso de Mg alimentario.
 8. **La app informa, no diagnostica.** Fuera de alcance: embarazo, lactancia, menores, condiciones médicas.
 
-## Estilos (reglas duras al escribir código nuevo)
+## Código y comentarios (duras)
 
-1. **Cero estilo en los `.tsx`.** Ni `style={{ }}`, ni objetos de estilo, ni `<style>`, ni CSS-in-JS, ni CSS Modules. El TSX pone `className` y atributos; el color, el tamaño y la forma los decide el CSS. (Hoy hay exactamente cero `style={{` en `src/`; que siga así.)
-2. **Una hoja por carpeta de `src/ui/`**, en `src/styles/pantallas/`: `cook/`→`cocina.css`, `diary/`→`diario.css`, `recipes/`→`recetario.css`, `recipe-detail/`→`receta.css`, `today/`→`hoy.css`, `profile/`→`perfil.css`, `settings/`→`ajustes.css`, `ingredients/`→`ingredientes.css`, `glossary/`→`glosario.css`. Lo que se comparte entre pantallas (formularios, botones, chips, íconos) va en `componentes.css`; el chrome (estructura, nav, encabezados) en `layout.css`.
-3. **Pantalla nueva = hoja nueva + su `@import` en `src/styles/index.css`.** Ese archivo es el único que importa `main.tsx`, y el orden de la cascada se lee ahí. El test avisa si la hoja quedó sin importar.
-4. **Nada de valores mágicos**: espaciado con `--sp-*`, tipografía con `--fs-*` y `--font-*`, radios y bordes con `--radio*` / `--borde*`. Si hace falta una medida nueva, se agrega a `tokens.css` (que no puede tener colores).
-5. **El estado se comunica con atributos, no con estilos calculados**: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.
-6. **Nombres de clase en castellano, kebab-case, BEM liviano**: bloque (`semaforo`, `tarjeta-receta`), elemento como `bloque-elemento` (`semaforo-icono`, `banda-rango`), variante como `bloque-variante` (`chip-mini`) y estado como clase suelta adicional (`sin-datos`, `no-aplica`, `inactiva`). Cero clases utilitarias.
-7. **Prohibido el reborde lateral de acento en tarjetas** y el emoji como ícono (reglas anti-look-IA, pedido explícito de Facu). Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
-8. **Al terminar**: `npm test` (el contrato de estilos corre ahí) y, si tocaste algo visual, renders. Si el cambio *no* debía verse, generá un baseline antes y comparalo con `cmp`.
+1. **El código se explica solo**: nombres descriptivos en variables, tipos, constantes y funciones. Un buen nombre ahorra el comentario.
+2. **Comentar el porqué, no el qué.** Si el comentario repite lo que la línea ya dice, sobra — o el nombre está mal.
+3. **Mínima expresión**: la menor cantidad de palabras que exprese la idea, en comentarios, docs, mensajes de commit y este archivo. Sin preámbulos ni relleno.
 
-## Temas visuales (intercambiables)
+## Estilos (duras al escribir código nuevo)
 
-La app tiene **tres temas**: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen desde Ajustes o con `?tema=a|c|d`; la elección queda en `localStorage` y se aplica antes de pintar (script inline de `index.html`).
+1. **Cero estilo en los `.tsx`**: ni `style={{ }}`, ni objetos de estilo, ni `<style>`, ni CSS-in-JS, ni CSS Modules. El TSX pone `className` y atributos; el CSS decide color, tamaño y forma.
+2. **Una hoja por carpeta de `src/ui/`**, en `src/styles/pantallas/`: `cook/`→`cocina.css`, `diary/`→`diario.css`, `recipes/`→`recetario.css`, `recipe-detail/`→`receta.css`, `today/`→`hoy.css`, `profile/`→`perfil.css`, `settings/`→`ajustes.css`, `ingredients/`→`ingredientes.css`, `glossary/`→`glosario.css`. Lo compartido va en `componentes.css`; el chrome (estructura, nav, encabezados) en `layout.css`.
+3. **Pantalla nueva = hoja nueva + su `@import` en `src/styles/index.css`**, el único que importa `main.tsx` y donde se lee el orden de la cascada. El test avisa si quedó sin importar.
+4. **Nada de valores mágicos**: espaciado `--sp-*`, tipografía `--fs-*` y `--font-*`, radios y bordes `--radio*` / `--borde*`. Medida nueva → `tokens.css`, que no puede tener colores.
+5. **El estado se comunica con atributos**, no con estilos calculados: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.
+6. **Clases en castellano, kebab-case, BEM liviano**: bloque (`semaforo`, `tarjeta-receta`), elemento `bloque-elemento` (`semaforo-icono`, `banda-rango`), variante `bloque-variante` (`chip-mini`), estado como clase suelta adicional (`sin-datos`, `no-aplica`, `inactiva`). Cero utilitarias.
+7. **Prohibido el reborde lateral de acento en tarjetas y el emoji como ícono** (anti-look-IA, pedido explícito de Facu). Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
+8. **Al terminar**: `npm test`. Si tocaste algo visual, renders; si el cambio *no* debía verse, baseline antes y `cmp` después.
 
-### Las tres capas
+## Temas visuales
+
+Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen en Ajustes o con `?tema=a|c|d`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
 
 ```
-1. FORMA   src/styles/tokens.css     tipografía, escala, espaciado, bordes.
-                                     PROHIBIDO un color acá.
-2. TEMAS   src/styles/temas/         la única capa que escribe colores.
-             tema-{a,c,d}.css        un tema = un archivo: su paleta cruda
-                                     (--p-*, privada) + el contrato de roles.
-             categorias.css          el puente [data-cat] → --cat-actual.
-3. APP     todo el resto de styles/  solo tokens de rol. Ninguna regla de acá
-                                     nombra un color ni un tema.
+1. FORMA   src/styles/tokens.css   tipografía, escala, espaciado, bordes.
+                                   PROHIBIDO un color acá.
+2. TEMAS   src/styles/temas/       única capa que escribe colores.
+             tema-{a,c,d}.css      paleta cruda (--p-*, privada) + contrato de roles.
+             categorias.css        puente [data-cat] → --cat-actual.
+3. APP     el resto de styles/     solo tokens de rol; ninguna regla nombra
+                                   un color ni un tema.
 ```
 
-**La regla del sistema: ninguna regla de la app nombra un color.** Los selectores usan **tokens de rol** (`--titulo-seccion`, `--accion`, `--cifra`, `--navegar`, `--aviso`, `--dato-suave`, `--marca`, `--link`, `--cat-*`…) y cada tema decide qué color cumple cada uno.
+**Ninguna regla de la app nombra un color**: usan tokens de rol (`--titulo-seccion`, `--accion`, `--cifra`, `--navegar`, `--aviso`, `--dato-suave`, `--marca`, `--link`, `--cat-*`…) y cada tema decide qué color los cumple. Lo hace cumplir `src/styles/contrato-de-temas.test.ts`: falla ante un hex en la capa de la app, un `--p-*` fuera de su tema, un CSS de la app que menciona un tema, o un tema con el contrato incompleto. Sin ese test la regla se degrada sola — llegó a 141 violaciones sin que nadie lo notara.
 
-**Esa regla la hace cumplir un test, no la disciplina**: `src/styles/contrato-de-temas.test.ts` falla si aparece un hex en la capa de la app, si alguien usa la paleta cruda de un tema (`--p-*`) fuera de su archivo, si un CSS de la app menciona un tema, o si un tema no declara el contrato completo. Antes de este test, la regla se había degradado a 141 violaciones sin que nadie lo notara.
+**Agregar un tema**: (1) `src/styles/temas/tema-X.css` con su paleta y **todos** los roles, copiando la cabecera de otro tema; (2) `@import` en `index.css`; (3) sumar la letra a `TEMAS` e `INFO_DE_TEMA` en `src/app/tema.ts` y al `var TEMAS` del script inline de `index.html`; (4) `npm test`, que dice el token exacto si falta alguno. No se toca ningún componente.
 
-### Agregar un tema
+**Al tocar color**: cambiar el token de rol en el archivo del tema, nunca un hex suelto en un componente. Un rol nuevo se declara en **todos** los temas.
 
-1. Crear `src/styles/temas/tema-X.css` con la paleta `--p-*` y **todos** los roles del contrato (copiar la cabecera de otro tema).
-2. Importarlo en `src/styles/index.css`.
-3. Sumar la letra a `TEMAS` y una entrada a `INFO_DE_TEMA` en `src/app/tema.ts`, y al array `var TEMAS` del script inline de `index.html`.
-4. `npm test` — si falta un rol o alguna lista quedó desincronizada, el test lo dice con el token exacto.
+**Custom properties anidadas**: una property que contiene `var()` se resuelve **donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root` — y es lo que permite que un tema elija entre título fijo o color de categoría sin nombrarse: `var(--titulo-receta-fijo, var(--cat-actual))`.
 
-No se toca ni un componente. El tema A se agregó así: un archivo nuevo y tres líneas.
+**Colores nuevos, medidos** contra la vara que cumple el tema D: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
 
-### Al tocar color
+**Renders**: `npm run renders -- fase-N --tema=a|c|d` → `docs/renders/fase-N-tema-{a,c,d}/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 
-Cambiar el token de rol en el archivo del tema, nunca un hex suelto en un componente. Si hace falta un rol nuevo, se declara en **todos** los temas (el test lo exige). Los colores de ícono van en clases (`.icono-*` en `componentes.css`), nunca inline en el TSX.
+## Arquitectura
 
-**Cuidado con las custom properties anidadas**: una property que contiene `var()` se resuelve **en el elemento donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root`. Ese mismo mecanismo es el que permite que un tema elija entre título fijo o color de categoría sin nombrarse: `var(--titulo-receta-fijo, var(--cat-actual))`.
-
-### Colores nuevos, medidos
-
-Contra la vara real que cumple el tema D sobre sus propios valores: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS, no después. Si el tono base no llega, se agrega una variante `-honda`, como `--p-zanahoria-honda`.
-
-Renders: `npm run renders -- fase-N --tema=a|c|d`; salen a `docs/renders/fase-N-tema-{a,c,d}/`. Al refactorizar estilos, generar un baseline antes y comparar los PNG con `cmp`: es lo único que detecta un cambio visual no intencional.
-
-## Arquitectura (resumen; detalle en docs/plan/02-arquitectura.md)
-
-- Stack: TypeScript + React 19 + Vite (SPA estática) + vite-plugin-pwa + Dexie.js + Zod + Zustand + Vitest.
+- TypeScript + React 19 + Vite (SPA estática) + vite-plugin-pwa + Dexie.js + Zod + Zustand + Vitest.
 - **La semilla nunca entra a IndexedDB; los datos de usuario nunca salen de IndexedDB.**
-- `scripts/build-seed.ts` normaliza `.artifacts/` → `seed.json` canónico en build-time. Forma desconocida = falla el build, nunca el runtime.
-- Motor nutricional en `src/domain/`: funciones puras, sin imports de React/DOM/Dexie. Es lo único con cobertura de tests exhaustiva.
+- `scripts/build-seed/` normaliza `.artifacts/` → `seed.json` canónico en build-time. Forma desconocida = falla el build, nunca el runtime.
+- Motor nutricional en `src/domain/`: funciones puras, sin imports de React, DOM ni Dexie. Es lo único con cobertura exhaustiva.
 - Toda pantalla es **mobile-first y 100 % usable desde el celular**.
+- Detalle en `docs/arquitectura.md`.
 
-## Flujo de fases
+## Cierre de fase
 
-Desarrollo incremental por fases (docs/plan/05-roadmap.md). Cada fase cierra con **renders** (screenshots reales vía `/renders` desde Fase 1) publicados para revisión de Facu, y una entrada en `lessons.md`. No pasar a la fase siguiente sin ese cierre.
+Cada fase cierra con **renders** publicados para revisión de Facu, una entrada en `lessons.md` y su OK explícito: la skill `/cierre-fase`. No se pasa a la fase siguiente sin ese cierre. Aprobada la fase, `/release`.
 
 ## Punteros
 
-- Plan completo: `docs/plan/`
-- Bitácora de lecciones: `lessons.md` (actualizar al cierre de cada fase)
-- Dataset y su documentación: `.artifacts/README-dataset.md` (ojo: la auditoría en `docs/plan/01-auditoria.md` corrige varios puntos de esa doc)
+- `lessons.md` — bitácora entre sesiones. Toda sesión arranca leyéndola.
+- `CHANGELOG.md` — qué cambió en cada versión.
+- El tablero de Issues — qué falta y qué está en curso: https://github.com/users/facundo-p/projects/3
+- `docs/arquitectura.md` · `docs/auditoria-dataset.md` · `docs/estetica-e-interaccion.md` · `docs/funcionalidades.md` · `docs/decisiones-de-datos.md` · `docs/riesgos.md`
+- `.artifacts/README-dataset.md` — doc del dataset; ojo, la auditoría corrige varios de sus puntos.
