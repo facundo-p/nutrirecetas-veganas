@@ -11,7 +11,15 @@ import type { Coccion, Consumo, Meta, Overlay, Perfil } from './schema';
  * puesto el historial.
  */
 
-export const DB_NAME = 'nutrirecetas_user';
+/**
+ * main y staging comparten origen en GitHub Pages, e IndexedDB es por origen:
+ * sin este sufijo, probar algo en staging escribiría sobre el historial real.
+ * Solo `staging` se desvía — cualquier otro valor, incluido ninguno, usa la base
+ * de siempre, así dev y tests siguen viendo los datos de siempre.
+ */
+const SUFIJO_DE_ENTORNO = import.meta.env.VITE_ENTORNO === 'staging' ? '_staging' : '';
+
+export const DB_NAME = `nutrirecetas_user${SUFIJO_DE_ENTORNO}`;
 
 export class UserDb extends Dexie {
   perfil!: EntityTable<Perfil, 'id'>;

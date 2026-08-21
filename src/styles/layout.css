@@ -119,3 +119,21 @@
   color: var(--kicker);
 }
 
+
+/**
+ * Banda de staging: solo aparece cuando el build declara ese entorno. Va arriba
+ * de la nav y no es sticky a propósito — no compite con el banner de backup,
+ * que sí tiene que perseguirte.
+ */
+.banda-entorno {
+  background: color-mix(in srgb, var(--aviso) 18%, var(--superficie));
+  border-bottom: 1px solid color-mix(in srgb, var(--aviso) 45%, transparent);
+  color: var(--tinta);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+.banda-entorno strong {
+  color: var(--aviso);
+}

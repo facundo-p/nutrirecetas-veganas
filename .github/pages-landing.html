@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nutrirecetas Veganas</title>
+    <!--
+      Índice del sitio de Pages. No es parte de la app: vive fuera del sistema de
+      temas a propósito, para no arrastrar el bundle solo para mostrar dos links.
+    -->
+    <style>
+      :root {
+        color-scheme: light;
+        --papel: #f5efdc;
+        --tinta: #2b2622;
+        --tinta-suave: #6b625a;
+        --superficie: #fffdf7;
+        --borde: #e0d6c0;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-content: center;
+        gap: 1.5rem;
+        padding: 2rem 1.25rem;
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+      }
+      h1 { margin: 0; font-size: 1.5rem; font-weight: 600; }
+      p { margin: 0; color: var(--tinta-suave); font-size: 0.95rem; max-width: 34ch; }
+      ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+      a {
+        display: block;
+        padding: 1rem 1.25rem;
+        background: var(--superficie);
+        border: 1px solid var(--borde);
+        border-radius: 10px;
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover, a:focus-visible { border-color: var(--tinta-suave); }
+      strong { display: block; font-size: 1.05rem; }
+      small { color: var(--tinta-suave); }
+    </style>
+  </head>
+  <body>
+    <h1>Nutrirecetas Veganas</h1>
+    <p>Recetario vegano personal con base nutricional. Funciona sin conexión: instalala desde el menú del navegador.</p>
+    <ul>
+      <li>
+        <a href="./app/">
+          <strong>La app</strong>
+          <small>La versión publicada. Tus datos de verdad viven acá.</small>
+        </a>
+      </li>
+      <li>
+        <a href="./staging/">
+          <strong>Staging</strong>
+          <small>Lo que todavía no se publicó. Base de datos aparte: nada de lo que cargues acá toca la app.</small>
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
