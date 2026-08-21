@@ -75,42 +75,54 @@ Las de tipo son las que alimentan las secciones del changelog.
 
 ## 2 — El tablero
 
-Un proyecto (`Nutrirecetas Veganas`) vinculado al repo, con **dos vistas y dos
-campos de estado distintos**. Un único campo `Status` compartido haría que las
-columnas de issues y de PRs se pisen.
+Un proyecto (`Nutrirecetas Veganas`) vinculado al repo, con **dos vistas sobre un
+único campo de estado**: **Issues** filtra `is:issue`, **PRs** filtra `is:pr`.
 
-| Vista **Issues** — campo `Estado` | Vista **PRs** — campo `Estado PR` |
-|---|---|
-| **Backlog** — registrado, sin compromiso | **Borrador** — draft, trabajo en curso |
-| **En curso** — hay rama abierta | **CI corriendo** — abierto, checks pendientes |
-| **En revisión de Facu** — implementado, esperando el OK | **Listo para mergear** — CI en verde |
-| **Hecho** — mergeado a `staging` | **Mergeado** |
-| **Publicado** — salió en un release a `main` | |
+| Estado | Para un issue | Para un PR |
+|---|---|---|
+| **Backlog** | registrado, sin compromiso | recién abierto |
+| **En curso** | hay rama abierta | — |
+| **En revisión de Facu** | implementado, esperando el OK | esperando su revisión |
+| **Hecho** | mergeado a `staging` | mergeado |
+| **Publicado** | salió en un release a `main` | — |
 
 "En revisión de Facu" es el checkpoint que el roadmap ya exige (renders + OK
-explícito) y que hoy no vive en ningún lado.
+explícito) y que antes no vivía en ningún lado.
+
+### Por qué un solo campo y no uno por vista
+
+El diseño original daba a cada vista su propio campo, con columnas dedicadas para
+los PRs (Borrador · CI corriendo · Listo para mergear · Mergeado). **No se puede**:
+los workflows nativos de GitHub Projects **solo escriben en el campo de estado del
+proyecto**, nunca en un campo single-select propio. El campo `Estado PR` llegó a
+existir, acumuló 0 items seteados y se borró.
+
+Compartir columnas es menos expresivo, y es la decisión correcta igual: un campo
+que ninguna automatización puede tocar se desactualiza solo, y un tablero que
+miente es peor que uno impreciso.
 
 ### Qué se puede automatizar y qué no
 
-Verificado contra la API antes de escribir esto:
+Verificado contra la API:
 
 - `createProjectV2View` **existe** → las dos vistas se crean por GraphQL.
 - `updateProjectV2View` acepta `filter` → los filtros (`is:issue` / `is:pr`) se setean por API.
 - `ProjectV2ViewConfigurationInput` sólo acepta `visibleFieldIds` → **la agrupación
-  por columna NO es seteable por API**.
+  por columna NO es seteable por API**. Se elige a mano, una vez por vista.
 - `addSubIssue` **existe** → los sub-issues se vinculan por GraphQL.
-- `gh project field-create` crea los campos single-select con sus opciones.
+- `updateProjectV2Field` reemplaza las opciones del campo `Status`, pero **descarta
+  el cambio de nombre**: el campo sigue llamándose `Status` con sus opciones en
+  castellano.
+- Los workflows nativos solo escriben en el campo de estado (ver arriba).
 
-**Consecuencia práctica**: se **renombra el campo `Status` que GitHub crea solo** a
-`Estado` y se le reemplazan las opciones por las cinco de la tabla — así la vista de
-Issues agrupa sola, porque un board layout agrupa por el campo de estado del proyecto
-por defecto. `Estado PR` es un campo single-select nuevo, y su vista necesita **un
-paso manual único de dos clicks**: abrirla → agrupar por `Estado PR`. Queda
-documentado en el README del proyecto; no hay forma de evitarlo por API.
+**Lo que se mueve solo**: *Item added to project* → Backlog · *Item closed* → Hecho ·
+*Pull request merged* → Hecho · *Auto-add sub-issues to project*. Las columnas del
+medio se mueven a mano, que es una vez por tarea.
 
-Los workflows nativos de GitHub Projects cubren *item agregado al proyecto*,
-*PR mergeado* e *issue cerrado*. Las columnas del medio se mueven a mano, que es
-una vez por tarea.
+`Closes #N` **no cierra nada** por sí solo: GitHub solo auto-cierra cuando el PR
+mergea a la rama por defecto, y acá todo entra por `staging`. Lo resuelve
+`.github/workflows/cerrar-issues.yml`, que lee `Closes`/`Fixes`/`Resolves` del
+cuerpo del PR. Sin él, *Item closed → Hecho* nunca se dispararía.
 
 ## 3 — CI (`.github/workflows/ci.yml`)
 
