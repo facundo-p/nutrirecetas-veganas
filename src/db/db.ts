@@ -1,4 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
+import { migrarPerfilV1 } from './migrations';
 import type { Coccion, Consumo, Meta, Overlay, Perfil } from './schema';
 
 /**
@@ -37,6 +38,18 @@ export class UserDb extends Dexie {
       overlays: 'receta_id',
       meta: 'id',
     });
+    // v2: el perfil guarda el nivel de entrenamiento elegido en vez del
+    // multiplicador numérico. Los índices no cambian; sí la forma del registro.
+    this.version(2)
+      .stores({})
+      .upgrade((tx) =>
+        tx
+          .table('perfil')
+          .toCollection()
+          .modify((perfil, ref) => {
+            ref.value = migrarPerfilV1(perfil as Record<string, unknown>);
+          }),
+      );
   }
 }
 

@@ -2,6 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { usePerfil } from '../../db/hooks';
 import { savePerfil } from '../../db/repos';
 import type { ProfileData, SuplementoDeclarado } from '../../db/schema';
+import { ENTRENAMIENTO, NIVELES_ENTRENAMIENTO, PISO_POR_EDAD, type NivelEntrenamiento } from '../../domain/actividad';
 import { objetivosDelPerfil } from '../../domain/profile';
 import { getSeedIndex } from '../../seed';
 import { formatNumber } from '../common/format';
@@ -14,12 +15,6 @@ import { SupplementsEditor } from './SupplementsEditor';
  * objetivo calculado sobre un placeholder es peor que no tener objetivo.
  */
 
-const ACTIVIDADES = [
-  { valor: 1, etiqueta: 'Sedentario', ayuda: 'trabajo de escritorio, poco movimiento' },
-  { valor: 1.1, etiqueta: 'Activo', ayuda: 'caminás bastante o entrenás liviano' },
-  { valor: 1.2, etiqueta: 'Fuerza o +60', ayuda: 'entrenás fuerza, o tenés más de 60 años' },
-] as const;
-
 export function ProfileScreen() {
   const idx = getSeedIndex();
   const perfilGuardado = usePerfil();
@@ -30,7 +25,7 @@ export function ProfileScreen() {
   const [nacimiento, setNacimiento] = useState('');
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
-  const [actividad, setActividad] = useState<1 | 1.1 | 1.2>(1);
+  const [entrenamiento, setEntrenamiento] = useState<NivelEntrenamiento>('sedentario');
   const [suplementos, setSuplementos] = useState<SuplementoDeclarado[]>([]);
   const [cargado, setCargado] = useState(false);
   const [guardado, setGuardado] = useState(false);
@@ -42,7 +37,7 @@ export function ProfileScreen() {
     setNacimiento(perfilGuardado.fecha_nacimiento);
     setPeso(String(perfilGuardado.peso_kg));
     setAltura(perfilGuardado.altura_cm === undefined ? '' : String(perfilGuardado.altura_cm));
-    setActividad(perfilGuardado.multiplicador_actividad);
+    setEntrenamiento(perfilGuardado.nivel_entrenamiento);
     setSuplementos(perfilGuardado.suplementos);
     setCargado(true);
   }
@@ -63,7 +58,7 @@ export function ProfileScreen() {
       fecha_nacimiento: nacimiento,
       peso_kg: Number(peso),
       ...(Number(altura) > 0 ? { altura_cm: Number(altura) } : {}),
-      multiplicador_actividad: actividad,
+      nivel_entrenamiento: entrenamiento,
       suplementos,
       overrides: perfilGuardado?.overrides ?? [],
       nutrientes_destacados:
@@ -145,19 +140,22 @@ export function ProfileScreen() {
         </div>
 
         <fieldset className="campo">
-          <legend className="campo-etiqueta">Actividad</legend>
-          <p className="campo-ayuda">Solo mueve el objetivo de proteína.</p>
+          <legend className="campo-etiqueta">Entrenamiento</legend>
+          <p className="campo-ayuda">
+            Solo mueve el objetivo de proteína. De los {PISO_POR_EDAD.desde_anios} en adelante sube solo, sin que
+            tengas que declararlo acá.
+          </p>
           <div className="opciones opciones-columna">
-            {ACTIVIDADES.map(({ valor, etiqueta, ayuda }) => (
-              <label key={valor} className="opcion">
+            {NIVELES_ENTRENAMIENTO.map((nivel) => (
+              <label key={nivel} className="opcion">
                 <input
                   type="radio"
-                  name="actividad"
-                  checked={actividad === valor}
-                  onChange={() => setActividad(valor)}
+                  name="entrenamiento"
+                  checked={entrenamiento === nivel}
+                  onChange={() => setEntrenamiento(nivel)}
                 />
                 <span>
-                  {etiqueta} <em className="campo-ayuda">· {ayuda}</em>
+                  {ENTRENAMIENTO[nivel].etiqueta} <em className="campo-ayuda">· {ENTRENAMIENTO[nivel].ayuda}</em>
                 </span>
               </label>
             ))}

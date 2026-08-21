@@ -1,13 +1,14 @@
 import type { Perfil } from '../db/schema';
 import type { Nutrient } from '../seed/schema';
 import { amountUnitOf } from './units';
+import { factorDeProteina } from './actividad';
 import { resolveRda, veganFactor } from './rda';
 import { aporteDiarioDe } from './supplements';
 
 /**
  * Del perfil real a los objetivos por nutriente. Es la traducción de la lógica
  * declarada en `perfil.json`: RDA por sexo y edad → ajuste vegano → ajuste por
- * peso y actividad → suplementos → overrides manuales, que pisan todo.
+ * peso y entrenamiento → suplementos → overrides manuales, que pisan todo.
  */
 
 export type ObjetivoOrigen = 'rda' | 'override';
@@ -35,8 +36,8 @@ export function edadEnAnios(fecha_nacimiento: string, hoy: Date): number {
   return edad;
 }
 
-/** El multiplicador de actividad solo aplica a proteína (así lo define el dataset). */
-function aplicaActividad(nutriente: Nutrient): boolean {
+/** El entrenamiento solo mueve la proteína (así lo define el dataset). */
+function aplicaEntrenamiento(nutriente: Nutrient): boolean {
   return nutriente.id === 'proteina';
 }
 
@@ -51,7 +52,7 @@ export function objetivosDelPerfil(
   for (const nutriente of nutrientes) {
     const rda = resolveRda(nutriente, perfil.sexo_para_requerimientos, edad, perfil.peso_kg);
     let valor = rda.valor * veganFactor(nutriente);
-    if (aplicaActividad(nutriente)) valor *= perfil.multiplicador_actividad;
+    if (aplicaEntrenamiento(nutriente)) valor *= factorDeProteina(perfil.nivel_entrenamiento, edad);
 
     let origen: ObjetivoOrigen = 'rda';
     let motivo_override: string | undefined;
