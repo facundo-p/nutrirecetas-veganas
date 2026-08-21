@@ -19,7 +19,7 @@ Justificación (criterio dominante: mantenibilidad a años vista por una persona
 
 ### 2.1 Ingesta de la semilla: en build-time
 
-`scripts/build-seed.ts` toma los JSON crudos de `.artifacts/` (read-only, jamás se editan) y emite **un `seed.json` canónico** versionado (semver + hash de contenido), que se precachea con la app y se carga a memoria al arrancar. Todas las transformaciones de la auditoría (`01-auditoria.md` §5) ocurren acá, una sola vez y con tests:
+`scripts/build-seed/` toma los JSON crudos de `.artifacts/` (read-only, jamás se editan) y emite **un `seed.json` canónico** versionado (semver + hash de contenido), que se precachea con la app y se carga a memoria al arrancar. Todas las transformaciones de la auditoría (`auditoria-dataset.md` §5) ocurren acá, una sola vez y con tests:
 
 - Esquema unificado de recetas (deriva de campos entre sets, `tipo` inferido para set 1, `dificultad` normalizada).
 - `porciones` → `{ porciones_num, porciones_display }` con tabla curada para las 34 recetas string.
