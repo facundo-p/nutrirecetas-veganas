@@ -10,6 +10,20 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-20-issues-prs-versionado-design.md`
 
+> **Ejecutado el 2026-08-20** (PR #2). Es un registro de lo que se planificó, no
+> una guía a seguir: cuatro cosas salieron distinto y **el spec tiene la versión
+> correcta**.
+>
+> | Lo que decía el plan | Lo que pasó |
+> |---|---|
+> | Campo `Estado PR` propio para la vista de PRs (Task 4) | **No existe.** Los workflows nativos solo escriben en el campo de estado del proyecto. El campo se creó, acumuló 0 items y se borró; las dos vistas comparten estado. |
+> | Renombrar `Status` a `Estado` (Task 4 Step 2) | GitHub acepta el cambio de opciones y **descarta el de nombre**. Sigue siendo `Status`. |
+> | El squash merge cierra el issue solo (Task 1, Task 10) | `Closes #N` **solo funciona contra la rama por defecto**. Lo resuelve `.github/workflows/cerrar-issues.yml` (issue #29). |
+> | Acomodar 25 tarjetas a mano (Task 6 Step 8) | `gh project item-edit` lo hace por API. |
+>
+> Además, el remoto estaba vacío: hubo que pushear `main` y `staging` y pasar el
+> repo a privado antes de la Task 1.
+
 ## Global Constraints
 
 - Idioma: **código en inglés, todo lo visible en español rioplatense**. Labels, columnas, títulos de issue, changelog y mensajes de error del hook van en castellano.
