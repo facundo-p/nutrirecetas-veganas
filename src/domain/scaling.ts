@@ -1,10 +1,14 @@
 import type { Ingredient, Line, Recipe, Seed } from '../seed/schema';
+import { redondearLinea } from './rounding';
 
 /**
  * Escalado de porciones. Todo escala lineal por `g_aprox` (decisión de Facu),
  * pero la cocina no es lineal: la sal y las especias se ajustan a gusto, los
  * tiempos no se multiplican, y una torta al doble no entra en el mismo molde.
  * Por eso el escalado devuelve avisos junto con las líneas.
+ *
+ * La regla de tres tampoco da números cocinables: `rounding` los lleva a la
+ * medida que la unidad admite antes de que salgan de acá.
  */
 
 export type TipoAviso = 'ajustar_a_gusto' | 'revisar_tiempo' | 'horneado';
@@ -46,11 +50,13 @@ export function esHorneada(recipe: Recipe): boolean {
 }
 
 export function escalarLineas(lineas: Line[], factor: number): Line[] {
-  return lineas.map((linea) => ({
-    ...linea,
-    cantidad: linea.cantidad * factor,
-    g_aprox: linea.g_aprox * factor,
-  }));
+  if (factor === 1) return lineas;
+  return lineas.map((linea) =>
+    redondearLinea(
+      { ...linea, cantidad: linea.cantidad * factor, g_aprox: linea.g_aprox * factor },
+      linea,
+    ),
+  );
 }
 
 export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): AvisoEscalado[] {

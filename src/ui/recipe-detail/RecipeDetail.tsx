@@ -3,7 +3,7 @@ import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import { routeHash } from '../../app/router';
-import { difficultyFlames, formatMinutes, formatNumber, icSprouts } from '../common/format';
+import { difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { ingredientInSeason } from '../common/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
@@ -43,6 +43,8 @@ function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
   const { nombre, href, esPreparado } = lineName(idx, line);
   const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id);
   const unidad = line.unidad_display.replaceAll('_', ' ');
+  const cantidad = formatCantidad(line.cantidad);
+  const gramos = formatGramos(line.g_aprox);
   const resolubles = line.sustitutos.filter((s) => s.tipo === 'id');
   const textuales = line.sustitutos.filter((s) => s.tipo === 'texto');
   return (
@@ -60,9 +62,9 @@ function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
         </span>
         <span className="puntos-guia" aria-hidden="true" />
         <span className="linea-cantidad">
-          {line.cantidad} {unidad}
-          {`${line.cantidad} ${unidad}` !== `${line.g_aprox} g` && (
-            <span className="linea-gramos"> · {formatNumber(line.g_aprox, 0)} g</span>
+          {cantidad} {unidad}
+          {`${cantidad} ${unidad}` !== `${gramos} g` && (
+            <span className="linea-gramos"> · {gramos} g</span>
           )}
         </span>
       </span>
