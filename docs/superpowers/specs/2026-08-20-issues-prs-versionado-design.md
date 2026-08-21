@@ -262,13 +262,36 @@ mensaje empiece con `chore(release)`**. El mensaje de error explica cómo salir:
 `gh issue develop N --checkout`. Todo lo que ya bloquea sobre `main` se mantiene
 igual.
 
-### `CLAUDE.md`
+### `CLAUDE.md` — reescritura completa
 
-- Reescribir "Reglas de git": rama por issue → PR a `staging` → release a `main`.
-- Sección nueva de versionado con el criterio y las cinco reglas de desempate.
-- Punteros actualizados a los docs movidos (hoy apunta a `docs/plan/02-arquitectura.md`
-  y a la auditoría).
-- Mencionar `/release` y `CHANGELOG.md`.
+No alcanza con parchear las secciones que cambian: se reescribe **entero** bajo un
+criterio de **mínima expresión**. Cada regla dice lo que hay que saber para
+cumplirla y nada más; se elimina toda palabrería que no sea imprescindible para
+entender la regla enunciada. Ninguna regla ni invariante se pierde en el camino —
+se comprime, no se recorta.
+
+Qué se aplica al reescribir:
+
+- Una regla, una oración. Sin preámbulos ni justificaciones repetidas.
+- El "por qué" sobrevive sólo cuando sin él la regla se aplica mal (ej.: por qué
+  `--titulo-receta` se declara sobre `[data-cat]`).
+- Se van los ejemplos que ilustran algo ya obvio por el enunciado.
+- Lo que ya está escrito en otro lado se reemplaza por un puntero (`lessons.md`,
+  `docs/`, el spec de temas).
+- Los 8 invariantes del dominio y las 8 reglas de estilo **se mantienen todos**: son
+  el núcleo no negociable.
+
+Contenido que cambia además de la forma:
+
+- "Reglas de git": rama por issue → PR a `staging` → release a `main`.
+- Sección nueva de versionado: el criterio y las cinco reglas de desempate.
+- Punteros a los docs movidos (hoy apunta a `docs/plan/02-arquitectura.md` y a la
+  auditoría, que dejan de existir en esa ruta).
+- Mención de `/release` y `CHANGELOG.md`.
+- La planificación ya no vive en markdown: se lee del tablero de Issues.
+
+**Verificación**: al terminar, releer el `CLAUDE.md` viejo (`git show`) contra el
+nuevo y confirmar regla por regla que ninguna se perdió.
 
 ### `.claude/skills/cierre-fase/SKILL.md`
 
