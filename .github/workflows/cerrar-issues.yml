@@ -10,6 +10,7 @@ on:
 
 permissions:
   issues: write
+  pull-requests: write
 
 jobs:
   cerrar:
@@ -29,9 +30,15 @@ jobs:
             | grep -oiE '\b(close[sd]?|fixe?[sd]?|resolve[sd]?) +#[0-9]+' \
             | grep -oE '[0-9]+' | sort -u > issues.txt
 
+          # Todo trabajo entra por la rama de su issue, así que un PR sin issue
+          # es trabajo sin registro. Antes esto salía en silencio y no se
+          # enteraba nadie; ahora queda escrito en el PR y en rojo en Actions.
+          # Los PR de release quedan afuera solos: van a main, no a staging.
           if [ ! -s issues.txt ]; then
-            echo "El PR #$PR no declara ningún issue."
-            exit 0
+            gh pr comment "$PR" --repo "$REPO" --body \
+              "Este PR se mergeó a \`staging\` sin declarar ningún issue. En este proyecto la planificación vive en los Issues y toda rama sale de uno: si el trabajo tenía issue, faltó el \`Closes #N\` en el cuerpo; si no lo tenía, conviene abrirlo para que quede el rastro."
+            echo "::error::El PR #$PR no declara ningún issue."
+            exit 1
           fi
 
           while read -r n; do
