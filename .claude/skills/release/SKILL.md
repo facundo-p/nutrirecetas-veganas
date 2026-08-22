@@ -15,7 +15,7 @@ mano; el tag y el GitHub Release los crea `tag-release.yml` solo.
 ```bash
 git branch --show-current   # tiene que decir: staging
 git status --porcelain      # tiene que estar vacío
-git fetch origin && git status -sb | head -1
+git fetch origin --tags && git status -sb | head -1
 git rev-list --count origin/main..staging
 ```
 
@@ -25,16 +25,31 @@ desincronizada con `origin`, o si `staging` no está por delante de `main`:
 
 ## 2. Calcular el rango
 
+El rango es **`origin/main..staging`**: lo que está en `staging` y `main` todavía
+no tiene. Eso *es* el release, por definición — a `main` solo entran releases.
+
 ```bash
-git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD
+git log origin/main..staging --format='%h %s'
 ```
 
-El rango es `<eso>..staging`. Sin tags todavía, arranca en el commit raíz.
+**No usar `git describe` para esto.** El tag lo crea `tag-release.yml` sobre el
+merge commit de `main`, que nunca es ancestro de `staging`: `describe` no lo
+alcanza y devuelve un tag viejo. Al armar v0.4.0 devolvía `v0.2.0`, y con ese
+rango la entrada habría repetido entera la de v0.3.0. Va a fallar igual en cada
+release mientras `main` se mergee con merge commit — que es lo que corresponde.
+
+Si `origin/main` todavía no existe, el rango arranca en el commit raíz:
+`git rev-list --max-parents=0 HEAD`.
+
+Para nombrar el último release publicado (no para el rango), el tag sí se lee
+desde `main`: `git describe --tags --abbrev=0 origin/main`.
 
 ## 3. Derivar la versión
 
+Se bumpea sobre la de `package.json`, que ya trae la del release anterior.
+
 ```bash
-git log <rango> --format='%s%n%b'
+git log origin/main..staging --format='%s%n%b'
 ```
 
 | Encuentra | Propone |
@@ -57,13 +72,27 @@ proponerlo solo. Que la app se declare versión 1 tiene que ser una decisión.
 
 ## 4. Juntar las novedades
 
+Los issues del release son los que cierran los commits **del rango**, y el label
+de tipo de cada uno decide la sección. Una sola tubería, sin variable intermedia
+—`for n in $VAR` no separa palabras en zsh, que es la shell de Facu:
+
 ```bash
-git log <rango> --format='%s'
-gh pr list --state merged --base staging --limit 100 \
-  --json number,title,mergedAt,closingIssuesReferences
+git log origin/main..staging --format='%s%n%b' \
+  | grep -oiE '(closes|cierra|fixes) #[0-9]+' | grep -oE '[0-9]+' | sort -un \
+  | xargs -I{} gh issue view {} --json number,title,labels \
+      --jq '"\(.number) \([.labels[].name]) \(.title)"'
 ```
 
-Agrupar por el label de tipo del issue que cada PR cerró:
+Leer igual los `%s` del rango: un commit puede entrar sin issue (el propio
+`chore(release)`, o un arreglo que salió al paso) y también cuenta para la
+versión.
+
+Dos formas que **no** sirven, comprobadas al armar v0.4.0:
+
+- `gh pr list --state merged --base staging` lista todos los PR de la historia
+  del repo, sin distinguir cuáles ya salieron en un release.
+- `closingIssuesReferences` vuelve vacío en los PR ya mergeados; el vínculo hay
+  que leerlo del `Closes #N` del cuerpo del commit.
 
 | Label | Sección |
 |---|---|
@@ -133,10 +162,29 @@ gh pr checks --watch
 Verde → pasarle el link a Facu y **parar ahí**. Rojo → decir qué falló y no
 tocar nada más.
 
-## Después, sin intervención
+## Mientras tanto, sin intervención
 
 Facu mergea con **merge commit**. `tag-release.yml` detecta el push a `main`, lee
 la versión de `package.json`, crea el tag `vX.Y.Z` y publica el GitHub Release con
 la sección del changelog.
 
-Al terminar: mover a **Publicado** los issues del release en el tablero.
+## 10. Cerrar el tablero, ya mergeado
+
+Corre **cuando Facu avisa que mergeó**, no al abrir el PR: antes del merge no hay
+nada publicado que marcar.
+
+```bash
+git fetch origin --tags
+npm run tablero -- --seco   # qué se va a mover
+npm run tablero             # moverlo
+```
+
+Mueve a **Publicado** los issues cuyo cierre ya está en `main`. Es idempotente:
+lo que ya está en la columna no se vuelve a tocar, así que se puede correr de
+nuevo sin miedo.
+
+Si falla nombrando un campo o una columna, alguien renombró algo en el tablero.
+Arreglar el nombre en `scripts/tablero-publicado.ts`; no buscar el id a mano.
+
+Esto era una línea suelta debajo de "sin intervención" y se saltó en v0.2.0 y en
+v0.3.0. Es un paso numerado por esa razón.
