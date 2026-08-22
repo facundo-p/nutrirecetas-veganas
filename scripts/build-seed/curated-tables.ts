@@ -273,3 +273,158 @@ export const VEGAN_FACTORS_FROM_PROSE: Record<string, ProseVeganFactor> = {
     base: '"Si no se suplementa EPA/DHA: duplicar ALA"; el ejemplo del dataset deriva 3.2 g desde una RDA de 1.6 g',
   },
 };
+
+// ---------- T9: pasos reescritos ----------
+
+/**
+ * Las instrucciones del dataset son notas de cocinero, no una receta: 3,95
+ * pasos y ~202 caracteres por receta entera, con la mayoría de los
+ * ingredientes sin aparecer nunca. Esta tabla las reemplaza.
+ *
+ * Estilo, para que las 84 salgan parejas:
+ * - Oración completa en rioplatense. Nada de `;` y `+` como pegamento.
+ * - Cada paso dice qué entra, dónde, a qué fuego y **cuál es la señal** para
+ *   pasar al siguiente, no solo el minutaje.
+ * - Todo ingrediente `imprescindible` aparece en algún paso.
+ * - El acompañamiento tiene su paso o se declara al principio.
+ * - Los `secretos_chef` no se absorben: siguen aparte.
+ * - 4 a 8 pasos. Antes que apilar tres acciones en uno, se parte.
+ * - Se conserva el énfasis útil del original (A MANO, EN CALIENTE, TENEDOR).
+ *
+ * `base` dice de dónde salió cada cosa. `flag_gate: true` significa que la
+ * entrada suma técnica de cocina estándar que el dataset no declara (fuego,
+ * recipiente, señal visual): cocina Facu, y en el gate de Fase 1 corrigió 5 de
+ * las 15 porciones propuestas.
+ */
+
+export interface StepsEntry {
+  pasos: string[];
+  base: string;
+  flag_gate: boolean;
+  nota?: string;
+}
+
+export const CURATED_STEPS: Record<string, StepsEntry> = {
+  r18: {
+    base: 'prosa de recetas-set2.md ("en sartencita", "¡segundos!"); funcion de cada línea (pimienta = activa curcumina R8, tomate = picado_en_tadka, limón = R1); técnica estándar: fuego, señal de cocción, orden del arroz',
+    flag_gate: true,
+    nota: 'Los pasos viejos nombraban un "ají" que no existe como línea de ingrediente: se saca. Jengibre, pimienta negra y arroz no aparecían en ningún paso.',
+    pasos: [
+      'Enjuagar las lentejas turcas hasta que el agua salga clara y ponerlas en una olla con 900 ml de agua fría, la cucharadita de cúrcuma y la media cucharadita de pimienta negra. La pimienta no es condimento acá: es lo que hace que la curcumina se absorba (regla R8).',
+      'Llevar a hervor, bajar a fuego medio-bajo y cocinar 20 a 25 minutos destapado, revolviendo cada tanto para que no se pegue al fondo. Están listas cuando se deshacen solas y ya no se distingue el grano.',
+      'Batir el dal con batidor o cuchara de madera hasta que quede cremoso y parejo. Si quedó muy espeso, aflojar con un chorrito de agua caliente: tiene que caer de la cuchara, no quedarse pegado.',
+      'Si vas a acompañar con arroz, poner ahora la taza de arroz blanco a cocinar: llega justo con el dal.',
+      'El tadka se hace aparte, en una sartencita, nunca en la olla del dal. Calentar las 3 cucharadas de aceite de oliva a fuego medio-alto, tirar la cucharadita de comino en grano y esperar a que crepite, unos 30 segundos.',
+      'Sumar los 4 dientes de ajo laminados y la cucharada de jengibre, y revolver SEGUNDOS, hasta que el ajo apenas tome color. Si lo usás, el tomate picado entra acá y se saltea 30 segundos más.',
+      'Volcar el tadka hirviendo sobre el dal — el "tsss" es el plato — y revolver una sola vez, para que quede veteado y no uniforme.',
+      'Apagar el fuego, exprimir el jugo del limón y salar. El limón va al final y fuera del fuego: es lo que activa la absorción del hierro (regla R1).',
+    ],
+  },
+
+  p24: {
+    base: 'prosa de recetas-personales.md ("las semillas de sésamo tostadas en seco al momento"); unidad de cada línea (tostado_al_momento, rallada, g_cherry); técnica estándar: secar las hojas, orden de armado',
+    flag_gate: true,
+    nota: 'La receta entera era un paso para 8 ingredientes.',
+    pasos: [
+      'Tostar la cucharada de sésamo integral en una sartén seca a fuego medio, moviéndola, hasta que empiece a saltar y largue perfume: dos o tres minutos. Pasarlo a un plato enseguida, porque en la sartén caliente se sigue cocinando y se quema.',
+      'Lavar y secar bien los 100 g de hojas verdes y ponerlas en un bol amplio. Secas de verdad: sobre hojas mojadas el aliño resbala y se junta en el fondo.',
+      'Cortar los 4 rabanitos en rodajas finas y la manzana roja en bastones o cubos, con cáscara.',
+      'Rallar grueso la zanahoria, cortar los tomates cherry al medio y la palta en cubos.',
+      'Sumar todo al bol de las hojas, aliñar con el chorrito de aceite de oliva y sal, y mezclar con las manos de abajo hacia arriba, para no aplastar la palta.',
+      'Terminar con el sésamo tostado por encima recién en el plato: si entra antes se humedece y pierde todo el crocante.',
+    ],
+  },
+
+  r28: {
+    base: 'prosa de recetas-set3.md (el aliño agrupado como bloque, "esponjar con TENEDOR, jamás cuchara"); funcion de cada línea ("acá las hierbas son verdura"); técnica estándar: orden de cortes y momento de cada grupo',
+    flag_gate: true,
+    nota: 'La peor relación del dataset: 22 líneas de ingrediente y 4 pasos. El aliño se nombraba pero nunca se decía qué lleva.',
+    pasos: [
+      'Poner los 250 g de cuscús integral en un bol grande y volcarle encima los 350 ml de caldo de verduras hirviendo. Tapar con un plato y dejar 10 minutos sin tocar: se hidrata solo.',
+      'Mientras tanto cortar en cubitos chicos el zucchini, el morrón rojo y el medio pepino, todo crudo; rallar la zanahoria y picar fino las 4 cebollas de verdeo.',
+      'Picar las aceitunas verdes y, si los usás, los tomates secos escurridos. Picar la menta y el perejil gruesos: acá las hierbas son verdura y no adorno, por eso van 40 g de cada una. El cilantro es opcional.',
+      'Armar el aliño en un frasco con tapa: el jugo y la ralladura del limón, las 4 cucharadas de aceite de oliva, el diente de ajo bien picado, la cucharadita de comino, un cuarto de cucharadita de canela y otro de cúrcuma, sal y pimienta. Cerrar y agitar hasta que emulsione. La cucharadita de azúcar mascabo, si querés redondearlo.',
+      'Destapar el cuscús y esponjarlo con un TENEDOR, separando los granos de a poco. Con cuchara se aplastan y no hay vuelta atrás.',
+      'Sumar al bol los garbanzos cocidos y escurridos y todas las verduras cortadas, volcar el aliño y mezclar.',
+      'Incorporar las hierbas y las pasas al final, para que no se ablanden ni pierdan color. Las almendras fileteadas, si las usás, van también acá.',
+      'Dejar reposar 15 minutos antes de servir: es el rato en que el cuscús toma el aliño.',
+    ],
+  },
+
+  p27: {
+    base: 'funcion de cada línea ("blancos = color crema", "endulzante"); secretos_chef (la veganización miel → dátiles); técnica estándar de procesado: tibio, raspar paredes, etapa granulosa',
+    flag_gate: true,
+    nota: 'La receta entera era "Licuar todo; contenerse". Se conserva el chiste al final, que es la voz del recetario.',
+    pasos: [
+      'Usar la taza y media de porotos alubia cocidos todavía tibios y escurridos. Tibios se procesan mucho mejor que fríos, y que sean blancos es lo que da el color crema.',
+      'Poner los porotos en la procesadora con el tercio de taza de puré de dátiles, el chorrito de aceite —de oliva suave o de coco— y el chorrito de esencia de vainilla.',
+      'Procesar a máxima potencia hasta que quede completamente lisa, parando dos o tres veces para bajar con una espátula lo que sube por las paredes. Va a pasar por una etapa de pasta granulosa antes de volverse crema: es normal, hay que seguir.',
+      'Si quedó muy espesa, aflojar con una cucharada de agua o de bebida vegetal por vez, hasta que caiga de la cuchara como un dulce de leche blando.',
+      'Sumar la cucharada de ralladura de naranja —o de limón, canela o café, según qué crema quieras— y darle un último golpe de procesadora, apenas para integrar.',
+      'Probar, ajustar el dulzor con más puré de dátiles y guardar en un frasco en la heladera. Contenerse.',
+    ],
+  },
+
+  p08: {
+    base: 'prosa de recetas-personales.md (2:1 y hervor suave = seitán tierno, sellado final = Maillard); funcion de cada línea (harina "suaviza", caldo "medio de cocción + ½ taza salsa de soja"); técnica estándar: fuego del hervor, enfriar en el caldo, grosor del corte',
+    flag_gate: true,
+    nota: 'El paso viejo decía "20 min por lado" y el encabezado 40 de cocción: se explicita que son 20 y 20.',
+    pasos: [
+      'Mezclar en un bol los 250 g de gluten de trigo con los 125 g de harina integral (o pan integral rallado) y los secos: la cucharadita de pimentón ahumado, más ajo y cebolla en polvo, curry y orégano a gusto. Esa proporción de 2 a 1 entre gluten y harina no es casual: es la que define la textura.',
+      'Sumar las 10 cucharadas de salsa de soja y después la media taza de agua de a poco, mezclando, hasta formar una masa pesada y algo pegajosa. Puede que no necesites toda el agua.',
+      'Amasar SOLO hasta que se integre, un minuto como mucho. Amasar de más desarrolla el gluten y el bifecito sale duro.',
+      'Tapar el bol y dejar reposar entre 10 y 20 minutos: la masa se relaja y después se corta mucho mejor.',
+      'Calentar las 2 tazas de caldo de verduras con media taza más de salsa de soja en una olla ancha. Cuando rompa el hervor, bajar a fuego medio para que borbotee apenas: un hervor fuerte deshace la pieza.',
+      'Meter la masa entera y cocinar 20 minutos de un lado y 20 del otro, 40 en total, dándola vuelta a la mitad.',
+      'Apagar y dejar enfriar dentro del caldo hasta poder manipularla. Recién ahí cortar los bifecitos, de un centímetro más o menos.',
+      'Al servir, sellarlos vuelta y vuelta en una sartén bien caliente con un hilo de aceite, o empanarlos pasándolos por un batido de harina y agua y después por pan rallado. Tienen que quedar con costra dorada, no solo calientes.',
+    ],
+  },
+
+  p36: {
+    base: 'prosa de recetas-personales.md ("mandioca cruda rallada licuada", molde 24 cm con chimenea); funcion de cada línea ("sin harina de trigo: sin gluten"); técnica estándar: precalentado, señal del palillo, enfriar antes de desmoldar',
+    flag_gate: true,
+    nota: 'El horneado es donde la imprecisión arruina el plato: el paso viejo mezclaba temperatura, tiempo, prueba del palillo, enfriado, desmolde y decoración en un renglón.',
+    pasos: [
+      'Precalentar el horno a 180°. Aceitar un molde de 24 cm, mejor si es con chimenea, y enharinarlo con fécula de mandioca.',
+      'Pelar y rallar los 500 g de mandioca cruda. Va cruda y sin pelar de más: la mandioca aporta el almidón que reemplaza a la harina, así que la torta sale sin gluten.',
+      'Licuar la mandioca rallada con la media banana madura, los 200 ml de bebida de soja, las 6 cucharadas de aceite neutro y los 50 g de margarina —o manteca vegana P03— hasta obtener una crema lisa. Lleva su tiempo y hay que parar a bajar lo que sube por las paredes: la mandioca es fibrosa y cuesta.',
+      'Sumar los 250 g de azúcar, la pizca de sal y las 2 cucharaditas de polvo de hornear, y licuar un poco más, solo hasta integrar.',
+      'Volcar la mezcla en un bol e incorporar los 100 g de coco rallado con cuchara, con movimientos envolventes. Acá se deja la licuadora: el coco tiene que quedar entero, no molido.',
+      'Verter en el molde, emparejar la superficie y espolvorear coco rallado extra por encima.',
+      'Hornear a 180° entre 35 y 45 minutos, hasta que la superficie esté dorada y un palillo salga seco del centro.',
+      'Dejar enfriar en el molde antes de desmoldar: en caliente se rompe. Espolvorear azúcar impalpable al servir.',
+    ],
+  },
+
+  r13: {
+    base: 'prosa de recetas-set2.md (grano corto tipo doble carolina, lado brillante abajo, 2 cm libres); secretos_chef (lavar y sazonar caliente son el 80 %, no sobrecargar es el error #1, cuchillo mojado entre cortes); técnica estándar: sellar el borde, temperatura del arroz',
+    flag_gate: true,
+    nota: 'Cuatro pasos para una técnica de manos que se aprende haciendo. Se parte el armado en tres.',
+    pasos: [
+      'Lavar la taza y media de arroz blanco —mejor grano corto, tipo doble carolina— bajo el chorro, frotándolo con la mano y cambiando el agua hasta que salga clara. Sin ese enjuague el arroz se apelmaza en vez de pegar.',
+      'Cocinar el arroz como de costumbre y, apenas esté, pasarlo a una fuente ancha y sazonarlo EN CALIENTE con las 3 cucharadas de vinagre de arroz, la cucharada de azúcar y sal, mezclando con movimientos de corte para no aplastar el grano. Caliente absorbe; frío no.',
+      'Enfriar el arroz abanicándolo hasta que quede a temperatura ambiente y brillante. No va a la heladera: se endurece y deja de pegar.',
+      'Mientras se enfría, cortar la palta en láminas, el pepino en bastones largos y, si la usás, la zanahoria en juliana fina.',
+      'Apoyar una hoja de nori con el lado brillante hacia abajo sobre la esterilla —o un repasador limpio— y extender una capa fina de arroz, dejando 2 cm libres en el borde de arriba.',
+      'Poner el relleno en una línea sobre el tercio más cercano a vos, sin pasarte de cantidad: si sobrecargás, el roll no cierra.',
+      'Enrollar desde el borde más cercano, apretando con la esterilla a medida que avanzás, y sellar el borde libre con unas gotas de agua. Repetir con las 6 hojas de nori.',
+      'Cortar cada roll con un cuchillo filoso y mojado, mojándolo otra vez entre corte y corte. Servir con el sésamo por encima y salsa de soja para mojar.',
+    ],
+  },
+
+  p11: {
+    base: 'secretos_chef (la regla de picada: crocante + untable + ácido + proteico; los bastones al horno como diferencial); nota de la receta ("combo componible"); técnica estándar: orden por tiempo de cocción, untables a temperatura ambiente',
+    flag_gate: true,
+    nota: 'El "paso 2" viejo no era un paso sino una lista de referencias a otras recetas. Como combo, los pasos son de armado y de orden, no de cocción.',
+    pasos: [
+      'Arrancar por lo que más tarda: los 300 g de mandioca y los 300 g de papa cortados en bastones, con aceite y sal, a horno fuerte (200°) entre 30 y 40 minutos, hasta que estén dorados y crocantes por fuera.',
+      'Tostar los 150 g de pan integral en rodajas, en horno o tostadora, hasta que queden firmes: tienen que aguantar el untable sin doblarse.',
+      'Preparar el guacamole pisando la palta con limón y sal. Si sumás hummus (R03), queso de maní (P04) o quesofu (P05), es el momento de sacarlos de la heladera: los untables van a temperatura ambiente, fríos no saben a nada.',
+      'Cortar los crudos: la zanahoria y el morrón rojo en bastones, y los 150 g de tomates cherry enteros.',
+      'Escurrir los 200 g de berenjenas en escabeche y, si sumás seitán salteado (P08) o garbanzos crocantes (R07), dorarlos ahora para que lleguen tibios a la mesa.',
+      'Armar la tabla repartiendo por zonas y no en pilas, y chequear que estén las cuatro patas: crocante (los bastones al horno, el pan, los garbanzos), untable (guacamole, hummus, quesos), ácido (las berenjenas en escabeche) y proteico (las nueces, los cajús, el seitán).',
+      'Los bastones al horno y el pan van a la mesa recién salidos: es lo único de la picada que no espera.',
+    ],
+  },
+};
