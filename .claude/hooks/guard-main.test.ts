@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,6 +26,34 @@ function repoEn(rama: string): string {
   const dir = mkdtempSync(join(tmpdir(), 'guard-main-'));
   temporales.push(dir);
   execFileSync('git', ['init', '-q', '-b', rama], { cwd: dir });
+  return dir;
+}
+
+/**
+ * Un repo parado en `rama` con un merge a medio terminar: dos ramas tocaron la
+ * misma línea, así que git dejó `MERGE_HEAD` y espera que alguien resuelva y
+ * cierre. Es el estado exacto en el que el guard no tiene que estorbar.
+ */
+function repoConMergeTrabado(rama: string): string {
+  const dir = repoEn(rama);
+  const git = (...args: string[]) => execFileSync('git', args, { cwd: dir, stdio: 'ignore' });
+  git('config', 'user.email', 'test@test');
+  git('config', 'user.name', 'test');
+  writeFileSync(join(dir, 'f.txt'), 'base\n');
+  git('add', 'f.txt');
+  git('commit', '-qm', 'base');
+  git('checkout', '-qb', 'otra');
+  writeFileSync(join(dir, 'f.txt'), 'otra\n');
+  git('commit', '-qam', 'otra');
+  git('checkout', '-q', rama);
+  writeFileSync(join(dir, 'f.txt'), `${rama}\n`);
+  git('commit', '-qam', rama);
+  try {
+    git('merge', 'otra');
+  } catch {
+    // el conflicto es el punto del helper
+  }
+  if (!existsSync(join(dir, '.git', 'MERGE_HEAD'))) throw new Error('el merge no quedó trabado');
   return dir;
 }
 
@@ -88,5 +116,67 @@ describe('sin importar dónde esté parado', () => {
 
   test('ignora lo que no es git', () => {
     expect(correr('npm test', repoEn('staging'))).toBe(0);
+  });
+});
+
+/**
+ * El guard mira el string entero del comando. Sin distinguir la invocación de
+ * sus argumentos, cualquier texto que nombre "git" y más adelante un verbo
+ * prohibido queda bloqueado — y los cuerpos de los issues de este proyecto
+ * hablan de git todo el tiempo.
+ */
+describe('el texto de los argumentos no es un comando', () => {
+  test('deja crear un issue cuyo cuerpo habla de git y de merges', () => {
+    const cuerpo =
+      'el tag lo crea el workflow sobre el merge de main, y git describe no lo alcanza ' +
+      'porque no es ancestro, así que ese merge commit queda afuera del rango';
+    expect(correr(`gh issue create --body "${cuerpo}"`, repoEn('staging'))).toBe(0);
+  });
+
+  test('deja abrir un PR cuyo cuerpo nombra git, push y main', () => {
+    const cuerpo = 'git describe falla acá y el push que importa es el de main, que hace Facu a mano';
+    expect(correr(`gh pr create --body "${cuerpo}"`, repoEn('14-plan-semanal'))).toBe(0);
+  });
+
+  test('no es cosa de gh: cualquier texto sobre git pasa', () => {
+    expect(correr('echo "para cerrar el merge hace falta git y después un commit"', repoEn('staging'))).toBe(0);
+  });
+
+  test('pero el subcomando real sigue contando, con opciones globales de git en el medio', () => {
+    expect(correr('git -C /tmp/repo commit -m "feat: algo"', repoEn('staging'))).toBe(2);
+    expect(correr('git --no-pager commit -m "feat: algo"', repoEn('staging'))).toBe(2);
+    expect(correr('git -c user.name=x commit -m "feat: algo"', repoEn('staging'))).toBe(2);
+  });
+
+  test('y el guard no exige que git abra el comando: envuelto también cuenta', () => {
+    // Acotar "git" a posición de comando sería el paso siguiente natural y
+    // dejaría pasar esto. Un falso positivo cuesta un rodeo; este falso
+    // negativo, datos.
+    expect(correr('bash -c "git commit -m x"', repoEn('staging'))).toBe(2);
+    expect(correr('npm test && git commit -m "feat: algo"', repoEn('staging'))).toBe(2);
+  });
+});
+
+/**
+ * Un merge que entra limpio commitea solo y el guard lo deja pasar; si hay
+ * conflicto, cerrarlo a mano es la misma operación. Bloquear solo la segunda
+ * hacía que la regla dependiera del azar del conflicto.
+ */
+describe('con un merge trabado en curso', () => {
+  test('en staging deja cerrar el merge', () => {
+    const repo = repoConMergeTrabado('staging');
+    expect(correr('git commit --no-edit', repo)).toBe(0);
+    expect(correr('git merge --continue', repo)).toBe(0);
+  });
+
+  test('la excepción dura lo que dura el merge', () => {
+    const repo = repoConMergeTrabado('staging');
+    expect(correr('git commit --no-edit', repo)).toBe(0);
+    execFileSync('git', ['merge', '--abort'], { cwd: repo });
+    expect(correr('git commit --no-edit', repo)).toBe(2);
+  });
+
+  test('en main no: a main no se commitea ni en medio de un merge', () => {
+    expect(correr('git commit --no-edit', repoConMergeTrabado('main'))).toBe(2);
   });
 });
