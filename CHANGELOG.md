@@ -9,6 +9,30 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.4.1] — 2026-08-22
+
+Nada cambia dentro de la app: son tres arreglos del taller que la mantiene, y los
+tres se habían roto en silencio.
+
+### Cambiado
+
+- **El tablero marca solo lo que ya está publicado.** "Hecho" mezclaba trabajo
+  publicado hacía días con trabajo que seguía en `staging`: 19 issues varados y
+  uno solo realmente sin publicar. Ahora `npm run tablero` mueve a **Publicado**
+  lo que llegó a `main`, tiene `--seco` para ver qué haría antes de tocar nada, y
+  se puede correr de nuevo sin miedo. Los PR salieron del tablero: duplicaban a
+  su issue. (#54)
+- **`/release` calculaba mal qué entra en el release.** Derivaba el rango con
+  `git describe`, que nunca alcanza el tag del release anterior y devolvía uno
+  viejo — al armar la v0.4.0 daba `v0.2.0`, así que la entrada del changelog
+  habría repetido entera la de v0.3.0. Iba a fallar en todos los releases. Ahora
+  el rango es `origin/main..staging`, que no depende de tags. (#51)
+- **El hook que protege `main` dejó de bloquear lo legítimo.** Miraba el texto
+  entero sin distinguir el comando de sus argumentos: cualquier frase que
+  nombrara git y más adelante un verbo prohibido rebotaba, lo que hacía
+  imposible escribir los issues de este proyecto. Y un merge con conflicto no se
+  podía cerrar, aunque el mismo merge sin conflicto pasaba solo. (#42)
+
 ## [0.4.0] — 2026-08-21
 
 Dos números que la app venía diciendo mal: cuánta proteína necesitás si entrenás,
