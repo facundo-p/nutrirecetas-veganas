@@ -147,6 +147,8 @@
   border-radius: var(--radio);
   padding: var(--sp-3) var(--sp-4);
   font-size: var(--fs-lg);
+  display: grid;
+  gap: var(--sp-2);
 }
 
 .coccion-acciones {

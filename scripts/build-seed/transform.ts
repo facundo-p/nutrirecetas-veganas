@@ -13,6 +13,7 @@ import {
   ADDED_LINES,
   APORTE_NULO_IDS,
   CURATED_PORTIONS,
+  CURATED_STEPS,
   CURATED_YIELDS,
   DE_FACTO_PREPARADOS,
   NUTRIENT_INGREDIENT_KEY,
@@ -242,7 +243,7 @@ export function transformRecipe(
     tiempo_prep_min: raw.tiempo_prep_min,
     tiempo_coccion_min: raw.tiempo_coccion_min,
     lineas,
-    pasos: raw.pasos,
+    pasos: CURATED_STEPS[id]?.pasos ?? raw.pasos,
     secretos_chef: raw.secretos_chef ?? [],
     ...(raw.guarda !== undefined
       ? {
@@ -266,7 +267,17 @@ export function transformRecipe(
 export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recipe[] {
   const ingredientIds = new Set(raw.ingredientes.map((i) => i.id));
   const setKeys = [1, 2, 3, 'P'] as const;
-  return setKeys.flatMap((key) => raw.sets[key].map((r) => transformRecipe(r, key, ingredientIds, equipmentIds)));
+  const recetas = setKeys.flatMap((key) =>
+    raw.sets[key].map((r) => transformRecipe(r, key, ingredientIds, equipmentIds)),
+  );
+
+  // Una entrada de T9 que apunta a una receta inexistente es un typo que si no
+  // rompe el build queda escrito sin efecto y nadie se entera.
+  const ids = new Set(recetas.map((r) => r.id));
+  const huerfanas = Object.keys(CURATED_STEPS).filter((id) => !ids.has(id));
+  if (huerfanas.length > 0) throw new Error(`T9: pasos curados para recetas que no existen: ${huerfanas.join(', ')}`);
+
+  return recetas;
 }
 
 // ---------- datos de apoyo ----------

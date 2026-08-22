@@ -116,3 +116,61 @@ Para los dos niveles de entrenamiento manda la literatura deportiva, que es más
 **Qué cambia en el día a día**: a 75 kg, el nivel intenso pide 150 g/día contra los 90 g del techo anterior. Es esperable ver amarillo o rojo en proteína bastante seguido — es información correcta, no un problema a maquillar.
 
 **Si no te cierra**: se cambia el factor en `ENTRENAMIENTO` y el test dice qué g/kg quedó. El escape individual sigue siendo un `override` con motivo, que pisa todo.
+
+## 8. T9 — pasos reescritos (piloto de 8, pendiente de revisión de Facu)
+
+Las instrucciones del dataset son notas de cocinero, no una receta. Medido sobre las 84: **3,95 pasos y ~202 caracteres de instrucciones por receta entera**, un tuit corto. El 34 % de los pasos tiene menos de 40 caracteres, 7 recetas tienen menos de 3 pasos, y la mayoría de los ingredientes no aparece nunca.
+
+Buena parte del arreglo es **recuperación, no invención**: los `.md` de `.artifacts/` traen detalle que el `.json` perdió, y cada línea de ingrediente declara su `funcion` y a veces su `unidad` posicional (`picado_en_tadka`).
+
+### De dónde sale cada cosa
+
+| nivel | fuente | ¿es invención? |
+|---|---|---|
+| 1 | prosa de `.artifacts/recetas-*.md` | no: estaba escrito y se perdió al normalizar |
+| 2 | `funcion`, `unidad` y `nota` de cada línea | no: es dato estructurado del propio dataset |
+| 3 | `secretos_chef`, `utensilios.json`, `glosario.json`, reglas R | no |
+| 4 | técnica de cocina estándar: fuego, recipiente, señal visual | **sí** → `flag_gate: true` |
+
+Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nivel 4. El campo `base` de cada una dice exactamente qué salió de dónde.
+
+### El estilo, que es lo que hay que aprobar antes de seguir con las 76
+
+- Oración completa en rioplatense. Nada de `;` y `+` como pegamento.
+- Cada paso dice qué entra, dónde, a qué fuego y **cuál es la señal** para pasar al siguiente ("hasta que se deshacen solas"), no solo el minutaje.
+- Todo ingrediente `imprescindible` aparece en algún paso. Hay un test que lo verifica.
+- El acompañamiento tiene su propio paso.
+- Los `secretos_chef` no se absorben: siguen aparte.
+- 4 a 8 pasos. Antes que apilar tres acciones en uno, se parte.
+- Se conserva el énfasis útil del original (`A MANO`, `EN CALIENTE`, `TENEDOR`).
+
+### El piloto
+
+| id | receta | antes | ahora | por qué está en el piloto | ¿OK? |
+|---|---|---|---|---|---|
+| `r18` | Dal de lentejas turcas con tadka | 4 | 8 | el ejemplo de Facu; jengibre, pimienta y arroz no aparecían nunca | |
+| `p24` | Ensalada de hojas, rabanito y manzana | 1 | 6 | 8 ingredientes, un solo paso | |
+| `r28` | Ensalada de cuscús | 4 | 8 | la peor del dataset: 22 líneas de ingrediente; el aliño se nombraba sin decir qué lleva | |
+| `p27` | Crema de vainilegumbres | 1 | 6 | la receta entera era "Licuar todo; contenerse" | |
+| `p08` | Bifecitos de seitán | 4 | 8 | técnica pesada; "20 min por lado" vs. 40 de cocción declarados | |
+| `p36` | Torta de mandioca y coco | 5 | 8 | horneado: es donde la imprecisión arruina el plato | |
+| `r13` | Rolls de nori | 4 | 8 | técnica de manos; el armado entero era un paso | |
+| `p11` | Picada vegana | 2 | 7 | combo: el "paso 2" era una lista de referencias, no un paso | |
+
+### Correcciones de contenido, no solo de redacción
+
+- **`r18`**: los pasos nombraban un **"ají" que no existe como línea de ingrediente**. Se saca.
+- **`r18`**: el jengibre, la pimienta negra (que está por la regla R8, curcumina + pimienta) y el arroz de acompañamiento no aparecían en ningún paso.
+- **`r28`**: el aliño se mencionaba como bloque sin decir qué lleva; sus 7 componentes estaban solo en la lista de ingredientes.
+- **`p08`**: "20 min por lado" contra los 40 minutos de cocción del encabezado. Se explicita que son 20 y 20.
+- **`p11`**: el segundo "paso" era una lista de referencias a otras recetas.
+
+### Lo que garantizan los tests, no la buena intención
+
+`scripts/build-seed/transform.test.ts`, `describe('pasos (T9)')`:
+
+- Ninguna receta curada baja de 3 pasos.
+- Ningún paso baja de 40 caracteres.
+- **Todo ingrediente `imprescindible` se nombra en los pasos** — el test que caza "22 ingredientes, 4 pasos".
+- El matcher de ingredientes tiene sus propios casos: tolera acento y plural, y no da por nombrada la `sal` dentro de "salsa".
+- Una entrada de T9 para una receta inexistente **rompe el build**.
