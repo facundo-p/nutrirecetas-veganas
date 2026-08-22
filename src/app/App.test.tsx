@@ -40,3 +40,9 @@ test('el aviso de backup se puede posponer sin hacer un backup', async () => {
 
   await waitFor(() => expect(screen.queryByText(/copia de tus datos/)).toBeNull());
 });
+
+test('el engranaje de Ajustes está a mano desde las pantallas de sección', async () => {
+  render(<App />);
+  const engranaje = await screen.findByRole('link', { name: 'Ajustes y datos' });
+  expect(engranaje.getAttribute('href')).toBe('#/ajustes');
+});

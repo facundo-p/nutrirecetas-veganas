@@ -6,6 +6,7 @@ import { routeHash } from '../../app/router';
 import { amountUnit, formatNumber, icSprouts, normalize } from '../common/format';
 import { ingredientInSeason } from '../common/season';
 import { IconBrotesIc, IconTemporada } from '../icons/icons';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 function nutrientValue100g(ing: Ingredient, clave: string): number | null {
   const value = ing.nutrientes[clave as keyof Ingredient['nutrientes']];
@@ -41,10 +42,7 @@ export function IngredientList() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Ingredientes</span>
-        <h1>Ingredientes</h1>
-      </header>
+      <EncabezadoPantalla etiqueta="Ingredientes" titulo="Ingredientes" />
       <div className="filtros">
         <input
           type="search"

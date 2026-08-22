@@ -6,6 +6,7 @@ import type { Coccion, Consumo } from '../../db/schema';
 import { midpoint } from '../../domain/interval';
 import { formatNumber } from '../common/format';
 import { IconEscudoB12, IconPlato } from '../icons/icons';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 /** El diario: qué se cocinó, qué se cambió y qué se comió de cada cosa. */
 
@@ -98,10 +99,7 @@ export function DiaryScreen() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Diario</span>
-        <h1>Lo que cocinaste</h1>
-      </header>
+      <EncabezadoPantalla etiqueta="Diario" titulo="Lo que cocinaste" />
 
       <p className="enlaces-secundarios">
         <a href={routeHash({ screen: 'profile' })}>Mi perfil</a> ·{' '}

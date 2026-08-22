@@ -4,6 +4,7 @@ import { recipeInSeason } from '../common/season';
 import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 export function RecipeList() {
   const idx = getSeedIndex();
@@ -25,10 +26,7 @@ export function RecipeList() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Recetario</span>
-        <h1>Recetario</h1>
-      </header>
+      <EncabezadoPantalla etiqueta="Recetario" titulo="Recetario" />
       <RecipeFilters filters={filters} onChange={setFilters} />
       <p className="conteo-resultados" aria-live="polite">
         {total} {total === 1 ? 'receta' : 'recetas'}
