@@ -56,7 +56,9 @@ async function contarCambio(): Promise<void> {
 
 export async function registrarBackup(fecha = ahora()): Promise<void> {
   const meta = await getMeta();
-  await db.meta.put({ ...meta, ultimo_backup: fecha, cambios_desde_backup: 0 });
+  const { backup_pospuesto_hasta: _h, backup_pospuesto_en_cambios: _c, ...resto } = meta;
+  // Un backup de verdad borra la postergación: no hay nada que callar.
+  await db.meta.put({ ...resto, ultimo_backup: fecha, cambios_desde_backup: 0 });
 }
 
 export async function registrarSeedVersion(seed_version: string): Promise<void> {

@@ -36,16 +36,36 @@
 
 /* banner de recordatorio de backup */
 
+/*
+ * No es sticky: pegado arriba tapaba el contenido en mobile y quedaba detrás de
+ * la nav en desktop. Ahora que se puede posponer, no necesita perseguir a nadie.
+ */
 .banner-backup {
-  position: sticky;
-  top: 0;
-  z-index: 15;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--sp-3);
   background: color-mix(in srgb, var(--semaforo-parcial) 16%, var(--superficie));
   border-bottom: 1px solid color-mix(in srgb, var(--semaforo-parcial) 45%, transparent);
   padding: var(--sp-2) var(--sp-4);
   font-size: var(--fs-sm);
+}
+
+.banner-backup > span {
+  flex: 1;
+}
+
+.banner-backup-cerrar {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-right: calc(var(--sp-2) * -1);
+  color: var(--tinta-suave);
+  font-size: 20px;
 }

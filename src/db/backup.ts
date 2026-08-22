@@ -1,7 +1,7 @@
 import { db } from './db';
 import { migrarBackup } from './migrations';
-import { registrarBackup } from './repos';
-import { USER_SCHEMA_VERSION, backupSchema, type Backup } from './schema';
+import { getMeta, registrarBackup } from './repos';
+import { USER_SCHEMA_VERSION, backupSchema, type Backup, type Meta } from './schema';
 
 /**
  * Export / import. Sin backend, este archivo es la única red de seguridad que
@@ -94,13 +94,44 @@ export function diasDesde(fechaIso: string | undefined, hoy = new Date()): numbe
 }
 
 export const DIAS_PARA_RECORDAR = 30;
+export const DIAS_DE_POSTERGACION = 7;
+export const CAMBIOS_QUE_REVIVEN = 20;
 
-export function hayQueRecordarBackup(
-  ultimo_backup: string | undefined,
-  cambios_desde_backup: number,
-  hoy = new Date(),
-): boolean {
-  if (cambios_desde_backup === 0) return false;
-  const dias = diasDesde(ultimo_backup, hoy);
+/** Lo que el recordatorio necesita saber de `meta`, sin arrastrar el resto. */
+export type MetaDeRecordatorio = Pick<
+  Meta,
+  'ultimo_backup' | 'cambios_desde_backup' | 'backup_pospuesto_hasta' | 'backup_pospuesto_en_cambios'
+>;
+
+/**
+ * Una postergación sigue viva mientras no venza por fecha NI por cambios. Los
+ * dos vencimientos existen porque miden cosas distintas: siete días sin tocar
+ * la app no son lo mismo que siete días cocinando todos los días.
+ */
+function postergacionVigente(meta: MetaDeRecordatorio, hoy: Date): boolean {
+  if (!meta.backup_pospuesto_hasta) return false;
+  if (new Date(meta.backup_pospuesto_hasta).getTime() <= hoy.getTime()) return false;
+  const cambiosAlPosponer = meta.backup_pospuesto_en_cambios ?? 0;
+  return meta.cambios_desde_backup - cambiosAlPosponer < CAMBIOS_QUE_REVIVEN;
+}
+
+export function hayQueRecordarBackup(meta: MetaDeRecordatorio, hoy = new Date()): boolean {
+  if (meta.cambios_desde_backup === 0) return false;
+  if (postergacionVigente(meta, hoy)) return false;
+  const dias = diasDesde(meta.ultimo_backup, hoy);
   return dias === null || dias >= DIAS_PARA_RECORDAR;
+}
+
+/**
+ * Calla el recordatorio hasta que venza. Vive acá y no en `repos` para no
+ * cerrar un ciclo de imports: `backup` ya depende de `repos`, no al revés.
+ */
+export async function posponerRecordatorioBackup(hoy = new Date()): Promise<void> {
+  const meta = await getMeta();
+  const hasta = new Date(hoy.getTime() + DIAS_DE_POSTERGACION * 24 * 60 * 60 * 1000);
+  await db.meta.put({
+    ...meta,
+    backup_pospuesto_hasta: hasta.toISOString(),
+    backup_pospuesto_en_cambios: meta.cambios_desde_backup,
+  });
 }
