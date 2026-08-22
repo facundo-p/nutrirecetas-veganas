@@ -139,6 +139,10 @@ export const metaSchema = z.strictObject({
   ultimo_backup: z.string().optional(),
   /** Cambios acumulados desde el último backup: alimenta el recordatorio. */
   cambios_desde_backup: z.number().int().nonnegative(),
+  /** Hasta cuándo se calló el recordatorio. Vence por fecha o por cambios: lo que pase primero. */
+  backup_pospuesto_hasta: z.string().optional(),
+  /** Cuántos cambios había al posponer, para medir los que se acumularon desde entonces. */
+  backup_pospuesto_en_cambios: z.number().int().nonnegative().optional(),
 });
 export type Meta = z.infer<typeof metaSchema>;
 

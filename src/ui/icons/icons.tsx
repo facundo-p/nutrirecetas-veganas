@@ -369,3 +369,15 @@ export function IconLibro(props: IconProps) {
     </Base>
   );
 }
+
+/**
+ * Cerrar. No va al catálogo del glosario: es chrome universal, no un concepto
+ * del recetario que haya que aprender.
+ */
+export function IconCerrar(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </Base>
+  );
+}

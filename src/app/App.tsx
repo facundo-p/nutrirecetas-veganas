@@ -13,7 +13,8 @@ import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
 import { SettingsScreen } from '../ui/settings/SettingsScreen';
 import { useMeta } from '../db/hooks';
-import { hayQueRecordarBackup } from '../db/backup';
+import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
+import { IconCerrar } from '../ui/icons/icons';
 import { routeHash } from './router';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
@@ -42,13 +43,14 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
 }
 
 /**
- * Recordatorio de backup: insistente a propósito. Sin backend, un borrado de
- * sitio (o el ITP de Safari) se lleva todo, y el archivo exportado es lo único
- * que lo devuelve.
+ * Recordatorio de backup: insistente, pero se puede callar. Sin backend, un
+ * borrado de sitio (o el ITP de Safari) se lleva todo, y el archivo exportado
+ * es lo único que lo devuelve — así que la X no lo apaga, lo pospone, y vuelve
+ * al vencer el plazo o al acumularse cambios nuevos.
  */
 function BackupReminder() {
   const meta = useMeta();
-  if (!meta || !hayQueRecordarBackup(meta.ultimo_backup, meta.cambios_desde_backup)) return null;
+  if (!meta || !hayQueRecordarBackup(meta)) return null;
   return (
     <div className="banner-backup" role="status">
       <span>
@@ -57,6 +59,14 @@ function BackupReminder() {
       <a className="boton-chico" href={routeHash({ screen: 'settings' })}>
         Exportar
       </a>
+      <button
+        type="button"
+        className="banner-backup-cerrar"
+        aria-label="Recordármelo más adelante"
+        onClick={() => void posponerRecordatorioBackup()}
+      >
+        <IconCerrar />
+      </button>
     </div>
   );
 }

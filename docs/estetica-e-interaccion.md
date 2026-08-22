@@ -212,7 +212,7 @@ Set SVG custom, trazo uniforme (~1.75 px en 24 px de caja), estilo línea botán
 - **Cocinar**: Recetario → Detalle (elegir porciones) → Cocinar ahora → personalizar → pasos → registrar. Máximo 2 taps entre detalle y primer paso.
 - **Comprar**: Planificador (o multi-selección en Recetario) → Lista de compras → modo verdulería → tildar.
 - **Planificar**: Planificador → arrastrar/asignar recetas → mirar semáforo proyectado → generar compras.
-- **Backup**: Ajustes → Exportar → compartir archivo (AirDrop/Drive). Banner insistente si pasaron >30 días con cambios.
+- **Backup**: Ajustes → Exportar → compartir archivo (AirDrop/Drive). Banner si pasaron >30 días con cambios (o si nunca se hizo uno). Se puede posponer: la X lo calla 7 días, o hasta que se acumulen 20 cambios nuevos. Un backup real lo resetea.
 
 ## 6. Renders por fase
 

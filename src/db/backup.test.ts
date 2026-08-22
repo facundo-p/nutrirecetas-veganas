@@ -1,8 +1,14 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { analizarImport, exportar, hayQueRecordarBackup, importar } from './backup';
+import {
+  analizarImport,
+  exportar,
+  hayQueRecordarBackup,
+  importar,
+  posponerRecordatorioBackup,
+} from './backup';
 import { db } from './db';
-import { addCoccion, addConsumo, getMeta, getPerfil, savePerfil, saveOverlay } from './repos';
+import { addCoccion, addConsumo, getMeta, getPerfil, registrarBackup, savePerfil, saveOverlay } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 
 const perfil: ProfileData = {
@@ -155,18 +161,62 @@ describe('recordatorio de backup', () => {
   const hoy = new Date('2026-08-19T12:00:00Z');
 
   test('sin cambios no molesta, por viejo que sea el backup', () => {
-    expect(hayQueRecordarBackup('2020-01-01T00:00:00Z', 0, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2020-01-01T00:00:00Z', cambios_desde_backup: 0 }, hoy)).toBe(false);
   });
 
   test('con cambios y sin backup nunca hecho, avisa', () => {
-    expect(hayQueRecordarBackup(undefined, 3, hoy)).toBe(true);
+    expect(hayQueRecordarBackup({ cambios_desde_backup: 3 }, hoy)).toBe(true);
   });
 
   test('con cambios y backup reciente, no molesta', () => {
-    expect(hayQueRecordarBackup('2026-08-10T00:00:00Z', 3, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2026-08-10T00:00:00Z', cambios_desde_backup: 3 }, hoy)).toBe(false);
   });
 
   test('con cambios y más de 30 días, avisa', () => {
-    expect(hayQueRecordarBackup('2026-07-01T00:00:00Z', 1, hoy)).toBe(true);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2026-07-01T00:00:00Z', cambios_desde_backup: 1 }, hoy)).toBe(true);
+  });
+});
+
+describe('postergar el recordatorio', () => {
+  const hoy = new Date('2026-08-19T12:00:00Z');
+  // El caso de Facu: nunca hizo un backup, así que el aviso no se apagaba nunca.
+  const pospuesto = {
+    cambios_desde_backup: 5,
+    backup_pospuesto_hasta: '2026-08-26T12:00:00.000Z',
+    backup_pospuesto_en_cambios: 5,
+  };
+
+  test('recién pospuesto se calla', () => {
+    expect(hayQueRecordarBackup(pospuesto, hoy)).toBe(false);
+  });
+
+  test('vencido el plazo, vuelve', () => {
+    expect(hayQueRecordarBackup(pospuesto, new Date('2026-08-26T12:00:01Z'))).toBe(true);
+  });
+
+  test('sigue callado con 19 cambios nuevos, vuelve con 20', () => {
+    expect(hayQueRecordarBackup({ ...pospuesto, cambios_desde_backup: 5 + 19 }, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ...pospuesto, cambios_desde_backup: 5 + 20 }, hoy)).toBe(true);
+  });
+
+  test('posponer escribe el vencimiento a 7 días y la marca de cambios', async () => {
+    await sembrar();
+    const antes = await getMeta();
+    await posponerRecordatorioBackup(hoy);
+
+    const meta = await getMeta();
+    expect(meta.backup_pospuesto_hasta).toBe('2026-08-26T12:00:00.000Z');
+    expect(meta.backup_pospuesto_en_cambios).toBe(antes.cambios_desde_backup);
+    expect(hayQueRecordarBackup(meta, hoy)).toBe(false);
+  });
+
+  test('un backup de verdad borra la postergación', async () => {
+    await sembrar();
+    await posponerRecordatorioBackup(hoy);
+    await registrarBackup('2026-08-19T13:00:00.000Z');
+
+    const meta = await getMeta();
+    expect(meta.backup_pospuesto_hasta).toBeUndefined();
+    expect(meta.backup_pospuesto_en_cambios).toBeUndefined();
   });
 });
