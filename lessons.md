@@ -109,3 +109,17 @@ La planificación se muda de `docs/plan/` a Issues con sub-issues, el trabajo en
 - **El CI encontró un bug latente en su primera hora.** Los 264 tests pasaban pero quedaba una promesa colgada: `registrar` escribía en la base y recién después navegaba; el test esperaba solo la escritura, vitest desmontaba jsdom y `navigate()` corría contra un `window` inexistente. Pasaba en local y falló en el runner, más lento. Lección: **un test que espera un efecto intermedio no espera al handler**; hay que esperar el último efecto observable.
 - **El repo nunca se había pusheado**: origin estaba vacío y los 43 commits vivían solo en la máquina de Facu. El push inicial de 198 MB falló con HTTP 400 hasta subir `http.postBuffer`. Vale revisar `git ls-remote` antes de asumir que "está en GitHub".
 - **Comprimir `CLAUDE.md` sin perder nada se verifica, no se estima.** El primer intento quedó *más largo* que el original. Un chequeo automático de 45 datos duros (nombres de hoja, umbrales ΔE, tokens) permitió apretar hasta −14 % con la certeza de que ninguna regla se había caído.
+
+---
+
+## Cuatro arreglos salidos de usar la app (2026-08-22)
+
+Los issues #57-#60 no vinieron de la planificación sino de Facu usando la app. La quinta cosa, que no pidió, reordena las otras cuatro.
+
+- **"Es principalmente una app de recetas; la nutrición es de segundo nivel."** Ni el código ni los docs lo decían: `CLAUDE.md` abre con "recetas veganas **con base nutricional**" y ocho de sus invariantes son nutricionales. El peso aparente estaba invertido y se filtró a la UI — 20 filas de nutrientes (12 sin dato) contra 4 renglones telegráficos de instrucciones. **Ante empate de espacio, gana lo que ayuda a cocinar.**
+- **Escribí la regla y la violé en el mismo commit.** El estilo de T9 dice "los `secretos_chef` no se absorben"; los copié dentro de los pasos en **8 de 8** recetas. Es la lección de las 141 violaciones de color otra vez, con un matiz peor: la regla tenía minutos de vida y vivía en el archivo que estaba editando. **La cercanía no protege; protege el test.**
+- **Un aviso que no se puede callar termina tapando la acción que lo apagaría.** El banner de backup era `sticky` e "insistente a propósito", y su condición (nunca hubo backup + hay cambios) no se apaga sola. En mobile tapaba el único enlace a Ajustes, que es donde está el botón de exportar.
+- **Un ícono nuevo colisiona por construcción, no por concepto.** El engranaje que dibujé —círculo + 8 rayos radiales— era literalmente `IconSol`, que ya significa "se evalúa por día". Antes de sumar un ícono, mirar las **primitivas** de los que ya están, no solo sus significados.
+- **El `.md` espejo del dataset tiene más que el `.json`.** Para `r18` la prosa dice "en sartencita", "¡segundos!" y un sustituto que la normalización perdió. No asumir que el JSON es superset de su propia documentación.
+- **Un assert sobre texto genérico sobrevive al cambio que debía detectar.** `getAllByText(/sin datos/)` habría pasado con la sección entera colapsada: el contador nuevo también dice "sin datos". Un test que no puede fallar no es cobertura.
+- **Los pasos del dataset son notas de cocinero, no instrucciones**: 3,95 pasos y ~202 caracteres por receta entera, y la mayoría de los ingredientes no aparece nunca. Los cura T9 en `curated-tables.ts`, el primer override de texto del proyecto — todo lo curado hasta ahora era numérico o referencial.
