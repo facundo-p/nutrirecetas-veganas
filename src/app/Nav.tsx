@@ -3,8 +3,10 @@ import { routeHash, type Route } from './router';
 
 /**
  * Cuatro secciones en la barra: Hoy es la respuesta a "¿cómo vengo y qué
- * cocino?", así que abre la app. Glosario y Ajustes viven dentro de Más para
- * que los targets sigan siendo cómodos a 390 px.
+ * cocino?", así que abre la app. Cuatro y no más porque a 390 px es lo que
+ * entra con targets cómodos — el item "Más" que este comentario prometía nunca
+ * se implementó y queda descartado. Ajustes se abre con el engranaje del
+ * encabezado (`EncabezadoPantalla`) y Glosario desde Diario.
  */
 const ITEMS = [
   { label: 'Hoy', screens: ['today'], route: { screen: 'today' } as Route, Icon: IconHojaEntera },

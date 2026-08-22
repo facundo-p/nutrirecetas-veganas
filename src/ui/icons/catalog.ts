@@ -20,6 +20,7 @@ import {
   IconHojaEntera,
   IconHojaMedia,
   IconHojaPunteada,
+  IconAjustes,
   IconLibro,
   IconLlama,
   IconMortero,
@@ -86,4 +87,5 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'carta', Componente: IconCarta, significado: 'Sección Recetario', grupo: 'navegación' },
   { id: 'zanahoria', Componente: IconZanahoria, significado: 'Sección Ingredientes', grupo: 'navegación' },
   { id: 'libro', Componente: IconLibro, significado: 'Sección Glosario', grupo: 'navegación' },
+  { id: 'ajustes', Componente: IconAjustes, significado: 'Ajustes y datos: temas, export e import', grupo: 'navegación' },
 ];

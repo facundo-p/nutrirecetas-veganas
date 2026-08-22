@@ -371,6 +371,21 @@ export function IconLibro(props: IconProps) {
 }
 
 /**
+ * Engranaje: el único ícono del set que no es botánico, y a propósito — es la
+ * convención universal de "acá se configura". Es silueta dentada continua y no
+ * círculo con rayos, que es exactamente `IconSol` y ya significa otra cosa
+ * ("se evalúa por día").
+ */
+export function IconAjustes(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M10.02 5.08L9.89 2.84L14.11 2.84L13.98 5.08L15.49 5.70L16.98 4.03L19.97 7.02L18.30 8.51L18.92 10.02L21.16 9.89L21.16 14.11L18.92 13.98L18.30 15.49L19.97 16.98L16.98 19.97L15.49 18.30L13.98 18.92L14.11 21.16L9.89 21.16L10.02 18.92L8.51 18.30L7.02 19.97L4.03 16.98L5.70 15.49L5.08 13.98L2.84 14.11L2.84 9.89L5.08 10.02L5.70 8.51L4.03 7.02L7.02 4.03L8.51 5.70Z" />
+      <circle cx="12" cy="12" r="3.2" />
+    </Base>
+  );
+}
+
+/**
  * Cerrar. No va al catálogo del glosario: es chrome universal, no un concepto
  * del recetario que haya que aprender.
  */

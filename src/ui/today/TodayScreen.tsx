@@ -7,6 +7,7 @@ import { getSeedIndex } from '../../seed';
 import { TrafficLightList } from '../common/TrafficLight';
 import { IconPlato, IconReloj } from '../icons/icons';
 import type { Coccion, Consumo } from '../../db/schema';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 /** Cocciones que todavía tienen porciones sin comer. */
 function sobrasDe(cocciones: Coccion[], consumos: Consumo[]): Array<{ coccion: Coccion; sobrantes: number }> {
@@ -51,10 +52,7 @@ export function TodayScreen() {
   if (perfil === null) {
     return (
       <>
-        <header className="encabezado-pantalla">
-          <span className="etiqueta-seccion">Hoy</span>
-          <h1>Primero, contame de vos</h1>
-        </header>
+        <EncabezadoPantalla etiqueta="Hoy" titulo="Primero, contame de vos" />
         <p className="intro-vacia">
           El semáforo compara lo que comés contra objetivos hechos a tu medida: para eso necesito tu edad, tu peso y
           los suplementos que tomás. Sin esos datos preferiría no inventar nada.
@@ -88,13 +86,11 @@ export function TodayScreen() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Hoy</span>
-        <h1>¿Cómo venís?</h1>
+      <EncabezadoPantalla etiqueta="Hoy" titulo="¿Cómo venís?">
         <p className="aviso-alcance">
           El semáforo mide <strong>solo lo que registraste</strong> en la app. Lo que comiste fuera de acá no aparece.
         </p>
-      </header>
+      </EncabezadoPantalla>
 
       <TrafficLightList estados={delDia} titulo="Hoy · se evalúa por día" />
       <TrafficLightList estados={deLaSemana} titulo="Últimos 7 días · se evalúa por semana" />

@@ -22,7 +22,7 @@ Tres contextos de uso real mandan sobre todo lo demás:
 8. **Ingredientes** — ficha de los 158: nutrición /100 g con bandas e IC, sinónimos, estacionalidad, conservación, equivalencias. Búsqueda por nombre/sinónimo ("chickpeas" encuentra garbanzos), filtros por categoría y por nutriente ("fuentes de calcio" ordenadas por aporte).
 9. **Mi perfil** — datos para RDA (sin placeholders), suplementos declarados (apagan exigencia), objetivos derivados visibles.
 10. **Glosario** — pestañas: **íconos** (cada uno con su significado) y **términos culinarios** (37 del dataset).
-11. **Ajustes y datos** — export/import, recordatorio de backup, versión de semilla, actualización de la app.
+11. **Ajustes y datos** — export/import, recordatorio de backup, selector de tema, versión de semilla, actualización de la app. Se abre con el **engranaje del encabezado**, presente en las cuatro pantallas de sección; también desde Diario y con `#/ajustes`.
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
