@@ -54,7 +54,7 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 
 Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif display) + Schibsted Grotesk (datos).
 
-Volvió como tema alternativo a pedido de Facu: **solo la paleta**, con el mismo fondo ilustrado, la misma estructura de pantallas y las mismas tipografías que los otros dos. Implementada en `src/styles/temas/tema-a.css`.
+Volvió como tema alternativo a pedido de Facu, con el mismo fondo ilustrado y la misma estructura de pantallas que los otros dos. Implementada en `src/styles/temas/tema-a.css`.
 
 | Token | Valor | Uso |
 |---|---|---|

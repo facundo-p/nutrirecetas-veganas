@@ -25,6 +25,10 @@
 
   /* ── contrato de roles ── */
 
+  /* Tipografía */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
+
   /* Superficie y tinta */
   --papel: var(--p-papel);
   --superficie: var(--p-tofu);

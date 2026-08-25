@@ -1,5 +1,10 @@
 /* ══════════════════ Capa 1: forma ══════════════════
-   Tipografía, escala, espaciado y bordes. Igual en todos los temas.
+   Escala tipográfica, espaciado y bordes. Igual en todos los temas.
+
+   Las familias tipográficas NO están acá: las declara cada tema, porque la
+   letra es la mitad del carácter de un tema y mientras vivió en esta capa un
+   tema podía cambiar el color pero no la voz. Lo que queda es la escala, que
+   sí es forma y sí es común.
 
    REGLA DURA: esta capa no puede contener un color. Ni un hex, ni un rgb(),
    ni un nombre de color. Todo lo que sea color vive en temas/ y llega acá
@@ -10,10 +15,6 @@
    estas se declaran en :root — el mismo elemento donde el tema declara
    --tinta. Verificado en Chromium: el borde toma la tinta del tema activo. */
 :root {
-  /* Tipografía */
-  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
-  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
-
   /* Escala tipográfica (mobile-first) */
   --fs-xs: 0.75rem;
   --fs-sm: 0.875rem;
