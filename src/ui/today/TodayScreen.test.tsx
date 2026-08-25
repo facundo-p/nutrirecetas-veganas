@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { db } from '../../db/db';
-import { addCoccion, addConsumo, savePerfil } from '../../db/repos';
+import { addCoccion, addConsumo, savePerfil, saveOverlay } from '../../db/repos';
 import type { CoccionData, ProfileData } from '../../db/schema';
 import { TodayScreen } from './TodayScreen';
 
@@ -149,5 +149,31 @@ describe('el semáforo se calla en la ventana que no tiene registros', () => {
     await waitFor(() => expect(screen.getByText(/se evalúa por semana/)).toBeDefined());
     expect(screen.queryByText(/se evalúa por día/)).toBeNull();
     expect(screen.getByText(/lo que se mide por día queda en pausa/)).toBeDefined();
+  });
+});
+
+describe('recomendaciones del día', () => {
+  test('sin ningún registro recomienda igual: el hueco nutricional no es el único criterio', async () => {
+    await savePerfil(perfil);
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText('Recomendaciones del día')).toBeDefined());
+    expect(screen.getAllByRole('listitem').length).toBeGreaterThan(0);
+  });
+
+  test('cada recomendación dice por qué está ahí', async () => {
+    await savePerfil(perfil);
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText('Recomendaciones del día')).toBeDefined());
+    const seccion = screen.getByText('Recomendaciones del día').closest('section')!;
+    const motivos = seccion.querySelectorAll('.recomendacion-motivo');
+    expect(motivos.length).toBeGreaterThan(0);
+    for (const m of motivos) expect(m.textContent?.trim().length).toBeGreaterThan(0);
+  });
+
+  test('una favorita sube y lo dice', async () => {
+    await savePerfil(perfil);
+    await saveOverlay('r04', { favorita: true });
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText(/la marcaste favorita/)).toBeDefined());
   });
 });

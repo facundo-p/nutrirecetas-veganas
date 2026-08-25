@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
-import { recipeInSeason } from '../common/season';
+import { recipeInSeason } from '../../domain/season';
 import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { currentMonth } from '../common/format';
 
 export function RecipeList() {
   const idx = getSeedIndex();
+  const mes = currentMonth();
   const [filters, setFilters] = useState<RecipeFiltersState>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Set<string>>(new Set());
 
@@ -40,7 +42,7 @@ export function RecipeList() {
             <div key={g.mother.id}>
               <RecipeCard
                 recipe={g.mother}
-                inSeason={recipeInSeason(idx, g.mother)}
+                inSeason={recipeInSeason(idx, g.mother, mes)}
                 variantCount={g.variants.length}
                 onToggleVariants={g.variants.length > 0 ? () => toggle(g.mother.id) : undefined}
                 variantsOpen={variantsOpen}
@@ -48,7 +50,7 @@ export function RecipeList() {
               {shownVariants.length > 0 && (
                 <div className="lista-variantes">
                   {shownVariants.map((v) => (
-                    <RecipeCard key={v.id} recipe={v} inSeason={recipeInSeason(idx, v)} />
+                    <RecipeCard key={v.id} recipe={v} inSeason={recipeInSeason(idx, v, mes)} />
                   ))}
                 </div>
               )}

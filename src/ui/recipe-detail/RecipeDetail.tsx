@@ -3,9 +3,9 @@ import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import { routeHash } from '../../app/router';
-import { difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
+import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
-import { ingredientInSeason } from '../common/season';
+import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import {
   IconAsterisco,
@@ -41,7 +41,7 @@ function lineName(idx: SeedIndex, line: Line): { nombre: string; href: string; e
 
 function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
   const { nombre, href, esPreparado } = lineName(idx, line);
-  const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id);
+  const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id, currentMonth());
   const unidad = line.unidad_display.replaceAll('_', ' ');
   const cantidad = formatCantidad(line.cantidad);
   const gramos = formatGramos(line.g_aprox);
