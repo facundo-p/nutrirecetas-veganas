@@ -1,9 +1,9 @@
 import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Recipe } from '../../seed/schema';
 import { isRichIn } from '../../domain/rda';
-import { normalize } from '../common/format';
+import { currentMonth, normalize } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
-import { recipeInSeason } from '../common/season';
+import { recipeInSeason } from '../../domain/season';
 
 /** Lógica de filtrado del recetario, pura y testeable. */
 
@@ -50,7 +50,7 @@ export function matchesFilters(idx: SeedIndex, recipe: Recipe, f: RecipeFiltersS
   if (f.tiempoMax !== null && recipe.tiempo_prep_min + recipe.tiempo_coccion_min > f.tiempoMax) return false;
   if (f.familia !== '' && recipe.familia !== f.familia) return false;
   if (f.estado !== '' && recipe.estado !== f.estado) return false;
-  if (f.deEstacion && !recipeInSeason(idx, recipe)) return false;
+  if (f.deEstacion && !recipeInSeason(idx, recipe, currentMonth())) return false;
   if (f.ricaEn !== '') {
     const nutrient = idx.nutrientById.get(f.ricaEn);
     if (!nutrient || !isRichIn(nutritionOf(idx, recipe.id), nutrient)) return false;

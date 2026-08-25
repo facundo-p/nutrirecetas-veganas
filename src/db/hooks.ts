@@ -24,6 +24,10 @@ export function useConsumos(): Consumo[] | undefined {
   return useLiveQuery(() => db.consumos.toArray(), []);
 }
 
+export function useOverlays(): Overlay[] | undefined {
+  return useLiveQuery(() => db.overlays.toArray(), []);
+}
+
 export function useOverlay(receta_id: string): Overlay | undefined | null {
   return useLiveQuery(async () => (await db.overlays.get(receta_id)) ?? null, [receta_id], undefined);
 }

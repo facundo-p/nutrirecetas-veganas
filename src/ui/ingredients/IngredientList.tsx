@@ -3,8 +3,8 @@ import { getSeedIndex } from '../../seed';
 import { INGREDIENT_CATEGORIES, type Ingredient } from '../../seed/schema';
 import { midpoint } from '../../domain/interval';
 import { routeHash } from '../../app/router';
-import { amountUnit, formatNumber, icSprouts, normalize } from '../common/format';
-import { ingredientInSeason } from '../common/season';
+import { amountUnit, currentMonth, formatNumber, icSprouts, normalize } from '../common/format';
+import { ingredientInSeason } from '../../domain/season';
 import { IconBrotesIc, IconTemporada } from '../icons/icons';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
@@ -88,7 +88,7 @@ export function IngredientList() {
               <a className="tarjeta fila-ingrediente" href={routeHash({ screen: 'ingredient', id: ing.id })}>
                 <span className="fila-ingrediente-nombre">
                   {ing.nombre}
-                  {ingredientInSeason(idx, ing.id) && (
+                  {ingredientInSeason(idx, ing.id, currentMonth()) && (
                     <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
                   )}
                 </span>

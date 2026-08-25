@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
 import { addConsumo } from '../../db/repos';
-import { useCocciones, useConsumos, usePerfil } from '../../db/hooks';
+import { useCocciones, useConsumos, useOverlays, usePerfil } from '../../db/hooks';
 import { porcionesPorVentana, semaforo, type EstadoNutriente } from '../../domain/traffic-light';
 import { getSeedIndex } from '../../seed';
 import { TrafficLightList } from '../common/TrafficLight';
 import { IconPlato, IconReloj } from '../icons/icons';
 import type { Coccion, Consumo } from '../../db/schema';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { Recomendaciones } from './Recomendaciones';
 
 /** Cocciones que todavía tienen porciones sin comer. */
 function sobrasDe(cocciones: Coccion[], consumos: Consumo[]): Array<{ coccion: Coccion; sobrantes: number }> {
@@ -67,6 +68,7 @@ export function TodayScreen() {
   const perfil = usePerfil();
   const cocciones = useCocciones();
   const consumos = useConsumos();
+  const overlays = useOverlays();
 
   const calculo = useMemo(() => {
     if (!perfil || !cocciones || !consumos) return null;
@@ -95,7 +97,7 @@ export function TodayScreen() {
     );
   }
 
-  if (!perfil || !cocciones || !consumos || !calculo) {
+  if (!perfil || !cocciones || !consumos || !overlays || !calculo) {
     return <p className="cargando">Cargando…</p>;
   }
 
@@ -161,6 +163,10 @@ export function TodayScreen() {
           </ul>
         </section>
       )}
+
+      {/* Después de las sobras a propósito: antes de sugerir que cocines algo
+          nuevo, la app te recuerda que ya tenés comida hecha. */}
+      <Recomendaciones perfil={perfil} estados={estados} cocciones={cocciones} consumos={consumos} overlays={overlays} />
 
       {ultima && (
         <section className="ultima-coccion">
