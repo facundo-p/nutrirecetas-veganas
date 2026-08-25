@@ -86,13 +86,17 @@ Estructura: tarjetas crema con borde fino, sombra apenas presente, radios genero
 
 | Token | Valor | Materia | Contraste | ΔE vs. encabezado |
 |---|---|---|---|---|
-| `--cat-principal` | `#A1584D` | ladrillo suave | 4.64 | 61.2 |
+| `--cat-principal` | `#2B5A16` | laurel | 7.23 | 20.8 |
 | `--cat-dulce` | `#543113` | tierra tostada | 10.21 | 27.9 |
 | `--cat-preparado` | `#3F4D62` | pizarra honda | 7.61 | 25.1 |
 | `--cat-pan` | `#876725` | trigo | 4.66 | 36.0 |
 | `--cat-conserva` | `#1B7969` | verde petróleo | 4.67 | 25.0 |
 
-Elegidas con una búsqueda sobre grilla HSL, contra **la vara real que cumple el tema D medida sobre sus propios valores**: ΔE mínimo 26.3 entre categorías, 13.1 contra los roles funcionales vecinos y 4.61:1 de contraste. La escala de A da **27.4 / 20.0 / 4.64** — mejor en las tres. El caso difícil fue conserva: en la A los encabezados son verde profundo, así que un verde de categoría se pisaba con ellos (los primeros intentos daban ΔE 15-21); se resolvió corriendo el petróleo hacia el turquesa.
+Elegidas con una búsqueda sobre grilla HSL, contra **la vara real que cumple el tema D medida sobre sus propios valores**: ΔE mínimo 26.3 entre categorías, 13.1 contra los roles funcionales vecinos y 4.61:1 de contraste. El caso difícil fue conserva: en la A los encabezados son verde profundo, así que un verde de categoría se pisaba con ellos (los primeros intentos daban ΔE 15-21); se resolvió corriendo el petróleo hacia el turquesa.
+
+**`--cat-principal` pasó de ladrillo a laurel** a pedido de Facu ("más oscuro, incluso otro tono"). El ladrillo era el contraste más flojo de las cinco (4.64); el laurel da 7.23 y sube la separación mínima entre categorías de 27.4 a 33.7. Lo que se paga es la distancia a los roles: baja de 20.1 a 17.5 (el vecino más cercano pasa de ser otra categoría a ser el musgo del semáforo), y la A queda con verde en su identidad *y* en una categoría. Sigue sobrada del piso 13, y en el glosario las cinco categorías se leen distintas.
+
+**Ojo con la fórmula**: todos estos ΔE son **CIE76**. Con CIEDE2000 los números son bastante más chicos y ninguna de las cinco categorías llegaría a 26 — ni las de la A ni las de la D. La vara del proyecto está calibrada sobre CIE76 porque así se midió la escala original; medir un color nuevo con CIEDE2000 y compararlo contra el 26 sería compararlo contra otra cosa.
 
 **Sobre el semáforo**: los cuatro colores de estado de la A dan 4.34 / 2.50 / 4.85 / 3.95, por debajo de AA — igual que los de la D hoy (3.43 / 2.29 / 4.12 / 5.70) y por el mismo motivo: **el semáforo nunca comunica solo con color**, siempre ícono + palabra (invariante 6). Son tinte de píldora y color de ícono, no texto.
 
