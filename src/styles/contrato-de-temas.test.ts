@@ -101,6 +101,13 @@ describe('el contrato de temas', () => {
     expect(CONTRATO).not.toContain('--titulo-receta-fijo');
   });
 
+  test('las familias tipográficas están en el contrato: la letra es del tema, no de la capa de forma', () => {
+    // se deducen solas al no estar en tokens.css, pero el assert lo deja escrito:
+    // si alguien las devuelve a la capa común, esto falla y dice por qué
+    expect(CONTRATO).toContain('--font-display');
+    expect(CONTRATO).toContain('--font-data');
+  });
+
   const COLOR_LITERAL = /#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch)\(/;
 
   test.each(deLaApp.map((a) => [a.nombre, a.css] as const))('%s no escribe un color literal', (_n, css) => {

@@ -57,9 +57,10 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen en Ajustes o con `?tema=a|c|d`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
 
 ```
-1. FORMA   src/styles/tokens.css   tipografía, escala, espaciado, bordes.
+1. FORMA   src/styles/tokens.css   escala tipográfica, espaciado, bordes.
                                    PROHIBIDO un color acá.
-2. TEMAS   src/styles/temas/       única capa que escribe colores.
+2. TEMAS   src/styles/temas/       única capa que escribe colores, y la que
+                                   elige las familias (--font-display/-data).
              tema-{a,c,d}.css      paleta cruda (--p-*, privada) + contrato de roles.
              categorias.css        puente [data-cat] → --cat-actual.
 3. APP     el resto de styles/     solo tokens de rol; ninguna regla nombra
