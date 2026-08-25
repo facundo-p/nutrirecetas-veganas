@@ -56,3 +56,44 @@ describe('RecipeList (render)', () => {
     expect(screen.getByText('Brownies chocoporotos sin harina')).toBeDefined();
   });
 });
+
+describe('los chips del recetario', () => {
+  const chips = () => ['de estación', 'probadas', 'por probar'].map((n) => screen.getByRole('button', { name: n }));
+
+  test('van antes de los selects: en el celular, detrás de cinco quedaban fuera de pantalla', () => {
+    render(<RecipeList />);
+    const primerChip = screen.getByRole('button', { name: 'de estación' });
+    const primerSelect = screen.getByLabelText('Tipo');
+    expect(primerChip.compareDocumentPosition(primerSelect)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  test('el orden es de estación, probadas, por probar', () => {
+    render(<RecipeList />);
+    const [estacion, probadas] = chips();
+    expect(estacion!.compareDocumentPosition(probadas!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  test('cada chip prende y apaga, y el estado se dice con aria-pressed', () => {
+    render(<RecipeList />);
+    const [estacion, probadas, porProbar] = chips();
+    expect(estacion!.getAttribute('aria-pressed')).toBe('false');
+
+    fireEvent.click(estacion!);
+    expect(estacion!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(estacion!);
+    expect(estacion!.getAttribute('aria-pressed')).toBe('false');
+
+    // probadas y por probar comparten el campo `estado`: prender uno apaga el otro
+    fireEvent.click(probadas!);
+    expect(probadas!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(porProbar!);
+    expect(probadas!.getAttribute('aria-pressed')).toBe('false');
+    expect(porProbar!.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  test('filtrar por probadas achica el recetario', () => {
+    render(<RecipeList />);
+    fireEvent.click(screen.getByRole('button', { name: 'probadas' }));
+    expect(screen.getByText(/recetas? con estos filtros/)).toBeDefined();
+  });
+});

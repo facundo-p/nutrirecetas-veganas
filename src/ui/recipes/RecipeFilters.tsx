@@ -21,6 +21,34 @@ export function RecipeFilters({ filters, onChange }: Props) {
         value={filters.q}
         onChange={(e) => set({ q: e.target.value })}
       />
+      {/* Los chips van primero y en su propia fila: son tres, entran sin scroll,
+          y detrás de cinco selects quedaban fuera de la pantalla en el celular. */}
+      <div className="filtros-chips">
+        <button
+          type="button"
+          className="chip chip-boton"
+          aria-pressed={filters.deEstacion}
+          onClick={() => set({ deEstacion: !filters.deEstacion })}
+        >
+          de estación
+        </button>
+        <button
+          type="button"
+          className="chip chip-boton"
+          aria-pressed={filters.estado === 'probada'}
+          onClick={() => set({ estado: filters.estado === 'probada' ? '' : 'probada' })}
+        >
+          probadas
+        </button>
+        <button
+          type="button"
+          className="chip chip-boton"
+          aria-pressed={filters.estado === 'por-probar'}
+          onClick={() => set({ estado: filters.estado === 'por-probar' ? '' : 'por-probar' })}
+        >
+          por probar
+        </button>
+      </div>
       <div className="filtros-fila">
         <select aria-label="Tipo" value={filters.tipo} onChange={(e) => set({ tipo: e.target.value as RecipeFiltersState['tipo'] })}>
           <option value="todas">Todo tipo</option>
@@ -73,30 +101,6 @@ export function RecipeFilters({ filters, onChange }: Props) {
             </option>
           ))}
         </select>
-        <button
-          type="button"
-          className="chip chip-boton"
-          aria-pressed={filters.deEstacion}
-          onClick={() => set({ deEstacion: !filters.deEstacion })}
-        >
-          de estación
-        </button>
-        <button
-          type="button"
-          className="chip chip-boton"
-          aria-pressed={filters.estado === 'probada'}
-          onClick={() => set({ estado: filters.estado === 'probada' ? '' : 'probada' })}
-        >
-          probadas
-        </button>
-        <button
-          type="button"
-          className="chip chip-boton"
-          aria-pressed={filters.estado === 'por-probar'}
-          onClick={() => set({ estado: filters.estado === 'por-probar' ? '' : 'por-probar' })}
-        >
-          por probar
-        </button>
       </div>
     </div>
   );
