@@ -3,7 +3,7 @@ import type { Interval, Nutrient } from '../seed/schema';
 import { add, interval, midpoint, scale } from './interval';
 import { hasReportableValue, type NutrientResult } from './nutrition';
 import { objetivosDelPerfil, type ObjetivoNutriente } from './profile';
-import { diasDeVentana, estaEnVentana, ventanaDe } from './windows';
+import { diasDeVentana, estaEnVentana, ventanaDe, type Ventana } from './windows';
 
 /**
  * El semáforo: cómo viene cada nutriente en SU ventana. Nunca evalúa una comida
@@ -112,6 +112,33 @@ export function consumoEnVentana(
     if (resultado) por_nutriente[clave] = resultado;
   }
   return { por_nutriente, kcal: cerrar(kcal), porciones };
+}
+
+function porcionesEnVentana(consumos: Consumo[], cocciones: Map<number, Coccion>, ventana: Ventana): number {
+  let total = 0;
+  for (const consumo of consumos) {
+    // mismo criterio que consumoEnVentana: un consumo sin su cocción no aporta
+    // nada, así que tampoco cuenta como "algo registrado"
+    if (estaEnVentana(consumo.fecha, ventana) && cocciones.has(consumo.coccion_id)) total += consumo.porciones;
+  }
+  return total;
+}
+
+/**
+ * Cuánto se registró en cada ventana. Cero **no** significa que la persona no
+ * haya comido: significa que no cargó nada. Un semáforo que evalúa una ventana
+ * vacía afirma de menos, que es la otra cara del rojo falso — por eso la UI usa
+ * esto para callarse en vez de pintar veinte nutrientes en "sin datos".
+ */
+export function porcionesPorVentana({
+  consumos,
+  cocciones,
+  hoy,
+}: Omit<EntradaSemaforo, 'perfil' | 'nutrientes'>): Record<'dia' | 'semana', number> {
+  return {
+    dia: porcionesEnVentana(consumos, cocciones, ventanaDe('dia', hoy)),
+    semana: porcionesEnVentana(consumos, cocciones, ventanaDe('semana', hoy)),
+  };
 }
 
 export interface EntradaSemaforo {

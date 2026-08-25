@@ -38,6 +38,12 @@ function coccionHoy(porNutriente: Record<string, number>): CoccionData {
   };
 }
 
+function haceDias(dias: number): string {
+  const fecha = new Date();
+  fecha.setDate(fecha.getDate() - dias);
+  return fecha.toISOString();
+}
+
 beforeEach(async () => {
   // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo
   if (!db.isOpen()) await db.open();
@@ -69,9 +75,13 @@ describe('pantalla Hoy', () => {
     expect(screen.getAllByText('por suplemento').length).toBeGreaterThan(0);
   });
 
-  test('sin registros, los nutrientes dicen sin datos (nunca un rojo falso)', async () => {
+  test('con registros, el nutriente que ellos no traen dice sin datos (nunca un rojo falso)', async () => {
     await savePerfil(perfil);
+    const id = await addCoccion(coccionHoy({ hierro_mg: 15 }));
+    await addConsumo({ coccion_id: id, fecha: new Date().toISOString(), porciones: 1 });
+
     render(<TodayScreen />);
+    // la cocción solo declara hierro: los otros 19 nutrientes no tienen con qué
     await waitFor(() => expect(screen.getAllByText('sin datos').length).toBeGreaterThan(0));
   });
 
@@ -93,8 +103,51 @@ describe('pantalla Hoy', () => {
 
   test('separa lo que se evalúa por día de lo que se evalúa por semana', async () => {
     await savePerfil(perfil);
+    const id = await addCoccion(coccionHoy({ hierro_mg: 15 }));
+    await addConsumo({ coccion_id: id, fecha: new Date().toISOString(), porciones: 1 });
+
     render(<TodayScreen />);
     await waitFor(() => expect(screen.getByText(/se evalúa por día/)).toBeDefined());
     expect(screen.getByText(/se evalúa por semana/)).toBeDefined();
+  });
+});
+
+describe('el semáforo se calla en la ventana que no tiene registros', () => {
+  test('sin ninguna cocción no hay semáforo, hay una invitación al recetario', async () => {
+    await savePerfil(perfil);
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText(/Todavía no registraste ninguna cocción/)).toBeDefined());
+    expect(screen.queryByText(/se evalúa por/)).toBeNull();
+    expect(screen.queryByText('sin datos')).toBeNull();
+  });
+
+  test('con cocción y sin porciones comidas, pide registrar la porción', async () => {
+    await savePerfil(perfil);
+    await addCoccion(coccionHoy({ hierro_mg: 15 }));
+
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText(/todavía no registraste ninguna porción comida/)).toBeDefined());
+    expect(screen.queryByText(/se evalúa por/)).toBeNull();
+  });
+
+  test('con el último registro hace más de una semana, dice que no sabe en vez de pintar rojo', async () => {
+    await savePerfil(perfil);
+    const id = await addCoccion(coccionHoy({ hierro_mg: 15 }));
+    await addConsumo({ coccion_id: id, fecha: haceDias(10), porciones: 1 });
+
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText(/no dice que no comiste, dice que no sabe/)).toBeDefined());
+    expect(screen.queryByText(/se evalúa por/)).toBeNull();
+  });
+
+  test('con registros de anteayer, la semana se muestra y el día queda en pausa', async () => {
+    await savePerfil(perfil);
+    const id = await addCoccion(coccionHoy({ b12_ug: 3 }));
+    await addConsumo({ coccion_id: id, fecha: haceDias(2), porciones: 1 });
+
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText(/se evalúa por semana/)).toBeDefined());
+    expect(screen.queryByText(/se evalúa por día/)).toBeNull();
+    expect(screen.getByText(/lo que se mide por día queda en pausa/)).toBeDefined();
   });
 });

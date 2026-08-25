@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
 import { addConsumo } from '../../db/repos';
 import { useCocciones, useConsumos, usePerfil } from '../../db/hooks';
-import { semaforo, type EstadoNutriente } from '../../domain/traffic-light';
+import { porcionesPorVentana, semaforo, type EstadoNutriente } from '../../domain/traffic-light';
 import { getSeedIndex } from '../../seed';
 import { TrafficLightList } from '../common/TrafficLight';
 import { IconPlato, IconReloj } from '../icons/icons';
@@ -32,21 +32,50 @@ function ordenarDestacados(estados: EstadoNutriente[], destacados: string[]): Es
   return [...estados].sort((a, b) => peso(a.nutriente_id) - peso(b.nutriente_id));
 }
 
+/**
+ * Qué se dice cuando la semana no tiene un solo registro. Nunca es un reproche:
+ * la app es un apoyo para consultar, no un capataz. Que falten datos es lo
+ * normal, y lo único honesto es decir que no sabe.
+ */
+function SinRegistros({ cocciones, consumos }: { cocciones: Coccion[]; consumos: Consumo[] }) {
+  if (cocciones.length === 0) {
+    return (
+      <p className="intro-vacia">
+        Todavía no registraste ninguna cocción. Elegí algo del{' '}
+        <a href={routeHash({ screen: 'recipes' })}>recetario</a> y cociná: el semáforo empieza ahí.
+      </p>
+    );
+  }
+  if (consumos.length === 0) {
+    return (
+      <p className="intro-vacia">
+        Cocinaste, pero todavía no registraste ninguna porción comida. El semáforo cuenta lo que comés, no lo que
+        cocinás: anotá una porción y arranca.
+      </p>
+    );
+  }
+  return (
+    <p className="intro-vacia">
+      Hace más de una semana que no registrás lo que comés, así que el semáforo prefiere callarse: no dice que no
+      comiste, dice que no sabe. <a href={routeHash({ screen: 'diary' })}>Ver el diario</a>
+    </p>
+  );
+}
+
 export function TodayScreen() {
   const idx = getSeedIndex();
   const perfil = usePerfil();
   const cocciones = useCocciones();
   const consumos = useConsumos();
 
-  const estados = useMemo(() => {
+  const calculo = useMemo(() => {
     if (!perfil || !cocciones || !consumos) return null;
-    return semaforo({
-      perfil,
-      nutrientes: idx.seed.nutrientes,
-      consumos,
-      cocciones: new Map(cocciones.map((c) => [c.id, c])),
-      hoy: new Date(),
-    });
+    const porCoccion = new Map(cocciones.map((c) => [c.id, c]));
+    const hoy = new Date();
+    return {
+      estados: semaforo({ perfil, nutrientes: idx.seed.nutrientes, consumos, cocciones: porCoccion, hoy }),
+      porciones: porcionesPorVentana({ consumos, cocciones: porCoccion, hoy }),
+    };
   }, [perfil, cocciones, consumos, idx]);
 
   if (perfil === null) {
@@ -66,10 +95,11 @@ export function TodayScreen() {
     );
   }
 
-  if (!perfil || !cocciones || !consumos || !estados) {
+  if (!perfil || !cocciones || !consumos || !calculo) {
     return <p className="cargando">Cargando…</p>;
   }
 
+  const { estados, porciones } = calculo;
   const destacados = ordenarDestacados(estados, perfil.nutrientes_destacados);
   const delDia = destacados.filter((e) => e.ventana === 'dia');
   const deLaSemana = destacados.filter((e) => e.ventana === 'semana');
@@ -92,8 +122,23 @@ export function TodayScreen() {
         </p>
       </EncabezadoPantalla>
 
-      <TrafficLightList estados={delDia} titulo="Hoy · se evalúa por día" />
-      <TrafficLightList estados={deLaSemana} titulo="Últimos 7 días · se evalúa por semana" />
+      {/* Cada bloque vive de su propia ventana: sin registros ahí, se calla.
+          Como la ventana del día está adentro de la de la semana, que la semana
+          esté en cero implica que el día también. */}
+      {porciones.dia > 0 ? (
+        <TrafficLightList estados={delDia} titulo="Hoy · se evalúa por día" />
+      ) : (
+        porciones.semana > 0 && (
+          <p className="intro-vacia">
+            Hoy todavía no registraste nada, así que lo que se mide por día queda en pausa.
+          </p>
+        )
+      )}
+      {porciones.semana > 0 ? (
+        <TrafficLightList estados={deLaSemana} titulo="Últimos 7 días · se evalúa por semana" />
+      ) : (
+        <SinRegistros cocciones={cocciones} consumos={consumos} />
+      )}
 
       {sobras.length > 0 && (
         <section className="sobras">
@@ -127,13 +172,6 @@ export function TodayScreen() {
             <a href={routeHash({ screen: 'diary' })}>Ver el diario</a>
           </p>
         </section>
-      )}
-
-      {cocciones.length === 0 && (
-        <p className="intro-vacia">
-          Todavía no registraste ninguna cocción. Elegí algo del{' '}
-          <a href={routeHash({ screen: 'recipes' })}>recetario</a> y cociná: el semáforo empieza ahí.
-        </p>
       )}
     </>
   );
