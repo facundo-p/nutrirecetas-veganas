@@ -54,7 +54,9 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 
 Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif display) + Schibsted Grotesk (datos).
 
-Volvió como tema alternativo a pedido de Facu, con el mismo fondo ilustrado y la misma estructura de pantallas que los otros dos. Implementada en `src/styles/temas/tema-a.css`.
+Volvió como tema alternativo a pedido de Facu, con el mismo fondo ilustrado y la misma estructura de pantallas que los otros dos.
+
+**Tipografía propia: Vollkorn** para el display, en vez de la Fraunces que usan la C y la D. La Fraunces tiene mucho contraste y serifas en cuña: se lee display y un poco severa. La Vollkorn baja el contraste y redondea los terminales sin salirse del registro editorial — que es donde la A quería estar desde "cálida y seria". Se compararon tres candidatas variables y self-hosted (Vollkorn, Petrona, Alegreya) renderizando el Tema A con cada una; Petrona quedó más neutra y Alegreya más caligráfica, casi de etiqueta de vino. El dato de la app (`--font-data`) sigue siendo Schibsted Grotesk en los tres temas. Implementada en `src/styles/temas/tema-a.css`.
 
 | Token | Valor | Uso |
 |---|---|---|
