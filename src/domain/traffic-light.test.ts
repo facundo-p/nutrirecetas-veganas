@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { Coccion, Consumo, Perfil } from '../db/schema';
 import { getSeedIndex } from '../seed';
-import { semaforo, type EstadoNutriente } from './traffic-light';
+import { porcionesPorVentana, semaforo, type EstadoNutriente } from './traffic-light';
 import { ventanaDia, ventanaSemanaMovil } from './windows';
 
 const idx = getSeedIndex();
@@ -193,5 +193,36 @@ describe('trazabilidad del objetivo', () => {
     const estados = correr([], []);
     expect(estados.get('hierro')!.origen_objetivo).toBe('rda');
     expect(estados.get('hierro')!.unidad).toBe('mg');
+  });
+});
+
+describe('porciones por ventana', () => {
+  const contar = (cocciones: Coccion[], consumos: Consumo[]) =>
+    porcionesPorVentana({ cocciones: new Map(cocciones.map((c) => [c.id, c])), consumos, hoy: HOY });
+
+  const haceDias = (dias: number) => {
+    const fecha = new Date(HOY);
+    fecha.setDate(fecha.getDate() - dias);
+    return fecha.toISOString();
+  };
+
+  test('sin consumos, las dos ventanas están en cero', () => {
+    expect(contar([coccion(1, { hierro_mg: 5 })], [])).toEqual({ dia: 0, semana: 0 });
+  });
+
+  test('lo de hoy cuenta en las dos ventanas', () => {
+    expect(contar([coccion(1, { hierro_mg: 5 })], [consumo(1, 2, HOY.toISOString())])).toEqual({ dia: 2, semana: 2 });
+  });
+
+  test('lo de anteayer cuenta en la semana pero no en el día', () => {
+    expect(contar([coccion(1, { hierro_mg: 5 })], [consumo(1, 1.5, haceDias(2))])).toEqual({ dia: 0, semana: 1.5 });
+  });
+
+  test('lo de hace 8 días no cuenta en ninguna: la semana es móvil', () => {
+    expect(contar([coccion(1, { hierro_mg: 5 })], [consumo(1, 3, haceDias(8))])).toEqual({ dia: 0, semana: 0 });
+  });
+
+  test('un consumo huérfano no cuenta: el semáforo tampoco lo suma', () => {
+    expect(contar([], [consumo(99, 2, HOY.toISOString())])).toEqual({ dia: 0, semana: 0 });
   });
 });
