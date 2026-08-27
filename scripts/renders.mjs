@@ -9,7 +9,13 @@ import { chromium } from 'playwright';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
-const fase = args.find((a) => !a.startsWith('--')) ?? 'fase-2';
+// Sin default a propósito: el que había (`fase-2`) convertía un olvido en pisar
+// una tanda ya publicada, y las rutas cambian entre fases — quedaban mezcladas.
+const fase = args.find((a) => !a.startsWith('--'));
+if (!fase) {
+  console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=a|c|d]');
+  process.exit(1);
+}
 // Cada tema visual tiene su carpeta: el default es el tema activo de la app.
 const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'd';
 const carpeta = `${fase}-tema-${tema}`;
