@@ -42,12 +42,7 @@ test('con nutrientes marcados, las recomendaciones lo usan como motivo', async (
   });
 
   render(<App />);
-  // Timeout explícito: este render calcula la nutrición de las 84 recetas con el
-  // cache frío y en local ya tarda ~700 ms, contra el 1 s por defecto de
-  // `waitFor`. En el runner de CI, más lento, no llegaba.
-  await waitFor(() => expect(screen.getAllByText(/% de la dosis de hierro/).length).toBeGreaterThan(0), {
-    timeout: 5000,
-  });
+  await waitFor(() => expect(screen.getAllByText(/% de la dosis de hierro/).length).toBeGreaterThan(0));
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {
