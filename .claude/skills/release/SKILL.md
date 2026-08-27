@@ -62,6 +62,15 @@ Gana el más alto. Aplicar los desempates de `CLAUDE.md`, sobre todo el de datos
 corregir la semilla es patch, salvo que cambie un id o borre un ingrediente o una
 receta — eso deja overlays huérfanos y es major.
 
+**Una migración con pérdida es siempre ruptura**, aunque ningún commit diga
+`feat!`. Si en el rango hay un `version(N)` nuevo en `db.ts` que borra una tabla
+o saca un campo del perfil, es ruptura: obliga a exportar antes de actualizar.
+Buscarlo a mano, porque el label del issue puede haberse olvidado:
+
+```bash
+git diff origin/main..staging -- src/db/db.ts src/db/schema.ts | grep -E '^\+.*version\(|^-.*Schema'
+```
+
 **Decir siempre por qué**, citando el commit que lo disparó:
 
 > Propongo **0.3.0** (minor): `feat(compras): lista consolidada` agrega
@@ -114,13 +123,35 @@ puede leer sin saber nada de git y sigue significando algo, está bien escrita.
 ## [0.2.0] — 2026-08-21
 
 ### Agregado
-- Onboarding de perfil real con suplementos: el semáforo ahora usa tus RDA. (#8)
 - Flujo **Cocinar ahora**: personalización con recálculo en vivo, pasos con
   tipografía grande y wake lock, y registro de cocción. (#9)
+
+### Quitado
+- La pantalla Hoy: la app abre en el recetario. (#91)
 
 ### Datos
 - La margarina pasa a ser el sustituto de la manteca vegana. (#7)
 ```
+
+### Si el release borra datos de usuario
+
+Va **primero, antes de las secciones**, en prosa y sin rodeos: qué se borra, qué
+sobrevive y qué hacer antes de actualizar. Alguien que lee el changelog después
+de haber actualizado ya no puede exportar nada.
+
+```markdown
+## [0.5.0] — 2026-08-27
+
+**Esta versión borra datos.** Se van los registros de porciones comidas, las
+sobras, y los suplementos y objetivos a mano del perfil. Tus cocciones, tus
+notas y tus favoritas quedan enteras. Si querés conservar lo que se va,
+exportá desde Ajustes **antes** de actualizar.
+```
+
+Comprobar además que la app lo avise sola: `ULTIMA_VERSION_CON_PERDIDA` en
+`App.tsx` tiene que apuntar a la versión de esquema que borró. Si quedó atrás, el
+aviso no aparece y el changelog es lo único que lo dice — y el changelog se lee
+después.
 
 El encabezado va exacto así: `## [X.Y.Z] — YYYY-MM-DD`, con raya (—), porque
 `tag-release.yml` lo parsea para armar el cuerpo del Release.
