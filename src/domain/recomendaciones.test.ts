@@ -257,3 +257,42 @@ describe('criterio: rica en lo que te interesa', () => {
     expect(enElMaximo.length).toBeLessThan(todas.length / 4);
   });
 });
+
+describe('la variedad que se ve es la del porqué, no la del tipo', () => {
+  const perfil = perfilCon(['hierro', 'b12', 'calcio', 'zinc', 'yodo', 'omega3', 'proteina']);
+
+  test('no repite el tema del motivo principal mientras haya otro disponible', () => {
+    // `diversificar` ya variaba el tipo de receta, pero lo que el ojo lee es el
+    // motivo: dos "aporta el N % de la dosis de proteína" seguidos son uno
+    // repetido, aunque una sea salada y la otra un pan.
+    //
+    // Se compara el TEMA y no el texto: los motivos traen el porcentaje adentro,
+    // así que "el 47 % de la dosis de proteína" y "el 32 % de la dosis de
+    // proteína" son strings distintos y un test sobre el texto no podría fallar.
+    const rec = recomendar(entrada({ perfil }));
+    const temas = rec.map((r) => r.temaPrincipal).filter((t) => t !== undefined);
+    expect(temas.length).toBeGreaterThan(1);
+    expect(new Set(temas).size).toBe(temas.length);
+  });
+
+  test('si hay que repetir algo, repite el tipo antes que el motivo', () => {
+    // Con dos criterios de variedad, la primera pasada rinde menos y a veces
+    // hay que ceder uno. Ceder el tipo cuesta menos: dos saladas con argumentos
+    // distintos se leen como dos recomendaciones; una salada y un pan que dicen
+    // lo mismo, como una sola repetida.
+    const rec = recomendar(entrada({ perfil }));
+    const temas = rec.map((r) => r.temaPrincipal).filter((t) => t !== undefined);
+    expect(new Set(temas).size).toBe(temas.length);
+    expect(rec).toHaveLength(3);
+  });
+
+  test('si no hay con qué variar, completa igual en vez de devolver de menos', () => {
+    const unoSolo: Criterio = {
+      id: 'unoSolo',
+      descripcion: '',
+      evaluar: () => ({ puntaje: 1, motivo: 'siempre lo mismo', tema: 'unico' }),
+    };
+    const rec = recomendar(entrada(), { criterios: [unoSolo], pesos: { unoSolo: 1 } });
+    expect(rec).toHaveLength(3);
+  });
+});

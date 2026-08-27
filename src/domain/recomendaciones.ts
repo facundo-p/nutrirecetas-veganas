@@ -44,6 +44,14 @@ export interface Aporte {
   puntaje: number;
   /** El porqué, en la voz de la app. Solo se muestra si el puntaje es > 0. */
   motivo: string;
+  /**
+   * De qué habla el motivo, para que `diversificar` no repita el mismo
+   * argumento. No alcanza con comparar el texto: los motivos traen el número
+   * adentro, así que dos "aporta el N % de la dosis de proteína" son strings
+   * distintos y el mismo argumento. Sin tema, el criterio no compite por
+   * variedad — es lo correcto para los que solo pueden decir una cosa.
+   */
+  tema?: string;
 }
 
 export interface Criterio {
@@ -59,6 +67,8 @@ export interface Recomendacion {
   puntaje: number;
   /** Ordenados por cuánto aportaron: el primero es la razón más fuerte. */
   motivos: string[];
+  /** El tema del motivo más fuerte, si lo declara. Lo usa `diversificar`. */
+  temaPrincipal?: string;
 }
 
 export interface OpcionesRecomendacion {
@@ -112,7 +122,7 @@ const ricaEnLoQueTeInteresa: Criterio = {
 
     let suma = 0;
     let cuantosOpinan = 0;
-    let mejor: { nombre: string; pct: number } | null = null;
+    let mejor: { id: string; nombre: string; pct: number } | null = null;
 
     for (const nutriente of ctx.interesan) {
       const clave = ctx.idx.nutrientById.get(nutriente.id)?.clave_ingrediente;
@@ -131,7 +141,7 @@ const ricaEnLoQueTeInteresa: Criterio = {
 
       cuantosOpinan += 1;
       suma += Math.min(1, pct / 100 / FRACCION_DE_UNA_COMIDA);
-      if (mejor === null || pct > mejor.pct) mejor = { nombre: nutriente.nombre, pct };
+      if (mejor === null || pct > mejor.pct) mejor = { id: nutriente.id, nombre: nutriente.nombre, pct };
     }
 
     if (cuantosOpinan === 0) return null;
@@ -142,6 +152,7 @@ const ricaEnLoQueTeInteresa: Criterio = {
     return {
       puntaje,
       motivo: `aporta el ${Math.round(mejor.pct)} % de la dosis de ${enMinuscula(mejor.nombre)}`,
+      tema: `nutriente:${mejor.id}`,
     };
   },
 };
@@ -262,7 +273,7 @@ export function recomendar(entrada: EntradaRecomendacion, opciones: OpcionesReco
 
     let suma = 0;
     let pesoQueOpina = 0;
-    const razones: Array<{ motivo: string; aporte: number }> = [];
+    const razones: Array<{ motivo: string; aporte: number; tema?: string }> = [];
 
     for (const criterio of criterios) {
       const peso = pesos[criterio.id] ?? 0;
@@ -272,15 +283,22 @@ export function recomendar(entrada: EntradaRecomendacion, opciones: OpcionesReco
       suma += peso * aporte.puntaje;
       pesoQueOpina += peso;
       if (aporte.puntaje > 0 && aporte.motivo !== '') {
-        razones.push({ motivo: aporte.motivo, aporte: peso * aporte.puntaje });
+        razones.push({
+          motivo: aporte.motivo,
+          aporte: peso * aporte.puntaje,
+          ...(aporte.tema !== undefined ? { tema: aporte.tema } : {}),
+        });
       }
     }
 
     if (pesoQueOpina === 0) continue;
+    razones.sort((a, b) => b.aporte - a.aporte);
+    const temaPrincipal = razones[0]?.tema;
     puntuadas.push({
       receta,
       puntaje: (suma + pesoDeLaDuda * PUNTAJE_NEUTRO) / (pesoQueOpina + pesoDeLaDuda),
-      motivos: razones.sort((a, b) => b.aporte - a.aporte).map((r) => r.motivo),
+      motivos: razones.map((r) => r.motivo),
+      ...(temaPrincipal !== undefined ? { temaPrincipal } : {}),
     });
   }
 
@@ -293,26 +311,43 @@ export function recomendar(entrada: EntradaRecomendacion, opciones: OpcionesReco
 }
 
 /**
- * Tres postres seguidos no son tres recomendaciones: son una repetida. Se toma
- * la mejor de cada tipo antes de repetir tipo, y si no alcanza se completa con
- * las que quedaron. No reordena por puntaje: solo elige a quién le toca.
+ * Tres postres seguidos no son tres recomendaciones: son una repetida. Y dos
+ * "aporta el N % de la dosis de proteína" tampoco, aunque una sea salada y la
+ * otra un pan: **lo que el ojo lee es el motivo, no la categoría**. Así que se
+ * varían las dos cosas, tipo de receta y tema del motivo principal.
  *
- * Salió de mirar el render, no de un test: los dulces son cortos y de pocos
- * ingredientes, así que ganan por novedad y estación.
+ * Las dos versiones de esta función salieron de mirar un render, no de un test:
+ * la primera porque los dulces ganaban por novedad y estación, la segunda
+ * porque la B12 ganaba por aporte. Si no alcanza para variar, se completa con
+ * las que quedaron: es mejor repetir que devolver de menos.
  */
 function diversificar(ordenadas: Recomendacion[], limite: number): Recomendacion[] {
   const elegidas: Recomendacion[] = [];
   const tiposUsados = new Set<Recipe['tipo']>();
+  const temasUsados = new Set<string>();
 
-  for (const candidata of ordenadas) {
-    if (elegidas.length === limite) break;
-    if (tiposUsados.has(candidata.receta.tipo)) continue;
+  const tomar = (candidata: Recomendacion) => {
     tiposUsados.add(candidata.receta.tipo);
+    if (candidata.temaPrincipal !== undefined) temasUsados.add(candidata.temaPrincipal);
     elegidas.push(candidata);
-  }
-  for (const candidata of ordenadas) {
-    if (elegidas.length === limite) break;
-    if (!elegidas.includes(candidata)) elegidas.push(candidata);
+  };
+  const temaLibre = (c: Recomendacion) => c.temaPrincipal === undefined || !temasUsados.has(c.temaPrincipal);
+
+  // Tres pasadas, y el orden entre la segunda y la tercera es la decisión: si
+  // hay que repetir algo, se repite el tipo antes que el motivo. Dos saladas
+  // con argumentos distintos se leen como dos recomendaciones; una salada y un
+  // pan que dicen los dos "aporta el N % de la dosis de proteína", como una.
+  const pasadas = [
+    (c: Recomendacion) => !tiposUsados.has(c.receta.tipo) && temaLibre(c),
+    temaLibre,
+    () => true,
+  ];
+  for (const entra of pasadas) {
+    for (const candidata of ordenadas) {
+      if (elegidas.length === limite) return elegidas;
+      if (elegidas.includes(candidata)) continue;
+      if (entra(candidata)) tomar(candidata);
+    }
   }
   return elegidas;
 }
