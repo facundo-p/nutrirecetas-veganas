@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie';
 import { migrarPerfilV1 } from './migrations';
-import type { Coccion, Consumo, Meta, Overlay, Perfil } from './schema';
+import type { Coccion, Meta, Overlay, Perfil } from './schema';
 
 /**
  * Base local de datos de usuario. Todo lo que Facu genera vive acá y no sale
@@ -25,7 +25,6 @@ export const DB_NAME = `nutrirecetas_user${SUFIJO_DE_ENTORNO}`;
 export class UserDb extends Dexie {
   perfil!: EntityTable<Perfil, 'id'>;
   cocciones!: EntityTable<Coccion, 'id'>;
-  consumos!: EntityTable<Consumo, 'id'>;
   overlays!: EntityTable<Overlay, 'receta_id'>;
   meta!: EntityTable<Meta, 'id'>;
 
@@ -50,6 +49,10 @@ export class UserDb extends Dexie {
             ref.value = migrarPerfilV1(perfil as Record<string, unknown>);
           }),
       );
+    // v3: se va la tabla de consumos. Contaba porciones comidas para alimentar
+    // el semáforo, que ya no existe. Es una pérdida de datos declarada: la app
+    // avisa una vez qué se borró (ver `AvisoDeConsumos` en App.tsx).
+    this.version(3).stores({ consumos: null });
   }
 }
 

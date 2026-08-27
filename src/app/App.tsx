@@ -14,6 +14,8 @@ import { DiaryScreen } from '../ui/diary/DiaryScreen';
 import { SettingsScreen } from '../ui/settings/SettingsScreen';
 import { useMeta } from '../db/hooks';
 import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
+import { marcarEsquemaVisto } from '../db/repos';
+import { USER_SCHEMA_VERSION } from '../db/schema';
 import { IconCerrar } from '../ui/icons/icons';
 import { routeHash } from './router';
 
@@ -52,7 +54,7 @@ function BackupReminder() {
   const meta = useMeta();
   if (!meta || !hayQueRecordarBackup(meta)) return null;
   return (
-    <div className="banner-backup" role="status">
+    <div className="banner banner-backup" role="status">
       <span>
         Hace rato que no hacés una copia de tus datos, y ya hay {meta.cambios_desde_backup} cambios sin respaldar.
       </span>
@@ -61,10 +63,32 @@ function BackupReminder() {
       </a>
       <button
         type="button"
-        className="banner-backup-cerrar"
+        className="banner-cerrar"
         aria-label="Recordármelo más adelante"
         onClick={() => void posponerRecordatorioBackup()}
       >
+        <IconCerrar />
+      </button>
+    </div>
+  );
+}
+
+/**
+ * La v3 borró los consumos, y borrar datos de alguien se avisa. `meta` solo
+ * escribe `user_schema_version` al crear el registro, así que quien venía de
+ * antes lo tiene en 2 y eso alcanza como marca — no hace falta un flag nuevo.
+ * Una instalación nueva nace en la versión actual y no ve nada.
+ */
+function AvisoDeConsumos() {
+  const meta = useMeta();
+  if (!meta || meta.user_schema_version >= USER_SCHEMA_VERSION) return null;
+  return (
+    <div className="banner banner-migracion" role="status">
+      <span>
+        Esta versión dejó de llevar la cuenta de lo que comés: se borraron los registros de porciones comidas y, con
+        ellos, las sobras. <strong>Lo que cocinaste, tus notas y tus favoritas están enteros.</strong>
+      </span>
+      <button type="button" className="banner-cerrar" aria-label="Entendido" onClick={() => void marcarEsquemaVisto()}>
         <IconCerrar />
       </button>
     </div>
@@ -102,6 +126,7 @@ export function App() {
     <div className="app">
       <BandaDeStaging />
       <Nav route={route} />
+      <AvisoDeConsumos />
       <BackupReminder />
       <main className="contenido">
         <Screen route={route} />

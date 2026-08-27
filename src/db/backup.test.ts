@@ -8,7 +8,7 @@ import {
   posponerRecordatorioBackup,
 } from './backup';
 import { db } from './db';
-import { addCoccion, addConsumo, getMeta, getPerfil, registrarBackup, savePerfil, saveOverlay } from './repos';
+import { addCoccion, getMeta, getPerfil, registrarBackup, savePerfil, saveOverlay } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 
 const perfil: ProfileData = {
@@ -40,8 +40,7 @@ const coccion: CoccionData = {
 
 async function sembrar() {
   await savePerfil(perfil);
-  const id = await addCoccion(coccion);
-  await addConsumo({ coccion_id: id, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 });
+  await addCoccion(coccion);
   await saveOverlay('r01', { favorita: true, ic_usuario: 8 });
 }
 
@@ -66,7 +65,6 @@ describe('export / import', () => {
     expect(cocciones).toHaveLength(1);
     expect(cocciones[0]!.variaciones).toEqual([{ tipo: 'desmarcado', nombre: 'Vino tinto' }]);
     expect(cocciones[0]!.nutricion_porcion.alerta_b12).toBe(true);
-    expect(await db.consumos.count()).toBe(1);
     expect((await db.overlays.get('r01'))!.ic_usuario).toBe(8);
   });
 
@@ -94,7 +92,13 @@ describe('export / import', () => {
     await sembrar();
     const backup = await exportar('1.0.0');
     const reporte = analizarImport(backup);
-    expect(reporte).toMatchObject({ perfil: true, cocciones: 1, consumos: 1, overlays: 1, seed_version: '1.0.0' });
+    expect(reporte).toMatchObject({
+      perfil: true,
+      cocciones: 1,
+      overlays: 1,
+      consumos_descartados: 0,
+      seed_version: '1.0.0',
+    });
     expect(await db.cocciones.count()).toBe(1); // sigue todo en su lugar
   });
 
@@ -146,6 +150,22 @@ describe('backups de esquemas viejos', () => {
     },
   };
 
+  /** v2 con consumos de verdad: lo que tiene en el disco cualquiera que usó la app. */
+  const backupV2ConConsumos = {
+    user_schema_version: 2,
+    seed_version: '1.0.0',
+    exported_at: '2026-08-20T00:00:00.000Z',
+    data: {
+      perfil: null,
+      cocciones: [{ ...coccion, id: 1 }],
+      consumos: [
+        { id: 1, coccion_id: 1, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 },
+        { id: 2, coccion_id: 1, fecha: '2026-08-20T13:00:00.000Z', porciones: 1 },
+      ],
+      overlays: [],
+    },
+  };
+
   test('un backup v1 sigue entrando: es la única red de seguridad que hay', async () => {
     await importar(backupV1, '1.0.0');
     expect((await getPerfil())!.nivel_entrenamiento).toBe('fuerza');
@@ -154,6 +174,17 @@ describe('backups de esquemas viejos', () => {
   test('el dry-run de un backup v1 no lo confunde con uno del futuro', () => {
     expect(analizarImport(backupV1).esquema_futuro).toBe(false);
     expect(analizarImport(backupV1).perfil).toBe(true);
+  });
+
+  test('un backup con consumos entra igual: se descartan, no rebota el archivo', async () => {
+    // `backupSchema` es estricto, así que sin migrar el campo de más tira el
+    // archivo entero a la basura — y con él las cocciones, que sí se pueden salvar
+    await importar(backupV2ConConsumos, '1.0.0');
+    expect(await db.cocciones.count()).toBe(1);
+  });
+
+  test('el dry-run dice cuántos consumos va a descartar', () => {
+    expect(analizarImport(backupV2ConConsumos).consumos_descartados).toBe(2);
   });
 });
 

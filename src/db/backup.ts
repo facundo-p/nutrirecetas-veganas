@@ -1,5 +1,5 @@
 import { db } from './db';
-import { migrarBackup } from './migrations';
+import { consumosEnBackup, migrarBackup } from './migrations';
 import { getMeta, registrarBackup } from './repos';
 import { USER_SCHEMA_VERSION, backupSchema, type Backup, type Meta } from './schema';
 
@@ -13,17 +13,16 @@ import { USER_SCHEMA_VERSION, backupSchema, type Backup, type Meta } from './sch
  */
 
 export async function exportar(seed_version: string): Promise<Backup> {
-  const [perfil, cocciones, consumos, overlays] = await Promise.all([
+  const [perfil, cocciones, overlays] = await Promise.all([
     db.perfil.get(1),
     db.cocciones.toArray(),
-    db.consumos.toArray(),
     db.overlays.toArray(),
   ]);
   return {
     user_schema_version: USER_SCHEMA_VERSION,
     seed_version,
     exported_at: new Date().toISOString(),
-    data: { perfil: perfil ?? null, cocciones, consumos, overlays },
+    data: { perfil: perfil ?? null, cocciones, overlays },
   };
 }
 
@@ -34,8 +33,9 @@ export function nombreDeArchivo(fecha = new Date()): string {
 export interface ReporteImport {
   perfil: boolean;
   cocciones: number;
-  consumos: number;
   overlays: number;
+  /** Consumos que traía un backup anterior a v3 y que el import tira. Se dice, no se calla. */
+  consumos_descartados: number;
   exportado_en: string;
   seed_version: string;
   /** El backup viene de un esquema más nuevo que esta app: no se puede importar. */
@@ -48,8 +48,9 @@ export function analizarImport(json: unknown): ReporteImport {
   return {
     perfil: backup.data.perfil !== null,
     cocciones: backup.data.cocciones.length,
-    consumos: backup.data.consumos.length,
     overlays: backup.data.overlays.length,
+    // se cuenta sobre el json crudo: para cuando `migrarBackup` terminó, ya no están
+    consumos_descartados: consumosEnBackup(json),
     exportado_en: backup.exported_at,
     seed_version: backup.seed_version,
     esquema_futuro: backup.user_schema_version > USER_SCHEMA_VERSION,
@@ -64,7 +65,9 @@ export interface ResultadoImport {
 
 export async function importar(json: unknown, seed_version: string): Promise<ResultadoImport> {
   const backup = backupSchema.parse(migrarBackup(json));
-  const reporte = analizarImport(backup);
+  // sobre el json crudo, no sobre `backup`: los consumos descartados solo se
+  // pueden contar antes de que la migración se los lleve
+  const reporte = analizarImport(json);
   if (reporte.esquema_futuro) {
     throw new Error(
       'Ese backup viene de una versión más nueva de la app. Actualizá la app antes de importarlo, así no se pierde nada.',
@@ -74,11 +77,10 @@ export async function importar(json: unknown, seed_version: string): Promise<Res
   // red de seguridad: lo que había queda guardado antes de pisarlo
   const respaldo_previo = await exportar(seed_version);
 
-  await db.transaction('rw', [db.perfil, db.cocciones, db.consumos, db.overlays], async () => {
-    await Promise.all([db.perfil.clear(), db.cocciones.clear(), db.consumos.clear(), db.overlays.clear()]);
+  await db.transaction('rw', [db.perfil, db.cocciones, db.overlays], async () => {
+    await Promise.all([db.perfil.clear(), db.cocciones.clear(), db.overlays.clear()]);
     if (backup.data.perfil) await db.perfil.put(backup.data.perfil);
     if (backup.data.cocciones.length > 0) await db.cocciones.bulkPut(backup.data.cocciones);
-    if (backup.data.consumos.length > 0) await db.consumos.bulkPut(backup.data.consumos);
     if (backup.data.overlays.length > 0) await db.overlays.bulkPut(backup.data.overlays);
   });
 
