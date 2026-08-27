@@ -160,12 +160,16 @@ try {
     await page.evaluate(SEMBRADO);
     await page.reload({ waitUntil: 'networkidle' });
 
-    // si el sembrado no llegó, mejor fallar que publicar renders vacíos
+    // Si el sembrado no llegó, mejor fallar que publicar renders vacíos. Se
+    // comprueba contra el diario, que es la pantalla que no tiene nada que
+    // mostrar sin datos de usuario.
+    await page.goto(`${BASE}/?tema=${tema}#/diario`, { waitUntil: 'networkidle' });
     await page
-      .getByRole('heading', { name: '¿Cómo venís?' })
+      .getByText('Pastel de papas')
+      .first()
       .waitFor({ timeout: 5000 })
       .catch(() => {
-        throw new Error('El sembrado de datos de demo no llegó a la app: Hoy sigue sin perfil.');
+        throw new Error('El sembrado de datos de demo no llegó a la app: el diario sigue vacío.');
       });
 
     for (const [name, hash] of RUTAS) {
