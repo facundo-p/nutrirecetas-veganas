@@ -1,25 +1,32 @@
 import { useState } from 'react';
 import { hasReportableValue, type RecipeNutrition } from '../../domain/nutrition';
-import type { Seed } from '../../seed/schema';
+import { porcentajeDeObjetivo, type ObjetivosDeReferencia } from '../../domain/objetivos';
+import { routeHash } from '../../app/router';
+import type { Nutrient, Seed } from '../../seed/schema';
 import { amountUnit, formatNumber, icSprouts } from '../common/format';
 import { IconBrotesIc, IconCobertura, IconHojaPunteada, IconSemanaArco, IconSol } from '../icons/icons';
 import { IntervalBand } from './IntervalBand';
 
 /**
- * Nutrición honesta: banda ≈ con rango, brotes de IC y cobertura del cálculo
- * por nutriente. Acá se informa, no se evalúa — y desde la Fase 3 no se evalúa
- * en ningún lado: la app dejó de llevar la cuenta de lo que comés.
+ * Nutrición honesta: banda ≈ con rango, brotes de IC, cobertura del cálculo y
+ * cuánto aporta de la dosis diaria. Acá se informa, no se evalúa — y desde la
+ * Fase 3 no se evalúa en ningún lado: la app dejó de llevar la cuenta de lo que
+ * comés.
  *
- * Arranca colapsada, y adentro los nutrientes sin dato están detrás de un
- * contador: esto es un recetario, la nutrición es el segundo nivel. Se cuentan
- * en vez de borrarse porque el invariante 5 pide que la incertidumbre se vea —
- * esconderlos sin decir cuántos son sería exactamente lo que la regla prohíbe.
+ * Vive al final del detalle y arranca colapsada, y adentro los nutrientes sin
+ * dato están detrás de un contador: esto es un recetario, la nutrición es el
+ * segundo nivel. Se cuentan en vez de borrarse porque el invariante 5 pide que
+ * la incertidumbre se vea — esconderlos sin decir cuántos son sería exactamente
+ * lo que la regla prohíbe.
  */
 
 interface Props {
   nutrition: RecipeNutrition; // ya escalada (por porción o por 100 g)
   seed: Seed;
   titulo: string;
+  objetivos: ObjetivosDeReferencia;
+  /** Los que marcaste en tu perfil: van primero dentro de su grupo. */
+  destacados: string[];
 }
 
 const GRUPOS = [
@@ -27,12 +34,23 @@ const GRUPOS = [
   { etiqueta: 'Importantes', filtro: 'importante' as const },
 ];
 
-export function NutritionTable({ nutrition, seed, titulo }: Props) {
+/** Los que te interesan primero; el resto conserva el orden de la semilla. */
+function ordenarPorInteres(nutrientes: Nutrient[], destacados: string[]): Nutrient[] {
+  if (destacados.length === 0) return nutrientes;
+  const peso = (id: string) => {
+    const i = destacados.indexOf(id);
+    return i === -1 ? destacados.length : i;
+  };
+  return [...nutrientes].sort((a, b) => peso(a.id) - peso(b.id));
+}
+
+export function NutritionTable({ nutrition, seed, titulo, objetivos, destacados }: Props) {
   const [abierta, setAbierta] = useState(false);
   const [mostrarSinDatos, setMostrarSinDatos] = useState(false);
 
-  const tieneDato = (n: Seed['nutrientes'][number]) => hasReportableValue(nutrition.por_nutriente[n.clave_ingrediente]);
+  const tieneDato = (n: Nutrient) => hasReportableValue(nutrition.por_nutriente[n.clave_ingrediente]);
   const cuantosSinDatos = seed.nutrientes.filter((n) => !tieneDato(n)).length;
+  const ordenados = ordenarPorInteres(seed.nutrientes, destacados);
 
   return (
     <section className="nutricion">
@@ -58,16 +76,30 @@ export function NutritionTable({ nutrition, seed, titulo }: Props) {
 
       {abierta && (
         <>
+          {/* Un porcentaje que no dice contra qué se mide es un número sin
+              significado. Se aclara una vez, arriba, y no en cada renglón. */}
+          <p className="nutricion-referencia">
+            {objetivos.fuente === 'perfil' ? (
+              <>Los porcentajes son sobre tu dosis diaria.</>
+            ) : (
+              <>
+                Los porcentajes son sobre la <strong>referencia adulta genérica</strong>.{' '}
+                <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean sobre la tuya.
+              </>
+            )}
+          </p>
+
           {GRUPOS.map(({ etiqueta, filtro }) => (
             <div key={filtro}>
               <h3 className="etiqueta-seccion nutricion-grupo">{etiqueta}</h3>
               <ul className="nutricion-lista">
-                {seed.nutrientes
+                {ordenados
                   .filter((n) => n.grupo === filtro)
                   .filter((n) => mostrarSinDatos || tieneDato(n))
                   .map((n) => {
                     const r = nutrition.por_nutriente[n.clave_ingrediente];
                     const sinDatos = !hasReportableValue(r);
+                    const pct = porcentajeDeObjetivo(r, objetivos.porNutriente.get(n.id));
                     return (
                       <li key={n.id} className={sinDatos ? 'nutriente sin-datos' : 'nutriente'}>
                         <span className="nutriente-nombre">
@@ -85,6 +117,12 @@ export function NutritionTable({ nutrition, seed, titulo }: Props) {
                         ) : (
                           <>
                             <IntervalBand intervalo={r.intervalo} unidad={amountUnit(n.clave_ingrediente)} />
+                            {pct !== null && (
+                              <span className="nutriente-porcentaje">
+                                <span className="cifra">{formatNumber(pct, pct < 10 ? 1 : 0)} %</span> de la dosis
+                                diaria
+                              </span>
+                            )}
                             <span
                               className="nutriente-calidad"
                               title={`IC ${r.ic}/10 · calculado sobre el ${formatNumber(r.cobertura_pct, 0)} % del peso`}

@@ -274,6 +274,21 @@
   color: var(--dato-suave);
 }
 
+/* Segunda fila de la grilla, alineada a la derecha con la banda: es la lectura
+   rápida del renglón, y va pegada al número del que se deriva. */
+.nutriente-porcentaje {
+  grid-column: 2;
+  justify-self: end;
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.nutricion-referencia {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+  margin-bottom: var(--sp-3);
+}
+
 .nutriente-calidad {
   grid-column: 1 / -1;
   display: inline-flex;
