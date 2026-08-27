@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 import 'fake-indexeddb/auto';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { db } from '../../db/db';
-import { addCoccion, addConsumo, saveOverlay } from '../../db/repos';
+import { addCoccion, saveOverlay } from '../../db/repos';
 import type { CoccionData } from '../../db/schema';
 import { TodayScreen } from './TodayScreen';
 
@@ -34,8 +34,7 @@ beforeEach(async () => {
 
 describe('pantalla Hoy', () => {
   test('no evalúa nada: sin semáforo no hay estados ni ventanas', async () => {
-    const id = await addCoccion(coccionHoy());
-    await addConsumo({ coccion_id: id, fecha: new Date().toISOString(), porciones: 1 });
+    await addCoccion(coccionHoy());
 
     render(<TodayScreen />);
     await waitFor(() => expect(screen.getByRole('heading', { name: /Qué cocinás/i })).toBeDefined());
@@ -44,25 +43,27 @@ describe('pantalla Hoy', () => {
     expect(screen.queryByText('sin datos')).toBeNull();
   });
 
+  test('la última cocción enlaza al diario', async () => {
+    await addCoccion(coccionHoy());
+
+    render(<TodayScreen />);
+    await waitFor(() => expect(screen.getByText('Última cocción')).toBeDefined());
+    expect(screen.getByRole('link', { name: 'Sopa de lentejas' })).toBeDefined();
+  });
+
   test('no pide completar el perfil: la app funciona sin él', async () => {
     render(<TodayScreen />);
     await waitFor(() => expect(screen.getByRole('heading', { name: /Qué cocinás/i })).toBeDefined());
     expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
   });
 
-  test('las sobras se listan y se pueden consumir de a una porción', async () => {
-    const id = await addCoccion(coccionHoy());
-    await addConsumo({ coccion_id: id, fecha: new Date().toISOString(), porciones: 1 });
+  test('no hay sobras que administrar: se fueron con los consumos', async () => {
+    await addCoccion(coccionHoy());
 
     render(<TodayScreen />);
-    await waitFor(() => expect(screen.getByText(/Te quedan porciones/)).toBeDefined());
-    expect(screen.getByText(/3 porciones/)).toBeDefined();
-
-    fireEvent.click(screen.getByRole('button', { name: 'Comí 1' }));
-    await waitFor(async () => {
-      const consumos = await db.consumos.toArray();
-      expect(consumos).toHaveLength(2);
-    });
+    await waitFor(() => expect(screen.getByRole('heading', { name: /Qué cocinás/i })).toBeDefined());
+    expect(screen.queryByText(/Te quedan porciones/)).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Comí 1' })).toBeNull();
   });
 });
 

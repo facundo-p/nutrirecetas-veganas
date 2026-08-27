@@ -40,10 +40,9 @@ const VIEWPORTS = [
 ];
 
 /**
- * Las pantallas de Fase 2 no tienen nada que mostrar sin datos de usuario, así
- * que el script siembra un estado de demo determinista (fechas relativas a hoy
- * para que el semáforo tenga algo en ventana). Vive solo acá: la app jamás
- * escribe datos de ejemplo.
+ * El diario y Hoy no tienen nada que mostrar sin datos de usuario, así que el
+ * script siembra un estado de demo determinista, con fechas relativas a hoy.
+ * Vive solo acá: la app jamás escribe datos de ejemplo.
  */
 const SEMBRADO = `
 (async () => {
@@ -52,7 +51,7 @@ await new Promise((resolve, reject) => {
   req.onerror = () => reject(req.error);
   req.onsuccess = () => {
     const db = req.result;
-    const tx = db.transaction(['perfil', 'cocciones', 'consumos', 'overlays', 'meta'], 'readwrite');
+    const tx = db.transaction(['perfil', 'cocciones', 'overlays', 'meta'], 'readwrite');
     const hoy = new Date();
     const iso = (horasAtras) => new Date(hoy.getTime() - horasAtras * 3600 * 1000).toISOString();
 
@@ -121,14 +120,12 @@ await new Promise((resolve, reject) => {
       },
     });
 
-    tx.objectStore('consumos').put({ id: 1, coccion_id: 1, fecha: iso(19), porciones: 2 });
-    tx.objectStore('consumos').put({ id: 2, coccion_id: 1, fecha: iso(4), porciones: 1 });
-    tx.objectStore('consumos').put({ id: 3, coccion_id: 2, fecha: iso(51), porciones: 2 });
-
     tx.objectStore('overlays').put({ receta_id: 'r01', favorita: true, ic_usuario: 8, actualizado_en: iso(50) });
+    // al día a propósito: con la marca vieja, el aviso de la migración saldría
+    // en las 24 capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
-      user_schema_version: 1,
+      user_schema_version: 3,
       seed_version: '1.0.0',
       ultimo_backup: iso(24 * 40),
       cambios_desde_backup: 6,

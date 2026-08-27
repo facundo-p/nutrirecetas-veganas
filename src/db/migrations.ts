@@ -31,16 +31,29 @@ export function migrarPerfilV1(perfil: Record<string, unknown>, hoy = new Date()
   return { ...resto, nivel_entrenamiento };
 }
 
+/** Cuántos consumos trae un backup viejo: lo que el import va a descartar. */
+export function consumosEnBackup(json: unknown): number {
+  if (typeof json !== 'object' || json === null) return 0;
+  const consumos = (json as { data?: { consumos?: unknown } }).data?.consumos;
+  return Array.isArray(consumos) ? consumos.length : 0;
+}
+
 /**
- * Un backup exportado antes de v2 trae el perfil viejo, y `backupSchema` es
- * estricto: sin este paso previo el archivo rebota y Facu se queda sin red.
- * No toca `user_schema_version` — el archivo sigue siendo el que es, y el que
+ * Un backup exportado antes de v2 trae el perfil viejo, y uno anterior a v3 trae
+ * consumos. `backupSchema` es estricto en las dos puntas —campo desconocido o
+ * campo faltante—, así que sin este paso previo el archivo rebota y Facu se
+ * queda sin red.
+ *
+ * No toca `user_schema_version`: el archivo sigue siendo el que es, y el que
  * decide si viene del futuro es quien lo analiza.
  */
 export function migrarBackup(json: unknown): unknown {
   if (typeof json !== 'object' || json === null) return json;
-  const backup = json as { data?: { perfil?: Record<string, unknown> | null } };
-  const perfil = backup.data?.perfil;
-  if (!perfil) return json;
-  return { ...backup, data: { ...backup.data, perfil: migrarPerfilV1(perfil) } };
+  const backup = json as { data?: { perfil?: Record<string, unknown> | null; consumos?: unknown } };
+  if (!backup.data) return json;
+
+  // se descartan sin reemplazo: lo que contaban ya no se cuenta en ningún lado
+  const { consumos: _consumos, ...data } = backup.data;
+  const perfil = data.perfil;
+  return { ...backup, data: perfil ? { ...data, perfil: migrarPerfilV1(perfil) } : data };
 }

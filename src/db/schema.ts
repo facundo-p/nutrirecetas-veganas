@@ -8,8 +8,12 @@ import { intervalSchema } from '../seed/schema';
  * Los campos van en castellano, como los de la semilla: son datos, no código.
  */
 
-/** v2: el perfil guarda `nivel_entrenamiento` en vez de `multiplicador_actividad`. */
-export const USER_SCHEMA_VERSION = 2;
+/**
+ * v2: el perfil guarda `nivel_entrenamiento` en vez de `multiplicador_actividad`.
+ * v3: se van los consumos. Contaban porciones comidas para alimentar el
+ *     semáforo; sin semáforo no cuentan nada. El diario registra cocciones.
+ */
+export const USER_SCHEMA_VERSION = 3;
 
 // ---------- perfil ----------
 
@@ -106,18 +110,6 @@ export type CoccionData = z.infer<typeof cookingDataSchema>;
 export const cookingSchema = cookingDataSchema.extend({ id: z.number().int().positive() });
 export type Coccion = z.infer<typeof cookingSchema>;
 
-// ---------- consumos ----------
-
-export const intakeDataSchema = z.strictObject({
-  coccion_id: z.number().int().positive(),
-  fecha: z.string(),
-  porciones: z.number().positive(),
-});
-export type ConsumoData = z.infer<typeof intakeDataSchema>;
-
-export const intakeSchema = intakeDataSchema.extend({ id: z.number().int().positive() });
-export type Consumo = z.infer<typeof intakeSchema>;
-
 // ---------- overlays ----------
 
 /** Lo que el usuario agrega sobre una receta de la semilla. La semilla jamás se muta. */
@@ -155,7 +147,6 @@ export const backupSchema = z.strictObject({
   data: z.strictObject({
     perfil: profileSchema.nullable(),
     cocciones: z.array(cookingSchema),
-    consumos: z.array(intakeSchema),
     overlays: z.array(overlaySchema),
   }),
 });

@@ -66,7 +66,7 @@ describe('sesión de cocina', () => {
     await waitFor(() => expect(leerKcal()).toBeLessThan(antes));
   });
 
-  test('registrar guarda la cocción, el consumo y deja las sobras', async () => {
+  test('registrar guarda la cocción con lo que rindió, y no pregunta cuánto comiste', async () => {
     render(<CookSession recetaId="r01" />);
     await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
 
@@ -81,20 +81,17 @@ describe('sesión de cocina', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Terminé de cocinar' }));
 
     const rendidas = screen.getByLabelText(/Porciones que rindió/);
-    const comidas = screen.getByLabelText(/Porciones que comiste ahora/);
     fireEvent.change(rendidas, { target: { value: '4' } });
-    fireEvent.change(comidas, { target: { value: '2' } });
-    expect(screen.getByText(/Quedan 2 porciones de sobra/)).toBeDefined();
+    expect(screen.queryByLabelText(/Porciones que comiste ahora/)).toBeNull();
+    expect(screen.queryByText(/de sobra/)).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'Registrar la cocción' }));
 
     await waitFor(async () => {
-      const [cocciones, consumos] = await Promise.all([db.cocciones.toArray(), db.consumos.toArray()]);
+      const cocciones = await db.cocciones.toArray();
       expect(cocciones).toHaveLength(1);
       expect(cocciones[0]!.porciones_rendidas).toBe(4);
       expect(cocciones[0]!.receta_id).toBe('r01');
-      expect(consumos).toHaveLength(1);
-      expect(consumos[0]!.porciones).toBe(2);
     });
     await esperarQueTermineElRegistro();
   });
