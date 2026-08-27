@@ -124,7 +124,7 @@ await new Promise((resolve, reject) => {
     // en las 24 capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
-      user_schema_version: 3,
+      user_schema_version: 4,
       seed_version: '1.0.0',
       ultimo_backup: iso(24 * 40),
       cambios_desde_backup: 6,
