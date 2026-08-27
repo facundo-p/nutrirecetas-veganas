@@ -70,10 +70,16 @@ const RICH_THRESHOLD = 0.2;
 /**
  * "Rica en X": ≥20 % de la RDA de referencia genérica por porción
  * (o por 100 g si la receta no define porciones).
+ *
+ * Es una afirmación suelta —el filtro mete la receta en una lista sin banda, ni
+ * cobertura, ni IC a la vista—, así que rige la misma regla que el motivo de
+ * una recomendación: un punto medio cuyo rango arranca en cero no se afirma.
+ * Sin eso, una receta cuya B12 va "de 0 a 12,7 µg" aparecería como rica en B12.
  */
 export function isRichIn(nutrition: RecipeNutrition, nutrient: Nutrient): boolean {
   const base = perPortion(nutrition) ?? per100g(nutrition);
   const result = base.por_nutriente[nutrient.clave_ingrediente];
   if (result.ic === null) return false; // sin datos no se afirma nada
+  if (result.intervalo.min <= 0) return false;
   return midpoint(result.intervalo) >= RICH_THRESHOLD * genericReferenceRda(nutrient);
 }

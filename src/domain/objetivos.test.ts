@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { Perfil } from '../db/schema';
 import { getSeedIndex } from '../seed';
-import { objetivosDeReferencia, porcentajeDeObjetivo } from './objetivos';
+import { objetivosDeReferencia, porcentajeAfirmableSolo, porcentajeDeObjetivo } from './objetivos';
 
 const idx = getSeedIndex();
 const HOY = new Date('2026-08-19T12:00:00');
@@ -90,5 +90,38 @@ describe('el porcentaje', () => {
 
   test('sin objetivo no hay porcentaje que calcular', () => {
     expect(porcentajeDeObjetivo({ intervalo: { min: 3, max: 3 }, cobertura_pct: 95, ic: 8 }, undefined)).toBeNull();
+  });
+});
+
+describe('un porcentaje que viaja solo, sin su banda al lado', () => {
+  const b12 = { nutriente_id: 'b12', nombre: 'Vitamina B12', valor: 2.4, unidad: 'µg' };
+  const proteina = { nutriente_id: 'proteina', nombre: 'Proteína', valor: 70, unidad: 'g' };
+
+  test('una banda que toca el cero no se afirma: es la B12 de la levadura', () => {
+    // el caso real de r21: entre 0 y 12,72 µg. El punto medio da 265 % de la
+    // dosis, y el rango incluye "no tiene nada"
+    const desdeCero = { intervalo: { min: 0, max: 12.72 }, cobertura_pct: 10, ic: 5 };
+    expect(porcentajeAfirmableSolo(desdeCero, b12)).toBeNull();
+  });
+
+  test('tampoco con cobertura alta: lo que descalifica es la banda, no la cobertura', () => {
+    // d08: entre 0 y 3,75 µg con 85 % de cobertura. Un piso de cobertura lo
+    // habría dejado pasar
+    const desdeCeroBienCubierto = { intervalo: { min: 0, max: 3.75 }, cobertura_pct: 85, ic: 6 };
+    expect(porcentajeAfirmableSolo(desdeCeroBienCubierto, b12)).toBeNull();
+  });
+
+  test('una banda que no toca el cero se afirma, por floja que sea la cobertura', () => {
+    // p12: 21,64 g exactos sobre el 46 % del plato. Lo que falta solo puede
+    // sumar, nunca restar: la afirmación es una cota inferior y se sostiene
+    const puntualConPocaCobertura = { intervalo: { min: 21.64, max: 21.64 }, cobertura_pct: 46, ic: 7 };
+    expect(porcentajeAfirmableSolo(puntualConPocaCobertura, proteina)).toBeCloseTo(30.9, 1);
+  });
+
+  test('con la banda a la vista el porcentaje se sigue mostrando', () => {
+    // en la tabla y en el ranking la banda va pegada al número, así que el punto
+    // medio no miente y no hace falta la regla
+    const desdeCero = { intervalo: { min: 0, max: 12.72 }, cobertura_pct: 10, ic: 5 };
+    expect(porcentajeDeObjetivo(desdeCero, b12)).not.toBeNull();
   });
 });
