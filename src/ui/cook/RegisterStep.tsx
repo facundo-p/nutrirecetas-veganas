@@ -77,7 +77,7 @@ export function RegisterStep({ recipe, nutricion, seed }: Props) {
     }
 
     terminar();
-    navigate({ screen: 'today' });
+    navigate({ screen: 'diary' });
   };
 
   return (

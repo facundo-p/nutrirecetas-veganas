@@ -27,17 +27,6 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-// ---------- hojas ----------
-
-export function IconHojaEntera(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" />
-    </Base>
-  );
-}
-
 export function IconCapsula(props: IconProps) {
   return (
     <Base {...props}>
