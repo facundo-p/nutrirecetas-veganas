@@ -146,22 +146,6 @@
   flex: 1 1 9rem;
 }
 
-.campo-inline {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.campo-inline input {
-  font: inherit;
-  width: 4.5rem;
-  padding: var(--sp-1) var(--sp-2);
-  border: var(--borde);
-  border-radius: var(--radio-chico);
-  background: var(--superficie);
-  min-height: 40px;
-}
-
 .opciones {
   display: flex;
   gap: var(--sp-3);

@@ -18,7 +18,7 @@ import { CookSession } from './CookSession';
  * jsdom ya desmontado: unhandled rejection que rompe el CI de forma intermitente.
  */
 const esperarQueTermineElRegistro = () =>
-  waitFor(() => expect(window.location.hash).toBe(routeHash({ screen: 'today' })));
+  waitFor(() => expect(window.location.hash).toBe(routeHash({ screen: 'diary' })));
 
 beforeEach(async () => {
   // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo

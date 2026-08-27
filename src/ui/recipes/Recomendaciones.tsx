@@ -33,7 +33,7 @@ export function Recomendaciones({ cocciones, overlays }: Props) {
 
   return (
     <section className="recomendaciones">
-      <h2 className="etiqueta-seccion">Recomendaciones del día</h2>
+      <h2 className="etiqueta-seccion">Qué cocinar</h2>
       <ul className="lista-recomendaciones">
         {recomendaciones.map(({ receta, motivos }) => {
           const { slug, label } = typeInfo(receta);

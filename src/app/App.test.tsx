@@ -12,15 +12,22 @@ beforeEach(async () => {
   await Promise.all(db.tables.map((t) => t.clear()));
 });
 
-test('la app arranca en Hoy con la navegación completa', async () => {
+test('la app arranca en el recetario con la navegación completa', async () => {
   render(<App />);
   expect(screen.getByRole('navigation', { name: 'Secciones' })).toBeDefined();
   expect(screen.getByRole('link', { name: /Recetario/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Ingredientes/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Diario/ })).toBeDefined();
-  // sin perfil cargado la app funciona igual: no hay portón ni semáforo que llenar
-  await waitFor(() => expect(screen.getByRole('heading', { name: /Qué cocinás/i })).toBeDefined());
+  expect(screen.queryByRole('link', { name: /Hoy/ })).toBeNull();
+
+  // sin perfil cargado la app funciona igual: no hay portón que llenar
+  await waitFor(() => expect(screen.getByRole('heading', { name: 'Recetario', level: 1 })).toBeDefined());
   expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
+});
+
+test('lo primero del recetario es qué cocinar, no un formulario vacío', async () => {
+  render(<App />);
+  await waitFor(() => expect(screen.getByText('Qué cocinar')).toBeDefined());
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {

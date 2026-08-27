@@ -88,14 +88,6 @@
   color: var(--dato-suave);
 }
 
-.coccion-acciones-sobra {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  border-top: var(--borde-suave);
-  padding-top: var(--sp-2);
-}
-
 .nota-usuario {
   font-family: var(--font-display);
   font-style: italic;

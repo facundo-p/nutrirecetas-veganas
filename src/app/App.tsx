@@ -7,7 +7,6 @@ import { RecipeDetail } from '../ui/recipe-detail/RecipeDetail';
 import { IngredientList } from '../ui/ingredients/IngredientList';
 import { IngredientDetail } from '../ui/ingredients/IngredientDetail';
 import { Glossary } from '../ui/glossary/Glossary';
-import { TodayScreen } from '../ui/today/TodayScreen';
 import { ProfileScreen } from '../ui/profile/ProfileScreen';
 import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
@@ -21,8 +20,6 @@ import { routeHash } from './router';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
   switch (route.screen) {
-    case 'today':
-      return <TodayScreen />;
     case 'profile':
       return <ProfileScreen />;
     case 'cook':

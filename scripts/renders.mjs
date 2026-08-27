@@ -20,7 +20,6 @@ const PORT = 4173;
 const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
-  ['hoy', '#/hoy'],
   ['recetario', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
@@ -157,7 +156,7 @@ try {
     // La base se siembra una vez por contexto. Ojo: escribir por IndexedDB crudo
     // no dispara los observables de Dexie, y navegar entre hashes no recarga la
     // página — sin este reload la app sigue mostrando el estado vacío.
-    await page.goto(`${BASE}/?tema=${tema}#/hoy`, { waitUntil: 'networkidle' });
+    await page.goto(`${BASE}/?tema=${tema}#/recetario`, { waitUntil: 'networkidle' });
     await page.evaluate(SEMBRADO);
     await page.reload({ waitUntil: 'networkidle' });
 
