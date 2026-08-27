@@ -90,7 +90,6 @@
      precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
   --precaucion: var(--p-mostaza);
   --exito: var(--p-musgo);
-  --suplemento: var(--p-pizarra);
 
   /* Categoría de receta. La paleta A es anterior a la idea de categoría-por-color
      y no trae escala, así que esta se derivó midiendo contra la vara real que

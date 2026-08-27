@@ -74,7 +74,6 @@
      precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
   --precaucion: var(--p-garbanzo);
   --exito: var(--p-zapallito);
-  --suplemento: var(--p-repollo-colorado);
 
   /* Categoría: la C no la dice con el título (ver --titulo-receta-fijo abajo),
      solo con el ícono de tipo. Por eso preparado y conserva comparten soja. */

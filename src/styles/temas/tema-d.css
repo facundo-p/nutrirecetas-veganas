@@ -81,7 +81,6 @@
      precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
   --precaucion: var(--p-garbanzo);
   --exito: var(--p-zapallito);
-  --suplemento: var(--p-repollo-colorado);
 
   /* Categoría de receta: escala propia, desacoplada de los roles funcionales.
      Elegidas midiendo: ningún par baja de ΔE 26 entre sí ni contra sus vecinos. */

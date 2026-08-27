@@ -44,25 +44,41 @@ describe('perfil', () => {
     await completarDatosMinimos();
     fireEvent.click(screen.getByRole('button', { name: /Calcular mis objetivos/ }));
 
-    await waitFor(() => expect(screen.getByText('Tus objetivos diarios')).toBeDefined());
+    await waitFor(() => expect(screen.getByText('Tus dosis diarias de referencia')).toBeDefined());
     // hierro: 8 mg × 1.8 = 14,4
     expect(screen.getByText('14,4 mg')).toBeDefined();
     // proteína: 0,8 g/kg × 1,25 × 75 kg = 75
     expect(screen.getByText('75 g')).toBeDefined();
   });
 
-  test('declarar un suplemento de B12 marca ese objetivo como cubierto', async () => {
+  test('ya no pregunta por suplementos: no hay exigencia que apagar', () => {
+    render(<ProfileScreen />);
+    expect(screen.queryByRole('button', { name: 'Agregar suplemento' })).toBeNull();
+    expect(screen.queryByText(/cubierto por suplemento/)).toBeNull();
+  });
+
+  test('dice que es opcional y para qué sirve', () => {
+    render(<ProfileScreen />);
+    expect(screen.getByText(/Es opcional/)).toBeDefined();
+    expect(screen.getByText(/no de una referencia adulta genérica/)).toBeDefined();
+  });
+
+  test('los nutrientes que te interesan se eligen y se guardan', async () => {
     render(<ProfileScreen />);
     await completarDatosMinimos();
 
-    fireEvent.change(screen.getByLabelText('Nutriente del suplemento'), { target: { value: 'b12' } });
-    fireEvent.change(screen.getByLabelText('Dosis del suplemento'), { target: { value: '1000' } });
-    fireEvent.change(screen.getByLabelText('Frecuencia del suplemento'), { target: { value: '2x_semana' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Agregar suplemento' }));
-    expect(screen.getByText(/equivale a 285,7 µg\/día/)).toBeDefined();
+    // viene marcado por defecto; destildarlo tiene que quedar guardado
+    const hierro = screen.getByRole('checkbox', { name: 'Hierro' }) as HTMLInputElement;
+    expect(hierro.checked).toBe(true);
+    fireEvent.click(hierro);
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Fibra' }));
 
     fireEvent.click(screen.getByRole('button', { name: /Calcular mis objetivos/ }));
-    await waitFor(() => expect(screen.getAllByText(/cubierto por suplemento/).length).toBeGreaterThan(0));
+    await waitFor(async () => {
+      const destacados = (await db.perfil.get(1))!.nutrientes_destacados;
+      expect(destacados).not.toContain('hierro');
+      expect(destacados).toContain('fibra');
+    });
   });
 
   test('el perfil guardado se puede volver a editar', async () => {
@@ -92,7 +108,7 @@ describe('perfil', () => {
     fireEvent.click(screen.getByRole('radio', { name: /Entrenamiento intenso/ }));
     fireEvent.click(screen.getByRole('button', { name: /Calcular mis objetivos/ }));
 
-    await waitFor(() => expect(screen.getByText('Tus objetivos diarios')).toBeDefined());
+    await waitFor(() => expect(screen.getByText('Tus dosis diarias de referencia')).toBeDefined());
     expect(screen.getByText('150 g')).toBeDefined();
   });
 

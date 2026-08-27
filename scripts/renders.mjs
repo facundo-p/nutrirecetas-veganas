@@ -61,8 +61,6 @@ await new Promise((resolve, reject) => {
       fecha_nacimiento: '1990-03-14',
       peso_kg: 75,
       nivel_entrenamiento: 'intenso',
-      suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
-      overrides: [],
       nutrientes_destacados: ['hierro', 'b12', 'proteina', 'calcio', 'zinc', 'yodo', 'omega3'],
       creado_en: iso(72),
       actualizado_en: iso(72),

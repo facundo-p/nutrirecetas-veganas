@@ -12,28 +12,13 @@ import { intervalSchema } from '../seed/schema';
  * v2: el perfil guarda `nivel_entrenamiento` en vez de `multiplicador_actividad`.
  * v3: se van los consumos. Contaban porciones comidas para alimentar el
  *     semáforo; sin semáforo no cuentan nada. El diario registra cocciones.
+ * v4: se van los suplementos y los overrides del perfil. Servían para apagar y
+ *     pisar exigencias del semáforo; lo único que hace el perfil ahora es que
+ *     el porcentaje diga "de tu dosis" y no "de la referencia genérica".
  */
-export const USER_SCHEMA_VERSION = 3;
+export const USER_SCHEMA_VERSION = 4;
 
 // ---------- perfil ----------
-
-export const supplementSchema = z.strictObject({
-  nutriente_id: z.string().min(1),
-  dosis: z.number().positive(),
-  unidad: z.string().min(1),
-  frecuencia: z.enum(['diaria', '3x_semana', '2x_semana', 'semanal']),
-  nota: z.string().optional(),
-});
-export type SuplementoDeclarado = z.infer<typeof supplementSchema>;
-
-export const overrideSchema = z.strictObject({
-  nutriente_id: z.string().min(1),
-  objetivo: z.number().positive(),
-  unidad: z.string().min(1),
-  /** El dataset lo exige: un objetivo a mano sin motivo es un dato sin respaldo. */
-  motivo: z.string().min(1),
-});
-export type ObjetivoManual = z.infer<typeof overrideSchema>;
 
 export const profileDataSchema = z.strictObject({
   nombre: z.string().optional(),
@@ -44,8 +29,7 @@ export const profileDataSchema = z.strictObject({
   altura_cm: z.number().positive().optional(),
   /** La elección, no el número: el g/kg y su fuente viven en `domain/actividad`. */
   nivel_entrenamiento: z.enum(NIVELES_ENTRENAMIENTO),
-  suplementos: z.array(supplementSchema),
-  overrides: z.array(overrideSchema),
+  /** Los que te interesan: ordenan la tabla de la receta y pesan en las recomendaciones. */
   nutrientes_destacados: z.array(z.string()),
 });
 export type ProfileData = z.infer<typeof profileDataSchema>;
