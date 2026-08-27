@@ -295,7 +295,7 @@
 }
 
 .mensaje-ok {
-  background: color-mix(in srgb, var(--semaforo-cubierto) 12%, var(--superficie));
+  background: color-mix(in srgb, var(--exito) 12%, var(--superficie));
   color: var(--tinta);
 }
 

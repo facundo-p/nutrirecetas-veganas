@@ -16,9 +16,7 @@ import {
   IconFrasco,
   IconFrascoFermento,
   IconHeladera,
-  IconHojaCaida,
   IconHojaEntera,
-  IconHojaMedia,
   IconHojaPunteada,
   IconAjustes,
   IconLibro,
@@ -46,20 +44,16 @@ export interface CatalogEntry {
   significado: string;
   /** Categoría de receta que representa, cuando el ícono es de tipo: la usa el tema para colorearlo. */
   cat?: 'principal' | 'dulce' | 'preparado' | 'pan' | 'conserva';
-  grupo: 'semáforo' | 'ventana' | 'datos' | 'tipo de receta' | 'prácticos' | 'alerta' | 'extras' | 'navegación';
+  grupo: 'ventana' | 'datos' | 'tipo de receta' | 'prácticos' | 'alerta' | 'extras' | 'navegación';
 }
 
 export const ICON_CATALOG: CatalogEntry[] = [
-  { id: 'hoja-entera', Componente: IconHojaEntera, significado: 'Nutriente cubierto en su ventana (≥90 %)', grupo: 'semáforo' },
-  { id: 'hoja-media', Componente: IconHojaMedia, significado: 'Cobertura parcial del objetivo (60–90 %)', grupo: 'semáforo' },
-  { id: 'hoja-caida', Componente: IconHojaCaida, significado: 'Insuficiente en su ventana (<60 %)', grupo: 'semáforo' },
-  { id: 'capsula', Componente: IconCapsula, significado: 'Cubierto por suplemento declarado', grupo: 'semáforo' },
-  { id: 'hoja-punteada', Componente: IconHojaPunteada, significado: 'Sin datos suficientes en la ventana', grupo: 'semáforo' },
-  { id: 'sol', Componente: IconSol, significado: 'Nutriente que se evalúa por día', grupo: 'ventana' },
-  { id: 'semana-arco', Componente: IconSemanaArco, significado: 'Se evalúa por semana (móvil de 7 días)', grupo: 'ventana' },
+  { id: 'sol', Componente: IconSol, significado: 'Nutriente que se mira día a día', grupo: 'ventana' },
+  { id: 'semana-arco', Componente: IconSemanaArco, significado: 'Se mira en la semana, no en el día suelto', grupo: 'ventana' },
   { id: 'banda-aprox', Componente: IconBandaAprox, significado: 'Valor con banda de incertidumbre (rango)', grupo: 'datos' },
   { id: 'brotes-ic', Componente: IconBrotesIc, significado: 'Índice de confianza del dato (1 a 3 brotes)', grupo: 'datos' },
   { id: 'cobertura', Componente: IconCobertura, significado: 'Cobertura del cálculo: % del peso con dato', grupo: 'datos' },
+  { id: 'hoja-punteada', Componente: IconHojaPunteada, significado: 'Sin datos suficientes para afirmar nada', grupo: 'datos' },
   { id: 'mortero', Componente: IconMortero, significado: 'Receta salada', cat: 'principal', grupo: 'tipo de receta' },
   { id: 'flor', Componente: IconFlor, significado: 'Receta dulce', cat: 'dulce', grupo: 'tipo de receta' },
   { id: 'espiga', Componente: IconEspiga, significado: 'Pan / masa', cat: 'pan', grupo: 'tipo de receta' },
@@ -84,6 +78,8 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'escudo-b12', Componente: IconEscudoB12, significado: 'Advertencia B12: levadura no siempre fortificada', grupo: 'alerta' },
   { id: 'estrella-brotada', Componente: IconEstrellaBrotada, significado: 'Candidata a clásica / probada y aprobada', grupo: 'extras' },
   { id: 'cuchara', Componente: IconCuchara, significado: 'Indulgente: para disfrutar sin cuentas', grupo: 'extras' },
+  { id: 'capsula', Componente: IconCapsula, significado: 'Suplemento declarado en tu perfil', grupo: 'extras' },
+  { id: 'hoja-entera', Componente: IconHojaEntera, significado: 'Sección Hoy', grupo: 'navegación' },
   { id: 'carta', Componente: IconCarta, significado: 'Sección Recetario', grupo: 'navegación' },
   { id: 'zanahoria', Componente: IconZanahoria, significado: 'Sección Ingredientes', grupo: 'navegación' },
   { id: 'libro', Componente: IconLibro, significado: 'Sección Glosario', grupo: 'navegación' },

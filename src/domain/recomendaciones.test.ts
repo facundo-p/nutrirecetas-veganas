@@ -1,25 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import type { Coccion, Overlay, Perfil } from '../db/schema';
+import type { Coccion, Overlay } from '../db/schema';
 import { getSeedIndex } from '../seed';
-import { nutritionOf } from '../ui/common/nutritionCache';
 import { CRITERIOS, PESOS_POR_DEFECTO, recomendar, type Criterio, type EntradaRecomendacion } from './recomendaciones';
-import { semaforo } from './traffic-light';
 
 const idx = getSeedIndex();
 const HOY = new Date('2026-08-19T15:00:00'); // agosto: invierno en AMBA
-
-const perfil: Perfil = {
-  id: 1,
-  sexo_para_requerimientos: 'masculino',
-  fecha_nacimiento: '1990-01-01',
-  peso_kg: 75,
-  nivel_entrenamiento: 'sedentario',
-  suplementos: [],
-  overrides: [],
-  nutrientes_destacados: [],
-  creado_en: HOY.toISOString(),
-  actualizado_en: HOY.toISOString(),
-};
 
 function coccion(id: number, receta_id: string, diasAtras: number): Coccion {
   const fecha = new Date(HOY);
@@ -44,25 +29,12 @@ function coccion(id: number, receta_id: string, diasAtras: number): Coccion {
 }
 
 function entrada(over: Partial<EntradaRecomendacion> = {}): EntradaRecomendacion {
-  const cocciones = over.cocciones ?? [];
-  const consumos = over.consumos ?? [];
-  const perfilUsado = over.perfil ?? perfil;
   return {
     idx,
-    perfil: perfilUsado,
-    estados: semaforo({
-      perfil: perfilUsado,
-      nutrientes: idx.seed.nutrientes,
-      consumos,
-      cocciones: new Map(cocciones.map((c) => [c.id, c])),
-      hoy: HOY,
-    }),
-    cocciones,
-    consumos,
+    cocciones: [],
     overlays: [],
     mes: 8,
     hoy: HOY,
-    nutricionDe: (id) => nutritionOf(idx, id),
     ...over,
   };
 }
@@ -195,72 +167,6 @@ describe('criterio: novedad', () => {
   test('solo las que la semilla marca por probar reciben el empujón de novedad', () => {
     const rec = recomendar(entrada(), { pesos: { novedad: 1 }, limite: 200 });
     for (const { receta } of rec) expect(receta.estado).toBe('por-probar');
-  });
-});
-
-describe('criterio: hueco nutricional', () => {
-  test('sin huecos el criterio no opina: nadie registró nada', () => {
-    // sin consumos todo queda en "sin datos", que no es una falta
-    expect(recomendar(entrada(), { pesos: { 'hueco-nutricional': 1 } })).toHaveLength(0);
-  });
-
-  test('con un hueco real, recomienda recetas que lo tapan y lo explica', () => {
-    const conHierro: Coccion = {
-      ...coccion(1, 'r01', 0),
-      nutricion_porcion: {
-        masa_total_g: 400,
-        kcal: { intervalo: { min: 400, max: 400 }, cobertura_pct: 99, ic: 8 },
-        // 5 mg de hierro contra un objetivo de 14,4: queda en "insuficiente"
-        por_nutriente: { hierro_mg: { intervalo: { min: 5, max: 5 }, cobertura_pct: 95, ic: 8 } },
-        alerta_b12: false,
-      },
-    };
-    const e = entrada({
-      cocciones: [conHierro],
-      consumos: [{ id: 1, coccion_id: 1, fecha: HOY.toISOString(), porciones: 1 }],
-    });
-    const rec = recomendar(e, { pesos: { 'hueco-nutricional': 1 } });
-    expect(rec.length).toBeGreaterThan(0);
-    expect(rec[0]!.motivos.join(' ')).toMatch(/tapa el \d+ % del hueco de /);
-  });
-
-  test('un nutriente cubierto por suplemento no cuenta como hueco (invariante 4)', () => {
-    const conB12: Perfil = {
-      ...perfil,
-      suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: 'diaria' }],
-    };
-    // una cocción con algo de b12 y algo de hierro, comida hoy: los dos quedarían
-    // por debajo del objetivo, pero el suplemento apaga la exigencia del b12
-    const conAmbos: Coccion = {
-      ...coccion(1, 'r01', 0),
-      nutricion_porcion: {
-        masa_total_g: 400,
-        kcal: { intervalo: { min: 400, max: 400 }, cobertura_pct: 99, ic: 8 },
-        por_nutriente: {
-          hierro_mg: { intervalo: { min: 5, max: 5 }, cobertura_pct: 95, ic: 8 },
-          b12_ug: { intervalo: { min: 0.2, max: 0.2 }, cobertura_pct: 95, ic: 8 },
-        },
-        alerta_b12: false,
-      },
-    };
-    const consumos = [{ id: 1, coccion_id: 1, fecha: HOY.toISOString(), porciones: 1 }];
-
-    const espiados: string[][] = [];
-    const espia: Criterio = {
-      id: 'espia',
-      descripcion: 'solo para el test: mira los huecos que el motor armó',
-      evaluar(_receta, ctx) {
-        espiados.push(ctx.huecos.map((h) => h.nutriente.id));
-        return null;
-      },
-    };
-
-    recomendar(entrada({ perfil: conB12, cocciones: [conAmbos], consumos }), {
-      criterios: [espia],
-      pesos: { espia: 1 },
-    });
-    expect(espiados[0]!).toContain('hierro');
-    expect(espiados[0]!).not.toContain('b12');
   });
 });
 

@@ -7,7 +7,7 @@ Idioma: código en inglés, UI y docs en **español rioplatense**.
 ## Git y flujo de trabajo (duras)
 
 - **La planificación vive en Issues**, no en markdown: una épica por fase, sub-issues por entregable.
-- **Una rama por issue**: `gh issue develop N --checkout`. Nunca commitear directo a `staging`; el hook `.claude/hooks/guard-main.sh` lo bloquea.
+- **Una rama por issue**: `gh issue develop N --checkout --base staging`. Sin `--base` corta de `main`, que es el default del repo y va varios releases atrás. Nunca commitear directo a `staging`; el hook `.claude/hooks/guard-main.sh` lo bloquea.
 - **El trabajo entra a `staging` por PR** con `Closes #N`, CI en verde y squash merge.
 - **`main` solo recibe releases**: el PR que abre `/release`, mergeado a mano por Facu con merge commit. Nunca commitear ni pushear a `main`.
 - `.artifacts/` es **read-only**. Toda corrección de datos va a `scripts/build-seed/curated-tables.ts`.
