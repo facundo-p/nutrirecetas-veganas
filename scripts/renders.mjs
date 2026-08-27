@@ -30,6 +30,8 @@ const RUTAS = [
   ['ajustes', '#/ajustes'],
   ['ingredientes', '#/ingredientes'],
   ['ingrediente-garbanzos', '#/ingrediente/garbanzos'],
+  ['nutrientes', '#/nutrientes'],
+  ['nutriente-b12', '#/nutriente/b12'],
   ['glosario', '#/glosario'],
 ];
 

@@ -1,4 +1,5 @@
 import { getSeedIndex } from '../../seed';
+import { routeHash } from '../../app/router';
 import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { allFamilies, type RecipeFiltersState } from './filtering';
 
@@ -102,6 +103,15 @@ export function RecipeFilters({ filters, onChange }: Props) {
           ))}
         </select>
       </div>
+      {/* El filtro recorta el recetario; la ficha del nutriente lo rankea y
+          explica de qué se trata. Son dos preguntas distintas sobre lo mismo. */}
+      {filters.ricaEn !== '' && (
+        <p className="filtros-enlace">
+          <a href={routeHash({ screen: 'nutrient', id: filters.ricaEn })}>
+            Ver las que más aportan, y qué es {idx.nutrientById.get(filters.ricaEn)?.nombre.toLowerCase()} ›
+          </a>
+        </p>
+      )}
     </div>
   );
 }

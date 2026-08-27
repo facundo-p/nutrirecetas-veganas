@@ -7,6 +7,8 @@ import { RecipeDetail } from '../ui/recipe-detail/RecipeDetail';
 import { IngredientList } from '../ui/ingredients/IngredientList';
 import { IngredientDetail } from '../ui/ingredients/IngredientDetail';
 import { Glossary } from '../ui/glossary/Glossary';
+import { NutrientList } from '../ui/nutrients/NutrientList';
+import { NutrientDetail } from '../ui/nutrients/NutrientDetail';
 import { ProfileScreen } from '../ui/profile/ProfileScreen';
 import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
@@ -35,6 +37,10 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
       return <IngredientList />;
     case 'ingredient':
       return <IngredientDetail id={route.id} />;
+    case 'nutrients':
+      return <NutrientList />;
+    case 'nutrient':
+      return <NutrientDetail id={route.id} />;
     case 'glossary':
       return <Glossary />;
   }

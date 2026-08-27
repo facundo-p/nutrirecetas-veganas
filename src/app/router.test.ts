@@ -12,6 +12,12 @@ describe('router hash', () => {
     expect(parseHash('#/ingredientes')).toEqual({ screen: 'ingredients' });
     expect(parseHash('#/ingrediente/garbanzos')).toEqual({ screen: 'ingredient', id: 'garbanzos' });
     expect(parseHash('#/glosario')).toEqual({ screen: 'glossary' });
+    expect(parseHash('#/nutrientes')).toEqual({ screen: 'nutrients' });
+    expect(parseHash('#/nutriente/hierro')).toEqual({ screen: 'nutrient', id: 'hierro' });
+  });
+
+  test('un nutriente sin id vuelve a la lista', () => {
+    expect(parseHash('#/nutriente/')).toEqual({ screen: 'nutrients' });
   });
 
   test('la app abre en el recetario, y una ruta rota también', () => {
@@ -36,6 +42,8 @@ describe('router hash', () => {
       '#/ingredientes',
       '#/ingrediente/garbanzos',
       '#/glosario',
+      '#/nutrientes',
+      '#/nutriente/hierro',
       '#/diario',
       '#/perfil',
       '#/ajustes',
