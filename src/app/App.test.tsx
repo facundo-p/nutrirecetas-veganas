@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
-import { addCoccion } from '../db/repos';
+import { addCoccion, savePerfil } from '../db/repos';
 import { db } from '../db/db';
 
 beforeEach(async () => {
@@ -29,6 +29,25 @@ test('la app arranca en el recetario con la navegación completa', async () => {
 test('lo primero del recetario es qué cocinar, no un formulario vacío', async () => {
   render(<App />);
   await waitFor(() => expect(screen.getByText('Qué cocinar')).toBeDefined());
+});
+
+test('con nutrientes marcados, las recomendaciones lo usan como motivo', async () => {
+  // el dominio no puede detectar una prop que la pantalla no pasa: esto sí
+  await savePerfil({
+    sexo_para_requerimientos: 'masculino',
+    fecha_nacimiento: '1990-01-01',
+    peso_kg: 75,
+    nivel_entrenamiento: 'sedentario',
+    nutrientes_destacados: ['hierro'],
+  });
+
+  render(<App />);
+  // Timeout explícito: este render calcula la nutrición de las 84 recetas con el
+  // cache frío y en local ya tarda ~700 ms, contra el 1 s por defecto de
+  // `waitFor`. En el runner de CI, más lento, no llegaba.
+  await waitFor(() => expect(screen.getAllByText(/% de la dosis de hierro/).length).toBeGreaterThan(0), {
+    timeout: 5000,
+  });
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {

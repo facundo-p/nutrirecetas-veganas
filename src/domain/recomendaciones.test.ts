@@ -1,10 +1,24 @@
 import { describe, expect, test } from 'vitest';
-import type { Coccion, Overlay } from '../db/schema';
+import type { Coccion, Overlay, Perfil } from '../db/schema';
 import { getSeedIndex } from '../seed';
+import { computeNutrition } from './nutrition';
 import { CRITERIOS, PESOS_POR_DEFECTO, recomendar, type Criterio, type EntradaRecomendacion } from './recomendaciones';
 
 const idx = getSeedIndex();
 const HOY = new Date('2026-08-19T15:00:00'); // agosto: invierno en AMBA
+
+function perfilCon(nutrientes_destacados: string[]): Perfil {
+  return {
+    id: 1,
+    sexo_para_requerimientos: 'masculino',
+    fecha_nacimiento: '1990-01-01',
+    peso_kg: 75,
+    nivel_entrenamiento: 'sedentario',
+    nutrientes_destacados,
+    creado_en: HOY.toISOString(),
+    actualizado_en: HOY.toISOString(),
+  };
+}
 
 function coccion(id: number, receta_id: string, diasAtras: number): Coccion {
   const fecha = new Date(HOY);
@@ -31,10 +45,12 @@ function coccion(id: number, receta_id: string, diasAtras: number): Coccion {
 function entrada(over: Partial<EntradaRecomendacion> = {}): EntradaRecomendacion {
   return {
     idx,
+    perfil: null,
     cocciones: [],
     overlays: [],
     mes: 8,
     hoy: HOY,
+    nutricionDe: (id) => computeNutrition(id, idx),
     ...over,
   };
 }
@@ -194,5 +210,50 @@ describe('criterio: puntaje', () => {
   test('el ic de la semilla no se usa: mide confianza del dato, no qué tan rica es', () => {
     const rec = recomendar(entrada(), { pesos: { puntaje: 1 }, limite: 200 });
     for (const { receta } of rec) expect(receta.candidata_clasica).toBe(true);
+  });
+});
+
+describe('criterio: rica en lo que te interesa', () => {
+  const soloEste = { pesos: { 'rica-en-lo-que-te-interesa': 1 } };
+  const conHierro = () => entrada({ perfil: perfilCon(['hierro']) });
+
+  test('sin perfil no opina: no hay dosis contra la cual medir', () => {
+    expect(recomendar(entrada({ perfil: null }), soloEste)).toHaveLength(0);
+  });
+
+  test('sin nutrientes marcados no opina: no sabe qué te interesa', () => {
+    expect(recomendar(entrada({ perfil: perfilCon([]) }), soloEste)).toHaveLength(0);
+  });
+
+  test('gana la que más aporta del nutriente que marcaste', () => {
+    const rec = recomendar(conHierro(), { ...soloEste, limite: 200 });
+    expect(rec.length).toBeGreaterThan(5);
+    const hierroDe = (id: string) =>
+      computeNutrition(id, idx).por_nutriente.hierro_mg?.intervalo.max ?? 0;
+    expect(hierroDe(rec[0]!.receta.id)).toBeGreaterThan(hierroDe(rec.at(-1)!.receta.id));
+  });
+
+  test('el motivo dice cuánto aporta, sin pelearse con el género del nutriente', () => {
+    // "el 20 % del proteína" fue un bug real: el artículo salía mal la mitad de
+    // las veces. Se nombra la dosis, no el nutriente suelto.
+    const rec = recomendar(conHierro(), soloEste);
+    expect(rec[0]!.motivos.join(' ')).toMatch(/\d+ % de la dosis de hierro/);
+  });
+
+  test('marcar dos nutrientes cambia el orden respecto de marcar uno', () => {
+    const soloHierro = recomendar(conHierro(), { ...soloEste, limite: 20 }).map((r) => r.receta.id);
+    const hierroYCalcio = recomendar(entrada({ perfil: perfilCon(['hierro', 'calcio']) }), {
+      ...soloEste,
+      limite: 20,
+    }).map((r) => r.receta.id);
+    expect(hierroYCalcio).not.toEqual(soloHierro);
+  });
+
+  test('sobre la semilla real el puntaje se reparte: no empatan todas arriba', () => {
+    // la lección de #69: un ranking sin un test que mire la distribución parece
+    // andar perfectamente. Ahí eran 29 de 60 empatadas en 1.0.
+    const todas = recomendar(conHierro(), { ...soloEste, limite: 500 });
+    const enElMaximo = todas.filter((r) => r.puntaje >= todas[0]!.puntaje - 1e-9);
+    expect(enElMaximo.length).toBeLessThan(todas.length / 4);
   });
 });

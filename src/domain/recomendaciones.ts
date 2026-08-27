@@ -1,6 +1,8 @@
-import type { Coccion, Overlay } from '../db/schema';
+import type { Coccion, Overlay, Perfil } from '../db/schema';
 import type { SeedIndex } from '../seed';
 import type { Recipe } from '../seed/schema';
+import { per100g, perPortion, type RecipeNutrition } from './nutrition';
+import { objetivosDeReferencia, porcentajeDeObjetivo } from './objetivos';
 import { estacionDeReceta } from './season';
 
 /**
@@ -19,16 +21,22 @@ import { estacionDeReceta } from './season';
 
 export interface EntradaRecomendacion {
   idx: SeedIndex;
+  /** null es válido y frecuente: sin perfil el criterio nutricional se calla. */
+  perfil: Perfil | null;
   cocciones: Coccion[];
   overlays: Overlay[];
   /** 1-12. Entra por parámetro: el dominio no lee el reloj. */
   mes: number;
   hoy: Date;
+  /** Inyectada para no meter el cache de la UI adentro del dominio. */
+  nutricionDe: (recetaId: string) => RecipeNutrition;
 }
 
 export interface ContextoRecomendacion extends EntradaRecomendacion {
   readonly ultimaCoccion: Map<string, number>;
   readonly overlayDe: Map<string, Overlay>;
+  /** Los nutrientes marcados en el perfil, ya resueltos con su dosis diaria. */
+  readonly interesan: Array<{ id: string; nombre: string; objetivo: number; unidad: string }>;
 }
 
 export interface Aporte {
@@ -79,8 +87,62 @@ const FRACCION_DE_DUDA = 0.5;
 const PUNTAJE_NEUTRO = 0.5;
 /** Días que una receta queda "recién hecha" y no se vuelve a sugerir. */
 const DIAS_DE_REPETICION = 14;
+/**
+ * Qué parte de la dosis diaria alcanza para que una porción puntúe 1 en ese
+ * nutriente. Un tercio: son las comidas que tiene un día. Sin esto habría que
+ * cubrir el día entero en un plato para sacar puntaje, y casi nada lo hace —
+ * el criterio quedaría siempre cerca de cero y no separaría nada.
+ */
+const FRACCION_DE_UNA_COMIDA = 1 / 3;
 
 // ─────────────────────────── los criterios ───────────────────────────
+
+/**
+ * El reemplazo del viejo `hueco-nutricional`, que leía el semáforo. Deja de ser
+ * un déficit y pasa a ser una preferencia: no necesita historial, no necesita
+ * que registres nada y no reprocha nada. Sin perfil o sin nutrientes marcados
+ * devuelve null y se cae del promedio entero.
+ */
+const ricaEnLoQueTeInteresa: Criterio = {
+  id: 'rica-en-lo-que-te-interesa',
+  descripcion: 'cuánto aporta de los nutrientes que marcaste en tu perfil',
+  evaluar(receta, ctx) {
+    if (ctx.interesan.length === 0) return null;
+    const nutricion = porPorcion(ctx.nutricionDe(receta.id));
+
+    let suma = 0;
+    let cuantosOpinan = 0;
+    let mejor: { nombre: string; pct: number } | null = null;
+
+    for (const nutriente of ctx.interesan) {
+      const clave = ctx.idx.nutrientById.get(nutriente.id)?.clave_ingrediente;
+      if (clave === undefined) continue;
+      // `porcentajeDeObjetivo` ya devuelve null sin dato reportable: un
+      // nutriente del que no sabemos nada no suma ni resta, se cae del promedio
+      const pct = porcentajeDeObjetivo(nutricion.por_nutriente[clave], {
+        nutriente_id: nutriente.id,
+        nombre: nutriente.nombre,
+        valor: nutriente.objetivo,
+        unidad: nutriente.unidad,
+      });
+      if (pct === null) continue;
+
+      cuantosOpinan += 1;
+      suma += Math.min(1, pct / 100 / FRACCION_DE_UNA_COMIDA);
+      if (mejor === null || pct > mejor.pct) mejor = { nombre: nutriente.nombre, pct };
+    }
+
+    if (cuantosOpinan === 0) return null;
+    const puntaje = suma / cuantosOpinan;
+    if (mejor === null || mejor.pct <= 0) return { puntaje, motivo: '' };
+    // "de la dosis de hierro" y no "del hierro": los nombres de nutriente
+    // mezclan géneros y el artículo salía mal la mitad de las veces
+    return {
+      puntaje,
+      motivo: `aporta el ${Math.round(mejor.pct)} % de la dosis de ${enMinuscula(mejor.nombre)}`,
+    };
+  },
+};
 
 const favoritas: Criterio = {
   id: 'favoritas',
@@ -133,9 +195,10 @@ const puntaje: Criterio = {
   },
 };
 
-export const CRITERIOS: Criterio[] = [favoritas, novedad, deEstacion, puntaje];
+export const CRITERIOS: Criterio[] = [ricaEnLoQueTeInteresa, favoritas, novedad, deEstacion, puntaje];
 
 export const PESOS_POR_DEFECTO: Record<string, number> = {
+  'rica-en-lo-que-te-interesa': 0.4,
   favoritas: 0.2,
   novedad: 0.15,
   'de-estacion': 0.15,
@@ -144,9 +207,28 @@ export const PESOS_POR_DEFECTO: Record<string, number> = {
 
 // ─────────────────────────── el motor ───────────────────────────
 
+/** "Vitamina B12" → "vitamina B12": baja la inicial sin tocar las siglas. */
+function enMinuscula(nombre: string): string {
+  return nombre.charAt(0).toLowerCase() + nombre.slice(1);
+}
+
+function porPorcion(n: RecipeNutrition): RecipeNutrition {
+  return perPortion(n) ?? per100g(n);
+}
+
 /** Un preparado no es una comida, y una variante ya está bajo su madre. */
 function esRecomendable(receta: Recipe): boolean {
   return receta.es_preparado !== true && receta.variante_de === undefined;
+}
+
+function interesanDe(entrada: EntradaRecomendacion): ContextoRecomendacion['interesan'] {
+  const { perfil } = entrada;
+  if (perfil === null || perfil.nutrientes_destacados.length === 0) return [];
+  const objetivos = objetivosDeReferencia(perfil, entrada.idx.seed.nutrientes, entrada.hoy);
+  return perfil.nutrientes_destacados
+    .map((id) => objetivos.porNutriente.get(id))
+    .filter((o) => o !== undefined)
+    .map((o) => ({ id: o.nutriente_id, nombre: o.nombre, objetivo: o.valor, unidad: o.unidad }));
 }
 
 function resolver(entrada: EntradaRecomendacion): ContextoRecomendacion {
@@ -160,6 +242,7 @@ function resolver(entrada: EntradaRecomendacion): ContextoRecomendacion {
     ...entrada,
     ultimaCoccion,
     overlayDe: new Map(entrada.overlays.map((o) => [o.receta_id, o])),
+    interesan: interesanDe(entrada),
   };
 }
 

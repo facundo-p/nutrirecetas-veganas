@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
-import type { Coccion, Overlay } from '../../db/schema';
+import type { Coccion, Overlay, Perfil } from '../../db/schema';
 import { recomendar } from '../../domain/recomendaciones';
 import { getSeedIndex } from '../../seed';
 import { currentMonth } from '../common/format';
+import { nutritionOf } from '../common/nutritionCache';
 import { typeInfo, TypeIcon } from '../common/TypeIcon';
 
 interface Props {
+  perfil: Perfil | null;
   cocciones: Coccion[];
   overlays: Overlay[];
 }
@@ -15,18 +17,20 @@ interface Props {
  * Qué cocinar hoy. Cada renglón lleva su porqué — una recomendación sin motivo
  * es una orden, y esta app informa.
  */
-export function Recomendaciones({ cocciones, overlays }: Props) {
+export function Recomendaciones({ perfil, cocciones, overlays }: Props) {
   const idx = getSeedIndex();
   const recomendaciones = useMemo(
     () =>
       recomendar({
         idx,
+        perfil,
         cocciones,
         overlays,
         mes: currentMonth(),
         hoy: new Date(),
+        nutricionDe: (id) => nutritionOf(idx, id),
       }),
-    [idx, cocciones, overlays],
+    [idx, perfil, cocciones, overlays],
   );
 
   if (recomendaciones.length === 0) return null;
