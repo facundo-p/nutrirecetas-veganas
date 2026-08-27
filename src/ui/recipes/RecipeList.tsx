@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { recipeInSeason } from '../../domain/season';
-import { useCocciones, useOverlays } from '../../db/hooks';
+import { useCocciones, useOverlays, usePerfil } from '../../db/hooks';
 import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
@@ -14,6 +14,7 @@ export function RecipeList() {
   const mes = currentMonth();
   const cocciones = useCocciones();
   const overlays = useOverlays();
+  const perfil = usePerfil();
   const [filters, setFilters] = useState<RecipeFiltersState>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Set<string>>(new Set());
 
@@ -35,7 +36,9 @@ export function RecipeList() {
       <EncabezadoPantalla etiqueta="Recetario" titulo="Recetario" />
       {/* Arriba del buscador y corta: la app abre acá, y lo primero tiene que
           ser una respuesta a "¿qué cocino?", no un formulario vacío. */}
-      {cocciones && overlays && <Recomendaciones cocciones={cocciones} overlays={overlays} />}
+      {cocciones && overlays && (
+        <Recomendaciones perfil={perfil ?? null} cocciones={cocciones} overlays={overlays} />
+      )}
       <RecipeFilters filters={filters} onChange={setFilters} />
       <p className="conteo-resultados" aria-live="polite">
         {total} {total === 1 ? 'receta' : 'recetas'}
