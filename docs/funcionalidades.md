@@ -1,5 +1,26 @@
 # 03 — Funcionalidades
 
+> **Actualizado en la Fase 3 (2026-08-27).** El giro a recetario cambió el peso
+> de casi todo lo de abajo. Lo que se descartó quedó escrito con su motivo en vez
+> de borrado: el argumento de por qué algo entró sigue valiendo aunque haya
+> salido.
+
+## 0. El reenfoque de la Fase 3
+
+La app dejó de llevar la cuenta de lo que se come. **Se eliminaron** el semáforo
+por ventanas, el registro de porciones comidas, las sobras, los suplementos
+declarados y los objetivos manuales. Lo nutricional quedó para tres cosas:
+
+1. **Buscar recetas por nutriente** — el filtro "rica en…" del recetario y el
+   ranking de la ficha de nutriente.
+2. **Buscar ingredientes por nutriente** — el filtro "fuentes de…" y el mismo
+   ranking.
+3. **Ver cuánto aporta una porción** — cantidades con banda, y el porcentaje de
+   la dosis diaria, al final de la ficha y colapsado.
+
+El criterio que resuelve las dudas de diseño: **a quien no le interese el dato,
+no le tiene que estorbar**.
+
 ## 1. Las 6 pedidas por Facu (todas entran)
 
 1. **Consulta nutricional** de cualquier ingrediente o receta: por 100 g y por porción, con bandas de incertidumbre (≈ + rango), índice de confianza visible y cobertura del cálculo ("calculado sobre el 94 % del peso"). Nunca se usa el perfil precargado del dataset (auditoría §2.4).
@@ -11,14 +32,15 @@
 
 ## 2. Propuestas propias (marcadas como tales, con justificación)
 
-- **Semáforo por ventanas + planificador semanal** *(prioridad elegida por Facu)*: proyección en vivo del semáforo al armar la semana; cada nutriente evaluado en SU ventana (día / semana móvil de 7 días). Es la funcionalidad que más explota el activo nutricional del dataset: RDA ajustadas + ventanas + suplementos.
+- ~~**Semáforo por ventanas + planificador semanal**~~ — **descartado en la Fase 3.** Se construyó, se usó y Facu decidió que la app no debía llevar esa cuenta. La lección no es que estuviera mal hecho: era la funcionalidad que más explotaba el activo nutricional del dataset, y ese fue exactamente el problema — se optimizó el activo en vez del uso. El planificador (#15) murió con él.
+- **Consulta por nutriente** *(lo que sobrevivió del activo nutricional)*: pantalla propia con la dosis diaria, las notas curadas del dataset, y las recetas e ingredientes que más aportan. Es el mismo activo, en modo consulta en vez de modo régimen.
 - **Estacionalidad en compras y recetas** *(prioridad elegida por Facu)*: badges "en pico" / "fuera de temporada" (AMBA) en lista de compras, detalle de receta y filtro del recetario. Barato de construir (40/41 match directo), alto valor en la verdulería.
 - **Alerta B12 de levadura nutricional** *(invariante de seguridad del BRIEF)*: 14 recetas la usan; el rango del dato arranca en 0 → advertencia siempre visible: "muchas levaduras argentinas NO están fortificadas; leé la etiqueta".
 - **Agrupación de variantes**: las 12 variantes se muestran bajo su receta madre (3 brownies de porotos = 1 entrada expandible). La "madre" es el destino de `variante_de` (siempre resoluble según auditoría).
 - **Preparados navegables**: enlaces receta↔preparado en ambos sentidos, con la nutrición real encadenada (modelo migrado).
 - **Overlay de confianza**: al registrar una cocción de una receta IC 5 (set 3) y aprobarla, la app ofrece subir el IC del usuario. La semilla no se muta: es un overlay local.
 - **Glosario doble**: sección con pestaña de **íconos** (pedido explícito de Facu: cada ícono explicado) y pestaña de **términos culinarios** (los 37 del dataset con implicancia nutricional).
-- **Filtros por ingrediente y por nutriente** *(pedido de Facu en revisión)*: "recetas con garbanzos", "ricas en hierro" — este último aprovecha el cálculo en vivo, no valores precargados.
+- **Filtros por ingrediente y por nutriente** *(pedido de Facu en revisión)*: "recetas con garbanzos", "ricas en hierro" — este último aprovecha el cálculo en vivo, no valores precargados. **Subió a funcionalidad principal en la Fase 3**: es una de las tres cosas que la app conserva de lo nutricional.
 
 ## 3. Postergadas o descartadas, con argumento
 

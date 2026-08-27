@@ -69,7 +69,12 @@ Justificación (criterio dominante: mantenibilidad a años vista por una persona
 
 Módulo `src/domain/` de **funciones puras TypeScript**: cero imports de React, DOM o Dexie. Entrada (semilla, slices de usuario, perfil) → salida (valores). Único módulo con cobertura de tests exhaustiva: golden tests contra recetas calculadas a mano + property tests (escalar ×2 duplica el intervalo; el intervalo de la suma contiene la suma de los puntos medios).
 
-- **Rangos: aritmética de intervalos de punta a punta.** Todo valor interno es `{min, max}` (los puntuales, colapsados). Display: punto medio + banda ("≈450 mg, entre 380 y 520"). El semáforo evalúa el punto medio; si el intervalo cruza el umbral → estado "al borde". El punto medio solo miente si escondés la banda: acá no se esconde.
+En la Fase 3 salieron `traffic-light.ts`, `windows.ts` y `supplements.ts` —el semáforo entero— y entraron dos:
+
+- **`objetivos.ts`** — la dosis diaria contra la que se informa un porcentaje. Devuelve la misma forma con perfil y sin él, así ninguna pantalla tiene que preguntar si hay perfil antes de mostrar un número; trae `fuente` para poder decir contra qué se mide.
+- **`fuentes.ts`** — qué recetas e ingredientes más aportan de un nutriente. Sin dato reportable no hay puesto en el ranking.
+
+- **Rangos: aritmética de intervalos de punta a punta.** Todo valor interno es `{min, max}` (los puntuales, colapsados). Display: punto medio + banda ("≈450 mg, entre 380 y 520"). El porcentaje de la dosis diaria se calcula sobre el punto medio. El punto medio solo miente si escondés la banda: acá no se esconde.
 - **Nulos jamás son cero en silencio**: cada resultado lleva **cobertura** (% de la masa de la receta con dato para ese nutriente). Cobertura baja ⇒ `sin_datos`, no rojo falso.
 - **RDA**: resolución por perfil sobre claves canonizadas; proteína en g/kg de peso. Ajuste vegano: factor numérico se aplica (hierro ×1.8, zinc ×1.5); guía textual se muestra como nota, no se inventa factor.
 - **Ventanas**: agregación de `cocciones` por nutriente en SU ventana. Día = día calendario local; semana = **ventana móvil de 7 días** (evita el absurdo del lunes en rojo). Suplemento declarado ⇒ `cubierto_por_suplemento`. `ul_nota` respetada (Mg alimentario no alerta).
