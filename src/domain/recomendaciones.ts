@@ -2,7 +2,7 @@ import type { Coccion, Overlay, Perfil } from '../db/schema';
 import type { SeedIndex } from '../seed';
 import type { Recipe } from '../seed/schema';
 import { per100g, perPortion, type RecipeNutrition } from './nutrition';
-import { objetivosDeReferencia, porcentajeDeObjetivo } from './objetivos';
+import { objetivosDeReferencia, porcentajeAfirmableSolo } from './objetivos';
 import { estacionDeReceta } from './season';
 
 /**
@@ -117,9 +117,11 @@ const ricaEnLoQueTeInteresa: Criterio = {
     for (const nutriente of ctx.interesan) {
       const clave = ctx.idx.nutrientById.get(nutriente.id)?.clave_ingrediente;
       if (clave === undefined) continue;
-      // `porcentajeDeObjetivo` ya devuelve null sin dato reportable: un
-      // nutriente del que no sabemos nada no suma ni resta, se cae del promedio
-      const pct = porcentajeDeObjetivo(nutricion.por_nutriente[clave], {
+      // Afirmable **solo**: el motivo se lee sin la cobertura al lado, así que
+      // un cálculo sobre el 10 % del plato no puede sostenerlo. Devuelve null
+      // también sin dato reportable, y un nutriente que no opina se cae del
+      // promedio entero en vez de contar como cero.
+      const pct = porcentajeAfirmableSolo(nutricion.por_nutriente[clave], {
         nutriente_id: nutriente.id,
         nombre: nutriente.nombre,
         valor: nutriente.objetivo,

@@ -44,6 +44,14 @@ describe('isRichIn contra la semilla real', () => {
     expect(isRichIn(computeNutrition('p12', idx), nutrient('proteina'))).toBe(true);
   });
 
+  test('ninguna receta es "rica en B12", y esa es la respuesta correcta', () => {
+    // Toda la B12 de la semilla sale de levadura nutricional o de fortificados:
+    // su banda arranca en cero (invariante 6). Etiquetar una receta como fuente
+    // de B12 sería la afirmación que el invariante existe para impedir.
+    const ricas = idx.seed.recetas.filter((r) => isRichIn(computeNutrition(r.id, idx), nutrient('b12')));
+    expect(ricas).toHaveLength(0);
+  });
+
   test('alguna receta del recetario es rica en hierro y ninguna afirma sin datos', () => {
     const hierro = nutrient('hierro');
     const ricas = idx.seed.recetas.filter((r) => isRichIn(computeNutrition(r.id, idx), hierro));
