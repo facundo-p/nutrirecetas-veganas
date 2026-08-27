@@ -11,6 +11,8 @@ export type Route =
   | { screen: 'cook'; id: string }
   | { screen: 'ingredients' }
   | { screen: 'ingredient'; id: string }
+  | { screen: 'nutrients' }
+  | { screen: 'nutrient'; id: string }
   | { screen: 'glossary' }
   | { screen: 'diary' }
   | { screen: 'profile' }
@@ -27,6 +29,10 @@ export function parseHash(hash: string): Route {
       return { screen: 'ingredients' };
     case 'ingrediente':
       return parts[1] ? { screen: 'ingredient', id: decodeURIComponent(parts[1]) } : { screen: 'ingredients' };
+    case 'nutrientes':
+      return { screen: 'nutrients' };
+    case 'nutriente':
+      return parts[1] ? { screen: 'nutrient', id: decodeURIComponent(parts[1]) } : { screen: 'nutrients' };
     case 'glosario':
       return { screen: 'glossary' };
     case 'diario':
@@ -57,6 +63,10 @@ export function routeHash(route: Route): string {
       return '#/ingredientes';
     case 'ingredient':
       return `#/ingrediente/${encodeURIComponent(route.id)}`;
+    case 'nutrients':
+      return '#/nutrientes';
+    case 'nutrient':
+      return `#/nutriente/${encodeURIComponent(route.id)}`;
     case 'glossary':
       return '#/glosario';
     case 'diary':

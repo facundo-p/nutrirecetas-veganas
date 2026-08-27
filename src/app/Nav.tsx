@@ -1,10 +1,10 @@
-import { IconCarta, IconLibro, IconZanahoria } from '../ui/icons/icons';
+import { IconCarta, IconGota, IconLibro, IconZanahoria } from '../ui/icons/icons';
 import { routeHash, type Route } from './router';
 
 /**
  * El Recetario abre la app y va primero: esto es un recetario, y la nutrición
- * se consulta cuando interesa. A 390 px entran cuatro items con targets
- * cómodos; por ahora son tres. Ajustes se abre con el engranaje del encabezado
+ * se consulta cuando interesa. Cuatro y no más porque a 390 px es lo que entra
+ * con targets cómodos. Ajustes se abre con el engranaje del encabezado
  * (`EncabezadoPantalla`) y Glosario desde Diario.
  */
 const ITEMS = [
@@ -14,6 +14,12 @@ const ITEMS = [
     screens: ['ingredients', 'ingredient'],
     route: { screen: 'ingredients' } as Route,
     Icon: IconZanahoria,
+  },
+  {
+    label: 'Nutrientes',
+    screens: ['nutrients', 'nutrient'],
+    route: { screen: 'nutrients' } as Route,
+    Icon: IconGota,
   },
   { label: 'Diario', screens: ['diary', 'glossary', 'profile', 'settings'], route: { screen: 'diary' } as Route, Icon: IconLibro },
 ] as const;

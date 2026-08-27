@@ -17,6 +17,7 @@ test('la app arranca en el recetario con la navegación completa', async () => {
   expect(screen.getByRole('navigation', { name: 'Secciones' })).toBeDefined();
   expect(screen.getByRole('link', { name: /Recetario/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Ingredientes/ })).toBeDefined();
+  expect(screen.getByRole('link', { name: /Nutrientes/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Diario/ })).toBeDefined();
   expect(screen.queryByRole('link', { name: /Hoy/ })).toBeNull();
 

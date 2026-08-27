@@ -336,6 +336,21 @@ export function IconLibro(props: IconProps) {
  * círculo con rayos, que es exactamente `IconSol` y ya significa otra cosa
  * ("se evalúa por día").
  */
+/**
+ * Sección Nutrientes. La gota es la primitiva que quedaba libre: el resto del
+ * set ya usa hojas (sin datos), círculos con relleno parcial (cobertura), tallos
+ * sobre línea de base (IC) y rayos radiales (día). Ojo con leerla como "grasas"
+ * por el omega-3 — si en uso real confunde, es una línea.
+ */
+export function IconGota(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3.5c3.5 4.2 5.5 7 5.5 9.5a5.5 5.5 0 0 1-11 0c0-2.5 2-5.3 5.5-9.5Z" />
+      <path d="M9.2 13.8c.15 1.6 1.1 2.7 2.6 3" />
+    </Base>
+  );
+}
+
 export function IconAjustes(props: IconProps) {
   return (
     <Base {...props}>

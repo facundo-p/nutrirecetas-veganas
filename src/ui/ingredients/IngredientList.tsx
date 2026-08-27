@@ -76,6 +76,13 @@ export function IngredientList() {
           </select>
         </div>
       </div>
+      {nutrient && (
+        <p className="filtros-enlace">
+          <a href={routeHash({ screen: 'nutrient', id: nutrient.id })}>
+            Qué es {nutrient.nombre.toLowerCase()}, cuánto necesitás y qué recetas lo aportan ›
+          </a>
+        </p>
+      )}
       <p className="conteo-resultados" aria-live="polite">
         {list.length} {list.length === 1 ? 'ingrediente' : 'ingredientes'}
         {nutrient ? `, ordenados por ${nutrient.nombre.toLowerCase()} cada 100 g` : ''}
