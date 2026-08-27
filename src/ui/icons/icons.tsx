@@ -27,15 +27,6 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-export function IconCapsula(props: IconProps) {
-  return (
-    <Base {...props}>
-      <rect x="3.5" y="8.5" width="17" height="7" rx="3.5" transform="rotate(-28 12 12)" />
-      <path d="M10.6 8.9l2.8 6.2" />
-    </Base>
-  );
-}
-
 export function IconHojaPunteada(props: IconProps) {
   return (
     <Base {...props}>

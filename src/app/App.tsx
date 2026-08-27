@@ -14,7 +14,6 @@ import { SettingsScreen } from '../ui/settings/SettingsScreen';
 import { useMeta } from '../db/hooks';
 import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
 import { marcarEsquemaVisto } from '../db/repos';
-import { USER_SCHEMA_VERSION } from '../db/schema';
 import { IconCerrar } from '../ui/icons/icons';
 import { routeHash } from './router';
 
@@ -71,19 +70,26 @@ function BackupReminder() {
 }
 
 /**
- * La v3 borró los consumos, y borrar datos de alguien se avisa. `meta` solo
- * escribe `user_schema_version` al crear el registro, así que quien venía de
- * antes lo tiene en 2 y eso alcanza como marca — no hace falta un flag nuevo.
- * Una instalación nueva nace en la versión actual y no ve nada.
+ * Última versión del esquema que borró datos. `meta` solo escribe
+ * `user_schema_version` al crear el registro, así que quien venía de antes lo
+ * tiene viejo y eso alcanza como marca — no hace falta un flag nuevo. Una
+ * instalación nueva nace al día y no ve nada.
+ *
+ * Es una constante propia y no `USER_SCHEMA_VERSION` porque no toda migración
+ * pierde algo: una que solo cambie de forma no tiene por qué avisar.
  */
-function AvisoDeConsumos() {
+const ULTIMA_VERSION_CON_PERDIDA = 4;
+
+/** Borrar datos de alguien se avisa, y el aviso vuelve hasta que lo cierre. */
+function AvisoDeMigracion() {
   const meta = useMeta();
-  if (!meta || meta.user_schema_version >= USER_SCHEMA_VERSION) return null;
+  if (!meta || meta.user_schema_version >= ULTIMA_VERSION_CON_PERDIDA) return null;
   return (
     <div className="banner banner-migracion" role="status">
       <span>
-        Esta versión dejó de llevar la cuenta de lo que comés: se borraron los registros de porciones comidas y, con
-        ellos, las sobras. <strong>Lo que cocinaste, tus notas y tus favoritas están enteros.</strong>
+        Esta versión dejó de llevar la cuenta de lo que comés: se borraron los registros de porciones comidas, las
+        sobras, y los suplementos y objetivos a mano de tu perfil.{' '}
+        <strong>Tus cocciones, tus notas y tus favoritas están enteras.</strong>
       </span>
       <button type="button" className="banner-cerrar" aria-label="Entendido" onClick={() => void marcarEsquemaVisto()}>
         <IconCerrar />
@@ -123,7 +129,7 @@ export function App() {
     <div className="app">
       <BandaDeStaging />
       <Nav route={route} />
-      <AvisoDeConsumos />
+      <AvisoDeMigracion />
       <BackupReminder />
       <main className="contenido">
         <Screen route={route} />

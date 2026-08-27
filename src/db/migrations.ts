@@ -31,6 +31,16 @@ export function migrarPerfilV1(perfil: Record<string, unknown>, hoy = new Date()
   return { ...resto, nivel_entrenamiento };
 }
 
+/**
+ * v4: el perfil pierde suplementos y overrides. Los dos existían para el
+ * semáforo —uno apagaba una exigencia, el otro la pisaba— y no tienen
+ * reemplazo: lo único que hace el perfil ahora es personalizar el porcentaje.
+ */
+export function migrarPerfilV3(perfil: Record<string, unknown>): Record<string, unknown> {
+  const { suplementos: _s, overrides: _o, ...resto } = perfil;
+  return resto;
+}
+
 /** Cuántos consumos trae un backup viejo: lo que el import va a descartar. */
 export function consumosEnBackup(json: unknown): number {
   if (typeof json !== 'object' || json === null) return 0;
@@ -55,5 +65,5 @@ export function migrarBackup(json: unknown): unknown {
   // se descartan sin reemplazo: lo que contaban ya no se cuenta en ningún lado
   const { consumos: _consumos, ...data } = backup.data;
   const perfil = data.perfil;
-  return { ...backup, data: perfil ? { ...data, perfil: migrarPerfilV1(perfil) } : data };
+  return { ...backup, data: perfil ? { ...data, perfil: migrarPerfilV3(migrarPerfilV1(perfil)) } : data };
 }

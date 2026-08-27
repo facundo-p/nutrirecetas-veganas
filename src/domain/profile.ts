@@ -3,27 +3,24 @@ import type { Nutrient } from '../seed/schema';
 import { amountUnitOf } from './units';
 import { factorDeProteina } from './actividad';
 import { resolveRda, veganFactor } from './rda';
-import { aporteDiarioDe } from './supplements';
 
 /**
- * Del perfil real a los objetivos por nutriente. Es la traducción de la lógica
- * declarada en `perfil.json`: RDA por sexo y edad → ajuste vegano → ajuste por
- * peso y entrenamiento → suplementos → overrides manuales, que pisan todo.
+ * Del perfil real a los objetivos por nutriente: RDA por sexo y edad → ajuste
+ * vegano → ajuste por peso y entrenamiento.
+ *
+ * Los suplementos y los overrides salieron en la v4. Existían para el semáforo
+ * —uno apagaba la exigencia de un nutriente, el otro la pisaba— y sin semáforo
+ * no hay exigencia que apagar: el objetivo es una referencia contra la que se
+ * informa un porcentaje, no una cuenta que haya que cerrar.
  */
-
-export type ObjetivoOrigen = 'rda' | 'override';
 
 export interface ObjetivoNutriente {
   nutriente_id: string;
   nombre: string;
   valor: number;
   unidad: string;
-  origen: ObjetivoOrigen;
   /** No había ventana exacta de sexo/edad: se usó la más cercana. */
   aproximada?: true;
-  cubierto_por_suplemento: boolean;
-  aporte_suplemento_diario: number;
-  motivo_override?: string;
 }
 
 export function edadEnAnios(fecha_nacimiento: string, hoy: Date): number {
@@ -54,26 +51,12 @@ export function objetivosDelPerfil(
     let valor = rda.valor * veganFactor(nutriente);
     if (aplicaEntrenamiento(nutriente)) valor *= factorDeProteina(perfil.nivel_entrenamiento, edad);
 
-    let origen: ObjetivoOrigen = 'rda';
-    let motivo_override: string | undefined;
-    const override = perfil.overrides.find((o) => o.nutriente_id === nutriente.id);
-    if (override) {
-      valor = override.objetivo;
-      origen = 'override';
-      motivo_override = override.motivo;
-    }
-
-    const aporte_suplemento_diario = aporteDiarioDe(perfil.suplementos, nutriente.id);
     objetivos.set(nutriente.id, {
       nutriente_id: nutriente.id,
       nombre: nutriente.nombre,
       valor,
       unidad: amountUnitOf(nutriente.clave_ingrediente),
-      origen,
-      ...(rda.aproximada && origen === 'rda' ? { aproximada: true as const } : {}),
-      cubierto_por_suplemento: aporte_suplemento_diario >= valor && aporte_suplemento_diario > 0,
-      aporte_suplemento_diario,
-      ...(motivo_override !== undefined ? { motivo_override } : {}),
+      ...(rda.aproximada ? { aproximada: true as const } : {}),
     });
   }
   return objetivos;

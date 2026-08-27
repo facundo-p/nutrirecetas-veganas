@@ -9,8 +9,6 @@ const perfilBase: ProfileData = {
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
   nivel_entrenamiento: 'activo',
-  suplementos: [],
-  overrides: [],
   nutrientes_destacados: [],
 };
 

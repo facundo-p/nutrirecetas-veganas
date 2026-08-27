@@ -63,7 +63,7 @@ beforeAll(async () => {
   vieja.close();
 });
 
-test('un perfil con el multiplicador viejo llega a v2 sin perder nada', async () => {
+test('el multiplicador viejo se traduce a nivel de entrenamiento (v2)', async () => {
   const perfil = await db.perfil.get(1);
 
   expect(perfil).toBeDefined();
@@ -71,7 +71,17 @@ test('un perfil con el multiplicador viejo llega a v2 sin perder nada', async ()
   expect(perfil).not.toHaveProperty('multiplicador_actividad');
   expect(perfil!.nombre).toBe('Facu');
   expect(perfil!.peso_kg).toBe(78);
-  expect(perfil!.suplementos).toHaveLength(1);
+});
+
+test('v4 le saca al perfil los suplementos y los overrides', async () => {
+  const perfil = await db.perfil.get(1);
+
+  // `profileDataSchema` es estricto: un campo de más haría rebotar el próximo
+  // guardado, así que la migración tiene que sacarlos del registro, no ignorarlos
+  expect(perfil).not.toHaveProperty('suplementos');
+  expect(perfil).not.toHaveProperty('overrides');
+  // lo que el perfil sí conserva
+  expect(perfil!.nutrientes_destacados).toEqual(['hierro']);
 });
 
 test('v3 se lleva los consumos y deja lo demás en pie', async () => {
@@ -85,5 +95,5 @@ test('v3 se lleva los consumos y deja lo demás en pie', async () => {
 
 test('la marca de esquema queda vieja hasta que el aviso se cierra', async () => {
   // es lo que hace que `AvisoDeConsumos` aparezca: sin esto la pérdida sería muda
-  expect((await db.meta.get(1))!.user_schema_version).toBeLessThan(3);
+  expect((await db.meta.get(1))!.user_schema_version).toBeLessThan(4);
 });

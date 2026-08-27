@@ -62,7 +62,7 @@ test('el engranaje de Ajustes está a mano desde las pantallas de sección', asy
   expect(engranaje.getAttribute('href')).toBe('#/ajustes');
 });
 
-test('a quien venía de antes le avisa que se borraron los consumos, y se puede cerrar', async () => {
+test('a quien venía de antes le avisa qué se borró, y se puede cerrar', async () => {
   await db.meta.put({ id: 1, user_schema_version: 2, seed_version: '1.0.0', cambios_desde_backup: 0 });
 
   render(<App />);
@@ -70,7 +70,7 @@ test('a quien venía de antes le avisa que se borraron los consumos, y se puede 
   fireEvent.click(screen.getByRole('button', { name: 'Entendido' }));
 
   await waitFor(() => expect(screen.queryByText(/dejó de llevar la cuenta/)).toBeNull());
-  expect((await db.meta.get(1))!.user_schema_version).toBe(3);
+  expect((await db.meta.get(1))!.user_schema_version).toBe(4);
 });
 
 test('una instalación nueva no ve el aviso de una migración que no vivió', async () => {

@@ -16,8 +16,6 @@ const perfil: ProfileData = {
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
   nivel_entrenamiento: 'activo',
-  suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
-  overrides: [],
   nutrientes_destacados: ['hierro'],
 };
 
@@ -138,8 +136,6 @@ describe('backups de esquemas viejos', () => {
         fecha_nacimiento: '1990-05-02',
         peso_kg: 78,
         multiplicador_actividad: 1.2,
-        suplementos: [],
-        overrides: [],
         nutrientes_destacados: ['hierro'],
         creado_en: '2026-07-01T00:00:00.000Z',
         actualizado_en: '2026-08-01T00:00:00.000Z',
