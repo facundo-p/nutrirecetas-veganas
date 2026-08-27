@@ -32,9 +32,9 @@ describe('Detalle de receta', () => {
     const abrirNutricion = () => fireEvent.click(screen.getByRole('button', { name: /Nutrición por porción/ }));
 
     test('arranca colapsada: se ven las kcal, ningún nutriente', () => {
-      render(<RecipeDetail id="p19" />);
+      const { container } = render(<RecipeDetail id="p19" />);
       expect(screen.getByRole('button', { name: /Nutrición por porción/ }).getAttribute('aria-expanded')).toBe('false');
-      expect(screen.getByText(/kcal/)).toBeDefined();
+      expect(container.querySelector('.nutricion-kcal')!.textContent).toMatch(/kcal/);
       expect(screen.queryByText('Hierro')).toBeNull();
       expect(screen.queryByText(/sin datos/)).toBeNull();
     });
@@ -60,6 +60,48 @@ describe('Detalle de receta', () => {
       fireEvent.click(contador);
       expect(screen.getByText('Vitamina K')).toBeDefined();
       expect(screen.getAllByText(/^sin datos$/)).toHaveLength(cuantos);
+    });
+  });
+
+  describe('cuánto aporta de la dosis diaria', () => {
+    const abrirNutricion = () => fireEvent.click(screen.getByRole('button', { name: /Nutrición por porción/ }));
+
+    test('cada nutriente con dato dice qué porcentaje de la dosis aporta', () => {
+      render(<RecipeDetail id="p19" />);
+      abrirNutricion();
+
+      const hierro = screen.getByText('Hierro').closest('li')!;
+      expect(hierro.textContent).toMatch(/\d+ % de la dosis/);
+    });
+
+    test('sin perfil aclara que la referencia es genérica, no la tuya', () => {
+      render(<RecipeDetail id="p19" />);
+      abrirNutricion();
+      expect(screen.getByText(/referencia adulta genérica/)).toBeDefined();
+    });
+
+    test('un nutriente sin datos no inventa un porcentaje', () => {
+      render(<RecipeDetail id="p19" />);
+      abrirNutricion();
+      fireEvent.click(screen.getByRole('button', { name: /nutrientes? sin datos/ }));
+
+      const vitk = screen.getByText('Vitamina K').closest('li')!;
+      expect(vitk.textContent).not.toMatch(/% de la dosis/);
+    });
+
+    test('las kcal por porción se leen sin abrir nada: es lo que se mira cocinando', () => {
+      render(<RecipeDetail id="p19" />);
+      const meta = document.querySelector('.detalle-meta')!;
+      expect(meta.textContent).toMatch(/kcal/);
+    });
+
+    test('la nutrición va al final: primero todo lo que sirve para cocinar', () => {
+      const { container } = render(<RecipeDetail id="p19" />);
+      const titulos = [...container.querySelectorAll('h2')].map((h) => h.textContent ?? '');
+      const nutricion = titulos.findIndex((t) => t.includes('Nutrición'));
+      const pasos = titulos.findIndex((t) => t.includes('Pasos'));
+      expect(pasos).toBeGreaterThanOrEqual(0);
+      expect(nutricion).toBeGreaterThan(pasos);
     });
   });
 

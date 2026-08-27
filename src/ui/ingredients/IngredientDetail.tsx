@@ -1,8 +1,10 @@
 import { getSeedIndex } from '../../seed';
 import type { Ingredient } from '../../seed/schema';
 import { routeHash } from '../../app/router';
-import { amountUnit, currentMonth, icSprouts, MONTH_NAMES } from '../common/format';
+import { amountUnit, currentMonth, formatNumber, icSprouts, MONTH_NAMES } from '../common/format';
 import { ingredientInSeason } from '../../domain/season';
+import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
+import { usePerfil } from '../../db/hooks';
 import { IconBrotesIc, IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
 import { IntervalBand } from '../recipe-detail/IntervalBand';
 
@@ -14,6 +16,8 @@ const EXTRA_LABELS: Record<string, { nombre: string; unidad: string }> = {
 
 export function IngredientDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
+  const perfil = usePerfil();
+  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
   const ing = idx.ingredientById.get(id);
   if (!ing) {
     return (
@@ -67,21 +71,46 @@ export function IngredientDetail({ id }: { id: string }) {
         {valores.length === 0 && !ing.kcal ? (
           <p className="nutriente-sin-datos">Sin datos nutricionales: el aporte de este ingrediente se considera irrelevante.</p>
         ) : (
-          <ul className="nutricion-lista">
-            {valores.map(([clave, value]) => {
-              const cat = byClave.get(clave as never);
-              const label = cat
-                ? { nombre: cat.nombre, unidad: amountUnit(cat.clave_ingrediente) }
-                : (EXTRA_LABELS[clave] ?? { nombre: clave, unidad: '' });
-              return (
-                <li key={clave} className="nutriente">
-                  <span className="nutriente-nombre">{label.nombre}</span>
-                  <IntervalBand intervalo={value.intervalo} unidad={label.unidad} />
-                  {value.nota && <span className="nutriente-calidad">{value.nota}</span>}
-                </li>
-              );
-            })}
-          </ul>
+          <>
+            <p className="nutricion-referencia">
+              {objetivos.fuente === 'perfil' ? (
+                <>Los porcentajes son sobre tu dosis diaria.</>
+              ) : (
+                <>
+                  Los porcentajes son sobre la <strong>referencia adulta genérica</strong>.{' '}
+                  <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean sobre la tuya.
+                </>
+              )}
+            </p>
+            <ul className="nutricion-lista">
+              {valores.map(([clave, value]) => {
+                const cat = byClave.get(clave as never);
+                const label = cat
+                  ? { nombre: cat.nombre, unidad: amountUnit(cat.clave_ingrediente) }
+                  : (EXTRA_LABELS[clave] ?? { nombre: clave, unidad: '' });
+                // Sodio y grasa saturada no están en el catálogo de 20 y no
+                // tienen RDA: no hay contra qué medirlos, así que no se mide.
+                const pct = cat
+                  ? porcentajeDeObjetivo(
+                      { intervalo: value.intervalo, cobertura_pct: 100, ic: cat.ic },
+                      objetivos.porNutriente.get(cat.id),
+                    )
+                  : null;
+                return (
+                  <li key={clave} className="nutriente">
+                    <span className="nutriente-nombre">{label.nombre}</span>
+                    <IntervalBand intervalo={value.intervalo} unidad={label.unidad} />
+                    {pct !== null && (
+                      <span className="nutriente-porcentaje">
+                        <span className="cifra">{formatNumber(pct, pct < 10 ? 1 : 0)} %</span> de la dosis diaria
+                      </span>
+                    )}
+                    {value.nota && <span className="nutriente-calidad">{value.nota}</span>}
+                  </li>
+                );
+              })}
+            </ul>
+          </>
         )}
       </section>
 
