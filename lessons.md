@@ -207,3 +207,35 @@ consulta. **1149 líneas menos solo en el primero**, y la app hace más.
   buscaba el "¿Cómo venís?" de la pantalla Hoy y hacía fallar la corrida entera
   tres issues después de que Hoy dejara de existir. Los tests no lo cubrían: el
   script no tiene tests, y es lo que produce el material de revisión de Facu.
+
+### El hallazgo de los renders: la B12 tranquilizadora (2026-08-27)
+
+Los ocho issues cerraron en verde y con 401 tests. La primera recomendación del
+recetario decía **"aporta el 265 % de la dosis de vitamina B12"**. Ningún test
+podía fallar: el motivo era correcto según su propia lógica.
+
+- **Un umbral que suena obvio puede ser falso en las dos direcciones, y solo
+  medir lo muestra.** La primera hipótesis fue "exigir cobertura mínima para
+  afirmar un porcentaje", que suena a sentido común y se eligió sin medir.
+  Medida: (1) una cobertura baja **solo puede subestimar** —lo que falta suma,
+  nunca resta—, así que el piso descalificaba `p12`, que mide 21,64 g de
+  proteína **exactos, sin banda**, sobre el 46 % del plato; (2) dejaba pasar
+  `d08`, que va de 0 a 3,75 µg de B12 **con 85 % de cobertura**; (3) aplicado a
+  todos los porcentajes borraba el **74 %**, porque la cobertura mediana de la
+  semilla es 28 %. La hipótesis se cayó por medición, y el test que rompió
+  (`p12 es rica en proteína`) era el que tenía razón.
+- **El problema real ya tenía nombre desde la Fase 0**: *el punto medio solo
+  miente si escondés la banda*. Lo que faltaba era notar **dónde no se puede
+  mostrar la banda**: en el motivo de una recomendación y en el filtro "rica en",
+  el número viaja solo. La regla que quedó no tiene umbral que calibrar — si el
+  rango arranca en cero, no se afirma — y cae exactamente sobre el caso de la
+  levadura nutricional, porque el invariante 6 dice que ese dato empieza en cero.
+- **Consecuencia que vale como prueba de que la regla es la correcta**: ninguna
+  receta queda "rica en B12". Es la respuesta verdadera para un recetario vegano,
+  y la app la venía dando mal.
+- **Una funcionalidad correcta puede ser insegura por dónde se muestra.** El
+  mismo número, con su banda al lado, es honesto en la tabla de la receta. Suelto
+  en una tarjeta de la primera pantalla, es la app diciendo que estás cubierto de
+  B12. **El contexto es parte del dato**, y una función de dominio que devuelve
+  "el porcentaje" sin saber dónde se va a mostrar no puede protegerlo sola: por
+  eso quedaron dos y no una con un flag.
