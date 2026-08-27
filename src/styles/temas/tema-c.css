@@ -70,12 +70,11 @@
   --icono-indulgente: var(--p-remolacha);
   --chip-preparado: var(--p-soja);
 
-  /* Semáforo */
-  --semaforo-cubierto: var(--p-zapallito);
-  --semaforo-parcial: var(--p-garbanzo);
-  --semaforo-insuficiente: var(--p-rabanito);
-  --semaforo-suplemento: var(--p-repollo-colorado);
-  --semaforo-sin-datos: var(--p-chia);
+  /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:
+     precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
+  --precaucion: var(--p-garbanzo);
+  --exito: var(--p-zapallito);
+  --suplemento: var(--p-repollo-colorado);
 
   /* Categoría: la C no la dice con el título (ver --titulo-receta-fijo abajo),
      solo con el ícono de tipo. Por eso preparado y conserva comparten soja. */

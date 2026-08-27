@@ -31,7 +31,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sp-1);
-  color: var(--semaforo-suplemento);
+  color: var(--suplemento);
   font-size: var(--fs-xs);
 }
 

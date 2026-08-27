@@ -7,8 +7,8 @@ import { IntervalBand } from './IntervalBand';
 
 /**
  * Nutrición honesta: banda ≈ con rango, brotes de IC y cobertura del cálculo
- * por nutriente. Sin semáforo todavía: el objetivo personalizado llega con el
- * perfil en Fase 2; acá se informa, no se evalúa.
+ * por nutriente. Acá se informa, no se evalúa — y desde la Fase 3 no se evalúa
+ * en ningún lado: la app dejó de llevar la cuenta de lo que comés.
  *
  * Arranca colapsada, y adentro los nutrientes sin dato están detrás de un
  * contador: esto es un recetario, la nutrición es el segundo nivel. Se cuentan
@@ -72,9 +72,9 @@ export function NutritionTable({ nutrition, seed, titulo }: Props) {
                       <li key={n.id} className={sinDatos ? 'nutriente sin-datos' : 'nutriente'}>
                         <span className="nutriente-nombre">
                           {n.ventana === 'dia' ? (
-                            <IconSol className="nutriente-ventana" aria-label="se evalúa por día" />
+                            <IconSol className="nutriente-ventana" aria-label="se mira día a día" />
                           ) : (
-                            <IconSemanaArco className="nutriente-ventana" aria-label="se evalúa por semana" />
+                            <IconSemanaArco className="nutriente-ventana" aria-label="se mira en la semana" />
                           )}
                           {n.nombre}
                         </span>

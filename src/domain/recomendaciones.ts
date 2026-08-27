@@ -1,13 +1,10 @@
-import type { Coccion, Consumo, Overlay, Perfil } from '../db/schema';
+import type { Coccion, Overlay } from '../db/schema';
 import type { SeedIndex } from '../seed';
-import type { Nutrient, Recipe } from '../seed/schema';
-import { midpoint } from './interval';
-import { hasReportableValue, per100g, perPortion, type RecipeNutrition } from './nutrition';
+import type { Recipe } from '../seed/schema';
 import { estacionDeReceta } from './season';
-import type { EstadoNutriente } from './traffic-light';
 
 /**
- * Qué cocinar. El semáforo dice qué falta; esto dice con qué taparlo.
+ * Qué cocinar.
  *
  * Un criterio mira la receta desde un ángulo y devuelve 0..1, o **null** cuando
  * no tiene con qué opinar. `null` no es cero: el criterio se cae del promedio
@@ -22,30 +19,14 @@ import type { EstadoNutriente } from './traffic-light';
 
 export interface EntradaRecomendacion {
   idx: SeedIndex;
-  perfil: Perfil;
-  /** El semáforo ya calculado por la pantalla: de acá salen los huecos. */
-  estados: EstadoNutriente[];
   cocciones: Coccion[];
-  consumos: Consumo[];
   overlays: Overlay[];
   /** 1-12. Entra por parámetro: el dominio no lee el reloj. */
   mes: number;
   hoy: Date;
-  /** Inyectada para no meter el cache de la UI adentro del dominio. */
-  nutricionDe: (recetaId: string) => RecipeNutrition;
-}
-
-/** Un nutriente que el semáforo marca en falta, con cuánto falta y cuánto pesa. */
-interface Hueco {
-  nutriente: Nutrient;
-  ventana: 'dia' | 'semana';
-  /** Lo que falta para el objetivo de la ventana, en la unidad del nutriente. */
-  faltante: number;
-  peso: number;
 }
 
 export interface ContextoRecomendacion extends EntradaRecomendacion {
-  readonly huecos: Hueco[];
   readonly ultimaCoccion: Map<string, number>;
   readonly overlayDe: Map<string, Overlay>;
 }
@@ -82,7 +63,7 @@ const LIMITE_POR_DEFECTO = 3;
 /**
  * Cuánto pesa "no sé" frente a los criterios que sí opinaron, y con qué valor
  * entra. Sin esto, una receta de la que habla un solo criterio saca lo mismo
- * que una que convence a los cinco: un promedio sobre poco peso se va a los
+ * que una que los convence a todos: un promedio sobre poco peso se va a los
  * extremos. Medido sobre la semilla real, dejaba **29 recetas empatadas en 1.0**
  * y el desempate terminaba haciéndolo el orden alfabético.
  *
@@ -98,48 +79,8 @@ const FRACCION_DE_DUDA = 0.5;
 const PUNTAJE_NEUTRO = 0.5;
 /** Días que una receta queda "recién hecha" y no se vuelve a sugerir. */
 const DIAS_DE_REPETICION = 14;
-/** Un nutriente crítico pesa el doble que uno importante. */
-const PESO_CRITICO = 2;
-/** Y el que el usuario destacó, un poco más todavía. */
-const PESO_DESTACADO = 1.5;
 
 // ─────────────────────────── los criterios ───────────────────────────
-
-const huecoNutricional: Criterio = {
-  id: 'hueco-nutricional',
-  descripcion: 'cuánto tapa de lo que el semáforo marca en falta',
-  evaluar(receta, ctx) {
-    if (ctx.huecos.length === 0) return null;
-    const nutricion = porPorcion(ctx.nutricionDe(receta.id));
-
-    let cubierto = 0;
-    let total = 0;
-    let mejor: { hueco: Hueco; fraccion: number } | null = null;
-
-    for (const hueco of ctx.huecos) {
-      total += hueco.peso;
-      const aporte = nutricion.por_nutriente[hueco.nutriente.clave_ingrediente];
-      // Sin dato no suma. Sacarlo también del denominador haría que una receta
-      // de la que no sabemos nada puntúe perfecto por tapar el único hueco que
-      // sí conocemos: recomendaríamos por ignorancia.
-      if (aporte === undefined || !hasReportableValue(aporte)) continue;
-      const fraccion = Math.min(1, midpoint(aporte.intervalo) / hueco.faltante);
-      cubierto += hueco.peso * fraccion;
-      if (fraccion > 0 && (mejor === null || fraccion * hueco.peso > mejor.fraccion * mejor.hueco.peso)) {
-        mejor = { hueco, fraccion };
-      }
-    }
-
-    if (total === 0) return null;
-    const puntaje = cubierto / total;
-    if (mejor === null) return { puntaje: 0, motivo: '' };
-    // "del hueco de X" y no "del X que falta": los nombres de nutriente mezclan
-    // géneros (el hierro, la proteína) y el artículo salía mal la mitad de las veces
-    const cuando = mejor.hueco.ventana === 'dia' ? 'de hoy' : 'de la semana';
-    const pct = Math.round(mejor.fraccion * 100);
-    return { puntaje, motivo: `tapa el ${pct} % del hueco de ${enMinuscula(mejor.hueco.nutriente.nombre)} ${cuando}` };
-  },
-};
 
 const favoritas: Criterio = {
   id: 'favoritas',
@@ -192,10 +133,9 @@ const puntaje: Criterio = {
   },
 };
 
-export const CRITERIOS: Criterio[] = [huecoNutricional, favoritas, novedad, deEstacion, puntaje];
+export const CRITERIOS: Criterio[] = [favoritas, novedad, deEstacion, puntaje];
 
 export const PESOS_POR_DEFECTO: Record<string, number> = {
-  'hueco-nutricional': 0.4,
   favoritas: 0.2,
   novedad: 0.15,
   'de-estacion': 0.15,
@@ -204,37 +144,9 @@ export const PESOS_POR_DEFECTO: Record<string, number> = {
 
 // ─────────────────────────── el motor ───────────────────────────
 
-/** "Vitamina B12" → "vitamina B12": baja la inicial sin tocar las siglas. */
-function enMinuscula(nombre: string): string {
-  return nombre.charAt(0).toLowerCase() + nombre.slice(1);
-}
-
-function porPorcion(n: RecipeNutrition): RecipeNutrition {
-  return perPortion(n) ?? per100g(n);
-}
-
 /** Un preparado no es una comida, y una variante ya está bajo su madre. */
 function esRecomendable(receta: Recipe): boolean {
   return receta.es_preparado !== true && receta.variante_de === undefined;
-}
-
-function huecosDe(estados: EstadoNutriente[], perfil: Perfil, idx: SeedIndex): Hueco[] {
-  const huecos: Hueco[] = [];
-  for (const estado of estados) {
-    // 'sin_datos' es "no sabemos", no "falta"; el suplemento apaga la exigencia
-    // alimentaria (invariante 4).
-    if (estado.estado !== 'insuficiente' && estado.estado !== 'parcial') continue;
-    const nutriente = idx.nutrientById.get(estado.nutriente_id);
-    if (nutriente === undefined) continue;
-    const faltante = estado.objetivo - midpoint(estado.consumido);
-    if (faltante <= 0) continue;
-    const peso =
-      ((100 - estado.porcentaje) / 100) *
-      (nutriente.grupo === 'critico' ? PESO_CRITICO : 1) *
-      (perfil.nutrientes_destacados.includes(estado.nutriente_id) ? PESO_DESTACADO : 1);
-    huecos.push({ nutriente, ventana: estado.ventana, faltante, peso });
-  }
-  return huecos;
 }
 
 function resolver(entrada: EntradaRecomendacion): ContextoRecomendacion {
@@ -246,7 +158,6 @@ function resolver(entrada: EntradaRecomendacion): ContextoRecomendacion {
   }
   return {
     ...entrada,
-    huecos: huecosDe(entrada.estados, entrada.perfil, entrada.idx),
     ultimaCoccion,
     overlayDe: new Map(entrada.overlays.map((o) => [o.receta_id, o])),
   };
@@ -302,8 +213,7 @@ export function recomendar(entrada: EntradaRecomendacion, opciones: OpcionesReco
  * las que quedaron. No reordena por puntaje: solo elige a quién le toca.
  *
  * Salió de mirar el render, no de un test: los dulces son cortos y de pocos
- * ingredientes, así que ganan por novedad y estación cuando todavía no hay
- * historial que le dé de comer al hueco nutricional.
+ * ingredientes, así que ganan por novedad y estación.
  */
 function diversificar(ordenadas: Recomendacion[], limite: number): Recomendacion[] {
   const elegidas: Recomendacion[] = [];

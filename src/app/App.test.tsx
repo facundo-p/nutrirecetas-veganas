@@ -11,8 +11,9 @@ test('la app arranca en Hoy con la navegación completa', async () => {
   expect(screen.getByRole('link', { name: /Recetario/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Ingredientes/ })).toBeDefined();
   expect(screen.getByRole('link', { name: /Diario/ })).toBeDefined();
-  // sin perfil cargado, Hoy pide completarlo antes de mostrar un semáforo vacío
-  await waitFor(() => expect(screen.getByRole('heading', { name: /contame de vos/i })).toBeDefined());
+  // sin perfil cargado la app funciona igual: no hay portón ni semáforo que llenar
+  await waitFor(() => expect(screen.getByRole('heading', { name: /Qué cocinás/i })).toBeDefined());
+  expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {

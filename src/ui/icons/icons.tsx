@@ -27,33 +27,13 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-// ---------- semáforo (Fase 2 lo usa entero; el glosario ya lo explica) ----------
+// ---------- hojas ----------
 
 export function IconHojaEntera(props: IconProps) {
   return (
     <Base {...props}>
       <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" />
       <path d="M5.5 18.5C9 14 13 10 18.5 5.5" />
-    </Base>
-  );
-}
-
-export function IconHojaMedia(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" />
-      <path d="M6.5 14.5c1.5.6 3 .9 4.3.8M9.5 17.6c1.3.3 2.6.4 3.8.2" />
-    </Base>
-  );
-}
-
-export function IconHojaCaida(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M4 4c.5 5.5 2.5 9.5 6.5 12.5" />
-      <path d="M10.5 16.5c6.5 3 10 1.5 10.5-3.5-4.5-1.5-8.5 0-10.5 3.5Z" />
-      <path d="M12.5 15.7c2.7-.9 5.3-1.2 7.3-.9" />
     </Base>
   );
 }

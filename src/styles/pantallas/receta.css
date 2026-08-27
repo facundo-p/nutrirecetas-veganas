@@ -440,8 +440,8 @@
   font-size: var(--fs-sm);
   padding: var(--sp-2) var(--sp-3);
   border-radius: var(--radio-chico);
-  background: color-mix(in srgb, var(--semaforo-parcial) 10%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--semaforo-parcial) 35%, transparent);
+  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
 }
 
 .aviso-horneado {
