@@ -1,6 +1,8 @@
 # CLAUDE.md — Nutrirecetas Veganas
 
-PWA personal de recetas veganas con base nutricional. Un usuario por dispositivo, sin backend, offline-first, mantenida por una persona en su tiempo libre: **simplicidad de mantenimiento por sobre sofisticación, siempre**.
+PWA personal de recetas veganas. Un usuario por dispositivo, sin backend, offline-first, mantenida por una persona en su tiempo libre: **simplicidad de mantenimiento por sobre sofisticación, siempre**.
+
+**Es un recetario.** La nutrición es un agregado que se consulta, no un régimen que se lleva: la app no registra lo que comés ni evalúa cómo venís. Queda para tres cosas —buscar recetas por nutriente, buscar ingredientes por nutriente, y ver cuánto aporta una porción de la dosis diaria— y el criterio que resuelve cualquier duda de diseño es que **a quien no le interese el dato no le tiene que estorbar**. Ante empate de espacio, gana lo que ayuda a cocinar.
 
 Idioma: código en inglés, UI y docs en **español rioplatense**.
 
@@ -28,11 +30,11 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 
 1. **El gramo es la unidad canónica**: `g_aprox` es la única fuente de verdad para cálculo; `unidad` (295 valores de texto libre) es solo display.
 2. La nutrición **se calcula desde los ingredientes**; `perfil_nutricional_porcion_aprox` no se usa (45 % de desvíos >30 %).
-3. **El semáforo evalúa cada nutriente en SU ventana** (`dia` | `semana` móvil de 7 días), nunca por comida individual.
-4. **Un suplemento declarado apaga la exigencia alimentaria** de ese nutriente (`cubierto_por_suplemento`).
-5. **La incertidumbre se muestra**: rangos {min,max} como bandas con punto medio, IC 1-10 visible, cobertura reportada. Nulos jamás son cero en silencio.
-6. **Alerta B12 obligatoria**: si una receta usa levadura nutricional como fuente de B12, advertir que muchas marcas argentinas NO están fortificadas. Es seguridad, no cosmética.
-7. El UL de magnesio aplica solo a suplementos: nunca alertar exceso de Mg alimentario.
+3. **La nutrición se informa por porción contra una dosis diaria, y nunca se evalúa.** El objetivo es una referencia, no una cuenta que haya que cerrar. La `ventana` del nutriente (`dia` | `semana`) sobrevive como nota —"no hace falta llegar todos los días"—, no como criterio. Sin perfil se usa la referencia adulta genérica, **dicho con todas las letras**: un porcentaje que no aclara contra qué se mide es un número sin significado.
+4. **El perfil nunca es un portón.** Ninguna pantalla puede exigirlo, bloquear ni pedirlo antes de dejar ver una receta. Su único trabajo es que el porcentaje diga "de tu dosis".
+5. **La incertidumbre se muestra**: rangos {min,max} como bandas con punto medio, IC 1-10 visible, cobertura reportada. Nulos jamás son cero en silencio, y eso incluye los rankings: sin dato reportable no hay puesto, porque el último se lee como "casi no tiene".
+6. **Alerta B12 obligatoria**: si una receta usa levadura nutricional como fuente de B12, advertir que muchas marcas argentinas NO están fortificadas. Y la ficha de un nutriente abre con su `ajuste_vegano.descripcion` antes que cualquier número — sin eso, un "40 % de la dosis" de B12 alimentaria se lee tranquilizador. Es seguridad, no cosmética.
+7. **Un UL que solo aplica a suplementos no se alerta nunca** (`ul_nota`, caso magnesio): la app no sabe qué tomás aparte, así que solo lo informa en la ficha del nutriente.
 8. **La app informa, no diagnostica.** Fuera de alcance: embarazo, lactancia, menores, condiciones médicas.
 
 ## Código y comentarios (duras)
@@ -44,7 +46,7 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 ## Estilos (duras al escribir código nuevo)
 
 1. **Cero estilo en los `.tsx`**: ni `style={{ }}`, ni objetos de estilo, ni `<style>`, ni CSS-in-JS, ni CSS Modules. El TSX pone `className` y atributos; el CSS decide color, tamaño y forma.
-2. **Una hoja por carpeta de `src/ui/`**, en `src/styles/pantallas/`: `cook/`→`cocina.css`, `diary/`→`diario.css`, `recipes/`→`recetario.css`, `recipe-detail/`→`receta.css`, `today/`→`hoy.css`, `profile/`→`perfil.css`, `settings/`→`ajustes.css`, `ingredients/`→`ingredientes.css`, `glossary/`→`glosario.css`. Lo compartido va en `componentes.css`; el chrome (estructura, nav, encabezados) en `layout.css`.
+2. **Una hoja por carpeta de `src/ui/`**, en `src/styles/pantallas/`: `cook/`→`cocina.css`, `diary/`→`diario.css`, `recipes/`→`recetario.css`, `recipe-detail/`→`receta.css`, `nutrients/`→`nutrientes.css`, `profile/`→`perfil.css`, `settings/`→`ajustes.css`, `ingredients/`→`ingredientes.css`, `glossary/`→`glosario.css`. Lo compartido va en `componentes.css` (ahí viven la nutrición y las bandas, que usan tres pantallas); el chrome (estructura, nav, banners) en `layout.css`. **Que una hoja de pantalla la lea otra pantalla es la señal de que la regla se rompió**: pasó con la nutrición entre la Fase 1 y la 3.
 3. **Pantalla nueva = hoja nueva + su `@import` en `src/styles/index.css`**, el único que importa `main.tsx` y donde se lee el orden de la cascada. El test avisa si quedó sin importar.
 4. **Nada de valores mágicos**: espaciado `--sp-*`, tipografía `--fs-*` y `--font-*`, radios y bordes `--radio*` / `--borde*`. Medida nueva → `tokens.css`, que no puede tener colores.
 5. **El estado se comunica con atributos**, no con estilos calculados: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.

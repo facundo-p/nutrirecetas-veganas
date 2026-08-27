@@ -1,8 +1,10 @@
 # Nutrirecetas Veganas
 
-PWA personal de recetas veganas con base nutricional honesta. Sin backend, offline-first, instalable en celular y escritorio.
+PWA personal de recetas veganas. Sin backend, offline-first, instalable en celular y escritorio.
 
-El activo del proyecto es su capa de datos curada: **84 recetas, 158 ingredientes, 20 nutrientes con RDA y ventanas de evaluación, 25 reglas programables**, más equivalencias de medidas, glosario culinario, utensilios, estacionalidad y conservación. La app existe para explotarla.
+Es **un recetario**: se abre en las recetas y se usa para cocinar. La nutrición es un agregado que se consulta cuando interesa —buscar recetas por nutriente, buscar ingredientes por nutriente, ver cuánto aporta una porción de la dosis diaria— y que **no le estorba a quien no la vino a buscar**. La app no registra lo que comés.
+
+El activo del proyecto es su capa de datos curada: **84 recetas, 158 ingredientes, 20 nutrientes con RDA, 25 reglas programables**, más equivalencias de medidas, glosario culinario, utensilios, estacionalidad y conservación. La app existe para explotarla.
 
 ## Entornos
 
@@ -17,8 +19,9 @@ Las dos comparten origen y **IndexedDB es por origen**, así que cada una usa su
 
 ## Principios
 
+- **Recetas primero.** Ante empate de espacio en pantalla, gana lo que ayuda a cocinar.
 - **La incertidumbre se muestra, no se esconde**: todo dato lleva índice de confianza y los rangos se muestran como bandas.
-- **El semáforo nutricional evalúa cada nutriente en SU ventana temporal** (día o semana), nunca por comida.
+- **La nutrición se informa, nunca se evalúa.** Los porcentajes son contra una dosis de referencia, no una cuenta que haya que cerrar, y el perfil que los personaliza es opcional.
 - **Separación estricta** entre datos semilla (read-only, versionados) y datos del usuario (locales, nunca se pierden al actualizar la semilla).
 - **La app informa, no diagnostica.**
 

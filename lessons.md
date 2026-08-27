@@ -137,3 +137,73 @@ Seis issues salidos de usar la app (#68-#74), más dos que quedaron abiertos a p
 - **Mirar el PNG encontró dos cosas que ningún test iba a encontrar**: las tres primeras recomendaciones eran tres postres (los dulces son cortos y de pocos ingredientes, así que ganan por novedad y estación mientras no hay historial), y un motivo decía *"el 20 % del proteína"* — los nombres de nutriente mezclan géneros y el artículo salía mal la mitad de las veces. Ninguna de las dos rompe un assert. Sigue siendo cierto que **el render es control de calidad, no documentación**.
 - **Un contrato que se deduce se mantiene solo.** Sacar `--font-display` y `--font-data` de `tokens.css` los metió automáticamente en el contrato de temas, y el test pasó a exigirlos de los tres sin que hubiera que tocarlo. Verificado sacándole uno al tema C: falla nombrando el token exacto. Si el contrato fuera una lista a mano, este refactor habría sido silencioso. Los 72 renders idénticos byte por byte confirmaron que no se veía; después, el cambio de fuente del tema A tocó **24 PNG del A y 0 de los otros 48**: el tema no gotea.
 - **Ojo con la banda verde del tema A.** El `--cat-principal` nuevo (laurel) cumple la vara pero su vecino más cercano dejó de ser otra categoría y pasó a ser el musgo del semáforo: la A quedó con verde en su identidad *y* en una categoría. Es el tipo de acumulación que causó el rediseño de la D. Está medido y anotado; si en uso real molesta, es una línea.
+
+---
+
+## Fase 3 — El recetario al frente (2026-08-27)
+
+Ocho issues (#90-#97) que sacan el tracking nutricional y dejan la nutrición como
+consulta. **1149 líneas menos solo en el primero**, y la app hace más.
+
+- **Una funcionalidad puede estar bien construida y ser la equivocada.** El
+  semáforo era lo que más explotaba el activo del dataset —RDA ajustadas,
+  ventanas, suplementos— y por eso mismo se llevó el centro de una app que es un
+  recetario. Se optimizó el activo en vez del uso. La señal estuvo disponible
+  cinco días antes, anotada acá el 22/08 ("es principalmente una app de
+  recetas"), y todavía se siguió construyendo encima. **Cuando una lección dice
+  que el peso está invertido, corregir el peso es el trabajo, no una nota al
+  pie.**
+- **El orden de los issues no se decide en la planificación, se decide leyendo
+  los imports.** El plan mandaba #90 → #91 → #92; el grafo real decía otra cosa.
+  `recomendaciones.ts` importaba `EstadoNutriente` de `traffic-light`, así que
+  borrar el semáforo forzaba tocar el motor en el mismo PR; y disolver Hoy antes
+  de sacar los consumos obligaba a mudar el bloque de sobras al recetario para
+  borrarlo una semana después. Salió #90 → #92 → #91. **Un plan que no compila en
+  sus estados intermedios no es un plan, es una lista de deseos.**
+- **`gh issue develop` corta de la rama por defecto.** La rama del primer issue
+  nació de `main`, 14 commits atrás, y el archivo que iba a editar no existía
+  todavía. Se detectó porque `cat` falló, no porque algo avisara. `CLAUDE.md`
+  documentaba el comando sin `--base staging`: la doc de un comando que se usa
+  ocho veces seguidas tiene que traer los flags que el proyecto necesita, no los
+  del caso general.
+- **El contrato de temas encontró tres roles disfrazados.** Al sacar el semáforo
+  aparecieron `--semaforo-parcial` pintando el banner de backup y los avisos de
+  escalado, y `--semaforo-cubierto` el fondo de `.mensaje-ok`. No eran usos
+  indebidos de un color: eran roles sin nombre propio (`--precaucion`, `--exito`,
+  `--suplemento`) que se habían colgado del rol más parecido. **Un token que se
+  usa para algo que su nombre no dice es un rol que falta**, y solo se ve cuando
+  el dueño original se va.
+- **`strictObject` es estricto en las dos puntas, y eso convierte un campo
+  borrado en un backup ilegible.** Sacar `consumos` del esquema hacía rebotar
+  entero cualquier archivo exportado antes — y con él las cocciones, que sí se
+  podían salvar. La migración del backup no es un accesorio de la migración de la
+  base: es la mitad que le devuelve los datos a alguien cuyo navegador purgó todo.
+- **Un aviso de pérdida de datos no necesita un flag nuevo.**
+  `meta.user_schema_version` solo se escribe al crear el registro, así que quien
+  venía de antes lo tiene viejo: eso ya es la marca. Se ató a
+  `ULTIMA_VERSION_CON_PERDIDA` y no a `USER_SCHEMA_VERSION` porque no toda
+  migración futura va a perder algo.
+- **Sacar un campo del esquema obliga a un `upgrade()`, no solo a un
+  `stores({})`.** Con `profileDataSchema` estricto, dejar `suplementos` en el
+  registro guardado habría hecho rebotar el próximo guardado con un ZodError: el
+  perfil quedaba de solo lectura sin que nada lo dijera.
+- **El invariante 5 también aplica a los rankings.** Una receta sin dato
+  reportable no entra a "las que más aportan" — ni siquiera al final, porque el
+  último puesto se lee como *"esta casi no tiene"*, que es afirmar algo que no
+  sabemos. Es el mismo razonamiento que el del 0 % contra el "sin datos", una
+  capa más arriba.
+- **El CI encontró otra carrera latente, y otra vez por ser más lento.** El test
+  de cableado de las recomendaciones calcula la nutrición de las 84 recetas con
+  el cache frío: ~700 ms en local contra el segundo que `waitFor` da por defecto.
+  Pasaba tres veces seguidas en la máquina y fallaba en el runner.
+- **El diff de renders sigue siendo lo único que permite mover CSS sin miedo.**
+  Las 20 reglas de nutrición vivían en `receta.css` y las leían tres pantallas.
+  Mover el bloque a `componentes.css` cerró con los 26 renders del tema D
+  idénticos byte por byte. Y por eso el movimiento no fue en el PR que agregaba
+  el porcentaje: ahí lo visual cambiaba y el diff no podía servir de red.
+  **Refactor neutro primero, cambio visual después** — la regla ya estaba escrita
+  desde la Fase 1 y esta vez se respetó de entrada.
+- **Un script de renders también se rompe en silencio.** El guard del sembrado
+  buscaba el "¿Cómo venís?" de la pantalla Hoy y hacía fallar la corrida entera
+  tres issues después de que Hoy dejara de existir. Los tests no lo cubrían: el
+  script no tiene tests, y es lo que produce el material de revisión de Facu.
