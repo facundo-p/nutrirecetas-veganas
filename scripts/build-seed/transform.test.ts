@@ -190,6 +190,13 @@ describe('nutrientes del catálogo', () => {
       expect(all.find((n) => n.id === id)!.ajuste_vegano?.factor).toBeUndefined();
     }
   });
+
+  test('los 20 llevan su descripción curada (T10)', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    for (const n of all) expect(n.descripcion.length, n.id).toBeGreaterThan(40);
+    // el caso que originó la tabla: el nombre "Proteína (lisina)" sin explicar
+    expect(all.find((n) => n.id === 'proteina')!.descripcion).toMatch(/lisina/);
+  });
 });
 
 describe('estacionalidad y conservación', () => {

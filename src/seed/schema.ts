@@ -106,6 +106,8 @@ export type RdaEntry = z.infer<typeof rdaEntrySchema>;
 export const nutrientSchema = z.strictObject({
   id: z.string().min(1),
   nombre: z.string().min(1),
+  /** Qué es y por qué importa en una dieta vegana. Curada en T10; obligatoria. */
+  descripcion: z.string().min(1),
   /** El README decía A/B; los datos reales usan critico/importante. */
   grupo: z.enum(['critico', 'importante']),
   unidad: z.string(),

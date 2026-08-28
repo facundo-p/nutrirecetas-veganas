@@ -77,3 +77,9 @@
 .aviso-nutriente {
   margin-bottom: var(--sp-4);
 }
+
+/* Qué es y por qué importa: prosa que acompaña, nunca antes que el aviso. */
+.nutriente-descripcion {
+  margin-bottom: var(--sp-4);
+  max-width: 62ch;
+}
