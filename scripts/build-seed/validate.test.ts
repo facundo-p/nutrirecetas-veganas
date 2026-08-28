@@ -53,6 +53,7 @@ function seedStub(recetas: Recipe[]): Omit<Seed, 'content_hash'> {
       {
         id: 'hierro',
         nombre: 'Hierro',
+        descripcion: 'Transporta el oxígeno en la sangre.',
         grupo: 'critico',
         unidad: 'mg',
         clave_ingrediente: 'hierro_mg',

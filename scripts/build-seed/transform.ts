@@ -16,6 +16,7 @@ import {
   CURATED_STEPS,
   CURATED_YIELDS,
   DE_FACTO_PREPARADOS,
+  NUTRIENT_DESCRIPTIONS,
   NUTRIENT_INGREDIENT_KEY,
   PHANTOM_LINES,
   STORAGE_GROUPS,
@@ -70,10 +71,13 @@ export function transformIngredient(raw: RawIngredient): Ingredient {
 export function transformNutrient(raw: RawNutrient): Nutrient {
   const clave = NUTRIENT_INGREDIENT_KEY[raw.id];
   if (!clave) throw new Error(`Nutriente "${raw.id}" sin clave de ingrediente mapeada`);
+  const descripcion = NUTRIENT_DESCRIPTIONS[raw.id];
+  if (!descripcion) throw new Error(`Nutriente "${raw.id}" sin descripción curada (T10)`);
   const desdeProsa = VEGAN_FACTORS_FROM_PROSE[raw.id];
   return {
     id: raw.id,
     nombre: raw.nombre,
+    descripcion: descripcion.texto,
     grupo: raw.grupo as Nutrient['grupo'],
     unidad: raw.unidad,
     clave_ingrediente: clave as Nutrient['clave_ingrediente'],

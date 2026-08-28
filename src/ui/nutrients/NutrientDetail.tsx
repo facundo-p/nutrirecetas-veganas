@@ -100,6 +100,8 @@ export function NutrientDetail({ id }: { id: string }) {
         </p>
       )}
 
+      <p className="nutriente-descripcion">{nutriente.descripcion}</p>
+
       {nutriente.ul !== null && (
         <p className="nutricion-referencia">
           Límite superior: {formatNumber(nutriente.ul, nutriente.ul >= 100 ? 0 : 1)} {unidad} por día

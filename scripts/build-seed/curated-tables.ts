@@ -428,3 +428,122 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     ],
   },
 };
+
+// ---------- T10: qué es y por qué importa cada nutriente ----------
+
+/**
+ * La ficha mostraba dosis, ajuste vegano y fuentes, pero nunca decía qué es el
+ * nutriente ni por qué está en el catálogo — y "Proteína (lisina)" quedaba sin
+ * explicar. El dataset no trae este texto: su prosa es la señal vegana, no el
+ * rol. El rol fisiológico sale de las fichas NIH ODS que el dataset ya cita
+ * como fuentes; la señal vegana, de la sección de `nutrientes-veganos.md` que
+ * `base` indica. Sin dosis nuevas: los números viven en la RDA y las notas.
+ */
+
+export interface NutrientDescription {
+  texto: string;
+  base: string;
+}
+
+export const NUTRIENT_DESCRIPTIONS: Record<string, NutrientDescription> = {
+  b12: {
+    texto:
+      'Mantiene las neuronas y fabrica los glóbulos rojos; su falta sostenida daña los nervios, a veces sin vuelta atrás. Ningún vegetal la aporta de forma confiable: en una dieta vegana viene sí o sí de un suplemento o de alimentos fortificados.',
+    base: 'rol: NIH ODS Vitamin B12 [1]; señal vegana: A1 (sin fuente vegetal confiable, IC 8)',
+  },
+  vitd: {
+    texto:
+      'Regula la absorción del calcio y participa en el sistema inmune y el músculo. Se obtiene del sol más que de la comida — casi ningún alimento vegetal la trae, y en el invierno porteño la síntesis cutánea cae fuerte.',
+    base: 'rol: NIH ODS Vitamin D [5]; señal vegana: A2 (síntesis solar, lat. ~34°S)',
+  },
+  hierro: {
+    texto:
+      'Transporta el oxígeno en la sangre; su falta es la carencia nutricional más común. El hierro vegetal se absorbe menos que el animal y depende de la compañía: la vitamina C en la misma comida lo multiplica; el mate, el té y el café lo bloquean.',
+    base: 'rol: NIH ODS Iron [6]; señal vegana: A3 (no-hemo, potenciadores e inhibidores)',
+  },
+  zinc: {
+    texto:
+      'Hace falta para las defensas, la cicatrización y el gusto. Los fitatos de granos y legumbres —los mismos alimentos que lo aportan— frenan su absorción: remojar, fermentar o tostar la mejora.',
+    base: 'rol: NIH ODS Zinc [13]; señal vegana: A4 (fitatos y técnicas que los desactivan)',
+  },
+  calcio: {
+    texto:
+      'Forma huesos y dientes e interviene en el músculo y los nervios. Cuánto se absorbe depende del vegetal: las crucíferas lo entregan bien; el de espinaca y acelga casi no cuenta, por sus oxalatos.',
+    base: 'rol: NIH ODS Calcium [11]; señal vegana: A5 (biodisponibilidad por vegetal)',
+  },
+  yodo: {
+    texto:
+      'Materia prima de las hormonas tiroideas, que marcan el ritmo del metabolismo entero. Sin pescado ni lácteos, la fuente vegana confiable es la sal yodada — las sales marinas y rosadas generalmente no lo están.',
+    base: 'rol: NIH ODS Iodine [17]; señal vegana: A6 (sal yodada por ley, sales premium sin yodar)',
+  },
+  selenio: {
+    texto:
+      'Antioxidante y parte de las enzimas que activan la hormona tiroidea. En los vegetales depende del selenio del suelo, así que las tablas son poco confiables; las castañas de Pará lo concentran tanto que una o dos por día alcanzan — y conviene no pasarse.',
+    base: 'rol: NIH ODS Selenium [20] (verificado 2026-08); señal vegana: A7 (suelo variable, castañas)',
+  },
+  omega3: {
+    texto:
+      'Grasas esenciales para el cerebro, la vista y el corazón. El cuerpo convierte mal el ALA vegetal (lino, chía, nueces) en EPA y DHA, por eso la referencia vegana duplica la ingesta; el exceso de aceite de girasol o maíz compite con esa conversión.',
+    base: 'rol: NASEM [22]; señal vegana: A8 (conversión pobre, competencia del omega-6)',
+  },
+  proteina: {
+    texto:
+      'Acá se mide la proteína total, en gramos. La lisina del nombre no es lo que se mide: es el aminoácido que suele quedar corto en una dieta vegana —abunda en legumbres, soja y quinoa, escasea en cereales— y sirve de termómetro: cubierta la lisina, el resto del perfil se acomoda solo.',
+    base: 'qué se mide: clave prot_g de la semilla; lisina como limitante práctico: A9 (IC 7, AND 2016)',
+  },
+  vitc: {
+    texto:
+      'Antioxidante y necesaria para fabricar colágeno. Una dieta vegana la cubre con holgura; su rol estratégico acá es multiplicar la absorción del hierro cuando comparten la comida. Se pierde con el hervor largo.',
+    base: 'rol: NIH ODS Vitamin C [27]; señal vegana: B1 (potenciador de hierro)',
+  },
+  vita: {
+    texto:
+      'Hace falta para la vista, la piel y las defensas. En una dieta vegana viene entera de los carotenoides de zanahoria, calabaza, batata y hojas oscuras — que necesitan algo de grasa en la comida para absorberse.',
+    base: 'rol: NIH ODS Vitamin A [9]; señal vegana: B2 (provitamina A + grasa)',
+  },
+  folato: {
+    texto:
+      'Fabrica ADN y glóbulos rojos: importa donde el cuerpo produce células nuevas. Legumbres y hojas verdes lo cubren de sobra en una dieta vegana; el hervor largo se lo lleva.',
+    base: 'rol: NIH ODS Folate [28]; señal vegana: B3',
+  },
+  b2: {
+    texto:
+      'Pieza central de las enzimas que convierten la comida en energía. La fuente omnívora principal son los lácteos: sin ellos, la aportan almendras, hongos y levadura nutricional.',
+    base: 'rol: NIH ODS Riboflavin [29] (verificado 2026-08); señal vegana: B4',
+  },
+  vite: {
+    texto:
+      'Antioxidante que protege las membranas de las células. Girasol, almendras, palta y oliva la cubren sin esfuerzo en una dieta vegana.',
+    base: 'rol: NIH ODS Vitamin E [30]; señal vegana: B5',
+  },
+  vitk: {
+    texto:
+      'Sin ella la sangre no coagula, y participa en la salud del hueso. Las hojas verdes la cubren de sobra; es liposoluble: mejor con algo de grasa.',
+    base: 'rol: NIH ODS Vitamin K [31] (verificado 2026-08); señal vegana: B6',
+  },
+  b6: {
+    texto:
+      'Interviene en el metabolismo de las proteínas y en fabricar neurotransmisores. Banana, papa y garbanzos la aportan; rara vez falta en una dieta variada.',
+    base: 'rol: NIH ODS Vitamin B6 [29]; señal vegana: B7',
+  },
+  magnesio: {
+    texto:
+      'Participa en cientos de reacciones: músculo, nervios, energía, hueso. La dieta vegana suele ser rica — semillas, cacao, almendras, legumbres e integrales.',
+    base: 'rol: NIH ODS Magnesium [32]; señal vegana: B8',
+  },
+  potasio: {
+    texto:
+      'Regula la presión arterial y el equilibrio de líquidos. Papa, batata, banana, legumbres y palta hacen que la dieta vegana tienda a ser alta — y eso juega a favor.',
+    base: 'rol: NIH ODS Potassium / NASEM 2019 [33]; señal vegana: B9',
+  },
+  fibra: {
+    texto:
+      'Más que un nutriente a buscar, es el efecto colateral bueno de comer plantas: alimenta la flora intestinal, regula el tránsito y ayuda con el colesterol. Una dieta vegana suele superarla sin proponérselo.',
+    base: 'rol: NASEM [22]; señal vegana: B10 (la mediana vegana supera la AI)',
+  },
+  colina: {
+    texto:
+      'Materia prima de las membranas celulares y de la acetilcolina, un neurotransmisor de la memoria y el músculo; el hígado la necesita para mover grasas. La fuente omnívora principal es el huevo: acá la aportan soja, maní, quinoa y brócoli. La evidencia de deficiencia real en veganos es limitada.',
+    base: 'rol: NIH ODS Choline [35] (verificado 2026-08); señal vegana: B11 (emergente, IC 5)',
+  },
+};

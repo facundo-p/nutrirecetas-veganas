@@ -62,6 +62,20 @@ describe('ficha de nutriente', () => {
     expect(screen.getByText(/no hace falta llegar todos los días/i)).toBeDefined();
   });
 
+  test('dice qué es el nutriente y por qué importa en una dieta vegana', async () => {
+    const { container } = render(<NutrientDetail id="hierro" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Hierro' })).toBeDefined());
+    expect(container.querySelector('.nutriente-descripcion')!.textContent).toMatch(/oxígeno/i);
+  });
+
+  test('la de proteína explica que se mide proteína total y qué pinta la lisina', async () => {
+    const { container } = render(<NutrientDetail id="proteina" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: /Proteína/ })).toBeDefined());
+    const descripcion = container.querySelector('.nutriente-descripcion')!.textContent!;
+    expect(descripcion).toMatch(/proteína total/i);
+    expect(descripcion).toMatch(/lisina/i);
+  });
+
   test('un nutriente inexistente no rompe', () => {
     render(<NutrientDetail id="zzz" />);
     expect(screen.getByRole('heading', { name: /Nutriente no encontrado/ })).toBeDefined();
