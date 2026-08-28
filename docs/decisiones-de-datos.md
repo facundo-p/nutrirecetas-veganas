@@ -117,7 +117,7 @@ Para los dos niveles de entrenamiento manda la literatura deportiva, que es más
 
 **Si no te cierra**: se cambia el factor en `ENTRENAMIENTO` y el test dice qué g/kg quedó. El escape individual sigue siendo un `override` con motivo, que pisa todo.
 
-## 8. T9 — pasos reescritos (piloto de 8, pendiente de revisión de Facu)
+## 8. T9 — pasos reescritos (las 84, estilo aprobado)
 
 Las instrucciones del dataset son notas de cocinero, no una receta. Medido sobre las 84: **3,95 pasos y ~202 caracteres de instrucciones por receta entera**, un tuit corto. El 34 % de los pasos tiene menos de 40 caracteres, 7 recetas tienen menos de 3 pasos, y la mayoría de los ingredientes no aparece nunca.
 
@@ -134,7 +134,7 @@ Buena parte del arreglo es **recuperación, no invención**: los `.md` de `.arti
 
 Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nivel 4. El campo `base` de cada una dice exactamente qué salió de dónde.
 
-### El estilo, que es lo que hay que aprobar antes de seguir con las 76
+### El estilo (aprobado por Facu el 2026-08-27, con dos salvedades)
 
 - Oración completa en rioplatense. Nada de `;` y `+` como pegamento.
 - Cada paso dice qué entra, dónde, a qué fuego y **cuál es la señal** para pasar al siguiente ("hasta que se deshacen solas"), no solo el minutaje.
@@ -143,6 +143,8 @@ Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nive
 - Los `secretos_chef` no se absorben: siguen aparte.
 - 4 a 8 pasos. Antes que apilar tres acciones en uno, se parte.
 - Se conserva el énfasis útil del original (`A MANO`, `EN CALIENTE`, `TENEDOR`).
+- **Sin códigos del dataset en los pasos** (salvedad 1): ni reglas (R8) ni ids de recetas (P04). El porqué se dice con palabras; otra receta, por su nombre.
+- **Las correcciones de contenido no llegan a la app** (salvedad 2): viven en `nota`, que junto con `base` queda del lado del build — `transform.ts` solo toma `pasos`.
 
 ### El piloto
 
@@ -157,6 +159,89 @@ Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nive
 | `r13` | Rolls de nori | 4 | 8 | técnica de manos; el armado entero era un paso | |
 | `p11` | Picada vegana | 2 | 7 | combo: el "paso 2" era una lista de referencias, no un paso | |
 
+### Las 76 restantes (2026-08-28)
+
+Escritas con el mismo criterio, todas con `flag_gate: true`: cada una suma técnica estándar (fuego, recipiente, señal) que Facu valida cocinando. La columna "corrección" resume la `nota` de la entrada cuando los pasos viejos tenían un problema de contenido, no solo de redacción.
+
+| id | receta | antes | ahora | corrección | ¿OK? |
+|---|---|---|---|---|---|
+| `d01` | Brownies de porotos negros | 4 | 6 |  | |
+| `d02` | Galletitas de banana y avena | 4 | 4 |  | |
+| `d03` | Mousse de chocolate y palta | 3 | 6 |  | |
+| `d04` | Budín de banana integral | 5 | 7 |  | |
+| `d05` | Bolitas de dátiles, cacao y maní | 3 | 5 |  | |
+| `d06` | Crumble de manzana y avena | 4 | 4 |  | |
+| `d07` | Helado de banana (nice cream) | 2 | 5 |  | |
+| `d08` | Arroz con leche vegetal y canela | 4 | 5 |  | |
+| `d09` | Budín de chía al cacao | 3 | 5 |  | |
+| `d10` | Muffins integrales de zanahoria y nueces | 4 | 6 | La prosa del .md suma jengibre en polvo a las especias, pero no existe como línea de ingrediente en el JSON: no entra a los pasos. La sal sí, como despensa básica. | |
+| `p01` | Leche de soja casera | 5 | 7 |  | |
+| `p02` | Leche de coco casera | 3 | 4 |  | |
+| `p03` | Manteca vegana | 3 | 6 | La línea del aceite de oliva dice "cda_girasol" en la unidad: se nombró oliva, que es lo que dice el ingrediente. | |
+| `p04` | Queso de maní (muzza fundente) | 4 | 6 |  | |
+| `p05` | Quesofu (untable de tofu) | 3 | 6 |  | |
+| `p06` | Queso de papa (paparella) | 4 | 5 |  | |
+| `p07` | Masa integral para tartas | 4 | 6 |  | |
+| `p09` | Guiso de lentejas liviano (base licuada) | 4 | 6 |  | |
+| `p10` | Milanesas de soja (de okara) | 4 | 5 | La línea del pimentón trae "+ sal, curry, ajo en polvo" como parte del condimento: se nombran como opcionales aunque no tengan línea propia. | |
+| `p12` | Curry de garbanzos y seitán con durazno | 4 | 6 | El seitán no aparecía en ningún paso viejo: entra en cubos junto con los duraznos y los garbanzos. El "ají" de los pasos viejos es la línea de pimentón picante (la unidad dice ají o cayena). | |
+| `p13` | Coliflor en adobo filipino | 5 | 7 |  | |
+| `p14` | Sopa crema de garbanzo, espinaca y manzana | 3 | 4 |  | |
+| `p15` | Ñoquis de calabaza con crema de frutos secos | 5 | 8 | La salsa entera era un solo paso viejo para cinco ingredientes. El remojo de 4 h de los frutos secos es previo y pasivo: se declara de entrada y no entra en los 40 min de preparación declarados. | |
+| `p16` | Relleno de soja texturizada y hongos | 4 | 5 |  | |
+| `p17` | Hamburguesas de texturizada y remolacha | 5 | 7 | La cocción declarada es 0 porque el batch termina congelado en placa: la cocción real es al momento de comerlas, siempre desde el freezer. | |
+| `p18` | Sushi — técnica maestra de arroz | 5 | 8 |  | |
+| `p19` | Pastel de papas | 5 | 7 |  | |
+| `p20` | Locro vegano | 5 | 8 |  | |
+| `p21` | Burgers de aduki | 5 | 7 | Los 10 minutos de cocción del encabezado son los de la sartén: la alternativa al horno tarda 20-25 y queda como opción. | |
+| `p22` | Tarta de zapallitos, zanahoria y tofu | 4 | 6 | El paso viejo tiraba "semillas por encima" que no existen como línea de la receta: se sacan. | |
+| `p23` | Vitel toné vegano de seitán | 6 | 8 |  | |
+| `p25` | Ensalada de banana y remolacha | 1 | 4 | El paso viejo arrancaba con la remolacha ya hervida y el encabezado declara 20 minutos de cocción: el hervor ahora es un paso. | |
+| `p26` | Crema chocoporotos | 1 | 5 |  | |
+| `p28` | Panqueques de avena y banana | 3 | 4 |  | |
+| `p29` | Budín de banana clásico | 4 | 6 | La cucharada de esencia de vainilla, imprescindible en la lista, no aparecía en ningún paso. | |
+| `p30` | Carrot cake liviana | 2 | 6 | Dos pasos para diez ingredientes: el azúcar, la vainilla, el polvo de hornear y las nueces no aparecían en ninguno. | |
+| `p31` | Pastafrola | 5 | 6 |  | |
+| `p32` | Brownies de aduki y avena | 3 | 6 | La línea de aceite dice oliva en el id pero "taza_girasol" en la unidad: se escribió "de girasol o de oliva" para no contradecir ninguna de las dos. | |
+| `p33` | Brownies de poroto y girasol | 3 | 6 |  | |
+| `p34` | Brownies chocoporotos sin harina | 4 | 6 | Los pasos viejos daban 190° 20-40 min "según molde" y el encabezado declara 25: se dejó 25 como referencia para el molde chico de la receta, el rango como aviso y la señal del palillo mandando. | |
+| `p35` | Arroz con leche de coco | 4 | 5 |  | |
+| `p37` | Lemonies | 3 | 6 |  | |
+| `p38` | Bocaditos helados de banana y chocolate | 3 | 5 |  | |
+| `p39` | Crumble de manzana con crema de vainiporotos | 5 | 7 | El paso viejo de la masa ("manteca pomada + impalpable + vainilla + harina") omitía los 50 g de fécula que la lista asigna a la masa: se incorporaron ahí. | |
+| `p40` | Pudding de chía y chocolate | 3 | 4 |  | |
+| `p41` | Torta/budín de coco | 3 | 6 |  | |
+| `p42` | Cuadrados de limón (agar) | 4 | 7 |  | |
+| `p43` | Pan proteico de calabaza | 5 | 6 | El levado de 1 hora y los 15 minutos de activación del original no entran ni en prep (20) ni en cocción (25): se mantienen con su señal, porque sin ellos no hay pan. | |
+| `p44` | Masa de pizza de masa madre (sin amasado) | 3 | 5 |  | |
+| `p45` | Crackers de masa madre | 4 | 6 |  | |
+| `r01` | Sopa de lentejas rojas al estilo turco | 5 | 6 |  | |
+| `r02` | Curry de garbanzos y espinaca | 6 | 7 |  | |
+| `r03` | Hummus cremoso técnica Zahav | 5 | 5 |  | |
+| `r04` | Boloñesa de lentejas y nueces | 5 | 7 | Los pasos viejos pedían 600 ml de caldo que no existe como línea de la receta: queda como agua —o caldo, si hay—, con el agua de despensa. | |
+| `r05` | Tofu revuelto (scramble) | 5 | 5 |  | |
+| `r06` | Hamburguesas de porotos negros | 5 | 7 |  | |
+| `r07` | Bowl de quinoa con garbanzos crocantes y salsa de tahini | 4 | 6 |  | |
+| `r08` | Sopa crema de calabaza asada | 5 | 6 | Los pasos viejos rectificaban con "gotas de limón", que no existe como línea de ingrediente: se saca. | |
+| `r09` | Guiso de lentejas argentino (veganizado) | 6 | 7 | Los pasos viejos cocinaban con "caldo", que no existe como línea de ingrediente: se usa agua hirviendo — la salsa de soja ya pone el fondo de sabor. | |
+| `r10` | Budín de chía y avena nocturno | 4 | 5 |  | |
+| `r11` | Salteado de tofu y brócoli al sésamo con arroz integral | 4 | 7 | El arroz integral tarda más que los 20 minutos de cocción declarados: se pone a cocinar primero y el salteado se hace mientras — el encabezado cuenta solo el wok. | |
+| `r12` | Ensalada de kale masajeado, garbanzos y naranja | 3 | 5 | La receta entera eran tres pasos telegráficos: se despliega el armado. | |
+| `r14` | Fideos al pesto de albahaca y nueces con tomates asados | 4 | 6 |  | |
+| `r15` | Chili sin carne con cacao | 4 | 6 | Los pasos viejos servían "con palta", que no existe como línea de ingrediente: se saca. | |
+| `r16` | Omelette de harina de garbanzo con verduras | 4 | 6 |  | |
+| `r17` | Guiso toscano de alubias y kale | 5 | 6 |  | |
+| `r19` | Tabule de quinoa con menta | 4 | 6 |  | |
+| `r20` | Arroz integral salteado con edamame, champiñones y maní | 5 | 6 |  | |
+| `r21` | Milanesas de tofu al horno | 6 | 6 |  | |
+| `r22` | Tacos de lentejas con palta y crema de limón | 5 | 7 | La receta lista los 2 dientes de ajo "para el sofrito", pero la crema también pide ajo: se reparte un diente para cada lado. | |
+| `r23` | Burritos de porotos negros con arroz al limón | 4 | 7 |  | |
+| `r24` | Ensalada mediterránea con tofu marinado al horno | 4 | 7 |  | |
+| `r25` | Ensalada tibia de quinoa, garbanzos y verduras asadas | 4 | 6 | Los pasos viejos nunca ubicaban los garbanzos; la prosa pide placa amplia para "garbanzos y verduras CON espacio", así que se asan juntos. El comino figuraba a la vez en el asado y en el aliño: se reparte, con una pizca reservada para el aliño. | |
+| `r26` | Guiso de quinoa con verduras y garbanzos | 4 | 8 |  | |
+| `r27` | Ensalada de arroz integral, lentejas y aliño cítrico | 4 | 6 |  | |
+| `r29` | Ensalada de garbanzos, palta y tomate con aliño de comino | 4 | 5 |  | |
+
 ### Correcciones de contenido, no solo de redacción
 
 - **`r18`**: los pasos nombraban un **"ají" que no existe como línea de ingrediente**. Se saca.
@@ -169,6 +254,8 @@ Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nive
 
 `scripts/build-seed/transform.test.ts`, `describe('pasos (T9)')`:
 
+- **Las 84 recetas tienen entrada en T9**: una receta nueva sin pasos curados rompe el build.
+- **Ningún paso nombra un código del dataset** (`/\b[rpud]\d{1,2}\b/i`).
 - Ninguna receta curada baja de 3 pasos.
 - Ningún paso baja de 40 caracteres.
 - **Todo ingrediente `imprescindible` se nombra en los pasos** — el test que caza "22 ingredientes, 4 pasos".

@@ -257,3 +257,28 @@ podía fallar: el motivo era correcto según su propia lógica.
   bundle sin el cambio. Se notó porque el error de tipos pasó rozando por
   pantalla. Guardas baratas: chequear el exit sin pipe, y que el script avise si
   `dist/` es más viejo que la semilla o `src/`.
+
+---
+
+## Las 84 recetas con pasos de verdad (2026-08-28, #65)
+
+- **El piloto bloqueado era un artifact de distancia.** #65 esperó cinco días "la
+  aprobación del estilo" que Facu no sabía que debía: el piloto vivía en la tabla
+  curada y en un doc, no en algo mirable. Armar la página antes/después destrabó
+  la decisión en una pasada — y trajo dos salvedades (sin códigos R8/P04 en los
+  pasos, correcciones solo del lado del build) que mejoraron el criterio.
+- **76 recetas en paralelo salen parejas si el prompt lleva las reglas de los
+  tests, no solo el estilo.** Cada agente recibió el matcher de imprescindibles
+  explicado (prefijo ≥4, palabra exacta <4), la ventana de 6 palabras de los
+  secretos y el regex de códigos, más dos entradas del piloto como voz. Los 8
+  entregaron verificado y el ensamblado pasó los 50 tests de calidad al primer
+  intento.
+- **La reescritura fue también una auditoría**: ~20 recetas tenían problemas de
+  contenido, no de redacción — ingredientes imprescindibles que ningún paso
+  nombraba (p29, p30), caldos y ajíes fantasma sin línea (r04, r09, r08, r15),
+  tiempos contradictorios (p34, p43, r11). Todo quedó en `nota`, que no llega a
+  la app: es material del gate.
+- **Antes de culpar al cambio, medir el baseline.** La suite completa dio 9 rojos
+  tras insertar las 76; en baseline (stash) fallan los mismos tests con los
+  mismos timeouts de 5 s: flakiness de esta máquina bajo carga, preexistente.
+  Los archivos afectados pasan aislados; el árbitro es el CI.

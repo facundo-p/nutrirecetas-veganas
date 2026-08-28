@@ -242,8 +242,15 @@ describe('pasos (T9)', () => {
 
   const curadas = () => recipes.filter((r) => Object.keys(CURATED_STEPS).includes(r.id));
 
-  test('el piloto de 8 entró en la semilla', () => {
-    expect(curadas()).toHaveLength(8);
+  test('las 84 recetas tienen pasos curados', () => {
+    expect(curadas()).toHaveLength(recipes.length);
+  });
+
+  test('ningún paso nombra un código del dataset', () => {
+    // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina.
+    for (const r of curadas()) {
+      for (const paso of r.pasos) expect(paso, `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
+    }
   });
 
   test('una entrada de T9 para una receta inexistente rompe el build', () => {
@@ -303,7 +310,4 @@ describe('pasos (T9)', () => {
     }
   });
 
-  test('las recetas sin entrada en T9 quedan intactas', () => {
-    expect(byId.get('r01')!.pasos[0]).toBe('Sofreír cebolla y zanahoria en el aceite 6-8 min hasta dorar levemente');
-  });
 });
