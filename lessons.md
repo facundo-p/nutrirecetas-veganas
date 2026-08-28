@@ -282,3 +282,15 @@ podía fallar: el motivo era correcto según su propia lógica.
   tras insertar las 76; en baseline (stash) fallan los mismos tests con los
   mismos timeouts de 5 s: flakiness de esta máquina bajo carga, preexistente.
   Los archivos afectados pasan aislados; el árbitro es el CI.
+
+---
+
+## El paréntesis que prometía una validación (2026-08-28, #123)
+
+- **Un nombre también afirma.** "Proteína (lisina)" venía del dataset, y la ficha
+  (T10) ya aclaraba que no se mide lisina — pero el nombre viaja solo a lugares
+  donde la ficha no llega: la tabla de la receta, el filtro "rica en". Lo destapó
+  `p44`, una masa 100 % trigo (el cereal pobre en lisina) "aportando 28 % de
+  Proteína (lisina)". Cuando la etiqueta misma sobreafirma, explicar no alcanza:
+  se renombra (T11). Mismo linaje que la B12 tranquilizadora — el contexto es
+  parte del dato, y el nombre es el contexto que va a todas partes.

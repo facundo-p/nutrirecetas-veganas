@@ -191,6 +191,12 @@ describe('nutrientes del catálogo', () => {
     }
   });
 
+  test('el nombre que promete lo que no se mide se corrige (T11)', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    // el dataset dice "Proteína (lisina)", pero la clave es prot_g: proteína total
+    expect(all.find((n) => n.id === 'proteina')!.nombre).toBe('Proteína');
+  });
+
   test('los 20 llevan su descripción curada (T10)', () => {
     const all = raw.nutrientes.map(transformNutrient);
     for (const n of all) expect(n.descripcion.length, n.id).toBeGreaterThan(40);
