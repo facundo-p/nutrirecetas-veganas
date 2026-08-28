@@ -174,3 +174,34 @@ Las ocho entradas del piloto llevan `flag_gate: true`: todas suman algo del nive
 - **Todo ingrediente `imprescindible` se nombra en los pasos** — el test que caza "22 ingredientes, 4 pasos".
 - El matcher de ingredientes tiene sus propios casos: tolera acento y plural, y no da por nombrada la `sal` dentro de "salsa".
 - Una entrada de T9 para una receta inexistente **rompe el build**.
+
+## 9. T10 — qué es y por qué importa cada nutriente (Fase 3, pendiente de revisión de Facu)
+
+La ficha de un nutriente mostraba dosis, ajuste vegano y fuentes, pero nunca decía qué es ni por qué está en el catálogo: "Proteína (lisina)" pasó dos fases sin explicar. El dataset no trae ese texto — su prosa es la señal vegana, no el rol fisiológico. T10 lo cura: el rol sale de las fichas NIH ODS que el dataset ya cita como fuentes, y la señal vegana de la sección de `nutrientes-veganos.md` que cada `base` indica. **Sin dosis nuevas**: los números siguen viviendo en la RDA y las notas.
+
+El texto completo se lee en la ficha (renders de la fase) o en `NUTRIENT_DESCRIPTIONS` (`curated-tables.ts`). Acá, la afirmación más fuerte de cada texto — que es lo que hay que revisar — y de dónde sale:
+
+| nutriente | la afirmación más fuerte | rol desde | señal vegana | ¿OK? |
+|---|---|---|---|---|
+| Vitamina B12 | su falta sostenida daña los nervios, a veces sin vuelta atrás; ningún vegetal la aporta de forma confiable | NIH ODS [1] | A1 (IC 8) | |
+| Vitamina D | casi ningún alimento vegetal la trae, y en el invierno porteño la síntesis cutánea cae fuerte | NIH ODS [5] | A2 | |
+| Hierro | la carencia más común; la vitamina C en la misma comida lo multiplica, mate/té/café lo bloquean | NIH ODS [6] | A3 | |
+| Zinc | los fitatos de granos y legumbres frenan su absorción; remojar, fermentar o tostar la mejora | NIH ODS [13] | A4 | |
+| Calcio | el de espinaca y acelga casi no cuenta, por sus oxalatos | NIH ODS [11] | A5 | |
+| Yodo | la fuente vegana confiable es la sal yodada; las sales marinas y rosadas generalmente no lo están | NIH ODS [17] | A6 | |
+| Selenio | las castañas de Pará lo concentran tanto que una o dos por día alcanzan — y conviene no pasarse | NIH ODS [20] · verificado 2026-08 | A7 | |
+| Omega-3 | el cuerpo convierte mal el ALA en EPA/DHA; el exceso de girasol o maíz compite con esa conversión | NASEM [22] | A8 | |
+| Proteína (lisina) | se mide proteína total; la lisina es termómetro: cubierta la lisina, el resto del perfil se acomoda solo | clave `prot_g` de la semilla | A9 (AND 2016, IC 7) | |
+| Vitamina C | su rol estratégico acá es multiplicar la absorción del hierro; se pierde con el hervor largo | NIH ODS [27] | B1 | |
+| Vitamina A | los carotenoides necesitan algo de grasa en la comida para absorberse | NIH ODS [9] | B2 | |
+| Folato (B9) | legumbres y hojas verdes lo cubren de sobra; el hervor largo se lo lleva | NIH ODS [28] | B3 | |
+| Riboflavina (B2) | la fuente omnívora principal son los lácteos: sin ellos, almendras, hongos y levadura nutricional | NIH ODS [29] · verificado 2026-08 | B4 | |
+| Vitamina E | girasol, almendras, palta y oliva la cubren sin esfuerzo | NIH ODS [30] | B5 | |
+| Vitamina K | las hojas verdes la cubren de sobra; liposoluble, mejor con algo de grasa | NIH ODS [31] · verificado 2026-08 | B6 | |
+| Vitamina B6 | rara vez falta en una dieta variada | NIH ODS [29] | B7 | |
+| Magnesio | la dieta vegana suele ser rica: semillas, cacao, almendras, legumbres e integrales | NIH ODS [32] | B8 | |
+| Potasio | la dieta vegana tiende a ser alta — y eso juega a favor | NIH ODS / NASEM 2019 [33] | B9 | |
+| Fibra | el efecto colateral bueno de comer plantas; una dieta vegana suele superarla sin proponérselo | NASEM [22] | B10 | |
+| Colina | la fuente omnívora principal es el huevo; la evidencia de deficiencia real en veganos es limitada | NIH ODS [35] · verificado 2026-08 | B11 (emergente, IC 5) | |
+
+**Si alguno no te cierra**: se corrige el texto en T10 y la ficha lo toma en el próximo build. Un nutriente sin entrada en T10 **rompe el build** (`transform.ts`), y el test exige los 20 con más de 40 caracteres.
