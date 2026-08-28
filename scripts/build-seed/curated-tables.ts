@@ -290,6 +290,8 @@ export const VEGAN_FACTORS_FROM_PROSE: Record<string, ProseVeganFactor> = {
  * - Los `secretos_chef` no se absorben: siguen aparte.
  * - 4 a 8 pasos. Antes que apilar tres acciones en uno, se parte.
  * - Se conserva el énfasis útil del original (A MANO, EN CALIENTE, TENEDOR).
+ * - Sin códigos del dataset en los pasos: ni reglas (R8) ni ids de recetas
+ *   (P04). El porqué se dice con palabras; otra receta, por su nombre.
  *
  * `base` dice de dónde salió cada cosa. `flag_gate: true` significa que la
  * entrada suma técnica de cocina estándar que el dataset no declara (fuego,
@@ -310,14 +312,14 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     flag_gate: true,
     nota: 'Los pasos viejos nombraban un "ají" que no existe como línea de ingrediente: se saca. Jengibre, pimienta negra y arroz no aparecían en ningún paso.',
     pasos: [
-      'Enjuagar las lentejas turcas hasta que el agua salga clara y ponerlas en una olla con 900 ml de agua fría, la cucharadita de cúrcuma y la media cucharadita de pimienta negra. La pimienta no es condimento acá: es lo que hace que la curcumina se absorba (regla R8).',
+      'Enjuagar las lentejas turcas hasta que el agua salga clara y ponerlas en una olla con 900 ml de agua fría, la cucharadita de cúrcuma y la media cucharadita de pimienta negra. La pimienta no es condimento acá: es lo que hace que la curcumina se absorba.',
       'Llevar a hervor, bajar a fuego medio-bajo y cocinar 20 a 25 minutos destapado, revolviendo cada tanto para que no se pegue al fondo. Están listas cuando se deshacen solas y ya no se distingue el grano.',
       'Batir el dal con batidor o cuchara de madera hasta que quede cremoso y parejo. Si quedó muy espeso, aflojar con un chorrito de agua caliente: tiene que caer de la cuchara, no quedarse pegado.',
       'Si vas a acompañar con arroz, poner ahora la taza de arroz blanco a cocinar: llega justo con el dal.',
       'El tadka se hace aparte, en una sartencita, nunca en la olla del dal. Calentar las 3 cucharadas de aceite de oliva a fuego medio-alto, tirar la cucharadita de comino en grano y esperar a que crepite, unos 30 segundos.',
       'Sumar los 4 dientes de ajo laminados y la cucharada de jengibre, y revolver SEGUNDOS, hasta que el ajo apenas tome color. Si lo usás, el tomate picado entra acá y se saltea 30 segundos más.',
       'Volcar el tadka hirviendo sobre el dal — el "tsss" es el plato — y revolver una sola vez, para que quede veteado y no uniforme.',
-      'Apagar el fuego, exprimir el jugo del limón y salar. El limón va al final y fuera del fuego: es lo que activa la absorción del hierro (regla R1).',
+      'Apagar el fuego, exprimir el jugo del limón y salar. El limón va al final y fuera del fuego: es lo que activa la absorción del hierro.',
     ],
   },
 
@@ -388,7 +390,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     pasos: [
       'Precalentar el horno a 180°. Aceitar un molde de 24 cm, mejor si es con chimenea, y enharinarlo con fécula de mandioca.',
       'Pelar y rallar los 500 g de mandioca cruda. Va cruda y sin pelar de más: la mandioca aporta el almidón que reemplaza a la harina, así que la torta sale sin gluten.',
-      'Licuar la mandioca rallada con la media banana madura, los 200 ml de bebida de soja, las 6 cucharadas de aceite neutro y los 50 g de margarina —o manteca vegana P03— hasta obtener una crema lisa. Lleva su tiempo y hay que parar a bajar lo que sube por las paredes: la mandioca es fibrosa y cuesta.',
+      'Licuar la mandioca rallada con la media banana madura, los 200 ml de bebida de soja, las 6 cucharadas de aceite neutro y los 50 g de margarina —o manteca vegana— hasta obtener una crema lisa. Lleva su tiempo y hay que parar a bajar lo que sube por las paredes: la mandioca es fibrosa y cuesta.',
       'Sumar los 250 g de azúcar, la pizca de sal y las 2 cucharaditas de polvo de hornear, y licuar un poco más, solo hasta integrar.',
       'Volcar la mezcla en un bol e incorporar los 100 g de coco rallado con cuchara, con movimientos envolventes. Acá se deja la licuadora: el coco tiene que quedar entero, no molido.',
       'Verter en el molde, emparejar la superficie y espolvorear coco rallado extra por encima.',
@@ -420,9 +422,9 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     pasos: [
       'Arrancar por lo que más tarda: los 300 g de mandioca y los 300 g de papa cortados en bastones, con aceite y sal, a horno fuerte (200°) entre 30 y 40 minutos, hasta que estén dorados y crocantes por fuera.',
       'Tostar los 150 g de pan integral en rodajas, en horno o tostadora, hasta que queden firmes: tienen que aguantar el untable sin doblarse.',
-      'Preparar el guacamole pisando la palta con limón y sal. Si sumás hummus (R03), queso de maní (P04) o quesofu (P05), es el momento de sacarlos de la heladera: los untables van a temperatura ambiente, fríos no saben a nada.',
+      'Preparar el guacamole pisando la palta con limón y sal. Si sumás hummus, queso de maní o quesofu, es el momento de sacarlos de la heladera: los untables van a temperatura ambiente, fríos no saben a nada.',
       'Cortar los crudos: la zanahoria y el morrón rojo en bastones, y los 150 g de tomates cherry enteros.',
-      'Escurrir los 200 g de berenjenas en escabeche y, si sumás seitán salteado (P08) o garbanzos crocantes (R07), dorarlos ahora para que lleguen tibios a la mesa.',
+      'Escurrir los 200 g de berenjenas en escabeche y, si sumás seitán salteado o garbanzos crocantes, dorarlos ahora para que lleguen tibios a la mesa.',
       'Armar la tabla repartiendo por zonas y no en pilas, y chequear que estén las cuatro patas: crocante (los bastones al horno, el pan, los garbanzos), untable (guacamole, hummus, quesos), ácido (las berenjenas en escabeche) y proteico (las nueces, los cajús, el seitán).',
       'Los bastones al horno y el pan van a la mesa recién salidos: es lo único de la picada que no espera.',
     ],
