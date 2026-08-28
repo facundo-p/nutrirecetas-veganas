@@ -278,7 +278,7 @@ El texto completo se lee en la ficha (renders de la fase) o en `NUTRIENT_DESCRIP
 | Yodo | la fuente vegana confiable es la sal yodada; las sales marinas y rosadas generalmente no lo están | NIH ODS [17] | A6 | |
 | Selenio | las castañas de Pará lo concentran tanto que una o dos por día alcanzan — y conviene no pasarse | NIH ODS [20] · verificado 2026-08 | A7 | |
 | Omega-3 | el cuerpo convierte mal el ALA en EPA/DHA; el exceso de girasol o maíz compite con esa conversión | NASEM [22] | A8 | |
-| Proteína (lisina) | se mide proteína total; la lisina es termómetro: cubierta la lisina, el resto del perfil se acomoda solo | clave `prot_g` de la semilla | A9 (AND 2016, IC 7) | |
+| Proteína | se mide proteína total; la lisina es termómetro: cubierta la lisina, el resto del perfil se acomoda solo | clave `prot_g` de la semilla | A9 (AND 2016, IC 7) | |
 | Vitamina C | su rol estratégico acá es multiplicar la absorción del hierro; se pierde con el hervor largo | NIH ODS [27] | B1 | |
 | Vitamina A | los carotenoides necesitan algo de grasa en la comida para absorberse | NIH ODS [9] | B2 | |
 | Folato (B9) | legumbres y hojas verdes lo cubren de sobra; el hervor largo se lo lleva | NIH ODS [28] | B3 | |
@@ -292,3 +292,7 @@ El texto completo se lee en la ficha (renders de la fase) o en `NUTRIENT_DESCRIP
 | Colina | la fuente omnívora principal es el huevo; la evidencia de deficiencia real en veganos es limitada | NIH ODS [35] · verificado 2026-08 | B11 (emergente, IC 5) | |
 
 **Si alguno no te cierra**: se corrige el texto en T10 y la ficha lo toma en el próximo build. Un nutriente sin entrada en T10 **rompe el build** (`transform.ts`), y el test exige los 20 con más de 40 caracteres.
+
+## 10. T11 — el nombre del nutriente de proteína (2026-08-28, #123)
+
+El dataset lo llama "Proteína (lisina)", pero la clave que se mide es `prot_g`: proteína total. Ningún ingrediente trae lisina medida, así que el paréntesis afirma una validación que no existe — y en la peor dirección: la masa de pizza `p44`, 100 % trigo (el cereal pobre en lisina), aparecía aportando 28 % de "Proteína (lisina)". `NUTRIENT_NAME_OVERRIDES` (T11) lo renombra a **"Proteína"** en toda la app; la lisina como limitante práctico sigue explicada en su ficha (T10) y en el ajuste vegano del dataset ("~3 porciones/día de legumbres/soja/quinoa").

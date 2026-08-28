@@ -1497,7 +1497,7 @@ export const NUTRIENT_DESCRIPTIONS: Record<string, NutrientDescription> = {
   },
   proteina: {
     texto:
-      'Acá se mide la proteína total, en gramos. La lisina del nombre no es lo que se mide: es el aminoácido que suele quedar corto en una dieta vegana —abunda en legumbres, soja y quinoa, escasea en cereales— y sirve de termómetro: cubierta la lisina, el resto del perfil se acomoda solo.',
+      'Acá se mide la proteína total, en gramos. Lo que no mide ninguna tabla es la lisina, el aminoácido que suele quedar corto en una dieta vegana —abunda en legumbres, soja y quinoa, escasea en cereales— y que sirve de termómetro: cubierta la lisina, el resto del perfil se acomoda solo.',
     base: 'qué se mide: clave prot_g de la semilla; lisina como limitante práctico: A9 (IC 7, AND 2016)',
   },
   vitc: {
@@ -1555,4 +1555,17 @@ export const NUTRIENT_DESCRIPTIONS: Record<string, NutrientDescription> = {
       'Materia prima de las membranas celulares y de la acetilcolina, un neurotransmisor de la memoria y el músculo; el hígado la necesita para mover grasas. La fuente omnívora principal es el huevo: acá la aportan soja, maní, quinoa y brócoli. La evidencia de deficiencia real en veganos es limitada.',
     base: 'rol: NIH ODS Choline [35] (verificado 2026-08); señal vegana: B11 (emergente, IC 5)',
   },
+};
+
+// ---------- T11: nombres que prometen lo que no se mide ----------
+
+/**
+ * El dataset bautiza "Proteína (lisina)" a un nutriente cuya clave es prot_g:
+ * proteína total. Ningún ingrediente trae lisina medida, así que el paréntesis
+ * afirma una validación que no existe — la masa de pizza p44, 100 % trigo (el
+ * cereal pobre en lisina), aparecía aportando 28 % de "Proteína (lisina)". La
+ * lisina como limitante práctico sigue explicada en la ficha (T10).
+ */
+export const NUTRIENT_NAME_OVERRIDES: Record<string, string> = {
+  proteina: 'Proteína',
 };

@@ -18,6 +18,7 @@ import {
   DE_FACTO_PREPARADOS,
   NUTRIENT_DESCRIPTIONS,
   NUTRIENT_INGREDIENT_KEY,
+  NUTRIENT_NAME_OVERRIDES,
   PHANTOM_LINES,
   STORAGE_GROUPS,
   VEGAN_FACTORS_FROM_PROSE,
@@ -76,7 +77,7 @@ export function transformNutrient(raw: RawNutrient): Nutrient {
   const desdeProsa = VEGAN_FACTORS_FROM_PROSE[raw.id];
   return {
     id: raw.id,
-    nombre: raw.nombre,
+    nombre: NUTRIENT_NAME_OVERRIDES[raw.id] ?? raw.nombre,
     descripcion: descripcion.texto,
     grupo: raw.grupo as Nutrient['grupo'],
     unidad: raw.unidad,

@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "9f3a409941741e9005caa387d8512b5dc5d13f4cfcfd0a7b9984fc759a4c3811",
+ "content_hash": "93486d8006858ba69e723ad8c16fb53064cdad61ae17912189b05b88df68c88c",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -5747,8 +5747,8 @@
   },
   {
    "id": "proteina",
-   "nombre": "Proteína (lisina)",
-   "descripcion": "Acá se mide la proteína total, en gramos. La lisina del nombre no es lo que se mide: es el aminoácido que suele quedar corto en una dieta vegana —abunda en legumbres, soja y quinoa, escasea en cereales— y sirve de termómetro: cubierta la lisina, el resto del perfil se acomoda solo.",
+   "nombre": "Proteína",
+   "descripcion": "Acá se mide la proteína total, en gramos. Lo que no mide ninguna tabla es la lisina, el aminoácido que suele quedar corto en una dieta vegana —abunda en legumbres, soja y quinoa, escasea en cereales— y que sirve de termómetro: cubierta la lisina, el resto del perfil se acomoda solo.",
    "grupo": "critico",
    "unidad": "g/kg",
    "clave_ingrediente": "prot_g",
