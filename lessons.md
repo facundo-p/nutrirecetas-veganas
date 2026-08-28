@@ -239,3 +239,21 @@ podía fallar: el motivo era correcto según su propia lógica.
   B12. **El contexto es parte del dato**, y una función de dominio que devuelve
   "el porcentaje" sin saber dónde se va a mostrar no puede protegerlo sola: por
   eso quedaron dos y no una con un flag.
+
+---
+
+## La ficha de nutriente dice qué es (2026-08-27, #115)
+
+- **Lo que el dataset nombra sin explicar, la UI lo hereda sin explicar.**
+  "Proteína (lisina)" se mostró dos fases tal cual venía; la explicación existía
+  pero repartida en prosa que había que inferir (`ajuste_vegano`,
+  `ventana_nota`). La destapó la pregunta real de un usuario ("¿mide lisina?").
+  El rol fisiológico de cada nutriente no estaba ni en el JSON ni en el `.md`:
+  entró curado (T10) desde las fichas NIH ODS que el dataset ya citaba como
+  fuentes.
+- **`npm run renders` renderiza el dist que haya, fresco o no.** El build falló
+  en `tsc` en el medio de una cadena con pipe (`npm run build | tail`), el pipe
+  se quedó con el exit de `tail`, y los renders corrieron igual — contra un
+  bundle sin el cambio. Se notó porque el error de tipos pasó rozando por
+  pantalla. Guardas baratas: chequear el exit sin pipe, y que el script avise si
+  `dist/` es más viejo que la semilla o `src/`.
