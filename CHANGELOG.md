@@ -9,6 +9,96 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.5.0] — 2026-09-01
+
+**Esta versión borra datos.** Se van los registros de porciones comidas, las
+sobras, y los suplementos y objetivos a mano de tu perfil. Tus cocciones, tus
+notas, tus favoritas y el resto del perfil quedan enteros. Si querés conservar lo
+que se va, exportá desde Ajustes **antes** de actualizar. La app te lo avisa al
+abrirla, pero para entonces ya no se puede exportar.
+
+Es el giro que cierra la Fase 3: la app deja de ser un régimen que se lleva y
+pasa a ser un recetario. Lo nutricional sigue entero, pero como consulta —buscar
+recetas o ingredientes por nutriente, y ver cuánto aporta una porción— y nunca
+más como una cuenta que haya que cerrar. El criterio que resolvió cada duda del
+camino: **a quien no le interese el dato, no le tiene que estorbar.**
+
+### Quitado
+
+- **El semáforo y el tracking semanal.** La app no registra lo que comés ni
+  evalúa cómo venís. (#90)
+- **La pantalla Hoy**: la app abre en el recetario, con una franja "Qué cocinar"
+  arriba. (#91)
+- **Las sobras.** El diario registra cocciones y nada más: qué cocinaste, cuándo
+  y cuánto rindió. (#92)
+- **Los suplementos declarados y los objetivos a mano** del perfil. Queda sexo,
+  nacimiento, peso y entrenamiento, y sigue siendo opcional: ninguna pantalla lo
+  exige, lo bloquea ni te lo pide antes de dejarte ver una receta. Su único
+  trabajo es que el porcentaje diga "de tu dosis" en vez de "de la referencia
+  adulta". (#93)
+
+### Agregado
+
+- **Cuánto aporta una porción de tu dosis diaria.** El porcentaje va adentro de
+  la nutrición de la receta, con la banda de incertidumbre a la vista. Sin perfil
+  se mide contra la referencia adulta genérica, y lo dice con todas las letras:
+  un porcentaje que no aclara contra qué se mide es un número sin significado.
+  (#94)
+- **Pantalla Nutrientes**, para el camino inverso: elegís un nutriente que te
+  interesa incorporar y te muestra qué recetas y qué ingredientes lo tienen. Sin
+  dato reportable no hay puesto en el ranking — el último se leería como "casi no
+  tiene". (#95)
+- **Cada nutriente dice qué es y por qué importa.** La ficha abre con eso y con
+  el ajuste vegano antes que cualquier número: sin ese contexto, un "40 % de la
+  dosis" de B12 alimentaria se lee tranquilizador. El texto sale de las fichas
+  NIH ODS que el dataset ya cita. (#115)
+- **La franja "Qué cocinar"** en el recetario, con tres recomendaciones y el
+  porqué de cada una. El motor tiene criterios enchufables, así que sumar uno
+  nuevo no toca la pantalla. (#69)
+- **Ajustes se abre con un engranaje en el encabezado**, en vez de encontrarse
+  solo si ya sabías que existía. (#58)
+
+### Cambiado
+
+- **Las recomendaciones ya no salen de un hueco nutricional**, que era el
+  semáforo por otro nombre. Ahora recomiendan por lo que la receta tiene, no por
+  lo que te falta. (#96)
+- **La nutrición de la receta baja al final y arranca colapsada**, contando
+  cuántos nutrientes no tienen dato en vez de llenar la pantalla con filas
+  vacías. (#59)
+- **Tema A**: tipografía Vollkorn, más cálida que la Fraunces, y el título de las
+  saladas pasa de ladrillo a laurel. Las familias tipográficas ahora las declara
+  el tema, no la capa de forma. (#71, #73, #74)
+- Las tres skills del taller (`/cierre-fase`, `/renders`, `/agregar-receta`), los
+  invariantes de `CLAUDE.md` y el gate de datos quedaron al día con lo que la
+  fase cambió, y el README lleva los links a los dos entornos. (#83, #97, #118,
+  #121, #87)
+
+### Corregido
+
+- **El recordatorio de backup se puede posponer** y dejó de pegarse arriba de
+  todo. (#57)
+- **Un porcentaje no se afirma si su banda toca el cero.** Podía leerse como una
+  recomendación tranquilizadora sobre la B12, que es lo único que el invariante 6
+  prohíbe de plano. (#106)
+- **Las tres recomendaciones ya no repiten motivo**: diversificaban por tipo de
+  receta y no por el porqué, así que las tres decían casi lo mismo. (#107)
+- **Los filtros del recetario** dejaron de estar apretados y de comerse el anillo
+  de foco. (#72)
+
+### Datos
+
+- **Las 84 recetas tienen instrucciones de verdad.** Las viejas no alcanzaban
+  para cocinar: pasos sueltos, ingredientes imprescindibles que ningún paso
+  nombraba, caldos y ajíes fantasma, tiempos que se contradecían. La reescritura
+  fue también una auditoría, y lo que encontró quedó anotado receta por receta.
+  (#60, #65)
+- **"Proteína (lisina)" pasa a llamarse "Proteína".** El nombre venía del dataset
+  y prometía una validación que no existe: se mide proteína total, ningún
+  ingrediente trae lisina medida. Lo destapó la masa de pizza, 100 % trigo — el
+  cereal pobre en lisina— "aportando 28 % de Proteína (lisina)". La lisina como
+  limitante práctico sigue explicada en la ficha. (#123)
+
 ## [0.4.1] — 2026-08-22
 
 Nada cambia dentro de la app: son tres arreglos del taller que la mantiene, y los
