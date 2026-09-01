@@ -1,8 +1,8 @@
 /* ══════════ Tema A — "botánica editorial" ══════════
    La paleta de la iteración 1 (04 §3), que quedó registrada sin implementar y
    vuelve como tema alternativo. Cálida y seria: los datos respiran porque el
-   fondo es calmo. Mismo papel ilustrado, misma estructura, mismas tipografías
-   que los otros temas — lo único propio es el color.
+   fondo es calmo. Mismo papel ilustrado y misma estructura que los otros temas;
+   el color y la tipografía de display son suyos.
 
    La paleta A trae 10 colores y la app necesita cubrir 39 roles, así que hay
    cuatro derivaciones y una invención, todas anotadas abajo. Los tonos "hondos"
@@ -21,13 +21,12 @@
   --p-terracota: #be5b35; /*  3.93 — la acción de la paleta A; solo relleno */
   --p-terracota-honda: #a24824; /*  5.34 — la terracota cuando es texto */
   --p-verde-profundo: #37502f; /*  7.93 — los headers de la paleta A */
-  --p-piedra: #8f8a7e; /*  3.05 — el "sin datos" de la paleta A */
-  --p-piedra-honda: #7c776b; /*  3.96 — la piedra cuando es texto */
+  --p-piedra-honda: #7c776b; /*  3.96 — el gris de la paleta A, legible como texto */
   --p-ciruela: #7d3f55; /*  6.86 — LA ÚNICA INVENCIÓN: ver nota abajo */
-  --p-musgo: #4c7c4a; /*  4.34 — semáforo: cubierto */
-  --p-mostaza: #c98f2e; /*  2.50 — semáforo: parcial */
-  --p-ladrillo: #b0492f; /*  4.85 — semáforo: insuficiente */
-  --p-pizarra: #5b7a9e; /*  3.95 — semáforo: cubierto por suplemento */
+  --p-musgo: #4c7c4a; /*  4.34 — salió bien */
+  --p-mostaza: #c98f2e; /*  2.50 — ojo con esto */
+  --p-ladrillo: #b0492f; /*  4.85 — cuidado de verdad */
+  --p-pizarra: #5b7a9e; /*  3.95 — suplemento declarado */
 
   /* Nota sobre la ciruela: la paleta A no tiene ninguna familia berry, que es
      el lugar del que la D saca la berenjena para las cifras y la remolacha para
@@ -37,6 +36,14 @@
      roles que causó el rediseño de la D. */
 
   /* ── contrato de roles ── */
+
+  /* Tipografía. Vollkorn en vez de la Fraunces de los otros dos: es la pieza
+     que le faltaba a "cálida y seria". La Fraunces tiene mucho contraste y
+     serifas en cuña — se lee display y un poco severa. La Vollkorn baja el
+     contraste y redondea los terminales sin perder el registro editorial, que
+     es donde la A quería estar desde el principio. */
+  --font-display: 'Vollkorn Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
 
   /* Superficie y tinta */
   --papel: var(--p-crema);
@@ -79,19 +86,24 @@
   --icono-indulgente: var(--p-ciruela);
   --chip-preparado: var(--p-piedra-honda);
 
-  /* Semáforo */
-  --semaforo-cubierto: var(--p-musgo);
-  --semaforo-parcial: var(--p-mostaza);
-  --semaforo-insuficiente: var(--p-ladrillo);
-  --semaforo-suplemento: var(--p-pizarra);
-  --semaforo-sin-datos: var(--p-piedra);
+  /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:
+     precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
+  --precaucion: var(--p-mostaza);
+  --exito: var(--p-musgo);
 
   /* Categoría de receta. La paleta A es anterior a la idea de categoría-por-color
      y no trae escala, así que esta se derivó midiendo contra la vara real que
      cumple el tema D: ΔE mínimo 26.3 entre categorías, 13.1 contra los roles
-     funcionales vecinos y 4.61:1 de contraste. Esta escala da 27.4 / 20.0 / 4.64
-     — mejor que la D en las tres. */
-  --cat-principal: #a1584d; /* 4.64 — ladrillo suave: el plato caliente */
+     funcionales vecinos y 4.61:1 de contraste.
+
+     El ladrillo original de `principal` (#a1584d) daba 27.4 / 20.1 / 4.64: el
+     contraste más flojo de las cinco. El laurel que lo reemplaza da
+     33.7 / 17.5 / 7.23 — mucho más oscuro y mejor separado del resto de las
+     categorías, a cambio de acercarse al musgo, que sigue sobrado del piso 13.
+     Medido con ΔE CIE76 sobre el papel #f6f1e5, la misma vara con la que se
+     midieron los otros cuatro (CIEDE2000 da números bastante más chicos: con
+     esa fórmula ninguna de las cinco llegaría a 26). */
+  --cat-principal: #2b5a16; /* 7.23 — laurel: el verde de la olla, no el del plato */
   --cat-dulce: #543113; /* 10.21 — tierra tostada */
   --cat-preparado: #3f4d62; /*  7.61 — pizarra honda: el frasco */
   --cat-pan: #876725; /*  4.66 — trigo */

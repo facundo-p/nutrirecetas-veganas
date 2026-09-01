@@ -106,6 +106,29 @@
   margin: var(--sp-3) 0 var(--sp-4);
 }
 
+/*
+ * Variante y no clase base: `.encabezado-pantalla` la usan diez pantallas donde
+ * los hijos apilan como bloques. Poner el flex arriba las rompe todas.
+ */
+.encabezado-pantalla-con-accion {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.boton-ajustes {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin: calc(var(--sp-2) * -1) calc(var(--sp-2) * -1) 0 0;
+  color: var(--navegar);
+  font-size: 22px;
+}
+
 .encabezado-pantalla h1 {
   font-size: var(--fs-2xl);
 }
@@ -122,8 +145,7 @@
 
 /**
  * Banda de staging: solo aparece cuando el build declara ese entorno. Va arriba
- * de la nav y no es sticky a propósito — no compite con el banner de backup,
- * que sí tiene que perseguirte.
+ * de la nav y no es sticky, igual que los banners de abajo.
  */
 .banda-entorno {
   background: color-mix(in srgb, var(--aviso) 18%, var(--superficie));
@@ -136,4 +158,48 @@
 
 .banda-entorno strong {
   color: var(--aviso);
+}
+
+/**
+ * Banners de aviso, arriba del contenido y debajo de la nav. Ninguno es sticky:
+ * pegados arriba tapaban el contenido en mobile y quedaban detrás de la nav en
+ * desktop, y el de backup llegó a tapar el único enlace a Ajustes, que es donde
+ * está el botón que lo apagaría.
+ */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+
+.banner > span {
+  flex: 1;
+}
+
+.banner-backup {
+  background: color-mix(in srgb, var(--precaucion) 16%, var(--superficie));
+  border-bottom: 1px solid color-mix(in srgb, var(--precaucion) 45%, transparent);
+}
+
+.banner-migracion {
+  background: color-mix(in srgb, var(--dato-suave) 14%, var(--superficie));
+  border-bottom: 1px solid color-mix(in srgb, var(--dato-suave) 40%, transparent);
+}
+
+.banner-cerrar {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-right: calc(var(--sp-2) * -1);
+  color: var(--tinta-suave);
+  font-size: 20px;
 }

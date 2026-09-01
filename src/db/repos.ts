@@ -2,12 +2,9 @@ import { db } from './db';
 import {
   USER_SCHEMA_VERSION,
   cookingDataSchema,
-  intakeDataSchema,
   profileDataSchema,
   type Coccion,
   type CoccionData,
-  type Consumo,
-  type ConsumoData,
   type Meta,
   type Overlay,
   type Perfil,
@@ -56,7 +53,19 @@ async function contarCambio(): Promise<void> {
 
 export async function registrarBackup(fecha = ahora()): Promise<void> {
   const meta = await getMeta();
-  await db.meta.put({ ...meta, ultimo_backup: fecha, cambios_desde_backup: 0 });
+  const { backup_pospuesto_hasta: _h, backup_pospuesto_en_cambios: _c, ...resto } = meta;
+  // Un backup de verdad borra la postergación: no hay nada que callar.
+  await db.meta.put({ ...resto, ultimo_backup: fecha, cambios_desde_backup: 0 });
+}
+
+/**
+ * Deja `meta` al día con el esquema actual. Se llama al cerrar el aviso de una
+ * migración con pérdida: mientras la marca esté vieja, el aviso vuelve — que es
+ * justo lo que se quiere de algo que borró datos.
+ */
+export async function marcarEsquemaVisto(): Promise<void> {
+  const meta = await getMeta();
+  await db.meta.put({ ...meta, user_schema_version: USER_SCHEMA_VERSION });
 }
 
 export async function registrarSeedVersion(seed_version: string): Promise<void> {
@@ -99,31 +108,6 @@ export function getCoccion(id: number): Promise<Coccion | undefined> {
 export async function listCocciones(): Promise<Coccion[]> {
   const todas = await db.cocciones.toArray();
   return todas.sort((a, b) => b.fecha.localeCompare(a.fecha));
-}
-
-// ---------- consumos ----------
-
-export async function addConsumo(datos: ConsumoData): Promise<number> {
-  const validos = intakeDataSchema.parse(datos);
-  const id = await db.consumos.add(validos as Consumo);
-  await contarCambio();
-  return id;
-}
-
-export function consumosDeCoccion(coccion_id: number): Promise<Consumo[]> {
-  return db.consumos.where('coccion_id').equals(coccion_id).toArray();
-}
-
-export function listConsumos(): Promise<Consumo[]> {
-  return db.consumos.toArray();
-}
-
-/** Porciones que quedaron sin comer de una cocción: lo que rindió menos lo consumido. */
-export async function porcionesSobrantes(coccion_id: number): Promise<number> {
-  const [coccion, consumos] = await Promise.all([getCoccion(coccion_id), consumosDeCoccion(coccion_id)]);
-  if (!coccion) return 0;
-  const comidas = consumos.reduce((total, c) => total + c.porciones, 0);
-  return Math.max(0, coccion.porciones_rendidas - comidas);
 }
 
 // ---------- overlays ----------

@@ -32,6 +32,10 @@
 
   /* ── contrato de roles ── */
 
+  /* Tipografía */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
+
   /* Superficie y tinta */
   --papel: var(--p-papel);
   --superficie: var(--p-tofu);
@@ -73,12 +77,10 @@
   --icono-indulgente: var(--p-remolacha);
   --chip-preparado: var(--p-soja);
 
-  /* Semáforo: nunca comunica solo con color, pero el color acompaña */
-  --semaforo-cubierto: var(--p-zapallito);
-  --semaforo-parcial: var(--p-garbanzo);
-  --semaforo-insuficiente: var(--p-rabanito);
-  --semaforo-suplemento: var(--p-repollo-colorado);
-  --semaforo-sin-datos: var(--p-chia);
+  /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:
+     precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
+  --precaucion: var(--p-garbanzo);
+  --exito: var(--p-zapallito);
 
   /* Categoría de receta: escala propia, desacoplada de los roles funcionales.
      Elegidas midiendo: ningún par baja de ΔE 26 entre sí ni contra sus vecinos. */

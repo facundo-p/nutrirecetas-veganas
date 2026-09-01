@@ -9,7 +9,13 @@ import { chromium } from 'playwright';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
-const fase = args.find((a) => !a.startsWith('--')) ?? 'fase-2';
+// Sin default a propósito: el que había (`fase-2`) convertía un olvido en pisar
+// una tanda ya publicada, y las rutas cambian entre fases — quedaban mezcladas.
+const fase = args.find((a) => !a.startsWith('--'));
+if (!fase) {
+  console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=a|c|d]');
+  process.exit(1);
+}
 // Cada tema visual tiene su carpeta: el default es el tema activo de la app.
 const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'd';
 const carpeta = `${fase}-tema-${tema}`;
@@ -20,7 +26,6 @@ const PORT = 4173;
 const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
-  ['hoy', '#/hoy'],
   ['recetario', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
@@ -31,6 +36,8 @@ const RUTAS = [
   ['ajustes', '#/ajustes'],
   ['ingredientes', '#/ingredientes'],
   ['ingrediente-garbanzos', '#/ingrediente/garbanzos'],
+  ['nutrientes', '#/nutrientes'],
+  ['nutriente-b12', '#/nutriente/b12'],
   ['glosario', '#/glosario'],
 ];
 
@@ -40,10 +47,9 @@ const VIEWPORTS = [
 ];
 
 /**
- * Las pantallas de Fase 2 no tienen nada que mostrar sin datos de usuario, así
- * que el script siembra un estado de demo determinista (fechas relativas a hoy
- * para que el semáforo tenga algo en ventana). Vive solo acá: la app jamás
- * escribe datos de ejemplo.
+ * El diario y Hoy no tienen nada que mostrar sin datos de usuario, así que el
+ * script siembra un estado de demo determinista, con fechas relativas a hoy.
+ * Vive solo acá: la app jamás escribe datos de ejemplo.
  */
 const SEMBRADO = `
 (async () => {
@@ -52,7 +58,7 @@ await new Promise((resolve, reject) => {
   req.onerror = () => reject(req.error);
   req.onsuccess = () => {
     const db = req.result;
-    const tx = db.transaction(['perfil', 'cocciones', 'consumos', 'overlays', 'meta'], 'readwrite');
+    const tx = db.transaction(['perfil', 'cocciones', 'overlays', 'meta'], 'readwrite');
     const hoy = new Date();
     const iso = (horasAtras) => new Date(hoy.getTime() - horasAtras * 3600 * 1000).toISOString();
 
@@ -63,8 +69,6 @@ await new Promise((resolve, reject) => {
       fecha_nacimiento: '1990-03-14',
       peso_kg: 75,
       nivel_entrenamiento: 'intenso',
-      suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
-      overrides: [],
       nutrientes_destacados: ['hierro', 'b12', 'proteina', 'calcio', 'zinc', 'yodo', 'omega3'],
       creado_en: iso(72),
       actualizado_en: iso(72),
@@ -121,14 +125,12 @@ await new Promise((resolve, reject) => {
       },
     });
 
-    tx.objectStore('consumos').put({ id: 1, coccion_id: 1, fecha: iso(19), porciones: 2 });
-    tx.objectStore('consumos').put({ id: 2, coccion_id: 1, fecha: iso(4), porciones: 1 });
-    tx.objectStore('consumos').put({ id: 3, coccion_id: 2, fecha: iso(51), porciones: 2 });
-
     tx.objectStore('overlays').put({ receta_id: 'r01', favorita: true, ic_usuario: 8, actualizado_en: iso(50) });
+    // al día a propósito: con la marca vieja, el aviso de la migración saldría
+    // en las 24 capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
-      user_schema_version: 1,
+      user_schema_version: 4,
       seed_version: '1.0.0',
       ultimo_backup: iso(24 * 40),
       cambios_desde_backup: 6,
@@ -160,16 +162,20 @@ try {
     // La base se siembra una vez por contexto. Ojo: escribir por IndexedDB crudo
     // no dispara los observables de Dexie, y navegar entre hashes no recarga la
     // página — sin este reload la app sigue mostrando el estado vacío.
-    await page.goto(`${BASE}/?tema=${tema}#/hoy`, { waitUntil: 'networkidle' });
+    await page.goto(`${BASE}/?tema=${tema}#/recetario`, { waitUntil: 'networkidle' });
     await page.evaluate(SEMBRADO);
     await page.reload({ waitUntil: 'networkidle' });
 
-    // si el sembrado no llegó, mejor fallar que publicar renders vacíos
+    // Si el sembrado no llegó, mejor fallar que publicar renders vacíos. Se
+    // comprueba contra el diario, que es la pantalla que no tiene nada que
+    // mostrar sin datos de usuario.
+    await page.goto(`${BASE}/?tema=${tema}#/diario`, { waitUntil: 'networkidle' });
     await page
-      .getByRole('heading', { name: '¿Cómo venís?' })
+      .getByText('Pastel de papas')
+      .first()
       .waitFor({ timeout: 5000 })
       .catch(() => {
-        throw new Error('El sembrado de datos de demo no llegó a la app: Hoy sigue sin perfil.');
+        throw new Error('El sembrado de datos de demo no llegó a la app: el diario sigue vacío.');
       });
 
     for (const [name, hash] of RUTAS) {

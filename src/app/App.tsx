@@ -7,19 +7,20 @@ import { RecipeDetail } from '../ui/recipe-detail/RecipeDetail';
 import { IngredientList } from '../ui/ingredients/IngredientList';
 import { IngredientDetail } from '../ui/ingredients/IngredientDetail';
 import { Glossary } from '../ui/glossary/Glossary';
-import { TodayScreen } from '../ui/today/TodayScreen';
+import { NutrientList } from '../ui/nutrients/NutrientList';
+import { NutrientDetail } from '../ui/nutrients/NutrientDetail';
 import { ProfileScreen } from '../ui/profile/ProfileScreen';
 import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
 import { SettingsScreen } from '../ui/settings/SettingsScreen';
 import { useMeta } from '../db/hooks';
-import { hayQueRecordarBackup } from '../db/backup';
+import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
+import { marcarEsquemaVisto } from '../db/repos';
+import { IconCerrar } from '../ui/icons/icons';
 import { routeHash } from './router';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
   switch (route.screen) {
-    case 'today':
-      return <TodayScreen />;
     case 'profile':
       return <ProfileScreen />;
     case 'cook':
@@ -36,27 +37,69 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
       return <IngredientList />;
     case 'ingredient':
       return <IngredientDetail id={route.id} />;
+    case 'nutrients':
+      return <NutrientList />;
+    case 'nutrient':
+      return <NutrientDetail id={route.id} />;
     case 'glossary':
       return <Glossary />;
   }
 }
 
 /**
- * Recordatorio de backup: insistente a propósito. Sin backend, un borrado de
- * sitio (o el ITP de Safari) se lleva todo, y el archivo exportado es lo único
- * que lo devuelve.
+ * Recordatorio de backup: insistente, pero se puede callar. Sin backend, un
+ * borrado de sitio (o el ITP de Safari) se lleva todo, y el archivo exportado
+ * es lo único que lo devuelve — así que la X no lo apaga, lo pospone, y vuelve
+ * al vencer el plazo o al acumularse cambios nuevos.
  */
 function BackupReminder() {
   const meta = useMeta();
-  if (!meta || !hayQueRecordarBackup(meta.ultimo_backup, meta.cambios_desde_backup)) return null;
+  if (!meta || !hayQueRecordarBackup(meta)) return null;
   return (
-    <div className="banner-backup" role="status">
+    <div className="banner banner-backup" role="status">
       <span>
         Hace rato que no hacés una copia de tus datos, y ya hay {meta.cambios_desde_backup} cambios sin respaldar.
       </span>
       <a className="boton-chico" href={routeHash({ screen: 'settings' })}>
         Exportar
       </a>
+      <button
+        type="button"
+        className="banner-cerrar"
+        aria-label="Recordármelo más adelante"
+        onClick={() => void posponerRecordatorioBackup()}
+      >
+        <IconCerrar />
+      </button>
+    </div>
+  );
+}
+
+/**
+ * Última versión del esquema que borró datos. `meta` solo escribe
+ * `user_schema_version` al crear el registro, así que quien venía de antes lo
+ * tiene viejo y eso alcanza como marca — no hace falta un flag nuevo. Una
+ * instalación nueva nace al día y no ve nada.
+ *
+ * Es una constante propia y no `USER_SCHEMA_VERSION` porque no toda migración
+ * pierde algo: una que solo cambie de forma no tiene por qué avisar.
+ */
+const ULTIMA_VERSION_CON_PERDIDA = 4;
+
+/** Borrar datos de alguien se avisa, y el aviso vuelve hasta que lo cierre. */
+function AvisoDeMigracion() {
+  const meta = useMeta();
+  if (!meta || meta.user_schema_version >= ULTIMA_VERSION_CON_PERDIDA) return null;
+  return (
+    <div className="banner banner-migracion" role="status">
+      <span>
+        Esta versión dejó de llevar la cuenta de lo que comés: se borraron los registros de porciones comidas, las
+        sobras, y los suplementos y objetivos a mano de tu perfil.{' '}
+        <strong>Tus cocciones, tus notas y tus favoritas están enteras.</strong>
+      </span>
+      <button type="button" className="banner-cerrar" aria-label="Entendido" onClick={() => void marcarEsquemaVisto()}>
+        <IconCerrar />
+      </button>
     </div>
   );
 }
@@ -92,6 +135,7 @@ export function App() {
     <div className="app">
       <BandaDeStaging />
       <Nav route={route} />
+      <AvisoDeMigracion />
       <BackupReminder />
       <main className="contenido">
         <Screen route={route} />

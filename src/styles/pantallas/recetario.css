@@ -20,12 +20,27 @@
   color: var(--dato-suave);
 }
 
+/* Los tres chips en su propia fila, antes de los selects: son pocos y entran
+   sin scroll, y detrás de cinco selects quedaban fuera de la pantalla. */
+.filtros-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* `overflow-x: auto` computa `overflow-y` a `auto` por spec, así que este
+   contenedor recorta también arriba. El anillo de foco se pinta 4 px afuera
+   del control (2 de offset + 2 de grosor) y se comía el borde de arriba y el
+   del margen izquierdo. El padding lo aloja; el margen negativo lo devuelve,
+   para que la fila siga llegando al borde de la pantalla. */
 .filtros-fila {
   display: flex;
   gap: var(--sp-2);
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding-bottom: var(--sp-1);
+  padding: var(--sp-1);
+  margin: calc(var(--sp-1) * -1);
+  scroll-padding-inline: var(--sp-1);
   scrollbar-width: thin;
 }
 
@@ -167,3 +182,46 @@
   font-family: var(--font-display);
 }
 
+/* ---------- qué cocinar: las recomendaciones arriba de la lista ---------- */
+.recomendaciones {
+  margin-bottom: var(--sp-5);
+}
+
+.lista-recomendaciones {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-2);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.fila-recomendacion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+}
+
+.recomendacion-tipo {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.recomendacion-textos {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recomendacion-nombre {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--titulo-receta);
+  text-decoration: none;
+}
+
+.recomendacion-motivo {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}

@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from './db';
-import type { Coccion, Consumo, Meta, Overlay, Perfil } from './schema';
+import type { Coccion, Meta, Overlay, Perfil } from './schema';
 import { META_POR_DEFECTO } from './repos';
 
 /**
@@ -20,8 +20,8 @@ export function useCocciones(): Coccion[] | undefined {
   }, []);
 }
 
-export function useConsumos(): Consumo[] | undefined {
-  return useLiveQuery(() => db.consumos.toArray(), []);
+export function useOverlays(): Overlay[] | undefined {
+  return useLiveQuery(() => db.overlays.toArray(), []);
 }
 
 export function useOverlay(receta_id: string): Overlay | undefined | null {

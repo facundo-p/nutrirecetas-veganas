@@ -152,129 +152,6 @@
   background: none;
 }
 
-/* nutrición */
-
-.nutricion {
-  background: var(--superficie);
-  border: var(--borde);
-  border-radius: var(--radio);
-  padding: var(--sp-4);
-}
-
-.nutricion-cabecera {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--sp-2);
-}
-
-.nutricion-cabecera h2 {
-  border: none !important;
-  margin-bottom: 0 !important;
-  font-size: var(--fs-lg) !important;
-}
-
-.nutricion-cobertura-global {
-  font-size: var(--fs-xs);
-  color: var(--tinta-suave);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nutricion-kcal {
-  margin: var(--sp-3) 0;
-  font-size: var(--fs-2xl);
-}
-
-.nutricion-grupo {
-  margin: var(--sp-4) 0 var(--sp-2);
-}
-
-.nutricion-lista {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: var(--sp-2);
-}
-
-.nutriente {
-  display: grid;
-  grid-template-columns: minmax(7.5rem, 1fr) auto;
-  gap: 2px var(--sp-3);
-  align-items: baseline;
-  padding-bottom: var(--sp-2);
-  border-bottom: var(--borde-suave);
-  font-size: var(--fs-sm);
-}
-
-.nutriente-nombre {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.nutriente-ventana {
-  color: var(--dato-suave);
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-.banda {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.banda-valor {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: 1.05em;
-}
-
-.banda-icono {
-  font-size: 0.8em;
-  opacity: 0.7;
-}
-
-.banda-rango {
-  font-size: var(--fs-xs);
-  color: var(--dato-suave);
-}
-
-.nutriente-calidad {
-  grid-column: 1 / -1;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--fs-xs);
-  color: var(--tinta-suave);
-}
-
-.nutriente-calidad svg {
-  font-size: 13px;
-}
-
-.nutriente-cobertura {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  margin-left: var(--sp-3);
-}
-
-.nutriente.sin-datos {
-  color: var(--dato-suave);
-}
-
-.nutriente-sin-datos {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--fs-sm);
-}
-
 /* tips de reglas */
 
 .tips-reglas {
@@ -410,8 +287,8 @@
   font-size: var(--fs-sm);
   padding: var(--sp-2) var(--sp-3);
   border-radius: var(--radio-chico);
-  background: color-mix(in srgb, var(--semaforo-parcial) 10%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--semaforo-parcial) 35%, transparent);
+  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
 }
 
 .aviso-horneado {

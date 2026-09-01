@@ -1,0 +1,85 @@
+/* ============ Nutrientes ============ */
+
+.grupo-nutrientes {
+  margin-bottom: var(--sp-5);
+}
+
+.lista-nutrientes,
+.lista-fuentes {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-2);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.fila-nutriente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  text-decoration: none;
+}
+
+.fila-nutriente-nombre {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--tinta);
+}
+
+.fila-fuente {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  text-decoration: none;
+}
+
+.fuente-tipo {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--cat-actual);
+}
+
+.fuente-nombre {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--titulo-receta);
+}
+
+/* Alineadas a la derecha y en columna: la cifra manda, el resto la matiza. */
+.fuente-cifras {
+  display: grid;
+  justify-items: end;
+  gap: 1px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.fuente-porcentaje {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.fuente-calidad {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+}
+
+/* El aviso del ajuste vegano va antes que cualquier número de la ficha. */
+.aviso-nutriente {
+  margin-bottom: var(--sp-4);
+}
+
+/* Qué es y por qué importa: prosa que acompaña, nunca antes que el aviso. */
+.nutriente-descripcion {
+  margin-bottom: var(--sp-4);
+  max-width: 62ch;
+}

@@ -3,12 +3,13 @@ import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import { routeHash } from '../../app/router';
-import { difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
+import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
-import { ingredientInSeason } from '../common/season';
+import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import {
   IconAsterisco,
+  IconBandaAprox,
   IconBrotesIc,
   IconCopoNieve,
   IconCuchara,
@@ -23,7 +24,9 @@ import {
 } from '../icons/icons';
 import { avisosDeEscalado, escalarLineas } from '../../domain/scaling';
 import { computeNutrition } from '../../domain/nutrition';
-import { useOverlay } from '../../db/hooks';
+import { objetivosDeReferencia } from '../../domain/objetivos';
+import { midpoint } from '../../domain/interval';
+import { useOverlay, usePerfil } from '../../db/hooks';
 import { saveOverlay } from '../../db/repos';
 import { PortionScaler } from './PortionScaler';
 import { B12Alert } from './B12Alert';
@@ -41,7 +44,7 @@ function lineName(idx: SeedIndex, line: Line): { nombre: string; href: string; e
 
 function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
   const { nombre, href, esPreparado } = lineName(idx, line);
-  const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id);
+  const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id, currentMonth());
   const unidad = line.unidad_display.replaceAll('_', ' ');
   const cantidad = formatCantidad(line.cantidad);
   const gramos = formatGramos(line.g_aprox);
@@ -152,6 +155,14 @@ export function RecipeDetail({ id }: { id: string }) {
 
   const [factor, setFactor] = useState(1);
   const overlay = useOverlay(id);
+  const perfil = usePerfil();
+
+  // `usePerfil` devuelve undefined mientras carga y null si no hay: hasta que se
+  // sepa, la referencia genérica es la respuesta correcta, no un hueco.
+  const objetivos = useMemo(
+    () => objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date()),
+    [perfil, idx],
+  );
 
   const escalada = useMemo(() => {
     if (!recipe || factor === 1) return null;
@@ -237,6 +248,15 @@ export function RecipeDetail({ id }: { id: string }) {
           <span className="meta-item">
             <IconPlato /> {recipe.porciones_display}
           </span>
+          {/* El único dato nutricional que se mira cocinando: sube acá, el
+              resto queda al final detrás de un tap. Lleva el marcador de
+              aproximado — la banda entera está abajo, pero un punto medio suelto
+              sin decir que lo es sería afirmar de más. */}
+          <span className="meta-item" title={`entre ${formatGramos(shown.kcal.intervalo.min)} y ${formatGramos(shown.kcal.intervalo.max)} kcal`}>
+            <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />
+            <span className="cifra">{formatGramos(midpoint(shown.kcal.intervalo))}</span> kcal
+            <span className="meta-suave">{portion ? 'por porción' : 'por 100 g'}</span>
+          </span>
           <span
             className="meta-item"
             title={
@@ -282,7 +302,6 @@ export function RecipeDetail({ id }: { id: string }) {
         </a>
       </section>
 
-      <NutritionTable nutrition={shown} seed={idx.seed} titulo={nutricionTitulo} />
       <RuleTips recipe={recipe} seed={idx.seed} />
 
       <section>
@@ -345,6 +364,15 @@ export function RecipeDetail({ id }: { id: string }) {
           </ul>
         </section>
       )}
+
+      {/* Al final a propósito: primero todo lo que sirve para cocinar. */}
+      <NutritionTable
+        nutrition={shown}
+        seed={idx.seed}
+        titulo={nutricionTitulo}
+        objetivos={objetivos}
+        destacados={perfil?.nutrientes_destacados ?? []}
+      />
 
       {recipe.fuente?.ref && (
         <p className="detalle-fuente">

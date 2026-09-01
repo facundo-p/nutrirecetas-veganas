@@ -1,19 +1,24 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { usePerfil } from '../../db/hooks';
 import { savePerfil } from '../../db/repos';
-import type { ProfileData, SuplementoDeclarado } from '../../db/schema';
+import type { ProfileData } from '../../db/schema';
 import { ENTRENAMIENTO, NIVELES_ENTRENAMIENTO, PISO_POR_EDAD, type NivelEntrenamiento } from '../../domain/actividad';
 import { objetivosDelPerfil } from '../../domain/profile';
 import { getSeedIndex } from '../../seed';
 import { formatNumber } from '../common/format';
-import { IconCapsula } from '../icons/icons';
-import { SupplementsEditor } from './SupplementsEditor';
 
 /**
- * Perfil real. El dataset trae un perfil de ejemplo con datos inventados
- * (1990-01-01, 75 kg): acá los campos arrancan vacíos a propósito — un
- * objetivo calculado sobre un placeholder es peor que no tener objetivo.
+ * Perfil real, y opcional. Lo único que hace es que el porcentaje de la ficha
+ * de receta diga "de tu dosis" en vez de "de la referencia adulta genérica":
+ * ninguna pantalla lo exige para funcionar.
+ *
+ * El dataset trae un perfil de ejemplo con datos inventados (1990-01-01, 75 kg):
+ * acá los campos arrancan vacíos a propósito — un objetivo calculado sobre un
+ * placeholder es peor que no tener objetivo.
  */
+
+/** Los siete que la guía vegana marca como los de mirar. Se pueden cambiar. */
+const DESTACADOS_POR_DEFECTO = ['hierro', 'b12', 'calcio', 'zinc', 'yodo', 'omega3', 'proteina'];
 
 export function ProfileScreen() {
   const idx = getSeedIndex();
@@ -26,7 +31,7 @@ export function ProfileScreen() {
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
   const [entrenamiento, setEntrenamiento] = useState<NivelEntrenamiento>('sedentario');
-  const [suplementos, setSuplementos] = useState<SuplementoDeclarado[]>([]);
+  const [destacados, setDestacados] = useState<string[]>(DESTACADOS_POR_DEFECTO);
   const [cargado, setCargado] = useState(false);
   const [guardado, setGuardado] = useState(false);
 
@@ -38,7 +43,7 @@ export function ProfileScreen() {
     setPeso(String(perfilGuardado.peso_kg));
     setAltura(perfilGuardado.altura_cm === undefined ? '' : String(perfilGuardado.altura_cm));
     setEntrenamiento(perfilGuardado.nivel_entrenamiento);
-    setSuplementos(perfilGuardado.suplementos);
+    if (perfilGuardado.nutrientes_destacados.length > 0) setDestacados(perfilGuardado.nutrientes_destacados);
     setCargado(true);
   }
 
@@ -48,6 +53,10 @@ export function ProfileScreen() {
   }, [perfilGuardado, idx]);
 
   const completo = sexo !== '' && /^\d{4}-\d{2}-\d{2}$/.test(nacimiento) && Number(peso) > 0;
+
+  const alternarDestacado = (id: string) => {
+    setDestacados((previos) => (previos.includes(id) ? previos.filter((x) => x !== id) : [...previos, id]));
+  };
 
   const guardar = async (e: FormEvent) => {
     e.preventDefault();
@@ -59,12 +68,7 @@ export function ProfileScreen() {
       peso_kg: Number(peso),
       ...(Number(altura) > 0 ? { altura_cm: Number(altura) } : {}),
       nivel_entrenamiento: entrenamiento,
-      suplementos,
-      overrides: perfilGuardado?.overrides ?? [],
-      nutrientes_destacados:
-        perfilGuardado?.nutrientes_destacados.length
-          ? perfilGuardado.nutrientes_destacados
-          : ['hierro', 'b12', 'calcio', 'zinc', 'yodo', 'omega3', 'proteina'],
+      nutrientes_destacados: destacados,
     };
     await savePerfil(datos);
     setGuardado(true);
@@ -74,9 +78,10 @@ export function ProfileScreen() {
     <>
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion">Mi perfil</span>
-        <h1>{perfilGuardado ? 'Tus datos' : 'Empecemos por vos'}</h1>
+        <h1>{perfilGuardado ? 'Tus datos' : 'Contame de vos, si querés'}</h1>
         <p className="intro-vacia">
-          Con esto se calculan tus objetivos por nutriente. Nada de esto sale de tu teléfono.
+          Es opcional. Sirve para una sola cosa: que cuando mires cuánto aporta una receta, el porcentaje sea de{' '}
+          <strong>tu</strong> dosis diaria y no de una referencia adulta genérica. Nada de esto sale de tu teléfono.
         </p>
       </header>
 
@@ -162,11 +167,25 @@ export function ProfileScreen() {
           </div>
         </fieldset>
 
-        <SupplementsEditor
-          suplementos={suplementos}
-          nutrientes={idx.seed.nutrientes}
-          onChange={setSuplementos}
-        />
+        <fieldset className="campo">
+          <legend className="campo-etiqueta">Nutrientes que te interesan</legend>
+          <p className="campo-ayuda">
+            Aparecen primero en la nutrición de cada receta, y pesan al recomendarte qué cocinar. No es una meta ni
+            una obligación: la app no lleva la cuenta de lo que comés.
+          </p>
+          <div className="opciones">
+            {idx.seed.nutrientes.map((n) => (
+              <label key={n.id} className="opcion">
+                <input
+                  type="checkbox"
+                  checked={destacados.includes(n.id)}
+                  onChange={() => alternarDestacado(n.id)}
+                />
+                <span>{n.nombre}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
         <button type="submit" className="boton-principal" disabled={!completo}>
           {perfilGuardado ? 'Guardar cambios' : 'Calcular mis objetivos'}
@@ -176,25 +195,16 @@ export function ProfileScreen() {
 
       {objetivos && (
         <section className="objetivos">
-          <h2 className="etiqueta-seccion">Tus objetivos diarios</h2>
+          <h2 className="etiqueta-seccion">Tus dosis diarias de referencia</h2>
           <ul className="lista-objetivos">
             {objetivos.map((o) => (
               <li key={o.nutriente_id} className="objetivo">
                 <span className="objetivo-nombre">{o.nombre}</span>
                 <span className="objetivo-valor">
-                  {o.cubierto_por_suplemento ? (
-                    <span className="objetivo-suplemento">
-                      <IconCapsula /> cubierto por suplemento
-                    </span>
-                  ) : (
-                    <>
-                      <span className="cifra">
-                        {formatNumber(o.valor, o.valor >= 100 ? 0 : 1)} {o.unidad}
-                      </span>
-                      {o.origen === 'override' && <em className="objetivo-origen"> · fijado por vos</em>}
-                      {o.aproximada && <em className="objetivo-origen"> · aproximado</em>}
-                    </>
-                  )}
+                  <span className="cifra">
+                    {formatNumber(o.valor, o.valor >= 100 ? 0 : 1)} {o.unidad}
+                  </span>
+                  {o.aproximada && <em className="objetivo-origen"> · aproximado</em>}
                 </span>
               </li>
             ))}

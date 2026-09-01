@@ -129,10 +129,15 @@ export function SettingsScreen() {
                 month: 'long',
                 year: 'numeric',
               })}
-              : {pendiente.reporte.cocciones} cocciones, {pendiente.reporte.consumos} consumos,{' '}
-              {pendiente.reporte.overlays} recetas con notas
+              : {pendiente.reporte.cocciones} cocciones, {pendiente.reporte.overlays} recetas con notas
               {pendiente.reporte.perfil ? ' y tu perfil' : ', sin perfil'}.
             </p>
+            {pendiente.reporte.consumos_descartados > 0 && (
+              <p>
+                Trae también {pendiente.reporte.consumos_descartados} registros de porciones comidas, de cuando la app
+                llevaba esa cuenta. <strong>No se importan</strong>: ya no hay dónde ponerlos.
+              </p>
+            )}
             <p>
               <strong>Importar reemplaza todo lo que tenés ahora.</strong> Antes de hacerlo se guarda una copia de tu
               estado actual.

@@ -3,9 +3,10 @@ import { getSeedIndex } from '../../seed';
 import { INGREDIENT_CATEGORIES, type Ingredient } from '../../seed/schema';
 import { midpoint } from '../../domain/interval';
 import { routeHash } from '../../app/router';
-import { amountUnit, formatNumber, icSprouts, normalize } from '../common/format';
-import { ingredientInSeason } from '../common/season';
+import { amountUnit, currentMonth, formatNumber, icSprouts, normalize } from '../common/format';
+import { ingredientInSeason } from '../../domain/season';
 import { IconBrotesIc, IconTemporada } from '../icons/icons';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 function nutrientValue100g(ing: Ingredient, clave: string): number | null {
   const value = ing.nutrientes[clave as keyof Ingredient['nutrientes']];
@@ -41,10 +42,7 @@ export function IngredientList() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Ingredientes</span>
-        <h1>Ingredientes</h1>
-      </header>
+      <EncabezadoPantalla etiqueta="Ingredientes" titulo="Ingredientes" />
       <div className="filtros">
         <input
           type="search"
@@ -78,6 +76,13 @@ export function IngredientList() {
           </select>
         </div>
       </div>
+      {nutrient && (
+        <p className="filtros-enlace">
+          <a href={routeHash({ screen: 'nutrient', id: nutrient.id })}>
+            Qué es {nutrient.nombre.toLowerCase()}, cuánto necesitás y qué recetas lo aportan ›
+          </a>
+        </p>
+      )}
       <p className="conteo-resultados" aria-live="polite">
         {list.length} {list.length === 1 ? 'ingrediente' : 'ingredientes'}
         {nutrient ? `, ordenados por ${nutrient.nombre.toLowerCase()} cada 100 g` : ''}
@@ -90,7 +95,7 @@ export function IngredientList() {
               <a className="tarjeta fila-ingrediente" href={routeHash({ screen: 'ingredient', id: ing.id })}>
                 <span className="fila-ingrediente-nombre">
                   {ing.nombre}
-                  {ingredientInSeason(idx, ing.id) && (
+                  {ingredientInSeason(idx, ing.id, currentMonth()) && (
                     <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
                   )}
                 </span>

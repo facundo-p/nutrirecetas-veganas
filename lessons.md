@@ -109,3 +109,188 @@ La planificación se muda de `docs/plan/` a Issues con sub-issues, el trabajo en
 - **El CI encontró un bug latente en su primera hora.** Los 264 tests pasaban pero quedaba una promesa colgada: `registrar` escribía en la base y recién después navegaba; el test esperaba solo la escritura, vitest desmontaba jsdom y `navigate()` corría contra un `window` inexistente. Pasaba en local y falló en el runner, más lento. Lección: **un test que espera un efecto intermedio no espera al handler**; hay que esperar el último efecto observable.
 - **El repo nunca se había pusheado**: origin estaba vacío y los 43 commits vivían solo en la máquina de Facu. El push inicial de 198 MB falló con HTTP 400 hasta subir `http.postBuffer`. Vale revisar `git ls-remote` antes de asumir que "está en GitHub".
 - **Comprimir `CLAUDE.md` sin perder nada se verifica, no se estima.** El primer intento quedó *más largo* que el original. Un chequeo automático de 45 datos duros (nombres de hoja, umbrales ΔE, tokens) permitió apretar hasta −14 % con la certeza de que ninguna regla se había caído.
+
+---
+
+## Cuatro arreglos salidos de usar la app (2026-08-22)
+
+Los issues #57-#60 no vinieron de la planificación sino de Facu usando la app. La quinta cosa, que no pidió, reordena las otras cuatro.
+
+- **"Es principalmente una app de recetas; la nutrición es de segundo nivel."** Ni el código ni los docs lo decían: `CLAUDE.md` abre con "recetas veganas **con base nutricional**" y ocho de sus invariantes son nutricionales. El peso aparente estaba invertido y se filtró a la UI — 20 filas de nutrientes (12 sin dato) contra 4 renglones telegráficos de instrucciones. **Ante empate de espacio, gana lo que ayuda a cocinar.**
+- **Escribí la regla y la violé en el mismo commit.** El estilo de T9 dice "los `secretos_chef` no se absorben"; los copié dentro de los pasos en **8 de 8** recetas. Es la lección de las 141 violaciones de color otra vez, con un matiz peor: la regla tenía minutos de vida y vivía en el archivo que estaba editando. **La cercanía no protege; protege el test.**
+- **Un aviso que no se puede callar termina tapando la acción que lo apagaría.** El banner de backup era `sticky` e "insistente a propósito", y su condición (nunca hubo backup + hay cambios) no se apaga sola. En mobile tapaba el único enlace a Ajustes, que es donde está el botón de exportar.
+- **Un ícono nuevo colisiona por construcción, no por concepto.** El engranaje que dibujé —círculo + 8 rayos radiales— era literalmente `IconSol`, que ya significa "se evalúa por día". Antes de sumar un ícono, mirar las **primitivas** de los que ya están, no solo sus significados.
+- **El `.md` espejo del dataset tiene más que el `.json`.** Para `r18` la prosa dice "en sartencita", "¡segundos!" y un sustituto que la normalización perdió. No asumir que el JSON es superset de su propia documentación.
+- **Un assert sobre texto genérico sobrevive al cambio que debía detectar.** `getAllByText(/sin datos/)` habría pasado con la sección entera colapsada: el contador nuevo también dice "sin datos". Un test que no puede fallar no es cobertura.
+- **Los pasos del dataset son notas de cocinero, no instrucciones**: 3,95 pasos y ~202 caracteres por receta entera, y la mayoría de los ingredientes no aparece nunca. Los cura T9 en `curated-tables.ts`, el primer override de texto del proyecto — todo lo curado hasta ahora era numérico o referencial.
+
+---
+
+## Hoy vacío, motor de recomendaciones y tanda estética (2026-08-25)
+
+Seis issues salidos de usar la app (#68-#74), más dos que quedaron abiertos a propósito.
+
+- **Afirmar de menos también es mentir, y es la mitad del invariante 5 que nadie había escrito.** La pantalla Hoy sin registros pintaba los 20 nutrientes en "sin datos": el rojo falso tiene un gemelo. Pero la corrección importante la puso Facu sobre el plan: **no alcanza con "no registraste nunca"**. Si pasaron siete días sin cargar, la persona no dejó de comer — dejó de cargar, y eso va a pasar siempre. La regla que quedó es más simple que la que yo había planeado: *cada bloque se evalúa en su ventana, así que cada bloque se calla en su ventana*. Consecuencia aceptada: el semáforo va a estar oculto la mayor parte del tiempo. Está bien. **La app es un apoyo interesante de consultar, no un capataz que te obliga a registrar todo.**
+- **Un ranking que promedia solo los criterios que opinan le da puntaje perfecto a lo que casi nadie mira.** Con `null` fuera del numerador *y* del denominador —que es lo correcto para no contar el silencio como cero— una receta de la que un solo criterio habla sacaba 1.0 igual que una que convence a los cinco. Medido sobre la semilla real: **29 de 60 empatadas en el máximo**, con el desempate a cargo del orden alfabético. Se arregla encogiendo hacia un valor neutro con peso proporcional al total. La lección general: **un ranking sin un test que mire la distribución parece andar perfectamente**. Los tests unitarios pasaban todos.
+- **Los ΔE registrados del proyecto son CIE76, no CIEDE2000.** Lo descubrí midiendo el color que estaba en producción antes de tocarlo: con CIEDE2000 el `--cat-principal` del tema A daba 21.7 contra un piso declarado de 26, y **ninguna de las cinco categorías de ningún tema llegaría**. Con CIE76 reproduce exactamente los números anotados en el archivo del tema (27.4 / 20.1 / 4.64). La vara está calibrada sobre una fórmula; medir con la otra es compararse contra otra cosa. Sigue valiendo la lección de la Fase 1 (*antes de declarar algo imposible, medir qué cumple lo que ya está en producción*), ahora con una vuelta más: **medir también con qué fórmula se midió**.
+- **`overflow-x: auto` recorta también en el otro eje.** Por spec CSS, si un eje de `overflow` no es `visible`, el otro computa a `auto`. Era la causa de que el anillo de foco se viera comido arriba y a la izquierda en los filtros del recetario, y de que abajo zafara: había un `padding-bottom` que medía justo los 4 px del anillo. Un bug de accesibilidad que se lee como un capricho estético.
+- **Mirar el PNG encontró dos cosas que ningún test iba a encontrar**: las tres primeras recomendaciones eran tres postres (los dulces son cortos y de pocos ingredientes, así que ganan por novedad y estación mientras no hay historial), y un motivo decía *"el 20 % del proteína"* — los nombres de nutriente mezclan géneros y el artículo salía mal la mitad de las veces. Ninguna de las dos rompe un assert. Sigue siendo cierto que **el render es control de calidad, no documentación**.
+- **Un contrato que se deduce se mantiene solo.** Sacar `--font-display` y `--font-data` de `tokens.css` los metió automáticamente en el contrato de temas, y el test pasó a exigirlos de los tres sin que hubiera que tocarlo. Verificado sacándole uno al tema C: falla nombrando el token exacto. Si el contrato fuera una lista a mano, este refactor habría sido silencioso. Los 72 renders idénticos byte por byte confirmaron que no se veía; después, el cambio de fuente del tema A tocó **24 PNG del A y 0 de los otros 48**: el tema no gotea.
+- **Ojo con la banda verde del tema A.** El `--cat-principal` nuevo (laurel) cumple la vara pero su vecino más cercano dejó de ser otra categoría y pasó a ser el musgo del semáforo: la A quedó con verde en su identidad *y* en una categoría. Es el tipo de acumulación que causó el rediseño de la D. Está medido y anotado; si en uso real molesta, es una línea.
+
+---
+
+## Fase 3 — El recetario al frente (2026-08-27)
+
+Ocho issues (#90-#97) que sacan el tracking nutricional y dejan la nutrición como
+consulta. **1149 líneas menos solo en el primero**, y la app hace más.
+
+- **Una funcionalidad puede estar bien construida y ser la equivocada.** El
+  semáforo era lo que más explotaba el activo del dataset —RDA ajustadas,
+  ventanas, suplementos— y por eso mismo se llevó el centro de una app que es un
+  recetario. Se optimizó el activo en vez del uso. La señal estuvo disponible
+  cinco días antes, anotada acá el 22/08 ("es principalmente una app de
+  recetas"), y todavía se siguió construyendo encima. **Cuando una lección dice
+  que el peso está invertido, corregir el peso es el trabajo, no una nota al
+  pie.**
+- **El orden de los issues no se decide en la planificación, se decide leyendo
+  los imports.** El plan mandaba #90 → #91 → #92; el grafo real decía otra cosa.
+  `recomendaciones.ts` importaba `EstadoNutriente` de `traffic-light`, así que
+  borrar el semáforo forzaba tocar el motor en el mismo PR; y disolver Hoy antes
+  de sacar los consumos obligaba a mudar el bloque de sobras al recetario para
+  borrarlo una semana después. Salió #90 → #92 → #91. **Un plan que no compila en
+  sus estados intermedios no es un plan, es una lista de deseos.**
+- **`gh issue develop` corta de la rama por defecto.** La rama del primer issue
+  nació de `main`, 14 commits atrás, y el archivo que iba a editar no existía
+  todavía. Se detectó porque `cat` falló, no porque algo avisara. `CLAUDE.md`
+  documentaba el comando sin `--base staging`: la doc de un comando que se usa
+  ocho veces seguidas tiene que traer los flags que el proyecto necesita, no los
+  del caso general.
+- **El contrato de temas encontró tres roles disfrazados.** Al sacar el semáforo
+  aparecieron `--semaforo-parcial` pintando el banner de backup y los avisos de
+  escalado, y `--semaforo-cubierto` el fondo de `.mensaje-ok`. No eran usos
+  indebidos de un color: eran roles sin nombre propio (`--precaucion`, `--exito`,
+  `--suplemento`) que se habían colgado del rol más parecido. **Un token que se
+  usa para algo que su nombre no dice es un rol que falta**, y solo se ve cuando
+  el dueño original se va.
+- **`strictObject` es estricto en las dos puntas, y eso convierte un campo
+  borrado en un backup ilegible.** Sacar `consumos` del esquema hacía rebotar
+  entero cualquier archivo exportado antes — y con él las cocciones, que sí se
+  podían salvar. La migración del backup no es un accesorio de la migración de la
+  base: es la mitad que le devuelve los datos a alguien cuyo navegador purgó todo.
+- **Un aviso de pérdida de datos no necesita un flag nuevo.**
+  `meta.user_schema_version` solo se escribe al crear el registro, así que quien
+  venía de antes lo tiene viejo: eso ya es la marca. Se ató a
+  `ULTIMA_VERSION_CON_PERDIDA` y no a `USER_SCHEMA_VERSION` porque no toda
+  migración futura va a perder algo.
+- **Sacar un campo del esquema obliga a un `upgrade()`, no solo a un
+  `stores({})`.** Con `profileDataSchema` estricto, dejar `suplementos` en el
+  registro guardado habría hecho rebotar el próximo guardado con un ZodError: el
+  perfil quedaba de solo lectura sin que nada lo dijera.
+- **El invariante 5 también aplica a los rankings.** Una receta sin dato
+  reportable no entra a "las que más aportan" — ni siquiera al final, porque el
+  último puesto se lee como *"esta casi no tiene"*, que es afirmar algo que no
+  sabemos. Es el mismo razonamiento que el del 0 % contra el "sin datos", una
+  capa más arriba.
+- **El CI encontró otra carrera latente, y otra vez por ser más lento.** El test
+  de cableado de las recomendaciones calcula la nutrición de las 84 recetas con
+  el cache frío: ~700 ms en local contra el segundo que `waitFor` da por defecto.
+  Pasaba tres veces seguidas en la máquina y fallaba en el runner.
+- **El diff de renders sigue siendo lo único que permite mover CSS sin miedo.**
+  Las 20 reglas de nutrición vivían en `receta.css` y las leían tres pantallas.
+  Mover el bloque a `componentes.css` cerró con los 26 renders del tema D
+  idénticos byte por byte. Y por eso el movimiento no fue en el PR que agregaba
+  el porcentaje: ahí lo visual cambiaba y el diff no podía servir de red.
+  **Refactor neutro primero, cambio visual después** — la regla ya estaba escrita
+  desde la Fase 1 y esta vez se respetó de entrada.
+- **Un script de renders también se rompe en silencio.** El guard del sembrado
+  buscaba el "¿Cómo venís?" de la pantalla Hoy y hacía fallar la corrida entera
+  tres issues después de que Hoy dejara de existir. Los tests no lo cubrían: el
+  script no tiene tests, y es lo que produce el material de revisión de Facu.
+
+### El hallazgo de los renders: la B12 tranquilizadora (2026-08-27)
+
+Los ocho issues cerraron en verde y con 401 tests. La primera recomendación del
+recetario decía **"aporta el 265 % de la dosis de vitamina B12"**. Ningún test
+podía fallar: el motivo era correcto según su propia lógica.
+
+- **Un umbral que suena obvio puede ser falso en las dos direcciones, y solo
+  medir lo muestra.** La primera hipótesis fue "exigir cobertura mínima para
+  afirmar un porcentaje", que suena a sentido común y se eligió sin medir.
+  Medida: (1) una cobertura baja **solo puede subestimar** —lo que falta suma,
+  nunca resta—, así que el piso descalificaba `p12`, que mide 21,64 g de
+  proteína **exactos, sin banda**, sobre el 46 % del plato; (2) dejaba pasar
+  `d08`, que va de 0 a 3,75 µg de B12 **con 85 % de cobertura**; (3) aplicado a
+  todos los porcentajes borraba el **74 %**, porque la cobertura mediana de la
+  semilla es 28 %. La hipótesis se cayó por medición, y el test que rompió
+  (`p12 es rica en proteína`) era el que tenía razón.
+- **El problema real ya tenía nombre desde la Fase 0**: *el punto medio solo
+  miente si escondés la banda*. Lo que faltaba era notar **dónde no se puede
+  mostrar la banda**: en el motivo de una recomendación y en el filtro "rica en",
+  el número viaja solo. La regla que quedó no tiene umbral que calibrar — si el
+  rango arranca en cero, no se afirma — y cae exactamente sobre el caso de la
+  levadura nutricional, porque el invariante 6 dice que ese dato empieza en cero.
+- **Consecuencia que vale como prueba de que la regla es la correcta**: ninguna
+  receta queda "rica en B12". Es la respuesta verdadera para un recetario vegano,
+  y la app la venía dando mal.
+- **Una funcionalidad correcta puede ser insegura por dónde se muestra.** El
+  mismo número, con su banda al lado, es honesto en la tabla de la receta. Suelto
+  en una tarjeta de la primera pantalla, es la app diciendo que estás cubierto de
+  B12. **El contexto es parte del dato**, y una función de dominio que devuelve
+  "el porcentaje" sin saber dónde se va a mostrar no puede protegerlo sola: por
+  eso quedaron dos y no una con un flag.
+
+---
+
+## La ficha de nutriente dice qué es (2026-08-27, #115)
+
+- **Lo que el dataset nombra sin explicar, la UI lo hereda sin explicar.**
+  "Proteína (lisina)" se mostró dos fases tal cual venía; la explicación existía
+  pero repartida en prosa que había que inferir (`ajuste_vegano`,
+  `ventana_nota`). La destapó la pregunta real de un usuario ("¿mide lisina?").
+  El rol fisiológico de cada nutriente no estaba ni en el JSON ni en el `.md`:
+  entró curado (T10) desde las fichas NIH ODS que el dataset ya citaba como
+  fuentes.
+- **`npm run renders` renderiza el dist que haya, fresco o no.** El build falló
+  en `tsc` en el medio de una cadena con pipe (`npm run build | tail`), el pipe
+  se quedó con el exit de `tail`, y los renders corrieron igual — contra un
+  bundle sin el cambio. Se notó porque el error de tipos pasó rozando por
+  pantalla. Guardas baratas: chequear el exit sin pipe, y que el script avise si
+  `dist/` es más viejo que la semilla o `src/`.
+
+---
+
+## Las 84 recetas con pasos de verdad (2026-08-28, #65)
+
+- **El piloto bloqueado era un artifact de distancia.** #65 esperó cinco días "la
+  aprobación del estilo" que Facu no sabía que debía: el piloto vivía en la tabla
+  curada y en un doc, no en algo mirable. Armar la página antes/después destrabó
+  la decisión en una pasada — y trajo dos salvedades (sin códigos R8/P04 en los
+  pasos, correcciones solo del lado del build) que mejoraron el criterio.
+- **76 recetas en paralelo salen parejas si el prompt lleva las reglas de los
+  tests, no solo el estilo.** Cada agente recibió el matcher de imprescindibles
+  explicado (prefijo ≥4, palabra exacta <4), la ventana de 6 palabras de los
+  secretos y el regex de códigos, más dos entradas del piloto como voz. Los 8
+  entregaron verificado y el ensamblado pasó los 50 tests de calidad al primer
+  intento.
+- **La reescritura fue también una auditoría**: ~20 recetas tenían problemas de
+  contenido, no de redacción — ingredientes imprescindibles que ningún paso
+  nombraba (p29, p30), caldos y ajíes fantasma sin línea (r04, r09, r08, r15),
+  tiempos contradictorios (p34, p43, r11). Todo quedó en `nota`, que no llega a
+  la app: es material del gate.
+- **Antes de culpar al cambio, medir el baseline.** La suite completa dio 9 rojos
+  tras insertar las 76; en baseline (stash) fallan los mismos tests con los
+  mismos timeouts de 5 s: flakiness de esta máquina bajo carga, preexistente.
+  Los archivos afectados pasan aislados; el árbitro es el CI.
+
+---
+
+## El paréntesis que prometía una validación (2026-08-28, #123)
+
+- **Un nombre también afirma.** "Proteína (lisina)" venía del dataset, y la ficha
+  (T10) ya aclaraba que no se mide lisina — pero el nombre viaja solo a lugares
+  donde la ficha no llega: la tabla de la receta, el filtro "rica en". Lo destapó
+  `p44`, una masa 100 % trigo (el cereal pobre en lisina) "aportando 28 % de
+  Proteína (lisina)". Cuando la etiqueta misma sobreafirma, explicar no alcanza:
+  se renombra (T11). Mismo linaje que la B12 tranquilizadora — el contexto es
+  parte del dato, y el nombre es el contexto que va a todas partes.

@@ -1,0 +1,298 @@
+import { describe, expect, test } from 'vitest';
+import type { Coccion, Overlay, Perfil } from '../db/schema';
+import { getSeedIndex } from '../seed';
+import { computeNutrition } from './nutrition';
+import { CRITERIOS, PESOS_POR_DEFECTO, recomendar, type Criterio, type EntradaRecomendacion } from './recomendaciones';
+
+const idx = getSeedIndex();
+const HOY = new Date('2026-08-19T15:00:00'); // agosto: invierno en AMBA
+
+function perfilCon(nutrientes_destacados: string[]): Perfil {
+  return {
+    id: 1,
+    sexo_para_requerimientos: 'masculino',
+    fecha_nacimiento: '1990-01-01',
+    peso_kg: 75,
+    nivel_entrenamiento: 'sedentario',
+    nutrientes_destacados,
+    creado_en: HOY.toISOString(),
+    actualizado_en: HOY.toISOString(),
+  };
+}
+
+function coccion(id: number, receta_id: string, diasAtras: number): Coccion {
+  const fecha = new Date(HOY);
+  fecha.setDate(fecha.getDate() - diasAtras);
+  return {
+    id,
+    receta_id,
+    receta_nombre: idx.recipeById.get(receta_id)?.nombre ?? receta_id,
+    seed_version: '1.0.0',
+    fecha: fecha.toISOString(),
+    porciones_rendidas: 4,
+    factor_escala: 1,
+    lineas: [],
+    variaciones: [],
+    nutricion_porcion: {
+      masa_total_g: 400,
+      kcal: { intervalo: { min: 400, max: 400 }, cobertura_pct: 99, ic: 8 },
+      por_nutriente: {},
+      alerta_b12: false,
+    },
+  };
+}
+
+function entrada(over: Partial<EntradaRecomendacion> = {}): EntradaRecomendacion {
+  return {
+    idx,
+    perfil: null,
+    cocciones: [],
+    overlays: [],
+    mes: 8,
+    hoy: HOY,
+    nutricionDe: (id) => computeNutrition(id, idx),
+    ...over,
+  };
+}
+
+const idsDe = (e: EntradaRecomendacion, opciones = {}) => recomendar(e, opciones).map((r) => r.receta.id);
+
+describe('el motor', () => {
+  test('recomienda algo aun con la base vacía', () => {
+    const rec = recomendar(entrada());
+    expect(rec.length).toBeGreaterThan(0);
+    expect(rec.length).toBeLessThanOrEqual(3);
+    expect(rec[0]!.motivos.length).toBeGreaterThan(0);
+  });
+
+  test('nunca recomienda un preparado ni una variante: no son una comida', () => {
+    const todas = recomendar(entrada(), { limite: 200 });
+    expect(todas.length).toBeGreaterThan(10);
+    for (const { receta } of todas) {
+      expect(receta.es_preparado).not.toBe(true);
+      expect(receta.variante_de).toBeUndefined();
+    }
+  });
+
+  test('el orden es estable: mismo contexto, mismo resultado', () => {
+    expect(idsDe(entrada())).toEqual(idsDe(entrada()));
+  });
+
+  test('cambiar los pesos cambia el orden', () => {
+    const e = entrada({ overlays: [{ receta_id: 'r04', favorita: true, actualizado_en: HOY.toISOString() }] });
+    const soloFavoritas = idsDe(e, { pesos: { favoritas: 1 } });
+    expect(soloFavoritas[0]).toBe('r04');
+    expect(idsDe(e, { pesos: { 'de-estacion': 1 } })[0]).not.toBe('r04');
+  });
+
+  test('null no es cero: callarse no baja el puntaje, puntuar cero sí', () => {
+    const habla: Criterio = { id: 'habla', descripcion: '', evaluar: () => ({ puntaje: 1, motivo: 'sí' }) };
+    const callado: Criterio = { id: 'otro', descripcion: '', evaluar: () => null };
+    const cero: Criterio = { id: 'otro', descripcion: '', evaluar: () => ({ puntaje: 0, motivo: '' }) };
+    const pesos = { habla: 1, otro: 1 };
+    const con = (c: Criterio) => recomendar(entrada(), { criterios: [habla, c], pesos, limite: 1 })[0]!.puntaje;
+    expect(con(callado)).toBeGreaterThan(con(cero));
+  });
+
+  test('un criterio callado para todas no cambia el orden', () => {
+    // sin overlays nadie es favorita: el criterio favoritas no opina de ninguna
+    const conFavoritas = idsDe(entrada(), { pesos: { favoritas: 0.9, 'de-estacion': 0.1 }, limite: 20 });
+    const soloEstacion = idsDe(entrada(), { pesos: { 'de-estacion': 1 }, limite: 20 });
+    expect(conFavoritas).toEqual(soloEstacion);
+  });
+
+  test('convencer a dos criterios vale más que convencer al único que te mira', () => {
+    // el promedio sobre poco peso se va a los extremos, y ahí una receta de la
+    // que sabemos una sola cosa empataba con una que convence a todos
+    const todas: Criterio = { id: 'todas', descripcion: '', evaluar: () => ({ puntaje: 1, motivo: 'a' }) };
+    const soloR04: Criterio = {
+      id: 'soloR04',
+      descripcion: '',
+      evaluar: (receta) => (receta.id === 'r04' ? { puntaje: 1, motivo: 'b' } : null),
+    };
+    const rec = recomendar(entrada(), { criterios: [todas, soloR04], pesos: { todas: 0.5, soloR04: 0.5 }, limite: 200 });
+    expect(rec[0]!.receta.id).toBe('r04');
+    expect(rec[0]!.puntaje).toBeGreaterThan(rec[1]!.puntaje);
+  });
+
+  test('ninguna receta llega al puntaje máximo: nadie convence a todos los criterios', () => {
+    const todas = recomendar(entrada(), { limite: 200 });
+    expect(todas.filter((r) => r.puntaje >= 0.999)).toHaveLength(0);
+  });
+
+  test('no repite tipo de receta mientras haya de otro: tres postres son uno repetido', () => {
+    const rec = recomendar(entrada());
+    const tipos = rec.map((r) => r.receta.tipo);
+    expect(new Set(tipos).size).toBe(tipos.length);
+  });
+
+  test('si no hay de otro tipo, completa con lo que haya', () => {
+    const soloDulces: Criterio = {
+      id: 'soloDulces',
+      descripcion: '',
+      evaluar: (receta) => (receta.tipo === 'dulce' ? { puntaje: 1, motivo: 'dulce' } : null),
+    };
+    const rec = recomendar(entrada(), { criterios: [soloDulces], pesos: { soloDulces: 1 } });
+    expect(rec).toHaveLength(3);
+    for (const r of rec) expect(r.receta.tipo).toBe('dulce');
+  });
+
+  test('todos los criterios declarados tienen peso por defecto, y al revés', () => {
+    expect(CRITERIOS.map((c) => c.id).sort()).toEqual(Object.keys(PESOS_POR_DEFECTO).sort());
+  });
+});
+
+describe('criterio: favoritas', () => {
+  const overlays: Overlay[] = [{ receta_id: 'r04', favorita: true, actualizado_en: HOY.toISOString() }];
+
+  test('una favorita puntúa y lo dice', () => {
+    const rec = recomendar(entrada({ overlays }), { pesos: { favoritas: 1 } });
+    expect(rec[0]!.receta.id).toBe('r04');
+    expect(rec[0]!.motivos[0]).toMatch(/favorita/i);
+  });
+
+  test('sin favoritas el criterio no opina de nadie', () => {
+    expect(recomendar(entrada(), { pesos: { favoritas: 1 } })).toHaveLength(0);
+  });
+});
+
+describe('criterio: novedad', () => {
+  test('lo cocinado hace dos días queda al fondo', () => {
+    const e = entrada({ cocciones: [coccion(1, 'r04', 2)] });
+    const todas = recomendar(e, { pesos: { novedad: 1 }, limite: 200 });
+    expect(todas.at(-1)!.receta.id).toBe('r04');
+    expect(todas[0]!.puntaje).toBeGreaterThan(todas.at(-1)!.puntaje);
+  });
+
+  test('lo cocinado hace tres meses deja de penalizar, pero ya no es novedad', () => {
+    const pesos = { novedad: 1, 'de-estacion': 1 };
+    const r04De = (cocciones: Coccion[]) =>
+      recomendar(entrada({ cocciones }), { pesos, limite: 200 }).find((r) => r.receta.id === 'r04');
+
+    const recien = r04De([coccion(1, 'r04', 2)]);
+    const vieja = r04De([coccion(1, 'r04', 90)]);
+    const virgen = r04De([]);
+
+    // recién hecha: novedad opina 0 y arrastra el promedio hacia abajo
+    expect(vieja!.puntaje).toBeGreaterThan(recien!.puntaje);
+    // hace 90 días ya no penaliza, pero tampoco recupera el empujón de novedad
+    expect(vieja!.motivos).not.toContain('no la probaste todavía');
+    expect(virgen!.motivos).toContain('no la probaste todavía');
+  });
+
+  test('solo las que la semilla marca por probar reciben el empujón de novedad', () => {
+    const rec = recomendar(entrada(), { pesos: { novedad: 1 }, limite: 200 });
+    for (const { receta } of rec) expect(receta.estado).toBe('por-probar');
+  });
+});
+
+describe('criterio: de estación', () => {
+  test('en agosto y en febrero no recomienda lo mismo', () => {
+    const agosto = idsDe(entrada({ mes: 8 }), { pesos: { 'de-estacion': 1 } });
+    const febrero = idsDe(entrada({ mes: 2 }), { pesos: { 'de-estacion': 1 } });
+    expect(agosto).not.toEqual(febrero);
+  });
+
+  test('el motivo cuenta los ingredientes en pico', () => {
+    const rec = recomendar(entrada({ mes: 8 }), { pesos: { 'de-estacion': 1 } });
+    expect(rec[0]!.motivos[0]).toMatch(/ingrediente/);
+  });
+});
+
+describe('criterio: puntaje', () => {
+  test('el IC que le pusiste manda sobre la candidata a clásica', () => {
+    const overlays: Overlay[] = [{ receta_id: 'r04', ic_usuario: 10, actualizado_en: HOY.toISOString() }];
+    const rec = recomendar(entrada({ overlays }), { pesos: { puntaje: 1 } });
+    expect(rec[0]!.receta.id).toBe('r04');
+    expect(rec[0]!.motivos[0]).toMatch(/10/);
+  });
+
+  test('el ic de la semilla no se usa: mide confianza del dato, no qué tan rica es', () => {
+    const rec = recomendar(entrada(), { pesos: { puntaje: 1 }, limite: 200 });
+    for (const { receta } of rec) expect(receta.candidata_clasica).toBe(true);
+  });
+});
+
+describe('criterio: rica en lo que te interesa', () => {
+  const soloEste = { pesos: { 'rica-en-lo-que-te-interesa': 1 } };
+  const conHierro = () => entrada({ perfil: perfilCon(['hierro']) });
+
+  test('sin perfil no opina: no hay dosis contra la cual medir', () => {
+    expect(recomendar(entrada({ perfil: null }), soloEste)).toHaveLength(0);
+  });
+
+  test('sin nutrientes marcados no opina: no sabe qué te interesa', () => {
+    expect(recomendar(entrada({ perfil: perfilCon([]) }), soloEste)).toHaveLength(0);
+  });
+
+  test('gana la que más aporta del nutriente que marcaste', () => {
+    const rec = recomendar(conHierro(), { ...soloEste, limite: 200 });
+    expect(rec.length).toBeGreaterThan(5);
+    const hierroDe = (id: string) =>
+      computeNutrition(id, idx).por_nutriente.hierro_mg?.intervalo.max ?? 0;
+    expect(hierroDe(rec[0]!.receta.id)).toBeGreaterThan(hierroDe(rec.at(-1)!.receta.id));
+  });
+
+  test('el motivo dice cuánto aporta, sin pelearse con el género del nutriente', () => {
+    // "el 20 % del proteína" fue un bug real: el artículo salía mal la mitad de
+    // las veces. Se nombra la dosis, no el nutriente suelto.
+    const rec = recomendar(conHierro(), soloEste);
+    expect(rec[0]!.motivos.join(' ')).toMatch(/\d+ % de la dosis de hierro/);
+  });
+
+  test('marcar dos nutrientes cambia el orden respecto de marcar uno', () => {
+    const soloHierro = recomendar(conHierro(), { ...soloEste, limite: 20 }).map((r) => r.receta.id);
+    const hierroYCalcio = recomendar(entrada({ perfil: perfilCon(['hierro', 'calcio']) }), {
+      ...soloEste,
+      limite: 20,
+    }).map((r) => r.receta.id);
+    expect(hierroYCalcio).not.toEqual(soloHierro);
+  });
+
+  test('sobre la semilla real el puntaje se reparte: no empatan todas arriba', () => {
+    // la lección de #69: un ranking sin un test que mire la distribución parece
+    // andar perfectamente. Ahí eran 29 de 60 empatadas en 1.0.
+    const todas = recomendar(conHierro(), { ...soloEste, limite: 500 });
+    const enElMaximo = todas.filter((r) => r.puntaje >= todas[0]!.puntaje - 1e-9);
+    expect(enElMaximo.length).toBeLessThan(todas.length / 4);
+  });
+});
+
+describe('la variedad que se ve es la del porqué, no la del tipo', () => {
+  const perfil = perfilCon(['hierro', 'b12', 'calcio', 'zinc', 'yodo', 'omega3', 'proteina']);
+
+  test('no repite el tema del motivo principal mientras haya otro disponible', () => {
+    // `diversificar` ya variaba el tipo de receta, pero lo que el ojo lee es el
+    // motivo: dos "aporta el N % de la dosis de proteína" seguidos son uno
+    // repetido, aunque una sea salada y la otra un pan.
+    //
+    // Se compara el TEMA y no el texto: los motivos traen el porcentaje adentro,
+    // así que "el 47 % de la dosis de proteína" y "el 32 % de la dosis de
+    // proteína" son strings distintos y un test sobre el texto no podría fallar.
+    const rec = recomendar(entrada({ perfil }));
+    const temas = rec.map((r) => r.temaPrincipal).filter((t) => t !== undefined);
+    expect(temas.length).toBeGreaterThan(1);
+    expect(new Set(temas).size).toBe(temas.length);
+  });
+
+  test('si hay que repetir algo, repite el tipo antes que el motivo', () => {
+    // Con dos criterios de variedad, la primera pasada rinde menos y a veces
+    // hay que ceder uno. Ceder el tipo cuesta menos: dos saladas con argumentos
+    // distintos se leen como dos recomendaciones; una salada y un pan que dicen
+    // lo mismo, como una sola repetida.
+    const rec = recomendar(entrada({ perfil }));
+    const temas = rec.map((r) => r.temaPrincipal).filter((t) => t !== undefined);
+    expect(new Set(temas).size).toBe(temas.length);
+    expect(rec).toHaveLength(3);
+  });
+
+  test('si no hay con qué variar, completa igual en vez de devolver de menos', () => {
+    const unoSolo: Criterio = {
+      id: 'unoSolo',
+      descripcion: '',
+      evaluar: () => ({ puntaje: 1, motivo: 'siempre lo mismo', tema: 'unico' }),
+    };
+    const rec = recomendar(entrada(), { criterios: [unoSolo], pesos: { unoSolo: 1 } });
+    expect(rec).toHaveLength(3);
+  });
+});

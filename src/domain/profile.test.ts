@@ -2,13 +2,16 @@ import { describe, expect, test } from 'vitest';
 import type { Perfil } from '../db/schema';
 import { getSeedIndex } from '../seed';
 import { edadEnAnios, objetivosDelPerfil } from './profile';
-import { aporteDiarioEquivalente } from './supplements';
 
 /**
  * El dataset trae en `perfil.json` los objetivos que la app "debería calcular"
  * para su perfil de ejemplo (varón, 75 kg, actividad 1.0): hierro 14.4 mg,
  * zinc 16.5 mg, calcio 1000 mg, yodo 150 µg, selenio 55 µg, proteína 75 g,
- * ALA 3.2 g, B12 y vitD cubiertos por suplemento. Se usan como golden.
+ * ALA 3.2 g. Se usan como golden.
+ *
+ * Su parte de suplementos ("B12 y vitD cubiertos") ya no se modela: eso apagaba
+ * una exigencia del semáforo, y el objetivo pasó a ser una referencia contra la
+ * que se informa un porcentaje.
  */
 
 const idx = getSeedIndex();
@@ -20,11 +23,6 @@ const perfilEjemplo: Perfil = {
   fecha_nacimiento: '1990-01-01',
   peso_kg: 75,
   nivel_entrenamiento: 'sedentario',
-  suplementos: [
-    { nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' },
-    { nutriente_id: 'vitd', dosis: 15, unidad: 'µg', frecuencia: 'diaria' },
-  ],
-  overrides: [],
   nutrientes_destacados: [],
   creado_en: HOY.toISOString(),
   actualizado_en: HOY.toISOString(),
@@ -96,54 +94,6 @@ describe('objetivos del perfil de ejemplo (golden de perfil.json)', () => {
     expect(objetivos.get('proteina')!.unidad).toBe('g');
     expect(objetivos.get('hierro')!.unidad).toBe('mg');
     expect(objetivos.get('vita')!.unidad).toBe('µg RAE');
-  });
-});
-
-describe('suplementos', () => {
-  test('el aporte diario equivalente reparte la dosis en la semana', () => {
-    expect(aporteDiarioEquivalente({ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' })).toBeCloseTo(
-      285.71,
-      1,
-    );
-    expect(aporteDiarioEquivalente({ nutriente_id: 'vitd', dosis: 15, unidad: 'µg', frecuencia: 'diaria' })).toBe(15);
-  });
-
-  test('B12 1000 µg dos veces por semana apaga la exigencia alimentaria', () => {
-    expect(objetivos.get('b12')!.cubierto_por_suplemento).toBe(true);
-  });
-
-  test('vitamina D 15 µg diarios cubre su objetivo', () => {
-    expect(objetivos.get('vitd')!.cubierto_por_suplemento).toBe(true);
-  });
-
-  test('un suplemento que no alcanza suma su aporte pero no apaga la exigencia', () => {
-    const flojo: Perfil = {
-      ...perfilEjemplo,
-      suplementos: [{ nutriente_id: 'vitd', dosis: 5, unidad: 'µg', frecuencia: 'diaria' }],
-    };
-    const o = objetivosDelPerfil(flojo, idx.seed.nutrientes, HOY).get('vitd')!;
-    expect(o.cubierto_por_suplemento).toBe(false);
-    expect(o.aporte_suplemento_diario).toBeCloseTo(5);
-  });
-
-  test('sin suplementos declarados, nada queda cubierto', () => {
-    const sinSupl: Perfil = { ...perfilEjemplo, suplementos: [] };
-    const o = objetivosDelPerfil(sinSupl, idx.seed.nutrientes, HOY);
-    expect(o.get('b12')!.cubierto_por_suplemento).toBe(false);
-    expect(o.get('b12')!.aporte_suplemento_diario).toBe(0);
-  });
-});
-
-describe('overrides', () => {
-  test('pisan la RDA y quedan marcados con su motivo', () => {
-    const conOverride: Perfil = {
-      ...perfilEjemplo,
-      overrides: [{ nutriente_id: 'hierro', objetivo: 25, unidad: 'mg', motivo: 'ferritina baja (indicación médica)' }],
-    };
-    const o = objetivosDelPerfil(conOverride, idx.seed.nutrientes, HOY).get('hierro')!;
-    expect(o.valor).toBe(25);
-    expect(o.origen).toBe('override');
-    expect(o.motivo_override).toContain('ferritina');
   });
 });
 

@@ -1,4 +1,5 @@
 import { beforeAll, describe, expect, test } from 'vitest';
+import { CURATED_STEPS } from './curated-tables';
 import { loadRawData, type RawData } from './load';
 import {
   toNutrientValue,
@@ -189,6 +190,19 @@ describe('nutrientes del catálogo', () => {
       expect(all.find((n) => n.id === id)!.ajuste_vegano?.factor).toBeUndefined();
     }
   });
+
+  test('el nombre que promete lo que no se mide se corrige (T11)', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    // el dataset dice "Proteína (lisina)", pero la clave es prot_g: proteína total
+    expect(all.find((n) => n.id === 'proteina')!.nombre).toBe('Proteína');
+  });
+
+  test('los 20 llevan su descripción curada (T10)', () => {
+    const all = raw.nutrientes.map(transformNutrient);
+    for (const n of all) expect(n.descripcion.length, n.id).toBeGreaterThan(40);
+    // el caso que originó la tabla: el nombre "Proteína (lisina)" sin explicar
+    expect(all.find((n) => n.id === 'proteina')!.descripcion).toMatch(/lisina/);
+  });
 });
 
 describe('estacionalidad y conservación', () => {
@@ -208,4 +222,98 @@ describe('estacionalidad y conservación', () => {
     expect(items.find((i) => i.item === 'avena')?.aplica).toEqual({ tipo: 'ingrediente', ids: ['avena'] });
     expect(items.find((i) => i.item === 'caldo_casero')?.aplica.tipo).toBe('estado');
   });
+});
+
+describe('pasos (T9)', () => {
+  const normalizar = (t: string) =>
+    t
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '');
+
+  /**
+   * Un ingrediente está nombrado si alguna palabra de su id aparece en los
+   * pasos. Los tokens largos matchean por prefijo de palabra, para tolerar
+   * plural y género ("cebolla" en "cebollas de verdeo"); los cortos exigen
+   * palabra exacta, o "sal" se daría por nombrado dentro de "salsa".
+   */
+  const estaNombrado = (ingredienteId: string, pasos: string) =>
+    normalizar(ingredienteId)
+      .split('_')
+      .some((token) =>
+        token.length >= 4
+          ? new RegExp(`\\b${token}`).test(pasos)
+          : new RegExp(`\\b${token}\\b`).test(pasos),
+      );
+
+  const curadas = () => recipes.filter((r) => Object.keys(CURATED_STEPS).includes(r.id));
+
+  test('las 84 recetas tienen pasos curados', () => {
+    expect(curadas()).toHaveLength(recipes.length);
+  });
+
+  test('ningún paso nombra un código del dataset', () => {
+    // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina.
+    for (const r of curadas()) {
+      for (const paso of r.pasos) expect(paso, `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
+    }
+  });
+
+  test('una entrada de T9 para una receta inexistente rompe el build', () => {
+    // El guard vive en transformRecipes; acá se documenta que existe y qué dice.
+    expect(() => {
+      const ids = new Set(recipes.map((r) => r.id));
+      const huerfanas = [...Object.keys(CURATED_STEPS), 'zzz'].filter((id) => !ids.has(id));
+      if (huerfanas.length > 0) throw new Error(`T9: pasos curados para recetas que no existen: ${huerfanas.join(', ')}`);
+    }).toThrow(/no existen: zzz/);
+  });
+
+  test('ninguna baja de 3 pasos', () => {
+    for (const r of curadas()) expect(r.pasos.length, r.id).toBeGreaterThanOrEqual(3);
+  });
+
+  test('ningún paso es un telegrama', () => {
+    for (const r of curadas()) {
+      for (const paso of r.pasos) expect(paso.length, `${r.id}: "${paso}"`).toBeGreaterThan(40);
+    }
+  });
+
+  test('el matcher de ingredientes distingue lo que tiene que distinguir', () => {
+    const en = (id: string, texto: string) => estaNombrado(id, normalizar(texto));
+    expect(en('curcuma', 'la cucharadita de cúrcuma')).toBe(true); // acento
+    expect(en('cebolla_verdeo', 'las 4 cebollas de verdeo')).toBe(true); // plural
+    expect(en('sal_yodada', 'la pizca de sal')).toBe(true); // token corto, palabra exacta
+    expect(en('sal_yodada', 'las 10 cucharadas de salsa de soja')).toBe(false); // "sal" ≠ "salsa"
+    expect(en('jengibre', 'lentejas, cúrcuma y pimienta negra')).toBe(false); // ausente
+  });
+
+  test('todo ingrediente imprescindible se nombra en los pasos', () => {
+    for (const r of curadas()) {
+      const pasos = normalizar(r.pasos.join(' '));
+      const olvidados = r.lineas
+        .filter((l) => l.imprescindible && l.ref.tipo === 'ingrediente')
+        .map((l) => l.ref.id)
+        .filter((id) => !estaNombrado(id, pasos));
+      expect(olvidados, r.id).toEqual([]);
+    }
+  });
+
+  /**
+   * Los pasos y los secretos se muestran juntos en el detalle, así que copiar
+   * un secreto dentro de un paso hace leer lo mismo dos veces. Pasó en 8 de
+   * los 8 del piloto antes de este test: la regla estaba escrita y no alcanzó.
+   */
+  test('los pasos no se comen los secretos del chef', () => {
+    for (const r of curadas()) {
+      const pasos = normalizar(r.pasos.join(' ')).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).join(' ');
+      for (const secreto of r.secretos_chef) {
+        const palabras = normalizar(secreto).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
+        for (let i = 0; i + 6 <= palabras.length; i++) {
+          const tramo = palabras.slice(i, i + 6).join(' ');
+          expect(pasos, `${r.id} repite el secreto: "${tramo}"`).not.toContain(tramo);
+        }
+      }
+    }
+  });
+
 });

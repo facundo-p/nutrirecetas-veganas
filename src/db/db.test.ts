@@ -1,17 +1,7 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { db } from './db';
-import {
-  addConsumo,
-  addCoccion,
-  consumosDeCoccion,
-  getMeta,
-  getOverlay,
-  getPerfil,
-  porcionesSobrantes,
-  saveOverlay,
-  savePerfil,
-} from './repos';
+import { addCoccion, getCoccion, getMeta, getOverlay, getPerfil, saveOverlay, savePerfil } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 
 const perfilBase: ProfileData = {
@@ -19,8 +9,6 @@ const perfilBase: ProfileData = {
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
   nivel_entrenamiento: 'activo',
-  suplementos: [],
-  overrides: [],
   nutrientes_destacados: [],
 };
 
@@ -67,18 +55,17 @@ describe('perfil', () => {
   });
 });
 
-describe('cocciones y consumos', () => {
-  test('una cocción y sus consumos viven juntos', async () => {
+describe('cocciones', () => {
+  test('guardan lo que rindieron y su nutrición congelada', async () => {
     const id = await addCoccion(coccionBase);
-    await addConsumo({ coccion_id: id, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 });
-    expect(await consumosDeCoccion(id)).toHaveLength(1);
+    const coccion = await getCoccion(id);
+    expect(coccion?.porciones_rendidas).toBe(6);
+    expect(coccion?.nutricion_porcion.alerta_b12).toBe(true);
   });
 
-  test('las sobras son lo rendido menos lo consumido', async () => {
-    const id = await addCoccion(coccionBase);
-    await addConsumo({ coccion_id: id, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 });
-    await addConsumo({ coccion_id: id, fecha: '2026-08-20T13:00:00.000Z', porciones: 1 });
-    expect(await porcionesSobrantes(id)).toBe(3);
+  test('la base no tiene dónde guardar porciones comidas', async () => {
+    // v3 se llevó la tabla: que no exista es el invariante, no un detalle
+    expect(db.tables.map((t) => t.name)).not.toContain('consumos');
   });
 
   test('registrar una cocción cuenta como cambio pendiente de backup', async () => {

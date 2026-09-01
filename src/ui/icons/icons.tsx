@@ -27,46 +27,6 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-// ---------- semáforo (Fase 2 lo usa entero; el glosario ya lo explica) ----------
-
-export function IconHojaEntera(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" />
-    </Base>
-  );
-}
-
-export function IconHojaMedia(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" />
-      <path d="M6.5 14.5c1.5.6 3 .9 4.3.8M9.5 17.6c1.3.3 2.6.4 3.8.2" />
-    </Base>
-  );
-}
-
-export function IconHojaCaida(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M4 4c.5 5.5 2.5 9.5 6.5 12.5" />
-      <path d="M10.5 16.5c6.5 3 10 1.5 10.5-3.5-4.5-1.5-8.5 0-10.5 3.5Z" />
-      <path d="M12.5 15.7c2.7-.9 5.3-1.2 7.3-.9" />
-    </Base>
-  );
-}
-
-export function IconCapsula(props: IconProps) {
-  return (
-    <Base {...props}>
-      <rect x="3.5" y="8.5" width="17" height="7" rx="3.5" transform="rotate(-28 12 12)" />
-      <path d="M10.6 8.9l2.8 6.2" />
-    </Base>
-  );
-}
-
 export function IconHojaPunteada(props: IconProps) {
   return (
     <Base {...props}>
@@ -366,6 +326,48 @@ export function IconLibro(props: IconProps) {
     <Base {...props}>
       <path d="M12 6.2C10 4.8 7.3 4.2 4 4.2v14.6c3.3 0 6 .6 8 2 2-1.4 4.7-2 8-2V4.2c-3.3 0-6 .6-8 2Z" />
       <path d="M12 6.2v14.6" />
+    </Base>
+  );
+}
+
+/**
+ * Engranaje: el único ícono del set que no es botánico, y a propósito — es la
+ * convención universal de "acá se configura". Es silueta dentada continua y no
+ * círculo con rayos, que es exactamente `IconSol` y ya significa otra cosa
+ * ("se evalúa por día").
+ */
+/**
+ * Sección Nutrientes. La gota es la primitiva que quedaba libre: el resto del
+ * set ya usa hojas (sin datos), círculos con relleno parcial (cobertura), tallos
+ * sobre línea de base (IC) y rayos radiales (día). Ojo con leerla como "grasas"
+ * por el omega-3 — si en uso real confunde, es una línea.
+ */
+export function IconGota(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3.5c3.5 4.2 5.5 7 5.5 9.5a5.5 5.5 0 0 1-11 0c0-2.5 2-5.3 5.5-9.5Z" />
+      <path d="M9.2 13.8c.15 1.6 1.1 2.7 2.6 3" />
+    </Base>
+  );
+}
+
+export function IconAjustes(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M10.02 5.08L9.89 2.84L14.11 2.84L13.98 5.08L15.49 5.70L16.98 4.03L19.97 7.02L18.30 8.51L18.92 10.02L21.16 9.89L21.16 14.11L18.92 13.98L18.30 15.49L19.97 16.98L16.98 19.97L15.49 18.30L13.98 18.92L14.11 21.16L9.89 21.16L10.02 18.92L8.51 18.30L7.02 19.97L4.03 16.98L5.70 15.49L5.08 13.98L2.84 14.11L2.84 9.89L5.08 10.02L5.70 8.51L4.03 7.02L7.02 4.03L8.51 5.70Z" />
+      <circle cx="12" cy="12" r="3.2" />
+    </Base>
+  );
+}
+
+/**
+ * Cerrar. No va al catálogo del glosario: es chrome universal, no un concepto
+ * del recetario que haya que aprender.
+ */
+export function IconCerrar(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6 6l12 12M18 6 6 18" />
     </Base>
   );
 }

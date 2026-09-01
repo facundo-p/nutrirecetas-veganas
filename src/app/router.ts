@@ -6,12 +6,13 @@ import { useSyncExternalStore } from 'react';
  */
 
 export type Route =
-  | { screen: 'today' }
   | { screen: 'recipes' }
   | { screen: 'recipe'; id: string }
   | { screen: 'cook'; id: string }
   | { screen: 'ingredients' }
   | { screen: 'ingredient'; id: string }
+  | { screen: 'nutrients' }
+  | { screen: 'nutrient'; id: string }
   | { screen: 'glossary' }
   | { screen: 'diary' }
   | { screen: 'profile' }
@@ -20,8 +21,6 @@ export type Route =
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   switch (parts[0]) {
-    case 'hoy':
-      return { screen: 'today' };
     case 'receta':
       return parts[1] ? { screen: 'recipe', id: decodeURIComponent(parts[1]) } : { screen: 'recipes' };
     case 'cocinar':
@@ -30,6 +29,10 @@ export function parseHash(hash: string): Route {
       return { screen: 'ingredients' };
     case 'ingrediente':
       return parts[1] ? { screen: 'ingredient', id: decodeURIComponent(parts[1]) } : { screen: 'ingredients' };
+    case 'nutrientes':
+      return { screen: 'nutrients' };
+    case 'nutriente':
+      return parts[1] ? { screen: 'nutrient', id: decodeURIComponent(parts[1]) } : { screen: 'nutrients' };
     case 'glosario':
       return { screen: 'glossary' };
     case 'diario':
@@ -38,17 +41,18 @@ export function parseHash(hash: string): Route {
       return { screen: 'profile' };
     case 'ajustes':
       return { screen: 'settings' };
+    // `#/hoy` era la pantalla de inicio hasta la Fase 3. Sigue resolviendo
+    // porque hay una PWA instalada con ese `start_url` y bookmarks vivos.
+    case 'hoy':
     case 'recetario':
       return { screen: 'recipes' };
     default:
-      return { screen: 'today' };
+      return { screen: 'recipes' };
   }
 }
 
 export function routeHash(route: Route): string {
   switch (route.screen) {
-    case 'today':
-      return '#/hoy';
     case 'recipes':
       return '#/recetario';
     case 'recipe':
@@ -59,6 +63,10 @@ export function routeHash(route: Route): string {
       return '#/ingredientes';
     case 'ingredient':
       return `#/ingrediente/${encodeURIComponent(route.id)}`;
+    case 'nutrients':
+      return '#/nutrientes';
+    case 'nutrient':
+      return `#/nutriente/${encodeURIComponent(route.id)}`;
     case 'glossary':
       return '#/glosario';
     case 'diary':

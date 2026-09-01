@@ -12,7 +12,14 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
 
   const total = recipe.pasos.length;
   const esUltimo = pasoActual >= total - 1;
-  const secreto = recipe.secretos_chef[pasoActual];
+  /**
+   * Todos los secretos juntos y solo en el primer paso. Antes se mostraba
+   * `secretos_chef[pasoActual]`: dos arrays sin ninguna relación semántica
+   * apareados por índice, así que en r18 el paso de las lentejas mostraba el
+   * secreto del tadka. Son consejos de técnica sobre la receta entera y se leen
+   * antes de arrancar, no a mitad de camino.
+   */
+  const secretos = pasoActual === 0 ? recipe.secretos_chef : [];
 
   return (
     <div className="modo-coccion">
@@ -21,10 +28,14 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
       </p>
       <p className="coccion-paso">{recipe.pasos[pasoActual]}</p>
 
-      {secreto && (
+      {secretos.length > 0 && (
         <aside className="coccion-secreto">
-          <span className="etiqueta-seccion">Secreto del chef</span>
-          <p>{secreto}</p>
+          <span className="etiqueta-seccion">
+            {secretos.length === 1 ? 'Secreto del chef' : 'Secretos del chef'}
+          </span>
+          {secretos.map((secreto) => (
+            <p key={secreto}>{secreto}</p>
+          ))}
         </aside>
       )}
 

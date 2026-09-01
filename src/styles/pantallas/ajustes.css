@@ -33,19 +33,3 @@
   display: grid;
   gap: var(--sp-1);
 }
-
-/* banner de recordatorio de backup */
-
-.banner-backup {
-  position: sticky;
-  top: 0;
-  z-index: 15;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  background: color-mix(in srgb, var(--semaforo-parcial) 16%, var(--superficie));
-  border-bottom: 1px solid color-mix(in srgb, var(--semaforo-parcial) 45%, transparent);
-  padding: var(--sp-2) var(--sp-4);
-  font-size: var(--fs-sm);
-}

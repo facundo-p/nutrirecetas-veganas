@@ -1,12 +1,20 @@
 import { useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
-import { recipeInSeason } from '../common/season';
+import { recipeInSeason } from '../../domain/season';
+import { useCocciones, useOverlays, usePerfil } from '../../db/hooks';
 import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
+import { Recomendaciones } from './Recomendaciones';
+import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { currentMonth } from '../common/format';
 
 export function RecipeList() {
   const idx = getSeedIndex();
+  const mes = currentMonth();
+  const cocciones = useCocciones();
+  const overlays = useOverlays();
+  const perfil = usePerfil();
   const [filters, setFilters] = useState<RecipeFiltersState>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Set<string>>(new Set());
 
@@ -25,10 +33,12 @@ export function RecipeList() {
 
   return (
     <>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Recetario</span>
-        <h1>Recetario</h1>
-      </header>
+      <EncabezadoPantalla etiqueta="Recetario" titulo="Recetario" />
+      {/* Arriba del buscador y corta: la app abre acá, y lo primero tiene que
+          ser una respuesta a "¿qué cocino?", no un formulario vacío. */}
+      {cocciones && overlays && (
+        <Recomendaciones perfil={perfil ?? null} cocciones={cocciones} overlays={overlays} />
+      )}
       <RecipeFilters filters={filters} onChange={setFilters} />
       <p className="conteo-resultados" aria-live="polite">
         {total} {total === 1 ? 'receta' : 'recetas'}
@@ -42,7 +52,7 @@ export function RecipeList() {
             <div key={g.mother.id}>
               <RecipeCard
                 recipe={g.mother}
-                inSeason={recipeInSeason(idx, g.mother)}
+                inSeason={recipeInSeason(idx, g.mother, mes)}
                 variantCount={g.variants.length}
                 onToggleVariants={g.variants.length > 0 ? () => toggle(g.mother.id) : undefined}
                 variantsOpen={variantsOpen}
@@ -50,7 +60,7 @@ export function RecipeList() {
               {shownVariants.length > 0 && (
                 <div className="lista-variantes">
                   {shownVariants.map((v) => (
-                    <RecipeCard key={v.id} recipe={v} inSeason={recipeInSeason(idx, v)} />
+                    <RecipeCard key={v.id} recipe={v} inSeason={recipeInSeason(idx, v, mes)} />
                   ))}
                 </div>
               )}

@@ -1,8 +1,14 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, test } from 'vitest';
-import { analizarImport, exportar, hayQueRecordarBackup, importar } from './backup';
+import {
+  analizarImport,
+  exportar,
+  hayQueRecordarBackup,
+  importar,
+  posponerRecordatorioBackup,
+} from './backup';
 import { db } from './db';
-import { addCoccion, addConsumo, getMeta, getPerfil, savePerfil, saveOverlay } from './repos';
+import { addCoccion, getMeta, getPerfil, registrarBackup, savePerfil, saveOverlay } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 
 const perfil: ProfileData = {
@@ -10,8 +16,6 @@ const perfil: ProfileData = {
   fecha_nacimiento: '1990-05-02',
   peso_kg: 78,
   nivel_entrenamiento: 'activo',
-  suplementos: [{ nutriente_id: 'b12', dosis: 1000, unidad: 'µg', frecuencia: '2x_semana' }],
-  overrides: [],
   nutrientes_destacados: ['hierro'],
 };
 
@@ -34,8 +38,7 @@ const coccion: CoccionData = {
 
 async function sembrar() {
   await savePerfil(perfil);
-  const id = await addCoccion(coccion);
-  await addConsumo({ coccion_id: id, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 });
+  await addCoccion(coccion);
   await saveOverlay('r01', { favorita: true, ic_usuario: 8 });
 }
 
@@ -60,7 +63,6 @@ describe('export / import', () => {
     expect(cocciones).toHaveLength(1);
     expect(cocciones[0]!.variaciones).toEqual([{ tipo: 'desmarcado', nombre: 'Vino tinto' }]);
     expect(cocciones[0]!.nutricion_porcion.alerta_b12).toBe(true);
-    expect(await db.consumos.count()).toBe(1);
     expect((await db.overlays.get('r01'))!.ic_usuario).toBe(8);
   });
 
@@ -88,7 +90,13 @@ describe('export / import', () => {
     await sembrar();
     const backup = await exportar('1.0.0');
     const reporte = analizarImport(backup);
-    expect(reporte).toMatchObject({ perfil: true, cocciones: 1, consumos: 1, overlays: 1, seed_version: '1.0.0' });
+    expect(reporte).toMatchObject({
+      perfil: true,
+      cocciones: 1,
+      overlays: 1,
+      consumos_descartados: 0,
+      seed_version: '1.0.0',
+    });
     expect(await db.cocciones.count()).toBe(1); // sigue todo en su lugar
   });
 
@@ -128,14 +136,28 @@ describe('backups de esquemas viejos', () => {
         fecha_nacimiento: '1990-05-02',
         peso_kg: 78,
         multiplicador_actividad: 1.2,
-        suplementos: [],
-        overrides: [],
         nutrientes_destacados: ['hierro'],
         creado_en: '2026-07-01T00:00:00.000Z',
         actualizado_en: '2026-08-01T00:00:00.000Z',
       },
       cocciones: [],
       consumos: [],
+      overlays: [],
+    },
+  };
+
+  /** v2 con consumos de verdad: lo que tiene en el disco cualquiera que usó la app. */
+  const backupV2ConConsumos = {
+    user_schema_version: 2,
+    seed_version: '1.0.0',
+    exported_at: '2026-08-20T00:00:00.000Z',
+    data: {
+      perfil: null,
+      cocciones: [{ ...coccion, id: 1 }],
+      consumos: [
+        { id: 1, coccion_id: 1, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 },
+        { id: 2, coccion_id: 1, fecha: '2026-08-20T13:00:00.000Z', porciones: 1 },
+      ],
       overlays: [],
     },
   };
@@ -149,24 +171,79 @@ describe('backups de esquemas viejos', () => {
     expect(analizarImport(backupV1).esquema_futuro).toBe(false);
     expect(analizarImport(backupV1).perfil).toBe(true);
   });
+
+  test('un backup con consumos entra igual: se descartan, no rebota el archivo', async () => {
+    // `backupSchema` es estricto, así que sin migrar el campo de más tira el
+    // archivo entero a la basura — y con él las cocciones, que sí se pueden salvar
+    await importar(backupV2ConConsumos, '1.0.0');
+    expect(await db.cocciones.count()).toBe(1);
+  });
+
+  test('el dry-run dice cuántos consumos va a descartar', () => {
+    expect(analizarImport(backupV2ConConsumos).consumos_descartados).toBe(2);
+  });
 });
 
 describe('recordatorio de backup', () => {
   const hoy = new Date('2026-08-19T12:00:00Z');
 
   test('sin cambios no molesta, por viejo que sea el backup', () => {
-    expect(hayQueRecordarBackup('2020-01-01T00:00:00Z', 0, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2020-01-01T00:00:00Z', cambios_desde_backup: 0 }, hoy)).toBe(false);
   });
 
   test('con cambios y sin backup nunca hecho, avisa', () => {
-    expect(hayQueRecordarBackup(undefined, 3, hoy)).toBe(true);
+    expect(hayQueRecordarBackup({ cambios_desde_backup: 3 }, hoy)).toBe(true);
   });
 
   test('con cambios y backup reciente, no molesta', () => {
-    expect(hayQueRecordarBackup('2026-08-10T00:00:00Z', 3, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2026-08-10T00:00:00Z', cambios_desde_backup: 3 }, hoy)).toBe(false);
   });
 
   test('con cambios y más de 30 días, avisa', () => {
-    expect(hayQueRecordarBackup('2026-07-01T00:00:00Z', 1, hoy)).toBe(true);
+    expect(hayQueRecordarBackup({ ultimo_backup: '2026-07-01T00:00:00Z', cambios_desde_backup: 1 }, hoy)).toBe(true);
+  });
+});
+
+describe('postergar el recordatorio', () => {
+  const hoy = new Date('2026-08-19T12:00:00Z');
+  // El caso de Facu: nunca hizo un backup, así que el aviso no se apagaba nunca.
+  const pospuesto = {
+    cambios_desde_backup: 5,
+    backup_pospuesto_hasta: '2026-08-26T12:00:00.000Z',
+    backup_pospuesto_en_cambios: 5,
+  };
+
+  test('recién pospuesto se calla', () => {
+    expect(hayQueRecordarBackup(pospuesto, hoy)).toBe(false);
+  });
+
+  test('vencido el plazo, vuelve', () => {
+    expect(hayQueRecordarBackup(pospuesto, new Date('2026-08-26T12:00:01Z'))).toBe(true);
+  });
+
+  test('sigue callado con 19 cambios nuevos, vuelve con 20', () => {
+    expect(hayQueRecordarBackup({ ...pospuesto, cambios_desde_backup: 5 + 19 }, hoy)).toBe(false);
+    expect(hayQueRecordarBackup({ ...pospuesto, cambios_desde_backup: 5 + 20 }, hoy)).toBe(true);
+  });
+
+  test('posponer escribe el vencimiento a 7 días y la marca de cambios', async () => {
+    await sembrar();
+    const antes = await getMeta();
+    await posponerRecordatorioBackup(hoy);
+
+    const meta = await getMeta();
+    expect(meta.backup_pospuesto_hasta).toBe('2026-08-26T12:00:00.000Z');
+    expect(meta.backup_pospuesto_en_cambios).toBe(antes.cambios_desde_backup);
+    expect(hayQueRecordarBackup(meta, hoy)).toBe(false);
+  });
+
+  test('un backup de verdad borra la postergación', async () => {
+    await sembrar();
+    await posponerRecordatorioBackup(hoy);
+    await registrarBackup('2026-08-19T13:00:00.000Z');
+
+    const meta = await getMeta();
+    expect(meta.backup_pospuesto_hasta).toBeUndefined();
+    expect(meta.backup_pospuesto_en_cambios).toBeUndefined();
   });
 });

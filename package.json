@@ -1,7 +1,7 @@
 {
   "name": "nutrirecetas-veganas",
   "private": true,
-  "version": "0.4.1",
+  "version": "0.5.0",
   "type": "module",
   "description": "PWA personal de recetas veganas con base nutricional. Offline-first, sin backend.",
   "scripts": {
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource-variable/schibsted-grotesk": "^5.3.0",
+    "@fontsource-variable/vollkorn": "^5.3.0",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
