@@ -56,9 +56,9 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 
 ## Temas visuales
 
-Un solo tema vivo: **D "el color dice de qué se trata"**. La **C** y la **A** se borraron en #128; los reemplazan **E "Mercado"** y **F "Pizarra"** en #129. El tema se elige en Ajustes o con `?tema=`, queda en `localStorage` y se aplica antes de pintar (script inline de `index.html`).
+Dos temas intercambiables: **E "Mercado"** (default, papel claro) y **F "Pizarra"** (oscuro). Se eligen en Ajustes o con `?tema=e|f`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
 
-El mecanismo sigue siendo de N temas: lo que cambia es cuántos hay.
+**La estructura es una sola y es la de Pizarra**; el tema solo decide el color. Lo que cambia entre los dos son tokens: el fondo del encabezado (espinaca en Mercado, plano en Pizarra), el filete del ítem activo de la nav, y si el título de la receta va en tinta (`--titulo-receta-fijo` en Mercado) o en el color de su categoría (Pizarra).
 
 ```
 1. FORMA   src/styles/tokens.css   escala tipográfica, espaciado, bordes.
@@ -79,7 +79,7 @@ El mecanismo sigue siendo de N temas: lo que cambia es cuántos hay.
 
 **Custom properties anidadas**: una property que contiene `var()` se resuelve **donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root` — y es lo que permite que un tema elija entre título fijo o color de categoría sin nombrarse: `var(--titulo-receta-fijo, var(--cat-actual))`.
 
-**Colores nuevos, medidos** contra la vara que cumple el tema D: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
+**Colores nuevos, medidos** contra la vara que cumplen los dos temas: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
 
 **Renders**: `npm run renders -- fase-N --tema=X` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 

@@ -17,7 +17,7 @@ if (!fase) {
   process.exit(1);
 }
 // Cada tema visual tiene su carpeta: el default es el tema activo de la app.
-const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'd';
+const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'e';
 const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });

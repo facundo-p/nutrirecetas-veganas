@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es-AR" data-tema="d">
+<html lang="es-AR" data-tema="e">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#F5EFDC" />
+    <meta name="theme-color" content="#F7EEDC" />
     <meta name="description" content="Recetario vegano personal con base nutricional. Offline, sin cuentas, sin backend." />
     <title>Nutrirecetas</title>
     <!-- Aplica el tema guardado antes de pintar: sin esto la app cargaría en el
@@ -12,7 +12,7 @@
          src/styles/contrato-de-temas.test.ts. -->
     <script>
       (function () {
-        var TEMAS = ['d'];
+        var TEMAS = ['e', 'f'];
         try {
           var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('tema');
           if (TEMAS.indexOf(t) !== -1) document.documentElement.dataset.tema = t;

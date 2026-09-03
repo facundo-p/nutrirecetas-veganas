@@ -22,7 +22,7 @@ body {
   font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--tinta);
-  background: var(--papel) var(--fondo-imagen) top center / 100% auto repeat-y;
+  background: var(--papel);
   min-height: 100dvh;
 }
 

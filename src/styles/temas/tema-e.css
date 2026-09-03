@@ -1,0 +1,97 @@
+/* ══════════ Tema E — "Mercado" (default) ══════════
+   El color deja la tipografía y pasa a la superficie: encabezado de pantalla
+   en espinaca a sangre, sello de categoría pleno en cada receta, texto largo
+   en tinta sobre papel.
+
+   Estructura de todo archivo de tema:
+     1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
+     2) el contrato de roles, que es lo único que la app puede nombrar
+
+   Este archivo lista `:root` además de su propio atributo porque E es el
+   default: si el atributo falta o trae un valor inválido, la app igual
+   renderiza un tema completo en vez de quedarse sin ningún color. */
+:root,
+:root[data-tema='e'] {
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-papel: #f7eedc;
+  --p-tofu: #fffbf2;
+  --p-tinta: #221f1a;
+  --p-tinta-suave: #58524a;
+  --p-espinaca: #1d4d30;
+  --p-lima: #a8d96b;
+  --p-tomate: #b03a1e;
+  --p-zanahoria: #e2571f;
+  --p-ciruela: #4a2545;
+  --p-remolacha: #a82d52;
+  --p-kombu: #0f6b5c;
+  --p-chia: #77705f;
+  --p-trigo: #96631a;
+  --p-azul-humo: #3f4f6b;
+  --p-cacao: #6e4327;
+
+  /* ── contrato de roles ── */
+
+  /* Tipografía */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Superficie y tinta */
+  --papel: var(--p-papel);
+  --superficie: var(--p-tofu);
+  --tinta: var(--p-tinta);
+  --tinta-suave: var(--p-tinta-suave);
+
+  /* Identidad y acción */
+  --marca: var(--p-espinaca);
+  --kicker: var(--p-espinaca);
+  --titulo-seccion: var(--p-espinaca);
+  --accion: var(--p-zanahoria); /* relleno: hace de fondo, piso 3:1 */
+  --accion-texto: var(--p-tomate); /* la acción cuando es texto: 5.2:1 sobre papel */
+  --sobre-accion: var(--p-tofu); /* lo que va encima de un relleno de acción */
+  --seleccion: var(--p-espinaca);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-ciruela); /* volver, atrás, cancelar */
+  --link: var(--p-espinaca);
+  --foco: var(--p-zanahoria);
+
+  /* Datos. En E la cifra es grotesca tabular en tinta: el color ya lo pone
+     la superficie, y una cifra de color más competía con el sello. */
+  --cifra: var(--p-tinta);
+  --dato-suave: var(--p-chia); /* lo apagado: metadato, sin datos, no aplica */
+  --chip: var(--p-lima);
+
+  /* Avisos y tips */
+  --aviso: var(--p-remolacha);
+  --tip-positivo: var(--p-espinaca); /* potenciador, sugerencia, secreto del chef */
+  --tip-atencion: var(--p-remolacha); /* precaución, inhibidor, corrección */
+  --tip-neutro: var(--p-tinta-suave); /* técnica, dato */
+
+  /* Atributos de receta e ingrediente */
+  --icono-imprescindible: var(--p-zanahoria);
+  --funcion-ingrediente: var(--p-tinta-suave);
+  --confirmado: var(--p-kombu); /* receta probada, ingrediente en temporada */
+  --icono-freezer: var(--p-azul-humo);
+  --icono-clasica: var(--p-trigo);
+  --icono-indulgente: var(--p-remolacha);
+  --chip-preparado: var(--p-trigo);
+
+  /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:
+     precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
+  --precaucion: var(--p-trigo);
+  --exito: var(--p-kombu);
+
+  /* Categoría de receta: escala propia, desacoplada de los roles funcionales.
+     En E son rellenos además de tinta, así que además del ΔE entre sí cada uno
+     cumple 4.5:1 contra --sobre-cat. */
+  --cat-principal: var(--p-tomate); /* saladas y combos */
+  --cat-dulce: var(--p-cacao);
+  --cat-preparado: var(--p-azul-humo);
+  --cat-pan: var(--p-trigo);
+  --cat-conserva: var(--p-kombu); /* fermentos y escabeches */
+
+  /* El título de la receta va en tinta y no en el color de su categoría: eso
+     ya lo dice el sello, y repetirlo dejaba la lista con cinco colores de
+     titular. Ver el fallback en categorias.css. */
+  --titulo-receta-fijo: var(--p-tinta);
+}
