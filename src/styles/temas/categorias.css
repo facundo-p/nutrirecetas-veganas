@@ -8,9 +8,9 @@
 
    El fallback es lo que hace que un tema no tenga que nombrarse a sí mismo:
    quien quiere el título en un color fijo declara --titulo-receta-fijo en su
-   bloque (la C); quien quiere el color de la categoría no declara nada (D y A)
-   y cae a --cat-actual. Verificado en Chromium en los cuatro casos, incluido
-   el de un data-tema inválido. */
+   bloque; quien quiere el color de la categoría no declara nada y cae a
+   --cat-actual. Verificado en Chromium en ambos casos, incluido el de un
+   data-tema inválido. */
 
 [data-cat] {
   --titulo-receta: var(--titulo-receta-fijo, var(--cat-actual));

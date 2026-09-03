@@ -12,14 +12,12 @@
  * lo pisa con el guardado antes de pintar, para que no haya salto de color.
  */
 
-export const TEMAS = ['a', 'c', 'd'] as const;
+export const TEMAS = ['d'] as const;
 export type Tema = (typeof TEMAS)[number];
 export const TEMA_DEFAULT: Tema = 'd';
 
 /** Cómo se presenta cada tema en Ajustes. Agregar un tema es agregar una entrada. */
 export const INFO_DE_TEMA: Record<Tema, { nombre: string; resumen: string }> = {
-  a: { nombre: 'Botánica editorial', resumen: 'Cálido y sereno: verdes de huerta y terracota.' },
-  c: { nombre: 'Carta de estación', resumen: 'Como la carta de un restaurante: todos los títulos en berenjena.' },
   d: { nombre: 'El color dice de qué se trata', resumen: 'Cada receta lleva el color de su categoría en el título.' },
 };
 

@@ -56,14 +56,16 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 
 ## Temas visuales
 
-Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen en Ajustes o con `?tema=a|c|d`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
+Un solo tema vivo: **D "el color dice de qué se trata"**. La **C** y la **A** se borraron en #128; los reemplazan **E "Mercado"** y **F "Pizarra"** en #129. El tema se elige en Ajustes o con `?tema=`, queda en `localStorage` y se aplica antes de pintar (script inline de `index.html`).
+
+El mecanismo sigue siendo de N temas: lo que cambia es cuántos hay.
 
 ```
 1. FORMA   src/styles/tokens.css   escala tipográfica, espaciado, bordes.
                                    PROHIBIDO un color acá.
 2. TEMAS   src/styles/temas/       única capa que escribe colores, y la que
                                    elige las familias (--font-display/-data).
-             tema-{a,c,d}.css      paleta cruda (--p-*, privada) + contrato de roles.
+             tema-X.css            paleta cruda (--p-*, privada) + contrato de roles.
              categorias.css        puente [data-cat] → --cat-actual.
 3. APP     el resto de styles/     solo tokens de rol; ninguna regla nombra
                                    un color ni un tema.
@@ -79,7 +81,7 @@ Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el 
 
 **Colores nuevos, medidos** contra la vara que cumple el tema D: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
 
-**Renders**: `npm run renders -- fase-N --tema=a|c|d` → `docs/renders/fase-N-tema-{a,c,d}/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
+**Renders**: `npm run renders -- fase-N --tema=X` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 
 ## Arquitectura
 

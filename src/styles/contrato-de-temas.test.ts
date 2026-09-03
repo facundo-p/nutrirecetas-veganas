@@ -131,9 +131,13 @@ describe('el contrato de temas', () => {
   });
 
   test.each(deTema.map((a) => [a.nombre, a.css] as const))('%s no declara tokens muertos', (_n, css) => {
-    // un --p-* solo se usa dentro de su propio archivo; un rol, en cualquier lado
-    const usados = new Set([...usadoEnAlgunLado, ...usa(css)]);
-    expect([...declara(css)].filter((t) => !usados.has(t))).toEqual([]);
+    // Un --p-* es privado: solo cuenta como usado dentro de su propio archivo.
+    // Unir el uso global acá dejaba que el homónimo vivo de otro tema tapara un
+    // token muerto — así sobrevivió el --p-rabanito de la D hasta que se borró
+    // la C, que era la que lo usaba. Un rol sí vale usado en cualquier lado.
+    const propios = usa(css);
+    const muerto = (t: string) => (t.startsWith('--p-') ? !propios.has(t) : !usadoEnAlgunLado.has(t) && !propios.has(t));
+    expect([...declara(css)].filter(muerto)).toEqual([]);
   });
 
   test.each(deTema.map((a) => [a.nombre, a.css, nombreDeTema(a.nombre)!] as const))(
@@ -152,7 +156,10 @@ describe('el contrato de temas', () => {
   });
 
   test('la lista de temas está sincronizada en los tres lugares', () => {
-    expect(TEMAS.length).toBeGreaterThan(1);
+    // el piso es 1 y no 2: lo que esta guarda cuida es que el regex de arriba
+    // haya encontrado algo — con TEMAS vacío las comparaciones de abajo pasan
+    // solas. Cuántos temas haya es decisión de producto, no del contrato.
+    expect(TEMAS.length).toBeGreaterThan(0);
     expect(TEMA_DEFAULT).toBeDefined();
     const esperados = [...TEMAS].sort();
     expect(deTema.map((a) => nombreDeTema(a.nombre)!).sort()).toEqual(esperados);
