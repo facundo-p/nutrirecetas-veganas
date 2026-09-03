@@ -90,8 +90,30 @@
   --cat-pan: var(--p-trigo);
   --cat-conserva: var(--p-kombu); /* fermentos y escabeches */
 
-  /* El título de la receta va en tinta y no en el color de su categoría: eso
-     ya lo dice el sello, y repetirlo dejaba la lista con cinco colores de
-     titular. Ver el fallback en categorias.css. */
+  /* ── superficies de color ──
+     Los roles que hacen falta cuando el color deja de ser tinta y pasa a ser
+     relleno: ahí ya no alcanza con decir "de qué color va el título".
+     Sobre relleno, el texto chico cumple 4.5:1 sólido y sin opacidad — al 85 %
+     sobre el ocre de "pan" daba 4,08:1. */
+  --encabezado: var(--p-espinaca); /* fondo del encabezado de pantalla */
+  --sobre-encabezado: var(--p-papel); /* texto e íconos sobre ese fondo */
+  --encabezado-kicker: var(--p-lima);
+  --sobre-cat: var(--p-tofu); /* texto sobre un relleno de categoría */
+  --nav-fondo: var(--p-espinaca);
+  --nav-inactivo: color-mix(in srgb, var(--p-papel) 72%, transparent);
+  --nav-activo: var(--p-papel);
+  --nav-marca-activa: var(--p-zanahoria); /* filete del ítem activo */
+}
+
+/* Fuera del bloque de arriba, y es a propósito: ese lista `:root` como red de
+   seguridad del default, así que todo lo que declara llega también a Pizarra.
+   --titulo-receta-fijo es opcional por diseño —categorias.css lo pide con
+   fallback— y Pizarra no lo declara justamente para caer al color de su
+   categoría. Viajando desde `:root` le imponía el título en tinta oscura sobre
+   fondo oscuro: ilegible. Un opcional solo puede vivir en el selector del tema.
+
+   El título en tinta es lo que quiere Mercado: el sello ya dice la categoría, y
+   repetirla en el título dejaba la lista con cinco colores de titular. */
+:root[data-tema='e'] {
   --titulo-receta-fijo: var(--p-tinta);
 }

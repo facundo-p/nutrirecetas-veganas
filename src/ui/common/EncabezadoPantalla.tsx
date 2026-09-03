@@ -7,6 +7,10 @@ import { IconAjustes } from '../icons/icons';
  * derecha. Va acá y no en la nav porque los cuatro items con texto ya llenan
  * los 390 px; y va en el flujo, no fijo: un elemento pegado arriba fue
  * exactamente lo que tapaba este acceso hasta el #57.
+ *
+ * Es un bloque de color a sangre y no texto sobre el papel: `--encabezado` lo
+ * pinta, y un tema que no quiera el bloque le pasa su propio papel. Ahí está
+ * toda la diferencia entre Mercado y Pizarra en esta pantalla.
  */
 export function EncabezadoPantalla({
   etiqueta,

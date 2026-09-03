@@ -4,10 +4,11 @@ import { usePerfil } from '../../db/hooks';
 import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
 import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
-import { amountUnit, formatNumber, icSprouts } from '../common/format';
+import { amountUnit, formatNumber } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
-import { IconBrotesIc, IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
+import { IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
+import { IndiceConfianza } from '../common/IndiceConfianza';
 
 /**
  * Qué es un nutriente, cuánto necesitás y de dónde sacarlo. La semilla ya traía
@@ -58,8 +59,8 @@ export function NutrientDetail({ id }: { id: string }) {
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
           <span className="chip chip-mini">{nutriente.grupo === 'critico' ? 'crítico' : 'importante'}</span>
-          <span className="meta-item" title={`índice de confianza ${nutriente.ic}/10`}>
-            <IconBrotesIc nivel={icSprouts(nutriente.ic)} /> IC {nutriente.ic}
+          <span className="meta-item">
+            <IndiceConfianza ic={nutriente.ic} />
           </span>
         </span>
         <h1>{nutriente.nombre}</h1>
@@ -150,8 +151,8 @@ export function NutrientDetail({ id }: { id: string }) {
                   <span className="cifra">
                     {formatNumber(cantidad, cantidad < 10 ? 1 : 0)} {unidad}
                   </span>
-                  <span className="fuente-calidad" title={`índice de confianza ${ingrediente.ic}/10`}>
-                    <IconBrotesIc nivel={icSprouts(ingrediente.ic)} />
+                  <span className="fuente-calidad">
+                    <IndiceConfianza ic={ingrediente.ic} compacto />
                   </span>
                 </span>
               </a>

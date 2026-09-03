@@ -104,12 +104,36 @@
   min-width: 0;
 }
 
+/* El sello no se encoge y el nombre sí: a 390 px «conserva» entra siempre y
+   lo que sobra se lo lleva el título, que puede seguir en el renglón de abajo. */
+.tarjeta-receta-titular {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
 .tarjeta-receta-nombre {
   font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 560;
   color: var(--titulo-receta);
   line-height: 1.2;
+  min-width: 0;
+}
+
+.sello-categoria {
+  flex-shrink: 0;
+  background: var(--cat-actual);
+  color: var(--sobre-cat);
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  padding: 1px var(--sp-2);
+  border-radius: var(--radio-chico);
 }
 
 .inline-icono {

@@ -89,6 +89,19 @@
   --cat-pan: var(--p-miel);
   --cat-conserva: var(--p-jade); /* fermentos y escabeches */
 
+  /* ── superficies de color ──
+     Pizarra no usa el bloque de encabezado ni el filete de la nav: les pasa su
+     propio papel y transparent, y la misma regla rinde sin nombrarse. Los
+     tonos de categoría son claros, así que sobre ellos el texto va oscuro. */
+  --encabezado: var(--p-pizarra);
+  --sobre-encabezado: var(--p-hueso);
+  --encabezado-kicker: var(--p-lima);
+  --sobre-cat: var(--p-pizarra);
+  --nav-fondo: var(--p-pizarra-clara);
+  --nav-inactivo: var(--p-salvia-honda);
+  --nav-activo: var(--p-zanahoria);
+  --nav-marca-activa: transparent;
+
   /* Sin --titulo-receta-fijo: en Pizarra el título sí lleva el color de su
      categoría. Sobre fondo hondo los cinco tonos claros se leen como una
      escala, no como cinco titulares peleándose. Cae al fallback --cat-actual. */

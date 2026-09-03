@@ -485,3 +485,23 @@
   gap: var(--sp-1);
   font-size: var(--fs-sm);
 }
+
+/* ---------- índice de confianza ---------- */
+
+/*
+ * Los brotes dicen el nivel y el número dice el dato: el ícono solo no alcanza
+ * porque el `title` no existe en el celular, y el invariante 5 pide que la
+ * confianza se lea, no que se deduzca. Hereda el color de su contexto a
+ * propósito — pintarla de verde afirmaría "buena" también en un IC 3.
+ */
+.confianza {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.confianza svg {
+  font-size: 15px;
+}
