@@ -82,26 +82,45 @@
   }
 }
 
-.tarjeta-receta-cuerpo {
-  display: flex;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  text-decoration: none;
-  color: inherit;
-  align-items: flex-start;
+/* La banda recorta contra el radio de la tarjeta; sin esto el relleno se
+   escapa por las esquinas. Va acá y no en `.tarjeta`, que la comparten
+   pantallas donde no hay nada que recortar. */
+.tarjeta-receta {
+  overflow: hidden;
 }
 
+.tarjeta-receta-cuerpo {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+ * La banda de categoría. NO es el reborde lateral de acento que la regla
+ * anti-look-IA prohíbe: eso es un filete decorativo de 3-4 px que no dice nada.
+ * Esta es una columna que contiene el ícono de tipo, o sea el lugar donde la
+ * categoría se lee. Un tema que no quiera el relleno lo apaga con
+ * --banda-fondo-fijo y el ícono vuelve al color de la categoría.
+ */
 .tarjeta-receta-tipo {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--sp-3);
+  background: var(--banda-fondo);
   font-size: 26px;
   line-height: 1;
-  margin-top: 2px;
-  flex-shrink: 0;
+}
+
+.tarjeta-receta-tipo .icono-tipo {
+  color: var(--banda-icono);
 }
 
 .tarjeta-receta-textos {
   display: grid;
   gap: var(--sp-1);
   min-width: 0;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-3);
 }
 
 /* El sello no se encoge y el nombre sí: a 390 px «conserva» entra siempre y
@@ -124,8 +143,9 @@
 
 .sello-categoria {
   flex-shrink: 0;
-  background: var(--cat-actual);
-  color: var(--sobre-cat);
+  background: var(--sello-fondo);
+  color: var(--sello-texto);
+  border: 1px solid var(--cat-actual);
   font-family: var(--font-data);
   font-size: var(--fs-xs);
   font-weight: 700;

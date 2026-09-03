@@ -51,7 +51,7 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 4. **Nada de valores mágicos**: espaciado `--sp-*`, tipografía `--fs-*` y `--font-*`, radios y bordes `--radio*` / `--borde*`. Medida nueva → `tokens.css`, que no puede tener colores.
 5. **El estado se comunica con atributos**, no con estilos calculados: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.
 6. **Clases en castellano, kebab-case, BEM liviano**: bloque (`semaforo`, `tarjeta-receta`), elemento `bloque-elemento` (`semaforo-icono`, `banda-rango`), variante `bloque-variante` (`chip-mini`), estado como clase suelta adicional (`sin-datos`, `no-aplica`, `inactiva`). Cero utilitarias.
-7. **Prohibido el reborde lateral de acento en tarjetas y el emoji como ícono** (anti-look-IA, pedido explícito de Facu). Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
+7. **Prohibido el reborde lateral de acento en tarjetas y el emoji como ícono** (anti-look-IA, pedido explícito de Facu). Lo prohibido es el filete decorativo de 3-4 px que no dice nada; la banda de 42 px de la tarjeta de receta no es eso, porque es la columna que contiene el ícono de tipo. Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
 8. **Al terminar**: `npm test`. Si tocaste algo visual, renders; si el cambio *no* debía verse, baseline antes y `cmp` después.
 
 ## Temas visuales

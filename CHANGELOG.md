@@ -27,8 +27,10 @@ que se van, la app abre en Mercado y podés cambiar a Pizarra en Ajustes.
 
 ### Cambiado
 
-- **La tarjeta de cada receta lleva un sello de categoría** relleno arriba a la
-  derecha, en el color de su tipo. (#129)
+- **La tarjeta de cada receta dice su categoría dos veces**: una banda a la
+  izquierda con el ícono de tipo, y un sello arriba a la derecha. El relleno lo
+  lleva una sola —en Mercado la banda, en Pizarra el sello—, porque con las dos
+  llenas la tarjeta grita. (#129, #134)
 - **El buscador y los filtros quedaron arriba de "Qué cocinar"**: quien viene a
   buscar algo puntual ya no pasa por encima de la sugerencia. (#129)
 - **Las calorías por porción tienen bloque propio** en la ficha de la receta,
