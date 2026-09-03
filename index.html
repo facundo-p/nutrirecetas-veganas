@@ -12,7 +12,7 @@
          src/styles/contrato-de-temas.test.ts. -->
     <script>
       (function () {
-        var TEMAS = ['a', 'c', 'd'];
+        var TEMAS = ['d'];
         try {
           var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('tema');
           if (TEMAS.indexOf(t) !== -1) document.documentElement.dataset.tema = t;

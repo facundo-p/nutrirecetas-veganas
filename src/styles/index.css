@@ -20,9 +20,7 @@
 
 @import './tokens.css';
 
-@import './temas/tema-a.css';
 @import './temas/tema-d.css';
-@import './temas/tema-c.css';
 @import './temas/categorias.css';
 
 @import './base.css';

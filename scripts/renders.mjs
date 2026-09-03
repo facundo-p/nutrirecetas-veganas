@@ -1,6 +1,6 @@
 // Renders reproducibles de cierre de fase: screenshots reales de la app
 // (build de producción servido con vite preview) a 390 px y 1280 px.
-// Uso: npm run build && npm run renders [-- fase-2] [--tema=d]
+// Uso: npm run build && npm run renders [-- fase-2] [--tema=X]
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -13,7 +13,7 @@ const args = process.argv.slice(2);
 // una tanda ya publicada, y las rutas cambian entre fases — quedaban mezcladas.
 const fase = args.find((a) => !a.startsWith('--'));
 if (!fase) {
-  console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=a|c|d]');
+  console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=X]');
   process.exit(1);
 }
 // Cada tema visual tiene su carpeta: el default es el tema activo de la app.
