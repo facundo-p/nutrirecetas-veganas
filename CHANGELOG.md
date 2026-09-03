@@ -9,6 +9,41 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.6.0] — 2026-09-03
+
+Dos temas nuevos en lugar de los tres viejos, y el primero oscuro. **Mercado** es
+el que abre: papel claro, encabezado de pantalla pleno en verde y un sello de
+color por categoría en cada receta. **Pizarra** es la carta de noche, con los
+verdes y ocres levantados para que rindan sobre fondo hondo.
+
+No hay nada que hacer antes de actualizar. Si tenías elegido alguno de los temas
+que se van, la app abre en Mercado y podés cambiar a Pizarra en Ajustes.
+
+### Agregado
+
+- **Tema Mercado**, el nuevo default: el color deja la tipografía y pasa a la
+  superficie. (#129)
+- **Tema Pizarra**, el primer tema oscuro de la app. (#129)
+
+### Cambiado
+
+- **La tarjeta de cada receta lleva un sello de categoría** relleno arriba a la
+  derecha, en el color de su tipo. (#129)
+- **El buscador y los filtros quedaron arriba de "Qué cocinar"**: quien viene a
+  buscar algo puntual ya no pasa por encima de la sugerencia. (#129)
+- **Las calorías por porción tienen bloque propio** en la ficha de la receta,
+  arriba del aviso de B12, en vez de estar mezcladas en la fila de datos. (#129)
+- **Los pasos se numeran con un disco**, que cocinando se encuentra de un
+  vistazo. (#129)
+- **"IC 8" ahora dice "confianza 8 de 10"**, en los seis lugares donde aparecía.
+  Tres de ellos lo mostraban solo con los brotes y un cartelito al pasar el
+  mouse, que en el celular no existe. (#129)
+
+### Quitado
+
+- **Los temas Botánica editorial, Carta de estación y El color dice de qué se
+  trata**, y con ellos la ilustración de fondo. (#128, #129)
+
 ## [0.5.0] — 2026-09-01
 
 **Esta versión borra datos.** Se van los registros de porciones comidas, las
