@@ -3,14 +3,14 @@ import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import { routeHash } from '../../app/router';
-import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes, icSprouts } from '../common/format';
+import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes } from '../common/format';
+import { IndiceConfianza } from '../common/IndiceConfianza';
 import { nutritionOf } from '../common/nutritionCache';
 import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import {
   IconAsterisco,
   IconBandaAprox,
-  IconBrotesIc,
   IconCopoNieve,
   IconCuchara,
   IconEstrellaBrotada,
@@ -248,26 +248,11 @@ export function RecipeDetail({ id }: { id: string }) {
           <span className="meta-item">
             <IconPlato /> {recipe.porciones_display}
           </span>
-          {/* El único dato nutricional que se mira cocinando: sube acá, el
-              resto queda al final detrás de un tap. Lleva el marcador de
-              aproximado — la banda entera está abajo, pero un punto medio suelto
-              sin decir que lo es sería afirmar de más. */}
-          <span className="meta-item" title={`entre ${formatGramos(shown.kcal.intervalo.min)} y ${formatGramos(shown.kcal.intervalo.max)} kcal`}>
-            <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />
-            <span className="cifra">{formatGramos(midpoint(shown.kcal.intervalo))}</span> kcal
-            <span className="meta-suave">{portion ? 'por porción' : 'por 100 g'}</span>
-          </span>
-          <span
-            className="meta-item"
-            title={
-              overlay?.ic_usuario
-                ? `tu confianza: ${overlay.ic_usuario}/10 (la de la receta era ${recipe.ic})`
-                : `índice de confianza ${recipe.ic}/10`
-            }
-          >
-            <IconBrotesIc nivel={icSprouts(overlay?.ic_usuario ?? recipe.ic)} /> IC{' '}
-            {overlay?.ic_usuario ?? recipe.ic}
-            {overlay?.ic_usuario !== undefined && <em className="meta-suave">tuyo</em>}
+          <span className="meta-item">
+            <IndiceConfianza
+              ic={overlay?.ic_usuario ?? recipe.ic}
+              sufijo={overlay?.ic_usuario !== undefined ? 'tuya' : undefined}
+            />
           </span>
           <button
             type="button"
@@ -282,6 +267,17 @@ export function RecipeDetail({ id }: { id: string }) {
       </header>
 
       <RelatedLinks idx={idx} recipe={recipe} />
+      {/* El único dato nutricional que se mira cocinando, en bloque propio: el
+          resto queda al final detrás de un tap. Lleva el marcador de aproximado
+          — la banda entera está abajo, pero un punto medio suelto sin decir que
+          lo es sería afirmar de más. */}
+      <p className="detalle-energia" title={`entre ${formatGramos(shown.kcal.intervalo.min)} y ${formatGramos(shown.kcal.intervalo.max)} kcal`}>
+        <span className="detalle-energia-etiqueta">{portion ? 'por porción' : 'por 100 g'}</span>
+        <span className="detalle-energia-cifra">
+          <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />
+          <span className="cifra">{formatGramos(midpoint(shown.kcal.intervalo))}</span> kcal
+        </span>
+      </p>
       {nutrition.alerta_b12 && <B12Alert />}
 
       <section>
@@ -308,7 +304,12 @@ export function RecipeDetail({ id }: { id: string }) {
         <h2>Pasos</h2>
         <ol className="lista-pasos">
           {recipe.pasos.map((paso, i) => (
-            <li key={i}>{paso}</li>
+            <li key={i}>
+              <span className="paso-numero" aria-hidden="true">
+                {i + 1}
+              </span>
+              <span className="paso-texto">{paso}</span>
+            </li>
           ))}
         </ol>
       </section>

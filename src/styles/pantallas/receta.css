@@ -59,6 +59,40 @@
   margin-left: var(--sp-1);
 }
 
+/* Las kcal por porción, en bloque propio y arriba del aviso de B12: es el
+   único dato nutricional que se mira cocinando. El resto queda al final. */
+.detalle-energia {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+.detalle-energia-etiqueta {
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.detalle-energia-cifra {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-1);
+  color: var(--tinta-suave);
+  font-size: var(--fs-sm);
+}
+
+.detalle-energia-cifra .cifra {
+  font-size: var(--fs-xl);
+}
+
 .chip-probada {
   background: color-mix(in srgb, var(--confirmado) 16%, var(--superficie));
   border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
@@ -203,17 +237,35 @@
 /* pasos y secretos */
 
 .lista-pasos {
-  padding-left: 1.4rem;
+  list-style: none;
+  padding-left: 0;
   display: grid;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
   line-height: 1.6;
 }
 
-.lista-pasos li::marker {
-  font-family: var(--font-display);
-  font-style: italic;
+.lista-pasos li {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+/* Número propio y no ::marker: el marcador de la lista no se puede dibujar
+   como disco, y cocinando el paso hay que encontrarlo de un vistazo. */
+.paso-numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--accion-texto);
+  border-radius: 999px;
   color: var(--accion-texto);
-  font-weight: 600;
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .lista-secretos {

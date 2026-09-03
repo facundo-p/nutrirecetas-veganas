@@ -1,11 +1,12 @@
 import { getSeedIndex } from '../../seed';
 import type { Ingredient } from '../../seed/schema';
 import { routeHash } from '../../app/router';
-import { amountUnit, currentMonth, formatNumber, icSprouts, MONTH_NAMES } from '../common/format';
+import { amountUnit, currentMonth, formatNumber, MONTH_NAMES } from '../common/format';
 import { ingredientInSeason } from '../../domain/season';
 import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
 import { usePerfil } from '../../db/hooks';
-import { IconBrotesIc, IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
+import { IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
+import { IndiceConfianza } from '../common/IndiceConfianza';
 import { IntervalBand } from '../recipe-detail/IntervalBand';
 
 /** Etiquetas para claves que no están en el catálogo de 20 nutrientes. */
@@ -48,8 +49,8 @@ export function IngredientDetail({ id }: { id: string }) {
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
           <span className="chip chip-mini">{ing.categoria.replaceAll('_', ' ')}</span>
-          <span className="meta-item" title={`índice de confianza ${ing.ic}/10`}>
-            <IconBrotesIc nivel={icSprouts(ing.ic)} /> IC {ing.ic}
+          <span className="meta-item">
+            <IndiceConfianza ic={ing.ic} />
           </span>
         </span>
         <h1>{ing.nombre}</h1>

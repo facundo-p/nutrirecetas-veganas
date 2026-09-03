@@ -21,7 +21,7 @@ export default defineConfig({
     VitePWA({
       // Actualización por consentimiento: toast + "Actualizar", jamás auto-reload.
       registerType: 'prompt',
-      includeAssets: ['fondo.webp', 'icono.svg'],
+      includeAssets: ['icono.svg'],
       manifest: {
         name: NOMBRE,
         short_name: NOMBRE,

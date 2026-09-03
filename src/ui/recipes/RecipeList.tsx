@@ -34,12 +34,13 @@ export function RecipeList() {
   return (
     <>
       <EncabezadoPantalla etiqueta="Recetario" titulo="Recetario" />
-      {/* Arriba del buscador y corta: la app abre acá, y lo primero tiene que
-          ser una respuesta a "¿qué cocino?", no un formulario vacío. */}
+      {/* Buscador y filtros pegados al encabezado, y "Qué cocinar" debajo:
+          quien viene a buscar algo puntual no tiene que pasar por encima de la
+          sugerencia, y quien no sabe qué cocinar la encuentra igual. */}
+      <RecipeFilters filters={filters} onChange={setFilters} />
       {cocciones && overlays && (
         <Recomendaciones perfil={perfil ?? null} cocciones={cocciones} overlays={overlays} />
       )}
-      <RecipeFilters filters={filters} onChange={setFilters} />
       <p className="conteo-resultados" aria-live="polite">
         {total} {total === 1 ? 'receta' : 'recetas'}
         {anyFilter ? ' con estos filtros' : ''}

@@ -28,7 +28,7 @@ La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
 ## 3. Estética: temas intercambiables
 
-**Estado actual: queda un solo tema vivo, la D.** La **A** y la **C** se borraron en #128 para dejar lugar a **E "Mercado"** y **F "Pizarra"**, que llegan en #129. La B nunca se implementó. Las tres quedan registradas acá abajo: se fueron de la app, no del registro. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+**Estado actual: dos temas vivos, E "Mercado" (default) y F "Pizarra".** Las propuestas A, C y D fueron los temas de las fases 1 a 3 y se borraron en #128 y #129; la B nunca se implementó. Las cuatro quedan registradas acá abajo: se fueron de la app, no del registro. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
 
 Desde el 20/8/2026 el sistema son **tres capas** (forma / temas / app) y un test que las hace cumplir: la capa de la app no puede escribir un color ni nombrar un tema, y cada tema debe declarar el contrato de roles completo. Agregar un tema es crear un archivo y sumarlo a tres listas.
 
@@ -105,7 +105,7 @@ Elegidas con una búsqueda sobre grilla HSL, contra **la vara real que cumple el
 
 **Sobre el semáforo**: los cuatro colores de estado de la A dan 4.34 / 2.50 / 4.85 / 3.95, por debajo de AA — igual que los de la D hoy (3.43 / 2.29 / 4.12 / 5.70) y por el mismo motivo: **el semáforo nunca comunica solo con color**, siempre ícono + palabra (invariante 6). Son tinte de píldora y color de ícono, no texto.
 
-### Propuesta D — "El color dice de qué se trata" (**tema activo**, iteración 6)
+### Propuesta D — "El color dice de qué se trata" (tema default del 19/8/2026 al 3/9/2026; registrada)
 
 Sobre la base de la C (mismo papel, mismas tipografías, mismo fondo), reordena **quién dice qué**. Nace de un diagnóstico de Facu sobre los renders reales de Fase 1: la interfaz se veía dominada por berenjena y espinaca. La causa era estructural, no de gusto — dos reglas globales pintaban todos los encabezados de violeta (`base.css` `h1,h2,h3`) y todos los links de verde (`base.css` `a`) — más tres colisiones de rol (`--garbanzo` servía a la vez para el tipo `pan`, la estrella de clásica y los tips de precaución).
 
