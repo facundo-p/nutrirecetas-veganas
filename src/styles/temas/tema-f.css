@@ -106,3 +106,11 @@
      categoría. Sobre fondo hondo los cinco tonos claros se leen como una
      escala, no como cinco titulares peleándose. Cae al fallback --cat-actual. */
 }
+
+/* Fuera del bloque de arriba porque son opcionales, igual que en Mercado.
+   Acá el relleno lo lleva el sello y la banda queda apagada: sobre pizarra, una
+   columna de color a sangre en cada tarjeta pesaba más que la receta. */
+:root[data-tema='f'] {
+  --banda-fondo-fijo: transparent;
+  --sello-texto-fijo: var(--sobre-cat);
+}

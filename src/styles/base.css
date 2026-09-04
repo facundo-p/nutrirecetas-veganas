@@ -62,7 +62,10 @@ svg {
 }
 
 /* Tarjeta base: superficie tofu, borde fino, sombra apenas presente.
-   Prohibido el reborde lateral de acento (regla anti-look-IA del proyecto). */
+   Prohibido el reborde lateral de acento (regla anti-look-IA del proyecto).
+   Lo prohibido es el filete decorativo de 3-4 px que no dice nada. La banda de
+   42 px de la tarjeta de receta no es eso: es la columna que contiene el ícono
+   de tipo, o sea donde la categoría se lee. Ver .tarjeta-receta-tipo. */
 .tarjeta {
   background: var(--superficie);
   border: var(--borde);
