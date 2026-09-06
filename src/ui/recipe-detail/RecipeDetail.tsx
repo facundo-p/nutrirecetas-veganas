@@ -159,6 +159,28 @@ function RelatedLinks({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
   );
 }
 
+/**
+ * De dónde salió la receta. La credencial es lo que hace útil el origen —"test
+ * kitchen profesional" contra "sin certificador: validar en casa"— así que va
+ * visible y no en un `title`: en el celular un `title` no existe.
+ */
+function Fuente({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
+  const ref = recipe.fuente?.ref;
+  if (ref === undefined) return null;
+  const fuente = idx.seed.fuentes[ref];
+  const nombre = fuente?.nombre ?? ref;
+  return (
+    <p className="detalle-fuente">
+      <span>
+        Fuente: {fuente?.url ? <a href={fuente.url} target="_blank" rel="noreferrer">{nombre}</a> : nombre}
+        {recipe.fuente?.titulo_original && <> · «{recipe.fuente.titulo_original}»</>}
+      </span>
+      {fuente?.credencial && <span className="detalle-fuente-credencial">{fuente.credencial}</span>}
+      {recipe.fuente?.nota && <span className="detalle-fuente-credencial">{recipe.fuente.nota}</span>}
+    </p>
+  );
+}
+
 export function RecipeDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
   const recipe = idx.recipeById.get(id);
@@ -370,13 +392,7 @@ export function RecipeDetail({ id }: { id: string }) {
         destacados={perfil?.nutrientes_destacados ?? []}
       />
 
-      {recipe.fuente?.ref && (
-        <p className="detalle-fuente">
-          Fuente: {recipe.fuente.ref}
-          {recipe.fuente.titulo_original && <> · «{recipe.fuente.titulo_original}»</>}
-          {recipe.fuente.nota && <> · {recipe.fuente.nota}</>}
-        </p>
-      )}
+      <Fuente idx={idx} recipe={recipe} />
       {recipe.nota && <p className="detalle-fuente">{recipe.nota}</p>}
     </article>
   );

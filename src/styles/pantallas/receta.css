@@ -296,6 +296,14 @@
 .detalle-fuente {
   font-size: var(--fs-xs);
   color: var(--dato-suave);
+  display: grid;
+  gap: 2px;
+}
+
+/* La credencial dice cuánto confiar en el origen; va en su renglón para que se
+   lea, no colgada del nombre con un punto medio. */
+.detalle-fuente-credencial {
+  font-style: italic;
 }
 
 /* ============ Escalador ============ */

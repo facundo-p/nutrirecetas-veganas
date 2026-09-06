@@ -34,10 +34,11 @@ function recipeStub(id: string, extra: Partial<Recipe> = {}): Recipe {
   };
 }
 
-function seedStub(recetas: Recipe[]): Omit<Seed, 'content_hash'> {
+function seedStub(recetas: Recipe[], fuentes: Seed['fuentes'] = {}): Omit<Seed, 'content_hash'> {
   return {
     seed_schema_version: '1.0.0',
     dataset_version: 'test',
+    fuentes,
     ingredientes: [
       {
         id: 'garbanzos',
@@ -111,6 +112,14 @@ describe('validateIntegrity', () => {
       sustitutos: [],
     });
     expect(() => validateIntegrity(seedStub([consumidora, normal]))).toThrow(/no es preparado/);
+  });
+
+  test('una fuente sin entrada en el catálogo rompe el build (issue #149)', () => {
+    const conFuente = recipeStub('a', { fuente: { ref: 'mb' } });
+    expect(() => validateIntegrity(seedStub([conFuente]))).toThrow(/sin entrada en el catálogo/);
+    expect(() =>
+      validateIntegrity(seedStub([conFuente], { mb: { nombre: 'Minimalist Baker' } })),
+    ).not.toThrow();
   });
 
   test('detecta ciclos de preparados', () => {
