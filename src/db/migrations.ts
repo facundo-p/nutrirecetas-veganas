@@ -42,15 +42,22 @@ export function migrarPerfilV3(perfil: Record<string, unknown>): Record<string, 
 }
 
 /**
- * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`.
- * `favorita: true` es la misma opinión con otro nombre y se conserva; el IC del
- * usuario se descarta, porque lo que medía se fue de las recetas (#144). Una
- * favorita vieja no se degrada a "probada": era una elección, no un registro.
+ * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`. Los dos
+ * campos viejos son opiniones sobre la receta y las dos sobreviven traducidas:
+ *
+ * - `favorita: true` es la misma opinión con otro nombre. Gana sobre lo demás:
+ *   era una elección, no un registro, y no se degrada a "probada".
+ * - `ic_usuario` solo lo escribía un lugar, el checkbox de la cocina que decía
+ *   "La probé y la apruebo", y solo sobre recetas por probar. O sea que su
+ *   presencia **es** el registro de haberla cocinado y aprobado: se traduce a
+ *   "probada". Descartarlo sin más borraba ese hecho, que es justo lo que el
+ *   estado nuevo viene a decir.
  */
 export function migrarOverlayV4(overlay: Record<string, unknown>): Record<string, unknown> {
-  const { favorita, ic_usuario: _ic, ...resto } = overlay;
+  const { favorita, ic_usuario, ...resto } = overlay;
   if ('estado' in resto) return resto;
-  return favorita === true ? { ...resto, estado: 'favorita' } : resto;
+  if (favorita === true) return { ...resto, estado: 'favorita' };
+  return ic_usuario !== undefined ? { ...resto, estado: 'probada' } : resto;
 }
 
 /** Cuántos consumos trae un backup viejo: lo que el import va a descartar. */
