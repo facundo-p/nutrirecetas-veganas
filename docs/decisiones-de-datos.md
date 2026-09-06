@@ -306,3 +306,16 @@ El set 1 es el único sin campo `tipo`, y el pipeline lo asumía salado en bloqu
 | Receta | Tipo | Base | Gate |
 |---|---|---|---|
 | `r10` Budín de chía y avena nocturno | `dulce` | `recetas.md:193` la titula "(desayuno)"; lleva banana, kiwi, dátiles y jarabe de arce, y ningún ingrediente salado | ✔ revisar |
+
+## 12. T13 — el catálogo de fuentes que nunca entraba (2026-09-06, #149)
+
+La ficha decía **«Fuente: mb»**. El origen viaja completo en las 84 recetas (`fuente.ref`), pero lo que traduce `mb` a «Minimalist Baker (Dana Shultz)» vivía en `.artifacts/` sin entrar nunca al build: `load.ts` solo extraía `.recetas` de cada archivo.
+
+El catálogo está repartido en **tres formas** —`fuentes` (sets 1 y 2), `meta.fuente_libro` (set 3), `meta.origen` (set P)—, y los sets 1 y 2 comparten refs con **solo el 1 trayendo `credencial`**: se funden campo por campo, sin que un valor presente lo pise uno ausente. Una `ref` sin entrada en el catálogo rompe el build.
+
+`CURATED_SOURCES` (T13) reescribe las dos entradas cuyo texto del dataset estaba escrito para quien construye la app y no para quien cocina:
+
+| Fuente | Qué se cambia | Base |
+|---|---|---|
+| `libro_vgourmet` | credencial → «autoeditado, sin certificación externa» | la nota seguía con *"todas entran como por-probar; subir IC al validarlas en cocina"*: vocabulario del pipeline, y el IC ya no está en las recetas (#144) |
+| `recetario_personal` | nombre → «Recetario personal de Facu» | `meta.origen` dice *"recetario personal de Facu (Google Doc)"*; dónde estaba guardado no es parte del origen de la receta |

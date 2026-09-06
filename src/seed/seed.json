@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "e5b876ccde6ba374823b2e602107474a17816b53cc3f3053c61c92326f81c18c",
+ "content_hash": "216e6f09d811a355cbd1348be5eb4c5d0a5cb0ebdd4e8e9f83aa8d0ced6e823b",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -20454,6 +20454,43 @@
    "utensilios": []
   }
  ],
+ "fuentes": {
+  "rpl": {
+   "nombre": "Rainbow Plant Life (Nisha Vora)",
+   "url": "https://rainbowplantlife.com/",
+   "credencial": "recetas testeadas; autora NYT best-seller, nominada James Beard"
+  },
+  "mb": {
+   "nombre": "Minimalist Baker (Dana Shultz)",
+   "url": "https://minimalistbaker.com/",
+   "credencial": "referente vegano; miles de valoraciones por receta"
+  },
+  "ck": {
+   "nombre": "Cookie and Kate",
+   "url": "https://cookieandkate.com/",
+   "credencial": "recetas testeadas con ratings masivos"
+  },
+  "bbc": {
+   "nombre": "BBC Good Food",
+   "url": "https://www.bbcgoodfood.com/",
+   "credencial": "test kitchen profesional"
+  },
+  "zahav": {
+   "nombre": "Michael Solomonov - Zahav",
+   "credencial": "libro premiado James Beard; técnica de hummus de referencia"
+  },
+  "trad_ar": {
+   "nombre": "Tradición argentina (adaptación propia)",
+   "credencial": "sin certificador: validar en casa"
+  },
+  "libro_vgourmet": {
+   "nombre": "250 Recetas Veganas Proteicas (Vegano Gourmet)",
+   "credencial": "autoeditado, sin certificación externa"
+  },
+  "recetario_personal": {
+   "nombre": "Recetario personal de Facu"
+  }
+ },
  "equivalencias": {
   "volumen_ml": {
    "taza": {

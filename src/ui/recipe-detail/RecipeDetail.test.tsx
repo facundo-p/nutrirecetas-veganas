@@ -24,6 +24,22 @@ describe('Detalle de receta', () => {
     expect(screen.queryByRole('link', { name: 'Papa' })).toBeNull();
   });
 
+  test('la fuente se lee, no es un código (issue #149)', () => {
+    render(<RecipeDetail id="r05" />);
+    const link = screen.getByRole('link', { name: 'Minimalist Baker (Dana Shultz)' });
+    expect(link.getAttribute('href')).toBe('https://minimalistbaker.com/');
+    expect(screen.queryByText(/Fuente: mb/)).toBeNull();
+    // la credencial es lo que hace útil el origen, y va visible
+    expect(screen.getByText('referente vegano; miles de valoraciones por receta')).toBeDefined();
+    expect(screen.getByText(/Southwest Tofu Scramble/)).toBeDefined();
+  });
+
+  test('una fuente sin sitio no inventa un link', () => {
+    render(<RecipeDetail id="p19" />);
+    expect(screen.getByText(/Recetario personal de Facu/)).toBeDefined();
+    expect(screen.queryByRole('link', { name: /Recetario personal/ })).toBeNull();
+  });
+
   test('p04 (preparado) muestra nutrición por 100 g y quién lo consume', () => {
     render(<RecipeDetail id="p04" />);
     expect(screen.getByRole('heading', { name: /Nutrición por 100 g/ })).toBeDefined();

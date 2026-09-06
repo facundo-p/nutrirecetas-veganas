@@ -211,6 +211,17 @@ export const recipeSourceSchema = z.strictObject({
   nota: z.string().optional(),
 });
 
+/**
+ * El catálogo que traduce `fuente.ref` a algo legible. Sin él la ficha muestra
+ * el código crudo del dataset, que no le dice nada a nadie.
+ */
+export const sourceCatalogEntrySchema = z.strictObject({
+  nombre: z.string().min(1),
+  url: z.string().min(1).optional(),
+  credencial: z.string().min(1).optional(),
+});
+export type SourceCatalogEntry = z.infer<typeof sourceCatalogEntrySchema>;
+
 export const DIFFICULTY_LEVELS = ['trivial', 'muy fácil', 'fácil', 'media', 'difícil'] as const;
 
 export const recipeRuleRefSchema = z.strictObject({
@@ -394,6 +405,7 @@ export const seedSchema = z.strictObject({
   nutrientes: z.array(nutrientSchema).min(1),
   reglas: z.array(ruleSchema).min(1),
   recetas: z.array(recipeSchema).min(1),
+  fuentes: z.record(z.string(), sourceCatalogEntrySchema),
   equivalencias: equivalencesSchema,
   estacionalidad: z.array(seasonalitySchema),
   conservacion: z.array(storageItemSchema),

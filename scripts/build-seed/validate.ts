@@ -36,6 +36,13 @@ export function validateIntegrity(seed: Omit<Seed, 'content_hash'>): void {
     for (const p of receta.usa_preparados) {
       if (!recipeById.has(p)) errors.push(`${receta.id}: usa_preparados inexistente "${p}"`);
     }
+    // Una ref sin entrada en el catálogo se muestra como código crudo en la
+    // ficha: es justo el bug que el catálogo vino a arreglar.
+    for (const ref of [receta.fuente?.ref, receta.fuente?.ref_secundaria]) {
+      if (ref !== undefined && seed.fuentes[ref] === undefined) {
+        errors.push(`${receta.id}: fuente "${ref}" sin entrada en el catálogo de fuentes`);
+      }
+    }
     if (receta.es_preparado && receta.rendimiento_g === undefined) {
       errors.push(`${receta.id}: preparado sin rendimiento_g`);
     }

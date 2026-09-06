@@ -53,6 +53,7 @@ export function buildSeed(): { seed: Seed; notes: string[] } {
     nutrientes,
     reglas,
     recetas,
+    fuentes: raw.fuentes,
     equivalencias: transformEquivalences(raw.equivalencias),
     estacionalidad: seasonality.items,
     conservacion: transformStorage(raw.conservacion, ruleCtx.ingredientIds),

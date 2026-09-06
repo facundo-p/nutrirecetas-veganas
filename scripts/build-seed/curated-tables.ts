@@ -1592,3 +1592,29 @@ export const CURATED_TYPES: Record<string, TypeEntry> = {
     flag_gate: true,
   },
 };
+
+// ---------- T13: fuentes cuyo texto del dataset no es para el usuario ----------
+
+/**
+ * El catálogo de fuentes va a la ficha de la receta, así que su texto lo lee
+ * quien cocina. Dos entradas venían escritas para quien construye la app:
+ * hablan de "IC" y de "por-probar", que son vocabulario del pipeline. Se
+ * reescriben acá; el resto del catálogo pasa tal cual.
+ */
+
+export interface SourceOverride {
+  nombre?: string;
+  credencial?: string;
+  base: string;
+}
+
+export const CURATED_SOURCES: Record<string, SourceOverride> = {
+  libro_vgourmet: {
+    credencial: 'autoeditado, sin certificación externa',
+    base: 'la nota del dataset seguía con "todas entran como por-probar; subir IC al validarlas en cocina": instrucciones del pipeline, y el IC ya no está en las recetas (#144)',
+  },
+  recetario_personal: {
+    nombre: 'Recetario personal de Facu',
+    base: 'meta.origen dice "recetario personal de Facu (Google Doc)"; dónde estaba guardado no es parte del origen de la receta',
+  },
+};
