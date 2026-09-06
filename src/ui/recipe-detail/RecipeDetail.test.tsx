@@ -90,9 +90,11 @@ describe('Detalle de receta', () => {
     });
 
     test('las kcal por porción se leen sin abrir nada: es lo que se mira cocinando', () => {
-      render(<RecipeDetail id="p19" />);
-      const meta = document.querySelector('.detalle-meta')!;
-      expect(meta.textContent).toMatch(/kcal/);
+      const { container } = render(<RecipeDetail id="p19" />);
+      const energia = container.querySelector('.detalle-energia')!;
+      expect(energia.textContent).toMatch(/kcal/);
+      // «por porción» y no «por 100 g»: un número sin su referencia no dice nada
+      expect(energia.textContent).toMatch(/por porción/);
     });
 
     test('la nutrición va al final: primero todo lo que sirve para cocinar', () => {

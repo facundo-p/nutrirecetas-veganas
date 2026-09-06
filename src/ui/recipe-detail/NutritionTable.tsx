@@ -3,8 +3,9 @@ import { hasReportableValue, type RecipeNutrition } from '../../domain/nutrition
 import { porcentajeDeObjetivo, type ObjetivosDeReferencia } from '../../domain/objetivos';
 import { routeHash } from '../../app/router';
 import type { Nutrient, Seed } from '../../seed/schema';
-import { amountUnit, formatNumber, icSprouts } from '../common/format';
-import { IconBrotesIc, IconCobertura, IconHojaPunteada, IconSemanaArco, IconSol } from '../icons/icons';
+import { amountUnit, formatNumber } from '../common/format';
+import { IconCobertura, IconHojaPunteada, IconSemanaArco, IconSol } from '../icons/icons';
+import { IndiceConfianza } from '../common/IndiceConfianza';
 import { IntervalBand } from './IntervalBand';
 
 /**
@@ -127,7 +128,7 @@ export function NutritionTable({ nutrition, seed, titulo, objetivos, destacados 
                               className="nutriente-calidad"
                               title={`IC ${r.ic}/10 · calculado sobre el ${formatNumber(r.cobertura_pct, 0)} % del peso`}
                             >
-                              <IconBrotesIc nivel={icSprouts(r.ic ?? 1)} /> IC {r.ic}
+                              <IndiceConfianza ic={r.ic ?? 1} compacto />
                               <span className="nutriente-cobertura">
                                 <IconCobertura /> {formatNumber(r.cobertura_pct, 0)} %
                               </span>

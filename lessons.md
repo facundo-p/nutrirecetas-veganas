@@ -294,3 +294,37 @@ podía fallar: el motivo era correcto según su propia lógica.
   Proteína (lisina)". Cuando la etiqueta misma sobreafirma, explicar no alcanza:
   se renombra (T11). Mismo linaje que la B12 tranquilizadora — el contexto es
   parte del dato, y el nombre es el contexto que va a todas partes.
+
+---
+
+## Mercado y Pizarra: la app pasa a dos temas (2026-09-03, #127)
+
+- **El `:root` del tema default es una red de seguridad, no un lugar donde
+  declarar.** Todo lo que el default ponga ahí llega a *todos* los temas. Para
+  los roles del contrato da igual —cada tema los pisa—, pero un token
+  **opcional**, el que la app pide con fallback y que por eso queda fuera del
+  contrato, no lo pisa nadie: el tema que a propósito no lo declara lo hereda
+  igual. `--titulo-receta-fijo` viajó desde el `:root` de Mercado y le puso a
+  Pizarra los títulos del recetario en tinta oscura sobre fondo oscuro. **Los 411
+  tests pasaban.** Lo vio un render. Quedó un test que lo nombra.
+- **Un test puede mentir por unir lo que su propio comentario separa.** El de
+  tokens muertos decía "un `--p-*` solo se usa dentro de su archivo" y calculaba
+  el uso sobre todos los archivos juntos: el `--p-rabanito` muerto de la D vivía
+  tapado por el homónimo vivo de la C, y apareció recién al borrar la C. El
+  comentario tenía razón y el código no.
+- **Que tres temas se borren sin tocar un componente es la prueba de que el
+  contrato sirve.** La iteración 7 lo prometía; el borrado de A, C y D lo cobró.
+- **El prototipo no es la especificación.** Los artboards de Mercado y Pizarra no
+  compartían estructura —sello arriba a la derecha contra banda a la izquierda,
+  orden distinto de los bloques del detalle—, y eso no se puede expresar con
+  tokens sin que la capa de la app nombre un tema. Se unificó en una estructura
+  (la de Pizarra, decisión de Facu) y el tema quedó solo decidiendo color, que
+  es lo que el sistema promete. **Comparar los prototipos entre sí, y no cada uno
+  contra el README, fue lo que lo destapó.**
+- **Una firma propia no se cambia por la versión genérica de sí misma.** El
+  rediseño pedía tres barras ascendentes para el índice de confianza; los brotes
+  de IC ya hacían eso y están listados en `estetica-e-interaccion.md` como
+  elemento anti-look-IA. Se quedaron los brotes y cambió lo que de verdad
+  fallaba: "IC 8" pasó a "confianza 8 de 10", en los seis lugares donde salía
+  —dos más de los que se habían contado, y tres comunicaban el dato solo con el
+  ícono y un `title`, que en el celular no existe.

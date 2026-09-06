@@ -1,8 +1,7 @@
+import { IndiceConfianza } from '../common/IndiceConfianza';
 import { useState } from 'react';
 import { getSeedIndex } from '../../seed';
-import { icSprouts } from '../common/format';
 import { ICON_CATALOG } from '../icons/catalog';
-import { IconBrotesIc } from '../icons/icons';
 
 /** Glosario doble: pestaña de íconos (cada uno explicado) + términos culinarios. */
 
@@ -68,8 +67,8 @@ export function Glossary() {
                         {t.sinonimos && t.sinonimos.length > 0 && (
                           <span className="meta-suave"> · {t.sinonimos.join(' · ')}</span>
                         )}
-                        <span className="termino-ic" title={`índice de confianza ${t.ic}/10`}>
-                          <IconBrotesIc nivel={icSprouts(t.ic)} />
+                        <span className="termino-ic">
+                          <IndiceConfianza ic={t.ic} compacto />
                         </span>
                       </dt>
                       <dd>

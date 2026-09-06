@@ -26,9 +26,9 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
 
-## 3. Estética: tres temas intercambiables
+## 3. Estética: temas intercambiables
 
-**Estado actual: la app tiene tres temas vivos.** El default es la **D**; la **C** y la **A** se eligen desde Ajustes o con `?tema=c` / `?tema=a`. La propuesta B queda registrada como historia, sin implementar. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+**Estado actual: dos temas vivos, E "Mercado" (default) y F "Pizarra".** Las propuestas A, C y D fueron los temas de las fases 1 a 3 y se borraron en #128 y #129; la B nunca se implementó. Las cuatro quedan registradas acá abajo: se fueron de la app, no del registro. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
 
 Desde el 20/8/2026 el sistema son **tres capas** (forma / temas / app) y un test que las hace cumplir: la capa de la app no puede escribir un color ni nombrar un tema, y cada tema debe declarar el contrato de roles completo. Agregar un tema es crear un archivo y sumarlo a tres listas.
 
@@ -39,6 +39,9 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 - **Iteraciones 3 a 5** → **Propuesta C (Carta de estación)**: brief de Facu "tan hermosa como un plato vegano colorido y saludable, sin sobresaturar". Suma su ilustración de fondo, saturación +1, berenjena y remolacha. Con ella se construyó la Fase 1.
 - **Iteración 6** → **Propuesta D**, a partir de los renders reales: la categoría de cada receta se lee en el color de su título, espinaca y zanahoria pasan al frente. **Es el tema default desde el 19/8/2026.**
 - **Iteración 7** (20/8/2026) → el sistema de temas se vuelve de verdad extensible: tres capas, contrato de 39 roles y un test que lo hace cumplir. Con eso entra la **A** como tercer tema y aparece el selector en Ajustes.
+- **Iteración 8** (2/9/2026) → rediseño con dos direcciones nuevas, **E "Mercado"** y **F "Pizarra"** (el primer tema oscuro), y la decisión de Facu de quedarse solo con esas dos. El color deja de vivir únicamente en la tipografía y pasa a la superficie: encabezados plenos, banda de categoría en la tarjeta. Épica #127.
+
+Que tres temas se borren sin tocar un solo componente es la prueba de que la iteración 7 hizo lo que decía: el contrato es la única interfaz, y el archivo del tema es todo lo que un tema es.
 
 ### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
@@ -50,7 +53,7 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 6. El semáforo **nunca comunica solo con color**: siempre ícono + texto.
 7. Tipografías self-hosted (offline). Modo cocina: contraste reforzado y cuerpo tipográfico +2 escalas.
 
-### Propuesta A — "Botánica editorial" (**tema vivo** desde el 20/8/2026, `?tema=a`)
+### Propuesta A — "Botánica editorial" (tema vivo del 20/8/2026 al 3/9/2026; registrada)
 
 Cálida y seria; los datos respiran porque el fondo es calmo. Fraunces (serif display) + Schibsted Grotesk (datos).
 
@@ -102,7 +105,7 @@ Elegidas con una búsqueda sobre grilla HSL, contra **la vara real que cumple el
 
 **Sobre el semáforo**: los cuatro colores de estado de la A dan 4.34 / 2.50 / 4.85 / 3.95, por debajo de AA — igual que los de la D hoy (3.43 / 2.29 / 4.12 / 5.70) y por el mismo motivo: **el semáforo nunca comunica solo con color**, siempre ícono + palabra (invariante 6). Son tinte de píldora y color de ícono, no texto.
 
-### Propuesta D — "El color dice de qué se trata" (**tema activo**, iteración 6)
+### Propuesta D — "El color dice de qué se trata" (tema default del 19/8/2026 al 3/9/2026; registrada)
 
 Sobre la base de la C (mismo papel, mismas tipografías, mismo fondo), reordena **quién dice qué**. Nace de un diagnóstico de Facu sobre los renders reales de Fase 1: la interfaz se veía dominada por berenjena y espinaca. La causa era estructural, no de gusto — dos reglas globales pintaban todos los encabezados de violeta (`base.css` `h1,h2,h3`) y todos los links de verde (`base.css` `a`) — más tres colisiones de rol (`--garbanzo` servía a la vez para el tipo `pan`, la estrella de clásica y los tips de precaución).
 
@@ -132,7 +135,7 @@ Los 7 tipos de regla (`RuleTips`) ya emitían clase propia pero solo 2 tenían c
 
 **Estado**: Facu la eligió para seguir el desarrollo, y **los temas quedan como sistema permanente**. Implementación en `src/styles/temas/tema-d.css`, que declara su propia paleta cruda (`--p-*`) y el contrato de roles completo. Renders de cada tema en `docs/renders/fase-N-tema-{a,c,d}/`; comparativa C vs D publicada en [este Artifact](https://claude.ai/code/artifact/08290d5b-0d10-4098-b225-dc422ba0696d).
 
-### Propuesta C — "Carta de estación" (tema alternativo, `?tema=c`)
+### Propuesta C — "Carta de estación" (tema vivo de la Fase 1 al 3/9/2026; registrada)
 
 Sofisticada como la carta de un restaurante de estación. Base de A (papel ocre, Fraunces + Schibsted Grotesk, bordes finos — **confirmados por Facu**) + sistema de colores-verdura. Regla que ordena el color: **cada verdura tiene un rol, y cada rol tiene su verdura** — en una pantalla cualquiera dominan ocre y tinta, y el color aparece solo donde significa algo.
 

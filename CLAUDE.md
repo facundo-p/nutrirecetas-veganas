@@ -51,19 +51,21 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 4. **Nada de valores mágicos**: espaciado `--sp-*`, tipografía `--fs-*` y `--font-*`, radios y bordes `--radio*` / `--borde*`. Medida nueva → `tokens.css`, que no puede tener colores.
 5. **El estado se comunica con atributos**, no con estilos calculados: `data-*` propios (`data-cat`, `data-paso`) o ARIA real (`aria-current`, `aria-pressed`, `aria-selected`), y el CSS los lee. Nunca `style={{ width: pct }}` ni una custom property seteada desde React.
 6. **Clases en castellano, kebab-case, BEM liviano**: bloque (`semaforo`, `tarjeta-receta`), elemento `bloque-elemento` (`semaforo-icono`, `banda-rango`), variante `bloque-variante` (`chip-mini`), estado como clase suelta adicional (`sin-datos`, `no-aplica`, `inactiva`). Cero utilitarias.
-7. **Prohibido el reborde lateral de acento en tarjetas y el emoji como ícono** (anti-look-IA, pedido explícito de Facu). Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
+7. **Prohibido el reborde lateral de acento en tarjetas y el emoji como ícono** (anti-look-IA, pedido explícito de Facu). Lo prohibido es el filete decorativo de 3-4 px que no dice nada; la banda de 42 px de la tarjeta de receta no es eso, porque es la columna que contiene el ícono de tipo. Los íconos son SVG con `currentColor` en `src/ui/icons/icons.tsx`; su color se declara en una clase `.icono-*`.
 8. **Al terminar**: `npm test`. Si tocaste algo visual, renders; si el cambio *no* debía verse, baseline antes y `cmp` después.
 
 ## Temas visuales
 
-Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el que usa Facu), **C "carta de estación"** y **A "botánica editorial"**. Se eligen en Ajustes o con `?tema=a|c|d`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
+Dos temas intercambiables: **E "Mercado"** (default, papel claro) y **F "Pizarra"** (oscuro). Se eligen en Ajustes o con `?tema=e|f`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
+
+**La estructura es una sola y es la de Pizarra**; el tema solo decide el color. Lo que cambia entre los dos son tokens: el fondo del encabezado (espinaca en Mercado, plano en Pizarra), el filete del ítem activo de la nav, y si el título de la receta va en tinta (`--titulo-receta-fijo` en Mercado) o en el color de su categoría (Pizarra).
 
 ```
 1. FORMA   src/styles/tokens.css   escala tipográfica, espaciado, bordes.
                                    PROHIBIDO un color acá.
 2. TEMAS   src/styles/temas/       única capa que escribe colores, y la que
                                    elige las familias (--font-display/-data).
-             tema-{a,c,d}.css      paleta cruda (--p-*, privada) + contrato de roles.
+             tema-X.css            paleta cruda (--p-*, privada) + contrato de roles.
              categorias.css        puente [data-cat] → --cat-actual.
 3. APP     el resto de styles/     solo tokens de rol; ninguna regla nombra
                                    un color ni un tema.
@@ -77,9 +79,9 @@ Tres temas intercambiables: **D "el color dice de qué se trata"** (default, el 
 
 **Custom properties anidadas**: una property que contiene `var()` se resuelve **donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root` — y es lo que permite que un tema elija entre título fijo o color de categoría sin nombrarse: `var(--titulo-receta-fijo, var(--cat-actual))`.
 
-**Colores nuevos, medidos** contra la vara que cumple el tema D: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
+**Colores nuevos, medidos** contra la vara que cumplen los dos temas: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
 
-**Renders**: `npm run renders -- fase-N --tema=a|c|d` → `docs/renders/fase-N-tema-{a,c,d}/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
+**Renders**: `npm run renders -- fase-N --tema=X` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 
 ## Arquitectura
 

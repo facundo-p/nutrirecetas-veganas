@@ -131,9 +131,13 @@ describe('el contrato de temas', () => {
   });
 
   test.each(deTema.map((a) => [a.nombre, a.css] as const))('%s no declara tokens muertos', (_n, css) => {
-    // un --p-* solo se usa dentro de su propio archivo; un rol, en cualquier lado
-    const usados = new Set([...usadoEnAlgunLado, ...usa(css)]);
-    expect([...declara(css)].filter((t) => !usados.has(t))).toEqual([]);
+    // Un --p-* es privado: solo cuenta como usado dentro de su propio archivo.
+    // Unir el uso global acá dejaba que el homónimo vivo de otro tema tapara un
+    // token muerto — así sobrevivió el --p-rabanito de la D hasta que se borró
+    // la C, que era la que lo usaba. Un rol sí vale usado en cualquier lado.
+    const propios = usa(css);
+    const muerto = (t: string) => (t.startsWith('--p-') ? !propios.has(t) : !usadoEnAlgunLado.has(t) && !propios.has(t));
+    expect([...declara(css)].filter(muerto)).toEqual([]);
   });
 
   test.each(deTema.map((a) => [a.nombre, a.css, nombreDeTema(a.nombre)!] as const))(
@@ -146,13 +150,45 @@ describe('el contrato de temas', () => {
     },
   );
 
+  /*
+   * El `:root` del tema default es una red de seguridad, no un lugar donde
+   * declarar: todo lo que ponga ahí llega a TODOS los temas. Para los roles del
+   * contrato da igual, porque cada tema los pisa. Para un token OPCIONAL —el
+   * que la app pide con fallback, y que por eso queda fuera del contrato— no:
+   * el tema que a propósito no lo declara lo hereda igual, sin saberlo.
+   *
+   * Pasó con --titulo-receta-fijo. Mercado lo declara para que el título de la
+   * receta vaya en tinta; Pizarra no lo declara justamente para caer al color
+   * de su categoría. Viajando desde `:root` le impuso la tinta oscura de
+   * Mercado sobre fondo oscuro, y los títulos del recetario se volvieron
+   * ilegibles sin que fallara un solo test.
+   */
+  test('el :root del default no declara tokens opcionales', () => {
+    const opcionales = new Set(
+      consumidores
+        .flatMap((a) => [...usa(a.css)])
+        .filter((t) => !CONTRATO.includes(t) && !declaradoFueraDeTemas.has(t)),
+    );
+    expect([...opcionales].length).toBeGreaterThan(0); // si se vacía, el test no prueba nada
+
+    const enLaRed = deTema.flatMap((a) =>
+      [...a.css.matchAll(/(?:^|})\s*([^{}]+?)\s*\{([^}]*)\}/g)]
+        .filter((m) => /(^|,)\s*:root\s*(,|$)/.test(m[1]!.replace(/\s+/g, ' ')))
+        .flatMap((m) => [...declara(m[2]!)].filter((t) => opcionales.has(t)).map((t) => `${a.nombre}: ${t}`)),
+    );
+    expect(enLaRed).toEqual([]);
+  });
+
   test('solo el tema default se declara también sobre :root', () => {
     const conRedDeSeguridad = deTema.filter((a) => /(^|})\s*:root\s*,/.test(a.css)).map((a) => nombreDeTema(a.nombre));
     expect(conRedDeSeguridad).toEqual([TEMA_DEFAULT]);
   });
 
   test('la lista de temas está sincronizada en los tres lugares', () => {
-    expect(TEMAS.length).toBeGreaterThan(1);
+    // el piso es 1 y no 2: lo que esta guarda cuida es que el regex de arriba
+    // haya encontrado algo — con TEMAS vacío las comparaciones de abajo pasan
+    // solas. Cuántos temas haya es decisión de producto, no del contrato.
+    expect(TEMAS.length).toBeGreaterThan(0);
     expect(TEMA_DEFAULT).toBeDefined();
     const esperados = [...TEMAS].sort();
     expect(deTema.map((a) => nombreDeTema(a.nombre)!).sort()).toEqual(esperados);

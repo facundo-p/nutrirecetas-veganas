@@ -8,12 +8,25 @@
 
    El fallback es lo que hace que un tema no tenga que nombrarse a sí mismo:
    quien quiere el título en un color fijo declara --titulo-receta-fijo en su
-   bloque (la C); quien quiere el color de la categoría no declara nada (D y A)
-   y cae a --cat-actual. Verificado en Chromium en los cuatro casos, incluido
-   el de un data-tema inválido. */
+   bloque; quien quiere el color de la categoría no declara nada y cae a
+   --cat-actual. Verificado en Chromium en ambos casos, incluido el de un
+   data-tema inválido. */
 
 [data-cat] {
   --titulo-receta: var(--titulo-receta-fijo, var(--cat-actual));
+
+  /* La categoría se muestra dos veces en la tarjeta —la banda de la izquierda y
+     el sello del titular— y el relleno lo lleva UNA sola: si lo llevan las dos,
+     la tarjeta grita. Cada tema elige cuál, declarando el `-fijo` de la que
+     quiere apagar; el que no declara nada se queda con el color de categoría.
+
+     Van acá y no en el archivo del tema por lo mismo que --titulo-receta:
+     contienen var(--cat-actual), que solo existe sobre [data-cat]. Declaradas
+     en el :root de un tema resolverían contra un --cat-actual inexistente. */
+  --banda-fondo: var(--banda-fondo-fijo, var(--cat-actual));
+  --banda-icono: var(--banda-icono-fijo, var(--cat-actual));
+  --sello-fondo: var(--sello-fondo-fijo, var(--cat-actual));
+  --sello-texto: var(--sello-texto-fijo, var(--cat-actual));
 }
 
 [data-cat='principal'] {

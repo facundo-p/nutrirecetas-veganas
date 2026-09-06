@@ -1,0 +1,116 @@
+/* ══════════ Tema F — "Pizarra" ══════════
+   La carta de noche: papel oscuro de pizarra y los verdes, naranjas y ocres
+   del set recuperados en luminosidad alta para que rindan sobre fondo hondo.
+   Único tema oscuro del set.
+
+   `color-scheme: dark` no es cosmético: le dice al navegador que pinte con
+   criterio oscuro lo que el CSS no controla — barras de scroll, autofill,
+   los controles nativos de los <select> de los filtros.
+
+   Estructura, igual que el otro:
+     1) paleta cruda con prefijo --p-, PRIVADA de este archivo
+     2) contrato de roles, lo único que la app nombra */
+:root[data-tema='f'] {
+  color-scheme: dark;
+
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-pizarra: #161d18;
+  --p-pizarra-clara: #1f2a22;
+  --p-hueso: #f3ead7;
+  --p-salvia: #a6ae9b;
+  --p-salvia-honda: #8d9585;
+  --p-lima: #a8d96b;
+  --p-durazno: #ff8168;
+  --p-zanahoria: #ff8c42;
+  --p-miel: #f2c14e;
+  --p-jade: #57d0b3;
+  --p-lavanda: #c79bd1;
+  --p-frambuesa: #ff6b85;
+  --p-cielo: #a8bde0;
+  --p-caramelo: #c98a5e;
+
+  /* ── contrato de roles ── */
+
+  /* Tipografía */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Schibsted Grotesk Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Superficie y tinta */
+  --papel: var(--p-pizarra);
+  --superficie: var(--p-pizarra-clara);
+  --tinta: var(--p-hueso);
+  --tinta-suave: var(--p-salvia);
+
+  /* Identidad y acción */
+  --marca: var(--p-lima);
+  --kicker: var(--p-lima);
+  --titulo-seccion: var(--p-lima);
+  --accion: var(--p-zanahoria); /* relleno: hace de fondo, piso 3:1 */
+  --accion-texto: var(--p-zanahoria); /* la acción cuando es texto o marcador */
+  --sobre-accion: var(--p-pizarra); /* encima de un relleno claro, la tinta va oscura */
+  --seleccion: var(--p-lima);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-lavanda); /* volver, atrás, cancelar */
+  --link: var(--p-lima);
+  --foco: var(--p-zanahoria);
+
+  /* Datos */
+  --cifra: var(--p-miel);
+  --dato-suave: var(--p-salvia-honda); /* lo apagado: metadato, sin datos, no aplica */
+  --chip: var(--p-lima);
+
+  /* Avisos y tips */
+  --aviso: var(--p-frambuesa);
+  --tip-positivo: var(--p-lima); /* potenciador, sugerencia, secreto del chef */
+  --tip-atencion: var(--p-frambuesa); /* precaución, inhibidor, corrección */
+  --tip-neutro: var(--p-salvia); /* técnica, dato */
+
+  /* Atributos de receta e ingrediente */
+  --icono-imprescindible: var(--p-zanahoria);
+  --funcion-ingrediente: var(--p-salvia);
+  --confirmado: var(--p-jade); /* receta probada, ingrediente en temporada */
+  --icono-freezer: var(--p-cielo);
+  --icono-clasica: var(--p-miel);
+  --icono-indulgente: var(--p-frambuesa);
+  --chip-preparado: var(--p-caramelo);
+
+  /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:
+     precaución (ojo con esto), aviso (cuidado de verdad), éxito (salió bien). */
+  --precaucion: var(--p-miel);
+  --exito: var(--p-jade);
+
+  /* Categoría de receta: los mismos cinco significados que en E, recalibrados
+     en luminosidad para que rindan sobre pizarra. Son claros, así que cuando
+     hacen de relleno el texto encima va oscuro (--sobre-cat). */
+  --cat-principal: var(--p-durazno); /* saladas y combos */
+  --cat-dulce: var(--p-caramelo);
+  --cat-preparado: var(--p-cielo);
+  --cat-pan: var(--p-miel);
+  --cat-conserva: var(--p-jade); /* fermentos y escabeches */
+
+  /* ── superficies de color ──
+     Pizarra no usa el bloque de encabezado ni el filete de la nav: les pasa su
+     propio papel y transparent, y la misma regla rinde sin nombrarse. Los
+     tonos de categoría son claros, así que sobre ellos el texto va oscuro. */
+  --encabezado: var(--p-pizarra);
+  --sobre-encabezado: var(--p-hueso);
+  --encabezado-kicker: var(--p-lima);
+  --sobre-cat: var(--p-pizarra);
+  --nav-fondo: var(--p-pizarra-clara);
+  --nav-inactivo: var(--p-salvia-honda);
+  --nav-activo: var(--p-zanahoria);
+  --nav-marca-activa: transparent;
+
+  /* Sin --titulo-receta-fijo: en Pizarra el título sí lleva el color de su
+     categoría. Sobre fondo hondo los cinco tonos claros se leen como una
+     escala, no como cinco titulares peleándose. Cae al fallback --cat-actual. */
+}
+
+/* Fuera del bloque de arriba porque son opcionales, igual que en Mercado.
+   Acá el relleno lo lleva el sello y la banda queda apagada: sobre pizarra, una
+   columna de color a sangre en cada tarjeta pesaba más que la receta. */
+:root[data-tema='f'] {
+  --banda-fondo-fijo: transparent;
+  --sello-texto-fijo: var(--sobre-cat);
+}

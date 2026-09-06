@@ -3,9 +3,10 @@ import { getSeedIndex } from '../../seed';
 import { INGREDIENT_CATEGORIES, type Ingredient } from '../../seed/schema';
 import { midpoint } from '../../domain/interval';
 import { routeHash } from '../../app/router';
-import { amountUnit, currentMonth, formatNumber, icSprouts, normalize } from '../common/format';
+import { amountUnit, currentMonth, formatNumber, normalize } from '../common/format';
 import { ingredientInSeason } from '../../domain/season';
-import { IconBrotesIc, IconTemporada } from '../icons/icons';
+import { IconTemporada } from '../icons/icons';
+import { IndiceConfianza } from '../common/IndiceConfianza';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
 function nutrientValue100g(ing: Ingredient, clave: string): number | null {
@@ -106,8 +107,8 @@ export function IngredientList() {
                     </span>
                   )}
                   <span className="chip chip-mini">{ing.categoria.replaceAll('_', ' ')}</span>
-                  <span className="meta-item" title={`índice de confianza ${ing.ic}/10`}>
-                    <IconBrotesIc nivel={icSprouts(ing.ic)} />
+                  <span className="meta-item">
+                    <IndiceConfianza ic={ing.ic} compacto />
                   </span>
                 </span>
               </a>
