@@ -328,3 +328,59 @@ podía fallar: el motivo era correcto según su propia lógica.
   fallaba: "IC 8" pasó a "confianza 8 de 10", en los seis lugares donde salía
   —dos más de los que se habían contado, y tres comunicaban el dato solo con el
   ícono y un `title`, que en el celular no existe.
+
+---
+
+## Lo que apareció usando el recetario (2026-09-06, #136–#152)
+
+Ocho entregables salidos de que Facu usara la app por primera vez en serio. No
+de una auditoría ni de un test: de cocinar con ella.
+
+- **Un dato que quien construye la app no entiende no puede estar en pantalla.**
+  El disparador fue "no recuerdo bien qué es el índice de confianza". El IC de
+  una receta mide cuánta confianza tiene **la fuente** en que **su adaptación
+  vegana** esté bien, y el código ya lo sabía: el motor de recomendaciones lo
+  excluía a propósito de su ranking, con el comentario *"mezclarlos sería mentir
+  con precisión"* al lado. Ese comentario existía porque el IC **no entraba al
+  cálculo** — mientras tanto, en la tarjeta, entraba a los ojos. **Un invariante
+  escrito para el motor no protege a la vista**, y nadie lo había notado en tres
+  fases.
+- **La inferencia le gana al dato cuando el dato falta en un solo set.** El
+  budín de chía salía salado porque el set 1 es el único sin campo `tipo` y el
+  pipeline lo asumía en bloque: acierta en 9 de 10, y la décima es un desayuno
+  con banana y kiwi. `recetas.md` lo titulaba "(desayuno)" desde el principio.
+  La corrección trajo una guarda que vale más que el arreglo: **una entrada
+  curada que repite lo que el dataset ya dice rompe el build**. Una corrección
+  que dejó de corregir es una línea que nadie va a volver a leer.
+- **El origen estaba entero y se mostraba en código.** Las 84 recetas conservan
+  `fuente.ref`; lo que traduce `mb` a "Minimalist Baker" vivía en `.artifacts/`
+  desde siempre y `load.ts` solo extraía `.recetas`. Es la contracara de la
+  lección de la Fase 0: no alcanza con verificar que el dato exista en el JSON,
+  hay que verificar **qué se lleva el pipeline**. Y al traerlo apareció lo otro:
+  dos entradas del catálogo estaban escritas para quien construye la app
+  ("subir IC al validarlas en cocina"), y ahora las lee quien cocina.
+- **La semilla ya tenía la respuesta que parecía necesitar una migración.** Los
+  estados de receta arrancaban pidiendo un valor inicial para 84 recetas; el
+  `estado` del dataset ya parte 45 probadas (el recetario personal de Facu) y 39
+  por probar. Se lee, no se copia. El corolario incómodo es que **`sin-probar`
+  tiene que ser un valor guardable y no la ausencia**: es la única forma de
+  desmarcar una de esas 45.
+- **La misma información con dos tratamientos es una de las dos mal.** Los
+  sustitutos eran botones que recalculan en la cocina y links informativos en la
+  ficha. La ficha estaba mal, y arreglarla regaló algo que no se buscaba: ahora
+  **solo los tocables parecen tocables** — los 68 resolubles son botones, los 100
+  de texto libre siguen inertes. Antes se veían igual y ninguno hacía nada.
+- **Los tests verdes no dicen nada si no pueden fallar.** Los dos de la memoria
+  de filtros se verificaron al revés: neutralizada la escritura, dan rojo. Vale
+  la pena el minuto — el test de huérfanas de T9 que había de antes reimplementa
+  el guard en vez de ejercitarlo, y por eso el de T12 se extrajo a función pura.
+- **La lección de #115 volvió a cobrar en la misma sesión**: `npm test` en verde
+  y `npm run build` en 1, por un `TS2532` en un test que vitest no compila. Se
+  agarró porque el exit code se chequea sin pipe. Van dos.
+- **Los renders siguen encontrando lo que ningún test mira**: el control de
+  estado de la ficha salió sin rótulo y se leía como un filtro más. Le faltaba
+  una palabra ("PARA VOS"), y eso no lo dice un `getByRole`.
+- **`.chip-mini` vivía en `recetario.css` y lo leían seis pantallas.** La regla
+  de CLAUDE.md nombra exactamente esa señal. Se degradó sola, como la de los
+  colores antes del contrato de temas: **una regla sin test se cae, aunque esté
+  escrita**.
