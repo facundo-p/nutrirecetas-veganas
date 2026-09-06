@@ -29,6 +29,16 @@ export const EMPTY_FILTERS: RecipeFiltersState = {
   ricaEn: '',
 };
 
+/**
+ * Si hay algún filtro puesto. Campo por campo y no por `JSON.stringify`: el
+ * orden de las claves no puede decidir si el conteo dice "con estos filtros".
+ */
+export function hayFiltros(f: RecipeFiltersState): boolean {
+  return (Object.keys(EMPTY_FILTERS) as Array<keyof RecipeFiltersState>).some(
+    (k) => f[k] !== EMPTY_FILTERS[k],
+  );
+}
+
 /** ids de ingredientes cuyo nombre o sinónimos matchean la búsqueda */
 function matchingIngredientIds(idx: SeedIndex, q: string): Set<string> {
   const ids = new Set<string>();

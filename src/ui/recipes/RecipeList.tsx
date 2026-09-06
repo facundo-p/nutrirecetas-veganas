@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { recipeInSeason } from '../../domain/season';
-import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
+import { groupRecipes, hayFiltros, type RecipeFiltersState } from './filtering';
+import { memoriaDeFiltros } from './memoria-de-filtros';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
@@ -10,11 +11,19 @@ import { currentMonth } from '../common/format';
 export function RecipeList() {
   const idx = getSeedIndex();
   const mes = currentMonth();
-  const [filters, setFilters] = useState<RecipeFiltersState>(EMPTY_FILTERS);
-  const [open, setOpen] = useState<Set<string>>(new Set());
+  const [filters, setFilters] = useState<RecipeFiltersState>(memoriaDeFiltros.filtros);
+  const [open, setOpen] = useState<Set<string>>(memoriaDeFiltros.variantesAbiertas);
+
+  // Lo que se filtró y lo que se desplegó sobreviven a abrir una receta y volver.
+  useEffect(() => {
+    memoriaDeFiltros.filtros = filters;
+  }, [filters]);
+  useEffect(() => {
+    memoriaDeFiltros.variantesAbiertas = open;
+  }, [open]);
 
   const groups = useMemo(() => groupRecipes(filters, idx), [filters, idx]);
-  const anyFilter = filters !== EMPTY_FILTERS && JSON.stringify(filters) !== JSON.stringify(EMPTY_FILTERS);
+  const anyFilter = hayFiltros(filters);
   const total = groups.reduce((acc, g) => acc + (g.motherMatches ? 1 : 0) + g.matchingVariants.length, 0);
 
   const toggle = (id: string) => {
