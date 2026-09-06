@@ -9,6 +9,52 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.7.0] — 2026-09-06
+
+La tanda que salió de usar el recetario en serio por primera vez. Cada receta
+pasa a decir **tu** relación con ella —sin probar, probada, pendiente o
+favorita— en vez del índice de confianza, que medía cuánta confianza tiene la
+fuente en su propia adaptación vegana y se leía como una nota. También dice de
+dónde salió con todas las letras, y sus sustitutos por fin sustituyen.
+
+No hay nada que hacer antes de actualizar. Si tenías recetas marcadas como
+favoritas siguen siéndolo, y las que aprobaste al cocinarlas quedan como
+probadas.
+
+### Agregado
+
+- **Tu estado con cada receta**: sin probar, probada, pendiente o favorita. Se
+  elige en la ficha y se filtra desde el recetario. Las 45 del recetario
+  personal arrancan como probadas, porque son las que ya cocinaste. Registrar
+  una cocción marca la receta como probada, salvo que la tengas de favorita.
+  (#145)
+- **La receta dice de dónde salió**: "Minimalist Baker (Dana Shultz)" con
+  enlace al sitio, en vez del código "mb", y debajo qué tan confiable es esa
+  fuente ("test kitchen profesional", "sin certificador: validar en casa").
+  (#149)
+- **Tocar un ingrediente alternativo lo cambia en la receta** y mueve la
+  nutrición en vivo; tocándolo de nuevo, vuelve al original. Dura mientras
+  mirás la receta, igual que el selector de porciones. (#150)
+- **Volver al recetario conserva el filtro y el lugar de la lista**: filtrar,
+  abrir una receta y volver ya no obliga a empezar de cero. El scroll queda
+  arreglado en todas las pantallas. (#139)
+
+### Quitado
+
+- **La sección "Qué cocinar"**: el recetario abre en la búsqueda, que es a lo
+  que se entra. (#138, #75)
+- **El índice de confianza de las recetas**, de la tarjeta y de la ficha. Sigue
+  donde mide algo verificable: ingredientes, nutrientes, glosario y la tabla
+  nutricional de cada receta. (#144)
+- **Los enlaces de la lista de ingredientes**: cocinando te sacaban de la
+  receta. Los preparados siguen enlazando, porque llevan a otra receta. (#137)
+
+### Datos
+
+- **El budín de chía y avena nocturno pasa a ser dulce.** Salía salado porque
+  es del único set que no trae el tipo y el pipeline lo asumía en bloque.
+  (#136)
+
 ## [0.6.0] — 2026-09-03
 
 Dos temas nuevos en lugar de los tres viejos, y el primero oscuro. **Mercado** es
