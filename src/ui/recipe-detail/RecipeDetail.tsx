@@ -33,17 +33,22 @@ import { B12Alert } from './B12Alert';
 import { NutritionTable } from './NutritionTable';
 import { RuleTips } from './RuleTips';
 
-function lineName(idx: SeedIndex, line: Line): { nombre: string; href: string; esPreparado: boolean } {
+/**
+ * Solo los preparados linkean, porque llevan a otra receta. El nombre de un
+ * ingrediente es texto: mandarlo a su ficha saca de la receta a quien está
+ * cocinando, que es lo último que la lista tiene que hacer.
+ */
+function lineName(idx: SeedIndex, line: Line): { nombre: string; esPreparado: boolean } {
   if (line.ref.tipo === 'receta') {
     const prep = idx.recipeById.get(line.ref.id);
-    return { nombre: prep?.nombre ?? line.ref.id, href: routeHash({ screen: 'recipe', id: line.ref.id }), esPreparado: true };
+    return { nombre: prep?.nombre ?? line.ref.id, esPreparado: true };
   }
   const ing = idx.ingredientById.get(line.ref.id);
-  return { nombre: ing?.nombre ?? line.ref.id, href: routeHash({ screen: 'ingredient', id: line.ref.id }), esPreparado: false };
+  return { nombre: ing?.nombre ?? line.ref.id, esPreparado: false };
 }
 
 function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
-  const { nombre, href, esPreparado } = lineName(idx, line);
+  const { nombre, esPreparado } = lineName(idx, line);
   const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id, currentMonth());
   const unidad = line.unidad_display.replaceAll('_', ' ');
   const cantidad = formatCantidad(line.cantidad);
@@ -54,7 +59,11 @@ function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
     <li className="linea-ingrediente">
       <span className="linea-principal">
         <span className="linea-nombre">
-          <a href={href}>{nombre}</a>
+          {esPreparado ? (
+            <a href={routeHash({ screen: 'recipe', id: line.ref.id })}>{nombre}</a>
+          ) : (
+            nombre
+          )}
           {esPreparado && <span className="chip chip-mini chip-preparado">preparado</span>}
           {line.imprescindible && (
             <IconAsterisco className="inline-icono icono-imprescindible" aria-label="imprescindible" />

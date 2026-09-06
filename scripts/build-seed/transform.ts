@@ -14,6 +14,7 @@ import {
   APORTE_NULO_IDS,
   CURATED_PORTIONS,
   CURATED_STEPS,
+  CURATED_TYPES,
   CURATED_YIELDS,
   DE_FACTO_PREPARADOS,
   NUTRIENT_DESCRIPTIONS,
@@ -138,6 +139,24 @@ function transformLine(recipeId: string, raw: RawLine, ingredientIds: Set<string
   };
 }
 
+/**
+ * T12 pisa el tipo derivado. Una entrada que repite lo que el dataset ya dice
+ * es una corrección que dejó de corregir: rompe el build en vez de quedar
+ * escrita sin efecto.
+ */
+export function aplicarTipoCurado(
+  id: string,
+  tipoDerivado: Recipe['tipo'],
+  tabla: Record<string, { tipo: Recipe['tipo'] }> = CURATED_TYPES,
+): Recipe['tipo'] {
+  const curado = tabla[id];
+  if (!curado) return tipoDerivado;
+  if (curado.tipo === tipoDerivado) {
+    throw new Error(`T12: ${id} ya sale "${tipoDerivado}" del dataset; la entrada no corrige nada`);
+  }
+  return curado.tipo;
+}
+
 export function transformRecipe(
   raw: RawRecipe,
   setKey: 1 | 2 | 3 | 'P',
@@ -151,9 +170,10 @@ export function transformRecipe(
   const ic = setKey === 'P' ? raw.confianza : raw.confianza_adaptacion;
   if (estado === undefined || ic === undefined) throw new Error(`${id}: sin estado/confianza`);
 
-  // tipo: el set 1 no lo trae → salada (set fundacional salado)
-  const tipo = (setKey === 1 ? 'salada' : raw.tipo) as Recipe['tipo'];
-  if (tipo === undefined) throw new Error(`${id}: sin tipo`);
+  // tipo: el set 1 no lo trae → salada (set fundacional salado), salvo lo que corrija T12
+  const tipoDerivado = (setKey === 1 ? 'salada' : raw.tipo) as Recipe['tipo'];
+  if (tipoDerivado === undefined) throw new Error(`${id}: sin tipo`);
+  const tipo = aplicarTipoCurado(id, tipoDerivado);
 
   // porciones: número directo o tabla curada T1
   let porciones_num: number | null;
@@ -281,6 +301,10 @@ export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recip
   const ids = new Set(recetas.map((r) => r.id));
   const huerfanas = Object.keys(CURATED_STEPS).filter((id) => !ids.has(id));
   if (huerfanas.length > 0) throw new Error(`T9: pasos curados para recetas que no existen: ${huerfanas.join(', ')}`);
+  const tiposHuerfanos = Object.keys(CURATED_TYPES).filter((id) => !ids.has(id));
+  if (tiposHuerfanos.length > 0) {
+    throw new Error(`T12: tipo curado para recetas que no existen: ${tiposHuerfanos.join(', ')}`);
+  }
 
   return recetas;
 }

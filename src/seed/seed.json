@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "93486d8006858ba69e723ad8c16fb53064cdad61ae17912189b05b88df68c88c",
+ "content_hash": "e5b876ccde6ba374823b2e602107474a17816b53cc3f3053c61c92326f81c18c",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -8231,7 +8231,7 @@
   {
    "id": "r10",
    "nombre": "Budín de chía y avena nocturno",
-   "tipo": "salada",
+   "tipo": "dulce",
    "es_preparado": false,
    "porciones_num": 2,
    "porciones_display": "2 porciones",
