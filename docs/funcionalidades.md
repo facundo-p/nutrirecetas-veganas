@@ -38,7 +38,7 @@ no le tiene que estorbar**.
 - **Alerta B12 de levadura nutricional** *(invariante de seguridad del BRIEF)*: 14 recetas la usan; el rango del dato arranca en 0 → advertencia siempre visible: "muchas levaduras argentinas NO están fortificadas; leé la etiqueta".
 - **Agrupación de variantes**: las 12 variantes se muestran bajo su receta madre (3 brownies de porotos = 1 entrada expandible). La "madre" es el destino de `variante_de` (siempre resoluble según auditoría).
 - **Preparados navegables**: enlaces receta↔preparado en ambos sentidos, con la nutrición real encadenada (modelo migrado).
-- **Overlay de confianza**: al registrar una cocción de una receta IC 5 (set 3) y aprobarla, la app ofrece subir el IC del usuario. La semilla no se muta: es un overlay local.
+- ~~**Overlay de confianza**~~ — **descartado (2026-09-06, #144).** Al registrar una cocción, la app ofrecía subirle el IC. El problema no era el overlay sino el número: `recipe.ic` mide cuánta confianza tiene la fuente en **su adaptación vegana**, no si la receta es buena, y en la tarjeta se leía como una nota. El IC se fue de las recetas; lo que el usuario gana al cocinar es el estado **probada** (#145). El IC sigue donde mide algo verificable: ingredientes, nutrientes, glosario y la tabla nutricional.
 - **Glosario doble**: sección con pestaña de **íconos** (pedido explícito de Facu: cada ícono explicado) y pestaña de **términos culinarios** (los 37 del dataset con implicancia nutricional).
 - **Filtros por ingrediente y por nutriente** *(pedido de Facu en revisión)*: "recetas con garbanzos", "ricas en hierro" — este último aprovecha el cálculo en vivo, no valores precargados. **Subió a funcionalidad principal en la Fase 3**: es una de las tres cosas que la app conserva de lo nutricional.
 

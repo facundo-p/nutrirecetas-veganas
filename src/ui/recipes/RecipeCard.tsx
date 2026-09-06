@@ -1,7 +1,6 @@
 import type { Recipe } from '../../seed/schema';
 import { routeHash } from '../../app/router';
 import { difficultyFlames, formatMinutes } from '../common/format';
-import { IndiceConfianza } from '../common/IndiceConfianza';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import {
   IconCopoNieve,
@@ -67,12 +66,11 @@ export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggl
               </span>
             )}
           </span>
-          <span className="tarjeta-receta-meta">
-            <span className="meta-item">
-              <IndiceConfianza ic={recipe.ic} />
+          {recipe.estado === 'por-probar' && (
+            <span className="tarjeta-receta-meta">
+              <span className="chip chip-mini">por probar</span>
             </span>
-            {recipe.estado === 'por-probar' && <span className="chip chip-mini">por probar</span>}
-          </span>
+          )}
         </span>
       </a>
       {variantCount > 0 && onToggleVariants && (

@@ -4,7 +4,6 @@ import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import { routeHash } from '../../app/router';
 import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes } from '../common/format';
-import { IndiceConfianza } from '../common/IndiceConfianza';
 import { nutritionOf } from '../common/nutritionCache';
 import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
@@ -256,12 +255,6 @@ export function RecipeDetail({ id }: { id: string }) {
           </span>
           <span className="meta-item">
             <IconPlato /> {recipe.porciones_display}
-          </span>
-          <span className="meta-item">
-            <IndiceConfianza
-              ic={overlay?.ic_usuario ?? recipe.ic}
-              sufijo={overlay?.ic_usuario !== undefined ? 'tuya' : undefined}
-            />
           </span>
           <button
             type="button"

@@ -118,20 +118,4 @@ describe('sesión de cocina', () => {
     await esperarQueTermineElRegistro();
   });
 
-  test('una receta por probar ofrece subirle la confianza al registrarla', async () => {
-    render(<CookSession recetaId="r01" />);
-    await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Empezar a cocinar' }));
-    while (screen.queryByRole('button', { name: 'Siguiente' })) {
-      fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
-    }
-    fireEvent.click(screen.getByRole('button', { name: 'Terminé de cocinar' }));
-    expect(screen.getByText(/La probé y la apruebo/)).toBeDefined();
-
-    fireEvent.click(screen.getByRole('button', { name: 'Registrar la cocción' }));
-    await waitFor(async () => {
-      expect((await db.overlays.get('r01'))?.ic_usuario).toBe(8);
-    });
-    await esperarQueTermineElRegistro();
-  });
 });
