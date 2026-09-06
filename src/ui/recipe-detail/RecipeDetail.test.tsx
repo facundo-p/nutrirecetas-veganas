@@ -12,6 +12,18 @@ describe('Detalle de receta', () => {
     expect(screen.getByRole('heading', { name: /Nutrición por porción/ })).toBeDefined();
   });
 
+  test('los ingredientes no son links; el preparado sí (issue #137)', () => {
+    const { container } = render(<RecipeDetail id="p19" />);
+    const lineas = [...container.querySelectorAll('.linea-nombre')];
+    expect(lineas.length).toBeGreaterThan(1);
+    const conLink = lineas.filter((n) => n.querySelector('a') !== null);
+    // p19 tiene 11 ingredientes y un preparado (queso de maní): solo ese linkea.
+    expect(conLink).toHaveLength(1);
+    expect(conLink[0]!.textContent).toMatch(/Queso de maní/);
+    expect(screen.getByText('Papa')).toBeDefined();
+    expect(screen.queryByRole('link', { name: 'Papa' })).toBeNull();
+  });
+
   test('p04 (preparado) muestra nutrición por 100 g y quién lo consume', () => {
     render(<RecipeDetail id="p04" />);
     expect(screen.getByRole('heading', { name: /Nutrición por 100 g/ })).toBeDefined();
