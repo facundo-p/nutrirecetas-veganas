@@ -24,6 +24,39 @@ describe('Detalle de receta', () => {
     expect(screen.queryByRole('link', { name: 'Papa' })).toBeNull();
   });
 
+  test('tocar un sustituto lo cambia en la receta y mueve la nutrición (issue #150)', () => {
+    // r07 tiene quinoa con dos sustitutos resolubles: arroz integral y trigo burgol
+    const { container } = render(<RecipeDetail id="r07" />);
+    const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
+    const antes = kcal();
+    expect(screen.getByText('Quinoa')).toBeDefined();
+
+    const chip = screen.getByRole('button', { name: /Arroz integral/ });
+    expect(chip.getAttribute('aria-pressed')).toBe('false');
+    fireEvent.click(chip);
+
+    expect(screen.getByRole('button', { name: /Arroz integral/ }).getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByText(/en vez de Quinoa/)).toBeDefined();
+    expect(screen.queryByText('Quinoa')).toBeNull();
+    expect(kcal()).not.toBe(antes);
+  });
+
+  test('despresionar el sustituto devuelve la receta a como es (issue #150)', () => {
+    const { container } = render(<RecipeDetail id="r07" />);
+    const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
+    const antes = kcal();
+
+    fireEvent.click(screen.getByRole('button', { name: /Arroz integral/ }));
+    // cambiar de un sustituto al otro sin volver al original en el medio
+    fireEvent.click(screen.getByRole('button', { name: /Trigo burgol/ }));
+    expect(screen.getByText(/en vez de Quinoa/)).toBeDefined();
+
+    fireEvent.click(screen.getByRole('button', { name: /Trigo burgol/ }));
+    expect(screen.getByText('Quinoa')).toBeDefined();
+    expect(screen.queryByText(/en vez de/)).toBeNull();
+    expect(kcal()).toBe(antes);
+  });
+
   test('la fuente se lee, no es un código (issue #149)', () => {
     render(<RecipeDetail id="r05" />);
     const link = screen.getByRole('link', { name: 'Minimalist Baker (Dana Shultz)' });

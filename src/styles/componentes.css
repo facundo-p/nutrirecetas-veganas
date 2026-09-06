@@ -49,6 +49,14 @@
   min-height: 34px;
 }
 
+/* Va después de .chip-boton: un chip mini que además es botón se queda con el
+   cuerpo chico y con la altura de toque. Vivía en recetario.css y lo leían seis
+   pantallas, que es la señal de que la regla estaba rota. */
+.chip-mini {
+  font-size: 0.7rem;
+  padding: 0 8px;
+}
+
 .chip-boton[aria-pressed='true'] {
   background: var(--seleccion);
   border-color: var(--seleccion);

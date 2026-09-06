@@ -48,8 +48,20 @@ function lineName(idx: SeedIndex, line: Line): { nombre: string; esPreparado: bo
   return { nombre: ing?.nombre ?? line.ref.id, esPreparado: false };
 }
 
-function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
+function IngredientLine({
+  idx,
+  line,
+  original,
+  onSustituir,
+}: {
+  idx: SeedIndex;
+  line: Line;
+  /** La línea como la trae la receta: es a lo que se vuelve al despresionar. */
+  original: Line;
+  onSustituir: (ingrediente_id: string | null) => void;
+}) {
   const { nombre, esPreparado } = lineName(idx, line);
+  const sustituido = line.ref.id !== original.ref.id;
   const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id, currentMonth());
   const unidad = line.unidad_display.replaceAll('_', ' ');
   const cantidad = formatCantidad(line.cantidad);
@@ -83,14 +95,27 @@ function IngredientLine({ idx, line }: { idx: SeedIndex; line: Line }) {
       </span>
       {(line.funcion || line.nota || line.sustitutos.length > 0) && (
         <span className="linea-detalles">
+          {sustituido && (
+            <span className="linea-en-vez-de">en vez de {lineName(idx, original).nombre}</span>
+          )}
           {line.funcion && <em className="linea-funcion">{line.funcion}</em>}
           {line.nota && <span className="linea-nota">{line.nota}</span>}
+          {/* Tocar el chip cambia el ingrediente en la receta y mueve la
+              nutrición; antes solo llevaba a su ficha, que es informarse en vez
+              de cocinar. El puesto se despresiona para volver al original. */}
           {resolubles.map((s) => {
             const ing = idx.ingredientById.get(s.valor);
+            const puesto = sustituido && line.ref.id === s.valor;
             return (
-              <a key={s.valor} className="chip chip-mini" href={routeHash({ screen: 'ingredient', id: s.valor })}>
+              <button
+                key={s.valor}
+                type="button"
+                className="chip chip-mini chip-boton"
+                aria-pressed={puesto}
+                onClick={() => onSustituir(puesto ? null : s.valor)}
+              >
                 <IconSustituir /> {ing?.nombre ?? s.valor}
-              </a>
+              </button>
             );
           })}
           {textuales.map((s) => (
@@ -186,6 +211,11 @@ export function RecipeDetail({ id }: { id: string }) {
   const recipe = idx.recipeById.get(id);
 
   const [factor, setFactor] = useState(1);
+  /**
+   * Qué línea se cambió por qué ingrediente, mientras mirás la ficha. Efímero
+   * como el selector de porciones: al salir la receta vuelve a ser la que es.
+   */
+  const [sustituciones, setSustituciones] = useState<ReadonlyMap<number, string>>(new Map());
   const overlay = useOverlay(id);
   const perfil = usePerfil();
 
@@ -196,28 +226,51 @@ export function RecipeDetail({ id }: { id: string }) {
     [perfil, idx],
   );
 
+  // Las sustituciones se aplican antes de escalar, así entran igual al escalado
+  // y al recálculo. Cambian la referencia y nada más: la cantidad y los gramos
+  // son los que la receta pide, como en la sesión de cocina.
+  const lineasElegidas = useMemo(() => {
+    if (!recipe) return [];
+    if (sustituciones.size === 0) return recipe.lineas;
+    return recipe.lineas.map((linea, i) => {
+      const nuevo = sustituciones.get(i);
+      return nuevo === undefined ? linea : { ...linea, ref: { tipo: 'ingrediente' as const, id: nuevo } };
+    });
+  }, [recipe, sustituciones]);
+
   const escalada = useMemo(() => {
     if (!recipe || factor === 1) return null;
     return {
-      lineas: escalarLineas(recipe.lineas, factor),
+      lineas: escalarLineas(lineasElegidas, factor),
       avisos: avisosDeEscalado(recipe, factor, idx.seed),
     };
-  }, [recipe, factor, idx]);
+  }, [recipe, lineasElegidas, factor, idx]);
 
   const nutrition = useMemo(() => {
     if (!recipe) return null;
-    if (factor === 1) return nutritionOf(idx, id);
-    // receta sintética escalada: la nutrición por porción no cambia, pero los totales sí
+    if (factor === 1 && sustituciones.size === 0) return nutritionOf(idx, id);
+    // receta sintética: la nutrición por porción no cambia con el factor, pero
+    // los totales sí, y con una sustitución cambian las dos. El cache es por id
+    // de semilla, así que este camino no pasa por él.
     const sintetica = {
       ...recipe,
-      id: `${recipe.id}__x${factor}`,
-      lineas: escalarLineas(recipe.lineas, factor),
+      id: `${recipe.id}__vista`,
+      lineas: escalarLineas(lineasElegidas, factor),
       porciones_num: recipe.porciones_num === null ? null : recipe.porciones_num * factor,
     };
     const recipeById = new Map(idx.recipeById);
     recipeById.set(sintetica.id, sintetica);
     return computeNutrition(sintetica.id, { ...idx, recipeById });
-  }, [recipe, factor, idx, id]);
+  }, [recipe, lineasElegidas, factor, sustituciones, idx, id]);
+
+  const sustituir = (indice: number, ingrediente_id: string | null) => {
+    setSustituciones((previas) => {
+      const siguiente = new Map(previas);
+      if (ingrediente_id === null) siguiente.delete(indice);
+      else siguiente.set(indice, ingrediente_id);
+      return siguiente;
+    });
+  };
 
   if (!recipe || !nutrition) {
     return (
@@ -306,8 +359,14 @@ export function RecipeDetail({ id }: { id: string }) {
           avisos={escalada?.avisos ?? []}
         />
         <ul className="lista-lineas">
-          {(escalada?.lineas ?? recipe.lineas).map((line, i) => (
-            <IngredientLine key={i} idx={idx} line={line} />
+          {(escalada?.lineas ?? lineasElegidas).map((line, i) => (
+            <IngredientLine
+              key={i}
+              idx={idx}
+              line={line}
+              original={recipe.lineas[i]!}
+              onSustituir={(ingrediente_id) => sustituir(i, ingrediente_id)}
+            />
           ))}
         </ul>
         <a className="boton-principal boton-cocinar" href={`${routeHash({ screen: 'cook', id: recipe.id })}`}>
