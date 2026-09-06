@@ -181,6 +181,13 @@
   color: var(--funcion-ingrediente);
 }
 
+/* La línea cambiada dice de qué viene: sin eso, la receta miente sobre sí misma
+   a quien vuelve a mirarla dos minutos después. */
+.linea-en-vez-de {
+  font-style: italic;
+  color: var(--dato-suave);
+}
+
 .chip-texto {
   border-style: dashed;
   background: none;
