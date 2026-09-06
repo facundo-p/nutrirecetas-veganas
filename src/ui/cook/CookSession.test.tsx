@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import { routeHash } from '../../app/router';
 import { useSession } from '../../app/store';
 import { db } from '../../db/db';
+import { saveOverlay } from '../../db/repos';
 import { CookSession } from './CookSession';
 
 /**
@@ -118,4 +119,36 @@ describe('sesión de cocina', () => {
     await esperarQueTermineElRegistro();
   });
 
+  test('registrar una cocción marca la receta como probada (issue #145)', async () => {
+    render(<CookSession recetaId="r01" />);
+    await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Empezar a cocinar' }));
+    while (screen.queryByRole('button', { name: 'Siguiente' })) {
+      fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    }
+    fireEvent.click(screen.getByRole('button', { name: 'Terminé de cocinar' }));
+
+    fireEvent.click(screen.getByRole('button', { name: 'Registrar la cocción' }));
+    await waitFor(async () => {
+      expect((await db.overlays.get('r01'))?.estado).toBe('probada');
+    });
+    await esperarQueTermineElRegistro();
+  });
+
+  test('cocinar una favorita no la degrada a probada (issue #145)', async () => {
+    await saveOverlay('r01', { estado: 'favorita' });
+
+    render(<CookSession recetaId="r01" />);
+    await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Empezar a cocinar' }));
+    while (screen.queryByRole('button', { name: 'Siguiente' })) {
+      fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    }
+    fireEvent.click(screen.getByRole('button', { name: 'Terminé de cocinar' }));
+
+    fireEvent.click(screen.getByRole('button', { name: 'Registrar la cocción' }));
+    await waitFor(async () => expect(await db.cocciones.count()).toBe(1));
+    expect((await db.overlays.get('r01'))?.estado).toBe('favorita');
+    await esperarQueTermineElRegistro();
+  });
 });

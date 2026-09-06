@@ -1,11 +1,13 @@
 import type { Recipe } from '../../seed/schema';
+import type { EstadoDeReceta } from '../../domain/estado';
+import { ChipDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
 import { difficultyFlames, formatMinutes } from '../common/format';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import {
   IconCopoNieve,
   IconCuchara,
-  IconEstrellaBrotada,
+  IconLaurel,
   IconLlama,
   IconPlato,
   IconReloj,
@@ -14,13 +16,21 @@ import {
 
 interface Props {
   recipe: Recipe;
+  estado: EstadoDeReceta;
   variantCount?: number;
   inSeason?: boolean;
   onToggleVariants?: () => void;
   variantsOpen?: boolean;
 }
 
-export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggleVariants, variantsOpen }: Props) {
+export function RecipeCard({
+  recipe,
+  estado,
+  variantCount = 0,
+  inSeason = false,
+  onToggleVariants,
+  variantsOpen,
+}: Props) {
   const flames = difficultyFlames(recipe.dificultad);
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
   const { label, slug, sello } = typeInfo(recipe);
@@ -36,7 +46,9 @@ export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggl
           <span className="tarjeta-receta-titular">
             <span className="tarjeta-receta-nombre">
               {recipe.nombre}
-              {recipe.candidata_clasica && <IconEstrellaBrotada className="inline-icono icono-clasica" />}
+              {recipe.candidata_clasica && (
+                <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
+              )}
               {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
             </span>
             <span className="sello-categoria">{sello}</span>
@@ -66,9 +78,9 @@ export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggl
               </span>
             )}
           </span>
-          {recipe.estado === 'por-probar' && (
+          {estado !== 'sin-probar' && (
             <span className="tarjeta-receta-meta">
-              <span className="chip chip-mini">por probar</span>
+              <ChipDeEstado estado={estado} />
             </span>
           )}
         </span>

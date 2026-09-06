@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import { db } from './db';
 import { addCoccion, getCoccion, getMeta, getOverlay, getPerfil, saveOverlay, savePerfil } from './repos';
 import type { CoccionData, ProfileData } from './schema';
+import { getSeedIndex } from '../seed';
 
 const perfilBase: ProfileData = {
   sexo_para_requerimientos: 'masculino',
@@ -76,18 +77,17 @@ describe('cocciones', () => {
 });
 
 describe('overlays', () => {
-  test('guardan el IC del usuario sin tocar la semilla', async () => {
-    await saveOverlay('r01', { ic_usuario: 8, favorita: true });
-    const overlay = await getOverlay('r01');
-    expect(overlay?.ic_usuario).toBe(8);
-    expect(overlay?.favorita).toBe(true);
+  test('guardan tu estado sin tocar la semilla', async () => {
+    await saveOverlay('r01', { estado: 'favorita' });
+    expect((await getOverlay('r01'))?.estado).toBe('favorita');
+    expect(getSeedIndex().recipeById.get('r01')!.estado).toBe('por-probar');
   });
 
   test('actualizar un overlay conserva lo que no se tocó', async () => {
-    await saveOverlay('r01', { favorita: true });
+    await saveOverlay('r01', { estado: 'favorita' });
     await saveOverlay('r01', { nota: 'salió mejor con más comino' });
     const overlay = await getOverlay('r01');
-    expect(overlay?.favorita).toBe(true);
+    expect(overlay?.estado).toBe('favorita');
     expect(overlay?.nota).toBe('salió mejor con más comino');
   });
 });

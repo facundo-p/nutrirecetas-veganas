@@ -289,6 +289,39 @@ export function IconEstrellaBrotada(props: IconProps) {
   );
 }
 
+/** Probada: el tilde de "hecho", con un brote en la punta para que sea nuestro. */
+export function IconTildeBrote(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4.5 12.6 9 17.2 18.4 7" />
+      <path d="M18.4 7c1.4-1 2.8-1.1 3.4-.4.1 1.2-.8 2.3-2.4 2.6" />
+    </Base>
+  );
+}
+
+/** Pendiente: el señalador que se deja en la página a la que se va a volver. */
+export function IconSenalador(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M7 4.5h10v15l-5-3.8-5 3.8z" />
+    </Base>
+  );
+}
+
+/** Candidata a clásica: la corona de laurel de lo que ya se ganó su lugar. */
+export function IconLaurel(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 20.5c-3.9-1.6-5.9-5.2-5.3-9.7" />
+      <path d="M12 20.5c3.9-1.6 5.9-5.2 5.3-9.7" />
+      <path d="M6.9 13.4c1.7.2 2.8-.6 3.2-2.1" />
+      <path d="M8 9.3c1.6.3 2.7-.4 3.2-1.9" />
+      <path d="M17.1 13.4c-1.7.2-2.8-.6-3.2-2.1" />
+      <path d="M16 9.3c-1.6.3-2.7-.4-3.2-1.9" />
+    </Base>
+  );
+}
+
 export function IconCuchara(props: IconProps) {
   return (
     <Base {...props}>

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useSession } from '../../app/store';
 import { navigate } from '../../app/router';
-import { addCoccion } from '../../db/repos';
+import { addCoccion, marcarProbadaAlCocinar } from '../../db/repos';
 import type { NutricionSnapshot } from '../../db/schema';
 import { variacionesDe } from '../../domain/session';
 import type { RecipeNutrition } from '../../domain/nutrition';
@@ -70,6 +70,8 @@ export function RegisterStep({ recipe, nutricion, seed }: Props) {
       // la nutrición se congela por porción: el historial no depende de la semilla futura
       nutricion_porcion: snapshotDe({ ...nutricion, porciones_num: rendidasNum }),
     });
+
+    await marcarProbadaAlCocinar(recipe);
 
     terminar();
     navigate({ screen: 'diary' });
