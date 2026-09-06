@@ -57,7 +57,9 @@ beforeAll(async () => {
     },
   });
   await vieja.table('consumos').put({ id: 1, coccion_id: 1, fecha: '2026-08-19T20:30:00.000Z', porciones: 2 });
-  await vieja.table('overlays').put({ receta_id: 'r01', favorita: true, actualizado_en: '2026-08-01T00:00:00.000Z' });
+  await vieja
+    .table('overlays')
+    .put({ receta_id: 'r01', favorita: true, ic_usuario: 8, actualizado_en: '2026-08-01T00:00:00.000Z' });
   await vieja.table('meta').put({ id: 1, user_schema_version: 1, seed_version: '1.0.0', cambios_desde_backup: 4 });
 
   vieja.close();
@@ -90,7 +92,15 @@ test('v3 se lleva los consumos y deja lo demás en pie', async () => {
   // lo que la migración NO puede tocar: es todo lo que Facu cargó a mano
   expect(await db.cocciones.count()).toBe(1);
   expect((await db.cocciones.get(1))!.receta_nombre).toBe('Pastel de papas');
-  expect((await db.overlays.get('r01'))!.favorita).toBe(true);
+  expect(await db.overlays.get('r01')).toBeDefined();
+});
+
+test('v5 convierte la favorita en estado y descarta el IC del usuario', async () => {
+  const overlay = (await db.overlays.get('r01'))!;
+  expect(overlay.estado).toBe('favorita');
+  // `overlaySchema` es estricto: un campo de más haría rebotar el próximo guardado
+  expect(overlay).not.toHaveProperty('favorita');
+  expect(overlay).not.toHaveProperty('ic_usuario');
 });
 
 test('la marca de esquema queda vieja hasta que el aviso se cierra', async () => {

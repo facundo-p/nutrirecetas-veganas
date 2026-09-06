@@ -12,7 +12,7 @@ import {
   IconBandaAprox,
   IconCopoNieve,
   IconCuchara,
-  IconEstrellaBrotada,
+  IconLaurel,
   IconHeladera,
   IconLlama,
   IconPlato,
@@ -26,6 +26,8 @@ import { computeNutrition } from '../../domain/nutrition';
 import { objetivosDeReferencia } from '../../domain/objetivos';
 import { midpoint } from '../../domain/interval';
 import { useOverlay, usePerfil } from '../../db/hooks';
+import { estadoDeReceta } from '../../domain/estado';
+import { ControlDeEstado } from '../common/EstadoDeReceta';
 import { saveOverlay } from '../../db/repos';
 import { PortionScaler } from './PortionScaler';
 import { B12Alert } from './B12Alert';
@@ -225,16 +227,11 @@ export function RecipeDetail({ id }: { id: string }) {
         <span className="etiqueta-seccion detalle-tipo">
           <TypeIcon recipe={recipe} /> {label}
           {recipe.familia && <span className="chip chip-mini">familia: {recipe.familia}</span>}
-          {recipe.estado === 'por-probar' ? (
-            <span className="chip chip-mini">por probar</span>
-          ) : (
-            <span className="chip chip-mini chip-probada">probada</span>
-          )}
         </span>
         <h1>
           {recipe.nombre}
           {recipe.candidata_clasica && (
-            <IconEstrellaBrotada className="inline-icono icono-clasica" aria-label="candidata a clásica" />
+            <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
           )}
           {recipe.indulgente && (
             <IconCuchara className="inline-icono icono-indulgente" aria-label="indulgente" />
@@ -256,15 +253,11 @@ export function RecipeDetail({ id }: { id: string }) {
           <span className="meta-item">
             <IconPlato /> {recipe.porciones_display}
           </span>
-          <button
-            type="button"
-            className="boton-enlace"
-            aria-pressed={overlay?.favorita === true}
-            onClick={() => void saveOverlay(recipe.id, { favorita: !(overlay?.favorita ?? false) })}
-          >
-            <IconEstrellaBrotada className="inline-icono" /> {overlay?.favorita ? 'favorita' : 'marcar favorita'}
-          </button>
         </p>
+        <ControlDeEstado
+          estado={estadoDeReceta(recipe, overlay)}
+          onChange={(estado) => void saveOverlay(recipe.id, { estado })}
+        />
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
       </header>
 

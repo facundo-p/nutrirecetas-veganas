@@ -505,3 +505,57 @@
 .confianza svg {
   font-size: 15px;
 }
+
+/* ---------- tu estado con una receta ---------- */
+
+/* El color va en el ícono y en un lavado de fondo; el texto se queda en tinta.
+   Un chip de color entero compite con el sello de categoría, que es lo que
+   ubica la receta de un vistazo. */
+.chip-estado svg {
+  font-size: 14px;
+}
+
+.estado-probada {
+  background: color-mix(in srgb, var(--confirmado) 14%, var(--superficie));
+  border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
+}
+.estado-probada svg {
+  color: var(--confirmado);
+}
+
+.estado-pendiente {
+  background: color-mix(in srgb, var(--estado-pendiente) 14%, var(--superficie));
+  border-color: color-mix(in srgb, var(--estado-pendiente) 45%, transparent);
+}
+.estado-pendiente svg {
+  color: var(--estado-pendiente);
+}
+
+.estado-favorita {
+  background: color-mix(in srgb, var(--estado-favorita) 16%, var(--superficie));
+  border-color: color-mix(in srgb, var(--estado-favorita) 50%, transparent);
+}
+.estado-favorita svg {
+  color: var(--estado-favorita);
+}
+
+/* Elegido: el relleno de selección gana sobre el lavado del estado, para que
+   cuál está puesto se lea antes que cuál es cuál. */
+.control-estado .chip-boton[aria-pressed='true'],
+.control-estado .chip-boton[aria-pressed='true'] svg {
+  color: var(--sobre-accion);
+}
+
+.control-estado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.control-estado-rotulo {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dato-suave);
+}

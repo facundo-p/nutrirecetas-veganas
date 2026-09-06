@@ -73,6 +73,10 @@
   --icono-freezer: var(--p-cielo);
   --icono-clasica: var(--p-miel);
   --icono-indulgente: var(--p-frambuesa);
+  /* Tu estado con una receta. `probada` reusa --confirmado, que ya significa
+     eso; estos dos son roles nuevos sobre colores ya medidos del tema. */
+  --estado-pendiente: var(--p-cielo);
+  --estado-favorita: var(--p-miel);
   --chip-preparado: var(--p-caramelo);
 
   /* Los tres tonos de "esto no es neutro", de más blando a más fuerte:

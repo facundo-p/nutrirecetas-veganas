@@ -41,6 +41,18 @@ export function migrarPerfilV3(perfil: Record<string, unknown>): Record<string, 
   return resto;
 }
 
+/**
+ * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`.
+ * `favorita: true` es la misma opinión con otro nombre y se conserva; el IC del
+ * usuario se descarta, porque lo que medía se fue de las recetas (#144). Una
+ * favorita vieja no se degrada a "probada": era una elección, no un registro.
+ */
+export function migrarOverlayV4(overlay: Record<string, unknown>): Record<string, unknown> {
+  const { favorita, ic_usuario: _ic, ...resto } = overlay;
+  if ('estado' in resto) return resto;
+  return favorita === true ? { ...resto, estado: 'favorita' } : resto;
+}
+
 /** Cuántos consumos trae un backup viejo: lo que el import va a descartar. */
 export function consumosEnBackup(json: unknown): number {
   if (typeof json !== 'object' || json === null) return 0;
@@ -59,11 +71,20 @@ export function consumosEnBackup(json: unknown): number {
  */
 export function migrarBackup(json: unknown): unknown {
   if (typeof json !== 'object' || json === null) return json;
-  const backup = json as { data?: { perfil?: Record<string, unknown> | null; consumos?: unknown } };
+  const backup = json as {
+    data?: { perfil?: Record<string, unknown> | null; consumos?: unknown; overlays?: unknown };
+  };
   if (!backup.data) return json;
 
   // se descartan sin reemplazo: lo que contaban ya no se cuenta en ningún lado
   const { consumos: _consumos, ...data } = backup.data;
-  const perfil = data.perfil;
-  return { ...backup, data: perfil ? { ...data, perfil: migrarPerfilV3(migrarPerfilV1(perfil)) } : data };
+  const overlays = Array.isArray(data.overlays)
+    ? data.overlays.map((o) => migrarOverlayV4(o as Record<string, unknown>))
+    : data.overlays;
+  const conOverlays = { ...data, ...(overlays !== undefined ? { overlays } : {}) };
+  const perfil = conOverlays.perfil;
+  return {
+    ...backup,
+    data: perfil ? { ...conOverlays, perfil: migrarPerfilV3(migrarPerfilV1(perfil)) } : conOverlays,
+  };
 }

@@ -125,12 +125,13 @@ await new Promise((resolve, reject) => {
       },
     });
 
-    tx.objectStore('overlays').put({ receta_id: 'r01', favorita: true, ic_usuario: 8, actualizado_en: iso(50) });
+    tx.objectStore('overlays').put({ receta_id: 'r01', estado: 'favorita', actualizado_en: iso(50) });
+    tx.objectStore('overlays').put({ receta_id: 'r02', estado: 'pendiente', actualizado_en: iso(40) });
     // al día a propósito: con la marca vieja, el aviso de la migración saldría
     // en las 24 capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
-      user_schema_version: 4,
+      user_schema_version: 5,
       seed_version: '1.0.0',
       ultimo_backup: iso(24 * 40),
       cambios_desde_backup: 6,

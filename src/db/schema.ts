@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { NIVELES_ENTRENAMIENTO } from '../domain/actividad';
+import { ESTADOS_DE_RECETA } from '../domain/estado';
 import { intervalSchema } from '../seed/schema';
 
 /**
@@ -15,8 +16,12 @@ import { intervalSchema } from '../seed/schema';
  * v4: se van los suplementos y los overrides del perfil. Servían para apagar y
  *     pisar exigencias del semáforo; lo único que hace el perfil ahora es que
  *     el porcentaje diga "de tu dosis" y no "de la referencia genérica".
+ * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`. El IC
+ *     se fue de las recetas porque medía la confianza de la fuente en su
+ *     adaptación vegana, no si la receta es buena; lo que se gana al cocinar es
+ *     el estado "probada". Favorita sobrevive como uno de los cuatro estados.
  */
-export const USER_SCHEMA_VERSION = 4;
+export const USER_SCHEMA_VERSION = 5;
 
 // ---------- perfil ----------
 
@@ -99,8 +104,8 @@ export type Coccion = z.infer<typeof cookingSchema>;
 /** Lo que el usuario agrega sobre una receta de la semilla. La semilla jamás se muta. */
 export const overlaySchema = z.strictObject({
   receta_id: z.string().min(1),
-  ic_usuario: z.number().int().min(1).max(10).optional(),
-  favorita: z.boolean().optional(),
+  /** Ausente = sin elección propia: manda lo que dice la semilla (`estadoDeReceta`). */
+  estado: z.enum(ESTADOS_DE_RECETA).optional(),
   nota: z.string().optional(),
   actualizado_en: z.string(),
 });

@@ -1,4 +1,6 @@
 import { db } from './db';
+import { estadoDeReceta, estadoTrasCocinar } from '../domain/estado';
+import type { Recipe } from '../seed/schema';
 import {
   USER_SCHEMA_VERSION,
   cookingDataSchema,
@@ -118,6 +120,18 @@ export function getOverlay(receta_id: string): Promise<Overlay | undefined> {
 
 export function listOverlays(): Promise<Overlay[]> {
   return db.overlays.toArray();
+}
+
+/**
+ * Registrar una cocción marca la receta como probada. La regla de qué no
+ * degradar vive en el dominio (`estadoTrasCocinar`); acá solo se lee el estado
+ * efectivo y se escribe si cambió, para no ensuciar `actualizado_en` de una
+ * favorita cada vez que se cocina.
+ */
+export async function marcarProbadaAlCocinar(receta: Pick<Recipe, 'id' | 'estado'>): Promise<void> {
+  const actual = estadoDeReceta(receta, await getOverlay(receta.id));
+  const siguiente = estadoTrasCocinar(actual);
+  if (siguiente !== actual) await saveOverlay(receta.id, { estado: siguiente });
 }
 
 export async function saveOverlay(

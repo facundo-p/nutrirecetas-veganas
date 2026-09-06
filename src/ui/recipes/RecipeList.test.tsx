@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../../seed';
 import { EMPTY_FILTERS, groupRecipes, matchesFilters } from './filtering';
+import type { EstadoDeReceta } from '../../domain/estado';
 import { RecipeList } from './RecipeList';
 import { olvidarFiltros } from './memoria-de-filtros';
 
@@ -35,6 +36,21 @@ describe('agrupación de variantes (lógica)', () => {
       const receta = idx.recipeById.get(id)!;
       expect(receta.lineas.some((l) => l.ref.tipo === 'ingrediente' && l.ref.id === 'avena')).toBe(true);
     }
+  });
+
+  test('el filtro de estado mira tu elección, no la de la semilla (issue #145)', () => {
+    const idx = getSeedIndex();
+    const elegidos = new Map<string, EstadoDeReceta>([
+      ['r01', 'favorita'], // la semilla la da por-probar
+      ['p19', 'sin-probar'], // la semilla la da probada
+    ]);
+    const f = { ...EMPTY_FILTERS, estado: 'favorita' as const };
+    expect(matchesFilters(idx, idx.recipeById.get('r01')!, f, elegidos)).toBe(true);
+    expect(matchesFilters(idx, idx.recipeById.get('r01')!, f)).toBe(false);
+
+    const probadas = { ...EMPTY_FILTERS, estado: 'probada' as const };
+    expect(matchesFilters(idx, idx.recipeById.get('p19')!, probadas, elegidos)).toBe(false);
+    expect(matchesFilters(idx, idx.recipeById.get('p19')!, probadas)).toBe(true);
   });
 
   test('filtro rica en hierro devuelve un subconjunto no vacío', () => {
@@ -84,7 +100,10 @@ describe('RecipeList (render)', () => {
 });
 
 describe('los chips del recetario', () => {
-  const chips = () => ['de estación', 'probadas', 'por probar'].map((n) => screen.getByRole('button', { name: n }));
+  const chips = () =>
+    ['de estación', 'sin probar', 'probadas', 'pendientes', 'favoritas'].map((n) =>
+      screen.getByRole('button', { name: n }),
+    );
 
   test('van antes de los selects: en el celular, detrás de cinco quedaban fuera de pantalla', () => {
     render(<RecipeList />);
@@ -93,15 +112,17 @@ describe('los chips del recetario', () => {
     expect(primerChip.compareDocumentPosition(primerSelect)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 
-  test('el orden es de estación, probadas, por probar', () => {
+  test('están los cuatro estados, en orden, después de de estación', () => {
     render(<RecipeList />);
-    const [estacion, probadas] = chips();
-    expect(estacion!.compareDocumentPosition(probadas!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    const orden = chips();
+    for (let i = 1; i < orden.length; i++) {
+      expect(orden[i - 1]!.compareDocumentPosition(orden[i]!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    }
   });
 
   test('cada chip prende y apaga, y el estado se dice con aria-pressed', () => {
     render(<RecipeList />);
-    const [estacion, probadas, porProbar] = chips();
+    const [estacion, sinProbar, probadas] = chips();
     expect(estacion!.getAttribute('aria-pressed')).toBe('false');
 
     fireEvent.click(estacion!);
@@ -109,17 +130,17 @@ describe('los chips del recetario', () => {
     fireEvent.click(estacion!);
     expect(estacion!.getAttribute('aria-pressed')).toBe('false');
 
-    // probadas y por probar comparten el campo `estado`: prender uno apaga el otro
+    // los cuatro estados comparten el campo `estado`: prender uno apaga el otro
     fireEvent.click(probadas!);
     expect(probadas!.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(porProbar!);
+    fireEvent.click(sinProbar!);
     expect(probadas!.getAttribute('aria-pressed')).toBe('false');
-    expect(porProbar!.getAttribute('aria-pressed')).toBe('true');
+    expect(sinProbar!.getAttribute('aria-pressed')).toBe('true');
   });
 
-  test('filtrar por probadas achica el recetario', () => {
+  test('sin elecciones propias, probadas son las 45 del recetario personal', () => {
     render(<RecipeList />);
     fireEvent.click(screen.getByRole('button', { name: 'probadas' }));
-    expect(screen.getByText(/recetas? con estos filtros/)).toBeDefined();
+    expect(screen.getByText(/^45 recetas con estos filtros$/)).toBeDefined();
   });
 });

@@ -5,6 +5,7 @@ import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
 import { addCoccion } from '../db/repos';
 import { db } from '../db/db';
+import { USER_SCHEMA_VERSION } from '../db/schema';
 
 beforeEach(async () => {
   // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo
@@ -72,7 +73,7 @@ test('a quien venía de antes le avisa qué se borró, y se puede cerrar', async
   fireEvent.click(screen.getByRole('button', { name: 'Entendido' }));
 
   await waitFor(() => expect(screen.queryByText(/dejó de llevar la cuenta/)).toBeNull());
-  expect((await db.meta.get(1))!.user_schema_version).toBe(4);
+  expect((await db.meta.get(1))!.user_schema_version).toBe(USER_SCHEMA_VERSION);
 });
 
 test('una instalación nueva no ve el aviso de una migración que no vivió', async () => {

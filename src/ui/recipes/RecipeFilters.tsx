@@ -2,6 +2,7 @@ import { getSeedIndex } from '../../seed';
 import { routeHash } from '../../app/router';
 import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { allFamilies, type RecipeFiltersState } from './filtering';
+import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estado';
 
 interface Props {
   filters: RecipeFiltersState;
@@ -33,22 +34,17 @@ export function RecipeFilters({ filters, onChange }: Props) {
         >
           de estación
         </button>
-        <button
-          type="button"
-          className="chip chip-boton"
-          aria-pressed={filters.estado === 'probada'}
-          onClick={() => set({ estado: filters.estado === 'probada' ? '' : 'probada' })}
-        >
-          probadas
-        </button>
-        <button
-          type="button"
-          className="chip chip-boton"
-          aria-pressed={filters.estado === 'por-probar'}
-          onClick={() => set({ estado: filters.estado === 'por-probar' ? '' : 'por-probar' })}
-        >
-          por probar
-        </button>
+        {ESTADOS_DE_RECETA.map((estado) => (
+          <button
+            key={estado}
+            type="button"
+            className="chip chip-boton"
+            aria-pressed={filters.estado === estado}
+            onClick={() => set({ estado: filters.estado === estado ? '' : estado })}
+          >
+            {ETIQUETA_PLURAL_DE_ESTADO[estado]}
+          </button>
+        ))}
       </div>
       <div className="filtros-fila">
         <select aria-label="Tipo" value={filters.tipo} onChange={(e) => set({ tipo: e.target.value as RecipeFiltersState['tipo'] })}>
