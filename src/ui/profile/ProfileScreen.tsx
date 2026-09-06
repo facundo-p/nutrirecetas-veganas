@@ -170,8 +170,8 @@ export function ProfileScreen() {
         <fieldset className="campo">
           <legend className="campo-etiqueta">Nutrientes que te interesan</legend>
           <p className="campo-ayuda">
-            Aparecen primero en la nutrición de cada receta, y pesan al recomendarte qué cocinar. No es una meta ni
-            una obligación: la app no lleva la cuenta de lo que comés.
+            Aparecen primero en la nutrición de cada receta. No es una meta ni una obligación: la app no lleva
+            la cuenta de lo que comés.
           </p>
           <div className="opciones">
             {idx.seed.nutrientes.map((n) => (

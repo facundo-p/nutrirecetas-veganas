@@ -1,20 +1,15 @@
 import { useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { recipeInSeason } from '../../domain/season';
-import { useCocciones, useOverlays, usePerfil } from '../../db/hooks';
 import { EMPTY_FILTERS, groupRecipes, type RecipeFiltersState } from './filtering';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
-import { Recomendaciones } from './Recomendaciones';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { currentMonth } from '../common/format';
 
 export function RecipeList() {
   const idx = getSeedIndex();
   const mes = currentMonth();
-  const cocciones = useCocciones();
-  const overlays = useOverlays();
-  const perfil = usePerfil();
   const [filters, setFilters] = useState<RecipeFiltersState>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Set<string>>(new Set());
 
@@ -34,13 +29,9 @@ export function RecipeList() {
   return (
     <>
       <EncabezadoPantalla etiqueta="Recetario" titulo="Recetario" />
-      {/* Buscador y filtros pegados al encabezado, y "Qué cocinar" debajo:
-          quien viene a buscar algo puntual no tiene que pasar por encima de la
-          sugerencia, y quien no sabe qué cocinar la encuentra igual. */}
+      {/* El recetario abre en el buscador: se entra a buscar algo, no a que la
+          app proponga. */}
       <RecipeFilters filters={filters} onChange={setFilters} />
-      {cocciones && overlays && (
-        <Recomendaciones perfil={perfil ?? null} cocciones={cocciones} overlays={overlays} />
-      )}
       <p className="conteo-resultados" aria-live="polite">
         {total} {total === 1 ? 'receta' : 'recetas'}
         {anyFilter ? ' con estos filtros' : ''}

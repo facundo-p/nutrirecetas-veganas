@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
-import { addCoccion, savePerfil } from '../db/repos';
+import { addCoccion } from '../db/repos';
 import { db } from '../db/db';
 
 beforeEach(async () => {
@@ -26,23 +26,10 @@ test('la app arranca en el recetario con la navegación completa', async () => {
   expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
 });
 
-test('lo primero del recetario es qué cocinar, no un formulario vacío', async () => {
+test('lo primero del recetario es el buscador (issue #138)', async () => {
   render(<App />);
-  await waitFor(() => expect(screen.getByText('Qué cocinar')).toBeDefined());
-});
-
-test('con nutrientes marcados, las recomendaciones lo usan como motivo', async () => {
-  // el dominio no puede detectar una prop que la pantalla no pasa: esto sí
-  await savePerfil({
-    sexo_para_requerimientos: 'masculino',
-    fecha_nacimiento: '1990-01-01',
-    peso_kg: 75,
-    nivel_entrenamiento: 'sedentario',
-    nutrientes_destacados: ['hierro'],
-  });
-
-  render(<App />);
-  await waitFor(() => expect(screen.getAllByText(/% de la dosis de hierro/).length).toBeGreaterThan(0));
+  await waitFor(() => expect(screen.getByRole('searchbox')).toBeDefined());
+  expect(screen.queryByText('Qué cocinar')).toBeNull();
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {

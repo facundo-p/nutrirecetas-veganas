@@ -29,7 +29,7 @@ export const profileDataSchema = z.strictObject({
   altura_cm: z.number().positive().optional(),
   /** La elección, no el número: el g/kg y su fuente viven en `domain/actividad`. */
   nivel_entrenamiento: z.enum(NIVELES_ENTRENAMIENTO),
-  /** Los que te interesan: ordenan la tabla de la receta y pesan en las recomendaciones. */
+  /** Los que te interesan: ordenan la tabla nutricional de cada receta. */
   nutrientes_destacados: z.array(z.string()),
 });
 export type ProfileData = z.infer<typeof profileDataSchema>;
