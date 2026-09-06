@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { registerServiceWorker, requestPersistentStorage } from './pwa';
 import { useRoute } from './router';
 import { Nav } from './Nav';
@@ -118,6 +118,13 @@ function BandaDeStaging() {
   );
 }
 
+/**
+ * Dónde estabas parado en cada pantalla. Sin esto, el `scrollTo(0, 0)` de cada
+ * cambio de ruta te devuelve al tope: filtrás el recetario, abrís una receta,
+ * volvés, y perdiste la tarjeta que estabas mirando (issue #139).
+ */
+const scrollPorRuta = new Map<string, number>();
+
 export function App() {
   const route = useRoute();
   const [applyUpdate, setApplyUpdate] = useState<(() => void) | null>(null);
@@ -127,9 +134,18 @@ export function App() {
     void registerServiceWorker((apply) => setApplyUpdate(() => apply));
   }, []);
 
+  // Se anota mientras scrolleás, no al irte: en el momento del cambio de ruta
+  // el DOM ya es el de la pantalla nueva y la posición vieja se perdió.
+  const rutaActual = routeHash(route);
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [route]);
+    const recordar = () => scrollPorRuta.set(rutaActual, window.scrollY);
+    window.addEventListener('scroll', recordar, { passive: true });
+    return () => window.removeEventListener('scroll', recordar);
+  }, [rutaActual]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, scrollPorRuta.get(rutaActual) ?? 0);
+  }, [rutaActual]);
 
   return (
     <div className="app">

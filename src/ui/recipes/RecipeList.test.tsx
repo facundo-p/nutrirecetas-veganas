@@ -1,9 +1,14 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../../seed';
 import { EMPTY_FILTERS, groupRecipes, matchesFilters } from './filtering';
 import { RecipeList } from './RecipeList';
+import { olvidarFiltros } from './memoria-de-filtros';
+
+// La memoria sobrevive al desmontaje a propósito: sin esto, el filtro de un
+// test se le cuela al siguiente.
+beforeEach(olvidarFiltros);
 
 describe('agrupación de variantes (lógica)', () => {
   test('las 84 recetas quedan en 72 grupos (12 variantes bajo su madre)', () => {
@@ -47,6 +52,27 @@ describe('RecipeList (render)', () => {
     fireEvent.change(input, { target: { value: 'locro' } });
     expect(screen.getByText(/1 receta con estos filtros/)).toBeDefined();
     expect(screen.getByText('Locro vegano')).toBeDefined();
+  });
+
+  test('volver al recetario conserva el filtro (issue #139)', () => {
+    const primera = render(<RecipeList />);
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'locro' } });
+    expect(screen.getByText(/1 receta con estos filtros/)).toBeDefined();
+    primera.unmount(); // abrir una receta desmonta el recetario entero
+
+    render(<RecipeList />);
+    expect((screen.getByRole('searchbox') as HTMLInputElement).value).toBe('locro');
+    expect(screen.getByText(/1 receta con estos filtros/)).toBeDefined();
+  });
+
+  test('volver al recetario conserva las variantes desplegadas (issue #139)', () => {
+    const primera = render(<RecipeList />);
+    fireEvent.click(screen.getAllByRole('button', { name: /3 variantes/ })[0]!);
+    expect(screen.getByText('Brownies chocoporotos sin harina')).toBeDefined();
+    primera.unmount();
+
+    render(<RecipeList />);
+    expect(screen.getByText('Brownies chocoporotos sin harina')).toBeDefined();
   });
 
   test('expandir variantes muestra las hijas', () => {
