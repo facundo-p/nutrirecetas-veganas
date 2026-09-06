@@ -1,7 +1,8 @@
 import { beforeAll, describe, expect, test } from 'vitest';
-import { CURATED_STEPS } from './curated-tables';
+import { CURATED_STEPS, CURATED_TYPES } from './curated-tables';
 import { loadRawData, type RawData } from './load';
 import {
+  aplicarTipoCurado,
   toNutrientValue,
   transformIngredient,
   transformNutrient,
@@ -47,6 +48,28 @@ describe('unificación de recetas', () => {
     expect(r01.set_origen).toBe(1);
     expect(r01.estado).toBe('por-probar');
     expect(r01.ic).toBeGreaterThanOrEqual(1);
+  });
+
+  test('el budín de chía es dulce, no salado (T12, issue #136)', () => {
+    // El set 1 no trae tipo y el pipeline lo asume salado; r10 es un desayuno
+    // con banana, kiwi y dátiles. Las otras nueve del set sí son saladas.
+    expect(byId.get('r10')!.tipo).toBe('dulce');
+    const resto = recipes.filter((r) => r.set_origen === 1 && r.id !== 'r10');
+    expect(resto).toHaveLength(9);
+    for (const r of resto) expect(r.tipo, r.id).toBe('salada');
+  });
+
+  test('una entrada de T12 que repite el tipo derivado rompe el build', () => {
+    expect(() => aplicarTipoCurado('r01', 'salada', { r01: { tipo: 'salada' } })).toThrow(
+      /no corrige nada/,
+    );
+    expect(aplicarTipoCurado('r01', 'salada', { r01: { tipo: 'dulce' } })).toBe('dulce');
+    expect(aplicarTipoCurado('r01', 'salada', {})).toBe('salada');
+  });
+
+  test('T12 solo corrige recetas que existen', () => {
+    const ids = new Set(recipes.map((r) => r.id));
+    expect(Object.keys(CURATED_TYPES).filter((id) => !ids.has(id))).toEqual([]);
   });
 
   test('set P conserva estado probada con ic 8', () => {

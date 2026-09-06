@@ -1,4 +1,4 @@
-import type { IngredientCategory } from '../../src/seed/schema';
+import type { IngredientCategory, Recipe } from '../../src/seed/schema';
 
 /**
  * TODAS las decisiones de datos tomadas a mano viven acá, en un solo lugar,
@@ -1568,4 +1568,27 @@ export const NUTRIENT_DESCRIPTIONS: Record<string, NutrientDescription> = {
  */
 export const NUTRIENT_NAME_OVERRIDES: Record<string, string> = {
   proteina: 'Proteína',
+};
+
+// ---------- T12: tipo de receta que el set 1 no trae ----------
+
+/**
+ * El set 1 no tiene `tipo` y el pipeline lo asume salado, que es correcto en 9
+ * de sus 10 recetas. La décima es un desayuno con banana, kiwi y dátiles.
+ * La tabla pisa el default; una entrada que coincida con lo ya derivado rompe
+ * el build, para que no quede escrita sin efecto.
+ */
+
+export interface TypeEntry {
+  tipo: Recipe['tipo'];
+  base: string;
+  flag_gate: boolean;
+}
+
+export const CURATED_TYPES: Record<string, TypeEntry> = {
+  r10: {
+    tipo: 'dulce',
+    base: 'recetas.md:193 la titula "(desayuno)"; lleva banana, kiwi, dátiles y jarabe de arce, y ningún ingrediente salado',
+    flag_gate: true,
+  },
 };
