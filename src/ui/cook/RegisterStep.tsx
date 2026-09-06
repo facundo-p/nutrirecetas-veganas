@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useSession } from '../../app/store';
 import { navigate } from '../../app/router';
-import { addCoccion, saveOverlay } from '../../db/repos';
+import { addCoccion } from '../../db/repos';
 import type { NutricionSnapshot } from '../../db/schema';
 import { variacionesDe } from '../../domain/session';
 import type { RecipeNutrition } from '../../domain/nutrition';
@@ -38,7 +38,6 @@ export function RegisterStep({ recipe, nutricion, seed }: Props) {
   const { lineas, factor, porciones, terminar } = useSession();
   const [rendidas, setRendidas] = useState(String(porciones || 1));
   const [nota, setNota] = useState('');
-  const [subirIc, setSubirIc] = useState(recipe.estado === 'por-probar');
   const [guardando, setGuardando] = useState(false);
 
   const variaciones = variacionesDe(lineas);
@@ -71,10 +70,6 @@ export function RegisterStep({ recipe, nutricion, seed }: Props) {
       // la nutrición se congela por porción: el historial no depende de la semilla futura
       nutricion_porcion: snapshotDe({ ...nutricion, porciones_num: rendidasNum }),
     });
-
-    if (subirIc && recipe.estado === 'por-probar') {
-      await saveOverlay(recipe.id, { ic_usuario: 8 });
-    }
 
     terminar();
     navigate({ screen: 'diary' });
@@ -120,15 +115,6 @@ export function RegisterStep({ recipe, nutricion, seed }: Props) {
             ))}
           </ul>
         </section>
-      )}
-
-      {recipe.estado === 'por-probar' && (
-        <label className="opcion">
-          <input type="checkbox" checked={subirIc} onChange={(e) => setSubirIc(e.target.checked)} />
-          <span>
-            La probé y la apruebo: subirle la confianza a 8 <em className="campo-ayuda">(solo para vos; la receta original no cambia)</em>
-          </span>
-        </label>
       )}
 
       <button type="submit" className="boton-principal" disabled={!valido || guardando}>

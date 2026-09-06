@@ -13,12 +13,12 @@ Tres contextos de uso real mandan sobre todo lo demás:
 ## 2. Mapa de pantallas
 
 1. **Inicio / Hoy** — semáforo del día y la semana móvil (cada nutriente en SU ventana), qué toca cocinar según el plan, accesos rápidos (última cocción, lista de compras activa). Responde "¿cómo vengo y qué cocino?".
-2. **Recetario** — búsqueda y filtros: tipo, dificultad, tiempo total, familia, en temporada, probada/por probar, **por ingrediente** y **por nutriente** ("ricas en hierro", calculado en vivo). Variantes agrupadas bajo su madre (expandibles); preparados con badge. Tarjetas que resumen con íconos: tipo, tiempo, dificultad, freezer, IC.
+2. **Recetario** — búsqueda y filtros: tipo, dificultad, tiempo total, familia, en temporada, probada/por probar, **por ingrediente** y **por nutriente** ("ricas en hierro", calculado en vivo). Variantes agrupadas bajo su madre (expandibles); preparados con badge. Tarjetas que resumen con íconos: tipo, tiempo, dificultad, freezer, estado.
 3. **Detalle de receta** — selector de porciones con escalado y avisos; ingredientes con función/imprescindible/sustitutos; nutrición por porción en vivo (bandas ≈, IC, cobertura, alerta B12); reglas R como tips; enlaces a preparados y variantes; guarda y estacionalidad. Acciones: **Cocinar ahora · Al plan · A compras**.
 4. **Cocinar (sesión)** — 1º personalizar: desmarcar (advertencia si imprescindible), sustituir (resolubles recalculan), agregar; la nutrición se mueve en vivo. 2º pasos con tipografía enorme, wake lock, secretos del chef en contexto. 3º registrar: qué cambió, notas, porciones que quedaron.
 5. **Planificador semanal** — grilla de la semana; asignar recetas y ver el semáforo proyectado moverse por nutriente/ventana. Genera la lista de compras de la semana. En mobile: semana como lista vertical + semáforo colapsable siempre a un tap.
 6. **Lista de compras** — consolidada por góndola; **gramos como medida principal**, unidades como referencia ("≈ 3 medianas"), latas como dato secundario; badges de estacionalidad. **Modo verdulería**: checklist offline de targets grandes.
-7. **Diario** — historial de cocciones con variaciones y anotaciones; evolución del semáforo; desde una cocción: "convertir en receta propia"; probar una IC 5 ofrece subirle el IC.
+7. **Diario** — historial de cocciones con variaciones y anotaciones; evolución del semáforo; desde una cocción: "convertir en receta propia".
 8. **Ingredientes** — ficha de los 158: nutrición /100 g con bandas e IC, sinónimos, estacionalidad, conservación, equivalencias. Búsqueda por nombre/sinónimo ("chickpeas" encuentra garbanzos), filtros por categoría y por nutriente ("fuentes de calcio" ordenadas por aporte).
 9. **Mi perfil** — datos para RDA (sin placeholders), suplementos declarados (apagan exigencia), objetivos derivados visibles.
 10. **Glosario** — pestañas: **íconos** (cada uno con su significado) y **términos culinarios** (37 del dataset).
