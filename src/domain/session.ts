@@ -97,6 +97,7 @@ export function nutricionSesion(
       unidad_display: l.unidad_display,
       g_aprox: l.g_aprox,
       sustitutos: [],
+      paso: null,
     }));
   return nutricionConLineas(recipe, activas, porciones, source);
 }

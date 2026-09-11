@@ -199,6 +199,8 @@ export const lineSchema = z.strictObject({
   imprescindible: z.boolean().optional(),
   sustitutos: z.array(z.strictObject({ tipo: z.enum(['id', 'texto']), valor: z.string() })),
   nota: z.string().optional(),
+  /** Índice en `pasos` del paso donde entra, desde 0 (T14). null: ningún paso lo usa. */
+  paso: z.number().int().nonnegative().nullable(),
 });
 export type Line = z.infer<typeof lineSchema>;
 

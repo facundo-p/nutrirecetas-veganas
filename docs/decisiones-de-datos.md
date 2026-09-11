@@ -319,3 +319,13 @@ El catálogo está repartido en **tres formas** —`fuentes` (sets 1 y 2), `meta
 |---|---|---|
 | `libro_vgourmet` | credencial → «autoeditado, sin certificación externa» | la nota seguía con *"todas entran como por-probar; subir IC al validarlas en cocina"*: vocabulario del pipeline, y el IC ya no está en las recetas (#144) |
 | `recetario_personal` | nombre → «Recetario personal de Facu» | `meta.origen` dice *"recetario personal de Facu (Google Doc)"*; dónde estaba guardado no es parte del origen de la receta |
+
+## 13. T14 — en qué paso entra cada línea (2026-09-11, #163)
+
+El modo cocina muestra los ingredientes de cada paso, y la semilla no lo sabía: las cantidades se repetían en la prosa del paso, que es convención de escritura, no dato.
+
+`PASO_DE_CADA_LINEA` (T14, en `curated-pasos.ts`) lo dice para las 804 líneas de las 84 recetas: el **primer** paso en que se toca el ingrediente —donde se lo pica, remoja o agrega—, porque es donde quien cocina necesita la cantidad. La tabla cuenta los pasos desde 1, como se leen; la semilla guarda el índice. `null` queda para lo que ningún paso usa.
+
+Lo leyó un agente por receta (Haiku) con los pasos ya curados (T9), y cada respuesta trajo la cita textual del paso que la justifica. La segunda opinión fue el matcher de nombres de los tests de T9: lo que el agente ubicaba después del primer paso que nombra al ingrediente se revisó a mano. Casi todo eran falsos positivos del matcher —"dulce" en *base dulce*, el "arroz" de *vinagre de arroz*, el extracto de tomate contra el triturado—.
+
+El build falla si una receta queda sin mapeo, si una línea cae en un paso que no existe, si un imprescindible queda sin paso, o si hay una entrada para una receta que no existe.

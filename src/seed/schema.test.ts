@@ -7,6 +7,7 @@ const lineaBase = {
   unidad_display: 'g_cocidos',
   g_aprox: 400,
   sustitutos: [],
+  paso: null,
 };
 
 describe('ingredientSchema', () => {

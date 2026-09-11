@@ -1606,3 +1606,7 @@ export const CURATED_SOURCES: Record<string, SourceOverride> = {
     base: 'meta.origen dice "recetario personal de Facu (Google Doc)"; dónde estaba guardado no es parte del origen de la receta',
   },
 };
+
+// ---------- T14: en qué paso entra cada línea ----------
+
+export { PASO_DE_CADA_LINEA } from './curated-pasos';

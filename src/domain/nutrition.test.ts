@@ -43,7 +43,7 @@ function rec(id: string, extra: Partial<Recipe>): Recipe {
 }
 
 function linea(refId: string, g: number, tipo: 'ingrediente' | 'receta' = 'ingrediente') {
-  return { ref: { tipo, id: refId }, cantidad: g, unidad_display: 'g', g_aprox: g, sustitutos: [] };
+  return { ref: { tipo, id: refId }, cantidad: g, unidad_display: 'g', g_aprox: g, sustitutos: [], paso: null };
 }
 
 function source(ingredients: Ingredient[], recipes: Recipe[]): NutritionSource {
