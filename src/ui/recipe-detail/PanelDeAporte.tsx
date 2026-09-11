@@ -87,9 +87,12 @@ function FilaDeAporte({
         <div className="fila-aporte-detalle">
           {conDato ? (
             <>
-              <p>
-                <IntervalBand intervalo={resultado.intervalo} unidad={unidad} />
-              </p>
+              {/* Con un dato puntual la banda repetiría el valor de la fila. */}
+              {conBanda(resultado) && (
+                <p>
+                  <IntervalBand intervalo={resultado.intervalo} unidad={unidad} />
+                </p>
+              )}
               {porcentaje === null && (
                 <p>Sin porcentaje: el rango arranca en cero, y un punto medio así diría de más.</p>
               )}
