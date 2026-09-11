@@ -1,14 +1,11 @@
 import type { Recipe, Seed } from '../../seed/schema';
+import { legible } from '../common/format';
 
 /**
  * Reglas R como tips de la receta (Fase 1: se muestran los mensajes de las
  * reglas disparadas del dataset; el evaluador vivo del AST llega en Fase 2 con
  * la sesión de cocina). Un calificador tipo "no_aplica_…" degrada a nota gris.
  */
-
-function legible(calificador: string): string {
-  return calificador.replaceAll('_', ' ');
-}
 
 export function RuleTips({ recipe, seed }: { recipe: Recipe; seed: Seed }) {
   if (recipe.reglas.length === 0) return null;

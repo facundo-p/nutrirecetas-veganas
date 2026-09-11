@@ -1,5 +1,7 @@
-import { describe, expect, test } from 'vitest';
-import { DURACION_ESCALADO_MS, factorEnElCamino, suavizar } from './useFactorAnimado';
+// @vitest-environment jsdom
+import { act, renderHook } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { DURACION_ESCALADO_MS, factorEnElCamino, suavizar, useFactorAnimado } from './useFactorAnimado';
 
 describe('el escalado viaja, no salta', () => {
   test('arranca en el factor de partida y llega exacto al de destino', () => {
@@ -16,5 +18,51 @@ describe('el escalado viaja, no salta', () => {
   test('bajando, igual', () => {
     expect(factorEnElCamino(2, 1, DURACION_ESCALADO_MS / 2)).toBeLessThan(1.5);
     expect(factorEnElCamino(2, 1, DURACION_ESCALADO_MS)).toBe(1);
+  });
+});
+
+describe('el viaje, cuadro a cuadro', () => {
+  const conMovimiento = (reducido: boolean) => vi.stubGlobal('matchMedia', () => ({ matches: reducido }));
+  const avanzar = (ms: number) => act(() => void vi.advanceTimersByTime(ms));
+  const montar = () => renderHook(({ factor }) => useFactorAnimado(factor), { initialProps: { factor: 1 } });
+
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame', 'performance'] });
+    conMovimiento(false);
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
+
+  test('pasa por el medio, llega al destino y deja de teñir', () => {
+    const { result, rerender } = montar();
+    rerender({ factor: 2 });
+    expect(result.current.animando).toBe(true);
+    avanzar(DURACION_ESCALADO_MS / 2);
+    expect(result.current.mostrado).toBeGreaterThan(1);
+    expect(result.current.mostrado).toBeLessThan(2);
+    avanzar(DURACION_ESCALADO_MS);
+    expect(result.current).toEqual({ mostrado: 2, animando: false });
+  });
+
+  test('un cambio en pleno viaje sale desde donde iba, no desde el principio', () => {
+    const { result, rerender } = montar();
+    rerender({ factor: 2 });
+    avanzar(DURACION_ESCALADO_MS / 2);
+    const aMitad = result.current.mostrado;
+    rerender({ factor: 1 });
+    avanzar(50);
+    expect(result.current.mostrado).toBeLessThan(aMitad);
+    expect(result.current.mostrado).toBeGreaterThan(1);
+    avanzar(DURACION_ESCALADO_MS);
+    expect(result.current).toEqual({ mostrado: 1, animando: false });
+  });
+
+  test('con movimiento reducido salta directo al valor final', () => {
+    conMovimiento(true);
+    const { result, rerender } = montar();
+    rerender({ factor: 3 });
+    expect(result.current).toEqual({ mostrado: 3, animando: false });
   });
 });

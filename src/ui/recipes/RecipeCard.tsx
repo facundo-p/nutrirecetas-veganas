@@ -1,10 +1,9 @@
 import type { Recipe } from '../../seed/schema';
 import type { EstadoDeReceta } from '../../domain/estado';
-import { fuerteDeAporte, NOMBRE_CORTO } from '../../domain/aporte';
+import { fuerteDeAporte, NOMBRE_CORTO, type AporteDeReceta } from '../../domain/aporte';
 import { ChipDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
-import { formatMinutes, formatPorcentaje } from '../common/format';
-import type { AporteDeReceta } from '../common/nutritionCache';
+import { formatMinutes, formatPorcentaje, MEDIDA_DE_BASE } from '../common/format';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { BarraDeAporte } from '../common/BarraDeAporte';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconTemporada } from '../icons/icons';
@@ -57,7 +56,7 @@ export function RecipeCard({
           {fuerte && (
             <span className="meta-item meta-fuerte" data-nut={fuerte.nutriente}>
               {NOMBRE_CORTO[fuerte.nutriente]} {formatPorcentaje(fuerte.porcentaje)}
-              {aporte.base === '100g' && ' cada 100 g'}
+              {aporte.base === '100g' && ` ${MEDIDA_DE_BASE['100g'].por}`}
             </span>
           )}
           {recipe.guarda?.freezer && (
@@ -74,7 +73,7 @@ export function RecipeCard({
         </span>
       </a>
       {variantCount > 0 && onToggleVariants && (
-        <button type="button" className="fila-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
+        <button type="button" className="boton-plano fila-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
           {variantsOpen ? '▾' : '▸'} {variantCount} {variantCount === 1 ? 'variante' : 'variantes'}
         </button>
       )}

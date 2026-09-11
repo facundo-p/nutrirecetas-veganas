@@ -10,10 +10,10 @@
    ni un nombre de color. Todo lo que sea color vive en temas/ y llega acá
    como token de rol. El test src/styles/contrato-de-temas.test.ts lo verifica.
 
-   `--borde` y `--borde-suave` sí hacen color-mix() con var(--tinta), y está
-   bien: una custom property se resuelve en el elemento donde se declara, y
-   estas se declaran en :root — el mismo elemento donde el tema declara
-   --tinta. Verificado en Chromium: el borde toma la tinta del tema activo. */
+   Los bordes sí hacen color-mix() con var(--tinta), y está bien: una custom
+   property se resuelve en el elemento donde se declara, y estas se declaran
+   en :root — el mismo elemento donde el tema declara --tinta. Verificado en
+   Chromium: el borde toma la tinta del tema activo. */
 :root {
   /* Escala tipográfica (mobile-first) */
   --fs-xs: 0.75rem;
@@ -39,10 +39,10 @@
   --sp-6: 2rem;
   --sp-7: 3rem;
   --radio: 2px;
-  --radio-chico: 2px;
   --radio-chip: 999px;
   --borde: 1px solid color-mix(in srgb, var(--tinta) 14%, transparent);
   --borde-suave: 1px solid color-mix(in srgb, var(--tinta) 8%, transparent);
+  --borde-control: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent); /* lo que se toca */
 
   /* Aporte: las piezas del color por nutriente */
   --gap-franja: 3px;
@@ -56,6 +56,7 @@
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
+  --toque-minimo: 2.75rem; /* 44 px: lo mínimo que se puede tocar con un dedo */
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
   --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
   --ancho-campo-cantidad: 4.5rem;

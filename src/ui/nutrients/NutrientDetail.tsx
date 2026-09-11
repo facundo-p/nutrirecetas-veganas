@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
-import { usePerfil } from '../../db/hooks';
 import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
-import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
+import { porcentajeDeObjetivo } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
 import { amountUnit, formatNumber } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
+import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
@@ -21,7 +21,7 @@ const CUANTAS = 12;
 
 export function NutrientDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
-  const perfil = usePerfil();
+  const objetivos = useObjetivos();
   const nutriente = idx.nutrientById.get(id);
 
   const fuentes = useMemo(() => {
@@ -45,7 +45,6 @@ export function NutrientDetail({ id }: { id: string }) {
     );
   }
 
-  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
   const objetivo = objetivos.porNutriente.get(nutriente.id);
   const unidad = amountUnit(nutriente.clave_ingrediente);
   const Ventana = nutriente.ventana === 'dia' ? IconSol : IconSemanaArco;

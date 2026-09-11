@@ -66,15 +66,19 @@ export function lineaAGusto(linea: Line, ingredientById: ReadonlyMap<string, Ing
   return ingrediente !== undefined && noEscalaLineal(ingrediente);
 }
 
+/** Lo que admite el selector de porciones: de un cuarto a cuatro veces la receta. */
+export function acotarFactor(factor: number): number {
+  return Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, factor));
+}
+
 /**
  * El factor que hace que una línea valga `valorNuevo`, en su propia unidad: es
  * el escalado al revés —tengo 400 g de lentejas, ¿para cuánto me alcanza?—.
- * Queda dentro de lo que admite el selector de porciones. `null` si el valor
- * no sirve.
+ * `null` si el valor no sirve.
  */
 export function factorDesdeLinea(base: Line, valorNuevo: number): number | null {
   if (!Number.isFinite(valorNuevo) || valorNuevo <= 0 || base.cantidad <= 0) return null;
-  return Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, valorNuevo / base.cantidad));
+  return acotarFactor(valorNuevo / base.cantidad);
 }
 
 export function avisosDeEscalado(recipe: Recipe, factor: number): AvisoEscalado[] {

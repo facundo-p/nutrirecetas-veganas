@@ -68,23 +68,6 @@
   margin-top: var(--sp-1);
 }
 
-.confirmacion {
-  background: color-mix(in srgb, var(--aviso) 8%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--aviso) 40%, transparent);
-  border-radius: var(--radio-chico);
-  padding: var(--sp-3);
-  margin-top: var(--sp-2);
-  font-size: var(--fs-sm);
-  display: grid;
-  gap: var(--sp-2);
-}
-
-.confirmacion-acciones {
-  display: flex;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
-}
-
 .agregar-ingrediente {
   border-top: var(--borde-suave);
   padding-top: var(--sp-3);

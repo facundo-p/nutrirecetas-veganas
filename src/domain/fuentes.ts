@@ -1,7 +1,7 @@
 import type { SeedIndex } from '../seed';
 import type { Ingredient, IngredientNutrientKey, Line, Nutrient, Recipe } from '../seed/schema';
 import { midpoint } from './interval';
-import { hasReportableValue, per100g, perPortion, type NutrientResult, type RecipeNutrition } from './nutrition';
+import { enSuBase, hasReportableValue, per100g, type NutrientResult, type RecipeNutrition } from './nutrition';
 
 /**
  * Quién aporta qué. Es el reverso de la ficha de receta: en vez de "qué tiene
@@ -36,7 +36,7 @@ export function recetasQueMasAportan(
     // y ganarían tres veces el mismo plato
     if (receta.variante_de !== undefined) continue;
 
-    const base = perPortion(nutricionDe(receta.id)) ?? per100g(nutricionDe(receta.id));
+    const base = enSuBase(nutricionDe(receta.id)).medida;
     const resultado = base.por_nutriente[nutriente.clave_ingrediente];
     if (resultado === undefined || !hasReportableValue(resultado)) continue;
 

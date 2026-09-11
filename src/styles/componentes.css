@@ -26,6 +26,10 @@
   color: var(--icono-indulgente);
 }
 
+.icono-aviso {
+  color: var(--aviso);
+}
+
 /* ---------- chips y badges ---------- */
 
 .chip {
@@ -33,7 +37,7 @@
   align-items: center;
   gap: var(--sp-1);
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   border: 1px solid color-mix(in srgb, var(--chip) 70%, var(--tinta) 8%);
   background: color-mix(in srgb, var(--chip) 18%, var(--superficie));
   font-size: var(--fs-xs);
@@ -81,7 +85,7 @@
 .toast-actualizacion button {
   appearance: none;
   border: none;
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: var(--accion);
   color: var(--sobre-accion);
   font: inherit;
@@ -253,10 +257,10 @@
   font: inherit;
   padding: var(--sp-2) var(--sp-3);
   border: var(--borde);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: var(--superficie);
   color: var(--tinta);
-  min-height: 44px;
+  min-height: var(--toque-minimo);
   width: 100%;
 }
 
@@ -309,7 +313,7 @@
 .boton-secundario {
   appearance: none;
   border: none;
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   font: inherit;
   font-weight: 600;
   padding: var(--sp-3) var(--sp-5);
@@ -345,7 +349,7 @@
   font-size: var(--fs-sm);
   padding: var(--sp-1) var(--sp-3);
   min-height: 38px;
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   border: 1px solid color-mix(in srgb, var(--tinta) 22%, transparent);
   background: var(--superficie);
   color: var(--tinta);
@@ -368,10 +372,24 @@
   text-align: left;
 }
 
+/* Un botón que no se ve como botón: lo que se toca es la fila o el título.
+   Cada pantalla le pone su forma encima. */
+.boton-plano {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  min-height: var(--toque-minimo);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
 .boton-redondo {
   appearance: none;
-  width: 44px;
-  height: 44px;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--tinta) 25%, transparent);
   background: var(--superficie);
@@ -405,7 +423,7 @@
 .mensaje-error {
   font-size: var(--fs-sm);
   padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
 }
 
 .mensaje-ok {
@@ -416,6 +434,24 @@
 .mensaje-error {
   background: color-mix(in srgb, var(--aviso) 12%, var(--superficie));
   color: var(--tinta);
+}
+
+/* Confirmar algo que no se deshace: cocina y ajustes. */
+.confirmacion {
+  background: color-mix(in srgb, var(--aviso) 8%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--aviso) 40%, transparent);
+  border-radius: var(--radio);
+  padding: var(--sp-3);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.confirmacion-acciones {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
 }
 
 .intro-vacia {
@@ -456,7 +492,7 @@
   gap: var(--sp-2);
   min-height: var(--alto-control);
   padding: 0 var(--sp-3);
-  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border: var(--borde-control);
   border-radius: var(--radio);
   color: var(--tinta-suave);
 }
@@ -516,9 +552,7 @@
 }
 
 .nutricion-cabecera h2 {
-  border: none !important;
-  margin-bottom: 0 !important;
-  font-size: var(--fs-lg) !important;
+  font-size: var(--fs-lg);
 }
 
 .nutricion-cobertura-global {
@@ -694,16 +728,18 @@
 }
 
 /* ---------- las fichas: receta, ingrediente y nutriente ----------
-   Vivían en receta.css y las leen las tres fichas, más cocina (.volver,
-   .chip-texto, .linea-funcion). Se mudaron sin cambios, y al final del
-   archivo a propósito: receta.css se cargaba después de componentes.css, y
-   ponerlas arriba cambiaba quién gana entre reglas de igual especificidad
-   (.detalle-tipo svg contra .confianza svg). */
+   Las leen las tres fichas, más cocina (.volver, .chip-texto, .linea-funcion).
+   Van al final del archivo a propósito: .chip-texto pisa a .chip con la misma
+   especificidad. */
 
 .detalle {
   display: grid;
   gap: var(--sp-5);
   max-width: 760px;
+}
+
+.detalle .encabezado-pantalla {
+  margin-bottom: 0;
 }
 
 .detalle section > h2 {
@@ -729,7 +765,10 @@
   gap: var(--sp-2);
 }
 
-.detalle-tipo svg {
+/* Explícito para el índice de confianza: si no, .confianza svg y esta
+   empatan, y gana la que esté más abajo. */
+.detalle-tipo svg,
+.detalle-tipo .confianza svg {
   font-size: 18px;
 }
 
@@ -797,7 +836,23 @@
   align-items: flex-start;
   font-size: var(--fs-sm);
   padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
   border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
+}
+
+/* Las notas de una ficha: la tuya en la receta, la de la semilla en el
+   ingrediente y en el nutriente. */
+.nota-usuario {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  margin-top: var(--sp-2);
+}
+
+.nota-ingrediente {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
 }

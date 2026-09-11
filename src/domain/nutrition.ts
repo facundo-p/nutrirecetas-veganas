@@ -202,3 +202,11 @@ export function per100g(n: RecipeNutrition): RecipeNutrition {
   if (base === 0) return n;
   return scaleNutrition(n, 100 / base);
 }
+
+export type BaseDeMedida = 'porcion' | '100g';
+
+/** La nutrición en la base en que se informa: una porción, o 100 g si la receta no define porciones. */
+export function enSuBase(n: RecipeNutrition): { medida: RecipeNutrition; base: BaseDeMedida } {
+  const porcion = perPortion(n);
+  return porcion ? { medida: porcion, base: 'porcion' } : { medida: per100g(n), base: '100g' };
+}

@@ -15,7 +15,7 @@
   font-size: var(--fs-sm);
   background: var(--superficie);
   border: var(--borde);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   padding: var(--sp-3);
 }
 

@@ -1,3 +1,6 @@
+import type { BaseDeMedida } from '../../domain/nutrition';
+import type { Line } from '../../seed/schema';
+
 /** Utilidades de presentación compartidas (sin estado, sin datos). */
 
 export function formatMinutes(min: number): string {
@@ -20,6 +23,11 @@ export function formatNumber(value: number, decimals = 1): string {
   return String(rounded).replace('.', ',');
 }
 
+/** Un valor de la semilla para mostrar: `leche_de_coco` → «leche de coco». */
+export function legible(valorDeSemilla: string): string {
+  return valorDeSemilla.replaceAll('_', ' ');
+}
+
 const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.75': '¾' };
 
 /**
@@ -31,6 +39,11 @@ export function formatCantidad(valor: number): string {
   const glifo = GLIFO_DE_CUARTO[String(Number((valor - entero).toFixed(2)))];
   if (glifo === undefined) return formatNumber(valor, 1);
   return entero === 0 ? glifo : `${entero}${glifo}`;
+}
+
+/** «1½ taza»: la cantidad de una línea con su unidad, como la escribe la receta. */
+export function cantidadConUnidad(linea: Pick<Line, 'cantidad' | 'unidad_display'>): string {
+  return `${formatCantidad(linea.cantidad)} ${legible(linea.unidad_display)}`;
 }
 
 /** Debajo del gramo el entero miente: 0,5 g de azafrán no es 1 g. */
@@ -71,6 +84,12 @@ export function icSprouts(ic: number): 1 | 2 | 3 {
 export function formatPorcentaje(porcentaje: number): string {
   return `${formatNumber(porcentaje, porcentaje < 10 ? 1 : 0)} %`;
 }
+
+/** Cómo se nombra la base de un aporte: «qué aporta una porción», «147 kcal por porción». */
+export const MEDIDA_DE_BASE: Record<BaseDeMedida, { sujeto: string; por: string }> = {
+  porcion: { sujeto: 'una porción', por: 'por porción' },
+  '100g': { sujeto: 'cada 100 g', por: 'cada 100 g' },
+};
 
 /** Lo que alguien tipea como cantidad, con coma o con punto. `null` si no es un número, o si está a medio tipear. */
 export function leerNumero(texto: string): number | null {

@@ -1,5 +1,5 @@
 import type { AvisoEscalado } from '../../domain/scaling';
-import { FACTOR_MAX, FACTOR_MIN } from '../../domain/scaling';
+import { acotarFactor, FACTOR_MAX, FACTOR_MIN } from '../../domain/scaling';
 import { formatGramos, formatNumber } from '../common/format';
 import { IconPlato, IconReloj } from '../icons/icons';
 
@@ -14,7 +14,7 @@ interface Props {
   onFactor: (factor: number) => void;
 }
 
-const legible = (porciones: number) => formatNumber(porciones, Number.isInteger(porciones) ? 0 : 1);
+const formatPorciones = (porciones: number) => formatNumber(porciones, Number.isInteger(porciones) ? 0 : 1);
 
 /**
  * Cuánto rinde y el control de porciones. Va pegado arriba de la ficha: se lo
@@ -25,10 +25,7 @@ export function PortionScaler({ porcionesBase, factor, mostrado, animando, masaE
   const porciones = porcionesBase * factor;
   const paso = porcionesBase >= 8 ? 2 : 1;
 
-  const cambiar = (delta: number) => {
-    const siguiente = (porciones + delta) / porcionesBase;
-    onFactor(Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, siguiente)));
-  };
+  const cambiar = (delta: number) => onFactor(acotarFactor((porciones + delta) / porcionesBase));
 
   return (
     <div className={animando ? 'escalador recalculando' : 'escalador'}>
@@ -38,7 +35,7 @@ export function PortionScaler({ porcionesBase, factor, mostrado, animando, masaE
           {/* aria-busy mientras viaja: el lector de pantalla espera y anuncia
               solo el número final, no los veinticinco del camino. */}
           <span className="escalador-valor cifra" aria-live="polite" aria-busy={animando}>
-            {legible(porcionesBase * mostrado)}
+            {formatPorciones(porcionesBase * mostrado)}
           </span>{' '}
           porciones
         </span>

@@ -12,7 +12,7 @@
   appearance: none;
   border: var(--borde);
   background: var(--superficie);
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   font: inherit;
   font-size: var(--fs-sm);
   padding: var(--sp-1) var(--sp-4);
