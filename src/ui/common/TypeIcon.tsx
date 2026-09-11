@@ -6,7 +6,6 @@ import {
   IconFrasco,
   IconFrascoFermento,
   IconMortero,
-  type IconProps,
 } from '../icons/icons';
 
 /**
@@ -34,11 +33,7 @@ export function typeInfo(recipe: Pick<Recipe, 'tipo' | 'es_preparado'>) {
 }
 
 /** El color lo pone `.icono-tipo` en el CSS: el componente solo dice qué significa. */
-export function TypeIcon({
-  recipe,
-  className,
-  ...props
-}: IconProps & { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {
+export function TypeIcon({ recipe }: { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {
   const { Icon } = typeInfo(recipe);
-  return <Icon className={['icono-tipo', className].filter(Boolean).join(' ')} {...props} />;
+  return <Icon className="icono-tipo" />;
 }

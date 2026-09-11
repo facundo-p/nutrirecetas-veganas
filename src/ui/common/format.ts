@@ -60,13 +60,6 @@ export function currentMonth(): number {
 /** La unidad de cantidades vive en el dominio; acá solo se reexporta para la UI. */
 export { amountUnitOf as amountUnit } from '../../domain/units';
 
-/** Dificultad → cantidad de llamas (1-3) según el enum ordenado de 5. */
-export function difficultyFlames(dificultad: string): 1 | 2 | 3 {
-  if (dificultad === 'trivial' || dificultad === 'muy fácil') return 1;
-  if (dificultad === 'fácil' || dificultad === 'media') return 2;
-  return 3;
-}
-
 /** IC 1-10 → brotes 1-3 (bajo ≤4, medio 5-7, alto ≥8). */
 export function icSprouts(ic: number): 1 | 2 | 3 {
   if (ic <= 4) return 1;

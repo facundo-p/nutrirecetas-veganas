@@ -76,7 +76,6 @@ export function PortionScaler({ porcionesBase, factor, mostrado, animando, masaE
 }
 
 const ICONO_AVISO = {
-  ajustar_a_gusto: IconPlato,
   revisar_tiempo: IconReloj,
   horneado: IconPlato,
 } as const;
@@ -95,10 +94,7 @@ export function AvisosDeEscalado({ avisos }: { avisos: AvisoEscalado[] }) {
         return (
           <li key={aviso.tipo} className={`aviso aviso-${aviso.tipo}`}>
             <Icon className="aviso-icono" />
-            <span>
-              {aviso.mensaje}
-              {aviso.ingredientes && <strong> {aviso.ingredientes.join(', ')}.</strong>}
-            </span>
+            <span>{aviso.mensaje}</span>
           </li>
         );
       })}

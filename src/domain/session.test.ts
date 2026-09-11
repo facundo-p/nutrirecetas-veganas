@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import { midpoint } from './interval';
-import { avisosDeEscalado, escalarReceta, esHorneada } from './scaling';
+import { avisosDeEscalado, escalarLineas, esHorneada } from './scaling';
 import {
   advertenciaDesmarcar,
   lineaAgregada,
@@ -18,38 +18,26 @@ const p31 = idx.recipeById.get('p31')!; // pastafrola: horneada
 
 describe('escalado', () => {
   test('×2 duplica los gramos de todas las líneas', () => {
-    const { lineas } = escalarReceta(r01, 2, idx.seed);
-    for (const [i, linea] of lineas.entries()) {
+    for (const [i, linea] of escalarLineas(r01.lineas, 2).entries()) {
       expect(linea.g_aprox).toBeCloseTo(r01.lineas[i]!.g_aprox * 2);
     }
   });
 
-  test('las porciones acompañan al factor', () => {
-    expect(escalarReceta(r01, 2, idx.seed).porciones).toBe(r01.porciones_num! * 2);
-  });
-
   test('sin cambio de factor no hay avisos', () => {
-    expect(avisosDeEscalado(r01, 1, idx.seed)).toEqual([]);
-  });
-
-  test('las especias y la sal disparan "ajustá a gusto" con sus nombres', () => {
-    const aviso = avisosDeEscalado(r01, 2, idx.seed).find((a) => a.tipo === 'ajustar_a_gusto');
-    expect(aviso).toBeDefined();
-    expect(aviso!.ingredientes!.length).toBeGreaterThan(0);
+    expect(avisosDeEscalado(r01, 1)).toEqual([]);
   });
 
   test('el tiempo de cocción nunca se escala, pero se avisa que hay que revisarlo', () => {
-    const { lineas: _, avisos } = escalarReceta(r01, 3, idx.seed);
-    expect(avisos.some((a) => a.tipo === 'revisar_tiempo')).toBe(true);
+    expect(avisosDeEscalado(r01, 3).some((a) => a.tipo === 'revisar_tiempo')).toBe(true);
   });
 
   test('una receta horneada agranda el aviso: tandas o múltiplo del molde', () => {
     expect(esHorneada(p31)).toBe(true);
-    expect(avisosDeEscalado(p31, 2, idx.seed).some((a) => a.tipo === 'horneado')).toBe(true);
+    expect(avisosDeEscalado(p31, 2).some((a) => a.tipo === 'horneado')).toBe(true);
   });
 
   test('achicar una receta horneada no dispara el aviso de molde', () => {
-    expect(avisosDeEscalado(p31, 0.5, idx.seed).some((a) => a.tipo === 'horneado')).toBe(false);
+    expect(avisosDeEscalado(p31, 0.5).some((a) => a.tipo === 'horneado')).toBe(false);
   });
 });
 

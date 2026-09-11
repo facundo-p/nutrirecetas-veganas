@@ -1,22 +1,22 @@
-import type { Ingredient, Line, Recipe, Seed } from '../seed/schema';
+import type { Ingredient, Line, Recipe } from '../seed/schema';
 import { redondearLinea } from './rounding';
 
 /**
  * Escalado de porciones. Todo escala lineal por `g_aprox` (decisión de Facu),
  * pero la cocina no es lineal: la sal y las especias se ajustan a gusto, los
  * tiempos no se multiplican, y una torta al doble no entra en el mismo molde.
- * Por eso el escalado devuelve avisos junto con las líneas.
+ * Lo que va a gusto se marca línea por línea (`lineaAGusto`); los tiempos y el
+ * molde, con avisos.
  *
  * La regla de tres tampoco da números cocinables: `rounding` los lleva a la
  * medida que la unidad admite antes de que salgan de acá.
  */
 
-export type TipoAviso = 'ajustar_a_gusto' | 'revisar_tiempo' | 'horneado';
+export type TipoAviso = 'revisar_tiempo' | 'horneado';
 
 export interface AvisoEscalado {
   tipo: TipoAviso;
   mensaje: string;
-  ingredientes?: string[];
 }
 
 export const FACTOR_MIN = 0.25;
@@ -77,22 +77,9 @@ export function factorDesdeLinea(base: Line, valorNuevo: number): number | null 
   return Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, valorNuevo / base.cantidad));
 }
 
-export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): AvisoEscalado[] {
+export function avisosDeEscalado(recipe: Recipe, factor: number): AvisoEscalado[] {
   if (factor === 1) return [];
   const avisos: AvisoEscalado[] = [];
-  const ingredientById = new Map(seed.ingredientes.map((i) => [i.id, i]));
-
-  const aGusto = recipe.lineas
-    .filter((l) => lineaAGusto(l, ingredientById))
-    .map((l) => ingredientById.get(l.ref.id)!);
-
-  if (aGusto.length > 0) {
-    avisos.push({
-      tipo: 'ajustar_a_gusto',
-      mensaje: 'Estos no escalan lineal: ajustalos a gusto y probá antes de sumar más.',
-      ingredientes: [...new Set(aGusto.map((i) => i.nombre))],
-    });
-  }
 
   if (recipe.tiempo_coccion_min > 0) {
     avisos.push({
@@ -110,16 +97,4 @@ export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): Av
   }
 
   return avisos;
-}
-
-export function escalarReceta(
-  recipe: Recipe,
-  factor: number,
-  seed: Seed,
-): { lineas: Line[]; avisos: AvisoEscalado[]; porciones: number | null } {
-  return {
-    lineas: escalarLineas(recipe.lineas, factor),
-    avisos: avisosDeEscalado(recipe, factor, seed),
-    porciones: recipe.porciones_num === null ? null : recipe.porciones_num * factor,
-  };
 }

@@ -154,18 +154,6 @@ export const ADDED_LINES: AddedLineEntry[] = [
   },
 ];
 
-/**
- * usa_preparados que quedan como enlace navegacional (sin tocar líneas):
- * p10→p01 consume el okara (subproducto), no la leche; p30→p02 ya desagrega
- * la leche de coco en agua+coco rallado; p44→p06 el queso va sobre la pizza
- * armada, no dentro de la masa.
- */
-export const NAV_ONLY_PREPARADOS: Array<{ receta_id: string; preparado_id: string }> = [
-  { receta_id: 'p10', preparado_id: 'p01' },
-  { receta_id: 'p30', preparado_id: 'p02' },
-  { receta_id: 'p44', preparado_id: 'p06' },
-];
-
 // ---------- T6: conceptos usados por reglas R que no son ids/categorías reales ----------
 
 export interface ConceptEntry {

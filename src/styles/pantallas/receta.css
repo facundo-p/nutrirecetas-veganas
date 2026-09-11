@@ -31,11 +31,6 @@
   color: var(--confirmado);
 }
 
-.chip-probada {
-  background: color-mix(in srgb, var(--confirmado) 16%, var(--superficie));
-  border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
-}
-
 .chip-preparado {
   background: color-mix(in srgb, var(--chip-preparado) 15%, var(--superficie));
   border-color: color-mix(in srgb, var(--chip-preparado) 45%, transparent);

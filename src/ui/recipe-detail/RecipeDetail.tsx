@@ -301,8 +301,8 @@ export function RecipeDetail({ id }: { id: string }) {
     [lineasElegidas, mostrado],
   );
   const avisos = useMemo(
-    () => (recipe && factor !== 1 ? avisosDeEscalado(recipe, factor, idx.seed) : []),
-    [recipe, factor, idx],
+    () => (recipe ? avisosDeEscalado(recipe, factor) : []),
+    [recipe, factor],
   );
   const puntos = useMemo(
     () => lineasElegidas.map((linea) => puntoDeLinea(idx, linea, objetivos)),
@@ -473,7 +473,7 @@ export function RecipeDetail({ id }: { id: string }) {
             Los condimentos y las especias no escalan lineal: probá antes de sumar el último tercio.
           </p>
         )}
-        <AvisosDeEscalado avisos={avisos.filter((aviso) => aviso.tipo !== 'ajustar_a_gusto')} />
+        <AvisosDeEscalado avisos={avisos} />
       </section>
 
       <RuleTips recipe={recipe} seed={idx.seed} />

@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { db } from './db';
-import { addCoccion, getCoccion, getMeta, getOverlay, getPerfil, saveOverlay, savePerfil } from './repos';
+import { addCoccion, getMeta, getOverlay, getPerfil, saveOverlay, savePerfil } from './repos';
 import type { CoccionData, ProfileData } from './schema';
 import { getSeedIndex } from '../seed';
 
@@ -59,7 +59,7 @@ describe('perfil', () => {
 describe('cocciones', () => {
   test('guardan lo que rindieron y su nutrición congelada', async () => {
     const id = await addCoccion(coccionBase);
-    const coccion = await getCoccion(id);
+    const coccion = await db.cocciones.get(id);
     expect(coccion?.porciones_rendidas).toBe(6);
     expect(coccion?.nutricion_porcion.alerta_b12).toBe(true);
   });

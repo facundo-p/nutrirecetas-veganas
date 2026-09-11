@@ -27,11 +27,6 @@ import {
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
 
-/** Avisos no fatales que van al reporte del gate de datos. */
-export interface TransformNotes {
-  descartes_estacionalidad: string[];
-}
-
 // ---------- valores ----------
 
 export function toNutrientValue(raw: RawNutrientValue): NutrientValue | undefined {
@@ -261,6 +256,9 @@ export function transformRecipe(
     set_origen: setKey,
     ...(raw.familia !== undefined ? { familia: raw.familia } : {}),
     ...(raw.variante_de !== undefined ? { variante_de: raw.variante_de } : {}),
+    // Algunos quedan solo como enlace, sin línea, y está bien: p10→p01 consume
+    // el okara y no la leche; p30→p02 ya desagrega la leche de coco en agua y
+    // coco rallado; p44→p06 el queso va sobre la pizza armada, no en la masa.
     usa_preparados: raw.usa_preparados ?? [],
     ...(raw.indulgente !== undefined ? { indulgente: raw.indulgente } : {}),
     ...(raw.candidata_clasica !== undefined ? { candidata_clasica: raw.candidata_clasica } : {}),

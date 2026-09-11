@@ -6,16 +6,14 @@ import { formatPorcentaje } from './format';
  * <svg>: el ancho del relleno es geometría —un atributo— y el color lo pone el
  * CSS por `data-nut`. Es la forma de tener un relleno proporcional sin escribir
  * estilo desde React.
- *
- * `mini` es la de la lista de ingredientes: casilleros de ancho fijo.
  */
-export function BarraDeAporte({ porcentajes, mini = false }: { porcentajes: Porcentajes; mini?: boolean }) {
+export function BarraDeAporte({ porcentajes }: { porcentajes: Porcentajes }) {
   const franjas = franjasDeAporte(porcentajes);
   const leidas = franjas.flatMap((f) => (f.nutriente ? [`${NOMBRE_CORTO[f.nutriente]} ${formatPorcentaje(f.porcentaje)}`] : []));
   const etiqueta = leidas.length > 0 ? `Cubre del día: ${leidas.join(', ')}` : 'Sin dato de ningún nutriente';
 
   return (
-    <div className={mini ? 'barra-aporte barra-aporte-mini' : 'barra-aporte'} role="img" aria-label={etiqueta}>
+    <div className="barra-aporte" role="img" aria-label={etiqueta}>
       {franjas.map((f, i) => (
         <svg
           key={f.nutriente ?? `sin-nutriente-${i}`}
