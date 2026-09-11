@@ -78,3 +78,14 @@ export function icSprouts(ic: number): 1 | 2 | 3 {
 export function formatPorcentaje(porcentaje: number): string {
   return `${formatNumber(porcentaje, porcentaje < 10 ? 1 : 0)} %`;
 }
+
+/** Lo que alguien tipea como cantidad, con coma o con punto. `null` si no es un número, o si está a medio tipear. */
+export function leerNumero(texto: string): number | null {
+  const limpio = texto.trim().replace(',', '.');
+  return /^\d+(\.\d+)?$/.test(limpio) ? Number(limpio) : null;
+}
+
+/** Una cantidad para un campo: con coma y sin glifos de fracción, que no se pueden tipear. */
+export function cantidadEditable(valor: number): string {
+  return formatNumber(valor, Number.isInteger(valor) ? 0 : 2);
+}

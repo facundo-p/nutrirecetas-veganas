@@ -29,6 +29,7 @@ const RUTAS = [
   ['recetario', '#/recetario'],
   ['recetario-filtros', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
+  ['receta-r01-ajuste', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
   ['cocinar-pasos', '#/cocinar/r01'],
@@ -188,6 +189,12 @@ try {
         await page.getByRole('button', { name: 'Empezar a cocinar' }).click();
         await page.waitForTimeout(150);
       }
+      // el ajuste por ingrediente solo se ve prendido y con una cantidad cambiada
+      if (name === 'receta-r01-ajuste') {
+        await page.getByRole('button', { name: /Ajustar cantidades según un ingrediente/ }).click();
+        await page.locator('.linea-input').first().fill('3');
+        await page.waitForTimeout(600); // el viaje de las cantidades
+      }
       // el modal de filtros solo existe abierto
       if (name === 'recetario-filtros') {
         await page.getByRole('button', { name: /^Filtros/ }).click();
@@ -199,6 +206,9 @@ try {
         content:
           'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}.escalador{position:static}',
       });
+      // el puntero de una ruta con clics queda quieto y deja en hover lo que esté
+      // debajo en la siguiente: sin esto, cocina salía con un checkbox más claro
+      await page.mouse.move(0, 0);
       await page.waitForTimeout(350); // fuentes variables
       // el modal es fijo: en una captura de página completa quedaría al fondo de todo
       await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: name !== 'recetario-filtros' });

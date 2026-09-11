@@ -59,15 +59,32 @@ export function escalarLineas(lineas: Line[], factor: number): Line[] {
   );
 }
 
+/** Una línea que va a gusto: la sal y las especias no escalan lineal. */
+export function lineaAGusto(linea: Line, ingredientById: ReadonlyMap<string, Ingredient>): boolean {
+  if (linea.ref.tipo !== 'ingrediente') return false;
+  const ingrediente = ingredientById.get(linea.ref.id);
+  return ingrediente !== undefined && noEscalaLineal(ingrediente);
+}
+
+/**
+ * El factor que hace que una línea valga `valorNuevo`, en su propia unidad: es
+ * el escalado al revés —tengo 400 g de lentejas, ¿para cuánto me alcanza?—.
+ * Queda dentro de lo que admite el selector de porciones. `null` si el valor
+ * no sirve.
+ */
+export function factorDesdeLinea(base: Line, valorNuevo: number): number | null {
+  if (!Number.isFinite(valorNuevo) || valorNuevo <= 0 || base.cantidad <= 0) return null;
+  return Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, valorNuevo / base.cantidad));
+}
+
 export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): AvisoEscalado[] {
   if (factor === 1) return [];
   const avisos: AvisoEscalado[] = [];
   const ingredientById = new Map(seed.ingredientes.map((i) => [i.id, i]));
 
   const aGusto = recipe.lineas
-    .filter((l) => l.ref.tipo === 'ingrediente')
-    .map((l) => ingredientById.get(l.ref.id))
-    .filter((i): i is Ingredient => i !== undefined && noEscalaLineal(i));
+    .filter((l) => lineaAGusto(l, ingredientById))
+    .map((l) => ingredientById.get(l.ref.id)!);
 
   if (aGusto.length > 0) {
     avisos.push({

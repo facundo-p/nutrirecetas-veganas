@@ -169,6 +169,7 @@
 
 /* Lo que va debajo del nombre se alinea con el nombre, no con el punto. */
 .linea-en-vez-de,
+.linea-original,
 .linea-detalles {
   padding-left: calc(var(--punto-nutriente) + var(--sp-3));
 }
@@ -189,6 +190,41 @@
   margin-top: var(--sp-2);
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
+}
+
+.linea-original {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+}
+
+.lista-lineas-ajuste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+}
+
+.lista-lineas-ayuda,
+.nota-a-gusto {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+/* El campo de cantidad: la cifra a la derecha, subrayada en el color de lo que
+   se recalcula. */
+.linea-input {
+  width: var(--ancho-campo-cantidad);
+  padding: 0 var(--sp-1);
+  border: none;
+  border-bottom: 2px solid var(--recalculando);
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--tinta);
 }
 
 /* La B12 es seguridad, no cosmética (invariante 6): va en tinta, no en suave. */
