@@ -40,6 +40,13 @@ export function hayFiltros(f: RecipeFiltersState): boolean {
   );
 }
 
+/** Cuántos filtros hay puestos sin contar la búsqueda: es lo que dice el contador del botón. */
+export function cuantosFiltros(f: RecipeFiltersState): number {
+  return (Object.keys(EMPTY_FILTERS) as Array<keyof RecipeFiltersState>).filter(
+    (k) => k !== 'q' && f[k] !== EMPTY_FILTERS[k],
+  ).length;
+}
+
 /** ids de ingredientes cuyo nombre o sinónimos matchean la búsqueda */
 function matchingIngredientIds(idx: SeedIndex, q: string): Set<string> {
   const ids = new Set<string>();

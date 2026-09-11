@@ -446,6 +446,56 @@
 }
 
 
+/* ---------- buscador: lo usan el recetario y los ingredientes ---------- */
+
+.filtros {
+  display: grid;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+/* El borde es del campo entero, con la lupa adentro: por eso el foco se
+   dibuja en el contenedor y no en el input. */
+.filtros-buscador {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--alto-control);
+  padding: 0 var(--sp-3);
+  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border-radius: var(--radio);
+  color: var(--tinta-suave);
+}
+
+.filtros-buscador:focus-within {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.filtros-buscador svg {
+  flex: none;
+  font-size: 18px;
+}
+
+.filtros-busqueda {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  font: inherit;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--tinta);
+}
+
+.filtros-busqueda:focus-visible {
+  outline: none;
+}
+
+.filtros-busqueda::placeholder {
+  color: var(--dato-suave);
+}
+
 /* Puente entre un filtro y la ficha del nutriente que lo explica. */
 .filtros-enlace {
   font-size: var(--fs-sm);

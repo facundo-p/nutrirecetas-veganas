@@ -99,49 +99,78 @@ describe('RecipeList (render)', () => {
   });
 });
 
-describe('los chips del recetario', () => {
-  const chips = () =>
-    ['de estación', 'sin probar', 'probadas', 'pendientes', 'favoritas'].map((n) =>
-      screen.getByRole('button', { name: n }),
-    );
+describe('el modal de filtros', () => {
+  const abrir = () => fireEvent.click(screen.getByRole('button', { name: /^Filtros/ }));
+  const chip = (nombre: string) => screen.getByRole('button', { name: nombre });
 
-  test('van antes de los selects: en el celular, detrás de cinco quedaban fuera de pantalla', () => {
+  test('cerrado no se ve; lo cierran el velo, Escape y el botón de cierre', () => {
     render(<RecipeList />);
-    const primerChip = screen.getByRole('button', { name: 'de estación' });
-    const primerSelect = screen.getByLabelText('Tipo');
-    expect(primerChip.compareDocumentPosition(primerSelect)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(screen.queryByRole('dialog')).toBeNull();
+    abrir();
+    expect(screen.getByRole('dialog', { name: 'Filtros' })).toBeDefined();
+    fireEvent.click(screen.getByRole('button', { name: 'Cerrar los filtros' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    abrir();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+    abrir();
+    fireEvent.click(screen.getByRole('button', { name: 'Ver 84 recetas' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
-  test('están los cuatro estados, en orden, después de de estación', () => {
+  test('filtra en vivo y el botón de cierre dice el resultado: probadas son las 45 del recetario personal', () => {
     render(<RecipeList />);
-    const orden = chips();
-    for (let i = 1; i < orden.length; i++) {
-      expect(orden[i - 1]!.compareDocumentPosition(orden[i]!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
-    }
+    abrir();
+    fireEvent.click(chip('probadas'));
+    expect(screen.getByRole('button', { name: 'Ver 45 recetas' })).toBeDefined();
   });
 
-  test('cada chip prende y apaga, y el estado se dice con aria-pressed', () => {
+  test('sin ninguna, el botón lo dice en vez de ofrecer ver cero', () => {
     render(<RecipeList />);
-    const [estacion, sinProbar, probadas] = chips();
-    expect(estacion!.getAttribute('aria-pressed')).toBe('false');
-
-    fireEvent.click(estacion!);
-    expect(estacion!.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(estacion!);
-    expect(estacion!.getAttribute('aria-pressed')).toBe('false');
-
-    // los cuatro estados comparten el campo `estado`: prender uno apaga el otro
-    fireEvent.click(probadas!);
-    expect(probadas!.getAttribute('aria-pressed')).toBe('true');
-    fireEvent.click(sinProbar!);
-    expect(probadas!.getAttribute('aria-pressed')).toBe('false');
-    expect(sinProbar!.getAttribute('aria-pressed')).toBe('true');
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'zzzz' } });
+    abrir();
+    expect(screen.getByRole('button', { name: 'Ninguna receta con esos filtros' })).toBeDefined();
   });
 
-  test('sin elecciones propias, probadas son las 45 del recetario personal', () => {
+  test('cada grupo es de una sola elección: prender uno apaga el otro, y tocarlo de nuevo lo suelta', () => {
     render(<RecipeList />);
-    fireEvent.click(screen.getByRole('button', { name: 'probadas' }));
-    expect(screen.getByText(/^45 recetas con estos filtros$/)).toBeDefined();
+    abrir();
+    fireEvent.click(chip('probadas'));
+    expect(chip('probadas').getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(chip('sin probar'));
+    expect(chip('probadas').getAttribute('aria-pressed')).toBe('false');
+    expect(chip('sin probar').getAttribute('aria-pressed')).toBe('true');
+    fireEvent.click(chip('sin probar'));
+    expect(chip('sin probar').getAttribute('aria-pressed')).toBe('false');
+  });
+
+  test('el contador del botón cuenta los filtros puestos, sin la búsqueda', () => {
+    render(<RecipeList />);
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'lentejas' } });
+    expect(screen.getByRole('button', { name: 'Filtros' })).toBeDefined();
+    abrir();
+    fireEvent.click(chip('de estación'));
+    fireEvent.click(chip('saladas'));
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.getByRole('button', { name: 'Filtros, 2 puestos' })).toBeDefined();
+  });
+
+  test('«limpiar todo» suelta los filtros pero no la búsqueda', () => {
+    render(<RecipeList />);
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'lentejas' } });
+    abrir();
+    fireEvent.click(chip('saladas'));
+    fireEvent.click(screen.getByRole('button', { name: 'limpiar todo' }));
+    expect(chip('saladas').getAttribute('aria-pressed')).toBe('false');
+    expect((screen.getByRole('searchbox') as HTMLInputElement).value).toBe('lentejas');
+  });
+
+  test('los nutrientes con color llevan su cuadrado y se prenden en su color; los otros no', () => {
+    render(<RecipeList />);
+    abrir();
+    expect(chip('hierro').getAttribute('data-nut')).toBe('hierro');
+    expect(chip('hierro').querySelector('.cuadrado-nutriente')).not.toBeNull();
+    expect(chip('vitamina B12').getAttribute('data-nut')).toBeNull();
   });
 });
 

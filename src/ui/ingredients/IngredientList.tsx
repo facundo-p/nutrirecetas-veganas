@@ -5,7 +5,7 @@ import { midpoint } from '../../domain/interval';
 import { routeHash } from '../../app/router';
 import { amountUnit, currentMonth, formatNumber, normalize } from '../common/format';
 import { ingredientInSeason } from '../../domain/season';
-import { IconTemporada } from '../icons/icons';
+import { IconLupa, IconTemporada } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 
@@ -45,14 +45,17 @@ export function IngredientList() {
     <>
       <EncabezadoPantalla etiqueta="Ingredientes" titulo="Ingredientes" />
       <div className="filtros">
-        <input
-          type="search"
-          className="filtros-busqueda"
-          placeholder="Buscar por nombre o sinónimo…"
-          aria-label="Buscar ingredientes"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-        />
+        <label className="filtros-buscador">
+          <IconLupa />
+          <input
+            type="search"
+            className="filtros-busqueda"
+            placeholder="nombre o sinónimo"
+            aria-label="Buscar ingredientes"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+          />
+        </label>
         <div className="filtros-fila">
           <select aria-label="Categoría" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
             <option value="">Toda categoría</option>

@@ -421,3 +421,9 @@ de una auditoría ni de un test: de cocinar con ella.
   de 5 s bajo carga, y el diagnóstico estaba a mano. Corrido solo seguía rojo:
   esperaba un `h1` «Recetario» que el rediseño cambió a «Nutrirecetas». En
   staging tardaba 746 ms. Medir contra el baseline separó las dos causas.
+- **El grep cubre toda clase cuya regla se tocó, no solo las que se
+  renombraron.** En #158 se buscaron los consumidores de las clases movidas;
+  `.filtros-busqueda` se cambió en el lugar, y la lista de ingredientes —que la
+  leía desde `recetario.css`— llegó a staging con el buscador sin caja. Estaba
+  en un recorte que se miró para otra cosa. Lo destapó el grep de #159, al
+  borrar `.filtros-fila`.

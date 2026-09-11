@@ -67,7 +67,7 @@ export function RecipeList() {
       </EncabezadoPantalla>
       {/* El recetario abre en el buscador: se entra a buscar algo, no a que la
           app proponga. */}
-      <RecipeFilters filters={filters} onChange={setFilters} />
+      <RecipeFilters filters={filters} onChange={setFilters} resultados={total} />
       <div className="conteo-fila">
         <p className="conteo-resultados" aria-live="polite">
           {total} {total === 1 ? 'receta' : 'recetas'}
