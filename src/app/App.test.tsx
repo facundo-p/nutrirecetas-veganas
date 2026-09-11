@@ -23,7 +23,7 @@ test('la app arranca en el recetario con la navegación completa', async () => {
   expect(screen.queryByRole('link', { name: /Hoy/ })).toBeNull();
 
   // sin perfil cargado la app funciona igual: no hay portón que llenar
-  await waitFor(() => expect(screen.getByRole('heading', { name: 'Recetario', level: 1 })).toBeDefined());
+  await waitFor(() => expect(screen.getByRole('heading', { name: 'Nutrirecetas', level: 1 })).toBeDefined());
   expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
 });
 
