@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "216e6f09d811a355cbd1348be5eb4c5d0a5cb0ebdd4e8e9f83aa8d0ced6e823b",
+ "content_hash": "38a84f0a89354700e6a325a9cf7e4e056f692bd567475d40ea045a47e7e182de",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -6486,7 +6486,8 @@
        "tipo": "texto",
        "valor": "lentejas (menos cremosa, +15 min)"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -6503,7 +6504,8 @@
        "tipo": "id",
        "valor": "puerro"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -6520,7 +6522,8 @@
        "tipo": "id",
        "valor": "calabaza"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -6532,7 +6535,8 @@
      "g_aprox": 16,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -6549,7 +6553,8 @@
        "tipo": "texto",
        "valor": "tomate rallado (menos intenso)"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -6561,7 +6566,8 @@
      "g_aprox": 4,
      "funcion": "especia estructural",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -6578,7 +6584,8 @@
        "tipo": "texto",
        "valor": "ají molido"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -6595,7 +6602,8 @@
        "tipo": "texto",
        "valor": "agua + más sal"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -6607,7 +6615,8 @@
      "g_aprox": 40,
      "funcion": "vehículo del bloom de especias",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -6624,7 +6633,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -6641,7 +6651,8 @@
        "tipo": "id",
        "valor": "cilantro"
       }
-     ]
+     ],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -6712,7 +6723,8 @@
        "tipo": "id",
        "valor": "porotos_alubia"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -6724,7 +6736,8 @@
      "g_aprox": 250,
      "funcion": "base",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -6736,7 +6749,8 @@
      "g_aprox": 16,
      "funcion": "dúo aromático del curry",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -6748,7 +6762,8 @@
      "g_aprox": 12,
      "funcion": "dúo aromático del curry",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -6765,7 +6780,8 @@
        "tipo": "texto",
        "valor": "comino+coriandro+cúrcuma"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -6777,7 +6793,8 @@
      "g_aprox": 3,
      "funcion": "color + curcumina",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -6789,7 +6806,8 @@
      "g_aprox": 1,
      "funcion": "piperina: activa la curcumina (R8)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -6806,7 +6824,8 @@
        "tipo": "texto",
        "valor": "tomates frescos rallados"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -6823,7 +6842,8 @@
        "tipo": "texto",
        "valor": "crema de cajú"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -6844,7 +6864,8 @@
        "tipo": "id",
        "valor": "acelga"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -6856,7 +6877,8 @@
      "g_aprox": 20,
      "funcion": "balance final + vitamina C",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -6873,7 +6895,8 @@
        "tipo": "texto",
        "valor": "quinoa (sube proteína)"
       }
-     ]
+     ],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -6937,7 +6960,8 @@
      "g_aprox": 400,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -6950,7 +6974,8 @@
      "funcion": "ablanda pieles: cremosidad extrema",
      "imprescindible": true,
      "sustitutos": [],
-     "nota": "en la cocción; omitir da resultado más rústico"
+     "nota": "en la cocción; omitir da resultado más rústico",
+     "paso": 0
     },
     {
      "ref": {
@@ -6962,7 +6987,8 @@
      "g_aprox": 120,
      "funcion": "grasa y sabor estructural",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -6974,7 +7000,8 @@
      "g_aprox": 60,
      "funcion": "ácido estructural",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -6991,7 +7018,8 @@
        "tipo": "texto",
        "valor": "ajo confitado (más suave)"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -7008,7 +7036,8 @@
        "tipo": "texto",
        "valor": "aquafaba (aún más cremoso)"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -7020,7 +7049,8 @@
      "g_aprox": 1,
      "funcion": "calidez",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -7032,7 +7062,8 @@
      "g_aprox": 13,
      "funcion": "terminación",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -7091,7 +7122,8 @@
        "tipo": "texto",
        "valor": "soja_texturizada hidratada en caldo"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -7108,7 +7140,8 @@
        "tipo": "texto",
        "valor": "champiñones picados"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -7120,7 +7153,8 @@
      "g_aprox": 150,
      "funcion": "soffritto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -7132,7 +7166,8 @@
      "g_aprox": 70,
      "funcion": "soffritto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -7149,7 +7184,8 @@
        "tipo": "texto",
        "valor": "más cebolla"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -7161,7 +7197,8 @@
      "g_aprox": 12,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7173,7 +7210,8 @@
      "g_aprox": 32,
      "funcion": "umami: tostar",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7185,7 +7223,8 @@
      "g_aprox": 800,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7202,7 +7241,8 @@
        "tipo": "texto",
        "valor": "caldo + 1 cdta aceto"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -7214,7 +7254,8 @@
      "g_aprox": 24,
      "funcion": "segunda fuente de umami (sinergia)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -7226,7 +7267,8 @@
      "g_aprox": 0.5,
      "funcion": "perfil mediterráneo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7238,7 +7280,8 @@
      "g_aprox": 1,
      "funcion": "perfil mediterráneo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -7250,7 +7293,8 @@
      "g_aprox": 8,
      "funcion": "'queso' umami final",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -7313,7 +7357,8 @@
      "g_aprox": 350,
      "funcion": "base proteica",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -7325,7 +7370,8 @@
      "g_aprox": 1.5,
      "funcion": "color 'huevo'",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7342,7 +7388,8 @@
        "tipo": "texto",
        "valor": "sal común (pierde efecto huevo)"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -7354,7 +7401,8 @@
      "g_aprox": 8,
      "funcion": "umami cremoso",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7375,7 +7423,8 @@
        "tipo": "texto",
        "valor": "verdeo"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -7387,7 +7436,8 @@
      "g_aprox": 65,
      "funcion": "relleno",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7399,7 +7449,8 @@
      "g_aprox": 20,
      "funcion": "dorado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7416,7 +7467,8 @@
        "tipo": "id",
        "valor": "agua"
       }
-     ]
+     ],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -7472,7 +7524,8 @@
        "tipo": "id",
        "valor": "porotos_colorados"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -7493,7 +7546,8 @@
        "tipo": "id",
        "valor": "harina_garbanzo"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -7510,7 +7564,8 @@
        "tipo": "id",
        "valor": "girasol"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -7527,7 +7582,8 @@
        "tipo": "texto",
        "valor": "verdeo"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -7539,7 +7595,8 @@
      "g_aprox": 2,
      "funcion": "perfil parrilla",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -7551,7 +7608,8 @@
      "g_aprox": 2,
      "funcion": "perfil parrilla",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -7568,7 +7626,8 @@
        "tipo": "texto",
        "valor": "3 cdas aquafaba"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -7580,7 +7639,8 @@
      "g_aprox": 16,
      "funcion": "umami y sal",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -7646,7 +7706,8 @@
        "tipo": "id",
        "valor": "burgol"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -7663,7 +7724,8 @@
        "tipo": "texto",
        "valor": "tofu en cubos horneado"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -7680,7 +7742,8 @@
        "tipo": "id",
        "valor": "curry_polvo"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -7692,7 +7755,8 @@
      "g_aprox": 2,
      "funcion": "costra de sabor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7713,7 +7777,8 @@
        "tipo": "id",
        "valor": "zanahoria"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -7725,7 +7790,8 @@
      "g_aprox": 60,
      "funcion": "frescura",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -7742,7 +7808,8 @@
        "tipo": "texto",
        "valor": "manteca de maní (giro asiático)"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -7754,7 +7821,8 @@
      "g_aprox": 40,
      "funcion": "corta el tahini + activa el hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7766,7 +7834,8 @@
      "g_aprox": 3,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -7783,7 +7852,8 @@
        "tipo": "id",
        "valor": "girasol"
       }
-     ]
+     ],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -7851,7 +7921,8 @@
        "tipo": "texto",
        "valor": "zapallo cabutia"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -7868,7 +7939,8 @@
        "tipo": "id",
        "valor": "puerro"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -7880,7 +7952,8 @@
      "g_aprox": 12,
      "funcion": "aromático; asado en camisa queda dulce",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -7897,7 +7970,8 @@
        "tipo": "id",
        "valor": "curry_polvo"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -7914,7 +7988,8 @@
        "tipo": "texto",
        "valor": "agua + sal"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -7935,7 +8010,8 @@
        "tipo": "texto",
        "valor": "oliva generosa"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -7947,7 +8023,8 @@
      "g_aprox": 20,
      "funcion": "contraste crocante + zinc",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -8006,7 +8083,8 @@
      "g_aprox": 400,
      "funcion": "protagonista",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8018,7 +8096,8 @@
      "g_aprox": 150,
      "funcion": "sofrito criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8030,7 +8109,8 @@
      "g_aprox": 130,
      "funcion": "sofrito criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8042,7 +8122,8 @@
      "g_aprox": 16,
      "funcion": "sofrito criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8054,7 +8135,8 @@
      "g_aprox": 140,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8066,7 +8148,8 @@
      "g_aprox": 190,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8083,7 +8166,8 @@
        "tipo": "id",
        "valor": "calabaza"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -8095,7 +8179,8 @@
      "g_aprox": 400,
      "funcion": "salsa: entra al final",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8107,7 +8192,8 @@
      "g_aprox": 4,
      "funcion": "el 'chorizo fantasma': aporta el ahumado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8124,7 +8210,8 @@
        "tipo": "texto",
        "valor": "champiñones dorados"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -8136,7 +8223,8 @@
      "g_aprox": 1,
      "funcion": "perfil criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8148,7 +8236,8 @@
      "g_aprox": 2,
      "funcion": "perfil criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8160,7 +8249,8 @@
      "g_aprox": 1,
      "funcion": "perfil criollo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8177,7 +8267,8 @@
        "tipo": "id",
        "valor": "levadura_nutricional"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -8194,7 +8285,8 @@
        "tipo": "id",
        "valor": "perejil"
       }
-     ]
+     ],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -8257,7 +8349,8 @@
      "g_aprox": 80,
      "funcion": "base saciante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8274,7 +8367,8 @@
        "tipo": "texto",
        "valor": "lino molido (menos gel)"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -8286,7 +8380,8 @@
      "g_aprox": 400,
      "funcion": "líquido + calcio: elegir CON calcio agregado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8307,7 +8402,8 @@
        "tipo": "texto",
        "valor": "dátiles"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -8328,7 +8424,8 @@
        "tipo": "id",
        "valor": "naranja"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -8345,7 +8442,8 @@
        "tipo": "id",
        "valor": "cacao_amargo"
       }
-     ]
+     ],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -8408,7 +8506,8 @@
        "tipo": "id",
        "valor": "garbanzos"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -8425,7 +8524,8 @@
        "tipo": "texto",
        "valor": "coliflor + kale"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -8437,7 +8537,8 @@
      "g_aprox": 18,
      "funcion": "calcio + remate tostado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -8449,7 +8550,8 @@
      "g_aprox": 48,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8461,7 +8563,8 @@
      "g_aprox": 12,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8473,7 +8576,8 @@
      "g_aprox": 6,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8485,7 +8589,8 @@
      "g_aprox": 8,
      "funcion": "costra del tofu y liga de la salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8497,7 +8602,8 @@
      "g_aprox": 15,
      "funcion": "balance agridulce",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8509,7 +8615,8 @@
      "g_aprox": 4,
      "funcion": "balance",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8521,7 +8628,8 @@
      "g_aprox": 190,
      "funcion": "base",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -8593,7 +8701,8 @@
        "tipo": "texto",
        "valor": "rúcula + repollo fino"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -8605,7 +8714,8 @@
      "g_aprox": 13,
      "funcion": "masajeado: ablanda la hoja",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8617,7 +8727,8 @@
      "g_aprox": 250,
      "funcion": "proteína e hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8638,7 +8749,8 @@
        "tipo": "id",
        "valor": "kiwi"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -8650,7 +8762,8 @@
      "g_aprox": 20,
      "funcion": "aliño ácido",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8662,7 +8775,8 @@
      "g_aprox": 20,
      "funcion": "zinc + crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8674,7 +8788,8 @@
      "g_aprox": 70,
      "funcion": "cremosidad",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -8729,7 +8844,8 @@
      "g_aprox": 15,
      "funcion": "envoltura + YODO: la receta que cubre el nutriente más difícil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -8741,7 +8857,8 @@
      "g_aprox": 300,
      "funcion": "cuerpo pegajoso (grano corto: doble carolina)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -8758,7 +8875,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana diluido"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -8770,7 +8888,8 @@
      "g_aprox": 12,
      "funcion": "sazón del arroz",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8782,7 +8901,8 @@
      "g_aprox": 140,
      "funcion": "cremosidad y grasa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8799,7 +8919,8 @@
        "tipo": "texto",
        "valor": "morrón"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -8811,7 +8932,8 @@
      "g_aprox": 70,
      "funcion": "color y crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8823,7 +8945,8 @@
      "g_aprox": 9,
      "funcion": "remate",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -8835,7 +8958,8 @@
      "g_aprox": 32,
      "funcion": "acompañamiento",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     }
    ],
    "pasos": [
@@ -8896,7 +9020,8 @@
      "g_aprox": 400,
      "funcion": "base + selenio del trigo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -8913,7 +9038,8 @@
        "tipo": "texto",
        "valor": "mitad espinaca (rinde más, pierde perfume)"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -8930,7 +9056,8 @@
        "tipo": "texto",
        "valor": "girasol tostado (económico)"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -8942,7 +9069,8 @@
      "g_aprox": 12,
      "funcion": "el 'parmesano' umami",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8954,7 +9082,8 @@
      "g_aprox": 8,
      "funcion": "pungencia",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8966,7 +9095,8 @@
      "g_aprox": 20,
      "funcion": "frescura y anti-oxidación",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -8978,7 +9108,8 @@
      "g_aprox": 73,
      "funcion": "estructura de la salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -8990,7 +9121,8 @@
      "g_aprox": 300,
      "funcion": "dulzor ácido + licopeno (R10)",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -9053,7 +9185,8 @@
      "g_aprox": 250,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9065,7 +9198,8 @@
      "g_aprox": 250,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9077,7 +9211,8 @@
      "g_aprox": 150,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9089,7 +9224,8 @@
      "g_aprox": 130,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9101,7 +9237,8 @@
      "g_aprox": 16,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9113,7 +9250,8 @@
      "g_aprox": 800,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9125,7 +9263,8 @@
      "g_aprox": 4,
      "funcion": "perfil tex-mex",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9137,7 +9276,8 @@
      "g_aprox": 4,
      "funcion": "perfil tex-mex",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9154,7 +9294,8 @@
        "tipo": "texto",
        "valor": "chocolate 70%: 2 cuadraditos"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -9166,7 +9307,8 @@
      "g_aprox": 60,
      "funcion": "mordida",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9178,7 +9320,8 @@
      "g_aprox": 150,
      "funcion": "dulzor",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9190,7 +9333,8 @@
      "g_aprox": 40,
      "funcion": "R1 + frescura (con palta)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -9258,7 +9402,8 @@
      "g_aprox": 100,
      "funcion": "el 'huevo' vegetal",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9270,7 +9415,8 @@
      "g_aprox": 240,
      "funcion": "batido (reposar 10 min)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9282,7 +9428,8 @@
      "g_aprox": 0.7,
      "funcion": "color",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9294,7 +9441,8 @@
      "g_aprox": 1,
      "funcion": "calidez",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9306,7 +9454,8 @@
      "g_aprox": 1.5,
      "funcion": "efecto huevo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -9318,7 +9467,8 @@
      "g_aprox": 30,
      "funcion": "relleno",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9330,7 +9480,8 @@
      "g_aprox": 125,
      "funcion": "relleno",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9342,7 +9493,8 @@
      "g_aprox": 30,
      "funcion": "relleno",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9354,7 +9506,8 @@
      "g_aprox": 13,
      "funcion": "cocción",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -9413,7 +9566,8 @@
      "g_aprox": 500,
      "funcion": "cuerpo cremoso + calcio/hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9430,7 +9584,8 @@
        "tipo": "texto",
        "valor": "acelga (su calcio no computa: R7)"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -9442,7 +9597,8 @@
      "g_aprox": 150,
      "funcion": "soffritto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9454,7 +9610,8 @@
      "g_aprox": 70,
      "funcion": "soffritto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9466,7 +9623,8 @@
      "g_aprox": 50,
      "funcion": "soffritto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9478,7 +9636,8 @@
      "g_aprox": 16,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9490,7 +9649,8 @@
      "g_aprox": 200,
      "funcion": "fondo (poco: no es guiso rojo)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -9502,7 +9662,8 @@
      "g_aprox": 750,
      "funcion": "medio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9514,7 +9675,8 @@
      "g_aprox": 40,
      "funcion": "el toque toscano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9526,7 +9688,8 @@
      "g_aprox": 1,
      "funcion": "perfume",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -9538,7 +9701,8 @@
      "g_aprox": 120,
      "funcion": "la versión completa",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -9602,7 +9766,8 @@
      "g_aprox": 300,
      "funcion": "se deshacen en crema",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9614,7 +9779,8 @@
      "g_aprox": 3,
      "funcion": "en el agua de cocción",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9626,7 +9792,8 @@
      "g_aprox": 40,
      "funcion": "vehículo del tadka",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -9643,7 +9810,8 @@
        "tipo": "texto",
        "valor": "mostaza en grano"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -9655,7 +9823,8 @@
      "g_aprox": 16,
      "funcion": "tadka: dorar SEGUNDOS",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -9667,7 +9836,8 @@
      "g_aprox": 6,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -9679,7 +9849,8 @@
      "g_aprox": 1,
      "funcion": "activa curcumina (R8)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9691,7 +9862,8 @@
      "g_aprox": 125,
      "funcion": "acidez",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -9703,7 +9875,8 @@
      "g_aprox": 40,
      "funcion": "R1",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -9720,7 +9893,8 @@
        "tipo": "texto",
        "valor": "pan"
       }
-     ]
+     ],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -9786,7 +9960,8 @@
        "tipo": "texto",
        "valor": "burgol fino (versión clásica)"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -9798,7 +9973,8 @@
      "g_aprox": 60,
      "funcion": "acá es verdura, no adorno: C + hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -9815,7 +9991,8 @@
        "tipo": "texto",
        "valor": "más perejil (pierde identidad)"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -9827,7 +10004,8 @@
      "g_aprox": 250,
      "funcion": "jugosidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -9839,7 +10017,8 @@
      "g_aprox": 150,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -9851,7 +10030,8 @@
      "g_aprox": 60,
      "funcion": "aliño abundante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -9863,7 +10043,8 @@
      "g_aprox": 54,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -9875,7 +10056,8 @@
      "g_aprox": 40,
      "funcion": "pungencia",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -9932,7 +10114,8 @@
      "g_aprox": 520,
      "funcion": "requisito innegociable: del día anterior",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -9949,7 +10132,8 @@
        "tipo": "texto",
        "valor": "arvejas"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -9966,7 +10150,8 @@
        "tipo": "id",
        "valor": "girgolas"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -9978,7 +10163,8 @@
      "g_aprox": 48,
      "funcion": "sazón (por los bordes del wok)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -9990,7 +10176,8 @@
      "g_aprox": 6,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10002,7 +10189,8 @@
      "g_aprox": 12,
      "funcion": "aromático",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10014,7 +10202,8 @@
      "g_aprox": 40,
      "funcion": "crocante y grasa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -10026,7 +10215,8 @@
      "g_aprox": 45,
      "funcion": "frescura final",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -10038,7 +10228,8 @@
      "g_aprox": 27,
      "funcion": "salteado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10050,7 +10241,8 @@
      "g_aprox": 9,
      "funcion": "remate",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -10112,7 +10304,8 @@
      "g_aprox": 400,
      "funcion": "cuerpo húmedo invisible (enjuague serio)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10124,7 +10317,8 @@
      "g_aprox": 60,
      "funcion": "sabor dominante: tapa el poroto",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10136,7 +10330,8 @@
      "g_aprox": 50,
      "funcion": "estructura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10148,7 +10343,8 @@
      "g_aprox": 120,
      "funcion": "dulzor (menos que un brownie clásico)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10160,7 +10356,8 @@
      "g_aprox": 14,
      "funcion": "liga (hidratar con 5 cdas agua)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10177,7 +10374,8 @@
        "tipo": "texto",
        "valor": "aceite neutro"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -10189,7 +10387,8 @@
      "g_aprox": 4,
      "funcion": "leve levantado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10201,7 +10400,8 @@
      "g_aprox": 4,
      "funcion": "redondeo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10213,7 +10413,8 @@
      "g_aprox": 30,
      "funcion": "remate",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -10274,7 +10475,8 @@
      "g_aprox": 236,
      "funcion": "endulzante y liga: el dulzor está en las manchas",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10286,7 +10488,8 @@
      "g_aprox": 150,
      "funcion": "estructura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10298,7 +10501,8 @@
      "g_aprox": 2,
      "funcion": "aroma",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10323,7 +10527,8 @@
        "tipo": "texto",
        "valor": "coco rallado"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -10335,7 +10540,8 @@
      "g_aprox": 16,
      "funcion": "riqueza",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -10384,7 +10590,8 @@
      "g_aprox": 280,
      "funcion": "la crema invisible",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10396,7 +10603,8 @@
      "g_aprox": 25,
      "funcion": "sabor dominante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10413,7 +10621,8 @@
        "tipo": "texto",
        "valor": "mascabo 4 cdas"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -10425,7 +10634,8 @@
      "g_aprox": 75,
      "funcion": "textura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10437,7 +10647,8 @@
      "g_aprox": 4,
      "funcion": "redondeo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10449,7 +10660,8 @@
      "g_aprox": 0.5,
      "funcion": "hace que sepa a postre serio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10461,7 +10673,8 @@
      "g_aprox": 30,
      "funcion": "versión lujosa",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -10473,7 +10686,8 @@
      "g_aprox": 150,
      "funcion": "frescura + C",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -10530,7 +10744,8 @@
      "g_aprox": 354,
      "funcion": "humedad y dulzor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10547,7 +10762,8 @@
        "tipo": "texto",
        "valor": "mitad blanca fortificada"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -10559,7 +10775,8 @@
      "g_aprox": 80,
      "funcion": "dulzor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10576,7 +10793,8 @@
        "tipo": "texto",
        "valor": "aceite neutro"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -10588,7 +10806,8 @@
      "g_aprox": 7,
      "funcion": "liga (con 3 cdas agua)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10600,7 +10819,8 @@
      "g_aprox": 8,
      "funcion": "leudado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10612,7 +10832,8 @@
      "g_aprox": 2,
      "funcion": "leudado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10624,7 +10845,8 @@
      "g_aprox": 2,
      "funcion": "aroma",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10636,7 +10858,8 @@
      "g_aprox": 60,
      "funcion": "ALA + crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -10648,7 +10871,8 @@
      "g_aprox": 40,
      "funcion": "vicio",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -10710,7 +10934,8 @@
      "g_aprox": 200,
      "funcion": "pegamento dulce (remojar 10 min si duros)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10722,7 +10947,8 @@
      "g_aprox": 100,
      "funcion": "cuerpo y proteína",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10734,7 +10960,8 @@
      "g_aprox": 15,
      "funcion": "sabor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10746,7 +10973,8 @@
      "g_aprox": 40,
      "funcion": "regula humedad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10758,7 +10986,8 @@
      "g_aprox": 0.5,
      "funcion": "clave del sabor",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -10775,7 +11004,8 @@
        "tipo": "texto",
        "valor": "sésamo"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -10792,7 +11022,8 @@
        "tipo": "texto",
        "valor": "lino molido"
       }
-     ]
+     ],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -10847,7 +11078,8 @@
      "g_aprox": 720,
      "funcion": "la fruta (verde/ácida equilibra mejor)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10859,7 +11091,8 @@
      "g_aprox": 20,
      "funcion": "frescura anti-oxidación",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10871,7 +11104,8 @@
      "g_aprox": 2,
      "funcion": "aroma",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10883,7 +11117,8 @@
      "g_aprox": 90,
      "funcion": "dulzor base + cobertura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10895,7 +11130,8 @@
      "g_aprox": 100,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10907,7 +11143,8 @@
      "g_aprox": 60,
      "funcion": "estructura de la arena",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -10924,7 +11161,8 @@
        "tipo": "texto",
        "valor": "margarina vegetal"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -10936,7 +11174,8 @@
      "g_aprox": 30,
      "funcion": "dulzor",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -10948,7 +11187,8 @@
      "g_aprox": 40,
      "funcion": "crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -11002,7 +11242,8 @@
      "g_aprox": 354,
      "funcion": "todo el helado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11014,7 +11255,8 @@
      "g_aprox": 45,
      "funcion": "ayuda a la máquina",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11026,7 +11268,8 @@
      "g_aprox": 10,
      "funcion": "sabor chocolate",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11038,7 +11281,8 @@
      "g_aprox": 16,
      "funcion": "sabor maní",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11050,7 +11294,8 @@
      "g_aprox": 75,
      "funcion": "sabor frutal",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -11108,7 +11353,8 @@
      "g_aprox": 100,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11120,7 +11366,8 @@
      "g_aprox": 1000,
      "funcion": "cremosidad + calcio: el postre de abuela como fuente de calcio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11137,7 +11384,8 @@
        "tipo": "texto",
        "valor": "azúcar común"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -11149,7 +11397,8 @@
      "g_aprox": 2,
      "funcion": "perfume clásico",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11161,7 +11410,8 @@
      "g_aprox": 3,
      "funcion": "el alma del de abuela",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11173,7 +11423,8 @@
      "g_aprox": 4,
      "funcion": "redondeo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11185,7 +11436,8 @@
      "g_aprox": 2,
      "funcion": "terminación",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -11241,7 +11493,8 @@
      "g_aprox": 48,
      "funcion": "gel + ALA + calcio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11253,7 +11506,8 @@
      "g_aprox": 10,
      "funcion": "sabor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11265,7 +11519,8 @@
      "g_aprox": 300,
      "funcion": "líquido + calcio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11282,7 +11537,8 @@
        "tipo": "texto",
        "valor": "mascabo 2 cdas"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -11294,7 +11550,8 @@
      "g_aprox": 2,
      "funcion": "redondeo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11311,7 +11568,8 @@
        "tipo": "id",
        "valor": "frutilla"
       }
-     ]
+     ],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -11371,7 +11629,8 @@
      "g_aprox": 200,
      "funcion": "humedad + caroteno (la grasa de la masa resuelve R6)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11383,7 +11642,8 @@
      "g_aprox": 220,
      "funcion": "estructura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11395,7 +11655,8 @@
      "g_aprox": 100,
      "funcion": "dulzor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11412,7 +11673,8 @@
        "tipo": "texto",
        "valor": "aceite neutro"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -11424,7 +11686,8 @@
      "g_aprox": 120,
      "funcion": "líquido: con 1 cdta de vinagre = suero vegano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11436,7 +11699,8 @@
      "g_aprox": 5,
      "funcion": "activa el leudado con el bicarbonato",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11448,7 +11712,8 @@
      "g_aprox": 7,
      "funcion": "liga",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11460,7 +11725,8 @@
      "g_aprox": 8,
      "funcion": "leudado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11472,7 +11738,8 @@
      "g_aprox": 2,
      "funcion": "leudado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11484,7 +11751,8 @@
      "g_aprox": 4,
      "funcion": "aroma",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -11496,7 +11764,8 @@
      "g_aprox": 60,
      "funcion": "ALA + crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -11508,7 +11777,8 @@
      "g_aprox": 40,
      "funcion": "dulzor",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -11575,7 +11845,8 @@
      "g_aprox": 750,
      "funcion": "la 'carne' en láminas de 1 cm",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11587,7 +11858,8 @@
      "g_aprox": 60,
      "funcion": "base del batido de rebozado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11604,7 +11876,8 @@
        "tipo": "texto",
        "valor": "fécula + más líquido"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -11616,7 +11889,8 @@
      "g_aprox": 16,
      "funcion": "sabor de fondo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11633,7 +11907,8 @@
        "tipo": "texto",
        "valor": "ajo fresco muy picado"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -11645,7 +11920,8 @@
      "g_aprox": 3,
      "funcion": "sazón del batido",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11657,7 +11933,8 @@
      "g_aprox": 1.5,
      "funcion": "color",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11674,7 +11951,8 @@
        "tipo": "texto",
        "valor": "copos de maíz + harina de almendras (sin gluten)"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -11686,7 +11964,8 @@
      "g_aprox": 50,
      "funcion": "el 'queso' del empanado: umami de milanesa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11698,7 +11977,8 @@
      "g_aprox": 2,
      "funcion": "perfume",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11710,7 +11990,8 @@
      "g_aprox": 1,
      "funcion": "perfume",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11722,7 +12003,8 @@
      "g_aprox": 2,
      "funcion": "perfume",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11734,7 +12016,8 @@
      "g_aprox": 40,
      "funcion": "dorado al horno",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -11746,7 +12029,8 @@
      "g_aprox": 40,
      "funcion": "el clásico al servir",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -11817,7 +12101,8 @@
        "tipo": "id",
        "valor": "porotos_negros"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -11829,7 +12114,8 @@
      "g_aprox": 150,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11841,7 +12127,8 @@
      "g_aprox": 8,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -11853,7 +12140,8 @@
      "g_aprox": 130,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11865,7 +12153,8 @@
      "g_aprox": 70,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -11877,7 +12166,8 @@
      "g_aprox": 32,
      "funcion": "umami: tostar",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11889,7 +12179,8 @@
      "g_aprox": 4,
      "funcion": "perfil mexicano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11901,7 +12192,8 @@
      "g_aprox": 2,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -11918,7 +12210,8 @@
        "tipo": "texto",
        "valor": "tomate triturado reducido"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -11935,7 +12228,8 @@
        "tipo": "texto",
        "valor": "lima"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -11956,7 +12250,8 @@
        "tipo": "texto",
        "valor": "hojas de lechuga"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -11968,7 +12263,8 @@
      "g_aprox": 280,
      "funcion": "cremosidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -11985,7 +12281,8 @@
        "tipo": "id",
        "valor": "zanahoria"
       }
-     ]
+     ],
+     "paso": 6
     },
     {
      "ref": {
@@ -11997,7 +12294,8 @@
      "g_aprox": 60,
      "funcion": "picante fresco",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -12014,7 +12312,8 @@
        "tipo": "texto",
        "valor": "crema de cajú"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -12031,7 +12330,8 @@
        "tipo": "texto",
        "valor": "perejil + ralladura de limón"
       }
-     ]
+     ],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -12099,7 +12399,8 @@
        "tipo": "id",
        "valor": "porotos_colorados"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -12116,7 +12417,8 @@
        "tipo": "id",
        "valor": "arroz_blanco"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -12128,7 +12430,8 @@
      "g_aprox": 150,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12140,7 +12443,8 @@
      "g_aprox": 130,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12152,7 +12456,8 @@
      "g_aprox": 8,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12164,7 +12469,8 @@
      "g_aprox": 2,
      "funcion": "perfil tex-mex",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12176,7 +12482,8 @@
      "g_aprox": 2,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12188,7 +12495,8 @@
      "g_aprox": 0.5,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12205,7 +12513,8 @@
        "tipo": "id",
        "valor": "agua"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -12222,7 +12531,8 @@
        "tipo": "texto",
        "valor": "lima"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -12234,7 +12544,8 @@
      "g_aprox": 400,
      "funcion": "envoltura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -12246,7 +12557,8 @@
      "g_aprox": 140,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12258,7 +12570,8 @@
      "g_aprox": 200,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12270,7 +12583,8 @@
      "g_aprox": 150,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12282,7 +12596,8 @@
      "g_aprox": 30,
      "funcion": "fresco",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12299,7 +12614,8 @@
        "tipo": "id",
        "valor": "perejil"
       }
-     ]
+     ],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -12367,7 +12683,8 @@
        "tipo": "texto",
        "valor": "garbanzos especiados"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -12379,7 +12696,8 @@
      "g_aprox": 40,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12391,7 +12709,8 @@
      "g_aprox": 30,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12403,7 +12722,8 @@
      "g_aprox": 15,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12415,7 +12735,8 @@
      "g_aprox": 8,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12427,7 +12748,8 @@
      "g_aprox": 1,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12439,7 +12761,8 @@
      "g_aprox": 1,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12451,7 +12774,8 @@
      "g_aprox": 0.5,
      "funcion": "marinada",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12463,7 +12787,8 @@
      "g_aprox": 0.5,
      "funcion": "marinada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12484,7 +12809,8 @@
        "tipo": "id",
        "valor": "burgol"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -12496,7 +12822,8 @@
      "g_aprox": 150,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12508,7 +12835,8 @@
      "g_aprox": 300,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12520,7 +12848,8 @@
      "g_aprox": 130,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12532,7 +12861,8 @@
      "g_aprox": 75,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12544,7 +12874,8 @@
      "g_aprox": 100,
      "funcion": "sal/grasa mediterránea",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12556,7 +12887,8 @@
      "g_aprox": 20,
      "funcion": "chispazo salado (alcaparras si conseguís)",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -12573,7 +12905,8 @@
        "tipo": "id",
        "valor": "menta"
       }
-     ]
+     ],
+     "paso": 6
     },
     {
      "ref": {
@@ -12585,7 +12918,8 @@
      "g_aprox": 40,
      "funcion": "hierba",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -12602,7 +12936,8 @@
        "tipo": "id",
        "valor": "almendras"
       }
-     ]
+     ],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -12663,7 +12998,8 @@
      "g_aprox": 200,
      "funcion": "base",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -12675,7 +13011,8 @@
      "g_aprox": 400,
      "funcion": "proteína",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12687,7 +13024,8 @@
      "g_aprox": 270,
      "funcion": "asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12699,7 +13037,8 @@
      "g_aprox": 260,
      "funcion": "asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12711,7 +13050,8 @@
      "g_aprox": 200,
      "funcion": "asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12723,7 +13063,8 @@
      "g_aprox": 150,
      "funcion": "asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12735,7 +13076,8 @@
      "g_aprox": 12,
      "funcion": "asado: se vuelve crema dulce del aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -12747,7 +13089,8 @@
      "g_aprox": 2,
      "funcion": "especias del asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12759,7 +13102,8 @@
      "g_aprox": 2,
      "funcion": "especias",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12771,7 +13115,8 @@
      "g_aprox": 1,
      "funcion": "la firma árabe del asado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12783,7 +13128,8 @@
      "g_aprox": 40,
      "funcion": "aliño (R1)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -12795,7 +13141,8 @@
      "g_aprox": 80,
      "funcion": "asado + aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -12807,7 +13154,8 @@
      "g_aprox": 15,
      "funcion": "cremosidad del aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -12824,7 +13172,8 @@
        "tipo": "id",
        "valor": "miel_de_cana"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -12836,7 +13185,8 @@
      "g_aprox": 60,
      "funcion": "frescura",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -12848,7 +13198,8 @@
      "g_aprox": 50,
      "funcion": "sal",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -12860,7 +13211,8 @@
      "g_aprox": 8,
      "funcion": "hierba",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -12872,7 +13224,8 @@
      "g_aprox": 8,
      "funcion": "hierba",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -12893,7 +13246,8 @@
        "tipo": "id",
        "valor": "girasol"
       }
-     ]
+     ],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -12964,7 +13318,8 @@
        "tipo": "id",
        "valor": "burgol"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -12981,7 +13336,8 @@
        "tipo": "texto",
        "valor": "porotos"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -12993,7 +13349,8 @@
      "g_aprox": 250,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13005,7 +13362,8 @@
      "g_aprox": 12,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13017,7 +13375,8 @@
      "g_aprox": 140,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13029,7 +13388,8 @@
      "g_aprox": 100,
      "funcion": "sofrito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13041,7 +13401,8 @@
      "g_aprox": 130,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13053,7 +13414,8 @@
      "g_aprox": 200,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13065,7 +13427,8 @@
      "g_aprox": 230,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13077,7 +13440,8 @@
      "g_aprox": 400,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -13089,7 +13453,8 @@
      "g_aprox": 750,
      "funcion": "medio",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -13101,7 +13466,8 @@
      "g_aprox": 4,
      "funcion": "perfil cálido",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13113,7 +13479,8 @@
      "g_aprox": 2,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13125,7 +13492,8 @@
      "g_aprox": 1,
      "funcion": "la firma",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13137,7 +13505,8 @@
      "g_aprox": 1,
      "funcion": "fondo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -13158,7 +13527,8 @@
        "tipo": "id",
        "valor": "kale"
       }
-     ]
+     ],
+     "paso": 6
     },
     {
      "ref": {
@@ -13170,7 +13540,8 @@
      "g_aprox": 40,
      "funcion": "levantada final (R1)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -13182,7 +13553,8 @@
      "g_aprox": 12,
      "funcion": "hierbas",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -13194,7 +13566,8 @@
      "g_aprox": 8,
      "funcion": "hierbas",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -13211,7 +13584,8 @@
        "tipo": "id",
        "valor": "girasol"
       }
-     ]
+     ],
+     "paso": 7
     }
    ],
    "pasos": [
@@ -13291,7 +13665,8 @@
        "tipo": "id",
        "valor": "cuscus"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -13308,7 +13683,8 @@
        "tipo": "id",
        "valor": "garbanzos"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -13320,7 +13696,8 @@
      "g_aprox": 200,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13332,7 +13709,8 @@
      "g_aprox": 130,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13344,7 +13722,8 @@
      "g_aprox": 70,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13356,7 +13735,8 @@
      "g_aprox": 60,
      "funcion": "crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13368,7 +13748,8 @@
      "g_aprox": 150,
      "funcion": "verde firme (U6)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13380,7 +13761,8 @@
      "g_aprox": 60,
      "funcion": "dulzor puntual",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -13392,7 +13774,8 @@
      "g_aprox": 80,
      "funcion": "⭐ el diferencial del aliño: C doble sobre hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13404,7 +13787,8 @@
      "g_aprox": 40,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13416,7 +13800,8 @@
      "g_aprox": 40,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13428,7 +13813,8 @@
      "g_aprox": 5,
      "funcion": "emulsiona el aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13440,7 +13826,8 @@
      "g_aprox": 3,
      "funcion": "chispa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13452,7 +13839,8 @@
      "g_aprox": 4,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13469,7 +13857,8 @@
        "tipo": "id",
        "valor": "miel_de_cana"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -13486,7 +13875,8 @@
        "tipo": "id",
        "valor": "cilantro"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -13503,7 +13893,8 @@
        "tipo": "id",
        "valor": "girasol"
       }
-     ]
+     ],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -13566,7 +13957,8 @@
        "tipo": "texto",
        "valor": "quinoa o mijo (sin gluten, +15 min)"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -13583,7 +13975,8 @@
        "tipo": "texto",
        "valor": "agua + sal"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -13595,7 +13988,8 @@
      "g_aprox": 400,
      "funcion": "proteína",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -13607,7 +14001,8 @@
      "g_aprox": 170,
      "funcion": "crudo finito",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13619,7 +14014,8 @@
      "g_aprox": 130,
      "funcion": "crudo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13631,7 +14027,8 @@
      "g_aprox": 70,
      "funcion": "crudo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13643,7 +14040,8 @@
      "g_aprox": 75,
      "funcion": "crudo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13655,7 +14053,8 @@
      "g_aprox": 60,
      "funcion": "crudo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13672,7 +14071,8 @@
        "tipo": "texto",
        "valor": "aceitunas + ½ cda extracto de tomate en el aliño"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -13684,7 +14084,8 @@
      "g_aprox": 60,
      "funcion": "sal mediterránea",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13696,7 +14097,8 @@
      "g_aprox": 50,
      "funcion": "contrapunto dulce",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -13708,7 +14110,8 @@
      "g_aprox": 40,
      "funcion": "acá las hierbas son verdura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13720,7 +14123,8 @@
      "g_aprox": 40,
      "funcion": "hierba",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13732,7 +14136,8 @@
      "g_aprox": 8,
      "funcion": "hierba",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -13744,7 +14149,8 @@
      "g_aprox": 40,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13756,7 +14162,8 @@
      "g_aprox": 54,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13768,7 +14175,8 @@
      "g_aprox": 4,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13780,7 +14188,8 @@
      "g_aprox": 2,
      "funcion": "perfil magrebí",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13792,7 +14201,8 @@
      "g_aprox": 0.5,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13804,7 +14214,8 @@
      "g_aprox": 0.7,
      "funcion": "perfil",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13821,7 +14232,8 @@
        "tipo": "id",
        "valor": "miel_de_cana"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -13833,7 +14245,8 @@
      "g_aprox": 50,
      "funcion": "crocante",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -13898,7 +14311,8 @@
        "tipo": "id",
        "valor": "porotos_alubia"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -13910,7 +14324,8 @@
      "g_aprox": 280,
      "funcion": "cremosidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -13922,7 +14337,8 @@
      "g_aprox": 300,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -13934,7 +14350,8 @@
      "g_aprox": 150,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -13946,7 +14363,8 @@
      "g_aprox": 130,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -13958,7 +14376,8 @@
      "g_aprox": 75,
      "funcion": "fresco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -13970,7 +14389,8 @@
      "g_aprox": 60,
      "funcion": "sal/grasa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -13982,7 +14402,8 @@
      "g_aprox": 80,
      "funcion": "aliño (R1 asegurada)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -13994,7 +14415,8 @@
      "g_aprox": 54,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14006,7 +14428,8 @@
      "g_aprox": 4,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14018,7 +14441,8 @@
      "g_aprox": 2,
      "funcion": "especia central",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14030,7 +14454,8 @@
      "g_aprox": 1,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14042,7 +14467,8 @@
      "g_aprox": 1.5,
      "funcion": "aliño",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14054,7 +14480,8 @@
      "g_aprox": 4,
      "funcion": "redondeo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14071,7 +14498,8 @@
        "tipo": "id",
        "valor": "perejil"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -14083,7 +14511,8 @@
      "g_aprox": 8,
      "funcion": "frescura",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -14140,7 +14569,8 @@
      "g_aprox": 250,
      "funcion": "base (pesada antes de remojar)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14152,7 +14582,8 @@
      "g_aprox": 2150,
      "funcion": "650 licuado + 1500 en olla",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14164,7 +14595,8 @@
      "g_aprox": 1,
      "funcion": "aroma",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -14176,7 +14608,8 @@
      "g_aprox": 0.5,
      "funcion": "redondeo",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -14230,7 +14663,8 @@
      "g_aprox": 85,
      "funcion": "base",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14242,7 +14676,8 @@
      "g_aprox": 480,
      "funcion": "1 sola para versión concentrada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     }
    ],
    "pasos": [
@@ -14293,7 +14728,8 @@
      "g_aprox": 60,
      "funcion": "base que cuaja (tiene que ser soja o almendras)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14305,7 +14741,8 @@
      "g_aprox": 8,
      "funcion": "corta la leche (tiene que ser de manzana)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14322,7 +14759,8 @@
        "tipo": "texto",
        "valor": "⅓ reemplazable por girasol: más untable"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -14334,7 +14772,8 @@
      "g_aprox": 13,
      "funcion": "afina",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14346,7 +14785,8 @@
      "g_aprox": 4,
      "funcion": "EL emulsionante: evita que se separe",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14358,7 +14798,8 @@
      "g_aprox": 4,
      "funcion": "sabor + vitaminas B",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14369,7 +14810,8 @@
      "unidad_display": "cdta",
      "g_aprox": 1.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14381,7 +14823,8 @@
      "g_aprox": 0.2,
      "funcion": "color",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -14434,7 +14877,8 @@
      "g_aprox": 145,
      "funcion": "base (remojo 4 h)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14446,7 +14890,8 @@
      "g_aprox": 480,
      "funcion": "leche de maní",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14458,7 +14903,8 @@
      "g_aprox": 16,
      "funcion": "sabor queso",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14470,7 +14916,8 @@
      "g_aprox": 30,
      "funcion": "acidez que cuaja",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14482,7 +14929,8 @@
      "g_aprox": 15,
      "funcion": "acidez",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14494,7 +14942,8 @@
      "g_aprox": 55,
      "funcion": "untuosidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14506,7 +14955,8 @@
      "g_aprox": 40,
      "funcion": "la elasticidad fundente",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -14517,7 +14967,8 @@
      "unidad_display": "cdta",
      "g_aprox": 6,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -14569,7 +15020,8 @@
      "g_aprox": 200,
      "funcion": "base proteica",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14581,7 +15033,8 @@
      "g_aprox": 12,
      "funcion": "sabor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14592,7 +15045,8 @@
      "unidad_display": "cda_jugo",
      "g_aprox": 15,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14603,7 +15057,8 @@
      "unidad_display": "cda",
      "g_aprox": 27,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14614,7 +15069,8 @@
      "unidad_display": "diente",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14626,7 +15082,8 @@
      "g_aprox": 0.7,
      "funcion": "color",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14638,7 +15095,8 @@
      "g_aprox": 120,
      "funcion": "textura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14655,7 +15113,8 @@
        "tipo": "id",
        "valor": "fecula_mandioca"
       }
-     ]
+     ],
+     "paso": 4
     },
     {
      "ref": {
@@ -14667,7 +15126,8 @@
      "g_aprox": 5,
      "funcion": "potencia lo 'quesoso'",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14678,7 +15138,8 @@
      "unidad_display": "cdta",
      "g_aprox": 3,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -14729,7 +15190,8 @@
      "g_aprox": 325,
      "funcion": "base (300-350 g)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -14741,7 +15203,8 @@
      "g_aprox": 25,
      "funcion": "LA elasticidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14753,7 +15216,8 @@
      "g_aprox": 12,
      "funcion": "sabor queso",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14764,7 +15228,8 @@
      "unidad_display": "cda",
      "g_aprox": 27,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14780,7 +15245,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -14791,7 +15257,8 @@
      "unidad_display": "diente_chico",
      "g_aprox": 3,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14802,7 +15269,8 @@
      "unidad_display": "cdta",
      "g_aprox": 3,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14814,7 +15282,8 @@
      "g_aprox": 120,
      "funcion": "ajustar textura de a poco",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -14865,7 +15334,8 @@
      "g_aprox": 113,
      "funcion": "base",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14881,7 +15351,8 @@
        "tipo": "texto",
        "valor": "más integral para 100%"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -14894,7 +15365,8 @@
      "funcion": "semillas: chía/sésamo/lino/amapola",
      "imprescindible": true,
      "sustitutos": [],
-     "nota": "lino mejor molido (R9)"
+     "nota": "lino mejor molido (R9)",
+     "paso": 0
     },
     {
      "ref": {
@@ -14906,7 +15378,8 @@
      "g_aprox": 3,
      "funcion": "(o 1 cdta azúcar si es dulce)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -14918,7 +15391,8 @@
      "g_aprox": 40,
      "funcion": "arenado",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -14929,7 +15403,8 @@
      "unidad_display": "taza_aprox",
      "g_aprox": 120,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -14941,7 +15416,8 @@
      "g_aprox": 4,
      "funcion": "esponjosa",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -14993,7 +15469,8 @@
      "g_aprox": 250,
      "funcion": "la proteína",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15010,7 +15487,8 @@
        "tipo": "texto",
        "valor": "pan_integral rallado"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -15022,7 +15500,8 @@
      "g_aprox": 160,
      "funcion": "sabor de la masa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15034,7 +15513,8 @@
      "g_aprox": 120,
      "funcion": "c/n",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15046,7 +15526,8 @@
      "g_aprox": 2,
      "funcion": "condimentos: + ajo/cebolla en polvo, curry, orégano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15058,7 +15539,8 @@
      "g_aprox": 480,
      "funcion": "medio de cocción + ½ taza salsa de soja",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -15113,7 +15595,8 @@
      "g_aprox": 150,
      "funcion": "remojo 8 h recomendado (R4)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15124,7 +15607,8 @@
      "unidad_display": "taza",
      "g_aprox": 1200,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15135,7 +15619,8 @@
      "unidad_display": "unidad",
      "g_aprox": 75,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15146,7 +15631,8 @@
      "unidad_display": "unidad",
      "g_aprox": 70,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15157,7 +15643,8 @@
      "unidad_display": "verde+medio rojo",
      "g_aprox": 195,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15173,7 +15660,8 @@
        "tipo": "id",
        "valor": "extracto_tomate"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -15184,7 +15672,8 @@
      "unidad_display": "g (2 grandes)",
      "g_aprox": 450,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -15195,7 +15684,8 @@
      "unidad_display": "cda",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -15206,7 +15696,8 @@
      "unidad_display": "cda_dulce",
      "g_aprox": 7,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -15217,7 +15708,8 @@
      "unidad_display": "cdta",
      "g_aprox": 6,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -15283,7 +15775,8 @@
      "funcion": "el bagazo de P01 sirve tal cual",
      "imprescindible": true,
      "sustitutos": [],
-     "nota": "residuo cero: okara de la leche"
+     "nota": "residuo cero: okara de la leche",
+     "paso": 0
     },
     {
      "ref": {
@@ -15295,7 +15788,8 @@
      "g_aprox": 125,
      "funcion": "liga seca",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15307,7 +15801,8 @@
      "g_aprox": 125,
      "funcion": "liga y cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15318,7 +15813,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15330,7 +15826,8 @@
      "g_aprox": 2,
      "funcion": "+ sal, curry, ajo en polvo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15342,7 +15839,8 @@
      "g_aprox": 100,
      "funcion": "ajustar masa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -15354,7 +15852,8 @@
      "g_aprox": 100,
      "funcion": "empanado final",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -15404,7 +15903,8 @@
      "unidad_display": "g_cherry",
      "g_aprox": 150,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15415,7 +15915,8 @@
      "unidad_display": "bastones",
      "g_aprox": 70,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15426,7 +15927,8 @@
      "unidad_display": "bastones",
      "g_aprox": 130,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15437,7 +15939,8 @@
      "unidad_display": "g_tostado",
      "g_aprox": 150,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15448,7 +15951,8 @@
      "unidad_display": "g_en_escabeche",
      "g_aprox": 200,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -15459,7 +15963,8 @@
      "unidad_display": "g_bastones_al_horno",
      "g_aprox": 300,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15470,7 +15975,8 @@
      "unidad_display": "g_bastones_al_horno",
      "g_aprox": 300,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15481,7 +15987,8 @@
      "unidad_display": "g",
      "g_aprox": 50,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -15492,7 +15999,8 @@
      "unidad_display": "g",
      "g_aprox": 50,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -15503,7 +16011,8 @@
      "unidad_display": "guacamole",
      "g_aprox": 140,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -15557,7 +16066,8 @@
      "unidad_display": "g_cocidos",
      "g_aprox": 400,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -15570,7 +16080,8 @@
      "funcion": "P08 en cubos tamaño garbanzo",
      "imprescindible": true,
      "sustitutos": [],
-     "nota": "seitán ya cocido"
+     "nota": "seitán ya cocido",
+     "paso": 0
     },
     {
      "ref": {
@@ -15581,7 +16092,8 @@
      "unidad_display": "unidad",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15592,7 +16104,8 @@
      "unidad_display": "diente",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15604,7 +16117,8 @@
      "g_aprox": 2,
      "funcion": "picante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15615,7 +16129,8 @@
      "unidad_display": "g (2 cdta)",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -15627,7 +16142,8 @@
      "g_aprox": 240,
      "funcion": "la rareza golosa: escurrido y picado; el almíbar aparte",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15638,7 +16154,8 @@
      "unidad_display": "g",
      "g_aprox": 400,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15649,7 +16166,8 @@
      "unidad_display": "cdta",
      "g_aprox": 3,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15661,7 +16179,8 @@
      "g_aprox": 1,
      "funcion": "activa curcumina (R8)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15672,7 +16191,8 @@
      "unidad_display": "cubito_bajo_sodio",
      "g_aprox": 2,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -15727,7 +16247,8 @@
      "unidad_display": "entera_en_8_gajos",
      "g_aprox": 800,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15739,7 +16260,8 @@
      "g_aprox": 40,
      "funcion": "dorado inicial",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15756,7 +16278,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -15768,7 +16291,8 @@
      "g_aprox": 75,
      "funcion": "importante: baja en sal",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15780,7 +16304,8 @@
      "g_aprox": 5,
      "funcion": "toque",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15791,7 +16316,8 @@
      "unidad_display": "diente_enteros_pelados",
      "g_aprox": 24,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15802,7 +16328,8 @@
      "unidad_display": "hoja",
      "g_aprox": 1.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15813,7 +16340,8 @@
      "unidad_display": "aji_fresco",
      "g_aprox": 5,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -15824,7 +16352,8 @@
      "unidad_display": "picada_final",
      "g_aprox": 30,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -15836,7 +16365,8 @@
      "g_aprox": 190,
      "imprescindible": false,
      "sustitutos": [],
-     "nota": "con garbanzos: plato completo cereal+legumbre"
+     "nota": "con garbanzos: plato completo cereal+legumbre",
+     "paso": 6
     }
    ],
    "pasos": [
@@ -15887,7 +16417,8 @@
      "unidad_display": "taza_cocidos",
      "g_aprox": 328,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15898,7 +16429,8 @@
      "unidad_display": "taza_cruda",
      "g_aprox": 30,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15910,7 +16442,8 @@
      "g_aprox": 180,
      "funcion": "la 'crema dulce' contra el amargor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15921,7 +16454,8 @@
      "unidad_display": "taza_caliente_o_aquafaba",
      "g_aprox": 240,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15932,7 +16466,8 @@
      "unidad_display": "chorro_generoso",
      "g_aprox": 20,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -15943,7 +16478,8 @@
      "unidad_display": "cdta",
      "g_aprox": 1,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -15955,7 +16491,8 @@
      "g_aprox": 20,
      "funcion": "redondea + R1",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -16013,7 +16550,8 @@
      "g_aprox": 500,
      "funcion": "asada, no hervida: menos agua = menos harina",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16024,7 +16562,8 @@
      "unidad_display": "g_hervida_con_cascara",
      "g_aprox": 500,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16041,7 +16580,8 @@
        "tipo": "id",
        "valor": "semola"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -16052,7 +16592,8 @@
      "unidad_display": "cda",
      "g_aprox": 8,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16064,7 +16605,8 @@
      "g_aprox": 6,
      "funcion": "+ nuez moscada + ajo en polvo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16076,7 +16618,8 @@
      "g_aprox": 280,
      "funcion": "salsa: remojo 4 h",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16088,7 +16631,8 @@
      "g_aprox": 150,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -16100,7 +16644,8 @@
      "g_aprox": 15,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -16112,7 +16657,8 @@
      "g_aprox": 130,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     },
     {
      "ref": {
@@ -16124,7 +16670,8 @@
      "g_aprox": 27,
      "funcion": "salsa",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -16178,7 +16725,8 @@
      "unidad_display": "g_secos",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16195,7 +16743,8 @@
        "tipo": "texto",
        "valor": "champinones frescos"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -16206,7 +16755,8 @@
      "unidad_display": "unidad",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16217,7 +16767,8 @@
      "unidad_display": "diente",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16228,7 +16779,8 @@
      "unidad_display": "chorro",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16239,7 +16791,8 @@
      "unidad_display": "chorro",
      "g_aprox": 16,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16251,7 +16804,8 @@
      "g_aprox": 2,
      "funcion": "+ sal, pimienta, ajo en polvo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -16303,7 +16857,8 @@
      "g_aprox": 200,
      "funcion": "hidratada y salteada con cebolla",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16315,7 +16870,8 @@
      "g_aprox": 190,
      "funcion": "jugosidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16327,7 +16883,8 @@
      "g_aprox": 110,
      "funcion": "color 'meat' + dulzor",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16338,7 +16895,8 @@
      "unidad_display": "grande_salteada",
      "g_aprox": 250,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16350,7 +16908,8 @@
      "g_aprox": 100,
      "funcion": "liga proteica",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16362,7 +16921,8 @@
      "g_aprox": 100,
      "funcion": "liga",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16374,7 +16934,8 @@
      "g_aprox": 2,
      "funcion": "+ sal, pimienta, ajo/cebolla en polvo, orégano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16385,7 +16946,8 @@
      "unidad_display": "cda",
      "g_aprox": 24,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16396,7 +16958,8 @@
      "unidad_display": "chorro_al_saltear",
      "g_aprox": 16,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -16449,7 +17012,8 @@
      "g_aprox": 250,
      "funcion": "lavado hasta agua transparente",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16461,7 +17025,8 @@
      "g_aprox": 300,
      "funcion": "regla: por kilo, 1200 ml",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16473,7 +17038,8 @@
      "g_aprox": 50,
      "funcion": "80% alcohol + 20% manzana",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16485,7 +17051,8 @@
      "g_aprox": 25,
      "funcion": "del sushizu",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16496,7 +17063,8 @@
      "unidad_display": "cdta",
      "g_aprox": 6,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16508,7 +17076,8 @@
      "g_aprox": 7.5,
      "funcion": "yodo ⭐",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -16519,7 +17088,8 @@
      "unidad_display": "g_relleno",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -16530,7 +17100,8 @@
      "unidad_display": "g_shiitake",
      "g_aprox": 20,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -16541,7 +17112,8 @@
      "unidad_display": "bastones",
      "g_aprox": 75,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -16552,7 +17124,8 @@
      "unidad_display": "juliana",
      "g_aprox": 35,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     },
     {
      "ref": {
@@ -16563,7 +17136,8 @@
      "unidad_display": "g",
      "g_aprox": 50,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     }
    ],
    "pasos": [
@@ -16621,7 +17195,8 @@
      "g_aprox": 1000,
      "funcion": "puré con aceite + levadura + nuez moscada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16633,7 +17208,8 @@
      "g_aprox": 12,
      "funcion": "en el puré",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16645,7 +17221,8 @@
      "g_aprox": 250,
      "funcion": "relleno",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -16656,7 +17233,8 @@
      "unidad_display": "grande",
      "g_aprox": 250,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16667,7 +17245,8 @@
      "unidad_display": "grande",
      "g_aprox": 160,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16678,7 +17257,8 @@
      "unidad_display": "diente",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16689,7 +17269,8 @@
      "unidad_display": "cdta_llena_ahumado",
      "g_aprox": 3,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16700,7 +17281,8 @@
      "unidad_display": "chorrito",
      "g_aprox": 16,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16711,7 +17293,8 @@
      "unidad_display": "chorrito",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16722,7 +17305,8 @@
      "unidad_display": "cda_pure_de_tomate",
      "g_aprox": 64,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16734,7 +17318,8 @@
      "g_aprox": 15,
      "funcion": "tu firma: levanta el relleno (y R1)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -16746,7 +17331,8 @@
      "g_aprox": 250,
      "funcion": "capa de muzza de maní al medio",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     }
    ],
    "pasos": [
@@ -16805,7 +17391,8 @@
      "g_aprox": 380,
      "funcion": "remojo 24 h",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16817,7 +17404,8 @@
      "g_aprox": 180,
      "funcion": "remojo 24 h",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -16829,7 +17417,8 @@
      "g_aprox": 750,
      "funcion": "se deshace = la crema del locro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16840,7 +17429,8 @@
      "unidad_display": "unidad",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16851,7 +17441,8 @@
      "unidad_display": "unidad",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16862,7 +17453,8 @@
      "unidad_display": "unidad",
      "g_aprox": 90,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16874,7 +17466,8 @@
      "g_aprox": 100,
      "funcion": "contra el final",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -16891,7 +17484,8 @@
        "tipo": "texto",
        "valor": "1 cdta bicarbonato"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -16902,7 +17496,8 @@
      "unidad_display": "cda",
      "g_aprox": 14,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16913,7 +17508,8 @@
      "unidad_display": "cdta",
      "g_aprox": 2,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -16924,7 +17520,8 @@
      "unidad_display": "cda",
      "g_aprox": 7,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -16935,7 +17532,8 @@
      "unidad_display": "cdta_marina",
      "g_aprox": 6,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -16947,7 +17545,8 @@
      "g_aprox": 56,
      "funcion": "salsita picante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16958,7 +17557,8 @@
      "unidad_display": "medianas_SALSA",
      "g_aprox": 30,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16969,7 +17569,8 @@
      "unidad_display": "diente_SALSA",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16981,7 +17582,8 @@
      "g_aprox": 200,
      "funcion": "cubos P08",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -16992,7 +17594,8 @@
      "unidad_display": "cda + ají molido_SALSA",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -17048,7 +17651,8 @@
      "g_aprox": 480,
      "funcion": "pisados parcial: textura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17060,7 +17664,8 @@
      "g_aprox": 150,
      "funcion": "rehogada",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17071,7 +17676,8 @@
      "unidad_display": "diente",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17082,7 +17688,8 @@
      "unidad_display": "unidad",
      "g_aprox": 65,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17093,7 +17700,8 @@
      "unidad_display": "rallada_fina",
      "g_aprox": 70,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17105,7 +17713,8 @@
      "g_aprox": 45,
      "funcion": "aglutinante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17117,7 +17726,8 @@
      "g_aprox": 54,
      "funcion": "ajustar consistencia",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -17129,7 +17739,8 @@
      "g_aprox": 14,
      "funcion": "huevo vegano",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17140,7 +17751,8 @@
      "unidad_display": "cda",
      "g_aprox": 16,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17152,7 +17764,8 @@
      "g_aprox": 2,
      "funcion": "'secreto gourmet: parrilla' (tu nota)",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17163,7 +17776,8 @@
      "unidad_display": "cdta",
      "g_aprox": 2,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17175,7 +17789,8 @@
      "g_aprox": 4,
      "funcion": "umami",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -17186,7 +17801,8 @@
      "unidad_display": "chorrito_final",
      "g_aprox": 10,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -17197,7 +17813,8 @@
      "unidad_display": "cdas_o_cilantro",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -17255,7 +17872,8 @@
      "unidad_display": "medianos",
      "g_aprox": 500,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17266,7 +17884,8 @@
      "unidad_display": "grande_rallada",
      "g_aprox": 85,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17278,7 +17897,8 @@
      "g_aprox": 200,
      "funcion": "la 'ricota'",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17289,7 +17909,8 @@
      "unidad_display": "mediana",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17300,7 +17921,8 @@
      "unidad_display": "diente",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17311,7 +17933,8 @@
      "unidad_display": "cda",
      "g_aprox": 27,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17323,7 +17946,8 @@
      "g_aprox": 8,
      "funcion": "sabor queso",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17340,7 +17964,8 @@
        "tipo": "id",
        "valor": "harina_garbanzo"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -17351,7 +17976,8 @@
      "unidad_display": "cdta",
      "g_aprox": 3,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17367,7 +17993,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana"
       }
-     ]
+     ],
+     "paso": 3
     },
     {
      "ref": {
@@ -17378,7 +18005,8 @@
      "unidad_display": "cdta + nuez moscada",
      "g_aprox": 1,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -17390,7 +18018,8 @@
      "g_aprox": 370,
      "funcion": "base de la tarta",
      "sustitutos": [],
-     "nota": "línea agregada en la ingesta: el dataset lista solo el relleno"
+     "nota": "línea agregada en la ingesta: el dataset lista solo el relleno",
+     "paso": 0
     }
    ],
    "pasos": [
@@ -17443,7 +18072,8 @@
      "g_aprox": 250,
      "funcion": "seitán 'peceto'",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17455,7 +18085,8 @@
      "g_aprox": 90,
      "funcion": "proporción 2:1 = suavidad",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17466,7 +18097,8 @@
      "unidad_display": "cda",
      "g_aprox": 8,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17478,7 +18110,8 @@
      "g_aprox": 180,
      "funcion": "NO sal en la masa: la aporta el caldo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17489,7 +18122,8 @@
      "unidad_display": "cda + 2 en caldo",
      "g_aprox": 64,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17501,7 +18135,8 @@
      "g_aprox": 5,
      "funcion": "estructura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17512,7 +18147,8 @@
      "unidad_display": "cda_neutro",
      "g_aprox": 13,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17524,7 +18160,8 @@
      "g_aprox": 220,
      "funcion": "tonnata",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -17536,7 +18173,8 @@
      "g_aprox": 120,
      "funcion": "cuerpo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -17548,7 +18186,8 @@
      "g_aprox": 20,
      "funcion": "el carácter 'tonnato'",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -17559,7 +18198,8 @@
      "unidad_display": "cda_colmada_SALSA_dijon",
      "g_aprox": 15,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -17570,7 +18210,8 @@
      "unidad_display": "cda_SALSA",
      "g_aprox": 15,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -17590,7 +18231,8 @@
        "tipo": "texto",
        "valor": "vinagre de manzana"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -17607,7 +18249,8 @@
        "tipo": "texto",
        "valor": "pizca de nori molida"
       }
-     ]
+     ],
+     "paso": 5
     },
     {
      "ref": {
@@ -17618,7 +18261,8 @@
      "unidad_display": "cda_terminacion",
      "g_aprox": 8,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     }
    ],
    "pasos": [
@@ -17673,7 +18317,8 @@
      "unidad_display": "g_lechugas_moradas_y_mantecosa",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17684,7 +18329,8 @@
      "unidad_display": "unidad",
      "g_aprox": 60,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17695,7 +18341,8 @@
      "unidad_display": "unidad",
      "g_aprox": 140,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17706,7 +18353,8 @@
      "unidad_display": "roja",
      "g_aprox": 180,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17717,7 +18365,8 @@
      "unidad_display": "rallada",
      "g_aprox": 70,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17728,7 +18377,8 @@
      "unidad_display": "g_cherry",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -17739,7 +18389,8 @@
      "unidad_display": "cda_tostado_al_momento",
      "g_aprox": 9,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17750,7 +18401,8 @@
      "unidad_display": "chorrito",
      "g_aprox": 13,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -17799,7 +18451,8 @@
      "unidad_display": "hervida_en_cubitos",
      "g_aprox": 80,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17810,7 +18463,8 @@
      "unidad_display": "pisada",
      "g_aprox": 118,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17821,7 +18475,8 @@
      "unidad_display": "chorrito",
      "g_aprox": 10,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17832,7 +18487,8 @@
      "unidad_display": "cdta + sal",
      "g_aprox": 1,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -17884,7 +18540,8 @@
      "g_aprox": 350,
      "funcion": "o aduki o blancos; calientes = más sedoso",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -17895,7 +18552,8 @@
      "unidad_display": "taza",
      "g_aprox": 42,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17911,7 +18569,8 @@
        "tipo": "texto",
        "valor": "datiles 1 taza"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -17928,7 +18587,8 @@
        "tipo": "texto",
        "valor": "mitad girasol: más blanda"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -17939,7 +18599,8 @@
      "unidad_display": "pizca",
      "g_aprox": 0.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -17950,7 +18611,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -17961,7 +18623,8 @@
      "unidad_display": "cdta",
      "g_aprox": 1,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -18012,7 +18675,8 @@
      "g_aprox": 260,
      "funcion": "blancos = color crema",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18033,7 +18697,8 @@
        "tipo": "texto",
        "valor": "miel_de_cana 2 cdas (reemplaza la miel original: veganización)"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -18044,7 +18709,8 @@
      "unidad_display": "chorrito_o_coco",
      "g_aprox": 15,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18055,7 +18721,8 @@
      "unidad_display": "chorrito",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18079,7 +18746,8 @@
        "tipo": "texto",
        "valor": "café: crema de café"
       }
-     ]
+     ],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -18130,7 +18798,8 @@
      "unidad_display": "taza",
      "g_aprox": 45,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18141,7 +18810,8 @@
      "unidad_display": "unidad (o 1 chica)",
      "g_aprox": 60,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18157,7 +18827,8 @@
        "tipo": "id",
        "valor": "agua"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -18168,7 +18839,8 @@
      "unidad_display": "cdta_o_chia",
      "g_aprox": 3,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18179,7 +18851,8 @@
      "unidad_display": "cda",
      "g_aprox": 5,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18190,7 +18863,8 @@
      "unidad_display": "gotas",
      "g_aprox": 1,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18201,7 +18875,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -18255,7 +18930,8 @@
      "unidad_display": "maduras",
      "g_aprox": 236,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18266,7 +18942,8 @@
      "unidad_display": "taza",
      "g_aprox": 200,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18277,7 +18954,8 @@
      "unidad_display": "taza_neutro_girasol",
      "g_aprox": 109,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18288,7 +18966,8 @@
      "unidad_display": "taza",
      "g_aprox": 160,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18299,7 +18978,8 @@
      "unidad_display": "taza_superfina",
      "g_aprox": 113,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18310,7 +18990,8 @@
      "unidad_display": "taza",
      "g_aprox": 120,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18321,7 +19002,8 @@
      "unidad_display": "cda",
      "g_aprox": 12,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18332,7 +19014,8 @@
      "unidad_display": "taza",
      "g_aprox": 42,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -18384,7 +19067,8 @@
      "unidad_display": "taza_harina_de_avena",
      "g_aprox": 90,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18395,7 +19079,8 @@
      "unidad_display": "taza",
      "g_aprox": 57,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18406,7 +19091,8 @@
      "unidad_display": "taza",
      "g_aprox": 28,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18417,7 +19103,8 @@
      "unidad_display": "ralladas",
      "g_aprox": 170,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18429,7 +19116,8 @@
      "g_aprox": 14,
      "funcion": "única grasa: liviana",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18440,7 +19128,8 @@
      "unidad_display": "taza",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18451,7 +19140,8 @@
      "unidad_display": "taza",
      "g_aprox": 240,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18462,7 +19152,8 @@
      "unidad_display": "cda",
      "g_aprox": 12,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18473,7 +19164,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18484,7 +19176,8 @@
      "unidad_display": "g_trituradas",
      "g_aprox": 40,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -18538,7 +19231,8 @@
      "unidad_display": "taza",
      "g_aprox": 240,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18549,7 +19243,8 @@
      "unidad_display": "taza",
      "g_aprox": 120,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18570,7 +19265,8 @@
        "valor": "margarina"
       }
      ],
-     "nota": "Facu usa su manteca vegana (p03); la margarina comprada sirve igual, al mismo peso"
+     "nota": "Facu usa su manteca vegana (p03); la margarina comprada sirve igual, al mismo peso",
+     "paso": 0
     },
     {
      "ref": {
@@ -18586,7 +19282,8 @@
        "tipo": "id",
        "valor": "azucar"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -18597,7 +19294,8 @@
      "unidad_display": "ralladura_limon",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18609,7 +19307,8 @@
      "g_aprox": 500,
      "funcion": "relleno",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -18660,7 +19359,8 @@
      "unidad_display": "taza_cocidos",
      "g_aprox": 480,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18676,7 +19376,8 @@
        "tipo": "texto",
        "valor": "harina de arroz/sarraceno/garbanzo: sin gluten"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -18692,7 +19393,8 @@
        "tipo": "id",
        "valor": "azucar"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -18703,7 +19405,8 @@
      "unidad_display": "taza",
      "g_aprox": 42,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18714,7 +19417,8 @@
      "unidad_display": "taza_girasol",
      "g_aprox": 55,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18725,7 +19429,8 @@
      "unidad_display": "taza",
      "g_aprox": 240,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18736,7 +19441,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18747,7 +19453,8 @@
      "unidad_display": "cda",
      "g_aprox": 20,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -18758,7 +19465,8 @@
      "unidad_display": "g",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -18809,7 +19517,8 @@
      "g_aprox": 140,
      "funcion": "textura fudge",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -18820,7 +19529,8 @@
      "unidad_display": "taza_cocidos",
      "g_aprox": 175,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18831,7 +19541,8 @@
      "unidad_display": "taza",
      "g_aprox": 55,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18842,7 +19553,8 @@
      "unidad_display": "taza",
      "g_aprox": 21,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18853,7 +19565,8 @@
      "unidad_display": "taza",
      "g_aprox": 130,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18864,7 +19577,8 @@
      "unidad_display": "pizca",
      "g_aprox": 0.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18875,7 +19589,8 @@
      "unidad_display": "cn_hasta_consistencia_budin",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     }
    ],
    "pasos": [
@@ -18929,7 +19644,8 @@
      "g_aprox": 250,
      "funcion": "la crema chocoporotos hecha con girasol",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -18940,7 +19656,8 @@
      "unidad_display": "madura (o 1 chica)",
      "g_aprox": 60,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -18951,7 +19668,8 @@
      "unidad_display": "cda",
      "g_aprox": 32,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -18962,7 +19680,8 @@
      "unidad_display": "cda",
      "g_aprox": 12,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -18973,7 +19692,8 @@
      "unidad_display": "g",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -18984,7 +19704,8 @@
      "unidad_display": "g_chips",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -18996,7 +19717,8 @@
      "g_aprox": 12,
      "funcion": "corteza crocante (tu tip general de dulces)",
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -19048,7 +19770,8 @@
      "g_aprox": 200,
      "funcion": "que largue almidón",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19059,7 +19782,8 @@
      "unidad_display": "g",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19076,7 +19800,8 @@
        "tipo": "texto",
        "valor": "otras leches vegetales (no probado)"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -19087,7 +19812,8 @@
      "unidad_display": "pizca",
      "g_aprox": 0.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19098,7 +19824,8 @@
      "unidad_display": "tiras_limon_sin_lo_blanco",
      "g_aprox": 9,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19109,7 +19836,8 @@
      "unidad_display": "cdta_o_rama",
      "g_aprox": 1,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19120,7 +19848,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -19176,7 +19905,8 @@
      "g_aprox": 500,
      "funcion": "sin harina de trigo: sin gluten",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19187,7 +19917,8 @@
      "unidad_display": "madura",
      "g_aprox": 60,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19198,7 +19929,8 @@
      "unidad_display": "cda_neutro",
      "g_aprox": 80,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19209,7 +19941,8 @@
      "unidad_display": "g + extra arriba",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     },
     {
      "ref": {
@@ -19220,7 +19953,8 @@
      "unidad_display": "g (o menos)",
      "g_aprox": 250,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -19236,7 +19970,8 @@
        "tipo": "texto",
        "valor": "mitad leche de coco (original)"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -19247,7 +19982,8 @@
      "unidad_display": "cdta",
      "g_aprox": 8,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -19267,7 +20003,8 @@
        "tipo": "texto",
        "valor": "aceite"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -19278,7 +20015,8 @@
      "unidad_display": "pizca",
      "g_aprox": 0.5,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -19289,7 +20027,8 @@
      "unidad_display": "poquita_decorar",
      "g_aprox": 5,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 7
     }
    ],
    "pasos": [
@@ -19342,7 +20081,8 @@
      "unidad_display": "taza",
      "g_aprox": 200,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19353,7 +20093,8 @@
      "unidad_display": "ralladura_y_jugo",
      "g_aprox": 50,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19369,7 +20110,8 @@
        "tipo": "texto",
        "valor": "manteca P03"
       }
-     ]
+     ],
+     "paso": 2
     },
     {
      "ref": {
@@ -19380,7 +20122,8 @@
      "unidad_display": "taza_0000",
      "g_aprox": 220,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19391,7 +20134,8 @@
      "unidad_display": "cda",
      "g_aprox": 16,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19402,7 +20146,8 @@
      "unidad_display": "cda",
      "g_aprox": 12,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -19453,7 +20198,8 @@
      "unidad_display": "maduras",
      "g_aprox": 354,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19464,7 +20210,8 @@
      "unidad_display": "taza",
      "g_aprox": 42,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19481,7 +20228,8 @@
        "tipo": "texto",
        "valor": "girasol u oliva (más blandos)"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -19492,7 +20240,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19503,7 +20252,8 @@
      "unidad_display": "g",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19514,7 +20264,8 @@
      "unidad_display": "g",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -19568,7 +20319,8 @@
      "unidad_display": "g_masa + 150 crumble",
      "g_aprox": 300,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19579,7 +20331,8 @@
      "unidad_display": "g_masa",
      "g_aprox": 50,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19600,7 +20353,8 @@
        "valor": "margarina"
       }
      ],
-     "nota": "ídem p31: la margarina comprada sirve igual, al mismo peso"
+     "nota": "ídem p31: la margarina comprada sirve igual, al mismo peso",
+     "paso": 0
     },
     {
      "ref": {
@@ -19616,7 +20370,8 @@
        "tipo": "id",
        "valor": "azucar"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -19627,7 +20382,8 @@
      "unidad_display": "g_crumble",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19638,7 +20394,8 @@
      "unidad_display": "gotas",
      "g_aprox": 2,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19649,7 +20406,8 @@
      "unidad_display": "verdes_en_rodajas_finas",
      "g_aprox": 540,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19661,7 +20419,8 @@
      "g_aprox": 200,
      "funcion": "crema de vainiporotos entre capas",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -19713,7 +20472,8 @@
      "unidad_display": "cda (1/4 vaso)",
      "g_aprox": 36,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19729,7 +20489,8 @@
        "tipo": "texto",
        "valor": "otra vegetal"
       }
-     ]
+     ],
+     "paso": 1
     },
     {
      "ref": {
@@ -19740,7 +20501,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19751,7 +20513,8 @@
      "unidad_display": "cdta",
      "g_aprox": 4,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19762,7 +20525,8 @@
      "unidad_display": "cdta_o_stevia",
      "g_aprox": 4,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19773,7 +20537,8 @@
      "unidad_display": "taza_topping",
      "g_aprox": 75,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -19784,7 +20549,8 @@
      "unidad_display": "cda_topping",
      "g_aprox": 10,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -19795,7 +20561,8 @@
      "unidad_display": "cda_topping",
      "g_aprox": 7,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -19848,7 +20615,8 @@
      "unidad_display": "taza",
      "g_aprox": 180,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19859,7 +20627,8 @@
      "unidad_display": "taza",
      "g_aprox": 85,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19870,7 +20639,8 @@
      "unidad_display": "taza",
      "g_aprox": 100,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -19881,7 +20651,8 @@
      "unidad_display": "taza_neutro",
      "g_aprox": 72,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19892,7 +20663,8 @@
      "unidad_display": "taza_o_leche_vegetal",
      "g_aprox": 240,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -19903,7 +20675,8 @@
      "unidad_display": "madura_pisada",
      "g_aprox": 118,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 4
     }
    ],
    "pasos": [
@@ -19958,7 +20731,8 @@
        "tipo": "texto",
        "valor": "masa de pastafrola P31 (tu preferida)"
       }
-     ]
+     ],
+     "paso": 0
     },
     {
      "ref": {
@@ -19969,7 +20743,8 @@
      "unidad_display": "taza_base + 1.25 relleno",
      "g_aprox": 380,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19980,7 +20755,8 @@
      "unidad_display": "taza_base + 3 cda relleno",
      "g_aprox": 55,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -19991,7 +20767,8 @@
      "unidad_display": "taza_neutro_base",
      "g_aprox": 200,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20002,7 +20779,8 @@
      "unidad_display": "taza_relleno",
      "g_aprox": 320,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -20014,7 +20792,8 @@
      "g_aprox": 3,
      "funcion": "gelificante vegetal",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -20026,7 +20805,8 @@
      "g_aprox": 0.2,
      "funcion": "el amarillo",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -20037,7 +20817,8 @@
      "unidad_display": "taza_jugo + 1 cda ralladura",
      "g_aprox": 170,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     },
     {
      "ref": {
@@ -20048,7 +20829,8 @@
      "unidad_display": "taza_relleno",
      "g_aprox": 60,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 5
     },
     {
      "ref": {
@@ -20059,7 +20841,8 @@
      "unidad_display": "cda_servir",
      "g_aprox": 12,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 6
     }
    ],
    "pasos": [
@@ -20110,7 +20893,8 @@
      "unidad_display": "taza_superfina",
      "g_aprox": 113,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -20122,7 +20906,8 @@
      "g_aprox": 100,
      "funcion": "legumbre en el pan: lisina + hierro",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -20134,7 +20919,8 @@
      "g_aprox": 200,
      "funcion": "puré",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -20146,7 +20932,8 @@
      "g_aprox": 4,
      "funcion": "activar con azúcar y agua tibia 15 min",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20158,7 +20945,8 @@
      "g_aprox": 4,
      "funcion": "alimento de levadura",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20169,7 +20957,8 @@
      "unidad_display": "cdta",
      "g_aprox": 6,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -20180,7 +20969,8 @@
      "unidad_display": "cda_girasol",
      "g_aprox": 20,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -20191,7 +20981,8 @@
      "unidad_display": "cn",
      "g_aprox": 150,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20202,7 +20993,8 @@
      "unidad_display": "g_picadas",
      "g_aprox": 30,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 3
     }
    ],
    "pasos": [
@@ -20255,7 +21047,8 @@
      "unidad_display": "g",
      "g_aprox": 500,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20266,7 +21059,8 @@
      "unidad_display": "g_000",
      "g_aprox": 300,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20278,7 +21072,8 @@
      "g_aprox": 200,
      "funcion": "el crocante",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20289,7 +21084,8 @@
      "unidad_display": "ml",
      "g_aprox": 650,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -20300,7 +21096,8 @@
      "unidad_display": "ml",
      "g_aprox": 50,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 1
     },
     {
      "ref": {
@@ -20311,7 +21108,8 @@
      "unidad_display": "cdta",
      "g_aprox": 24,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20331,7 +21129,8 @@
        "tipo": "texto",
        "valor": "levadura seca 3 g"
       }
-     ]
+     ],
+     "paso": 1
     }
    ],
    "pasos": [
@@ -20386,7 +21185,8 @@
      "g_aprox": 500,
      "funcion": "destino noble del descarte",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20397,7 +21197,8 @@
      "unidad_display": "g",
      "g_aprox": 250,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20408,7 +21209,8 @@
      "unidad_display": "g",
      "g_aprox": 15,
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     },
     {
      "ref": {
@@ -20420,7 +21222,8 @@
      "g_aprox": 50,
      "funcion": "de a poco al final",
      "imprescindible": true,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 2
     },
     {
      "ref": {
@@ -20431,7 +21234,8 @@
      "unidad_display": "cda_mix_semillas",
      "g_aprox": 24,
      "imprescindible": false,
-     "sustitutos": []
+     "sustitutos": [],
+     "paso": 0
     }
    ],
    "pasos": [

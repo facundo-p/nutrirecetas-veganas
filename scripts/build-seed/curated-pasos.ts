@@ -1,5 +1,5 @@
 /**
- * T13 — En qué paso entra cada línea de ingrediente (#163). Lo leyó un agente
+ * T14 — En qué paso entra cada línea de ingrediente (#163). Lo leyó un agente
  * por receta sobre las líneas y los pasos ya curados (T9), y se revisó contra
  * el matcher de nombres: lo que el agente ubicaba después del primer paso que
  * nombra al ingrediente se miró a mano.
@@ -49,4 +49,48 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   r28: [1, 1, 6, 2, 2, 2, 2, 2, 3, 3, 7, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 7], // Ensalada de cuscús con verduras, hierbas y pasas
   r29: [1, 4, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4], // Ensalada de garbanzos, palta y tomate con aliño de comino
   p01: [1, 1, 7, 7], // Leche de soja casera
+  p02: [1, 1], // Leche de coco casera
+  p03: [1, 1, 2, 3, 3, 4, 1, 4], // Manteca vegana
+  p04: [1, 1, 4, 4, 4, 4, 5, 4], // Queso de maní (muzza fundente)
+  p05: [1, 2, 2, 2, 3, 3, 2, 5, 3, 2], // Quesofu (untable de tofu)
+  p06: [1, 2, 2, 2, 2, 2, 2, 3], // Queso de papa (paparella)
+  p07: [2, 2, 1, 2, 3, 4, 2], // Masa integral para tartas
+  p08: [1, 1, 2, 2, 1, 5], // Bifecitos de seitán
+  p09: [1, 2, 2, 2, 2, 4, 5, 6, 6, 6], // Guiso de lentejas liviano (base licuada)
+  p10: [1, 1, 1, 2, 2, 3, 5], // Milanesas de soja (de okara)
+  p11: [4, 4, 4, 2, 5, 1, 1, 6, 6, 3], // Picada vegana
+  p12: [3, 1, 2, 2, 2, 3, 1, 4, 4, 4, 4], // Curry de garbanzos y seitán con durazno
+  p13: [1, 2, 4, 4, 4, 4, 4, 4, 7, 7], // Coliflor en adobo filipino
+  p14: [1, 1, 1, 1, 1, 2, 2], // Sopa crema de garbanzo, espinaca y manzana
+  p15: [2, 2, 4, 3, 3, 1, 7, 7, 7, 7], // Ñoquis de calabaza con crema de frutos secos
+  p16: [1, 1, 3, 2, 2, 2, 4], // Relleno de soja texturizada y hongos
+  p17: [1, 3, 3, 2, 4, 4, 4, 4, 2], // Hamburguesas de texturizada y remolacha
+  p18: [1, 2, 6, 6, 6, 8, 8, 8, 8, 8, 8], // Sushi — técnica maestra de arroz
+  p19: [1, 1, 2, 3, 3, 3, 4, 3, 3, 4, 5, 6], // Pastel de papas
+  p20: [1, 1, 3, 3, 3, 3, 4, 2, 3, 5, 5, 3, 6, 6, 6, 6, 7], // Locro vegano
+  p21: [3, 2, 2, 2, 2, 4, 5, 1, 4, 4, 4, 5, 5, 5], // Burgers de aduki
+  p22: [3, 3, 4, 2, 2, 2, 4, 4, 4, 4, 5, 1], // Tarta de zapallitos, zanahoria y tofu
+  p23: [1, 1, 1, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 8], // Vitel toné vegano de seitán
+  p24: [2, 3, 4, 3, 4, 4, 1, 5], // Ensalada de hojas, rabanito y manzana
+  p25: [1, 2, 3, 3], // Ensalada de banana y remolacha
+  p26: [1, 2, 2, 2, 2, 3, 3], // Crema chocoporotos
+  p27: [1, 2, 2, 2, 5], // Crema de vainilegumbres
+  p28: [1, 1, 1, 2, 2, 2, 2], // Panqueques de avena y banana
+  p29: [2, 2, 2, 2, 3, 3, 2, 3], // Budín de banana clásico
+  p30: [3, 3, 3, 2, 2, 2, 2, 3, 2, 4], // Carrot cake liviana
+  p31: [2, 2, 1, 1, 1, 4], // Pastafrola
+  p32: [2, 2, 1, 2, 2, 1, 2, 4, 4], // Brownies de aduki y avena
+  p33: [1, 2, 2, 2, 2, 2, 3], // Brownies de poroto y girasol
+  p34: [3, 2, 4, 4, 4, 4, 5], // Brownies chocoporotos sin harina
+  p35: [1, 2, 2, 2, 2, 2, 4], // Arroz con leche de coco
+  p36: [2, 3, 3, 5, 4, 3, 4, 3, 4, 8], // Torta de mandioca y coco
+  p37: [2, 3, 3, 2, 2, 2], // Lemonies
+  p38: [1, 1, 1, 1, 2, 2], // Bocaditos helados de banana y chocolate
+  p39: [1, 1, 1, 1, 2, 1, 3, 5], // Crumble de manzana con crema de vainiporotos
+  p40: [1, 2, 1, 1, 1, 4, 4, 4], // Pudding de chía y chocolate
+  p41: [2, 2, 2, 3, 3, 5], // Torta/budín de coco
+  p42: [1, 1, 1, 1, 4, 4, 4, 4, 6, 7], // Cuadrados de limón (agar)
+  p43: [2, 2, 3, 1, 1, 2, 3, 1, 4], // Pan proteico de calabaza
+  p44: [1, 1, 1, 2, 2, 1, 2], // Masa de pizza de masa madre (sin amasado)
+  p45: [1, 1, 1, 3, 1], // Crackers de masa madre
 };

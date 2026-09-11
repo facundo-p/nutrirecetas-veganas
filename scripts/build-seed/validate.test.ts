@@ -24,6 +24,7 @@ function recipeStub(id: string, extra: Partial<Recipe> = {}): Recipe {
         unidad_display: 'g',
         g_aprox: 100,
         sustitutos: [],
+        paso: null,
       },
     ],
     pasos: ['Listo.'],
@@ -110,6 +111,7 @@ describe('validateIntegrity', () => {
       unidad_display: 'g',
       g_aprox: 100,
       sustitutos: [],
+      paso: null,
     });
     expect(() => validateIntegrity(seedStub([consumidora, normal]))).toThrow(/no es preparado/);
   });
@@ -125,8 +127,8 @@ describe('validateIntegrity', () => {
   test('detecta ciclos de preparados', () => {
     const a = recipeStub('a', { es_preparado: true, rendimiento_g: 100 });
     const b = recipeStub('b', { es_preparado: true, rendimiento_g: 100 });
-    a.lineas.push({ ref: { tipo: 'receta', id: 'b' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [] });
-    b.lineas.push({ ref: { tipo: 'receta', id: 'a' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [] });
+    a.lineas.push({ ref: { tipo: 'receta', id: 'b' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [], paso: null });
+    b.lineas.push({ ref: { tipo: 'receta', id: 'a' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [], paso: null });
     expect(() => validateIntegrity(seedStub([a, b]))).toThrow(/ciclo de preparados/);
   });
 });

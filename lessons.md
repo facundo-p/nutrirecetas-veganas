@@ -467,3 +467,17 @@ de una auditoría ni de un test: de cocinar con ella.
   aplicó porque `.encabezado-pantalla h1` le ganaba por especificidad (el título
   medía 38 px, no los 40 del diseño). Revisar al final de cada tanda, no al
   cierre de fase: cada tanda se apoya en la anterior.
+
+### Qué ingrediente entra en cada paso (2026-09-11, #163)
+
+- **Un agente barato alcanza si trae evidencia.** 84 agentes Haiku, uno por
+  receta, ~2,7 M tokens y 5 minutos para 804 líneas. Cada respuesta traía la
+  cita textual del paso: con eso se revisa en segundos en vez de releer la
+  receta. De 804 líneas se corrigieron 3.
+- **El matcher mira para un solo lado.** La segunda opinión marcaba lo que el
+  agente ubicaba *después* del primer paso que nombra al ingrediente, y casi
+  todo fue falso positivo ("dulce" en *base dulce*). Los errores reales estaban
+  del otro lado: la harina y el aceite de p41 en el paso que enharina y aceita
+  el molde, *antes* de nombrarlos. Los encontró listar lo que caía en un paso que
+  no nombra al ingrediente. Una lista de palabras vacías que incluía "agua"
+  escondía además todas las líneas de agua de ese mismo control.
