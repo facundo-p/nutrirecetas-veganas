@@ -206,6 +206,9 @@ try {
         content:
           'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}.escalador{position:static}',
       });
+      // el puntero de una ruta con clics queda quieto y deja en hover lo que esté
+      // debajo en la siguiente: sin esto, cocina salía con un checkbox más claro
+      await page.mouse.move(0, 0);
       await page.waitForTimeout(350); // fuentes variables
       // el modal es fijo: en una captura de página completa quedaría al fondo de todo
       await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: name !== 'recetario-filtros' });
