@@ -28,6 +28,15 @@
   --p-brote: #4cd070;
   --p-curcuma: #ffc526;
   --p-carotenoide: #ff7a18;
+  --p-remolacha: #ff4d6d;
+  --p-cielo: #57c7e8;
+  --p-berenjena: #c86bff;
+  --p-lima: #8fe04a;
+  --p-lavanda: #b8a6ff;
+  --p-limon: #ffe04a;
+  --p-menta: #2fcfa8;
+  --p-mar: #3fa9e0;
+  --p-garbanzo: #d9cfa8;
 
   /* ── contrato de roles ── */
 
@@ -82,6 +91,23 @@
 
   --precaucion: var(--p-curcuma);
   --exito: var(--p-brote);
+
+  /* Un color por nutriente, en el orden canónico de las barras. Medidos: ΔE ≥ 13
+     entre los once (mínimo 15,2, vitamina C contra fibra) y ≥ 4,5:1 como texto
+     sobre el papel (mínimo 5,76, hierro). El selenio es el único que no venía
+     del rediseño: ΔE ≥ 38,8 contra los otros diez, el garbanzo y las tintas. */
+  --nut-hierro: var(--p-remolacha);
+  --nut-calcio: var(--p-cielo);
+  --nut-magnesio: var(--p-berenjena);
+  --nut-zinc: var(--p-lima);
+  --nut-selenio: var(--p-lavanda);
+  --nut-vita: var(--p-carotenoide);
+  --nut-vitc: var(--p-limon);
+  --nut-folato: var(--p-menta);
+  --nut-proteina: var(--p-brote);
+  --nut-fibra: var(--p-curcuma);
+  --nut-omega3: var(--p-mar);
+  --sin-aporte: var(--p-garbanzo); /* no trae ninguno de los once */
 
   /* Encabezado y nav: planos, del color del papel. */
   --encabezado: var(--p-bosque);

@@ -34,7 +34,7 @@ export interface NutritionSource {
 }
 
 const MAX_DEPTH = 3;
-const B12_ALERT_INGREDIENT = 'levadura_nutricional';
+export const B12_ALERT_INGREDIENT = 'levadura_nutricional';
 
 interface Accumulator {
   valor: Interval;
