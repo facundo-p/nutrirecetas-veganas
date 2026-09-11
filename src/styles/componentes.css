@@ -95,6 +95,103 @@
   color: var(--tinta-suave);
 }
 
+/* ---------- aporte: un color por nutriente ----------
+   El color codifica, no decora: cada uno de estos colores es un nutriente y
+   nada más. `[data-nut]` fija --nut sobre el propio elemento —una property con
+   var() se resuelve donde se declara— y las piezas de abajo lo leen. */
+
+[data-nut='hierro'] {
+  --nut: var(--nut-hierro);
+}
+[data-nut='calcio'] {
+  --nut: var(--nut-calcio);
+}
+[data-nut='magnesio'] {
+  --nut: var(--nut-magnesio);
+}
+[data-nut='zinc'] {
+  --nut: var(--nut-zinc);
+}
+[data-nut='selenio'] {
+  --nut: var(--nut-selenio);
+}
+[data-nut='vita'] {
+  --nut: var(--nut-vita);
+}
+[data-nut='vitc'] {
+  --nut: var(--nut-vitc);
+}
+[data-nut='folato'] {
+  --nut: var(--nut-folato);
+}
+[data-nut='proteina'] {
+  --nut: var(--nut-proteina);
+}
+[data-nut='fibra'] {
+  --nut: var(--nut-fibra);
+}
+[data-nut='omega3'] {
+  --nut: var(--nut-omega3);
+}
+[data-nut='ninguno'],
+[data-nut='condicional'] {
+  --nut: var(--sin-aporte);
+}
+
+/* Seis casilleros de ancho igual. La escala es la misma en todas las recetas:
+   9 % mide igual en cualquier fila. */
+.barra-aporte {
+  display: flex;
+  gap: var(--gap-franja);
+}
+
+.franja {
+  flex: 1;
+  height: var(--alto-franja);
+}
+
+.barra-aporte-mini .franja {
+  flex: none;
+  width: var(--ancho-franja-mini);
+  height: var(--alto-franja-mini);
+}
+
+.franja-fondo {
+  fill: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.franja-relleno {
+  fill: var(--nut);
+}
+
+.punto-nutriente {
+  display: inline-block;
+  flex: none;
+  width: var(--punto-nutriente);
+  height: var(--punto-nutriente);
+  background: var(--nut);
+}
+
+/* Hueco: la levadura trae B12 solo si la marca está fortificada. */
+.punto-nutriente[data-nut='condicional'] {
+  background: none;
+  border: 1.5px solid var(--nut);
+}
+
+/* Sin data-nut —los que no entran a las barras— el borde cae a un gris de tinta. */
+.cuadrado-nutriente {
+  display: inline-block;
+  flex: none;
+  width: var(--cuadrado-nutriente);
+  height: var(--cuadrado-nutriente);
+  background: var(--nut);
+  border: 1px solid var(--nut, color-mix(in srgb, var(--tinta) 35%, transparent));
+}
+
+.cuadrado-nutriente.hueco {
+  background: none;
+}
+
 /* ============ Formularios (perfil, registro, ajustes) ============ */
 
 .formulario {
