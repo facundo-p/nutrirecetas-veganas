@@ -33,9 +33,9 @@ export function RecipeCard({
 }: Props) {
   const flames = difficultyFlames(recipe.dificultad);
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
-  const { label, slug, sello } = typeInfo(recipe);
+  const { label, sello } = typeInfo(recipe);
   return (
-    <article className="tarjeta tarjeta-receta" data-cat={slug}>
+    <article className="tarjeta tarjeta-receta">
       <a className="tarjeta-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
         <span className="tarjeta-receta-tipo" title={label}>
           <TypeIcon recipe={recipe} />

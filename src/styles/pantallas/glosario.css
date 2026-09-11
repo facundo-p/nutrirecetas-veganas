@@ -50,11 +50,6 @@
   flex-shrink: 0;
 }
 
-/* los íconos de tipo enseñan el color de su categoría */
-.ficha-icono[data-cat] .ficha-icono-svg {
-  color: var(--cat-actual);
-}
-
 .lista-terminos {
   display: grid;
   gap: var(--sp-3);

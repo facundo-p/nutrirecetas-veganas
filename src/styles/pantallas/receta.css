@@ -17,10 +17,6 @@
   margin-top: var(--sp-2);
 }
 
-[data-cat] .encabezado-pantalla h1 {
-  color: var(--titulo-receta);
-}
-
 .volver a {
   color: var(--navegar);
   text-decoration: none;

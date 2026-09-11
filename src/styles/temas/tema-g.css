@@ -1,0 +1,94 @@
+/* ══════════ Tema G — "Cromatograma" (default, único) ══════════
+   Verde hondo, casi negro pero inequívocamente verde. El color queda reservado
+   para los nutrientes: los roles funcionales van en hueso y liquen, y los tres
+   que llevan color lo comparten a propósito con un nutriente, como pide el
+   rediseño —la acción es el verde de la proteína, el aviso el amarillo de la
+   fibra, el imprescindible el naranja de la vitamina A—.
+
+   `color-scheme: dark` le dice al navegador que pinte con criterio oscuro lo
+   que el CSS no controla: barras de scroll, autofill, controles nativos.
+
+   Estructura de todo archivo de tema:
+     1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
+     2) el contrato de roles, que es lo único que la app puede nombrar
+
+   Lista `:root` además de su atributo porque es el default: si el atributo
+   falta o trae un valor inválido —un `e` o `f` que quedó en localStorage—, la
+   app igual renderiza completa. */
+:root,
+:root[data-tema='g'] {
+  color-scheme: dark;
+
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-bosque: #0a160e;
+  --p-bosque-alto: #14261a;
+  --p-hueso: #ede9d8;
+  --p-liquen: #9eae9c;
+  --p-liquen-hondo: #8b9a89;
+  --p-brote: #4cd070;
+  --p-curcuma: #ffc526;
+  --p-carotenoide: #ff7a18;
+
+  /* ── contrato de roles ── */
+
+  /* Tipografía: la display para títulos; la de datos para todo lo demás, y
+     siempre para las cifras. */
+  --font-display: 'Petrona Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Archivo Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Superficie y tinta. Como texto, sobre bosque / bosque alto:
+     hueso 15,2 / 13,1 · liquen 7,9 / 6,8 · liquen hondo 6,2 / 5,4. */
+  --papel: var(--p-bosque);
+  --superficie: var(--p-bosque-alto);
+  --tinta: var(--p-hueso);
+  --tinta-suave: var(--p-liquen);
+
+  /* Identidad y acción */
+  --marca: var(--p-hueso);
+  --kicker: var(--p-liquen);
+  --titulo-seccion: var(--p-hueso);
+  --accion: var(--p-brote);
+  --accion-texto: var(--p-brote);
+  --sobre-accion: var(--p-bosque); /* 9,3:1 sobre el brote */
+  --seleccion: var(--p-brote);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-liquen);
+  --link: var(--p-brote);
+  --foco: var(--p-hueso);
+
+  /* Datos */
+  --cifra: var(--p-hueso);
+  --dato-suave: var(--p-liquen-hondo);
+  --chip: var(--p-liquen);
+
+  /* Avisos y tips */
+  --aviso: var(--p-curcuma);
+  --tip-positivo: var(--p-brote);
+  --tip-atencion: var(--p-curcuma);
+  --tip-neutro: var(--p-liquen);
+
+  /* Atributos de receta e ingrediente. Freezer, indulgente y preparado van en
+     liquen: no son nutrientes, y un color de más sería un color que miente. */
+  --icono-imprescindible: var(--p-carotenoide);
+  --funcion-ingrediente: var(--p-liquen-hondo);
+  --confirmado: var(--p-brote);
+  --icono-freezer: var(--p-liquen);
+  --icono-clasica: var(--p-brote);
+  --icono-indulgente: var(--p-liquen);
+  --estado-pendiente: var(--p-curcuma);
+  --estado-favorita: var(--p-hueso);
+  --chip-preparado: var(--p-liquen);
+
+  --precaucion: var(--p-curcuma);
+  --exito: var(--p-brote);
+
+  /* Encabezado y nav: planos, del color del papel. */
+  --encabezado: var(--p-bosque);
+  --sobre-encabezado: var(--p-hueso);
+  --encabezado-kicker: var(--p-liquen);
+  --nav-fondo: var(--p-bosque);
+  --nav-inactivo: var(--p-liquen-hondo);
+  --nav-activo: var(--p-hueso);
+  --nav-marca-activa: var(--p-brote);
+}

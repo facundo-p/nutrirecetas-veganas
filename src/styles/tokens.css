@@ -32,8 +32,8 @@
   --sp-5: 1.5rem;
   --sp-6: 2rem;
   --sp-7: 3rem;
-  --radio: 10px;
-  --radio-chico: 6px;
+  --radio: 2px;
+  --radio-chico: 2px;
   --borde: 1px solid color-mix(in srgb, var(--tinta) 14%, transparent);
   --borde-suave: 1px solid color-mix(in srgb, var(--tinta) 8%, transparent);
 
