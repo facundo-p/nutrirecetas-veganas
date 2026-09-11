@@ -1,4 +1,4 @@
-import type { Ingredient, Interval, Recipe } from '../seed/schema';
+import type { Ingredient, Interval, Line, Recipe } from '../seed/schema';
 import { INGREDIENT_NUTRIENT_KEYS, type IngredientNutrientKey } from '../seed/schema';
 import { interval, scale, sum } from './interval';
 
@@ -173,6 +173,23 @@ function scaleNutrition(n: RecipeNutrition, factor: number): RecipeNutrition {
   };
 }
 
+/**
+ * La nutrición de una receta con otras líneas —sustituidas, desmarcadas,
+ * agregadas— sin tocar la semilla. El id sintético la deja fuera de cualquier
+ * cache por id de receta.
+ */
+export function nutricionConLineas(
+  recipe: Recipe,
+  lineas: Line[],
+  porciones_num: number | null,
+  source: NutritionSource,
+): RecipeNutrition {
+  const sintetica: Recipe = { ...recipe, id: `${recipe.id}__otras-lineas`, lineas, porciones_num };
+  const recipeById = new Map(source.recipeById);
+  recipeById.set(sintetica.id, sintetica);
+  return computeNutrition(sintetica.id, { ...source, recipeById });
+}
+
 /** Nutrición por porción; null si la receta no define porciones (se usa per100g). */
 export function perPortion(n: RecipeNutrition): RecipeNutrition | null {
   if (n.porciones_num === null) return null;
@@ -184,4 +201,12 @@ export function per100g(n: RecipeNutrition): RecipeNutrition {
   const base = n.rendimiento_g ?? n.masa_total_g;
   if (base === 0) return n;
   return scaleNutrition(n, 100 / base);
+}
+
+export type BaseDeMedida = 'porcion' | '100g';
+
+/** La nutrición en la base en que se informa: una porción, o 100 g si la receta no define porciones. */
+export function enSuBase(n: RecipeNutrition): { medida: RecipeNutrition; base: BaseDeMedida } {
+  const porcion = perPortion(n);
+  return porcion ? { medida: porcion, base: 'porcion' } : { medida: per100g(n), base: '100g' };
 }

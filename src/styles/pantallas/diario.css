@@ -58,10 +58,6 @@
   margin-left: auto;
 }
 
-.icono-aviso {
-  color: var(--aviso);
-}
-
 .coccion-variaciones {
   list-style: none;
   padding: 0;
@@ -87,12 +83,3 @@
   font-size: var(--fs-xs);
   color: var(--dato-suave);
 }
-
-.nota-usuario {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--fs-sm);
-  color: var(--tinta-suave);
-  margin-top: var(--sp-2);
-}
-

@@ -40,12 +40,6 @@
   white-space: nowrap;
 }
 
-.nota-ingrediente {
-  margin-top: var(--sp-2);
-  font-size: var(--fs-sm);
-  color: var(--tinta-suave);
-}
-
 .lista-conservacion {
   list-style: none;
   padding: 0;
@@ -112,7 +106,7 @@
   font-size: var(--fs-sm);
   padding: var(--sp-1) var(--sp-2);
   border: var(--borde);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: var(--superficie);
   color: var(--tinta);
   min-height: 34px;

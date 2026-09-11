@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { routeHash } from '../../app/router';
+import { nombreDeNutriente } from '../../domain/aporte';
 import { cuantosFiltros, type RecipeFiltersState } from './filtering';
 import { ModalDeFiltros } from './ModalDeFiltros';
 import { IconFiltros, IconLupa } from '../icons/icons';
@@ -18,6 +19,7 @@ export function RecipeFilters({ filters, onChange, resultados }: Props) {
   const [abierto, setAbierto] = useState(false);
   const boton = useRef<HTMLButtonElement>(null);
   const puestos = cuantosFiltros(filters);
+  const ricaEn = idx.nutrientById.get(filters.ricaEn);
 
   const cerrar = () => {
     setAbierto(false);
@@ -57,10 +59,10 @@ export function RecipeFilters({ filters, onChange, resultados }: Props) {
       </div>
       {/* El filtro recorta el recetario; la ficha del nutriente lo rankea y
           explica de qué se trata. Son dos preguntas distintas sobre lo mismo. */}
-      {filters.ricaEn !== '' && (
+      {ricaEn && (
         <p className="filtros-enlace">
-          <a href={routeHash({ screen: 'nutrient', id: filters.ricaEn })}>
-            Ver las que más aportan, y qué es {idx.nutrientById.get(filters.ricaEn)?.nombre.toLowerCase()} ›
+          <a href={routeHash({ screen: 'nutrient', id: ricaEn.id })}>
+            Ver las que más aportan, y qué es {nombreDeNutriente(ricaEn)} ›
           </a>
         </p>
       )}

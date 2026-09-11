@@ -220,7 +220,6 @@ export const sourceCatalogEntrySchema = z.strictObject({
   url: z.string().min(1).optional(),
   credencial: z.string().min(1).optional(),
 });
-export type SourceCatalogEntry = z.infer<typeof sourceCatalogEntrySchema>;
 
 export const DIFFICULTY_LEVELS = ['trivial', 'muy fácil', 'fácil', 'media', 'difícil'] as const;
 

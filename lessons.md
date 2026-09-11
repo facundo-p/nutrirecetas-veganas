@@ -450,3 +450,20 @@ de una auditoría ni de un test: de cocinar con ella.
   arreglos no dependen de la casualidad: las líneas al revés, una receta
   buscada en la semilla por tener banda. Van cuatro en la fase: mutar después
   de cada verde a la primera es parte del test, no un extra.
+
+### Revisión con contexto fresco de las tandas 1 y 2 (2026-09-11, #179)
+
+- **Una porción no se calcula con cantidades redondeadas.** La ficha
+  recalculaba la nutrición con `escalarLineas`, que redondea a medidas de
+  cocina: a un cuarto, p28 decía 300 kcal por porción en vez de 147. El
+  comentario de al lado afirmaba lo contrario. Ningún test escalaba hasta el
+  tope, donde el redondeo pesa; lo encontró un revisor midiendo las 84 recetas.
+- **Estado por índice más componente reusado es estado ajeno.** Sin `key`, React
+  reusaba la ficha al saltar de receta, y las sustituciones —un mapa por número
+  de línea— caían en la línea equivalente de la otra. `key={route.id}`.
+- **Lo barato se acumula.** De 48 hallazgos, la mayoría costaba minutos: una
+  prop `mini` que nunca tuvo usuario, un aviso que su única pantalla filtraba,
+  la misma cuenta de objetivos en cinco pantallas, un `font-size` que nunca se
+  aplicó porque `.encabezado-pantalla h1` le ganaba por especificidad (el título
+  medía 38 px, no los 40 del diseño). Revisar al final de cada tanda, no al
+  cierre de fase: cada tanda se apoya en la anterior.

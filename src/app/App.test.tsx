@@ -3,6 +3,7 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
+import { routeHash } from './router';
 import { addCoccion } from '../db/repos';
 import { db } from '../db/db';
 import { USER_SCHEMA_VERSION } from '../db/schema';
@@ -74,6 +75,22 @@ test('a quien venía de antes le avisa qué se borró, y se puede cerrar', async
 
   await waitFor(() => expect(screen.queryByText(/dejó de llevar la cuenta/)).toBeNull());
   expect((await db.meta.get(1))!.user_schema_version).toBe(USER_SCHEMA_VERSION);
+});
+
+test('pasar de una receta a otra no arrastra lo que se tocó en la primera', async () => {
+  window.location.hash = routeHash({ screen: 'recipe', id: 'r07' });
+  try {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: 'ver notas y sustitutos' }));
+    fireEvent.click(screen.getByRole('button', { name: /Arroz integral/ }));
+    expect(screen.getByText(/en vez de Quinoa/)).toBeDefined();
+
+    window.location.hash = routeHash({ screen: 'recipe', id: 'r01' });
+    await screen.findByRole('heading', { name: /Sopa/, level: 1 });
+    expect(screen.queryByText(/en vez de/)).toBeNull();
+  } finally {
+    window.location.hash = '';
+  }
 });
 
 test('una instalación nueva no ve el aviso de una migración que no vivió', async () => {

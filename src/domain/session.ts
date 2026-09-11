@@ -1,5 +1,5 @@
 import type { LineRef, Recipe, Seed } from '../seed/schema';
-import { computeNutrition, type NutritionSource, type RecipeNutrition } from './nutrition';
+import { nutricionConLineas, type NutritionSource, type RecipeNutrition } from './nutrition';
 import { escalarLineas } from './scaling';
 
 /**
@@ -87,25 +87,18 @@ export function nutricionSesion(
   lineas: LineaSesion[],
   recipe: Recipe,
   porciones: number,
-  source: NutritionSource & { seed?: Seed },
+  source: NutritionSource,
 ): RecipeNutrition {
-  const sintetica: Recipe = {
-    ...recipe,
-    id: `${recipe.id}__sesion`,
-    porciones_num: porciones,
-    lineas: lineas
-      .filter((l) => l.activa)
-      .map((l) => ({
-        ref: l.ref,
-        cantidad: l.cantidad,
-        unidad_display: l.unidad_display,
-        g_aprox: l.g_aprox,
-        sustitutos: [],
-      })),
-  };
-  const recipeById = new Map(source.recipeById);
-  recipeById.set(sintetica.id, sintetica);
-  return computeNutrition(sintetica.id, { ...source, recipeById });
+  const activas = lineas
+    .filter((l) => l.activa)
+    .map((l) => ({
+      ref: l.ref,
+      cantidad: l.cantidad,
+      unidad_display: l.unidad_display,
+      g_aprox: l.g_aprox,
+      sustitutos: [],
+    }));
+  return nutricionConLineas(recipe, activas, porciones, source);
 }
 
 export interface VariacionDetectada {

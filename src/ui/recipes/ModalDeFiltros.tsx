@@ -2,7 +2,8 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { getSeedIndex } from '../../seed';
 import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estado';
-import { esNutrienteDeBarra, nombreDeNutriente, NOMBRE_CORTO, ORDEN_BARRA } from '../../domain/aporte';
+import { enOrdenCanonico, nombreDeNutriente, nutrienteConColor } from '../../domain/aporte';
+import { legible } from '../common/format';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
 import { allFamilies, EMPTY_FILTERS, type RecipeFiltersState } from './filtering';
 
@@ -84,10 +85,6 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
   }, []);
 
   const set = (patch: Partial<RecipeFiltersState>) => onChange({ ...filters, ...patch });
-  const nutrientes = [
-    ...ORDEN_BARRA.map((id) => ({ id, nombre: NOMBRE_CORTO[id] })),
-    ...idx.seed.nutrientes.filter((n) => !esNutrienteDeBarra(n.id)).map((n) => ({ id: n.id, nombre: nombreDeNutriente(n) })),
-  ];
 
   return (
     <div className="modal-filtros">
@@ -150,7 +147,7 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
               activo={filters.familia === familia}
               onClick={() => set({ familia: filters.familia === familia ? '' : familia })}
             >
-              {familia.replace(/_/g, ' ')}
+              {legible(familia)}
             </Chip>
           ))}
         </Grupo>
@@ -159,15 +156,15 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
           titulo="Que cubra al menos un quinto del día en"
           ayuda="Por porción, sobre la referencia adulta genérica. Con color, los que aparecen en las barras."
         >
-          {nutrientes.map(({ id, nombre }) => (
+          {enOrdenCanonico(idx.seed.nutrientes).map((n) => (
             <Chip
-              key={id}
-              activo={filters.ricaEn === id}
-              nutriente={esNutrienteDeBarra(id) ? id : undefined}
-              onClick={() => set({ ricaEn: filters.ricaEn === id ? '' : id })}
+              key={n.id}
+              activo={filters.ricaEn === n.id}
+              nutriente={nutrienteConColor(n.id)}
+              onClick={() => set({ ricaEn: filters.ricaEn === n.id ? '' : n.id })}
             >
-              <CuadradoDeNutriente nutrienteId={id} />
-              {nombre}
+              <CuadradoDeNutriente nutrienteId={n.id} />
+              {nombreDeNutriente(n)}
             </Chip>
           ))}
         </Grupo>

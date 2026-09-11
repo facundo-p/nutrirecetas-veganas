@@ -106,6 +106,16 @@ describe('Detalle de receta', () => {
       expect(container.querySelector('.fila-aporte')).toBeNull();
     });
 
+    test('escalar no cambia lo que aporta una porción: el redondeo de cocina no es nutrición', () => {
+      // p28 a un cuarto: las cantidades redondeadas daban 300 kcal por porción en vez de 147
+      const { container } = render(<RecipeDetail id="p28" />);
+      const kcal = () => container.querySelector('.panel-aporte-kcal')!.textContent;
+      const antes = kcal();
+      const menos = screen.getByRole('button', { name: 'Menos porciones' }) as HTMLButtonElement;
+      while (!menos.disabled) fireEvent.click(menos);
+      expect(kcal()).toBe(antes);
+    });
+
     test('las kcal dicen su intervalo cuando lo tienen: es parte del dato', () => {
       const idx = getSeedIndex();
       const conBanda = idx.seed.recetas.find((r) => {

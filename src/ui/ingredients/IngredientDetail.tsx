@@ -1,10 +1,12 @@
 import { getSeedIndex } from '../../seed';
 import type { Ingredient } from '../../seed/schema';
 import { routeHash } from '../../app/router';
-import { amountUnit, currentMonth, formatNumber, MONTH_NAMES } from '../common/format';
+import { amountUnit, currentMonth, formatPorcentaje, legible, MONTH_NAMES } from '../common/format';
 import { ingredientInSeason } from '../../domain/season';
-import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
-import { usePerfil } from '../../db/hooks';
+import { porcentajeDeObjetivo } from '../../domain/objetivos';
+import { resultadosDeIngrediente } from '../../domain/aporte';
+import { useObjetivos } from '../common/useObjetivos';
+import { SobreQueDosis } from '../common/SobreQueDosis';
 import { IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
 import { IntervalBand } from '../recipe-detail/IntervalBand';
@@ -17,8 +19,7 @@ const EXTRA_LABELS: Record<string, { nombre: string; unidad: string }> = {
 
 export function IngredientDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
-  const perfil = usePerfil();
-  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
+  const objetivos = useObjetivos();
   const ing = idx.ingredientById.get(id);
   if (!ing) {
     return (
@@ -35,6 +36,7 @@ export function IngredientDetail({ id }: { id: string }) {
 
   const byClave = new Map(idx.seed.nutrientes.map((n) => [n.clave_ingrediente, n]));
   const valores = Object.entries(ing.nutrientes) as Array<[string, NonNullable<Ingredient['kcal']>]>;
+  const resultados = resultadosDeIngrediente(ing);
   const season = idx.seasonalityByIngredient.get(ing.id);
   const storage = idx.storageFor(ing);
   const pesoUnidad = idx.seed.equivalencias.peso_por_unidad.filter((e) => e.ingrediente_id === ing.id);
@@ -48,7 +50,7 @@ export function IngredientDetail({ id }: { id: string }) {
       </p>
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
-          <span className="chip chip-mini">{ing.categoria.replaceAll('_', ' ')}</span>
+          <span className="chip chip-mini">{legible(ing.categoria)}</span>
           <span className="meta-item">
             <IndiceConfianza ic={ing.ic} />
           </span>
@@ -74,14 +76,7 @@ export function IngredientDetail({ id }: { id: string }) {
         ) : (
           <>
             <p className="nutricion-referencia">
-              {objetivos.fuente === 'perfil' ? (
-                <>Los porcentajes son sobre tu dosis diaria.</>
-              ) : (
-                <>
-                  Los porcentajes son sobre la <strong>referencia adulta genérica</strong>.{' '}
-                  <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean sobre la tuya.
-                </>
-              )}
+              Los porcentajes son sobre <SobreQueDosis fuente={objetivos.fuente} />.
             </p>
             <ul className="nutricion-lista">
               {valores.map(([clave, value]) => {
@@ -92,10 +87,7 @@ export function IngredientDetail({ id }: { id: string }) {
                 // Sodio y grasa saturada no están en el catálogo de 20 y no
                 // tienen RDA: no hay contra qué medirlos, así que no se mide.
                 const pct = cat
-                  ? porcentajeDeObjetivo(
-                      { intervalo: value.intervalo, cobertura_pct: 100, ic: cat.ic },
-                      objetivos.porNutriente.get(cat.id),
-                    )
+                  ? porcentajeDeObjetivo(resultados[cat.clave_ingrediente], objetivos.porNutriente.get(cat.id))
                   : null;
                 return (
                   <li key={clave} className="nutriente">
@@ -103,7 +95,7 @@ export function IngredientDetail({ id }: { id: string }) {
                     <IntervalBand intervalo={value.intervalo} unidad={label.unidad} />
                     {pct !== null && (
                       <span className="nutriente-porcentaje">
-                        <span className="cifra">{formatNumber(pct, pct < 10 ? 1 : 0)} %</span> de la dosis diaria
+                        <span className="cifra">{formatPorcentaje(pct)}</span> de la dosis diaria
                       </span>
                     )}
                     {value.nota && <span className="nutriente-calidad">{value.nota}</span>}
@@ -135,7 +127,7 @@ export function IngredientDetail({ id }: { id: string }) {
           <ul className="lista-conservacion">
             {storage.map((item) => (
               <li key={item.item} className={item.seguridad_critica ? 'conservacion seguridad' : 'conservacion'}>
-                <span className="conservacion-item">{item.item.replaceAll('_', ' ')}</span>
+                <span className="conservacion-item">{legible(item.item)}</span>
                 <span className="detalle-meta">
                   {item.despensa_dias !== undefined && <span className="meta-item">despensa {item.despensa_dias} d</span>}
                   {item.heladera_dias !== undefined && (

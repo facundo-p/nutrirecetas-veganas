@@ -1,5 +1,5 @@
 import type { Interval } from '../../seed/schema';
-import { midpoint } from '../../domain/interval';
+import { midpoint, tieneBanda } from '../../domain/interval';
 import { formatNumber } from '../common/format';
 import { IconBandaAprox } from '../icons/icons';
 
@@ -19,19 +19,21 @@ export function cifraDeBanda(valor: number): string {
   return formatNumber(valor, decimals(valor));
 }
 
+/** El ícono de "aproximado", solo si hay banda: un valor puntual no tiene nada que aproximar. */
+export function MarcaDeAproximado({ intervalo }: { intervalo: Interval }) {
+  return tieneBanda(intervalo) ? <IconBandaAprox className="banda-icono" aria-label="valor aproximado" /> : null;
+}
+
 export function IntervalBand({ intervalo, unidad }: { intervalo: Interval; unidad: string }) {
-  const mid = midpoint(intervalo);
-  const hasBand = intervalo.max - intervalo.min > 1e-9;
   return (
     <span className="banda">
       <span className="cifra banda-valor">
-        {hasBand && <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />}
-        {formatNumber(mid, decimals(mid))} {unidad}
+        <MarcaDeAproximado intervalo={intervalo} />
+        {cifraDeBanda(midpoint(intervalo))} {unidad}
       </span>
-      {hasBand && (
+      {tieneBanda(intervalo) && (
         <span className="banda-rango">
-          entre {formatNumber(intervalo.min, decimals(intervalo.min))} y{' '}
-          {formatNumber(intervalo.max, decimals(intervalo.max))}
+          entre {cifraDeBanda(intervalo.min)} y {cifraDeBanda(intervalo.max)}
         </span>
       )}
     </span>

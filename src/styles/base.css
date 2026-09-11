@@ -66,15 +66,6 @@ svg {
   border-radius: var(--radio);
 }
 
-/* Filete doble de carta de restaurante */
-.filete {
-  border: none;
-  border-top: 1px solid color-mix(in srgb, var(--tinta) 30%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--tinta) 30%, transparent);
-  height: 4px;
-  background: none;
-}
-
 /* Las cifras nunca cambian de familia: van en la de datos y tabulares, para
    que no bailen al recalcular. */
 .cifra {

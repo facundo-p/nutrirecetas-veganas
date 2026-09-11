@@ -1,5 +1,19 @@
-import { INGREDIENT_NUTRIENT_KEYS, type Ingredient, type IngredientNutrientKey, type Nutrient } from '../seed/schema';
-import { B12_ALERT_INGREDIENT, type NutrientResult } from './nutrition';
+import type { SeedIndex } from '../seed';
+import {
+  INGREDIENT_NUTRIENT_KEYS,
+  type Ingredient,
+  type IngredientNutrientKey,
+  type Line,
+  type Nutrient,
+} from '../seed/schema';
+import {
+  B12_ALERT_INGREDIENT,
+  enSuBase,
+  per100g,
+  type BaseDeMedida,
+  type NutrientResult,
+  type RecipeNutrition,
+} from './nutrition';
 import { porcentajeAfirmableSolo, type ObjetivosDeReferencia } from './objetivos';
 
 /**
@@ -82,6 +96,20 @@ export function esNutrienteDeBarra(id: string): id is NutrienteDeBarra {
   return (ORDEN_BARRA as readonly string[]).includes(id);
 }
 
+/** El nutriente como clave de color, si tiene uno: lo que va en `data-nut`. */
+export function nutrienteConColor(id: string): NutrienteDeBarra | undefined {
+  return esNutrienteDeBarra(id) ? id : undefined;
+}
+
+/** Los once con color primero y en su orden; después el resto, como los trae la semilla. */
+export function enOrdenCanonico(nutrientes: Nutrient[]): Nutrient[] {
+  const puesto = (n: Nutrient) => {
+    const i = (ORDEN_BARRA as readonly string[]).indexOf(n.id);
+    return i === -1 ? ORDEN_BARRA.length : i;
+  };
+  return [...nutrientes].sort((a, b) => puesto(a) - puesto(b));
+}
+
 /** Qué porcentaje del día cubre cada nutriente de barra. `null`: no hay dato que afirmar. */
 export type Porcentajes = Record<NutrienteDeBarra, number | null>;
 
@@ -108,6 +136,21 @@ export function porcentajesDeAporte(
   return porcentajes;
 }
 
+export interface AporteDeReceta {
+  porcentajes: Porcentajes;
+  base: BaseDeMedida;
+}
+
+/** Lo que dibuja la barra de una receta. `base` existe para poder decir contra qué. */
+export function aporteDeReceta(
+  nutricion: RecipeNutrition,
+  objetivos: ObjetivosDeReferencia,
+  nutrientes: Nutrient[],
+): AporteDeReceta {
+  const { medida, base } = enSuBase(nutricion);
+  return { porcentajes: porcentajesDeAporte(medida.por_nutriente, objetivos, nutrientes), base };
+}
+
 /** Los 100 g de un ingrediente como resultados: dato de la ficha, cobertura total y su IC. */
 export function resultadosDeIngrediente(ingrediente: Ingredient): ResultadosPorClave {
   const resultados: ResultadosPorClave = {};
@@ -120,11 +163,16 @@ export function resultadosDeIngrediente(ingrediente: Ingredient): ResultadosPorC
 
 export type Franja = { nutriente: NutrienteDeBarra; porcentaje: number; relleno: number } | { nutriente: null };
 
+/** Cuánto se pinta un casillero: el porcentaje, cortado en el día entero. */
+export function rellenoDeFranja(porcentaje: number): number {
+  return Math.min(100, porcentaje);
+}
+
 /**
  * Los casilleros de la barra: los seis nutrientes que más cubre, redibujados en
  * orden canónico. Un nutriente sin dato no recibe casillero —el último puesto
  * se lee "casi no tiene" (invariante 5)—: si hay menos de seis con dato, los que
- * sobran van vacíos y sin nombre. El relleno se corta en 100.
+ * sobran van vacíos y sin nombre.
  */
 export function franjasDeAporte(porcentajes: Porcentajes): Franja[] {
   const conDato = ORDEN_BARRA.filter((id) => porcentajes[id] !== null);
@@ -132,7 +180,7 @@ export function franjasDeAporte(porcentajes: Porcentajes): Franja[] {
   const elegidos = new Set([...conDato].sort((a, b) => porcentajes[b]! - porcentajes[a]!).slice(0, CASILLEROS));
   const franjas: Franja[] = ORDEN_BARRA.filter((id) => elegidos.has(id)).map((id) => {
     const porcentaje = porcentajes[id]!;
-    return { nutriente: id, porcentaje, relleno: Math.min(100, porcentaje) };
+    return { nutriente: id, porcentaje, relleno: rellenoDeFranja(porcentaje) };
   });
   while (franjas.length < CASILLEROS) franjas.push({ nutriente: null });
   return franjas;
@@ -152,18 +200,47 @@ export function fuerteDeAporte(porcentajes: Porcentajes): { nutriente: Nutriente
 export type PuntoDeIngrediente = NutrienteDeBarra | 'ninguno' | 'condicional';
 
 /**
- * La levadura nutricional es aporte condicional aunque traiga otros nutrientes:
- * su B12 existe solo si la marca está fortificada, y el punto hueco es lo que lo
- * dice en la lista de ingredientes (invariante 6).
+ * Condicional va hueco aunque traiga otros nutrientes: la B12 de la levadura
+ * existe solo si la marca está fortificada, y el punto hueco es lo que lo dice
+ * en la lista de ingredientes (invariante 6).
  */
+function puntoDeResultados(
+  resultados: ResultadosPorClave,
+  condicional: boolean,
+  objetivos: ObjetivosDeReferencia,
+  nutrientes: Nutrient[],
+): PuntoDeIngrediente {
+  if (condicional) return 'condicional';
+  return fuerteDeAporte(porcentajesDeAporte(resultados, objetivos, nutrientes))?.nutriente ?? 'ninguno';
+}
+
 export function puntoDeIngrediente(
   ingrediente: Ingredient,
   objetivos: ObjetivosDeReferencia,
   nutrientes: Nutrient[],
 ): PuntoDeIngrediente {
-  if (ingrediente.id === B12_ALERT_INGREDIENT) return 'condicional';
-  const porcentajes = porcentajesDeAporte(resultadosDeIngrediente(ingrediente), objetivos, nutrientes);
-  return fuerteDeAporte(porcentajes)?.nutriente ?? 'ninguno';
+  const condicional = ingrediente.id === B12_ALERT_INGREDIENT;
+  return puntoDeResultados(resultadosDeIngrediente(ingrediente), condicional, objetivos, nutrientes);
+}
+
+/**
+ * El punto de una línea de receta. Un preparado se mira por sus 100 g, y va
+ * hueco si adentro lleva levadura nutricional: así el aviso de la B12 no se
+ * pierde cuando la levadura viene dentro de otra receta.
+ */
+export function puntoDeLinea(
+  idx: SeedIndex,
+  linea: Line,
+  objetivos: ObjetivosDeReferencia,
+  nutricionDe: (recetaId: string) => RecipeNutrition,
+): PuntoDeIngrediente {
+  const nutrientes = idx.seed.nutrientes;
+  if (linea.ref.tipo === 'ingrediente') {
+    const ingrediente = idx.ingredientById.get(linea.ref.id);
+    return ingrediente ? puntoDeIngrediente(ingrediente, objetivos, nutrientes) : 'ninguno';
+  }
+  const preparado = nutricionDe(linea.ref.id);
+  return puntoDeResultados(per100g(preparado).por_nutriente, preparado.alerta_b12, objetivos, nutrientes);
 }
 
 /** Cómo se lo nombra en la app: el nombre corto si tiene color, el del catálogo si no. */

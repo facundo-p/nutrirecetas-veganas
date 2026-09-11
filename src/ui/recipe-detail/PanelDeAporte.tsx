@@ -1,32 +1,25 @@
 import { useState } from 'react';
-import { midpoint } from '../../domain/interval';
-import { hasReportableValue, type NutrientResult, type RecipeNutrition } from '../../domain/nutrition';
+import { midpoint, tieneBanda } from '../../domain/interval';
+import { hasReportableValue, type BaseDeMedida, type NutrientResult, type RecipeNutrition } from '../../domain/nutrition';
 import { porcentajeAfirmableSolo, type ObjetivosDeReferencia } from '../../domain/objetivos';
-import { esNutrienteDeBarra, GRUPO_DEL_PANEL, GRUPOS_DEL_PANEL, nombreDeNutriente, ORDEN_BARRA } from '../../domain/aporte';
+import { enOrdenCanonico, GRUPO_DEL_PANEL, GRUPOS_DEL_PANEL, nombreDeNutriente, rellenoDeFranja } from '../../domain/aporte';
 import type { AporteDeLinea } from '../../domain/fuentes';
 import type { ObjetivoNutriente } from '../../domain/profile';
-import { routeHash } from '../../app/router';
 import type { Nutrient } from '../../seed/schema';
-import { amountUnit, formatGramos, formatNumber, formatPorcentaje } from '../common/format';
+import { amountUnit, formatNumber, formatPorcentaje, MEDIDA_DE_BASE } from '../common/format';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
+import { FranjaDeNutriente } from '../common/BarraDeAporte';
 import { IndiceConfianza } from '../common/IndiceConfianza';
-import { IconBandaAprox } from '../icons/icons';
-import { cifraDeBanda, IntervalBand } from './IntervalBand';
-
-const conBanda = (r: NutrientResult) => r.intervalo.max - r.intervalo.min > 1e-9;
+import { SobreQueDosis } from '../common/SobreQueDosis';
+import { cifraDeBanda, IntervalBand, MarcaDeAproximado } from './IntervalBand';
 
 /** Los que marcaste en tu perfil primero; después los que tienen color, en su orden; después el resto. */
 function ordenar(nutrientes: Nutrient[], destacados: string[]): Nutrient[] {
-  const canon = ORDEN_BARRA as readonly string[];
-  const clave = (n: Nutrient, i: number): [number, number] => {
-    const destacado = destacados.indexOf(n.id);
-    const enCanon = canon.indexOf(n.id);
-    return [destacado === -1 ? destacados.length : destacado, enCanon === -1 ? canon.length + i : enCanon];
+  const puesto = (n: Nutrient) => {
+    const i = destacados.indexOf(n.id);
+    return i === -1 ? destacados.length : i;
   };
-  return nutrientes
-    .map((n, i) => ({ n, k: clave(n, i) }))
-    .sort((a, b) => a.k[0] - b.k[0] || a.k[1] - b.k[1])
-    .map(({ n }) => n);
+  return enOrdenCanonico(nutrientes).sort((a, b) => puesto(a) - puesto(b));
 }
 
 function FilaDeAporte({
@@ -51,15 +44,16 @@ function FilaDeAporte({
   // cero no se puede afirmar suelto. La banda aparece al abrirla.
   const porcentaje = porcentajeAfirmableSolo(resultado, objetivo);
   const cobertura = formatNumber(resultado.cobertura_pct, 0);
+  const quienes = abierta && conDato ? aportantes().slice(0, 3) : [];
   return (
     <li className={conDato ? 'fila-aporte' : 'fila-aporte sin-datos'}>
-      <button type="button" className="fila-aporte-cabecera" aria-expanded={abierta} onClick={onAlternar}>
+      <button type="button" className="boton-plano fila-aporte-cabecera" aria-expanded={abierta} onClick={onAlternar}>
         <CuadradoDeNutriente nutrienteId={nutriente.id} aporta={porcentaje !== null} />
         <span className="fila-aporte-nombre">{nombre}</span>
         <span className="fila-aporte-valor">
           {conDato ? (
             <>
-              {conBanda(resultado) && <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />}
+              <MarcaDeAproximado intervalo={resultado.intervalo} />
               <span className="cifra">{cifraDeBanda(midpoint(resultado.intervalo))}</span> {unidad}
             </>
           ) : (
@@ -70,16 +64,11 @@ function FilaDeAporte({
       </button>
       {conDato && (
         <span className="fila-aporte-medida">
-          <svg
-            className="franja fila-aporte-franja"
-            data-nut={esNutrienteDeBarra(nutriente.id) ? nutriente.id : undefined}
-            viewBox="0 0 100 1"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <rect className="franja-fondo" width="100" height="1" />
-            {porcentaje !== null && <rect className="franja-relleno" width={Math.min(100, porcentaje)} height="1" />}
-          </svg>
+          <FranjaDeNutriente
+            clase="fila-aporte-franja"
+            nutrienteId={nutriente.id}
+            relleno={porcentaje === null ? null : rellenoDeFranja(porcentaje)}
+          />
           {resultado.ic !== null && <IndiceConfianza ic={resultado.ic} />}
         </span>
       )}
@@ -88,7 +77,7 @@ function FilaDeAporte({
           {conDato ? (
             <>
               {/* Con un dato puntual la banda repetiría el valor de la fila. */}
-              {conBanda(resultado) && (
+              {tieneBanda(resultado.intervalo) && (
                 <p>
                   <IntervalBand intervalo={resultado.intervalo} unidad={unidad} />
                 </p>
@@ -98,10 +87,7 @@ function FilaDeAporte({
               )}
               <p className="fila-aporte-origen">
                 Calculado sobre el {cobertura} % del peso.
-                {(() => {
-                  const quienes = aportantes().slice(0, 3);
-                  return quienes.length > 0 && <> Lo aportan: {quienes.map((q) => q.nombre).join(', ')}.</>;
-                })()}
+                {quienes.length > 0 && <> Lo aportan: {quienes.map((q) => q.nombre).join(', ')}.</>}
               </p>
             </>
           ) : (
@@ -120,7 +106,7 @@ function FilaDeAporte({
 interface Props {
   /** Ya en su base: una porción, o 100 g si la receta no define porciones. */
   nutrition: RecipeNutrition;
-  porPorcion: boolean;
+  base: BaseDeMedida;
   nutrientes: Nutrient[];
   objetivos: ObjetivosDeReferencia;
   destacados: string[];
@@ -134,13 +120,13 @@ interface Props {
  * cerrado, con su intervalo, que es parte del dato. Los nutrientes sin dato
  * van detrás de un contador: se cuentan en vez de esconderse (invariante 5).
  */
-export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, destacados, aportantes }: Props) {
+export function PanelDeAporte({ nutrition, base, nutrientes, objetivos, destacados, aportantes }: Props) {
   const [abierto, setAbierto] = useState(false);
   const [fila, setFila] = useState<string | null>(null);
   const [verSinDato, setVerSinDato] = useState(false);
 
-  const base = porPorcion ? 'una porción' : 'cada 100 g';
-  const kcal = nutrition.kcal;
+  const medida = MEDIDA_DE_BASE[base];
+  const kcal = nutrition.kcal.intervalo;
   const tieneDato = (n: Nutrient) => hasReportableValue(nutrition.por_nutriente[n.clave_ingrediente]);
   const sinDato = nutrientes.filter((n) => !tieneDato(n)).length;
   const ordenados = ordenar(nutrientes, destacados);
@@ -149,8 +135,8 @@ export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, de
     <section className="panel-aporte">
       <div className="panel-aporte-cabecera">
         <h2 className="panel-aporte-titulo">
-          <button type="button" className="panel-aporte-toggle" aria-expanded={abierto} onClick={() => setAbierto((v) => !v)}>
-            <span>Qué aporta {base}</span>
+          <button type="button" className="boton-plano panel-aporte-toggle" aria-expanded={abierto} onClick={() => setAbierto((v) => !v)}>
+            <span>Qué aporta {medida.sujeto}</span>
             <span className="panel-aporte-signo" aria-hidden="true">
               {abierto ? '−' : '+'}
             </span>
@@ -159,10 +145,10 @@ export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, de
         <p className="panel-aporte-bajada">Todos los nutrientes, ingrediente por ingrediente. Cada dato dice de dónde salió.</p>
       </div>
       <p className="panel-aporte-kcal">
-        <span className="cifra">{formatGramos(midpoint(kcal.intervalo))}</span> kcal {porPorcion ? 'por porción' : 'cada 100 g'}
-        {conBanda(kcal) && (
+        <span className="cifra">{formatNumber(midpoint(kcal), 0)}</span> kcal {medida.por}
+        {tieneBanda(kcal) && (
           <>
-            , entre {formatGramos(kcal.intervalo.min)} y {formatGramos(kcal.intervalo.max)}
+            , entre {formatNumber(kcal.min, 0)} y {formatNumber(kcal.max, 0)}
           </>
         )}
       </p>
@@ -172,15 +158,8 @@ export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, de
           {/* Un porcentaje que no dice contra qué se mide es un número sin
               significado. Se aclara una vez, arriba, y no en cada renglón. */}
           <p className="panel-aporte-referencia">
-            {objetivos.fuente === 'perfil' ? (
-              <>Los porcentajes son sobre tu dosis diaria.</>
-            ) : (
-              <>
-                Los porcentajes son sobre la <strong>referencia adulta genérica</strong>.{' '}
-                <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean sobre la tuya.
-              </>
-            )}{' '}
-            Es información, no una cuenta que haya que cerrar. Con color, los que aparecen en las barras del recetario.
+            Los porcentajes son sobre <SobreQueDosis fuente={objetivos.fuente} />. Es información, no una cuenta que haya
+            que cerrar. Con color, los que aparecen en las barras del recetario.
           </p>
 
           {GRUPOS_DEL_PANEL.map((grupo) => {
@@ -209,7 +188,7 @@ export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, de
           {sinDato > 0 && (
             <button
               type="button"
-              className="panel-aporte-sin-dato"
+              className="boton-plano panel-aporte-sin-dato"
               aria-expanded={verSinDato}
               onClick={() => setVerSinDato((v) => !v)}
             >
@@ -218,7 +197,7 @@ export function PanelDeAporte({ nutrition, porPorcion, nutrientes, objetivos, de
             </button>
           )}
           <p className="panel-aporte-pie">
-            Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre {base}.
+            Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre {medida.sujeto}.
           </p>
         </div>
       )}

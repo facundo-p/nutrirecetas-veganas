@@ -2,7 +2,10 @@ import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import type { Ingredient } from '../seed/schema';
 import {
+  aporteDeReceta,
   CASILLEROS,
+  enOrdenCanonico,
+  esNutrienteDeBarra,
   franjasDeAporte,
   fuerteDeAporte,
   GRUPO_DEL_PANEL,
@@ -10,6 +13,7 @@ import {
   ORDEN_BARRA,
   porcentajesDeAporte,
   puntoDeIngrediente,
+  puntoDeLinea,
   type Porcentajes,
 } from './aporte';
 import { computeNutrition, perPortion } from './nutrition';
@@ -18,6 +22,7 @@ import { objetivosDeReferencia } from './objetivos';
 const idx = getSeedIndex();
 const nutrientes = idx.seed.nutrientes;
 const objetivos = objetivosDeReferencia(null, nutrientes, new Date('2026-09-11T12:00:00'));
+const nutricionDe = (recetaId: string) => computeNutrition(recetaId, idx);
 
 const con = (valores: Partial<Porcentajes>): Porcentajes =>
   ({ ...Object.fromEntries(ORDEN_BARRA.map((id) => [id, null])), ...valores }) as Porcentajes;
@@ -32,6 +37,13 @@ describe('qué nutrientes tienen color', () => {
 
   test('ni B12 ni vitamina D, que no da la comida, ni yodo, que no tiene dato', () => {
     for (const afuera of ['b12', 'vitd', 'yodo']) expect(ORDEN_BARRA).not.toContain(afuera);
+  });
+
+  test('en orden canónico van primero los once, y el resto como lo trae la semilla', () => {
+    const ordenados = enOrdenCanonico(nutrientes).map((n) => n.id);
+    expect(ordenados.slice(0, ORDEN_BARRA.length)).toEqual([...ORDEN_BARRA]);
+    const resto = nutrientes.map((n) => n.id).filter((id) => !esNutrienteDeBarra(id));
+    expect(ordenados.slice(ORDEN_BARRA.length)).toEqual(resto);
   });
 });
 
@@ -86,6 +98,13 @@ describe('los porcentajes, desde la semilla', () => {
     expect(porcentajesDeAporte({ prot_g: resultado(0) }, objetivos, nutrientes).proteina).toBeNull();
     expect(porcentajesDeAporte({ prot_g: resultado(5) }, objetivos, nutrientes).proteina).toBeGreaterThan(0);
   });
+
+  test('una receta con porciones se mide por porción; un preparado, cada 100 g', () => {
+    const r01 = aporteDeReceta(nutricionDe('r01'), objetivos, nutrientes);
+    expect(r01.base).toBe('porcion');
+    expect(r01.porcentajes).toEqual(porcentajesDeAporte(perPortion(nutricionDe('r01'))!.por_nutriente, objetivos, nutrientes));
+    expect(aporteDeReceta(nutricionDe('p04'), objetivos, nutrientes).base).toBe('100g');
+  });
 });
 
 describe('el punto de un ingrediente', () => {
@@ -99,7 +118,7 @@ describe('el punto de un ingrediente', () => {
     );
   });
 
-  test('sin ninguno de los once es beige', () => {
+  test('sin ninguno de los once es neutro', () => {
     expect(puntoDeIngrediente(conNutrientes({ sodio_mg: puntual(400) }), objetivos, nutrientes)).toBe('ninguno');
   });
 
@@ -107,6 +126,29 @@ describe('el punto de un ingrediente', () => {
     const levadura = idx.ingredientById.get('levadura_nutricional')!;
     expect(Object.keys(levadura.nutrientes).length).toBeGreaterThan(1);
     expect(puntoDeIngrediente(levadura, objetivos, nutrientes)).toBe('condicional');
+  });
+});
+
+describe('el punto de una línea de receta', () => {
+  const pastafrola = idx.recipeById.get('p31')!;
+
+  test('una línea de ingrediente lleva el punto de su ingrediente', () => {
+    const linea = pastafrola.lineas.find((l) => l.ref.tipo === 'ingrediente')!;
+    const ingrediente = idx.ingredientById.get(linea.ref.id)!;
+    expect(puntoDeLinea(idx, linea, objetivos, nutricionDe)).toBe(puntoDeIngrediente(ingrediente, objetivos, nutrientes));
+  });
+
+  test('un preparado con levadura adentro va hueco: la B12 no se pierde por venir dentro de otra receta', () => {
+    const conLevadura = pastafrola.lineas.find((l) => l.ref.tipo === 'receta' && nutricionDe(l.ref.id).alerta_b12);
+    expect(conLevadura).toBeDefined();
+    expect(puntoDeLinea(idx, conLevadura!, objetivos, nutricionDe)).toBe('condicional');
+  });
+
+  test('un preparado sin levadura se mira por sus 100 g', () => {
+    const sinLevadura = idx.seed.recetas
+      .flatMap((r) => r.lineas)
+      .find((l) => l.ref.tipo === 'receta' && !nutricionDe(l.ref.id).alerta_b12)!;
+    expect(puntoDeLinea(idx, sinLevadura, objetivos, nutricionDe)).not.toBe('condicional');
   });
 });
 

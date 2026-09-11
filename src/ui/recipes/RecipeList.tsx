@@ -2,23 +2,23 @@ import { useEffect, useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { recipeInSeason } from '../../domain/season';
 import { estadoDeReceta } from '../../domain/estado';
-import { objetivosDeReferencia } from '../../domain/objetivos';
-import { ORDEN_BARRA } from '../../domain/aporte';
-import { useOverlays, usePerfil } from '../../db/hooks';
+import { aporteDeReceta, ORDEN_BARRA } from '../../domain/aporte';
+import { useOverlays } from '../../db/hooks';
 import { EMPTY_FILTERS, groupRecipes, hayFiltros, type EstadosElegidos, type RecipeFiltersState } from './filtering';
 import { memoriaDeFiltros } from './memoria-de-filtros';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { LeyendaDeColores } from './LeyendaDeColores';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
-import { aporteDeReceta } from '../common/nutritionCache';
+import { nutritionOf } from '../common/nutritionCache';
+import { useObjetivos } from '../common/useObjetivos';
 import { currentMonth } from '../common/format';
 
 export function RecipeList() {
   const idx = getSeedIndex();
   const mes = currentMonth();
   const overlays = useOverlays();
-  const perfil = usePerfil();
+  const objetivos = useObjetivos();
   const [filters, setFilters] = useState<RecipeFiltersState>(memoriaDeFiltros.filtros);
   const [open, setOpen] = useState<Set<string>>(memoriaDeFiltros.variantesAbiertas);
   const [leyendaAbierta, setLeyendaAbierta] = useState(false);
@@ -39,11 +39,9 @@ export function RecipeList() {
     return m as EstadosElegidos;
   }, [overlays]);
 
-  // Mientras el perfil carga se mide contra la referencia genérica: el perfil
-  // nunca es un portón, tampoco para dibujar una barra.
-  const objetivos = useMemo(() => objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date()), [perfil, idx]);
   const aportes = useMemo(
-    () => new Map(idx.seed.recetas.map((r) => [r.id, aporteDeReceta(idx, r.id, objetivos)])),
+    () =>
+      new Map(idx.seed.recetas.map((r) => [r.id, aporteDeReceta(nutritionOf(idx, r.id), objetivos, idx.seed.nutrientes)])),
     [idx, objetivos],
   );
 
@@ -75,7 +73,7 @@ export function RecipeList() {
         </p>
         <button
           type="button"
-          className="leyenda-toggle"
+          className="boton-plano leyenda-toggle"
           aria-expanded={leyendaAbierta}
           aria-controls="leyenda-colores"
           onClick={() => setLeyendaAbierta((abierta) => !abierta)}

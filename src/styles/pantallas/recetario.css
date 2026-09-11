@@ -22,7 +22,7 @@
   min-height: var(--alto-control);
   appearance: none;
   cursor: pointer;
-  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border: var(--borde-control);
   border-radius: var(--radio);
   background: none;
   color: var(--tinta);
@@ -129,11 +129,11 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  min-height: 44px;
+  min-height: var(--toque-minimo);
   padding: var(--sp-2) var(--sp-4);
   appearance: none;
   cursor: pointer;
-  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border: var(--borde-control);
   border-radius: var(--radio-chip);
   background: none;
   font: inherit;
@@ -145,10 +145,12 @@
   border-color: var(--tinta);
 }
 
+/* El texto va en papel, sobre la tinta o sobre el color de un nutriente: los
+   once pasan 4,5:1 como texto sobre el papel, y el contraste es simétrico. */
 .chip-filtro[aria-pressed='true'] {
   background: var(--tinta);
   border-color: var(--tinta);
-  color: var(--sobre-accion);
+  color: var(--papel);
   font-weight: 600;
 }
 
@@ -196,16 +198,9 @@
 }
 
 .leyenda-toggle {
-  appearance: none;
-  border: none;
-  background: none;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  min-height: 44px;
-  padding: 0;
-  font: inherit;
   font-size: var(--fs-meta);
   color: var(--link);
 }
@@ -313,14 +308,7 @@
 }
 
 .fila-receta-variantes {
-  appearance: none;
-  border: none;
-  background: none;
-  cursor: pointer;
-  min-height: 44px;
   margin-top: calc(var(--sp-3) * -1);
-  padding: 0;
-  font: inherit;
   font-size: var(--fs-meta);
   color: var(--navegar);
 }

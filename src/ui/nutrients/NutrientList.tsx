@@ -1,9 +1,8 @@
 import { routeHash } from '../../app/router';
-import { usePerfil } from '../../db/hooks';
-import { objetivosDeReferencia } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
 import { formatNumber } from '../common/format';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { useObjetivos } from '../common/useObjetivos';
 import { IconSemanaArco, IconSol } from '../icons/icons';
 
 /**
@@ -19,8 +18,7 @@ const GRUPOS = [
 
 export function NutrientList() {
   const idx = getSeedIndex();
-  const perfil = usePerfil();
-  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
+  const objetivos = useObjetivos();
 
   return (
     <>

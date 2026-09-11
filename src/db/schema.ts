@@ -68,14 +68,12 @@ export const cookedLineSchema = z.strictObject({
   g_aprox: z.number().nonnegative(),
   unidad_display: z.string(),
 });
-export type LineaCocinada = z.infer<typeof cookedLineSchema>;
 
 export const variationSchema = z.strictObject({
   tipo: z.enum(['desmarcado', 'sustituido', 'agregado']),
   nombre: z.string(),
   detalle: z.string().optional(),
 });
-export type Variacion = z.infer<typeof variationSchema>;
 
 /**
  * Snapshot denormalizado completo: el historial no depende de futuras versiones
