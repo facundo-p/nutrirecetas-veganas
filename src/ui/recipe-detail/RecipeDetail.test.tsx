@@ -247,6 +247,52 @@ describe('Detalle de receta', () => {
     });
   });
 
+  describe('ajustar cantidades según un ingrediente (#161)', () => {
+    const ajustar = () => fireEvent.click(screen.getByRole('button', { name: /Ajustar cantidades según un ingrediente/ }));
+    const campos = (c: HTMLElement) => [...c.querySelectorAll<HTMLInputElement>('.linea-input')];
+
+    test('convierte cada cantidad en un campo', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      expect(campos(container)).toHaveLength(0);
+      ajustar();
+      expect(campos(container)).toHaveLength(container.querySelectorAll('.linea-ingrediente').length);
+    });
+
+    test('cambiar una cantidad acomoda las demás en proporción', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      ajustar();
+      // lentejas: 1½ taza; cebolla: 1 grande. Con 3 tazas la receta se duplica.
+      fireEvent.change(campos(container)[0]!, { target: { value: '3' } });
+      expect(campos(container)[1]!.value).toBe('2');
+    });
+
+    test('lo que no es un número no mueve nada', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      ajustar();
+      fireEvent.change(campos(container)[0]!, { target: { value: 'abc' } });
+      expect(campos(container)[1]!.value).toBe('1');
+    });
+
+    test('lo que va a gusto dice cuánto pedía la receta, y una sola nota lo avisa', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      ajustar();
+      expect(screen.queryByText(/no escalan lineal/)).toBeNull();
+      fireEvent.change(campos(container)[0]!, { target: { value: '3' } });
+      expect(screen.getByText(/la receta decía 2 cdta/)).toBeDefined();
+      expect(screen.getAllByText(/no escalan lineal/)).toHaveLength(1);
+    });
+
+    test('«volver a la receta» deshace el ajuste', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      ajustar();
+      fireEvent.change(campos(container)[0]!, { target: { value: '3' } });
+      fireEvent.blur(campos(container)[0]!);
+      fireEvent.click(screen.getByRole('button', { name: 'volver a la receta' }));
+      expect(campos(container)[0]!.value).toBe('1,5');
+      expect(campos(container)[1]!.value).toBe('1');
+    });
+  });
+
   test('una receta inexistente no rompe', () => {
     render(<RecipeDetail id="zzz" />);
     expect(screen.getByRole('heading', { name: /Receta no encontrada/ })).toBeDefined();

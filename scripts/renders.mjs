@@ -29,6 +29,7 @@ const RUTAS = [
   ['recetario', '#/recetario'],
   ['recetario-filtros', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
+  ['receta-r01-ajuste', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
   ['cocinar-pasos', '#/cocinar/r01'],
@@ -187,6 +188,12 @@ try {
       if (name === 'cocinar-pasos') {
         await page.getByRole('button', { name: 'Empezar a cocinar' }).click();
         await page.waitForTimeout(150);
+      }
+      // el ajuste por ingrediente solo se ve prendido y con una cantidad cambiada
+      if (name === 'receta-r01-ajuste') {
+        await page.getByRole('button', { name: /Ajustar cantidades según un ingrediente/ }).click();
+        await page.locator('.linea-input').first().fill('3');
+        await page.waitForTimeout(600); // el viaje de las cantidades
       }
       // el modal de filtros solo existe abierto
       if (name === 'recetario-filtros') {

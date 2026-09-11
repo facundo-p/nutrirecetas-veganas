@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { formatCantidad, formatPorcentaje } from './format';
+import { cantidadEditable, formatCantidad, formatPorcentaje, leerNumero } from './format';
 
 describe('formatCantidad', () => {
   test('los cuartos se muestran como fracción, no como decimal', () => {
@@ -29,5 +29,23 @@ describe('formatPorcentaje', () => {
   test('debajo de 10 lleva un decimal, con coma; desde 10, entero', () => {
     expect(formatPorcentaje(9.44)).toBe('9,4 %');
     expect(formatPorcentaje(38.2)).toBe('38 %');
+  });
+});
+
+describe('lo que se tipea en una cantidad', () => {
+  test('se lee con coma o con punto', () => {
+    expect(leerNumero('1,5')).toBe(1.5);
+    expect(leerNumero('1.5')).toBe(1.5);
+    expect(leerNumero(' 300 ')).toBe(300);
+  });
+
+  test('lo que no es número, o está a medio tipear, no se lee', () => {
+    for (const texto of ['', 'abc', '1,', '1,5,2', '-2']) expect(leerNumero(texto)).toBeNull();
+  });
+
+  test('en un campo, la cantidad va con coma y sin glifos de fracción', () => {
+    expect(cantidadEditable(1.5)).toBe('1,5');
+    expect(cantidadEditable(0.25)).toBe('0,25');
+    expect(cantidadEditable(3)).toBe('3');
   });
 });

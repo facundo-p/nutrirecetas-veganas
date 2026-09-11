@@ -58,4 +58,5 @@
   --alto-nav: 3.75rem;
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
   --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
+  --ancho-campo-cantidad: 4.5rem;
 }

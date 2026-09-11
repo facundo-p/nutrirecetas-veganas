@@ -4,7 +4,7 @@ import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
 import type { PuntoDeIngrediente } from '../../domain/aporte';
 import { routeHash } from '../../app/router';
-import { currentMonth, formatCantidad, formatGramos, formatMinutes } from '../common/format';
+import { cantidadEditable, currentMonth, formatCantidad, formatGramos, formatMinutes, leerNumero } from '../common/format';
 import { nutritionOf, puntoDeLinea } from '../common/nutritionCache';
 import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
@@ -21,7 +21,7 @@ import {
   IconSustituir,
   IconTemporada,
 } from '../icons/icons';
-import { avisosDeEscalado, escalarLineas } from '../../domain/scaling';
+import { avisosDeEscalado, escalarLineas, FACTOR_MAX, FACTOR_MIN, factorDesdeLinea, lineaAGusto } from '../../domain/scaling';
 import { computeNutrition } from '../../domain/nutrition';
 import { objetivosDeReferencia } from '../../domain/objetivos';
 import { midpoint } from '../../domain/interval';
@@ -58,6 +58,7 @@ function IngredientLine({
   original,
   punto,
   notas,
+  ajuste,
   onSustituir,
 }: {
   idx: SeedIndex;
@@ -67,6 +68,14 @@ function IngredientLine({
   punto: PuntoDeIngrediente;
   /** Función, notas y sustitutos: apagados por defecto, se prenden todos juntos. */
   notas: boolean;
+  /** Con el ajuste prendido la cantidad es un campo. `recetaDecia`: lo que pedía la receta, si va a gusto. */
+  ajuste: {
+    editable: boolean;
+    valor: string;
+    onEditar: (texto: string) => void;
+    onSoltar: () => void;
+    recetaDecia: string | null;
+  };
   onSustituir: (ingrediente_id: string | null) => void;
 }) {
   const { nombre, esPreparado } = lineName(idx, line);
@@ -97,13 +106,26 @@ function IngredientLine({
           )}
         </span>
         <span className="linea-cantidad">
-          <span className="linea-valor cifra">{cantidad}</span> <span className="linea-unidad">{unidad}</span>
+          {ajuste.editable ? (
+            <input
+              className="linea-input"
+              inputMode="decimal"
+              value={ajuste.valor}
+              aria-label={`Cantidad de ${nombre}, en ${unidad}`}
+              onChange={(e) => ajuste.onEditar(e.target.value)}
+              onBlur={ajuste.onSoltar}
+            />
+          ) : (
+            <span className="linea-valor cifra">{cantidad}</span>
+          )}{' '}
+          <span className="linea-unidad">{unidad}</span>
           {`${cantidad} ${unidad}` !== `${gramos} g` && <span className="linea-gramos"> · {gramos} g</span>}
         </span>
       </span>
       {/* La línea cambiada dice de qué viene aunque las notas estén apagadas:
           sin eso, la receta miente sobre sí misma. */}
       {sustituido && <span className="linea-en-vez-de">en vez de {lineName(idx, original).nombre}</span>}
+      {ajuste.recetaDecia && <span className="linea-original">la receta decía {ajuste.recetaDecia}</span>}
       {conDetalles && (
         <span className="linea-detalles">
           {line.funcion && <em className="linea-funcion">{line.funcion}</em>}
@@ -243,6 +265,9 @@ export function RecipeDetail({ id }: { id: string }) {
   const [factor, setFactor] = useState(1);
   const { mostrado, animando } = useFactorAnimado(factor);
   const [notas, setNotas] = useState(false);
+  const [ajustando, setAjustando] = useState(false);
+  /** Lo que se está tipeando en un campo: el resto de la lista se acomoda apenas es un número. */
+  const [borrador, setBorrador] = useState<{ indice: number; texto: string } | null>(null);
   /**
    * Qué línea se cambió por qué ingrediente, mientras mirás la ficha. Efímero
    * como el selector de porciones: al salir la receta vuelve a ser la que es.
@@ -284,6 +309,10 @@ export function RecipeDetail({ id }: { id: string }) {
     () => lineasElegidas.map((linea) => puntoDeLinea(idx, linea, objetivos)),
     [lineasElegidas, objetivos, idx],
   );
+  const aGusto = useMemo(
+    () => lineasElegidas.map((linea) => lineaAGusto(linea, idx.ingredientById)),
+    [lineasElegidas, idx],
+  );
 
   const nutrition = useMemo(() => {
     if (!recipe) return null;
@@ -309,6 +338,16 @@ export function RecipeDetail({ id }: { id: string }) {
       else siguiente.set(indice, ingrediente_id);
       return siguiente;
     });
+  };
+
+  // El factor sale de la línea editada contra su propia cantidad elegida, antes de escalar.
+  const editarCantidad = (indice: number, texto: string) => {
+    setBorrador({ indice, texto });
+    const valor = leerNumero(texto);
+    const base = lineasElegidas[indice];
+    if (valor === null || !base) return;
+    const nuevo = factorDesdeLinea(base, valor);
+    if (nuevo !== null) setFactor(nuevo);
   };
 
   if (!recipe || !nutrition) {
@@ -403,6 +442,30 @@ export function RecipeDetail({ id }: { id: string }) {
             {notas ? 'ocultar notas' : 'ver notas y sustitutos'}
           </button>
         </div>
+        <div className="lista-lineas-ajuste">
+          <button
+            type="button"
+            className="boton-enlace"
+            aria-pressed={ajustando}
+            onClick={() => {
+              setAjustando((v) => !v);
+              setBorrador(null);
+            }}
+          >
+            {ajustando ? 'listo' : 'Ajustar cantidades según un ingrediente'}
+          </button>
+          {factor !== 1 && (ajustando || recipe.porciones_num === null) && (
+            <button type="button" className="boton-enlace" onClick={() => setFactor(1)}>
+              volver a la receta
+            </button>
+          )}
+        </div>
+        {ajustando && (
+          <p className="lista-lineas-ayuda">
+            Cambiá cualquier cantidad y el resto se acomoda.
+            {(factor === FACTOR_MAX || factor === FACTOR_MIN) && ' La escala va de un cuarto a cuatro veces la receta.'}
+          </p>
+        )}
         <ul className={animando ? 'lista-lineas recalculando' : 'lista-lineas'}>
           {lineasMostradas.map((line, i) => (
             <IngredientLine
@@ -412,12 +475,29 @@ export function RecipeDetail({ id }: { id: string }) {
               original={recipe.lineas[i]!}
               punto={puntos[i]!}
               notas={notas}
+              ajuste={{
+                editable: ajustando,
+                valor: borrador?.indice === i ? borrador.texto : cantidadEditable(line.cantidad),
+                onEditar: (texto) => editarCantidad(i, texto),
+                onSoltar: () => setBorrador(null),
+                recetaDecia:
+                  aGusto[i] && factor !== 1
+                    ? `${formatCantidad(recipe.lineas[i]!.cantidad)} ${recipe.lineas[i]!.unidad_display.replaceAll('_', ' ')}`
+                    : null,
+              }}
               onSustituir={(ingrediente_id) => sustituir(i, ingrediente_id)}
             />
           ))}
         </ul>
         <NotaDeLaLista hayHueco={puntos.includes('condicional')} alertaB12={nutrition.alerta_b12} />
-        <AvisosDeEscalado avisos={avisos} />
+        {/* Lo que va a gusto se dice línea por línea —«la receta decía»— y con
+            una nota, no con el recuadro: es un cuidado, no una alarma. */}
+        {factor !== 1 && aGusto.some(Boolean) && (
+          <p className="nota-a-gusto">
+            Los condimentos y las especias no escalan lineal: probá antes de sumar el último tercio.
+          </p>
+        )}
+        <AvisosDeEscalado avisos={avisos.filter((aviso) => aviso.tipo !== 'ajustar_a_gusto')} />
       </section>
 
       <RuleTips recipe={recipe} seed={idx.seed} />
