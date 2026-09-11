@@ -427,3 +427,19 @@ de una auditoría ni de un test: de cocinar con ella.
   leía desde `recetario.css`— llegó a staging con el buscador sin caja. Estaba
   en un recorte que se miró para otra cosa. Lo destapó el grep de #159, al
   borrar `.filtros-fila`.
+
+### Tanda 2: la ficha (2026-09-11, #160)
+
+- **Mudar una regla no es neutro: cambia la cascada.** `.detalle-tipo svg`
+  vivía en `receta.css`, que se carga después de `componentes.css`, y le ganaba
+  por orden a `.confianza svg`, que tiene la misma especificidad. Mudada arriba
+  de esa regla, perdió, y los brotes de dos fichas cambiaron de tamaño. Lo
+  encontró comparar píxeles contra la tanda anterior (`git show HEAD:` y la
+  diferencia de las imágenes): 2.900 píxeles en un renglón. Con la sección al
+  final de `componentes.css`, las otras pantallas dan cero. Es el baseline y
+  `cmp` de CLAUDE.md, y vale también para el CSS que se mueve "sin cambios".
+- **Un test con el nombre correcto puede probar otra cosa.** "La levadura
+  dentro de un preparado da punto hueco" pasaba con p19, que también tiene
+  levadura como línea propia: sacar la regla del preparado no lo rompía. La
+  mutación lo destapó, y el test pasó a mirar la línea exacta de p31, que la
+  trae solo en la manteca vegana.
