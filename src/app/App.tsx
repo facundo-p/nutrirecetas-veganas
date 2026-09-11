@@ -32,7 +32,8 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
     case 'recipes':
       return <RecipeList />;
     case 'recipe':
-      return <RecipeDetail id={route.id} />;
+      // La key remonta la ficha: sustituciones, porciones y ajuste son de esa receta.
+      return <RecipeDetail key={route.id} id={route.id} />;
     case 'ingredients':
       return <IngredientList />;
     case 'ingredient':

@@ -1,4 +1,4 @@
-import type { Ingredient, Interval, Recipe } from '../seed/schema';
+import type { Ingredient, Interval, Line, Recipe } from '../seed/schema';
 import { INGREDIENT_NUTRIENT_KEYS, type IngredientNutrientKey } from '../seed/schema';
 import { interval, scale, sum } from './interval';
 
@@ -171,6 +171,23 @@ function scaleNutrition(n: RecipeNutrition, factor: number): RecipeNutrition {
     kcal: { ...n.kcal, intervalo: scale(n.kcal.intervalo, factor) },
     por_nutriente,
   };
+}
+
+/**
+ * La nutrición de una receta con otras líneas —sustituidas, desmarcadas,
+ * agregadas— sin tocar la semilla. El id sintético la deja fuera de cualquier
+ * cache por id de receta.
+ */
+export function nutricionConLineas(
+  recipe: Recipe,
+  lineas: Line[],
+  porciones_num: number | null,
+  source: NutritionSource,
+): RecipeNutrition {
+  const sintetica: Recipe = { ...recipe, id: `${recipe.id}__otras-lineas`, lineas, porciones_num };
+  const recipeById = new Map(source.recipeById);
+  recipeById.set(sintetica.id, sintetica);
+  return computeNutrition(sintetica.id, { ...source, recipeById });
 }
 
 /** Nutrición por porción; null si la receta no define porciones (se usa per100g). */

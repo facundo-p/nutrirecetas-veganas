@@ -21,7 +21,7 @@ import {
   IconTemporada,
 } from '../icons/icons';
 import { avisosDeEscalado, escalarLineas, FACTOR_MAX, FACTOR_MIN, factorDesdeLinea, lineaAGusto } from '../../domain/scaling';
-import { computeNutrition } from '../../domain/nutrition';
+import { nutricionConLineas } from '../../domain/nutrition';
 import { objetivosDeReferencia } from '../../domain/objetivos';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
@@ -313,22 +313,13 @@ export function RecipeDetail({ id }: { id: string }) {
     [lineasElegidas, idx],
   );
 
+  // Sin el factor a propósito: una porción es una porción. Escalar pasa por el
+  // redondeo de cocina, y eso cambia las cantidades, no lo que aporta la receta.
   const nutrition = useMemo(() => {
     if (!recipe) return null;
-    if (factor === 1 && sustituciones.size === 0) return nutritionOf(idx, id);
-    // receta sintética: la nutrición por porción no cambia con el factor, pero
-    // los totales sí, y con una sustitución cambian las dos. El cache es por id
-    // de semilla, así que este camino no pasa por él.
-    const sintetica = {
-      ...recipe,
-      id: `${recipe.id}__vista`,
-      lineas: escalarLineas(lineasElegidas, factor),
-      porciones_num: recipe.porciones_num === null ? null : recipe.porciones_num * factor,
-    };
-    const recipeById = new Map(idx.recipeById);
-    recipeById.set(sintetica.id, sintetica);
-    return computeNutrition(sintetica.id, { ...idx, recipeById });
-  }, [recipe, lineasElegidas, factor, sustituciones, idx, id]);
+    if (sustituciones.size === 0) return nutritionOf(idx, id);
+    return nutricionConLineas(recipe, lineasElegidas, recipe.porciones_num, idx);
+  }, [recipe, lineasElegidas, sustituciones, idx, id]);
 
   const sustituir = (indice: number, ingrediente_id: string | null) => {
     setSustituciones((previas) => {
