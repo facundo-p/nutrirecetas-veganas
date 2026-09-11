@@ -47,6 +47,37 @@ export const NOMBRE_CORTO: Record<NutrienteDeBarra, string> = {
   omega3: 'omega 3',
 };
 
+export type GrupoDelPanel = 'Minerales' | 'Vitaminas' | 'Macro y grasas';
+
+export const GRUPOS_DEL_PANEL: readonly GrupoDelPanel[] = ['Minerales', 'Vitaminas', 'Macro y grasas'];
+
+/**
+ * Cómo se agrupan los veinte en el panel de la ficha. La colina va con las
+ * vitaminas: se comporta como una aunque no lo sea.
+ */
+export const GRUPO_DEL_PANEL: Readonly<Record<string, GrupoDelPanel>> = {
+  hierro: 'Minerales',
+  calcio: 'Minerales',
+  magnesio: 'Minerales',
+  zinc: 'Minerales',
+  selenio: 'Minerales',
+  yodo: 'Minerales',
+  potasio: 'Minerales',
+  vita: 'Vitaminas',
+  vitc: 'Vitaminas',
+  folato: 'Vitaminas',
+  b12: 'Vitaminas',
+  vitd: 'Vitaminas',
+  b2: 'Vitaminas',
+  b6: 'Vitaminas',
+  vite: 'Vitaminas',
+  vitk: 'Vitaminas',
+  colina: 'Vitaminas',
+  proteina: 'Macro y grasas',
+  fibra: 'Macro y grasas',
+  omega3: 'Macro y grasas',
+};
+
 export function esNutrienteDeBarra(id: string): id is NutrienteDeBarra {
   return (ORDEN_BARRA as readonly string[]).includes(id);
 }
@@ -133,4 +164,10 @@ export function puntoDeIngrediente(
   if (ingrediente.id === B12_ALERT_INGREDIENT) return 'condicional';
   const porcentajes = porcentajesDeAporte(resultadosDeIngrediente(ingrediente), objetivos, nutrientes);
   return fuerteDeAporte(porcentajes)?.nutriente ?? 'ninguno';
+}
+
+/** Cómo se lo nombra en la app: el nombre corto si tiene color, el del catálogo si no. */
+export function nombreDeNutriente(nutriente: Pick<Nutrient, 'id' | 'nombre'>): string {
+  if (esNutrienteDeBarra(nutriente.id)) return NOMBRE_CORTO[nutriente.id];
+  return nutriente.nombre.charAt(0).toLowerCase() + nutriente.nombre.slice(1);
 }

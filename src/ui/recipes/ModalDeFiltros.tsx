@@ -2,7 +2,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { getSeedIndex } from '../../seed';
 import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estado';
-import { esNutrienteDeBarra, NOMBRE_CORTO, ORDEN_BARRA } from '../../domain/aporte';
+import { esNutrienteDeBarra, nombreDeNutriente, NOMBRE_CORTO, ORDEN_BARRA } from '../../domain/aporte';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
 import { allFamilies, EMPTY_FILTERS, type RecipeFiltersState } from './filtering';
 
@@ -25,8 +25,6 @@ function etiquetaDeCierre(resultados: number): string {
   if (resultados === 0) return 'Ninguna receta con esos filtros';
   return resultados === 1 ? 'Ver 1 receta' : `Ver ${resultados} recetas`;
 }
-
-const minusculaInicial = (texto: string) => texto.charAt(0).toLowerCase() + texto.slice(1);
 
 function Grupo({ titulo, ayuda, children }: { titulo: string; ayuda?: string; children: ReactNode }) {
   return (
@@ -88,7 +86,7 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
   const set = (patch: Partial<RecipeFiltersState>) => onChange({ ...filters, ...patch });
   const nutrientes = [
     ...ORDEN_BARRA.map((id) => ({ id, nombre: NOMBRE_CORTO[id] })),
-    ...idx.seed.nutrientes.filter((n) => !esNutrienteDeBarra(n.id)).map((n) => ({ id: n.id, nombre: minusculaInicial(n.nombre) })),
+    ...idx.seed.nutrientes.filter((n) => !esNutrienteDeBarra(n.id)).map((n) => ({ id: n.id, nombre: nombreDeNutriente(n) })),
   ];
 
   return (

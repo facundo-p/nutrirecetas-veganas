@@ -443,3 +443,10 @@ de una auditoría ni de un test: de cocinar con ella.
   levadura como línea propia: sacar la regla del preparado no lo rompía. La
   mutación lo destapó, y el test pasó a mirar la línea exacta de p31, que la
   trae solo en la manteca vegana.
+- **Un dato que ya cumple la regla tapa el test.** En #162, tres tests verdes a
+  la primera probaban menos que su nombre: "de más a menos" pasaba porque r01 ya
+  lista las líneas de más a menos hierro; "las kcal con su intervalo" no miraba
+  el intervalo; "lleva su color" no miraba si el cuadrado era relleno. Los
+  arreglos no dependen de la casualidad: las líneas al revés, una receta
+  buscada en la semilla por tener banda. Van cuatro en la fase: mutar después
+  de cada verde a la primera es parte del test, no un extra.

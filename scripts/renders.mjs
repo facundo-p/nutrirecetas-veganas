@@ -30,6 +30,7 @@ const RUTAS = [
   ['recetario-filtros', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
   ['receta-r01-ajuste', '#/receta/r01'],
+  ['receta-r01-aporte', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
   ['cocinar-pasos', '#/cocinar/r01'],
@@ -194,6 +195,15 @@ try {
         await page.getByRole('button', { name: /Ajustar cantidades según un ingrediente/ }).click();
         await page.locator('.linea-input').first().fill('3');
         await page.waitForTimeout(600); // el viaje de las cantidades
+      }
+      // el panel nutricional arranca cerrado: se abre, y se despliega la fila del hierro
+      if (name === 'receta-r01-aporte') {
+        await page.getByRole('button', { name: /Qué aporta una porción/ }).click();
+        await page
+          .locator('.fila-aporte', { has: page.locator('.fila-aporte-nombre', { hasText: /^hierro$/ }) })
+          .getByRole('button')
+          .click();
+        await page.waitForTimeout(150);
       }
       // el modal de filtros solo existe abierto
       if (name === 'recetario-filtros') {

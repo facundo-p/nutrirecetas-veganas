@@ -14,6 +14,11 @@ function decimals(value: number): number {
   return value > 0 && value < 1 ? 2 : 1;
 }
 
+/** Una cifra con los decimales que le corresponden a su tamaño, como en la banda. */
+export function cifraDeBanda(valor: number): string {
+  return formatNumber(valor, decimals(valor));
+}
+
 export function IntervalBand({ intervalo, unidad }: { intervalo: Interval; unidad: string }) {
   const mid = midpoint(intervalo);
   const hasBand = intervalo.max - intervalo.min > 1e-9;

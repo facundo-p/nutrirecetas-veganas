@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../../seed';
+import { computeNutrition, perPortion } from '../../domain/nutrition';
 import { RecipeDetail } from './RecipeDetail';
 
 const verNotas = () => fireEvent.click(screen.getByRole('button', { name: 'ver notas y sustitutos' }));
@@ -12,7 +13,7 @@ describe('Detalle de receta', () => {
     expect(screen.getByRole('heading', { name: /Pastel de papas/ })).toBeDefined();
     expect(screen.getByText(/no están fortificadas/)).toBeDefined();
     expect(screen.getByRole('link', { name: /Queso de maní/ })).toBeDefined();
-    expect(screen.getByRole('heading', { name: /Nutrición por porción/ })).toBeDefined();
+    expect(screen.getByRole('heading', { name: /Qué aporta una porción/ })).toBeDefined();
   });
 
   test('los ingredientes no son links; el preparado sí (issue #137)', () => {
@@ -30,7 +31,7 @@ describe('Detalle de receta', () => {
   test('tocar un sustituto lo cambia en la receta y mueve la nutrición (issue #150)', () => {
     // r07 tiene quinoa con dos sustitutos resolubles: arroz integral y trigo burgol
     const { container } = render(<RecipeDetail id="r07" />);
-    const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
+    const kcal = () => container.querySelector('.panel-aporte-kcal .cifra')!.textContent;
     const antes = kcal();
     expect(screen.getByText('Quinoa')).toBeDefined();
     verNotas();
@@ -47,7 +48,7 @@ describe('Detalle de receta', () => {
 
   test('despresionar el sustituto devuelve la receta a como es (issue #150)', () => {
     const { container } = render(<RecipeDetail id="r07" />);
-    const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
+    const kcal = () => container.querySelector('.panel-aporte-kcal .cifra')!.textContent;
     const antes = kcal();
     verNotas();
 
@@ -80,7 +81,7 @@ describe('Detalle de receta', () => {
 
   test('p04 (preparado) muestra nutrición por 100 g y quién lo consume', () => {
     render(<RecipeDetail id="p04" />);
-    expect(screen.getByRole('heading', { name: /Nutrición por 100 g/ })).toBeDefined();
+    expect(screen.getByRole('heading', { name: /Qué aporta cada 100 g/ })).toBeDefined();
     expect(screen.getByText(/Se usa en/)).toBeDefined();
     expect(screen.getByRole('link', { name: /Pastel de papas/ })).toBeDefined();
   });
@@ -94,82 +95,97 @@ describe('Detalle de receta', () => {
     expect(cantidades.some((t) => t?.includes('¾'))).toBe(true);
   });
 
-  describe('la nutrición no tapa la receta (issue #59)', () => {
-    const abrirNutricion = () => fireEvent.click(screen.getByRole('button', { name: /Nutrición por porción/ }));
+  describe('qué aporta una porción (#162)', () => {
+    const abrir = () => fireEvent.click(screen.getByRole('button', { name: /Qué aporta una porción/ }));
+    const filaDe = (nombre: string) => screen.getByText(nombre, { selector: '.fila-aporte-nombre' }).closest('li')!;
 
-    test('arranca colapsada: se ven las kcal, ningún nutriente', () => {
+    test('arranca cerrado, pero las kcal con su intervalo se ven igual (issue #59)', () => {
       const { container } = render(<RecipeDetail id="p19" />);
-      expect(screen.getByRole('button', { name: /Nutrición por porción/ }).getAttribute('aria-expanded')).toBe('false');
-      expect(container.querySelector('.nutricion-kcal')!.textContent).toMatch(/kcal/);
-      expect(screen.queryByText('Hierro')).toBeNull();
-      expect(screen.queryByText(/sin datos/)).toBeNull();
+      expect(screen.getByRole('button', { name: /Qué aporta una porción/ }).getAttribute('aria-expanded')).toBe('false');
+      expect(container.querySelector('.panel-aporte-kcal')!.textContent).toMatch(/kcal por porción/);
+      expect(container.querySelector('.fila-aporte')).toBeNull();
     });
 
-    test('al abrirla se ven los nutrientes con dato y ninguno sin dato', () => {
+    test('las kcal dicen su intervalo cuando lo tienen: es parte del dato', () => {
+      const idx = getSeedIndex();
+      const conBanda = idx.seed.recetas.find((r) => {
+        const porcion = perPortion(computeNutrition(r.id, idx));
+        return porcion !== null && porcion.kcal.intervalo.max - porcion.kcal.intervalo.min > 1;
+      })!;
+      const { container } = render(<RecipeDetail id={conBanda.id} />);
+      expect(container.querySelector('.panel-aporte-kcal')!.textContent).toMatch(/entre \d+ y \d+/);
+    });
+
+    test('un preparado dice que es cada 100 g', () => {
+      const { container } = render(<RecipeDetail id="p04" />);
+      expect(screen.getByRole('button', { name: /Qué aporta cada 100 g/ })).toBeDefined();
+      expect(container.querySelector('.panel-aporte-kcal')!.textContent).toMatch(/kcal cada 100 g/);
+    });
+
+    test('abierto, los agrupa en minerales, vitaminas y macro y grasas', () => {
       render(<RecipeDetail id="p19" />);
-      abrirNutricion();
-
-      expect(screen.getByText('Hierro')).toBeDefined();
-      // vitk no tiene dato en ningún ingrediente: queda detrás del contador
-      expect(screen.queryByText('Vitamina K')).toBeNull();
-      expect(screen.queryAllByText(/^sin datos$/)).toHaveLength(0);
+      abrir();
+      for (const grupo of ['Minerales', 'Vitaminas', 'Macro y grasas']) {
+        expect(screen.getByRole('heading', { name: grupo })).toBeDefined();
+      }
     });
 
-    test('el contador dice cuántos faltan y los despliega: los nulos no se esconden', () => {
+    test('cada nutriente con dato dice cuánto del día cubre, y contra qué referencia', () => {
       render(<RecipeDetail id="p19" />);
-      abrirNutricion();
-
-      const contador = screen.getByRole('button', { name: /nutrientes? sin datos/ });
-      const cuantos = Number(contador.textContent!.match(/(\d+)/)![1]);
-      expect(cuantos).toBeGreaterThan(0);
-
-      fireEvent.click(contador);
-      expect(screen.getByText('Vitamina K')).toBeDefined();
-      expect(screen.getAllByText(/^sin datos$/)).toHaveLength(cuantos);
+      abrir();
+      expect(filaDe('hierro').querySelector('.fila-aporte-pct')!.textContent).toMatch(/^[\d,]+ %$/);
+      expect(screen.getByText('referencia adulta genérica')).toBeDefined();
     });
-  });
 
-  describe('cuánto aporta de la dosis diaria', () => {
-    const abrirNutricion = () => fireEvent.click(screen.getByRole('button', { name: /Nutrición por porción/ }));
-
-    test('cada nutriente con dato dice qué porcentaje de la dosis aporta', () => {
+    test('los nutrientes sin dato quedan detrás de un contador, y no se esconden (invariante 5)', () => {
       render(<RecipeDetail id="p19" />);
-      abrirNutricion();
-
-      const hierro = screen.getByText('Hierro').closest('li')!;
-      expect(hierro.textContent).toMatch(/\d+ % de la dosis/);
+      abrir();
+      expect(screen.queryByText('vitamina K', { selector: '.fila-aporte-nombre' })).toBeNull();
+      fireEvent.click(screen.getByRole('button', { name: /nutrientes? sin dato/ }));
+      const vitk = filaDe('vitamina K');
+      expect(vitk.textContent).toMatch(/sin dato/);
+      expect(vitk.querySelector('.fila-aporte-pct')!.textContent).toBe('—');
     });
 
-    test('sin perfil aclara que la referencia es genérica, no la tuya', () => {
+    test('una B12 que va de cero a algo no da porcentaje: sin la banda a la vista diría de más', () => {
       render(<RecipeDetail id="p19" />);
-      abrirNutricion();
-      expect(screen.getByText(/referencia adulta genérica/)).toBeDefined();
+      abrir();
+      expect(filaDe('vitamina B12').querySelector('.fila-aporte-pct')!.textContent).toBe('—');
     });
 
-    test('un nutriente sin datos no inventa un porcentaje', () => {
-      render(<RecipeDetail id="p19" />);
-      abrirNutricion();
-      fireEvent.click(screen.getByRole('button', { name: /nutrientes? sin datos/ }));
-
-      const vitk = screen.getByText('Vitamina K').closest('li')!;
-      expect(vitk.textContent).not.toMatch(/% de la dosis/);
+    test('al tocar una fila se ve la banda, sobre cuánto del peso se calculó y quién lo trae', () => {
+      render(<RecipeDetail id="r01" />);
+      abrir();
+      fireEvent.click(within(filaDe('hierro')).getByRole('button'));
+      expect(filaDe('hierro').textContent).toMatch(/Calculado sobre el \d+ % del peso/);
+      expect(filaDe('hierro').textContent).toMatch(/Lo aportan: Lentejas turcas/);
     });
 
-    test('las kcal por porción se leen sin abrir nada: es lo que se mira cocinando', () => {
-      const { container } = render(<RecipeDetail id="p19" />);
-      const energia = container.querySelector('.detalle-energia')!;
-      expect(energia.textContent).toMatch(/kcal/);
-      // «por porción» y no «por 100 g»: un número sin su referencia no dice nada
-      expect(energia.textContent).toMatch(/por porción/);
+    test('se abre una fila por vez', () => {
+      render(<RecipeDetail id="r01" />);
+      abrir();
+      const boton = (nombre: string) => within(filaDe(nombre)).getByRole('button');
+      fireEvent.click(boton('hierro'));
+      fireEvent.click(boton('proteína'));
+      expect(boton('hierro').getAttribute('aria-expanded')).toBe('false');
+      expect(boton('proteína').getAttribute('aria-expanded')).toBe('true');
     });
 
-    test('la nutrición va al final: primero todo lo que sirve para cocinar', () => {
+    test('los que entran a las barras llevan su color; los otros, cuadrado hueco', () => {
+      render(<RecipeDetail id="r01" />);
+      abrir();
+      const proteina = filaDe('proteína').querySelector('.cuadrado-nutriente')!;
+      expect(proteina.getAttribute('data-nut')).toBe('proteina');
+      expect(proteina.className).not.toMatch(/\bhueco\b/);
+      expect(filaDe('potasio').querySelector('.cuadrado-nutriente')!.className).toMatch(/\bhueco\b/);
+    });
+
+    test('va al final: primero todo lo que sirve para cocinar', () => {
       const { container } = render(<RecipeDetail id="p19" />);
       const titulos = [...container.querySelectorAll('h2')].map((h) => h.textContent ?? '');
-      const nutricion = titulos.findIndex((t) => t.includes('Nutrición'));
       const pasos = titulos.findIndex((t) => t.includes('Pasos'));
       expect(pasos).toBeGreaterThanOrEqual(0);
-      expect(nutricion).toBeGreaterThan(pasos);
+      expect(titulos.findIndex((t) => t.includes('Qué aporta'))).toBeGreaterThan(pasos);
     });
   });
 
