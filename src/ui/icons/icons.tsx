@@ -414,3 +414,12 @@ export function IconLupa(props: IconProps) {
     </Base>
   );
 }
+
+/** Filtros: tres líneas que se acortan. Chrome universal, fuera del catálogo como Cerrar y Lupa. */
+export function IconFiltros(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 7h16M7 12h10M10 17h4" />
+    </Base>
+  );
+}

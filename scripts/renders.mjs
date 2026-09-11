@@ -27,6 +27,7 @@ const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
   ['recetario', '#/recetario'],
+  ['recetario-filtros', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
@@ -187,6 +188,11 @@ try {
         await page.getByRole('button', { name: 'Empezar a cocinar' }).click();
         await page.waitForTimeout(150);
       }
+      // el modal de filtros solo existe abierto
+      if (name === 'recetario-filtros') {
+        await page.getByRole('button', { name: /^Filtros/ }).click();
+        await page.waitForTimeout(150);
+      }
 
       // la nav fija flotaría a mitad del screenshot fullPage: se ancla al fondo real
       await page.addStyleTag({
@@ -194,7 +200,8 @@ try {
           'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}',
       });
       await page.waitForTimeout(350); // fuentes variables
-      await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: true });
+      // el modal es fijo: en una captura de página completa quedaría al fondo de todo
+      await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: name !== 'recetario-filtros' });
       console.log('✔', `${name}--${vpName}.png`);
     }
     await page.close();

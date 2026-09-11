@@ -80,3 +80,41 @@
   font-size: var(--fs-sm);
 }
 
+/* ---------- filtros ----------
+   Vivían en recetario.css; desde que el recetario los llevó a un modal, esta es
+   la única pantalla que los usa.
+
+   `overflow-x: auto` computa `overflow-y` a `auto` por spec, así que este
+   contenedor recorta también arriba. El anillo de foco se pinta 4 px afuera
+   del control (2 de offset + 2 de grosor) y se comía el borde de arriba y el
+   del margen izquierdo. El padding lo aloja; el margen negativo lo devuelve,
+   para que la fila siga llegando al borde de la pantalla. */
+.filtros-fila {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: var(--sp-1);
+  margin: calc(var(--sp-1) * -1);
+  scroll-padding-inline: var(--sp-1);
+  scrollbar-width: thin;
+}
+
+@media (min-width: 900px) {
+  .filtros-fila {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.filtros-fila select {
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-2);
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--superficie);
+  color: var(--tinta);
+  min-height: 34px;
+  max-width: 12rem;
+}

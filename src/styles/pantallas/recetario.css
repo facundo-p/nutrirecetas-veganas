@@ -1,94 +1,183 @@
 /* ============ Recetario ============ */
 
-.filtros {
-  display: grid;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-4);
-}
+/* ---------- el botón de filtros y su modal ---------- */
 
-/* El borde es del campo entero, con la lupa adentro: por eso el foco se
-   dibuja en el contenedor y no en el input. */
-.filtros-buscador {
+.filtros-fila-busqueda {
   display: flex;
-  align-items: center;
   gap: var(--sp-2);
-  min-height: var(--alto-control);
-  padding: 0 var(--sp-3);
-  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
-  border-radius: var(--radio);
-  color: var(--tinta-suave);
+  align-items: stretch;
 }
 
-.filtros-buscador:focus-within {
-  outline: 2px solid var(--foco);
-  outline-offset: 2px;
-}
-
-.filtros-buscador svg {
-  flex: none;
-  font-size: 18px;
-}
-
-.filtros-busqueda {
+.filtros-fila-busqueda .filtros-buscador {
   flex: 1;
   min-width: 0;
-  align-self: stretch;
-  font: inherit;
-  padding: 0;
-  border: none;
+}
+
+.filtros-boton {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--alto-control);
+  min-height: var(--alto-control);
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border-radius: var(--radio);
   background: none;
+  color: var(--tinta);
+  font-size: 20px;
+}
+
+.filtros-boton.activo {
+  border-color: var(--accion);
+  color: var(--accion);
+}
+
+.filtros-contador {
+  position: absolute;
+  top: calc(var(--sp-2) * -1);
+  right: calc(var(--sp-2) * -1);
+  display: grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--sp-1);
+  border-radius: var(--radio-chip);
+  background: var(--accion);
+  color: var(--sobre-accion);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.modal-filtros {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.modal-velo {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--papel) 80%, transparent);
+}
+
+.modal-hoja {
+  position: relative;
+  display: grid;
+  gap: var(--sp-5);
+  max-height: 78dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-5) var(--sp-4) 0;
+  background: var(--superficie);
+  border-top: 2px solid var(--accion);
+}
+
+@media (min-width: 900px) {
+  .modal-hoja {
+    width: min(40rem, 100%);
+    margin: 0 auto;
+  }
+}
+
+.modal-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-cabecera h2 {
+  font-size: var(--fs-xl);
   color: var(--tinta);
 }
 
-.filtros-busqueda:focus-visible {
-  outline: none;
+.grupo-filtros {
+  display: grid;
+  gap: var(--sp-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-.filtros-busqueda::placeholder {
+.grupo-filtros-titulo {
+  padding: 0;
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
+}
+
+.grupo-filtros-ayuda {
+  font-size: var(--fs-xs);
   color: var(--dato-suave);
 }
 
-/* Los tres chips en su propia fila, antes de los selects: son pocos y entran
-   sin scroll, y detrás de cinco selects quedaban fuera de la pantalla. */
-.filtros-chips {
+.grupo-filtros-chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-/* `overflow-x: auto` computa `overflow-y` a `auto` por spec, así que este
-   contenedor recorta también arriba. El anillo de foco se pinta 4 px afuera
-   del control (2 de offset + 2 de grosor) y se comía el borde de arriba y el
-   del margen izquierdo. El padding lo aloja; el margen negativo lo devuelve,
-   para que la fila siga llegando al borde de la pantalla. */
-.filtros-fila {
-  display: flex;
+.chip-filtro {
+  display: inline-flex;
+  align-items: center;
   gap: var(--sp-2);
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: var(--sp-1);
-  margin: calc(var(--sp-1) * -1);
-  scroll-padding-inline: var(--sp-1);
-  scrollbar-width: thin;
-}
-
-@media (min-width: 900px) {
-  .filtros-fila {
-    flex-wrap: wrap;
-    overflow: visible;
-  }
-}
-
-.filtros-fila select {
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-4);
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
+  border-radius: var(--radio-chip);
+  background: none;
   font: inherit;
   font-size: var(--fs-sm);
-  padding: var(--sp-1) var(--sp-2);
-  border: var(--borde);
-  border-radius: var(--radio-chico);
-  background: var(--superficie);
   color: var(--tinta);
-  min-height: 34px;
-  max-width: 12rem;
+}
+
+.chip-filtro:hover {
+  border-color: var(--tinta);
+}
+
+.chip-filtro[aria-pressed='true'] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--sobre-accion);
+  font-weight: 600;
+}
+
+/* Un nutriente con color se prende en su color: el chip dice lo mismo que la barra. */
+.chip-filtro[data-nut][aria-pressed='true'] {
+  background: var(--nut);
+  border-color: var(--nut);
+}
+
+.chip-filtro[aria-pressed='true'] .cuadrado-nutriente {
+  background: currentColor;
+  border-color: currentColor;
+}
+
+/* Fijo al pie de la hoja: el botón dice el resultado en vivo, y con veinte
+   chips de nutriente abajo no se vería mientras se eligen. El pie lleva el
+   fondo de la hoja para tapar lo que pasa por debajo. */
+.modal-pie {
+  position: sticky;
+  bottom: 0;
+  padding: var(--sp-3) 0 calc(var(--sp-4) + env(safe-area-inset-bottom));
+  background: var(--superficie);
+}
+
+.modal-cerrar {
+  width: 100%;
+  min-height: 3.5rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
 }
 
 /* ---------- conteo y leyenda ---------- */
