@@ -76,7 +76,7 @@
   max-height: 78dvh;
   overflow: auto;
   overscroll-behavior: contain;
-  padding: var(--sp-5) var(--sp-4) calc(var(--sp-4) + env(safe-area-inset-bottom));
+  padding: var(--sp-5) var(--sp-4) 0;
   background: var(--superficie);
   border-top: 2px solid var(--accion);
 }
@@ -163,7 +163,18 @@
   border-color: currentColor;
 }
 
+/* Fijo al pie de la hoja: el botón dice el resultado en vivo, y con veinte
+   chips de nutriente abajo no se vería mientras se eligen. El pie lleva el
+   fondo de la hoja para tapar lo que pasa por debajo. */
+.modal-pie {
+  position: sticky;
+  bottom: 0;
+  padding: var(--sp-3) 0 calc(var(--sp-4) + env(safe-area-inset-bottom));
+  background: var(--superficie);
+}
+
 .modal-cerrar {
+  width: 100%;
   min-height: 3.5rem;
   font-family: var(--font-display);
   font-size: var(--fs-lg);

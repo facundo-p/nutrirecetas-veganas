@@ -174,9 +174,11 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
           ))}
         </Grupo>
 
-        <button type="button" className="boton-principal modal-cerrar" onClick={onCerrar}>
-          {etiquetaDeCierre(resultados)}
-        </button>
+        <div className="modal-pie">
+          <button type="button" className="boton-principal modal-cerrar" onClick={onCerrar}>
+            {etiquetaDeCierre(resultados)}
+          </button>
+        </div>
       </div>
     </div>
   );
