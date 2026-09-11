@@ -5,6 +5,8 @@ import {
   CASILLEROS,
   franjasDeAporte,
   fuerteDeAporte,
+  GRUPO_DEL_PANEL,
+  nombreDeNutriente,
   ORDEN_BARRA,
   porcentajesDeAporte,
   puntoDeIngrediente,
@@ -105,5 +107,16 @@ describe('el punto de un ingrediente', () => {
     const levadura = idx.ingredientById.get('levadura_nutricional')!;
     expect(Object.keys(levadura.nutrientes).length).toBeGreaterThan(1);
     expect(puntoDeIngrediente(levadura, objetivos, nutrientes)).toBe('condicional');
+  });
+});
+
+describe('el panel de la ficha', () => {
+  test('todo nutriente del catálogo tiene grupo: uno sin grupo desaparecería del panel', () => {
+    expect(nutrientes.filter((n) => GRUPO_DEL_PANEL[n.id] === undefined).map((n) => n.id)).toEqual([]);
+  });
+
+  test('se nombran con el nombre corto si tienen color, y con el del catálogo si no', () => {
+    expect(nombreDeNutriente(idx.nutrientById.get('vita')!)).toBe('vitamina A');
+    expect(nombreDeNutriente(idx.nutrientById.get('b12')!)).toBe('vitamina B12');
   });
 });

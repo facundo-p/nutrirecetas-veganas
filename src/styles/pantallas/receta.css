@@ -31,40 +31,6 @@
   color: var(--confirmado);
 }
 
-/* Las kcal por porción, en bloque propio y arriba del aviso de B12: es el
-   único dato nutricional que se mira cocinando. El resto queda al final. */
-.detalle-energia {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  border: var(--borde);
-  border-radius: var(--radio);
-  background: var(--superficie);
-}
-
-.detalle-energia-etiqueta {
-  font-family: var(--font-data);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tinta-suave);
-}
-
-.detalle-energia-cifra {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--sp-1);
-  color: var(--tinta-suave);
-  font-size: var(--fs-sm);
-}
-
-.detalle-energia-cifra .cifra {
-  font-size: var(--fs-xl);
-}
-
 .chip-probada {
   background: color-mix(in srgb, var(--confirmado) 16%, var(--superficie));
   border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
@@ -435,3 +401,161 @@
   margin-top: 2px;
 }
 
+/* ============ Qué aporta una porción ============
+   Al final de la ficha y cerrado; las kcal quedan a la vista igual. */
+
+.panel-aporte {
+  display: grid;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: var(--borde);
+}
+
+.panel-aporte-titulo {
+  font-size: var(--fs-xl);
+}
+
+.panel-aporte-toggle {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
+.panel-aporte-signo {
+  font-family: var(--font-data);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-bajada,
+.panel-aporte-referencia,
+.panel-aporte-pie {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-kcal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-kcal .cifra {
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.03em;
+}
+
+.panel-aporte-cuerpo {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.panel-aporte-grupo-titulo {
+  margin-bottom: var(--sp-1);
+  font-family: var(--font-data);
+  font-size: var(--fs-meta);
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.fila-aporte {
+  display: grid;
+  gap: var(--sp-1);
+  padding: var(--sp-3) 0;
+  border-top: var(--borde-suave);
+}
+
+.fila-aporte-cabecera {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr auto var(--ancho-porcentaje);
+  align-items: baseline;
+  gap: var(--sp-3);
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
+.fila-aporte-valor {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.fila-aporte-valor .cifra {
+  font-size: var(--fs-lg);
+}
+
+.fila-aporte-pct {
+  text-align: right;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.fila-aporte-medida {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.fila-aporte-franja {
+  flex: 1;
+  height: var(--alto-franja-fila);
+}
+
+/* Los que no tienen color llenan en tinta suave: la barra dice cuánto, no qué. */
+.fila-aporte-franja:not([data-nut]) .franja-relleno {
+  fill: var(--tinta-suave);
+}
+
+.fila-aporte.sin-datos {
+  color: var(--dato-suave);
+}
+
+.fila-aporte-detalle {
+  display: grid;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+}
+
+.fila-aporte-origen {
+  color: var(--dato-suave);
+}
+
+.panel-aporte-sin-dato {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--link);
+  text-align: left;
+}

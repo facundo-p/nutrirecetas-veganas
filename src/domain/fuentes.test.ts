@@ -1,7 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import { computeNutrition } from './nutrition';
-import { ingredientesQueMasAportan, recetasQueMasAportan } from './fuentes';
+import { midpoint } from './interval';
+import { ingredientesQueMasAportan, lineasQueAportan, recetasQueMasAportan } from './fuentes';
 
 const idx = getSeedIndex();
 const nutricionDe = (id: string) => computeNutrition(id, idx);
@@ -57,5 +58,33 @@ describe('ingredientes que más aportan un nutriente', () => {
     // b12: la semilla no tiene fuentes vegetales confiables
     const fuentes = ingredientesQueMasAportan(idx, b12);
     expect(fuentes.length).toBeLessThan(10);
+  });
+});
+
+describe('qué líneas de una receta traen un nutriente', () => {
+  const r01 = idx.recipeById.get('r01')!;
+  const aportes = lineasQueAportan(idx, r01.lineas, 'hierro_mg', nutricionDe);
+
+  test('vienen de más a menos, y solo las que traen algo', () => {
+    expect(aportes.length).toBeGreaterThan(1);
+    for (let i = 1; i < aportes.length; i++) expect(aportes[i - 1]!.cantidad).toBeGreaterThanOrEqual(aportes[i]!.cantidad);
+    for (const aporte of aportes) expect(aporte.cantidad).toBeGreaterThan(0);
+  });
+
+  test('el orden sale del aporte, no del orden de la receta', () => {
+    // en r01 las líneas ya vienen de más a menos hierro: dadas vuelta, el resultado tiene que ser el mismo
+    const alReves = lineasQueAportan(idx, [...r01.lineas].reverse(), 'hierro_mg', nutricionDe);
+    expect(alReves.map((aporte) => aporte.nombre)).toEqual(aportes.map((aporte) => aporte.nombre));
+  });
+
+  test('suman lo que dice el motor para la receta entera', () => {
+    const total = aportes.reduce((suma, aporte) => suma + aporte.cantidad, 0);
+    expect(total).toBeCloseTo(midpoint(nutricionDe('r01').por_nutriente.hierro_mg.intervalo), 6);
+  });
+
+  test('un preparado aporta lo suyo: el queso de maní trae proteína al pastel de papas', () => {
+    const p19 = idx.recipeById.get('p19')!;
+    const proteina = lineasQueAportan(idx, p19.lineas, 'prot_g', nutricionDe);
+    expect(proteina.some((aporte) => /Queso de maní/.test(aporte.nombre))).toBe(true);
   });
 });

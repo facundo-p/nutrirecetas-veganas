@@ -11,7 +11,6 @@ import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import {
   IconAsterisco,
-  IconBandaAprox,
   IconCopoNieve,
   IconCuchara,
   IconLaurel,
@@ -24,7 +23,6 @@ import {
 import { avisosDeEscalado, escalarLineas, FACTOR_MAX, FACTOR_MIN, factorDesdeLinea, lineaAGusto } from '../../domain/scaling';
 import { computeNutrition } from '../../domain/nutrition';
 import { objetivosDeReferencia } from '../../domain/objetivos';
-import { midpoint } from '../../domain/interval';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
 import { ControlDeEstado } from '../common/EstadoDeReceta';
@@ -32,7 +30,8 @@ import { saveOverlay } from '../../db/repos';
 import { AvisosDeEscalado, PortionScaler } from './PortionScaler';
 import { useFactorAnimado } from './useFactorAnimado';
 import { B12Alert } from './B12Alert';
-import { NutritionTable } from './NutritionTable';
+import { PanelDeAporte } from './PanelDeAporte';
+import { lineasQueAportan } from '../../domain/fuentes';
 import { RuleTips } from './RuleTips';
 
 /** Desde acá el nombre de la receta baja de tamaño: a 40 px no entra en dos renglones. */
@@ -365,9 +364,6 @@ export function RecipeDetail({ id }: { id: string }) {
 
   const portion = perPortion(nutrition);
   const shown = portion ?? per100g(nutrition);
-  const nutricionTitulo = portion
-    ? `Nutrición por porción (rinde ${recipe.porciones_display})`
-    : `Nutrición por 100 g (rinde ${recipe.porciones_display})`;
   const { label } = typeInfo(recipe);
   const totalMin = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
   const masaEnLaOlla = lineasMostradas.reduce((total, linea) => total + linea.g_aprox, 0);
@@ -411,17 +407,6 @@ export function RecipeDetail({ id }: { id: string }) {
       </header>
 
       <RelatedLinks idx={idx} recipe={recipe} />
-      {/* El único dato nutricional que se mira cocinando, en bloque propio: el
-          resto queda al final detrás de un tap. Lleva el marcador de aproximado
-          — la banda entera está abajo, pero un punto medio suelto sin decir que
-          lo es sería afirmar de más. */}
-      <p className="detalle-energia" title={`entre ${formatGramos(shown.kcal.intervalo.min)} y ${formatGramos(shown.kcal.intervalo.max)} kcal`}>
-        <span className="detalle-energia-etiqueta">{portion ? 'por porción' : 'por 100 g'}</span>
-        <span className="detalle-energia-cifra">
-          <IconBandaAprox className="banda-icono" aria-label="valor aproximado" />
-          <span className="cifra">{formatGramos(midpoint(shown.kcal.intervalo))}</span> kcal
-        </span>
-      </p>
       {nutrition.alerta_b12 && <B12Alert />}
 
       <PortionScaler
@@ -572,12 +557,15 @@ export function RecipeDetail({ id }: { id: string }) {
       )}
 
       {/* Al final a propósito: primero todo lo que sirve para cocinar. */}
-      <NutritionTable
+      <PanelDeAporte
         nutrition={shown}
-        seed={idx.seed}
-        titulo={nutricionTitulo}
+        porPorcion={portion !== null}
+        nutrientes={idx.seed.nutrientes}
         objetivos={objetivos}
         destacados={perfil?.nutrientes_destacados ?? []}
+        aportantes={(nutriente) =>
+          lineasQueAportan(idx, lineasElegidas, nutriente.clave_ingrediente, (recetaId) => nutritionOf(idx, recetaId))
+        }
       />
 
       <Fuente idx={idx} recipe={recipe} />

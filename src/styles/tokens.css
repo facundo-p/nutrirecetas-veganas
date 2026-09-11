@@ -53,6 +53,8 @@
   --cuadrado-nutriente: 10px;
   --rayita-ancho: 3px;
   --rayita-alto: 12px;
+  --alto-franja-fila: 6px;
+  --ancho-porcentaje: 2.75rem;
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
