@@ -95,6 +95,37 @@
   color: var(--tinta-suave);
 }
 
+/* ---------- datos sueltos ----------
+   Los leen el recetario, la receta, ingredientes, nutrientes, el diario y
+   cocina. Vivían en recetario.css, y retocarlos para el recetario los
+   cambiaba en las otras cinco. */
+
+.conteo-resultados {
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  margin-bottom: var(--sp-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-item svg {
+  font-size: 14px;
+}
+
+.inline-icono {
+  font-size: 0.85em;
+  display: inline-block;
+  vertical-align: -0.1em;
+  margin-left: var(--sp-1);
+}
+
 /* ---------- aporte: un color por nutriente ----------
    El color codifica, no decora: cada uno de estos colores es un nutriente y
    nada más. `[data-nut]` fija --nut sobre el propio elemento —una property con

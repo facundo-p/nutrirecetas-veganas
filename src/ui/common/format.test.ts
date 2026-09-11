@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { formatCantidad } from './format';
+import { formatCantidad, formatPorcentaje } from './format';
 
 describe('formatCantidad', () => {
   test('los cuartos se muestran como fracción, no como decimal', () => {
@@ -22,5 +22,12 @@ describe('formatCantidad', () => {
   test('lo que no cae en un cuarto se muestra con coma decimal', () => {
     expect(formatCantidad(0.8)).toBe('0,8');
     expect(formatCantidad(0.2)).toBe('0,2');
+  });
+});
+
+describe('formatPorcentaje', () => {
+  test('debajo de 10 lleva un decimal, con coma; desde 10, entero', () => {
+    expect(formatPorcentaje(9.44)).toBe('9,4 %');
+    expect(formatPorcentaje(38.2)).toBe('38 %');
   });
 });

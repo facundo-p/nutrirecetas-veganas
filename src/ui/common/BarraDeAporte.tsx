@@ -1,7 +1,5 @@
 import { franjasDeAporte, NOMBRE_CORTO, type Porcentajes } from '../../domain/aporte';
-import { formatNumber } from './format';
-
-const legible = (porcentaje: number) => `${formatNumber(porcentaje, porcentaje < 10 ? 1 : 0)} %`;
+import { formatPorcentaje } from './format';
 
 /**
  * Los seis nutrientes que más cubre, en orden canónico. Cada casillero es un
@@ -13,7 +11,7 @@ const legible = (porcentaje: number) => `${formatNumber(porcentaje, porcentaje <
  */
 export function BarraDeAporte({ porcentajes, mini = false }: { porcentajes: Porcentajes; mini?: boolean }) {
   const franjas = franjasDeAporte(porcentajes);
-  const leidas = franjas.flatMap((f) => (f.nutriente ? [`${NOMBRE_CORTO[f.nutriente]} ${legible(f.porcentaje)}`] : []));
+  const leidas = franjas.flatMap((f) => (f.nutriente ? [`${NOMBRE_CORTO[f.nutriente]} ${formatPorcentaje(f.porcentaje)}`] : []));
   const etiqueta = leidas.length > 0 ? `Cubre del día: ${leidas.join(', ')}` : 'Sin dato de ningún nutriente';
 
   return (
@@ -31,7 +29,7 @@ export function BarraDeAporte({ porcentajes, mini = false }: { porcentajes: Porc
           {f.nutriente && (
             <>
               <rect className="franja-relleno" width={f.relleno} height="1" />
-              <title>{`${NOMBRE_CORTO[f.nutriente]}, cubre el ${legible(f.porcentaje)} del día`}</title>
+              <title>{`${NOMBRE_CORTO[f.nutriente]}, cubre el ${formatPorcentaje(f.porcentaje)} del día`}</title>
             </>
           )}
         </svg>

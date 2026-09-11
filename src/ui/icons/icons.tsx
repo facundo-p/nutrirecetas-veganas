@@ -404,3 +404,13 @@ export function IconCerrar(props: IconProps) {
     </Base>
   );
 }
+
+/** Buscar. Fuera del catálogo del glosario por lo mismo que Cerrar: es chrome universal. */
+export function IconLupa(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="10.5" cy="10.5" r="6" />
+      <path d="m15 15 5 5" />
+    </Base>
+  );
+}

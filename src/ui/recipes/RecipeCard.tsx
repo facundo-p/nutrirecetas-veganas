@@ -1,92 +1,80 @@
 import type { Recipe } from '../../seed/schema';
 import type { EstadoDeReceta } from '../../domain/estado';
+import { fuerteDeAporte, NOMBRE_CORTO } from '../../domain/aporte';
 import { ChipDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
-import { difficultyFlames, formatMinutes } from '../common/format';
+import { formatMinutes, formatPorcentaje } from '../common/format';
+import type { AporteDeReceta } from '../common/nutritionCache';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
-import {
-  IconCopoNieve,
-  IconCuchara,
-  IconLaurel,
-  IconLlama,
-  IconPlato,
-  IconReloj,
-  IconTemporada,
-} from '../icons/icons';
+import { BarraDeAporte } from '../common/BarraDeAporte';
+import { IconCopoNieve, IconCuchara, IconLaurel, IconTemporada } from '../icons/icons';
 
 interface Props {
   recipe: Recipe;
   estado: EstadoDeReceta;
+  aporte: AporteDeReceta;
   variantCount?: number;
   inSeason?: boolean;
   onToggleVariants?: () => void;
   variantsOpen?: boolean;
 }
 
+/**
+ * Una receta del recetario: el nombre, la barra de lo que le da al cuerpo y una
+ * línea de datos. Fila y no tarjeta: lo que la hace reconocible es la barra.
+ */
 export function RecipeCard({
   recipe,
   estado,
+  aporte,
   variantCount = 0,
   inSeason = false,
   onToggleVariants,
   variantsOpen,
 }: Props) {
-  const flames = difficultyFlames(recipe.dificultad);
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
   const { label, sello } = typeInfo(recipe);
+  const fuerte = fuerteDeAporte(aporte.porcentajes);
   return (
-    <article className="tarjeta tarjeta-receta">
-      <a className="tarjeta-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
-        <span className="tarjeta-receta-tipo" title={label}>
-          <TypeIcon recipe={recipe} />
+    <article className="fila-receta">
+      <a className="fila-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
+        <span className="fila-receta-nombre">
+          {recipe.nombre}
+          {recipe.candidata_clasica && (
+            <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
+          )}
+          {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
         </span>
-        <span className="tarjeta-receta-textos">
-          {/* El sello comparte renglón con el título y no se encoge: la
-              categoría es lo que ubica la receta de un vistazo. */}
-          <span className="tarjeta-receta-titular">
-            <span className="tarjeta-receta-nombre">
-              {recipe.nombre}
-              {recipe.candidata_clasica && (
-                <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
-              )}
-              {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
-            </span>
-            <span className="sello-categoria">{sello}</span>
+        <BarraDeAporte porcentajes={aporte.porcentajes} />
+        <span className="fila-receta-meta">
+          <span className="meta-item" title={label}>
+            <TypeIcon recipe={recipe} /> {sello}
           </span>
-          <span className="tarjeta-receta-meta">
-            <span className="meta-item">
-              <IconReloj /> {formatMinutes(total)}
-            </span>
-            <span className="meta-item" aria-label={`dificultad ${recipe.dificultad}`} title={recipe.dificultad}>
-              {Array.from({ length: flames }, (_, i) => (
-                <IconLlama key={i} />
-              ))}
-            </span>
-            {recipe.porciones_num !== null && (
-              <span className="meta-item">
-                <IconPlato /> {recipe.porciones_num}
-              </span>
-            )}
-            {recipe.guarda?.freezer && (
-              <span className="meta-item" title="va bien al freezer">
-                <IconCopoNieve className="icono-freezer" />
-              </span>
-            )}
-            {inSeason && (
-              <span className="meta-item icono-temporada" title="con ingredientes en temporada">
-                <IconTemporada /> temporada
-              </span>
-            )}
+          <span className="meta-item">{formatMinutes(total)}</span>
+          <span className="meta-item">
+            {recipe.porciones_num !== null ? `rinde ${recipe.porciones_num}` : recipe.porciones_display}
           </span>
-          {estado !== 'sin-probar' && (
-            <span className="tarjeta-receta-meta">
-              <ChipDeEstado estado={estado} />
+          {fuerte && (
+            <span className="meta-item meta-fuerte" data-nut={fuerte.nutriente}>
+              {NOMBRE_CORTO[fuerte.nutriente]} {formatPorcentaje(fuerte.porcentaje)}
+              {aporte.base === '100g' && ' cada 100 g'}
             </span>
           )}
+          {recipe.guarda?.freezer && (
+            <span className="meta-item" title="va bien al freezer">
+              <IconCopoNieve className="icono-freezer" />
+            </span>
+          )}
+          {inSeason && (
+            <span className="meta-item icono-temporada" title="con ingredientes en temporada">
+              <IconTemporada /> temporada
+            </span>
+          )}
+          {estado !== 'sin-probar' && <ChipDeEstado estado={estado} />}
         </span>
       </a>
       {variantCount > 0 && onToggleVariants && (
-        <button type="button" className="tarjeta-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
+        <button type="button" className="fila-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
           {variantsOpen ? '▾' : '▸'} {variantCount} {variantCount === 1 ? 'variante' : 'variantes'}
         </button>
       )}
