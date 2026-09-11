@@ -384,3 +384,27 @@ de una auditoría ni de un test: de cocinar con ella.
   de CLAUDE.md nombra exactamente esa señal. Se degradó sola, como la de los
   colores antes del contrato de temas: **una regla sin test se cae, aunque esté
   escrita**.
+
+---
+
+## El cromatograma: lo que se decidió antes de pintar (2026-09-11, #170)
+
+- **Un casillero vacío afirma.** El rediseño de Claude Design le daba al yodo un
+  color fijo en la barra de aporte. Medido contra las 72 recetas con porciones:
+  3 de 158 ingredientes tienen dato y ninguna receta llega al 20 %, así que su
+  casillero quedaba vacío en 70 de 72 — y vacío se lee "no tiene", cuando la
+  verdad es "no sabemos". Es el invariante 5 aplicado a un gráfico. El criterio
+  quedó con dos condiciones: que importe para un vegano **y** que haya dato. La
+  medición mostró además que la lista del handoff no salía de ningún criterio:
+  cuatro de sus once eran `importante`, y el selenio, crítico, no estaba.
+- **El handoff no es la especificación, otra vez.** Traía de vuelta dos
+  decisiones ya tomadas —las tres rayas del IC (#127) y un promedio semanal en el
+  Diario— y asumía tres datos que la semilla no tiene: ingrediente→paso,
+  ingrediente ancla, pasos en paralelo. Leerlo contra `lessons.md` y el esquema
+  antes de planificar los destapó en la entrevista, no a mitad de implementación.
+- **Un rol entra con su consumidor.** El test de tokens muertos no deja declarar
+  `--nut-*` en el tema antes de que alguna hoja los use: los colores de nutriente
+  entran en #157 con la barra, no en #156 con la paleta.
+- **El exit code con pipe mintió por tercera vez.** El baseline con
+  `npm test | tail` dio exit 0 con un test rojo (el timeout de 5 s conocido).
+  Van tres.
