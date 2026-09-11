@@ -6,14 +6,42 @@
   margin-bottom: var(--sp-4);
 }
 
-.filtros-busqueda {
-  font: inherit;
-  width: 100%;
-  padding: var(--sp-3) var(--sp-4);
-  border: var(--borde);
+/* El borde es del campo entero, con la lupa adentro: por eso el foco se
+   dibuja en el contenedor y no en el input. */
+.filtros-buscador {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--alto-control);
+  padding: 0 var(--sp-3);
+  border: 1px solid color-mix(in srgb, var(--tinta) 28%, transparent);
   border-radius: var(--radio);
-  background: var(--superficie);
+  color: var(--tinta-suave);
+}
+
+.filtros-buscador:focus-within {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.filtros-buscador svg {
+  flex: none;
+  font-size: 18px;
+}
+
+.filtros-busqueda {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  font: inherit;
+  padding: 0;
+  border: none;
+  background: none;
   color: var(--tinta);
+}
+
+.filtros-busqueda:focus-visible {
+  outline: none;
 }
 
 .filtros-busqueda::placeholder {
@@ -63,132 +91,154 @@
   max-width: 12rem;
 }
 
-.conteo-resultados {
-  font-size: var(--fs-sm);
-  color: var(--tinta-suave);
+/* ---------- conteo y leyenda ---------- */
+
+.conteo-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
   margin-bottom: var(--sp-3);
-  font-variant-numeric: tabular-nums;
 }
+
+.conteo-fila .conteo-resultados {
+  margin-bottom: 0;
+  font-size: var(--fs-meta);
+}
+
+.leyenda-toggle {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-meta);
+  color: var(--link);
+}
+
+.leyenda-rayitas {
+  display: inline-flex;
+  gap: var(--gap-franja);
+}
+
+.rayita-nutriente {
+  width: var(--rayita-ancho);
+  height: var(--rayita-alto);
+  background: var(--nut);
+}
+
+/* Solo el fondo, sin filete lateral: sería el reborde decorativo que la regla 7
+   prohíbe, porque ese borde no codificaría nada. */
+.leyenda-colores {
+  display: grid;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: color-mix(in srgb, var(--tinta) 5%, transparent);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.leyenda-nutrientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-meta);
+  color: var(--tinta);
+}
+
+.leyenda-nutrientes li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* ---------- las recetas ---------- */
 
 .lista-recetas {
   display: grid;
-  gap: var(--sp-3);
 }
 
 @media (min-width: 900px) {
   .lista-recetas {
     grid-template-columns: 1fr 1fr;
+    column-gap: var(--sp-6);
     align-items: start;
   }
 }
 
-/* La banda recorta contra el radio de la tarjeta; sin esto el relleno se
-   escapa por las esquinas. Va acá y no en `.tarjeta`, que la comparten
-   pantallas donde no hay nada que recortar. */
-.tarjeta-receta {
-  overflow: hidden;
+/* Filas separadas por filete, no tarjetas: la jerarquía la hacen la escala y el aire. */
+.fila-receta {
+  border-top: var(--borde);
 }
 
-.tarjeta-receta-cuerpo {
+.fila-receta-cuerpo {
   display: grid;
-  grid-template-columns: 42px 1fr;
+  gap: var(--sp-3);
+  padding: var(--sp-5) 0 var(--sp-4);
   text-decoration: none;
   color: inherit;
 }
 
-/* La columna del ícono de tipo. Sin relleno: el color es de los nutrientes. */
-.tarjeta-receta-tipo {
-  display: flex;
-  justify-content: center;
-  padding-top: var(--sp-3);
-  font-size: 26px;
-  line-height: 1;
-}
-
-.tarjeta-receta-textos {
-  display: grid;
-  gap: var(--sp-1);
-  min-width: 0;
-  padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-3);
-}
-
-/* El sello no se encoge y el nombre sí: a 390 px «conserva» entra siempre y
-   lo que sobra se lo lleva el título, que puede seguir en el renglón de abajo. */
-.tarjeta-receta-titular {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--sp-2);
-}
-
-.tarjeta-receta-nombre {
+.fila-receta-nombre {
   font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  font-weight: 560;
-  color: var(--tinta);
-  line-height: 1.2;
-  min-width: 0;
-}
-
-.sello-categoria {
-  flex-shrink: 0;
-  color: var(--tinta-suave);
-  border: var(--borde);
-  font-family: var(--font-data);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-titulo-fila);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.6;
-  padding: 1px var(--sp-2);
-  border-radius: var(--radio-chico);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+  text-wrap: pretty;
 }
 
-.inline-icono {
-  font-size: 0.85em;
-  display: inline-block;
-  vertical-align: -0.1em;
-  margin-left: var(--sp-1);
+.fila-receta-cuerpo:hover .fila-receta-nombre {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
-.tarjeta-receta-meta {
+.fila-receta-nombre .inline-icono {
+  font-size: 0.6em;
+  vertical-align: 0.1em;
+  margin-left: var(--sp-2);
+}
+
+.fila-receta-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-1) var(--sp-3);
-  font-size: var(--fs-xs);
+  align-items: center;
+  gap: var(--sp-1) var(--sp-4);
+  font-size: var(--fs-meta);
   color: var(--tinta-suave);
-  align-items: center;
 }
 
-.meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
+/* El nutriente más fuerte, en su propio color: los once pasan 4,5:1 como texto. */
+.meta-fuerte {
+  color: var(--nut);
 }
 
-.meta-item svg {
-  font-size: 14px;
-}
-
-.tarjeta-receta-variantes {
+.fila-receta-variantes {
   appearance: none;
   border: none;
-  border-top: var(--borde-suave);
   background: none;
-  width: 100%;
-  text-align: left;
-  padding: var(--sp-2) var(--sp-4);
-  font: inherit;
-  font-size: var(--fs-sm);
-  color: var(--navegar);
   cursor: pointer;
+  min-height: 44px;
+  margin-top: calc(var(--sp-3) * -1);
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-meta);
+  color: var(--navegar);
 }
 
 .lista-variantes {
-  margin: var(--sp-2) 0 0 var(--sp-5);
+  margin-left: var(--sp-5);
   display: grid;
-  gap: var(--sp-2);
   position: relative;
 }
 
@@ -196,15 +246,24 @@
   content: '';
   position: absolute;
   left: calc(-1 * var(--sp-3));
-  top: 4px;
-  bottom: 4px;
+  top: var(--sp-4);
+  bottom: var(--sp-4);
   border-left: 1px dotted color-mix(in srgb, var(--tinta) 30%, transparent);
 }
 
 .sin-resultados {
-  color: var(--tinta-suave);
+  display: grid;
+  justify-items: start;
+  gap: var(--sp-3);
   padding: var(--sp-5) 0;
-  text-align: center;
-  font-style: italic;
+  border-top: var(--borde);
+  color: var(--tinta-suave);
+}
+
+.sin-resultados-titulo {
   font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--tinta);
 }

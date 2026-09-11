@@ -23,6 +23,10 @@
   --fs-xl: 1.5rem;
   --fs-2xl: 1.9375rem;
   --fs-3xl: 2.5rem;
+  /* Del rediseño, con nombre de uso: no caen en la escala de arriba */
+  --fs-meta: 0.8125rem;
+  --fs-titulo-fila: 1.6875rem;
+  --fs-titulo-pantalla: 2.375rem;
 
   /* Espaciado y forma */
   --sp-1: 0.25rem;
@@ -44,7 +48,10 @@
   --ancho-franja-mini: 14px;
   --punto-nutriente: 8px;
   --cuadrado-nutriente: 10px;
+  --rayita-ancho: 3px;
+  --rayita-alto: 12px;
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
+  --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
 }

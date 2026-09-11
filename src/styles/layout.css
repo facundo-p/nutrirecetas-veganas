@@ -160,7 +160,17 @@
 }
 
 .encabezado-pantalla h1 {
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-titulo-pantalla);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.encabezado-bajada {
+  margin-top: var(--sp-2);
+  max-width: 32ch;
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
 }
 
 /* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */

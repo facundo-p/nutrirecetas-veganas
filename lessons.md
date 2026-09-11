@@ -408,3 +408,16 @@ de una auditoría ni de un test: de cocinar con ella.
 - **El exit code con pipe mintió por tercera vez.** El baseline con
   `npm test | tail` dio exit 0 con un test rojo (el timeout de 5 s conocido).
   Van tres.
+
+### Tanda 2: el recetario (2026-09-11, #158)
+
+- **Una clase compartida vive donde la leen todos, no donde nació.**
+  `.meta-item`, `.inline-icono` y `.conteo-resultados` estaban en
+  `recetario.css` y las leían seis pantallas. Achicar el ícono para el título de
+  27 px lo achicó en la receta, el diario y cocina. Ningún test lo ve —en jsdom
+  no hay CSS—; lo encontró un `grep` antes de mirar los renders. Tercera vez que
+  la regla cobra: la nutrición en la Fase 3, `.chip-mini` en #136–#152.
+- **Rojo aislado no es flakiness.** El test de `App` ya fallaba por el timeout
+  de 5 s bajo carga, y el diagnóstico estaba a mano. Corrido solo seguía rojo:
+  esperaba un `h1` «Recetario» que el rediseño cambió a «Nutrirecetas». En
+  staging tardaba 746 ms. Medir contra el baseline separó las dos causas.

@@ -144,3 +144,42 @@ describe('los chips del recetario', () => {
     expect(screen.getByText(/^45 recetas con estos filtros$/)).toBeDefined();
   });
 });
+
+describe('el recetario se dibuja con sus nutrientes', () => {
+  test('cada receta lleva su barra', () => {
+    render(<RecipeList />);
+    // una por grupo: las variantes arrancan plegadas
+    expect(screen.getAllByRole('img', { name: /^(Cubre del día|Sin dato)/ })).toHaveLength(72);
+  });
+
+  test('la línea de datos nombra el nutriente que más cubre, con su porcentaje y su color', () => {
+    render(<RecipeList />);
+    const fila = screen.getByText('Sopa de lentejas rojas al estilo turco').closest('article')!;
+    const fuerte = fila.querySelector('.meta-fuerte')!;
+    expect(fuerte.textContent).toMatch(/^[a-zéí 0-9]+ [\d,]+ %$/i);
+    expect(fuerte.getAttribute('data-nut')).not.toBeNull();
+  });
+
+  test('un preparado sin porciones dice que su barra es cada 100 g', () => {
+    render(<RecipeList />);
+    const fila = screen.getByText('Leche de soja casera').closest('article')!;
+    expect(fila.querySelector('.meta-fuerte')?.textContent).toMatch(/cada 100 g$/);
+  });
+
+  test('la leyenda arranca cerrada, y abierta dice contra qué se mide', () => {
+    render(<RecipeList />);
+    const boton = screen.getByRole('button', { name: 'qué es cada color' });
+    expect(boton.getAttribute('aria-expanded')).toBe('false');
+    fireEvent.click(boton);
+    expect(screen.getByRole('button', { name: 'ocultar' }).getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByText('referencia adulta genérica')).toBeDefined();
+  });
+
+  test('sin resultados, «Empezar de nuevo» suelta todos los filtros', () => {
+    render(<RecipeList />);
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'zzzz' } });
+    expect(screen.getByText('No hay ninguna con todo eso junto.')).toBeDefined();
+    fireEvent.click(screen.getByRole('button', { name: 'Empezar de nuevo' }));
+    expect(screen.getByText(/^84 recetas$/)).toBeDefined();
+  });
+});

@@ -8,23 +8,22 @@ import { IconAjustes } from '../icons/icons';
  * los 390 px; y va en el flujo, no fijo: un elemento pegado arriba fue
  * exactamente lo que tapaba este acceso hasta el #57.
  *
- * Es un bloque de color a sangre y no texto sobre el papel: `--encabezado` lo
- * pinta, y un tema que no quiera el bloque le pasa su propio papel. Ahí está
- * toda la diferencia entre Mercado y Pizarra en esta pantalla.
+ * `--encabezado` lo pinta a sangre; el tema de hoy le pasa su propio papel.
+ * `children` es la bajada, debajo del título.
  */
 export function EncabezadoPantalla({
   etiqueta,
   titulo,
   children,
 }: {
-  etiqueta: string;
+  etiqueta?: string;
   titulo: ReactNode;
   children?: ReactNode;
 }) {
   return (
     <header className="encabezado-pantalla encabezado-pantalla-con-accion">
       <div className="encabezado-texto">
-        <span className="etiqueta-seccion">{etiqueta}</span>
+        {etiqueta && <span className="etiqueta-seccion">{etiqueta}</span>}
         <h1>{titulo}</h1>
         {children}
       </div>

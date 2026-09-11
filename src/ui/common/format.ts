@@ -73,3 +73,8 @@ export function icSprouts(ic: number): 1 | 2 | 3 {
   if (ic <= 7) return 2;
   return 3;
 }
+
+/** Un porcentaje del día: con un decimal debajo de 10, donde el decimal todavía cambia la lectura. */
+export function formatPorcentaje(porcentaje: number): string {
+  return `${formatNumber(porcentaje, porcentaje < 10 ? 1 : 0)} %`;
+}

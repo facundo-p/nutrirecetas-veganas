@@ -3,6 +3,7 @@ import { routeHash } from '../../app/router';
 import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { allFamilies, type RecipeFiltersState } from './filtering';
 import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estado';
+import { IconLupa } from '../icons/icons';
 
 interface Props {
   filters: RecipeFiltersState;
@@ -15,14 +16,17 @@ export function RecipeFilters({ filters, onChange }: Props) {
 
   return (
     <div className="filtros">
-      <input
-        type="search"
-        className="filtros-busqueda"
-        placeholder="Buscar por nombre o ingrediente…"
-        aria-label="Buscar recetas por nombre o ingrediente"
-        value={filters.q}
-        onChange={(e) => set({ q: e.target.value })}
-      />
+      <label className="filtros-buscador">
+        <IconLupa />
+        <input
+          type="search"
+          className="filtros-busqueda"
+          placeholder="ingrediente o nombre"
+          aria-label="Buscar recetas por nombre o ingrediente"
+          value={filters.q}
+          onChange={(e) => set({ q: e.target.value })}
+        />
+      </label>
       {/* Los chips van primero y en su propia fila: son tres, entran sin scroll,
           y detrás de cinco selects quedaban fuera de la pantalla en el celular. */}
       <div className="filtros-chips">
