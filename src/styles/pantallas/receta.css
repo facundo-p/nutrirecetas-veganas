@@ -1,58 +1,34 @@
 /* ============ Detalle de receta ============ */
 
-.detalle {
-  display: grid;
-  gap: var(--sp-5);
-  max-width: 760px;
-}
-
-.detalle section > h2 {
-  font-size: var(--fs-xl);
-  margin-bottom: var(--sp-3);
-  padding-bottom: var(--sp-1);
-  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
-}
-
-.volver {
-  margin-top: var(--sp-2);
-}
-
-.volver a {
-  color: var(--navegar);
-  text-decoration: none;
-  font-size: var(--fs-sm);
-}
-
-.detalle-tipo {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.detalle-tipo svg {
-  font-size: 18px;
-}
-
 .detalle .encabezado-pantalla {
   margin-bottom: 0;
 }
 
-.detalle-meta {
+.ficha-titulo {
+  font-size: var(--fs-3xl);
+  line-height: 1;
+  text-wrap: pretty;
+}
+
+.ficha-titulo.largo {
+  font-size: var(--fs-titulo-largo);
+}
+
+.ficha-meta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2) var(--sp-4);
-  margin-top: var(--sp-2);
-  font-size: var(--fs-sm);
+  margin: var(--sp-3) 0;
+  font-size: var(--fs-meta);
   color: var(--tinta-suave);
 }
 
-.detalle-meta .meta-item svg {
+.ficha-meta .meta-item svg {
   font-size: 16px;
 }
 
-.meta-suave {
-  color: var(--dato-suave);
-  margin-left: var(--sp-1);
+.ficha-clasica {
+  color: var(--confirmado);
 }
 
 /* Las kcal por porción, en bloque propio y arriba del aviso de B12: es el
@@ -100,13 +76,6 @@
   color: var(--chip-preparado);
 }
 
-.relaciones {
-  font-size: var(--fs-sm);
-  display: grid;
-  gap: var(--sp-1);
-  color: var(--tinta-suave);
-}
-
 /* alerta B12: la única tarjeta con voz de alerta (rabanito) */
 .alerta-b12 {
   display: flex;
@@ -125,26 +94,54 @@
   flex-shrink: 0;
 }
 
-/* ingredientes estilo carta */
+/* ---------- la lista de ingredientes ----------
+   La pieza tipográfica de la ficha: es lo que se mira treinta veces cocinando.
+   Filas bajas, para que 28 ingredientes sigan siendo navegables. */
+
+.ficha-ingredientes {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.lista-lineas-cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.lista-lineas-titulo {
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
 
 .lista-lineas {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-3);
+}
+
+.linea-ingrediente {
+  padding: var(--sp-2) 0;
+  border-bottom: var(--borde-suave);
 }
 
 .linea-principal {
   display: flex;
   align-items: baseline;
-  gap: var(--sp-1);
+  gap: var(--sp-3);
 }
 
 .linea-nombre {
+  flex: 1;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-1);
   min-width: 0;
+  line-height: 1.25;
 }
 
 .linea-nombre a {
@@ -156,11 +153,24 @@
 .linea-cantidad {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
+}
+
+.linea-valor {
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
 }
 
 .linea-gramos {
+  font-size: var(--fs-xs);
   color: var(--dato-suave);
+}
+
+/* Lo que va debajo del nombre se alinea con el nombre, no con el punto. */
+.linea-en-vez-de,
+.linea-detalles {
+  padding-left: calc(var(--punto-nutriente) + var(--sp-3));
 }
 
 .linea-detalles {
@@ -173,8 +183,17 @@
   align-items: center;
 }
 
-.linea-funcion {
-  color: var(--funcion-ingrediente);
+.lista-lineas-nota {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+/* La B12 es seguridad, no cosmética (invariante 6): va en tinta, no en suave. */
+.nota-b12 {
+  color: var(--tinta);
 }
 
 /* La línea cambiada dice de qué viene: sin eso, la receta miente sobre sí misma
@@ -182,11 +201,6 @@
 .linea-en-vez-de {
   font-style: italic;
   color: var(--dato-suave);
-}
-
-.chip-texto {
-  border-style: dashed;
-  background: none;
 }
 
 /* tips de reglas */
@@ -271,17 +285,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.lista-secretos {
-  padding-left: 1.2rem;
-  display: grid;
-  gap: var(--sp-2);
-  font-size: var(--fs-sm);
-}
-
-.lista-secretos li::marker {
-  color: var(--tip-positivo);
-}
-
 .lista-utensilios {
   list-style: none;
   padding: 0;
@@ -296,44 +299,86 @@
   color: var(--tinta-suave);
 }
 
-.detalle-fuente {
-  font-size: var(--fs-xs);
-  color: var(--dato-suave);
+/* ============ Escalador ============
+   Pegado arriba en el celular: se mira mientras se leen las cantidades. En
+   escritorio la nav también es sticky arriba y se pisarían, y sobra lugar. */
+
+.escalador {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  margin-inline: calc(var(--sp-4) * -1);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  background: var(--papel);
+  border-bottom: var(--borde);
+}
+
+@media (min-width: 900px) {
+  .escalador {
+    position: static;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.escalador-rinde {
   display: grid;
   gap: 2px;
 }
 
-/* La credencial dice cuánto confiar en el origen; va en su renglón para que se
-   lea, no colgada del nombre con un punto medio. */
-.detalle-fuente-credencial {
-  font-style: italic;
+.escalador-etiqueta,
+.escalador-masa {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
 }
 
-/* ============ Escalador ============ */
-
-.escalador {
-  margin-bottom: var(--sp-4);
-  display: grid;
-  gap: var(--sp-3);
-}
-
-.escalador-control {
+.escalador-porciones {
   display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  flex-wrap: wrap;
-}
-
-.escalador-botones {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
+  align-items: baseline;
+  gap: var(--sp-2);
+  color: var(--tinta-suave);
 }
 
 .escalador-valor {
-  font-size: var(--fs-xl);
-  min-width: 2.5rem;
-  text-align: center;
+  font-size: var(--fs-rinde);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.escalador-masa .cifra {
+  font-weight: 400;
+}
+
+.escalador-botones {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.boton-escalador {
+  width: var(--boton-escalador);
+  height: var(--boton-escalador);
+  background: none;
+  border-color: color-mix(in srgb, var(--tinta) 30%, transparent);
+}
+
+.boton-escalador.lleno {
+  background: var(--accion);
+  border-color: var(--accion);
+  color: var(--sobre-accion);
+}
+
+.escalador-volver {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+/* Mientras las cantidades viajan se tiñen: es lo que muestra qué se recalculó. */
+.recalculando .cifra {
+  color: var(--recalculando);
 }
 
 .avisos-escalado {
@@ -341,17 +386,6 @@
   padding: 0;
   display: grid;
   gap: var(--sp-2);
-}
-
-.aviso {
-  display: flex;
-  gap: var(--sp-2);
-  align-items: flex-start;
-  font-size: var(--fs-sm);
-  padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radio-chico);
-  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
 }
 
 .aviso-horneado {

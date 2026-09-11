@@ -80,6 +80,7 @@
   /* Atributos de receta e ingrediente. Freezer, indulgente y preparado van en
      liquen: no son nutrientes, y un color de más sería un color que miente. */
   --icono-imprescindible: var(--p-carotenoide);
+  --recalculando: var(--p-carotenoide); /* las cifras mientras viajan al escalar */
   --funcion-ingrediente: var(--p-liquen-hondo);
   --confirmado: var(--p-brote);
   --icono-freezer: var(--p-liquen);

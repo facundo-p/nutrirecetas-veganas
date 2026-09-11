@@ -83,12 +83,3 @@ svg {
   color: var(--cifra);
   font-variant-numeric: tabular-nums;
 }
-
-/* Puntos de guía tipo carta entre nombre y cantidad */
-.puntos-guia {
-  flex: 1;
-  min-width: var(--sp-4);
-  margin: 0 var(--sp-2);
-  border-bottom: 1px dotted color-mix(in srgb, var(--tinta) 35%, transparent);
-  transform: translateY(-0.3em);
-}
