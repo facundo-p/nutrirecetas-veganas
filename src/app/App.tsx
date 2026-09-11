@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { registerServiceWorker, requestPersistentStorage } from './pwa';
 import { useRoute } from './router';
 import { Nav } from './Nav';
+import { useSession } from './store';
 import { RecipeList } from '../ui/recipes/RecipeList';
 import { RecipeDetail } from '../ui/recipe-detail/RecipeDetail';
 import { IngredientList } from '../ui/ingredients/IngredientList';
@@ -129,6 +130,8 @@ const scrollPorRuta = new Map<string, number>();
 export function App() {
   const route = useRoute();
   const [applyUpdate, setApplyUpdate] = useState<(() => void) | null>(null);
+  // La mesada ocupa la pantalla: con la mano sucia, una pestaña al pie es un toque errado.
+  const enLaMesada = useSession((s) => s.paso === 'pasos') && route.screen === 'cook';
 
   useEffect(() => {
     requestPersistentStorage();
@@ -151,7 +154,7 @@ export function App() {
   return (
     <div className="app">
       <BandaDeStaging />
-      <Nav route={route} />
+      {!enLaMesada && <Nav route={route} />}
       <AvisoDeMigracion />
       <BackupReminder />
       <main className="contenido">

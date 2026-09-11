@@ -1,5 +1,8 @@
+import type { SeedIndex } from '../seed';
 import type { LineRef, Recipe, Seed } from '../seed/schema';
+import { fuerteDeAporte, porcentajesDeAporte, type NutrienteDeBarra } from './aporte';
 import { nutricionConLineas, type NutritionSource, type RecipeNutrition } from './nutrition';
+import type { ObjetivosDeReferencia } from './objetivos';
 import { escalarLineas } from './scaling';
 
 /**
@@ -21,6 +24,8 @@ export interface LineaSesion {
   imprescindible?: boolean;
   funcion?: string;
   sustitutos: Array<{ tipo: 'id' | 'texto'; valor: string }>;
+  /** El de la receta, que un sustituto hereda. Lo agregado no entra en ningún paso. */
+  paso: number | null;
   /** Si se sustituyó, la referencia original queda registrada para el diario. */
   original?: { ref: LineRef; nombre: string };
   agregada?: true;
@@ -45,6 +50,7 @@ export function lineasIniciales(recipe: Recipe, factor: number, seed: Seed): Lin
     ...(linea.imprescindible !== undefined ? { imprescindible: linea.imprescindible } : {}),
     ...(linea.funcion !== undefined ? { funcion: linea.funcion } : {}),
     sustitutos: linea.sustitutos,
+    paso: linea.paso,
   }));
 }
 
@@ -78,6 +84,7 @@ export function lineaAgregada(ref: LineRef, gramos: number, seed: Seed, key: str
     g_aprox: gramos,
     activa: true,
     sustitutos: [],
+    paso: null,
     agregada: true,
   };
 }
@@ -97,9 +104,27 @@ export function nutricionSesion(
       unidad_display: l.unidad_display,
       g_aprox: l.g_aprox,
       sustitutos: [],
-      paso: null,
+      paso: l.paso,
     }));
   return nutricionConLineas(recipe, activas, porciones, source);
+}
+
+/**
+ * El color de cada paso: el nutriente que más cubre lo que entra en él, tal
+ * como va a la olla hoy. Se mide la olla entera porque el que gana no depende
+ * de en cuántas porciones se sirva. `null`: no entra nada, o nada de lo que
+ * entra trae uno de los once con dato.
+ */
+export function nutrientesDeLosPasos(
+  lineas: LineaSesion[],
+  recipe: Recipe,
+  idx: SeedIndex,
+  objetivos: ObjetivosDeReferencia,
+): Array<NutrienteDeBarra | null> {
+  return recipe.pasos.map((_, paso) => {
+    const { por_nutriente } = nutricionSesion(lineas.filter((l) => l.paso === paso), recipe, 1, idx);
+    return fuerteDeAporte(porcentajesDeAporte(por_nutriente, objetivos, idx.seed.nutrientes))?.nutriente ?? null;
+  });
 }
 
 export interface VariacionDetectada {

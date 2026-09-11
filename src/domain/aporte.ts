@@ -230,7 +230,7 @@ export function puntoDeIngrediente(
  */
 export function puntoDeLinea(
   idx: SeedIndex,
-  linea: Line,
+  linea: Pick<Line, 'ref'>,
   objetivos: ObjetivosDeReferencia,
   nutricionDe: (recetaId: string) => RecipeNutrition,
 ): PuntoDeIngrediente {

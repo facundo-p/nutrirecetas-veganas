@@ -34,6 +34,7 @@ const RUTAS = [
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
   ['cocinar-pasos', '#/cocinar/r01'],
+  ['cocinar-paso-4', '#/cocinar/r01'],
   ['diario', '#/diario'],
   ['perfil', '#/perfil'],
   ['ajustes', '#/ajustes'],
@@ -185,9 +186,17 @@ try {
     for (const [name, hash] of RUTAS) {
       await page.goto(`${BASE}/?tema=${tema}${hash}`, { waitUntil: 'networkidle' });
 
-      // la sesión de cocina necesita un par de clics para llegar a los pasos
-      if (name === 'cocinar-pasos') {
+      // la sesión de cocina necesita un par de clics para llegar a los pasos. Con
+      // la URL de la ruta anterior, `goto` solo cambia el hash y la sesión sigue
+      // donde quedó: recargar la arranca de cero.
+      if (name.startsWith('cocinar-paso')) {
+        await page.reload({ waitUntil: 'networkidle' });
         await page.getByRole('button', { name: 'Empezar a cocinar' }).click();
+        await page.waitForTimeout(150);
+      }
+      // un paso avanzado: el progreso pintado y el fondo teñido por otro nutriente
+      if (name === 'cocinar-paso-4') {
+        await page.getByRole('button', { name: /^4 / }).click();
         await page.waitForTimeout(150);
       }
       // el ajuste por ingrediente solo se ve prendido y con una cantidad cambiada

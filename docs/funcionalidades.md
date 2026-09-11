@@ -46,7 +46,7 @@ no le tiene que estorbar**.
 
 | Qué | Decisión | Argumento |
 |---|---|---|
-| Modo cocina manos libres completo (timers por paso, navegación por gestos) | Backlog | La pantalla de cocción de Fase 2 ya trae tipografía grande + wake lock + avance simple. El modo completo se diseña con la experiencia de uso real acumulada. |
+| Modo cocina manos libres completo (timers por paso, navegación por gestos) | Backlog | Desde la Fase 4 el modo cocina muestra la receta entera con el paso actual abierto y sus ingredientes, salta de paso de un toque y mantiene la pantalla encendida. Timers y gestos se diseñan con la experiencia de uso real acumulada. |
 | Despensa / freezer | Backlog | Valioso (conecta conservación + porciones congeladas + compras) pero requiere disciplina de registro que conviene validar primero con el diario de cocciones. |
 | Promoción automática de variaciones repetidas a receta propia | Backlog (la promoción manual desde una cocción SÍ entra en Fase 4) | La detección automática ("hiciste esta variación 3 veces") necesita historial acumulado para no ser ruido. |
 | Reglas de utensilios U1–U10 como avisos contextuales | Backlog | Aporte marginal frente al costo de normalizar las referencias mezcladas; las recomendaciones por receta se muestran como texto. |
