@@ -4,6 +4,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
 import { routeHash } from './router';
+import { useSession } from './store';
 import { addCoccion } from '../db/repos';
 import { db } from '../db/db';
 import { USER_SCHEMA_VERSION } from '../db/schema';
@@ -90,6 +91,21 @@ test('pasar de una receta a otra no arrastra lo que se tocó en la primera', asy
     expect(screen.queryByText(/en vez de/)).toBeNull();
   } finally {
     window.location.hash = '';
+  }
+});
+
+test('la mesada ocupa la pantalla: sin navegación, que vuelve al salir (issue #164)', async () => {
+  window.location.hash = routeHash({ screen: 'cook', id: 'r01' });
+  try {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Empezar a cocinar' }));
+    expect(screen.queryByRole('navigation', { name: 'Secciones' })).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: '‹ Ingredientes' }));
+    expect(screen.getByRole('navigation', { name: 'Secciones' })).toBeDefined();
+  } finally {
+    window.location.hash = '';
+    useSession.getState().terminar();
   }
 });
 

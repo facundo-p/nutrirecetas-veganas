@@ -481,3 +481,16 @@ de una auditoría ni de un test: de cocinar con ella.
   el molde, *antes* de nombrarlos. Los encontró listar lo que caía en un paso que
   no nombra al ingrediente. Una lista de palabras vacías que incluía "agua"
   escondía además todas las líneas de agua de ese mismo control.
+
+### Modo cocina: la receta entera a la vista (2026-09-11, #164)
+
+- **Un mutante que sobrevive puede ser código repetido, no un test flojo.**
+  Sacar el `l.activa` del color del paso no rompía nada porque
+  `nutricionSesion` ya filtra lo activo: el filtro estaba dos veces. Se borró
+  el de afuera y el test pasó a morder el único que queda.
+- **El wake lock nunca volvía.** El navegador lo suelta al pasar a segundo
+  plano, pero el hook no lo anotaba y `alVolver` creía tenerlo: desde la Fase 2,
+  la pantalla se apagaba después de mirar un mensaje. Sin test, nadie lo vio.
+  Escuchar `release` lo arregla y deja decir la verdad en la nota del pie.
+- **`goto` a la misma URL solo cambia el hash.** En los renders, la segunda ruta
+  de cocina heredaba la sesión de la primera. Recargar la arranca de cero.

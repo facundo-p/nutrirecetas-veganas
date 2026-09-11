@@ -1,12 +1,14 @@
 import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import { midpoint } from './interval';
+import { objetivosDeReferencia } from './objetivos';
 import { avisosDeEscalado, escalarLineas, esHorneada } from './scaling';
 import {
   advertenciaDesmarcar,
   lineaAgregada,
   lineasIniciales,
   nutricionSesion,
+  nutrientesDeLosPasos,
   sustituirLinea,
   variacionesDe,
   type LineaSesion,
@@ -38,6 +40,33 @@ describe('escalado', () => {
 
   test('achicar una receta horneada no dispara el aviso de molde', () => {
     expect(avisosDeEscalado(p31, 0.5).some((a) => a.tipo === 'horneado')).toBe(false);
+  });
+});
+
+describe('el color de cada paso (issue #164)', () => {
+  const objetivos = objetivosDeReferencia(null, idx.seed.nutrientes, new Date('2026-09-11'));
+  const lineas = lineasIniciales(r01, 1, idx.seed);
+  const colores = (deHoy: LineaSesion[]) => nutrientesDeLosPasos(deHoy, r01, idx, objetivos);
+
+  test('es el nutriente que más cubre lo que entra en cada paso; en el hervor no entra nada', () => {
+    // la zanahoria, el extracto de tomate, las lentejas, el limón
+    expect(colores(lineas)).toEqual(['vita', 'proteina', 'hierro', 'folato', null, 'vitc']);
+  });
+
+  test('lo que se saca no tiñe su paso', () => {
+    const sinLentejasNiCaldo = lineas.map((l) => (l.paso === 3 ? { ...l, activa: false } : l));
+    expect(colores(sinLentejasNiCaldo)[3]).toBeNull();
+  });
+
+  test('el sustituto hereda el paso; lo agregado no entra en ninguno', () => {
+    const lentejas = lineas[0]!;
+    expect(sustituirLinea(lentejas, { tipo: 'ingrediente', id: 'garbanzos' }, idx.seed).paso).toBe(lentejas.paso);
+
+    const soloLoAgregado = [
+      ...lineas.map((l) => ({ ...l, activa: false })),
+      lineaAgregada({ tipo: 'ingrediente', id: 'garbanzos' }, 100, idx.seed, 'extra-0'),
+    ];
+    expect(colores(soloLoAgregado).every((c) => c === null)).toBe(true);
   });
 });
 

@@ -404,12 +404,6 @@
   cursor: not-allowed;
 }
 
-.boton-grande {
-  font-size: var(--fs-lg);
-  min-height: 60px;
-  flex: 1;
-}
-
 .boton-cocinar {
   margin-top: var(--sp-4);
   width: 100%;

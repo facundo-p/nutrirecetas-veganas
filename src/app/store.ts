@@ -23,7 +23,7 @@ interface SessionState {
   sustituir: (key: string, ref: LineRef, seed: Seed) => void;
   agregar: (ref: LineRef, gramos: number, seed: Seed) => void;
   irA: (paso: PasoSesion) => void;
-  avanzarPaso: (delta: number, total: number) => void;
+  irAPaso: (indice: number) => void;
   terminar: () => void;
 }
 
@@ -62,8 +62,7 @@ export const useSession = create<SessionState>((set) => ({
 
   irA: (paso) => set({ paso }),
 
-  avanzarPaso: (delta, total) =>
-    set((estado) => ({ pasoActual: Math.min(total - 1, Math.max(0, estado.pasoActual + delta)) })),
+  irAPaso: (indice) => set({ pasoActual: indice }),
 
   terminar: () => set({ recetaId: null, lineas: [], paso: 'personalizar', pasoActual: 0 }),
 }));

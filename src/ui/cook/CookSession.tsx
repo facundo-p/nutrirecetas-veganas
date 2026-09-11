@@ -24,10 +24,12 @@ export function CookSession({ recetaId }: { recetaId: string }) {
     }
   }, [recipe, enCurso, iniciar, idx]);
 
+  // Hasta que el efecto de arriba corre, las líneas son las de la sesión anterior.
+  const sesionDeEstaReceta = recipe !== undefined && enCurso === recipe.id;
   const nutricion = useMemo(() => {
-    if (!recipe || lineas.length === 0) return null;
+    if (!recipe || !sesionDeEstaReceta) return null;
     return nutricionSesion(lineas, recipe, Math.max(1, porciones), idx);
-  }, [recipe, lineas, porciones, idx]);
+  }, [recipe, sesionDeEstaReceta, lineas, porciones, idx]);
 
   if (!recipe) {
     return (
@@ -44,11 +46,7 @@ export function CookSession({ recetaId }: { recetaId: string }) {
 
   if (!nutricion) return <p className="cargando">Preparando la sesión…</p>;
 
-  const titulos = {
-    personalizar: 'Qué va a la olla',
-    pasos: recipe.nombre,
-    registrar: 'Registrar la cocción',
-  } as const;
+  if (paso === 'pasos') return <StepsView recipe={recipe} />;
 
   return (
     <article className="sesion-cocina" data-paso={paso}>
@@ -57,7 +55,7 @@ export function CookSession({ recetaId }: { recetaId: string }) {
       </p>
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion">Cocinando</span>
-        <h1>{titulos[paso]}</h1>
+        <h1>{paso === 'personalizar' ? 'Qué va a la olla' : 'Registrar la cocción'}</h1>
         {paso === 'personalizar' && (
           <p className="campo-ayuda">
             Desmarcá lo que no tenés, sustituí lo que quieras cambiar y agregá lo que sume. La nutrición se recalcula sola.
@@ -65,9 +63,11 @@ export function CookSession({ recetaId }: { recetaId: string }) {
         )}
       </header>
 
-      {paso === 'personalizar' && <CustomizeStep nutricion={nutricion} />}
-      {paso === 'pasos' && <StepsView recipe={recipe} />}
-      {paso === 'registrar' && <RegisterStep recipe={recipe} nutricion={nutricion} seed={idx.seed} />}
+      {paso === 'personalizar' ? (
+        <CustomizeStep nutricion={nutricion} />
+      ) : (
+        <RegisterStep recipe={recipe} nutricion={nutricion} seed={idx.seed} />
+      )}
     </article>
   );
 }

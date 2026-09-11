@@ -29,6 +29,9 @@
   --fs-titulo-pantalla: 2.375rem;
   --fs-titulo-largo: 1.75rem; /* un nombre de receta de más de 40 caracteres */
   --fs-rinde: 2.75rem;
+  --fs-paso-abierto: 1.875rem; /* 30 px: el paso se lee a un brazo de distancia */
+  --fs-cantidad-mesada: 1.5625rem;
+  --fs-boton-mesada: 1.4375rem;
 
   /* Espaciado y forma */
   --sp-1: 0.25rem;
@@ -53,11 +56,14 @@
   --rayita-alto: 12px;
   --alto-franja-fila: 6px;
   --ancho-porcentaje: 2.75rem;
+  --alto-progreso: 5px; /* un segmento por paso en la mesada */
+  --filete-paso: 4px;
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
   --toque-minimo: 2.75rem; /* 44 px: lo mínimo que se puede tocar con un dedo */
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
   --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
+  --toque-mesada: 5.25rem; /* 84 px: se toca sin mirar */
   --ancho-campo-cantidad: 4.5rem;
 }
