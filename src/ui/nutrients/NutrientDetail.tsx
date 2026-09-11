@@ -115,9 +115,9 @@ export function NutrientDetail({ id }: { id: string }) {
         <ul className="lista-fuentes">
           {fuentes.recetas.map(({ receta, cantidad, resultado }) => {
             const pct = porcentajeDeObjetivo(resultado, objetivo);
-            const { slug, label } = typeInfo(receta);
+            const { label } = typeInfo(receta);
             return (
-              <li key={receta.id} data-cat={slug}>
+              <li key={receta.id}>
                 <a className="tarjeta fila-fuente" href={routeHash({ screen: 'recipe', id: receta.id })}>
                   <span className="fuente-tipo" title={label}>
                     <TypeIcon recipe={receta} />

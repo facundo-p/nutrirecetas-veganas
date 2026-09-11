@@ -90,9 +90,9 @@
   cursor: pointer;
 }
 
-/* el ícono de tipo hereda la categoría del data-cat de su tarjeta */
+/* El tipo va en tinta suave: el color es de los nutrientes. */
 .icono-tipo {
-  color: var(--cat-actual);
+  color: var(--tinta-suave);
 }
 
 /* ============ Formularios (perfil, registro, ajustes) ============ */

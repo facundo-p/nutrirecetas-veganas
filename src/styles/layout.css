@@ -81,8 +81,7 @@
     padding: var(--sp-3) var(--sp-6);
     border-top: none;
     border-bottom: 3px double color-mix(in srgb, var(--tinta) 35%, transparent);
-    background: color-mix(in srgb, var(--nav-fondo) 88%, transparent);
-    backdrop-filter: blur(6px);
+    background: var(--nav-fondo);
   }
   .nav-marca {
     display: block;
@@ -119,8 +118,7 @@
  * `.contenido` para que el color llegue al borde; van con el mismo token que
  * ese padding usa, así no se despegan si cambia.
  *
- * Solo la variante: el detalle de receta usa `.encabezado-pantalla` pelada y
- * ahí el título va en el color de su categoría, no sobre un relleno.
+ * Solo la variante: el detalle de receta usa `.encabezado-pantalla` pelada.
  */
 .encabezado-pantalla-con-accion {
   display: flex;
@@ -165,12 +163,11 @@
   font-size: var(--fs-2xl);
 }
 
+/* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */
 .etiqueta-seccion {
   font-family: var(--font-data);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  font-weight: 400;
   color: var(--kicker);
 }
 

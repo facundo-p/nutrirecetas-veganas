@@ -1,26 +1,21 @@
 /**
- * Temas visuales intercambiables (04 §3). Cada tema es un archivo en
- * `src/styles/temas/`: su paleta cruda y el contrato de roles que la app
- * consume. Acá solo vive la elección, no el color.
+ * El tema visual (04 §3). Cada tema es un archivo en `src/styles/temas/`: su
+ * paleta cruda y el contrato de roles que la app consume. Acá solo vive la
+ * elección, no el color.
  *
- * Agregar un tema son tres pasos, y el test `src/styles/contrato-de-temas.test.ts`
- * verifica los tres: crear `temas/tema-X.css` con el contrato completo,
- * importarlo en `styles/index.css`, y sumar la letra a `TEMAS` de acá y al
- * array del script inline de `index.html`.
+ * Desde la Fase 4 hay uno solo. La maquinaria queda porque el contrato la usa
+ * para saber qué archivos son temas: sumar uno es crear `temas/tema-X.css` con
+ * el contrato completo, importarlo en `styles/index.css` y sumar la letra a
+ * `TEMAS` y al script inline de `index.html`. El test
+ * `src/styles/contrato-de-temas.test.ts` verifica los tres pasos.
  *
  * El `<html>` arranca con `data-tema` puesto en el default y el script inline
  * lo pisa con el guardado antes de pintar, para que no haya salto de color.
  */
 
-export const TEMAS = ['e', 'f'] as const;
+export const TEMAS = ['g'] as const;
 export type Tema = (typeof TEMAS)[number];
-export const TEMA_DEFAULT: Tema = 'e';
-
-/** Cómo se presenta cada tema en Ajustes. Agregar un tema es agregar una entrada. */
-export const INFO_DE_TEMA: Record<Tema, { nombre: string; resumen: string }> = {
-  e: { nombre: 'Mercado', resumen: 'El color en bloques: encabezados plenos y un sello por categoría.' },
-  f: { nombre: 'Pizarra', resumen: 'Oscuro como una carta de noche, con los verdes en alto contraste.' },
-};
+export const TEMA_DEFAULT: Tema = 'g';
 
 const CLAVE = 'tema';
 
@@ -50,17 +45,16 @@ function pintar(tema: Tema): void {
   if (meta && papel) meta.content = papel;
 }
 
-/** Aplica el tema al arrancar y guarda la elección cuando vino por URL. */
+/**
+ * Aplica el tema al arrancar y guarda la elección cuando vino por URL.
+ *
+ * Un `e` o `f` guardado de antes no se borra: `localStorage` es común a la app
+ * y a staging, y borrarlo desde acá le cambiaría el tema a la app publicada.
+ */
 export function aplicarTema(): Tema {
   const tema = temaActivo();
   const pedido = new URLSearchParams(location.search).get(CLAVE);
   if (esTema(pedido)) localStorage.setItem(CLAVE, pedido);
   pintar(tema);
   return tema;
-}
-
-/** Cambia el tema desde la app y lo deja guardado. */
-export function setTema(tema: Tema): void {
-  localStorage.setItem(CLAVE, tema);
-  pintar(tema);
 }

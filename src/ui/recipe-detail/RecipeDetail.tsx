@@ -290,11 +290,11 @@ export function RecipeDetail({ id }: { id: string }) {
   const nutricionTitulo = portion
     ? `Nutrición por porción (rinde ${recipe.porciones_display})`
     : `Nutrición por 100 g (rinde ${recipe.porciones_display})`;
-  const { label, slug } = typeInfo(recipe);
+  const { label } = typeInfo(recipe);
   const totalMin = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
 
   return (
-    <article className="detalle" data-cat={slug}>
+    <article className="detalle">
       <p className="volver">
         <a href={routeHash({ screen: 'recipes' })}>‹ Recetario</a>
       </p>
