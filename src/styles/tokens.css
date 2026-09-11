@@ -27,6 +27,8 @@
   --fs-meta: 0.8125rem;
   --fs-titulo-fila: 1.6875rem;
   --fs-titulo-pantalla: 2.375rem;
+  --fs-titulo-largo: 1.75rem; /* un nombre de receta de más de 40 caracteres */
+  --fs-rinde: 2.75rem;
 
   /* Espaciado y forma */
   --sp-1: 0.25rem;
@@ -55,4 +57,5 @@
   /* Alturas fijas */
   --alto-nav: 3.75rem;
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
+  --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
 }

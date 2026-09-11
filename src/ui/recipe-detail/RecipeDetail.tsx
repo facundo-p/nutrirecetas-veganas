@@ -2,11 +2,13 @@ import { useMemo, useState } from 'react';
 import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Line, Recipe } from '../../seed/schema';
 import { per100g, perPortion } from '../../domain/nutrition';
+import type { PuntoDeIngrediente } from '../../domain/aporte';
 import { routeHash } from '../../app/router';
-import { currentMonth, difficultyFlames, formatCantidad, formatGramos, formatMinutes } from '../common/format';
-import { nutritionOf } from '../common/nutritionCache';
+import { currentMonth, formatCantidad, formatGramos, formatMinutes } from '../common/format';
+import { nutritionOf, puntoDeLinea } from '../common/nutritionCache';
 import { ingredientInSeason } from '../../domain/season';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
+import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import {
   IconAsterisco,
   IconBandaAprox,
@@ -14,8 +16,6 @@ import {
   IconCuchara,
   IconLaurel,
   IconHeladera,
-  IconLlama,
-  IconPlato,
   IconRamaBifurca,
   IconReloj,
   IconSustituir,
@@ -29,10 +29,14 @@ import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
 import { ControlDeEstado } from '../common/EstadoDeReceta';
 import { saveOverlay } from '../../db/repos';
-import { PortionScaler } from './PortionScaler';
+import { AvisosDeEscalado, PortionScaler } from './PortionScaler';
+import { useFactorAnimado } from './useFactorAnimado';
 import { B12Alert } from './B12Alert';
 import { NutritionTable } from './NutritionTable';
 import { RuleTips } from './RuleTips';
+
+/** Desde acá el nombre de la receta baja de tamaño: a 40 px no entra en dos renglones. */
+const NOMBRE_LARGO = 40;
 
 /**
  * Solo los preparados linkean, porque llevan a otra receta. El nombre de un
@@ -52,12 +56,17 @@ function IngredientLine({
   idx,
   line,
   original,
+  punto,
+  notas,
   onSustituir,
 }: {
   idx: SeedIndex;
   line: Line;
   /** La línea como la trae la receta: es a lo que se vuelve al despresionar. */
   original: Line;
+  punto: PuntoDeIngrediente;
+  /** Función, notas y sustitutos: apagados por defecto, se prenden todos juntos. */
+  notas: boolean;
   onSustituir: (ingrediente_id: string | null) => void;
 }) {
   const { nombre, esPreparado } = lineName(idx, line);
@@ -68,36 +77,35 @@ function IngredientLine({
   const gramos = formatGramos(line.g_aprox);
   const resolubles = line.sustitutos.filter((s) => s.tipo === 'id');
   const textuales = line.sustitutos.filter((s) => s.tipo === 'texto');
+  const conDetalles = notas && (line.funcion || line.nota || line.sustitutos.length > 0);
   return (
     <li className="linea-ingrediente">
       <span className="linea-principal">
+        <PuntoDeNutriente punto={punto} />
         <span className="linea-nombre">
           {esPreparado ? (
             <a href={routeHash({ screen: 'recipe', id: line.ref.id })}>{nombre}</a>
           ) : (
             nombre
           )}
-          {esPreparado && <span className="chip chip-mini chip-preparado">preparado</span>}
           {line.imprescindible && (
             <IconAsterisco className="inline-icono icono-imprescindible" aria-label="imprescindible" />
           )}
+          {esPreparado && <span className="chip chip-mini chip-preparado">preparado</span>}
           {enPico && (
             <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
           )}
         </span>
-        <span className="puntos-guia" aria-hidden="true" />
         <span className="linea-cantidad">
-          {cantidad} {unidad}
-          {`${cantidad} ${unidad}` !== `${gramos} g` && (
-            <span className="linea-gramos"> · {gramos} g</span>
-          )}
+          <span className="linea-valor cifra">{cantidad}</span> <span className="linea-unidad">{unidad}</span>
+          {`${cantidad} ${unidad}` !== `${gramos} g` && <span className="linea-gramos"> · {gramos} g</span>}
         </span>
       </span>
-      {(line.funcion || line.nota || line.sustitutos.length > 0) && (
+      {/* La línea cambiada dice de qué viene aunque las notas estén apagadas:
+          sin eso, la receta miente sobre sí misma. */}
+      {sustituido && <span className="linea-en-vez-de">en vez de {lineName(idx, original).nombre}</span>}
+      {conDetalles && (
         <span className="linea-detalles">
-          {sustituido && (
-            <span className="linea-en-vez-de">en vez de {lineName(idx, original).nombre}</span>
-          )}
           {line.funcion && <em className="linea-funcion">{line.funcion}</em>}
           {line.nota && <span className="linea-nota">{line.nota}</span>}
           {/* Tocar el chip cambia el ingrediente en la receta y mueve la
@@ -126,6 +134,28 @@ function IngredientLine({
         </span>
       )}
     </li>
+  );
+}
+
+/**
+ * Qué quieren decir los puntos. La B12 se dice acá, leyendo `alerta_b12` y no
+ * los puntos: el flag ve la levadura también cuando viene dentro de un preparado.
+ */
+function NotaDeLaLista({ hayHueco, alertaB12 }: { hayHueco: boolean; alertaB12: boolean }) {
+  return (
+    <div className="lista-lineas-nota">
+      <p>
+        Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
+        ingrediente, con el mismo color que las barras del recetario; en beige, los que no traen ninguno con dato.
+        {hayHueco && ' El punto hueco es aporte condicional.'} El asterisco marca lo que no se puede sacar.
+      </p>
+      {alertaB12 && (
+        <p className="nota-b12">
+          Lleva levadura nutricional: trae B12 solo si la marca está fortificada, y muchas marcas argentinas no lo
+          están. Si la etiqueta no la nombra, no la tiene.
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -211,6 +241,8 @@ export function RecipeDetail({ id }: { id: string }) {
   const recipe = idx.recipeById.get(id);
 
   const [factor, setFactor] = useState(1);
+  const { mostrado, animando } = useFactorAnimado(factor);
+  const [notas, setNotas] = useState(false);
   /**
    * Qué línea se cambió por qué ingrediente, mientras mirás la ficha. Efímero
    * como el selector de porciones: al salir la receta vuelve a ser la que es.
@@ -238,13 +270,20 @@ export function RecipeDetail({ id }: { id: string }) {
     });
   }, [recipe, sustituciones]);
 
-  const escalada = useMemo(() => {
-    if (!recipe || factor === 1) return null;
-    return {
-      lineas: escalarLineas(lineasElegidas, factor),
-      avisos: avisosDeEscalado(recipe, factor, idx.seed),
-    };
-  }, [recipe, lineasElegidas, factor, idx]);
+  // Las cantidades se dibujan con el factor que viaja; la nutrición y los
+  // avisos, con el de destino: no tienen por qué recalcularse cuadro a cuadro.
+  const lineasMostradas = useMemo(
+    () => (mostrado === 1 ? lineasElegidas : escalarLineas(lineasElegidas, mostrado)),
+    [lineasElegidas, mostrado],
+  );
+  const avisos = useMemo(
+    () => (recipe && factor !== 1 ? avisosDeEscalado(recipe, factor, idx.seed) : []),
+    [recipe, factor, idx],
+  );
+  const puntos = useMemo(
+    () => lineasElegidas.map((linea) => puntoDeLinea(idx, linea, objetivos)),
+    [lineasElegidas, objetivos, idx],
+  );
 
   const nutrition = useMemo(() => {
     if (!recipe) return null;
@@ -292,42 +331,38 @@ export function RecipeDetail({ id }: { id: string }) {
     : `Nutrición por 100 g (rinde ${recipe.porciones_display})`;
   const { label } = typeInfo(recipe);
   const totalMin = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
+  const masaEnLaOlla = lineasMostradas.reduce((total, linea) => total + linea.g_aprox, 0);
 
   return (
     <article className="detalle">
       <p className="volver">
         <a href={routeHash({ screen: 'recipes' })}>‹ Recetario</a>
       </p>
-      <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion detalle-tipo">
-          <TypeIcon recipe={recipe} /> {label}
-          {recipe.familia && <span className="chip chip-mini">familia: {recipe.familia}</span>}
-        </span>
-        <h1>
-          {recipe.nombre}
-          {recipe.candidata_clasica && (
-            <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
-          )}
-          {recipe.indulgente && (
-            <IconCuchara className="inline-icono icono-indulgente" aria-label="indulgente" />
-          )}
-        </h1>
-        <p className="detalle-meta">
+      <header className="encabezado-pantalla ficha-encabezado">
+        <h1 className={recipe.nombre.length > NOMBRE_LARGO ? 'ficha-titulo largo' : 'ficha-titulo'}>{recipe.nombre}</h1>
+        <p className="ficha-meta">
+          <span className="meta-item" title={label}>
+            <TypeIcon recipe={recipe} /> {label}
+          </span>
           <span className="meta-item">
             <IconReloj /> {formatMinutes(totalMin)}
             <span className="meta-suave">
               ({formatMinutes(recipe.tiempo_prep_min)} prep + {formatMinutes(recipe.tiempo_coccion_min)} cocción)
             </span>
           </span>
-          <span className="meta-item" title={recipe.dificultad}>
-            {Array.from({ length: difficultyFlames(recipe.dificultad) }, (_, i) => (
-              <IconLlama key={i} />
-            ))}
-            {recipe.dificultad}
-          </span>
-          <span className="meta-item">
-            <IconPlato /> {recipe.porciones_display}
-          </span>
+          <span className="meta-item">dificultad {recipe.dificultad}</span>
+          {recipe.porciones_num === null && <span className="meta-item">rinde {recipe.porciones_display}</span>}
+          {recipe.familia && <span className="meta-item">familia {recipe.familia.replaceAll('_', ' ')}</span>}
+          {recipe.candidata_clasica && (
+            <span className="meta-item ficha-clasica">
+              <IconLaurel /> candidata a clásica
+            </span>
+          )}
+          {recipe.indulgente && (
+            <span className="meta-item">
+              <IconCuchara className="icono-indulgente" /> indulgente
+            </span>
+          )}
         </p>
         <ControlDeEstado
           estado={estadoDeReceta(recipe, overlay)}
@@ -350,28 +385,39 @@ export function RecipeDetail({ id }: { id: string }) {
       </p>
       {nutrition.alerta_b12 && <B12Alert />}
 
-      <section>
-        <h2>Ingredientes</h2>
-        <PortionScaler
-          porcionesBase={recipe.porciones_num}
-          factor={factor}
-          onFactor={setFactor}
-          avisos={escalada?.avisos ?? []}
-        />
-        <ul className="lista-lineas">
-          {(escalada?.lineas ?? lineasElegidas).map((line, i) => (
+      <PortionScaler
+        porcionesBase={recipe.porciones_num}
+        factor={factor}
+        mostrado={mostrado}
+        animando={animando}
+        masaEnLaOlla={masaEnLaOlla}
+        onFactor={setFactor}
+      />
+
+      <section className="ficha-ingredientes" aria-labelledby="titulo-ingredientes">
+        <div className="lista-lineas-cabecera">
+          <h2 id="titulo-ingredientes" className="lista-lineas-titulo">
+            {recipe.lineas.length} ingredientes
+          </h2>
+          <button type="button" className="boton-enlace" aria-pressed={notas} onClick={() => setNotas((v) => !v)}>
+            {notas ? 'ocultar notas' : 'ver notas y sustitutos'}
+          </button>
+        </div>
+        <ul className={animando ? 'lista-lineas recalculando' : 'lista-lineas'}>
+          {lineasMostradas.map((line, i) => (
             <IngredientLine
               key={i}
               idx={idx}
               line={line}
               original={recipe.lineas[i]!}
+              punto={puntos[i]!}
+              notas={notas}
               onSustituir={(ingrediente_id) => sustituir(i, ingrediente_id)}
             />
           ))}
         </ul>
-        <a className="boton-principal boton-cocinar" href={`${routeHash({ screen: 'cook', id: recipe.id })}`}>
-          Cocinar ahora
-        </a>
+        <NotaDeLaLista hayHueco={puntos.includes('condicional')} alertaB12={nutrition.alerta_b12} />
+        <AvisosDeEscalado avisos={avisos} />
       </section>
 
       <RuleTips recipe={recipe} seed={idx.seed} />
@@ -388,6 +434,9 @@ export function RecipeDetail({ id }: { id: string }) {
             </li>
           ))}
         </ol>
+        <a className="boton-principal boton-cocinar" href={`${routeHash({ screen: 'cook', id: recipe.id })}`}>
+          Cocinar ahora
+        </a>
       </section>
 
       {recipe.secretos_chef.length > 0 && (

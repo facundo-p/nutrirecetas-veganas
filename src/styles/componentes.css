@@ -740,8 +740,115 @@
 }
 
 .control-estado-rotulo {
-  font-size: var(--fs-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
+}
+
+/* ---------- las fichas: receta, ingrediente y nutriente ----------
+   Vivían en receta.css y las leen las tres fichas, más cocina (.volver,
+   .chip-texto, .linea-funcion). Se mudaron sin cambios, y al final del
+   archivo a propósito: receta.css se cargaba después de componentes.css, y
+   ponerlas arriba cambiaba quién gana entre reglas de igual especificidad
+   (.detalle-tipo svg contra .confianza svg). */
+
+.detalle {
+  display: grid;
+  gap: var(--sp-5);
+  max-width: 760px;
+}
+
+.detalle section > h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-1);
+  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+}
+
+.volver {
+  margin-top: var(--sp-2);
+}
+
+.volver a {
+  color: var(--navegar);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+
+.detalle-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.detalle-tipo svg {
+  font-size: 18px;
+}
+
+.detalle-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.detalle-meta .meta-item svg {
+  font-size: 16px;
+}
+
+.meta-suave {
   color: var(--dato-suave);
+  margin-left: var(--sp-1);
+}
+
+.relaciones {
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-1);
+  color: var(--tinta-suave);
+}
+
+.linea-funcion {
+  color: var(--funcion-ingrediente);
+}
+
+.chip-texto {
+  border-style: dashed;
+  background: none;
+}
+
+.lista-secretos {
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+
+.lista-secretos li::marker {
+  color: var(--tip-positivo);
+}
+
+.detalle-fuente {
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+  display: grid;
+  gap: 2px;
+}
+
+/* La credencial dice cuánto confiar en el origen; va en su renglón para que se
+   lea, no colgada del nombre con un punto medio. */
+.detalle-fuente-credencial {
+  font-style: italic;
+}
+
+.aviso {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+  font-size: var(--fs-sm);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radio-chico);
+  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
 }

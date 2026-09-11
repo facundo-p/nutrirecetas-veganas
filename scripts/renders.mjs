@@ -197,7 +197,7 @@ try {
       // la nav fija flotaría a mitad del screenshot fullPage: se ancla al fondo real
       await page.addStyleTag({
         content:
-          'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}',
+          'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}.escalador{position:static}',
       });
       await page.waitForTimeout(350); // fuentes variables
       // el modal es fijo: en una captura de página completa quedaría al fondo de todo

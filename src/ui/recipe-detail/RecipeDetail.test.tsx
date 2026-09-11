@@ -1,7 +1,10 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
+import { getSeedIndex } from '../../seed';
 import { RecipeDetail } from './RecipeDetail';
+
+const verNotas = () => fireEvent.click(screen.getByRole('button', { name: 'ver notas y sustitutos' }));
 
 describe('Detalle de receta', () => {
   test('p19 muestra la alerta B12, el enlace al queso de maní y nutrición por porción', () => {
@@ -30,6 +33,7 @@ describe('Detalle de receta', () => {
     const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
     const antes = kcal();
     expect(screen.getByText('Quinoa')).toBeDefined();
+    verNotas();
 
     const chip = screen.getByRole('button', { name: /Arroz integral/ });
     expect(chip.getAttribute('aria-pressed')).toBe('false');
@@ -45,6 +49,7 @@ describe('Detalle de receta', () => {
     const { container } = render(<RecipeDetail id="r07" />);
     const kcal = () => container.querySelector('.detalle-energia-cifra .cifra')!.textContent;
     const antes = kcal();
+    verNotas();
 
     fireEvent.click(screen.getByRole('button', { name: /Arroz integral/ }));
     // cambiar de un sustituto al otro sin volver al original en el medio
@@ -165,6 +170,80 @@ describe('Detalle de receta', () => {
       const pasos = titulos.findIndex((t) => t.includes('Pasos'));
       expect(pasos).toBeGreaterThanOrEqual(0);
       expect(nutricion).toBeGreaterThan(pasos);
+    });
+  });
+
+  describe('encabezado, escalador y lista de ingredientes (#160)', () => {
+    test('las notas y los sustitutos arrancan apagados, y se prenden todos juntos', () => {
+      render(<RecipeDetail id="r07" />);
+      expect(screen.queryByRole('button', { name: /Arroz integral/ })).toBeNull();
+      verNotas();
+      expect(screen.getByRole('button', { name: /Arroz integral/ })).toBeDefined();
+      expect(screen.getByRole('button', { name: 'ocultar notas' }).getAttribute('aria-pressed')).toBe('true');
+    });
+
+    test('la línea sustituida dice de qué viene aunque las notas se apaguen', () => {
+      render(<RecipeDetail id="r07" />);
+      verNotas();
+      fireEvent.click(screen.getByRole('button', { name: /Arroz integral/ }));
+      fireEvent.click(screen.getByRole('button', { name: 'ocultar notas' }));
+      expect(screen.getByText(/en vez de Quinoa/)).toBeDefined();
+    });
+
+    test('cada ingrediente lleva su punto', () => {
+      const { container } = render(<RecipeDetail id="p19" />);
+      const lineas = container.querySelectorAll('.linea-ingrediente');
+      expect(lineas.length).toBeGreaterThan(0);
+      expect(container.querySelectorAll('.linea-ingrediente .punto-nutriente')).toHaveLength(lineas.length);
+    });
+
+    const puntoDe = (container: HTMLElement, nombre: RegExp) =>
+      [...container.querySelectorAll('.linea-ingrediente')]
+        .find((li) => nombre.test(li.querySelector('.linea-nombre')?.textContent ?? ''))
+        ?.querySelector('.punto-nutriente')
+        ?.getAttribute('data-nut');
+
+    test('la levadura nutricional va con punto hueco, y la nota dice lo de la B12', () => {
+      const { container } = render(<RecipeDetail id="p19" />);
+      expect(puntoDe(container, /levadura/i)).toBe('condicional');
+      expect(screen.getByText(/trae B12 solo si la marca está fortificada/)).toBeDefined();
+    });
+
+    test('también cuando la trae un preparado: la pastafrola la lleva dentro de la manteca vegana', () => {
+      const { container } = render(<RecipeDetail id="p31" />);
+      // p31 no tiene levadura como línea propia: la trae p03
+      const nombres = [...container.querySelectorAll('.linea-nombre')].map((n) => n.textContent ?? '');
+      expect(nombres.length).toBeGreaterThan(0);
+      expect(nombres.some((n) => /levadura/i.test(n))).toBe(false);
+      expect(puntoDe(container, /Manteca vegana/)).toBe('condicional');
+      expect(screen.getByText(/trae B12 solo si la marca está fortificada/)).toBeDefined();
+    });
+
+    test('una receta sin levadura no habla de B12', () => {
+      render(<RecipeDetail id="r07" />);
+      expect(screen.queryByText(/trae B12 solo si/)).toBeNull();
+    });
+
+    test('el escalador dice cuánto hay en la olla, y lo recalcula', () => {
+      const { container } = render(<RecipeDetail id="r04" />);
+      const masa = () => container.querySelector('.escalador-masa')!.textContent;
+      const antes = masa();
+      expect(antes).toMatch(/g en la olla$/);
+      fireEvent.click(screen.getByRole('button', { name: 'Más porciones' }));
+      expect(masa()).not.toBe(antes);
+      fireEvent.click(screen.getByRole('button', { name: /volver a/ }));
+      expect(masa()).toBe(antes);
+    });
+
+    test('un nombre de más de 40 caracteres baja de tamaño; uno corto no', () => {
+      const recetas = getSeedIndex().seed.recetas;
+      const larga = recetas.find((r) => r.nombre.length > 40)!;
+      const corta = recetas.find((r) => r.nombre.length <= 40)!;
+      const { unmount } = render(<RecipeDetail id={larga.id} />);
+      expect(screen.getByRole('heading', { level: 1 }).className).toMatch(/\blargo\b/);
+      unmount();
+      render(<RecipeDetail id={corta.id} />);
+      expect(screen.getByRole('heading', { level: 1 }).className).not.toMatch(/\blargo\b/);
     });
   });
 
