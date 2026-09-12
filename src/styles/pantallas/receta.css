@@ -16,6 +16,11 @@
   font-size: var(--fs-meta);
 }
 
+/* El estado cierra el renglón de meta, contra el margen derecho. */
+.ficha-meta .menu-estado {
+  margin-left: auto;
+}
+
 .ficha-clasica {
   color: var(--confirmado);
 }

@@ -9,7 +9,7 @@ import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconHeladera, IconRamaBifurca, IconReloj } from '../icons/icons';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
-import { ControlDeEstado } from '../common/EstadoDeReceta';
+import { MenuDeEstado } from '../common/EstadoDeReceta';
 import { saveOverlay } from '../../db/repos';
 import { PortionScaler } from './PortionScaler';
 import { B12Alert } from './B12Alert';
@@ -168,7 +168,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
       <header className="encabezado-pantalla ficha-encabezado">
         {recipe.lamina && <Lamina id={recipe.lamina} lugar="ficha" />}
         <h1 className={recipe.nombre.length > NOMBRE_LARGO ? 'ficha-titulo largo' : 'ficha-titulo'}>{recipe.nombre}</h1>
-        <p className="detalle-meta ficha-meta">
+        <div className="detalle-meta ficha-meta">
           <span className="meta-item" title={label}>
             <TypeIcon recipe={recipe} /> {label}
           </span>
@@ -191,11 +191,11 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
               <IconCuchara className="icono-indulgente" /> indulgente
             </span>
           )}
-        </p>
-        <ControlDeEstado
-          estado={estadoDeReceta(recipe, overlay)}
-          onChange={(estado) => void saveOverlay(recipe.id, { estado })}
-        />
+          <MenuDeEstado
+            estado={estadoDeReceta(recipe, overlay)}
+            onChange={(estado) => void saveOverlay(recipe.id, { estado })}
+          />
+        </div>
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
       </header>
 

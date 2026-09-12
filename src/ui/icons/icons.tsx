@@ -308,6 +308,16 @@ export function IconSenalador(props: IconProps) {
   );
 }
 
+/** Sin probar, en la ficha: el señalador todavía por poner, con un más. Es el botón de marcar. */
+export function IconMarcar(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M7 4.5h10v15l-5-3.8-5 3.8z" />
+      <path d="M12 8.2v5M9.5 10.7h5" />
+    </Base>
+  );
+}
+
 /** Candidata a clásica: la corona de laurel de lo que ya se ganó su lugar. */
 export function IconLaurel(props: IconProps) {
   return (
