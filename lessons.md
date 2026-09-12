@@ -494,3 +494,19 @@ de una auditoría ni de un test: de cocinar con ella.
   Escuchar `release` lo arregla y deja decir la verdad en la nota del pie.
 - **`goto` a la misma URL solo cambia el hash.** En los renders, la segunda ruta
   de cocina heredaba la sesión de la primera. Recargar la arranca de cero.
+
+---
+
+## Papel y musgo: el tema claro y el oscuro (2026-09-12, #185)
+
+- **Se mide el CSS que se escribe, no la tabla que se anotó.** Las medidas del
+  prototipo daban todo en verde, pero no incluían el par acción–proteína del
+  tema claro: quedó a ΔE 9, parecido sin ser igual, que se lee peor que
+  idéntico. Lo encontró un script que lee los temas reales y busca pares entre
+  ΔE 0,5 y 13. La salida fue la de G: que la acción comparta a propósito el
+  verde de la proteína.
+- **Un hook que mira la rama desde su propio directorio no ve un worktree.**
+  `guard-main` calcula la rama con el cwd del hook, que es el del repo
+  principal: con ese árbol en `staging`, bloquea el commit hecho en la rama del
+  worktree. La salida es que la sesión entre al worktree (`EnterWorktree`), no
+  esquivar el guard.

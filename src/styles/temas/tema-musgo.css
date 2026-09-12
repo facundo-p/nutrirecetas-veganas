@@ -1,41 +1,45 @@
-/* ══════════ Tema G — "Cromatograma" (default, único) ══════════
-   Verde hondo, casi negro pero inequívocamente verde. El color queda reservado
-   para los nutrientes: los roles funcionales van en hueso y liquen, y los tres
-   que llevan color lo comparten a propósito con un nutriente, como pide el
-   rediseño —la acción es el verde de la proteína, el aviso el amarillo de la
-   fibra, el imprescindible el naranja de la vitamina A—.
+/* ══════════ Tema musgo (oscuro) ══════════
+   El Cromatograma aclarado y hecho papel: un verde hondo que ya no es casi
+   negro. El color queda reservado para los nutrientes. El aviso y el
+   imprescindible lo comparten a propósito con la fibra y la vitamina A; la
+   acción no: un botón tiene que sobresalir, así que sigue en el brote pleno y
+   la proteína pasa a su versión desaturada.
+
+   Los once van desaturados: a croma pleno sobre este verde vibraban, y el
+   hierro de antes no llegaba a 4,5:1. Medidos: ΔE ≥ 25,3 entre ellos (zinc
+   contra proteína) y ≥ 4,99:1 como texto sobre el papel (magnesio). Sobre la
+   superficie opaca hierro y magnesio bajan a 4,4 y 4,3: ningún texto de
+   nutriente va ahí.
 
    `color-scheme: dark` le dice al navegador que pinte con criterio oscuro lo
    que el CSS no controla: barras de scroll, autofill, controles nativos.
 
    Estructura de todo archivo de tema:
      1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
-     2) el contrato de roles, que es lo único que la app puede nombrar
-
-   Lista `:root` además de su atributo porque es el default: si el atributo
-   falta o trae un valor inválido —un `e` o `f` que quedó en localStorage—, la
-   app igual renderiza completa. */
-:root,
-:root[data-tema='g'] {
+     2) el contrato de roles, que es lo único que la app puede nombrar */
+:root[data-tema='musgo'] {
   color-scheme: dark;
 
   /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
-  --p-bosque: #0a160e;
-  --p-bosque-alto: #14261a;
+  --p-musgo: #1d3024;
+  --p-musgo-alto: #253b2d;
+  --p-musgo-hondo: #16261b;
+  --p-noche: #0a160e;
   --p-hueso: #ede9d8;
   --p-liquen: #9eae9c;
-  --p-liquen-hondo: #8b9a89;
+  --p-liquen-hondo: #93a391;
   --p-brote: #4cd070;
-  --p-curcuma: #ffc526;
-  --p-carotenoide: #ff7a18;
-  --p-remolacha: #ff4d6d;
-  --p-cielo: #57c7e8;
-  --p-berenjena: #c86bff;
-  --p-lima: #8fe04a;
-  --p-lavanda: #b8a6ff;
-  --p-limon: #ffe04a;
-  --p-menta: #2fcfa8;
-  --p-mar: #3fa9e0;
+  --p-remolacha: #db8397;
+  --p-cielo: #88d1e4;
+  --p-berenjena: #c286c3;
+  --p-lima: #87ac61;
+  --p-lavanda: #bfbcfe;
+  --p-zanahoria: #ffac95;
+  --p-paja: #d4c66e;
+  --p-menta: #33b4a9;
+  --p-hoja: #86daa8;
+  --p-curcuma: #cc944e;
+  --p-mar: #5da6dd;
   --p-garbanzo: #d9cfa8;
 
   /* ── contrato de roles ── */
@@ -45,10 +49,13 @@
   --font-display: 'Petrona Variable', 'Iowan Old Style', Georgia, serif;
   --font-data: 'Archivo Variable', 'Helvetica Neue', system-ui, sans-serif;
 
-  /* Superficie y tinta. Como texto, sobre bosque / bosque alto:
-     hueso 15,2 / 13,1 · liquen 7,9 / 6,8 · liquen hondo 6,2 / 5,4. */
-  --papel: var(--p-bosque);
-  --superficie: var(--p-bosque-alto);
+  /* Superficie y tinta. Como texto, sobre musgo / musgo alto:
+     hueso 11,5 / 9,9 · liquen 6,0 / 5,2 · liquen hondo 5,3 / 4,5.
+     La superficie es translúcida para que las tarjetas dejen ver el papel;
+     lo que flota sobre otra cosa usa la opaca. */
+  --papel: var(--p-musgo);
+  --superficie: color-mix(in srgb, var(--p-hueso) 5.5%, transparent);
+  --superficie-opaca: var(--p-musgo-alto);
   --tinta: var(--p-hueso);
   --tinta-suave: var(--p-liquen);
 
@@ -58,7 +65,7 @@
   --titulo-seccion: var(--p-hueso);
   --accion: var(--p-brote);
   --accion-texto: var(--p-brote);
-  --sobre-accion: var(--p-bosque); /* 9,3:1 sobre el brote */
+  --sobre-accion: var(--p-noche); /* 9,3:1 sobre el brote */
   --seleccion: var(--p-brote);
 
   /* Navegación y enlaces */
@@ -79,8 +86,8 @@
 
   /* Atributos de receta e ingrediente. Freezer, indulgente y preparado van en
      liquen: no son nutrientes, y un color de más sería un color que miente. */
-  --icono-imprescindible: var(--p-carotenoide);
-  --recalculando: var(--p-carotenoide); /* las cifras mientras viajan al escalar */
+  --icono-imprescindible: var(--p-zanahoria);
+  --recalculando: var(--p-zanahoria); /* las cifras mientras viajan al escalar */
   --funcion-ingrediente: var(--p-liquen-hondo);
   --confirmado: var(--p-brote);
   --icono-freezer: var(--p-liquen);
@@ -93,28 +100,25 @@
   --precaucion: var(--p-curcuma);
   --exito: var(--p-brote);
 
-  /* Un color por nutriente, en el orden canónico de las barras. Medidos: ΔE ≥ 13
-     entre los once (mínimo 15,2, vitamina C contra fibra) y ≥ 4,5:1 como texto
-     sobre el papel (mínimo 5,76, hierro). El selenio es el único que no venía
-     del rediseño: ΔE ≥ 38,8 contra los otros diez, el garbanzo y las tintas. */
+  /* Un color por nutriente, en el orden canónico de las barras. */
   --nut-hierro: var(--p-remolacha);
   --nut-calcio: var(--p-cielo);
   --nut-magnesio: var(--p-berenjena);
   --nut-zinc: var(--p-lima);
   --nut-selenio: var(--p-lavanda);
-  --nut-vita: var(--p-carotenoide);
-  --nut-vitc: var(--p-limon);
+  --nut-vita: var(--p-zanahoria);
+  --nut-vitc: var(--p-paja);
   --nut-folato: var(--p-menta);
-  --nut-proteina: var(--p-brote);
+  --nut-proteina: var(--p-hoja);
   --nut-fibra: var(--p-curcuma);
   --nut-omega3: var(--p-mar);
   --sin-aporte: var(--p-garbanzo); /* no trae ninguno de los once */
 
-  /* Encabezado y nav: planos, del color del papel. */
-  --encabezado: var(--p-bosque);
+  /* Encabezado y nav: el encabezado es papel; la nav, un tono más honda. */
+  --encabezado: var(--p-musgo);
   --sobre-encabezado: var(--p-hueso);
   --encabezado-kicker: var(--p-liquen);
-  --nav-fondo: var(--p-bosque);
+  --nav-fondo: var(--p-musgo-hondo);
   --nav-inactivo: var(--p-liquen-hondo);
   --nav-activo: var(--p-hueso);
   --nav-marca-activa: var(--p-brote);

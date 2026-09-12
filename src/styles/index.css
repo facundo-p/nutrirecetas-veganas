@@ -19,7 +19,8 @@
 
 @import './tokens.css';
 
-@import './temas/tema-g.css';
+@import './temas/tema-papel.css';
+@import './temas/tema-musgo.css';
 
 @import './base.css';
 @import './layout.css';

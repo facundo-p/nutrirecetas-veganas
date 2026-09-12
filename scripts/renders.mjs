@@ -16,8 +16,9 @@ if (!fase) {
   console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=X]');
   process.exit(1);
 }
-// Cada tema visual tiene su carpeta: el default es el tema activo de la app.
-const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'g';
+// Cada tema visual tiene su carpeta. El default es papel, la red de seguridad de
+// la app; `auto` no sirve acá porque el resultado dependería de la máquina.
+const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'papel';
 const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });

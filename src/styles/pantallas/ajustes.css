@@ -25,6 +25,12 @@
   flex-wrap: wrap;
 }
 
+.control-apariencia {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
 .lista-versiones {
   list-style: none;
   padding: 0;

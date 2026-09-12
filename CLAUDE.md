@@ -56,9 +56,9 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 
 ## Temas visuales
 
-Dos temas intercambiables: **E "Mercado"** (default, papel claro) y **F "Pizarra"** (oscuro). Se eligen en Ajustes o con `?tema=e|f`, quedan en `localStorage` y se aplican antes de pintar (script inline de `index.html`).
+Dos temas: **papel** (claro, y red de seguridad del `:root`) y **musgo** (oscuro). Se guarda una **preferencia** en `localStorage`: `auto` (default), `papel` o `musgo`. `auto` sigue al `prefers-color-scheme` del teléfono, también si cambia con la app abierta. Se elige en Ajustes → Apariencia o con `?tema=auto|papel|musgo`, y el script inline de `index.html` la resuelve antes de pintar con la misma lógica que `resolverTema` (`src/app/tema.ts`).
 
-**La estructura es una sola y es la de Pizarra**; el tema solo decide el color. Lo que cambia entre los dos son tokens: el fondo del encabezado (espinaca en Mercado, plano en Pizarra), el filete del ítem activo de la nav, y si el título de la receta va en tinta (`--titulo-receta-fijo` en Mercado) o en el color de su categoría (Pizarra).
+**La estructura es una sola**; el tema solo decide el color.
 
 ```
 1. FORMA   src/styles/tokens.css   escala tipográfica, espaciado, bordes.
@@ -66,22 +66,21 @@ Dos temas intercambiables: **E "Mercado"** (default, papel claro) y **F "Pizarra
 2. TEMAS   src/styles/temas/       única capa que escribe colores, y la que
                                    elige las familias (--font-display/-data).
              tema-X.css            paleta cruda (--p-*, privada) + contrato de roles.
-             categorias.css        puente [data-cat] → --cat-actual.
 3. APP     el resto de styles/     solo tokens de rol; ninguna regla nombra
                                    un color ni un tema.
 ```
 
-**Ninguna regla de la app nombra un color**: usan tokens de rol (`--titulo-seccion`, `--accion`, `--cifra`, `--navegar`, `--aviso`, `--dato-suave`, `--marca`, `--link`, `--cat-*`…) y cada tema decide qué color los cumple. Lo hace cumplir `src/styles/contrato-de-temas.test.ts`: falla ante un hex en la capa de la app, un `--p-*` fuera de su tema, un CSS de la app que menciona un tema, o un tema con el contrato incompleto. Sin ese test la regla se degrada sola — llegó a 141 violaciones sin que nadie lo notara.
+**Ninguna regla de la app nombra un color**: usan tokens de rol (`--titulo-seccion`, `--accion`, `--cifra`, `--navegar`, `--aviso`, `--dato-suave`, `--marca`, `--link`, `--nut-*`, `--superficie-opaca`…) y cada tema decide qué color los cumple. `--superficie` es translúcida para que las tarjetas dejen ver el papel; lo que flota sobre otra cosa (modal, resumen fijo) usa `--superficie-opaca`. Lo hace cumplir `src/styles/contrato-de-temas.test.ts`: falla ante un hex en la capa de la app, un `--p-*` fuera de su tema, un CSS de la app que menciona un tema, o un tema con el contrato incompleto. Sin ese test la regla se degrada sola — llegó a 141 violaciones sin que nadie lo notara.
 
-**Agregar un tema**: (1) `src/styles/temas/tema-X.css` con su paleta y **todos** los roles, copiando la cabecera de otro tema; (2) `@import` en `index.css`; (3) sumar la letra a `TEMAS` e `INFO_DE_TEMA` en `src/app/tema.ts` y al `var TEMAS` del script inline de `index.html`; (4) `npm test`, que dice el token exacto si falta alguno. No se toca ningún componente.
+**Agregar un tema**: (1) `src/styles/temas/tema-X.css` con su paleta y **todos** los roles, copiando la cabecera de otro tema; (2) `@import` en `index.css`; (3) sumarlo a `TEMAS` en `src/app/tema.ts` y al `var TEMAS` del script inline de `index.html`; (4) `npm test`, que dice el token exacto si falta alguno. No se toca ningún componente.
 
 **Al tocar color**: cambiar el token de rol en el archivo del tema, nunca un hex suelto en un componente. Un rol nuevo se declara en **todos** los temas.
 
-**Custom properties anidadas**: una property que contiene `var()` se resuelve **donde se declara**, no donde se usa. Por eso `--titulo-receta` se declara sobre `[data-cat]` y no en `:root` — y es lo que permite que un tema elija entre título fijo o color de categoría sin nombrarse: `var(--titulo-receta-fijo, var(--cat-actual))`.
+**Custom properties anidadas**: una property que contiene `var()` se resuelve **donde se declara**, no donde se usa. Por eso `--nut` se declara sobre `[data-nut]` y no en `:root`: el color depende del elemento.
 
-**Colores nuevos, medidos** contra la vara que cumplen los dos temas: **ΔE ≥ 26 entre categorías**, **ΔE ≥ 13 contra los roles funcionales vecinos**, **contraste ≥ 4.5:1 como texto** sobre el papel (3:1 si es relleno). Medir antes de escribir el CSS. Si el tono base no llega, variante `-honda` (`--p-zanahoria-honda`).
+**Colores nuevos, medidos** contra la vara que cumplen los dos temas: **ΔE ≥ 13 entre los once nutrientes**, **contraste ≥ 4.5:1 como texto** sobre el papel y sobre la superficie opaca (3:1 si es relleno). Medir antes de escribir el CSS; las medidas van en la cabecera del tema. Un rol funcional puede compartir color con un nutriente a propósito (aviso = fibra, imprescindible = vitamina A); lo que no puede es parecérsele sin serlo.
 
-**Renders**: `npm run renders -- fase-N --tema=X` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
+**Renders**: `npm run renders -- fase-N --tema=papel|musgo` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 
 ## Arquitectura
 
