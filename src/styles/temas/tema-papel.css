@@ -58,6 +58,7 @@
      La superficie es translúcida para que las tarjetas dejen ver el papel;
      lo que flota sobre otra cosa usa la opaca. */
   --papel: var(--p-estraza);
+  --textura: url('../../assets/texturas/papel.webp'); /* scripts/textura.mjs */
   --superficie: color-mix(in srgb, var(--p-trapo) 42%, transparent);
   --superficie-opaca: var(--p-estraza-alta);
   --tinta: var(--p-bosque);

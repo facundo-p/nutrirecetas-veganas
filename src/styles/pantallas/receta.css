@@ -299,7 +299,7 @@
   gap: var(--sp-2) var(--sp-4);
   margin-inline: calc(var(--sp-4) * -1);
   padding: var(--sp-4) var(--sp-4) var(--sp-3);
-  background: var(--papel);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
   border-bottom: var(--borde);
 }
 

@@ -54,6 +54,7 @@
      La superficie es translúcida para que las tarjetas dejen ver el papel;
      lo que flota sobre otra cosa usa la opaca. */
   --papel: var(--p-musgo);
+  --textura: url('../../assets/texturas/musgo.webp'); /* scripts/textura.mjs */
   --superficie: color-mix(in srgb, var(--p-hueso) 5.5%, transparent);
   --superficie-opaca: var(--p-musgo-alto);
   --tinta: var(--p-hueso);

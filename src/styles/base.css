@@ -17,7 +17,9 @@ body {
   font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--tinta);
-  background: var(--papel);
+  /* El papel va debajo del contenido, nunca encima: lo repite cada superficie
+     opaca que lo tapa (nav, encabezado, escalador, lo que flota). */
+  background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
   min-height: 100dvh;
 }
 
