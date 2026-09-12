@@ -80,6 +80,8 @@ Dos temas: **papel** (claro, y red de seguridad del `:root`) y **musgo** (oscuro
 
 **Colores nuevos, medidos** contra la vara que cumplen los dos temas: **ΔE ≥ 13 entre los once nutrientes**, **contraste ≥ 4.5:1 como texto** sobre el papel y sobre la superficie opaca (3:1 si es relleno). Medir antes de escribir el CSS; las medidas van en la cabecera del tema. Un rol funcional puede compartir color con un nutriente a propósito (aviso = fibra, imprescindible = vitamina A); lo que no puede es parecérsele sin serlo.
 
+**Papel y láminas**: cada tema declara `--textura` (su tile, que genera `scripts/textura.mjs`) y `--ilustracion` (la tinta de las láminas). La textura va **debajo** del contenido, nunca encima. Las láminas son grabados de dominio público pasados a máscara por `scripts/laminas.mjs` (originales y fuentes en `docs/assets/laminas/`); `<Lamina id lugar />` pone solo `data-lamina` y el CSS la entinta. Nunca en la cocina, debajo de texto, entre filas ni en modales.
+
 **Renders**: `npm run renders -- fase-N --tema=papel|musgo` → `docs/renders/fase-N-tema-X/`. Al refactorizar estilos, baseline antes y `cmp` después: es lo único que detecta un cambio visual no intencional.
 
 ## Arquitectura

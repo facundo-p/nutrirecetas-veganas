@@ -10,6 +10,7 @@ import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { LeyendaDeColores } from './LeyendaDeColores';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { Lamina } from '../common/Lamina';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { currentMonth } from '../common/format';
@@ -60,7 +61,7 @@ export function RecipeList() {
 
   return (
     <>
-      <EncabezadoPantalla titulo="Nutrirecetas">
+      <EncabezadoPantalla titulo="Nutrirecetas" lamina="zanahoria">
         <p className="encabezado-bajada">Cada receta se dibuja con lo que le da al cuerpo. Un color por nutriente.</p>
       </EncabezadoPantalla>
       {/* El recetario abre en el buscador: se entra a buscar algo, no a que la
@@ -126,6 +127,7 @@ export function RecipeList() {
           <button type="button" className="boton-secundario" onClick={() => setFilters(EMPTY_FILTERS)}>
             Empezar de nuevo
           </button>
+          <Lamina id="berenjena" lugar="vacio" />
         </div>
       )}
     </>

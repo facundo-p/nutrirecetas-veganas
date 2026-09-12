@@ -16,5 +16,12 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "scripts", "src/seed/schema.ts", "src/styles/contrato-de-temas.test.ts"]
+  "include": [
+    "vite.config.ts",
+    "scripts",
+    "src/seed/schema.ts",
+    "src/seed/laminas.ts",
+    "src/styles/contrato-de-temas.test.ts",
+    "src/ui/common/laminas.test.ts"
+  ]
 }

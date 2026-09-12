@@ -54,6 +54,12 @@
   /* Papel: lado del tile que declara cada tema en --textura. Tiene que coincidir
      con el LADO de scripts/textura.mjs, que lo genera. */
   --tile-textura: 360px;
+
+  /* Láminas: el lado de cada lugar donde aparecen */
+  --lamina-encabezado: 5.25rem;
+  --lamina-ficha: 7rem;
+  --lamina-cierre: 9rem;
+  --lamina-vacio: 13rem;
   --punto-nutriente: 8px;
   --cuadrado-nutriente: 10px;
   --rayita-ancho: 3px;

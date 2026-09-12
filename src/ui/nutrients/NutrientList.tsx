@@ -22,7 +22,7 @@ export function NutrientList() {
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Nutrientes" titulo="Nutrientes" />
+      <EncabezadoPantalla etiqueta="Nutrientes" titulo="Nutrientes" lamina="lechuga" />
       <p className="nutricion-referencia">
         {objetivos.fuente === 'perfil' ? (
           <>Las dosis son las tuyas, calculadas desde tu perfil.</>
