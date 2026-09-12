@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  background: var(--nav-fondo);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--nav-fondo);
   border-top: var(--borde);
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -81,7 +81,7 @@
     padding: var(--sp-3) var(--sp-6);
     border-top: none;
     border-bottom: 3px double color-mix(in srgb, var(--tinta) 35%, transparent);
-    background: var(--nav-fondo);
+    background: var(--textura) 0 0 / var(--tile-textura), var(--nav-fondo);
   }
   .nav-marca {
     display: block;
@@ -125,7 +125,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--sp-3);
-  background: var(--encabezado);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--encabezado);
   color: var(--sobre-encabezado);
   margin: calc(var(--sp-4) * -1) calc(var(--sp-4) * -1) var(--sp-4);
   padding: var(--sp-4);

@@ -77,7 +77,7 @@
   overflow: auto;
   overscroll-behavior: contain;
   padding: var(--sp-5) var(--sp-4) 0;
-  background: var(--superficie-opaca);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
   border-top: 2px solid var(--accion);
 }
 
@@ -172,7 +172,7 @@
   position: sticky;
   bottom: 0;
   padding: var(--sp-3) 0 calc(var(--sp-4) + env(safe-area-inset-bottom));
-  background: var(--superficie-opaca);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
 }
 
 .modal-cerrar {

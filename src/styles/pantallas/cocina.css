@@ -78,7 +78,7 @@
 .panel-nutricion-vivo {
   position: sticky;
   bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom));
-  background: var(--superficie-opaca); /* flota sobre la lista */
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca); /* flota sobre la lista */
   border: var(--borde);
   border-radius: var(--radio);
   padding: var(--sp-3);
@@ -115,13 +115,13 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  background: var(--papel);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Un tinte apenas: orienta sin distraer. Sin nutriente, el papel de siempre. */
 .mesada[data-nut] {
-  background: color-mix(in srgb, var(--nut) 6%, var(--papel));
+  background: var(--textura) 0 0 / var(--tile-textura), color-mix(in srgb, var(--nut) 6%, var(--papel));
 }
 
 .mesada-progreso {
