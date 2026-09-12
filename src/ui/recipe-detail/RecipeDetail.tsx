@@ -18,6 +18,7 @@ import { lineasQueAportan } from '../../domain/fuentes';
 import { RuleTips } from './RuleTips';
 import { ListaDeIngredientes } from './ListaDeIngredientes';
 import { useRecetaEnVista } from './useRecetaEnVista';
+import { Lamina } from '../common/Lamina';
 
 /** Desde acá el nombre de la receta baja de tamaño: a 40 px no entra en dos renglones. */
 const NOMBRE_LARGO = 40;
@@ -258,6 +259,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
 
       <Fuente idx={idx} recipe={recipe} />
       {recipe.nota && <p className="detalle-fuente">{recipe.nota}</p>}
+      <Lamina id="perejil" lugar="cierre" />
     </article>
   );
 }

@@ -510,3 +510,7 @@ de una auditoría ni de un test: de cocinar con ella.
   principal: con ese árbol en `staging`, bloquea el commit hecho en la rama del
   worktree. La salida es que la sesión entre al worktree (`EnterWorktree`), no
   esquivar el guard.
+- **La lección de #115, por tercera vez**: el test de láminas lee el disco,
+  vitest lo corrió verde y `tsc -b` lo rechazó por no tener los tipos de node.
+  Un test así va al proyecto de node (`tsconfig.node.json`), como el del
+  contrato de temas.

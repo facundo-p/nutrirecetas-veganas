@@ -45,6 +45,7 @@
   --p-curcuma: #875307;
   --p-mar: #075160;
   --p-garbanzo: #857c64;
+  --p-sepia: #3c3424;
 
   /* ── contrato de roles ── */
 
@@ -118,6 +119,10 @@
   --nut-fibra: var(--p-curcuma);
   --nut-omega3: var(--p-mar);
   --sin-aporte: var(--p-garbanzo); /* no trae ninguno de los once; 3,0:1 como relleno */
+
+  /* Las láminas: el trazo es del grabado y el color, este. Al 26 % se leen
+     como lápiz y no le compiten al texto. */
+  --ilustracion: color-mix(in srgb, var(--p-sepia) 26%, transparent);
 
   /* Encabezado y nav: el encabezado es papel; la nav, un tono más honda.
      Liquen hondo como texto sobre la nav: 4,5:1. */

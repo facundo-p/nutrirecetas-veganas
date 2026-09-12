@@ -850,3 +850,142 @@
   font-size: var(--fs-sm);
   color: var(--tinta-suave);
 }
+
+/* ---------- láminas: grabados de verduras en tinta ----------
+   El trazo sale de la máscara y el color, de --ilustracion: cada tema entinta
+   el mismo grabado. Van solo en aire que está vacío —nunca debajo de texto, en
+   la cocina, entre filas ni en un modal— y no reciben toques. */
+
+.lamina {
+  display: block;
+  flex: none;
+  pointer-events: none;
+  background: var(--ilustracion);
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+/* Detrás del texto del encabezado, en el aire entre el título y el engranaje:
+   el encabezado le da el contexto de apilado (layout.css). */
+.lamina-encabezado {
+  position: absolute;
+  z-index: -1;
+  top: var(--sp-3);
+  right: calc(var(--toque-minimo) + var(--sp-2));
+  width: var(--lamina-encabezado);
+  height: var(--lamina-encabezado);
+  transform: rotate(-10deg);
+}
+
+/* Viñeta de cierre, como en los libros de cocina: la receta terminó. */
+.lamina-cierre {
+  width: var(--lamina-cierre);
+  height: var(--lamina-cierre);
+  margin: var(--sp-6) auto 0;
+}
+
+/* En un vacío el dibujo puede ser grande: no hay nada más que mirar. */
+.lamina-vacio {
+  justify-self: center;
+  width: var(--lamina-vacio);
+  height: var(--lamina-vacio);
+  margin: var(--sp-5) auto 0;
+}
+
+.lamina[data-lamina='ajo'] {
+  mask-image: url('../assets/laminas/ajo.webp');
+}
+.lamina[data-lamina='arroz'] {
+  mask-image: url('../assets/laminas/arroz.webp');
+}
+.lamina[data-lamina='banana'] {
+  mask-image: url('../assets/laminas/banana.webp');
+}
+.lamina[data-lamina='batata'] {
+  mask-image: url('../assets/laminas/batata.webp');
+}
+.lamina[data-lamina='berenjena'] {
+  mask-image: url('../assets/laminas/berenjena.webp');
+}
+.lamina[data-lamina='calabaza'] {
+  mask-image: url('../assets/laminas/calabaza.webp');
+}
+.lamina[data-lamina='cebolla'] {
+  mask-image: url('../assets/laminas/cebolla.webp');
+}
+.lamina[data-lamina='choclo'] {
+  mask-image: url('../assets/laminas/choclo.webp');
+}
+.lamina[data-lamina='coco'] {
+  mask-image: url('../assets/laminas/coco.webp');
+}
+.lamina[data-lamina='coliflor'] {
+  mask-image: url('../assets/laminas/coliflor.webp');
+}
+.lamina[data-lamina='datil'] {
+  mask-image: url('../assets/laminas/datil.webp');
+}
+.lamina[data-lamina='espinaca'] {
+  mask-image: url('../assets/laminas/espinaca.webp');
+}
+.lamina[data-lamina='frutilla'] {
+  mask-image: url('../assets/laminas/frutilla.webp');
+}
+.lamina[data-lamina='garbanzo'] {
+  mask-image: url('../assets/laminas/garbanzo.webp');
+}
+.lamina[data-lamina='lechuga'] {
+  mask-image: url('../assets/laminas/lechuga.webp');
+}
+.lamina[data-lamina='lentejas'] {
+  mask-image: url('../assets/laminas/lentejas.webp');
+}
+.lamina[data-lamina='limon'] {
+  mask-image: url('../assets/laminas/limon.webp');
+}
+.lamina[data-lamina='mandioca'] {
+  mask-image: url('../assets/laminas/mandioca.webp');
+}
+.lamina[data-lamina='mani'] {
+  mask-image: url('../assets/laminas/mani.webp');
+}
+.lamina[data-lamina='manzana'] {
+  mask-image: url('../assets/laminas/manzana.webp');
+}
+.lamina[data-lamina='membrillo'] {
+  mask-image: url('../assets/laminas/membrillo.webp');
+}
+.lamina[data-lamina='morron'] {
+  mask-image: url('../assets/laminas/morron.webp');
+}
+.lamina[data-lamina='nabo'] {
+  mask-image: url('../assets/laminas/nabo.webp');
+}
+.lamina[data-lamina='papa'] {
+  mask-image: url('../assets/laminas/papa.webp');
+}
+.lamina[data-lamina='perejil'] {
+  mask-image: url('../assets/laminas/perejil.webp');
+}
+.lamina[data-lamina='porotos'] {
+  mask-image: url('../assets/laminas/porotos.webp');
+}
+.lamina[data-lamina='puerro'] {
+  mask-image: url('../assets/laminas/puerro.webp');
+}
+.lamina[data-lamina='repollo'] {
+  mask-image: url('../assets/laminas/repollo.webp');
+}
+.lamina[data-lamina='soja'] {
+  mask-image: url('../assets/laminas/soja.webp');
+}
+.lamina[data-lamina='tomate'] {
+  mask-image: url('../assets/laminas/tomate.webp');
+}
+.lamina[data-lamina='trigo'] {
+  mask-image: url('../assets/laminas/trigo.webp');
+}
+.lamina[data-lamina='zanahoria'] {
+  mask-image: url('../assets/laminas/zanahoria.webp');
+}

@@ -195,6 +195,10 @@ export function SettingsScreen() {
           <li>
             {idx.seed.recetas.length} recetas · {idx.seed.ingredientes.length} ingredientes
           </li>
+          <li>
+            Láminas de dominio público: Vilmorin-Andrieux, <em>Les Plantes potagères</em> (1883), y otras obras de la
+            época
+          </li>
         </ul>
       </section>
     </>

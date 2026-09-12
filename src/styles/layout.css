@@ -121,6 +121,9 @@
  * Solo la variante: el detalle de receta usa `.encabezado-pantalla` pelada.
  */
 .encabezado-pantalla-con-accion {
+  /* Contexto de apilado propio: la lámina va detrás del texto y delante del papel. */
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
