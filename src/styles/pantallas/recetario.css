@@ -197,27 +197,15 @@
   font-size: var(--fs-meta);
 }
 
-.leyenda-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
+/* Contra qué se miden las barras, dicho corto. La leyenda entera, en la «i». */
+.rotulo-referencia {
   font-size: var(--fs-meta);
-  color: var(--link);
+  color: var(--dato-suave);
+  text-align: right;
 }
 
-.leyenda-rayitas {
-  display: inline-flex;
-  gap: var(--gap-franja);
-}
-
-.rayita-nutriente {
-  width: var(--rayita-ancho);
-  height: var(--rayita-alto);
-  background: var(--nut);
-}
-
-/* Solo el fondo, sin filete lateral: sería el reborde decorativo que la regla 7
-   prohíbe, porque ese borde no codificaría nada. */
+/* La leyenda vive en la «i». Solo el fondo, sin filete lateral: sería el reborde
+   decorativo que la regla 7 prohíbe, porque ese borde no codificaría nada. */
 .leyenda-colores {
   display: grid;
   gap: var(--sp-3);

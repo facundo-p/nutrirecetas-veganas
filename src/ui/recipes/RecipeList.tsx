@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getSeedIndex } from '../../seed';
 import { recipeInSeason } from '../../domain/season';
 import { estadoDeReceta } from '../../domain/estado';
-import { aporteDeReceta, ORDEN_BARRA } from '../../domain/aporte';
+import { aporteDeReceta } from '../../domain/aporte';
 import { useOverlays } from '../../db/hooks';
 import { EMPTY_FILTERS, groupRecipes, hayFiltros, type EstadosElegidos, type RecipeFiltersState } from './filtering';
 import { memoriaDeFiltros } from './memoria-de-filtros';
@@ -11,6 +11,7 @@ import { RecipeFilters } from './RecipeFilters';
 import { LeyendaDeColores } from './LeyendaDeColores';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { Lamina } from '../common/Lamina';
+import { SobreQueDosisCorta } from '../common/SobreQueDosis';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { currentMonth } from '../common/format';
@@ -22,7 +23,6 @@ export function RecipeList() {
   const objetivos = useObjetivos();
   const [filters, setFilters] = useState<RecipeFiltersState>(memoriaDeFiltros.filtros);
   const [open, setOpen] = useState<Set<string>>(memoriaDeFiltros.variantesAbiertas);
-  const [leyendaAbierta, setLeyendaAbierta] = useState(false);
 
   // Lo que se filtró y lo que se desplegó sobreviven a abrir una receta y volver.
   useEffect(() => {
@@ -61,9 +61,16 @@ export function RecipeList() {
 
   return (
     <>
-      <EncabezadoPantalla titulo="Nutrirecetas" lamina="zanahoria">
-        <p className="encabezado-bajada">Cada receta se dibuja con lo que le da al cuerpo. Un color por nutriente.</p>
-      </EncabezadoPantalla>
+      <EncabezadoPantalla
+        titulo="Nutrirecetas"
+        lamina="zanahoria"
+        informacion={
+          <>
+            <p>Cada receta se dibuja con lo que le da al cuerpo: un color por nutriente.</p>
+            <LeyendaDeColores id="leyenda-colores" fuente={objetivos.fuente} />
+          </>
+        }
+      />
       {/* El recetario abre en el buscador: se entra a buscar algo, no a que la
           app proponga. */}
       <RecipeFilters filters={filters} onChange={setFilters} resultados={total} />
@@ -72,22 +79,11 @@ export function RecipeList() {
           {total} {total === 1 ? 'receta' : 'recetas'}
           {anyFilter ? ' con estos filtros' : ''}
         </p>
-        <button
-          type="button"
-          className="boton-plano leyenda-toggle"
-          aria-expanded={leyendaAbierta}
-          aria-controls="leyenda-colores"
-          onClick={() => setLeyendaAbierta((abierta) => !abierta)}
-        >
-          <span className="leyenda-rayitas" aria-hidden="true">
-            {ORDEN_BARRA.map((id) => (
-              <span key={id} className="rayita-nutriente" data-nut={id} />
-            ))}
-          </span>
-          {leyendaAbierta ? 'ocultar' : 'qué es cada color'}
-        </button>
+        {/* Las barras son porcentajes: contra qué se miden queda dicho, corto. */}
+        <p className="rotulo-referencia">
+          % sobre <SobreQueDosisCorta fuente={objetivos.fuente} />
+        </p>
       </div>
-      {leyendaAbierta && <LeyendaDeColores id="leyenda-colores" fuente={objetivos.fuente} />}
       <div className="lista-recetas">
         {groups.map((g) => {
           const variantsOpen = open.has(g.mother.id) || (!g.motherMatches && g.matchingVariants.length > 0);

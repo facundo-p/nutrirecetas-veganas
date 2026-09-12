@@ -137,28 +137,6 @@ function IngredientLine({
 }
 
 /**
- * Qué quieren decir los puntos. La B12 se dice acá, leyendo `alerta_b12` y no
- * los puntos: el flag ve la levadura también cuando viene dentro de un preparado.
- */
-function NotaDeLaLista({ hayHueco, alertaB12 }: { hayHueco: boolean; alertaB12: boolean }) {
-  return (
-    <div className="lista-lineas-nota">
-      <p>
-        Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
-        ingrediente, con el mismo color que las barras del recetario; si no trae ninguno con dato, el punto es neutro.
-        {hayHueco && ' El punto hueco es aporte condicional.'} El asterisco marca lo que no se puede sacar.
-      </p>
-      {alertaB12 && (
-        <p className="nota-b12">
-          Lleva levadura nutricional: trae B12 solo si la marca está fortificada, y muchas marcas argentinas no lo
-          están. Si la etiqueta no la nombra, no la tiene.
-        </p>
-      )}
-    </div>
-  );
-}
-
-/**
  * Los ingredientes con sus cantidades, y lo que se hace con ellas: ver notas y
  * sustitutos, y ajustar la receta desde una cantidad cualquiera.
  */
@@ -252,7 +230,6 @@ export function ListaDeIngredientes({
           />
         ))}
       </ul>
-      <NotaDeLaLista hayHueco={puntos.includes('condicional')} alertaB12={vista.nutrition.alerta_b12} />
       {/* Lo que va a gusto se dice línea por línea —«la receta decía»— y con
           una nota, no con el recuadro: es un cuidado, no una alarma. */}
       {factor !== 1 && aGusto.some(Boolean) && (

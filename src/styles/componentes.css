@@ -1069,3 +1069,124 @@
 .lamina[data-lamina='zanahoria'] {
   mask-image: url('../assets/laminas/zanahoria.webp');
 }
+
+/* Con la «i» junto al engranaje, la lámina del encabezado se corre un botón. */
+.encabezado-pantalla-con-accion:has(.boton-informacion) .lamina-encabezado {
+  right: calc(var(--toque-minimo) * 2 + var(--sp-2));
+}
+
+/* ---------- la «i»: lo que explica la app ----------
+   Una por pantalla: a la vista queda la receta y lo que ayuda a cocinarla, y el
+   porqué, a un toque. Abre una hoja desde abajo, opaca y con el papel. */
+
+.boton-informacion {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
+  margin-block: calc(var(--sp-3) * -1);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radio-chip);
+  background: none;
+  color: var(--navegar);
+  font-size: 22px;
+}
+
+.boton-informacion:hover,
+.boton-informacion[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--tinta) 8%, transparent);
+}
+
+/* El renglón de arriba de una pantalla —el de «‹ volver» o el de la etiqueta—
+   con la «i» contra el margen derecho. */
+.fila-con-informacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.hoja-informacion {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hoja-informacion-velo {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: color-mix(in srgb, var(--papel) 80%, transparent);
+}
+
+.hoja-informacion-panel {
+  position: relative;
+  display: grid;
+  gap: var(--sp-4);
+  max-height: 78dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-5) var(--sp-4) calc(var(--sp-6) + env(safe-area-inset-bottom));
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
+  border-top: 2px solid var(--accion);
+}
+
+@media (min-width: 900px) {
+  .hoja-informacion-panel {
+    width: min(40rem, 100%);
+    margin: 0 auto;
+  }
+}
+
+.hoja-informacion-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hoja-informacion-cabecera h2 {
+  font-size: var(--fs-xl);
+  color: var(--tinta);
+}
+
+.hoja-informacion-cerrar {
+  display: grid;
+  place-items: center;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
+  margin: calc(var(--sp-2) * -1);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--navegar);
+  font-size: 22px;
+}
+
+.hoja-informacion-cuerpo {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 38rem;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.hoja-informacion-cuerpo h3 {
+  margin-top: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--tinta);
+}
+
+.hoja-informacion-cuerpo strong {
+  color: var(--tinta);
+}

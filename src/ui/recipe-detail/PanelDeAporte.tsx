@@ -10,7 +10,7 @@ import { amountUnit, formatNumber, formatPorcentaje, MEDIDA_DE_BASE } from '../c
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
 import { FranjaDeNutriente } from '../common/BarraDeAporte';
 import { IndiceConfianza } from '../common/IndiceConfianza';
-import { SobreQueDosis } from '../common/SobreQueDosis';
+import { SobreQueDosisCorta } from '../common/SobreQueDosis';
 import { cifraDeBanda, IntervalBand, MarcaDeAproximado } from './IntervalBand';
 
 /** Los que marcaste en tu perfil primero; después los que tienen color, en su orden; después el resto. */
@@ -142,7 +142,6 @@ export function PanelDeAporte({ nutrition, base, nutrientes, objetivos, destacad
             </span>
           </button>
         </h2>
-        <p className="panel-aporte-bajada">Todos los nutrientes, ingrediente por ingrediente. Cada dato dice de dónde salió.</p>
       </div>
       <p className="panel-aporte-kcal">
         <span className="cifra">{formatNumber(midpoint(kcal), 0)}</span> kcal {medida.por}
@@ -156,10 +155,9 @@ export function PanelDeAporte({ nutrition, base, nutrientes, objetivos, destacad
       {abierto && (
         <div className="panel-aporte-cuerpo">
           {/* Un porcentaje que no dice contra qué se mide es un número sin
-              significado. Se aclara una vez, arriba, y no en cada renglón. */}
+              significado: queda dicho acá, corto, una vez. El resto, en la «i». */}
           <p className="panel-aporte-referencia">
-            Los porcentajes son sobre <SobreQueDosis fuente={objetivos.fuente} />. Es información, no una cuenta que haya
-            que cerrar. Con color, los que aparecen en las barras del recetario.
+            % sobre <SobreQueDosisCorta fuente={objetivos.fuente} />
           </p>
 
           {GRUPOS_DEL_PANEL.map((grupo) => {
@@ -196,9 +194,6 @@ export function PanelDeAporte({ nutrition, base, nutrientes, objetivos, destacad
               receta
             </button>
           )}
-          <p className="panel-aporte-pie">
-            Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre {medida.sujeto}.
-          </p>
         </div>
       )}
     </section>

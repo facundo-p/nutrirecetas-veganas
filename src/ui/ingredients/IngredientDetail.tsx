@@ -6,7 +6,8 @@ import { ingredientInSeason } from '../../domain/season';
 import { porcentajeDeObjetivo } from '../../domain/objetivos';
 import { resultadosDeIngrediente } from '../../domain/aporte';
 import { useObjetivos } from '../common/useObjetivos';
-import { SobreQueDosis } from '../common/SobreQueDosis';
+import { SobreQueDosis, SobreQueDosisCorta } from '../common/SobreQueDosis';
+import { Informacion } from '../common/Informacion';
 import { IconCopoNieve, IconHeladera, IconTemporada } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
 import { IntervalBand } from '../recipe-detail/IntervalBand';
@@ -45,9 +46,17 @@ export function IngredientDetail({ id }: { id: string }) {
 
   return (
     <article className="detalle">
-      <p className="volver">
-        <a href={routeHash({ screen: 'ingredients' })}>‹ Ingredientes</a>
-      </p>
+      <div className="fila-con-informacion">
+        <p className="volver">
+          <a href={routeHash({ screen: 'ingredients' })}>‹ Ingredientes</a>
+        </p>
+        <Informacion>
+          <p>
+            Todo cada 100 g del ingrediente, en el estado que dice la ficha. Los porcentajes son sobre{' '}
+            <SobreQueDosis fuente={objetivos.fuente} />.
+          </p>
+        </Informacion>
+      </div>
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
           <span className="chip chip-mini">{legible(ing.categoria)}</span>
@@ -76,7 +85,7 @@ export function IngredientDetail({ id }: { id: string }) {
         ) : (
           <>
             <p className="nutricion-referencia">
-              Los porcentajes son sobre <SobreQueDosis fuente={objetivos.fuente} />.
+              % sobre <SobreQueDosisCorta fuente={objetivos.fuente} />
             </p>
             <ul className="nutricion-lista">
               {valores.map(([clave, value]) => {

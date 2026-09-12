@@ -433,3 +433,13 @@ export function IconFiltros(props: IconProps) {
     </Base>
   );
 }
+
+/** Para saber: la «i» de cada pantalla, detrás de la que vive lo que explica la app. */
+export function IconInfo(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v6M12 7.6v.1" />
+    </Base>
+  );
+}

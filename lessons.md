@@ -520,3 +520,14 @@ de una auditoría ni de un test: de cocinar con ella.
   ancho a dos líneas y estiraba la sopa a cuatro renglones. Subido casi entero
   al renglón vacío de «‹ Recetario», solo acorta la primera. Se vio en tres
   vueltas de capturas: ningún test mira dónde corta un título.
+
+### Menos texto, más receta (2026-09-12, #194)
+
+- **Un `fixed` adentro de un contexto de apilado aislado no escapa de él.** La
+  hoja de la «i» vive en encabezados y fichas que tienen `isolation: isolate`
+  (por las láminas): su `z-index` quedaba confinado ahí y la nav la tapaba. La
+  salida es montarla en `body` con un portal, no subir números de `z-index`.
+- **Mudar un texto no es borrarlo, y el test lo tiene que saber.** Los tests de
+  la B12 buscaban la advertencia a la vista; ahora abren la «i» y la encuentran
+  ahí, con la levadura suelta y dentro de un preparado. Borrarlos habría dejado
+  el invariante 6 sin nadie que lo cuide.

@@ -150,6 +150,14 @@
   }
 }
 
+/* La «i» y el engranaje, juntos contra el margen derecho del encabezado. */
+.encabezado-acciones {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
 .boton-ajustes {
   flex-shrink: 0;
   display: flex;
@@ -167,13 +175,6 @@
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
-}
-
-.encabezado-bajada {
-  margin-top: var(--sp-2);
-  max-width: 32ch;
-  font-size: var(--fs-meta);
-  color: var(--tinta-suave);
 }
 
 /* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */

@@ -195,13 +195,12 @@ describe('el recetario se dibuja con sus nutrientes', () => {
     expect(fila.querySelector('.meta-fuerte')?.textContent).toMatch(/cada 100 g$/);
   });
 
-  test('la leyenda arranca cerrada, y abierta dice contra qué se mide', () => {
+  test('la leyenda vive en la «i»; a la vista queda contra qué se miden los porcentajes', () => {
     render(<RecipeList />);
-    const boton = screen.getByRole('button', { name: 'qué es cada color' });
-    expect(boton.getAttribute('aria-expanded')).toBe('false');
-    fireEvent.click(boton);
-    expect(screen.getByRole('button', { name: 'ocultar' }).getAttribute('aria-expanded')).toBe('true');
+    expect(screen.queryByText(/Cada barra muestra/)).toBeNull();
     expect(screen.getByText('referencia adulta genérica')).toBeDefined();
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
+    expect(screen.getByText(/Cada barra muestra/)).toBeDefined();
   });
 
   test('sin resultados, «Empezar de nuevo» suelta todos los filtros', () => {
