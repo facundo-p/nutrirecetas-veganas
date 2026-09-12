@@ -16,8 +16,9 @@ if (!fase) {
   console.error('Falta el nombre de la tanda: npm run renders -- fase-N [--tema=X]');
   process.exit(1);
 }
-// Cada tema visual tiene su carpeta: el default es el tema activo de la app.
-const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'e';
+// Cada tema visual tiene su carpeta. El default es papel, la red de seguridad de
+// la app; `auto` no sirve acá porque el resultado dependería de la máquina.
+const tema = args.find((a) => a.startsWith('--tema='))?.slice(7) ?? 'papel';
 const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });
@@ -27,10 +28,14 @@ const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
   ['recetario', '#/recetario'],
+  ['recetario-filtros', '#/recetario'],
   ['receta-r01', '#/receta/r01'],
+  ['receta-r01-ajuste', '#/receta/r01'],
+  ['receta-r01-aporte', '#/receta/r01'],
   ['receta-p19', '#/receta/p19'],
   ['cocinar-personalizar', '#/cocinar/r01'],
   ['cocinar-pasos', '#/cocinar/r01'],
+  ['cocinar-paso-4', '#/cocinar/r01'],
   ['diario', '#/diario'],
   ['perfil', '#/perfil'],
   ['ajustes', '#/ajustes'],
@@ -125,12 +130,13 @@ await new Promise((resolve, reject) => {
       },
     });
 
-    tx.objectStore('overlays').put({ receta_id: 'r01', favorita: true, ic_usuario: 8, actualizado_en: iso(50) });
+    tx.objectStore('overlays').put({ receta_id: 'r01', estado: 'favorita', actualizado_en: iso(50) });
+    tx.objectStore('overlays').put({ receta_id: 'r02', estado: 'pendiente', actualizado_en: iso(40) });
     // al día a propósito: con la marca vieja, el aviso de la migración saldría
     // en las 24 capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
-      user_schema_version: 4,
+      user_schema_version: 5,
       seed_version: '1.0.0',
       ultimo_backup: iso(24 * 40),
       cambios_desde_backup: 6,
@@ -181,19 +187,51 @@ try {
     for (const [name, hash] of RUTAS) {
       await page.goto(`${BASE}/?tema=${tema}${hash}`, { waitUntil: 'networkidle' });
 
-      // la sesión de cocina necesita un par de clics para llegar a los pasos
-      if (name === 'cocinar-pasos') {
+      // la sesión de cocina necesita un par de clics para llegar a los pasos. Con
+      // la URL de la ruta anterior, `goto` solo cambia el hash y la sesión sigue
+      // donde quedó: recargar la arranca de cero.
+      if (name.startsWith('cocinar-paso')) {
+        await page.reload({ waitUntil: 'networkidle' });
         await page.getByRole('button', { name: 'Empezar a cocinar' }).click();
+        await page.waitForTimeout(150);
+      }
+      // un paso avanzado: el progreso pintado y el fondo teñido por otro nutriente
+      if (name === 'cocinar-paso-4') {
+        await page.getByRole('button', { name: /^4 / }).click();
+        await page.waitForTimeout(150);
+      }
+      // el ajuste por ingrediente solo se ve prendido y con una cantidad cambiada
+      if (name === 'receta-r01-ajuste') {
+        await page.getByRole('button', { name: /Ajustar cantidades según un ingrediente/ }).click();
+        await page.locator('.linea-input').first().fill('3');
+        await page.waitForTimeout(600); // el viaje de las cantidades
+      }
+      // el panel nutricional arranca cerrado: se abre, y se despliega la fila del hierro
+      if (name === 'receta-r01-aporte') {
+        await page.getByRole('button', { name: /Qué aporta una porción/ }).click();
+        await page
+          .locator('.fila-aporte', { has: page.locator('.fila-aporte-nombre', { hasText: /^hierro$/ }) })
+          .getByRole('button')
+          .click();
+        await page.waitForTimeout(150);
+      }
+      // el modal de filtros solo existe abierto
+      if (name === 'recetario-filtros') {
+        await page.getByRole('button', { name: /^Filtros/ }).click();
         await page.waitForTimeout(150);
       }
 
       // la nav fija flotaría a mitad del screenshot fullPage: se ancla al fondo real
       await page.addStyleTag({
         content:
-          'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}',
+          'body{position:relative}.nav{position:absolute;top:auto;bottom:0}.panel-nutricion-vivo{position:static}.escalador{position:static}',
       });
+      // el puntero de una ruta con clics queda quieto y deja en hover lo que esté
+      // debajo en la siguiente: sin esto, cocina salía con un checkbox más claro
+      await page.mouse.move(0, 0);
       await page.waitForTimeout(350); // fuentes variables
-      await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: true });
+      // el modal es fijo: en una captura de página completa quedaría al fondo de todo
+      await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: name !== 'recetario-filtros' });
       console.log('✔', `${name}--${vpName}.png`);
     }
     await page.close();

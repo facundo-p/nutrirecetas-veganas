@@ -1,6 +1,6 @@
 ---
 name: renders
-description: Genera los screenshots reales de la app (390 px y 1280 px, en los tres temas) para revisión de Facu y los publica como Artifact. Usar al cierre de cada fase o cuando Facu pida ver la app.
+description: Genera los screenshots reales de la app (390 px y 1280 px, en los dos temas) para revisión de Facu y los publica como Artifact. Usar al cierre de cada fase o cuando Facu pida ver la app.
 ---
 
 # /renders — screenshots reales para revisión
@@ -13,15 +13,15 @@ description: Genera los screenshots reales de la app (390 px y 1280 px, en los t
    mezcladas. Renombrar la vieja a lo que realmente fue (pasó con `fase-3`, que era la tanda
    de estética del 25/08) o usar un nombre nuevo.
 
-3. **Generar los tres temas**:
+3. **Generar los dos temas**:
 
    ```bash
-   for t in d c a; do npm run renders -- fase-N --tema=$t; done
+   for t in papel musgo; do npm run renders -- fase-N --tema=$t; done
    ```
 
-   Deja `docs/renders/fase-N-tema-{a,c,d}/`, un PNG por ruta y viewport
+   Deja `docs/renders/fase-N-tema-{papel,musgo}/`, un PNG por ruta y viewport
    (`{ruta}--mobile-390.png`, `{ruta}--desktop-1280.png`). Si el cambio es puramente
-   funcional alcanza con el tema activo (**D**); si toca algo visual, van los tres.
+   funcional alcanza con **papel**; si toca algo visual, van los dos.
 
 4. **Si el script falla, casi siempre es él y no la app.** Dos formas conocidas:
    - *"El sembrado de datos de demo no llegó"*: el guard busca un texto de una pantalla que
@@ -41,8 +41,8 @@ description: Genera los screenshots reales de la app (390 px y 1280 px, en los t
    - **Texto mal armado**: artículos y géneros ("el 20 % del proteína"), unidades pegadas al
      número equivocado, nombres que desbordan.
    - **A 390 px**: nada cortado, ningún anillo de foco comido, y lo importante arriba.
-   - Tipografías y fondo correctos por tema (**Vollkorn** en el A, **Fraunces** en C y D;
-     Schibsted para datos en los tres).
+   - Tipografías y fondo correctos por tema (**Petrona** en títulos y **Archivo** en datos,
+     en los dos).
 
    **Medir en píxeles CSS, no en los del PNG**: se generan con `deviceScaleFactor: 2`, así
    que el archivo es del doble. Confundirlos hace abrir issues falsos.

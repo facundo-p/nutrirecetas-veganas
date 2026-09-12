@@ -1,9 +1,8 @@
 import { routeHash } from '../../app/router';
-import { usePerfil } from '../../db/hooks';
-import { objetivosDeReferencia } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
 import { formatNumber } from '../common/format';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { useObjetivos } from '../common/useObjetivos';
 import { IconSemanaArco, IconSol } from '../icons/icons';
 
 /**
@@ -19,19 +18,31 @@ const GRUPOS = [
 
 export function NutrientList() {
   const idx = getSeedIndex();
-  const perfil = usePerfil();
-  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
+  const objetivos = useObjetivos();
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Nutrientes" titulo="Nutrientes" />
+      <EncabezadoPantalla
+        etiqueta="Nutrientes"
+        titulo="Nutrientes"
+        lamina="lechuga"
+        informacion={
+          objetivos.fuente === 'perfil' ? (
+            <p>Las dosis son las tuyas, calculadas desde tu perfil.</p>
+          ) : (
+            <p>
+              Las dosis son las de la <strong>referencia adulta genérica</strong>.{' '}
+              <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean las tuyas.
+            </p>
+          )
+        }
+      />
       <p className="nutricion-referencia">
         {objetivos.fuente === 'perfil' ? (
-          <>Las dosis son las tuyas, calculadas desde tu perfil.</>
+          'Tus dosis diarias'
         ) : (
           <>
-            Las dosis son las de la <strong>referencia adulta genérica</strong>.{' '}
-            <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean las tuyas.
+            Dosis de la <strong>referencia adulta genérica</strong>
           </>
         )}
       </p>

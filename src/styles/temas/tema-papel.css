@@ -1,0 +1,136 @@
+/* ══════════ Tema papel (claro, default) ══════════
+   Papel de estraza con tinta de bosque: el verde hondo que el tema oscuro usa de
+   fondo, acá es la tinta. El color queda reservado para los nutrientes, y los
+   tres roles que llevan color lo comparten a propósito con uno: la acción es el
+   verde de la proteína, el aviso el de la fibra, el imprescindible el de la
+   vitamina A. Un verde de acción propio quedaba a ΔE 9 de la proteína: parecido
+   sin ser el mismo, que es peor que igual.
+
+   Sobre papel claro los once tienen que ser oscuros para llegar a texto, y
+   ningún amarillo lo logra: la vitamina C es oliva. Medidos: ΔE ≥ 21,8 entre
+   ellos (calcio contra omega 3) y ≥ 4,60:1 como texto sobre el papel (calcio).
+
+   `color-scheme: light` le dice al navegador que pinte con criterio claro lo
+   que el CSS no controla: barras de scroll, autofill, controles nativos.
+
+   Estructura de todo archivo de tema:
+     1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
+     2) el contrato de roles, que es lo único que la app puede nombrar
+
+   Lista `:root` además de su atributo porque es la red de seguridad: si el
+   script de arranque no corre, o el atributo trae un valor inválido, la app
+   igual se ve completa, en claro. */
+:root,
+:root[data-tema='papel'] {
+  color-scheme: light;
+
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-estraza: #e4dcc6;
+  --p-estraza-alta: #ece6d4;
+  --p-estraza-honda: #dcd3bb;
+  --p-trapo: #fffbf0;
+  --p-bosque: #1f2b21;
+  --p-liquen: #4d5a4c;
+  --p-liquen-hondo: #525f50;
+  --p-brote: #015729;
+  --p-hueso: #f3efe2;
+  --p-remolacha: #8d4556;
+  --p-cielo: #026695;
+  --p-berenjena: #7b3e78;
+  --p-lima: #456a13;
+  --p-lavanda: #58579e;
+  --p-zanahoria: #943f2b;
+  --p-oliva: #615815;
+  --p-menta: #056c5f;
+  --p-curcuma: #875307;
+  --p-mar: #075160;
+  --p-garbanzo: #857c64;
+  --p-sepia: #3c3424;
+
+  /* ── contrato de roles ── */
+
+  /* Tipografía: la display para títulos; la de datos para todo lo demás, y
+     siempre para las cifras. */
+  --font-display: 'Petrona Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Archivo Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Superficie y tinta. Como texto, sobre estraza / estraza alta:
+     bosque 10,8 / 11,8 · liquen 5,3 / 5,8 · liquen hondo 4,9 / 5,4.
+     La superficie es translúcida para que las tarjetas dejen ver el papel;
+     lo que flota sobre otra cosa usa la opaca. */
+  --papel: var(--p-estraza);
+  --textura: url('../../assets/texturas/papel.webp'); /* scripts/textura.mjs */
+  --superficie: color-mix(in srgb, var(--p-trapo) 42%, transparent);
+  --superficie-opaca: var(--p-estraza-alta);
+  --tinta: var(--p-bosque);
+  --tinta-suave: var(--p-liquen);
+
+  /* Identidad y acción */
+  --marca: var(--p-bosque);
+  --kicker: var(--p-liquen);
+  --titulo-seccion: var(--p-bosque);
+  --accion: var(--p-brote);
+  --accion-texto: var(--p-brote);
+  --sobre-accion: var(--p-hueso); /* 8,6:1 sobre el brote */
+  --seleccion: var(--p-brote);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-liquen);
+  --link: var(--p-brote);
+  --foco: var(--p-bosque);
+
+  /* Datos */
+  --cifra: var(--p-bosque);
+  --dato-suave: var(--p-liquen-hondo);
+  --chip: var(--p-liquen);
+
+  /* Avisos y tips */
+  --aviso: var(--p-curcuma);
+  --tip-positivo: var(--p-brote);
+  --tip-atencion: var(--p-curcuma);
+  --tip-neutro: var(--p-liquen);
+
+  /* Atributos de receta e ingrediente. Freezer, indulgente y preparado van en
+     liquen: no son nutrientes, y un color de más sería un color que miente. */
+  --icono-imprescindible: var(--p-zanahoria);
+  --recalculando: var(--p-zanahoria); /* las cifras mientras viajan al escalar */
+  --funcion-ingrediente: var(--p-liquen-hondo);
+  --confirmado: var(--p-brote);
+  --icono-freezer: var(--p-liquen);
+  --icono-clasica: var(--p-brote);
+  --icono-indulgente: var(--p-liquen);
+  --estado-pendiente: var(--p-curcuma);
+  --estado-favorita: var(--p-bosque);
+  --chip-preparado: var(--p-liquen);
+
+  --precaucion: var(--p-curcuma);
+  --exito: var(--p-brote);
+
+  /* Un color por nutriente, en el orden canónico de las barras. */
+  --nut-hierro: var(--p-remolacha);
+  --nut-calcio: var(--p-cielo);
+  --nut-magnesio: var(--p-berenjena);
+  --nut-zinc: var(--p-lima);
+  --nut-selenio: var(--p-lavanda);
+  --nut-vita: var(--p-zanahoria);
+  --nut-vitc: var(--p-oliva);
+  --nut-folato: var(--p-menta);
+  --nut-proteina: var(--p-brote);
+  --nut-fibra: var(--p-curcuma);
+  --nut-omega3: var(--p-mar);
+  --sin-aporte: var(--p-garbanzo); /* no trae ninguno de los once; 3,0:1 como relleno */
+
+  /* Las láminas: el trazo es del grabado y el color, este. Al 26 % se leen
+     como lápiz y no le compiten al texto. */
+  --ilustracion: color-mix(in srgb, var(--p-sepia) 26%, transparent);
+
+  /* Encabezado y nav: el encabezado es papel; la nav, un tono más honda.
+     Liquen hondo como texto sobre la nav: 4,5:1. */
+  --encabezado: var(--p-estraza);
+  --sobre-encabezado: var(--p-bosque);
+  --encabezado-kicker: var(--p-liquen);
+  --nav-fondo: var(--p-estraza-honda);
+  --nav-inactivo: var(--p-liquen-hondo);
+  --nav-activo: var(--p-bosque);
+  --nav-marca-activa: var(--p-brote);
+}

@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  background: var(--nav-fondo);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--nav-fondo);
   border-top: var(--borde);
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -48,7 +48,7 @@
   align-items: center;
   gap: 2px;
   padding: var(--sp-2) var(--sp-4);
-  min-width: 44px;
+  min-width: var(--toque-minimo);
   min-height: calc(var(--alto-nav) - 2px);
   justify-content: center;
   color: var(--nav-inactivo);
@@ -81,8 +81,7 @@
     padding: var(--sp-3) var(--sp-6);
     border-top: none;
     border-bottom: 3px double color-mix(in srgb, var(--tinta) 35%, transparent);
-    background: color-mix(in srgb, var(--nav-fondo) 88%, transparent);
-    backdrop-filter: blur(6px);
+    background: var(--textura) 0 0 / var(--tile-textura), var(--nav-fondo);
   }
   .nav-marca {
     display: block;
@@ -96,7 +95,7 @@
     flex-direction: row;
     gap: var(--sp-2);
     font-size: var(--fs-sm);
-    min-height: 44px;
+    min-height: var(--toque-minimo);
     letter-spacing: 0.01em;
   }
   .nav-item svg {
@@ -119,15 +118,17 @@
  * `.contenido` para que el color llegue al borde; van con el mismo token que
  * ese padding usa, así no se despegan si cambia.
  *
- * Solo la variante: el detalle de receta usa `.encabezado-pantalla` pelada y
- * ahí el título va en el color de su categoría, no sobre un relleno.
+ * Solo la variante: el detalle de receta usa `.encabezado-pantalla` pelada.
  */
 .encabezado-pantalla-con-accion {
+  /* Contexto de apilado propio: la lámina va detrás del texto y delante del papel. */
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--sp-3);
-  background: var(--encabezado);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--encabezado);
   color: var(--sobre-encabezado);
   margin: calc(var(--sp-4) * -1) calc(var(--sp-4) * -1) var(--sp-4);
   padding: var(--sp-4);
@@ -149,28 +150,38 @@
   }
 }
 
+/* La «i» y el engranaje, juntos contra el margen derecho del encabezado. */
+.encabezado-acciones {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
 .boton-ajustes {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
   margin: calc(var(--sp-2) * -1) calc(var(--sp-2) * -1) 0 0;
   color: var(--navegar);
   font-size: 22px;
 }
 
 .encabezado-pantalla h1 {
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-titulo-pantalla);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
+/* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */
 .etiqueta-seccion {
   font-family: var(--font-data);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  font-weight: 400;
   color: var(--kicker);
 }
 
@@ -229,8 +240,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
   margin-right: calc(var(--sp-2) * -1);
   color: var(--tinta-suave);
   font-size: 20px;

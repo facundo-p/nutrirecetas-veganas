@@ -12,24 +12,23 @@ import type {
 import {
   ADDED_LINES,
   APORTE_NULO_IDS,
+  CURATED_LAMINAS,
   CURATED_PORTIONS,
   CURATED_STEPS,
+  CURATED_TYPES,
   CURATED_YIELDS,
   DE_FACTO_PREPARADOS,
   NUTRIENT_DESCRIPTIONS,
   NUTRIENT_INGREDIENT_KEY,
   NUTRIENT_NAME_OVERRIDES,
+  PASO_DE_CADA_LINEA,
   PHANTOM_LINES,
   STORAGE_GROUPS,
   VEGAN_FACTORS_FROM_PROSE,
 } from './curated-tables';
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
-
-/** Avisos no fatales que van al reporte del gate de datos. */
-export interface TransformNotes {
-  descartes_estacionalidad: string[];
-}
+import type { LaminaId } from '../../src/seed/laminas';
 
 // ---------- valores ----------
 
@@ -117,7 +116,7 @@ export function transformNutrient(raw: RawNutrient): Nutrient {
 const FUENTE_KEYS = new Set(['ref', 'ref_secundaria', 'titulo_original', 'receta_original_num', 'pagina_pdf', 'nota']);
 const RULE_REF_RE = /^([RU]\d+)(?:_(.+))?$/;
 
-function transformLine(recipeId: string, raw: RawLine, ingredientIds: Set<string>): Line {
+function transformLine(recipeId: string, raw: RawLine, ingredientIds: Set<string>): LineaSinPaso {
   const phantom = PHANTOM_LINES.find(
     (p) => p.receta_id === recipeId && p.ingrediente_id === raw.ingrediente_id && p.unidad === raw.unidad,
   );
@@ -138,6 +137,73 @@ function transformLine(recipeId: string, raw: RawLine, ingredientIds: Set<string
   };
 }
 
+/**
+ * T12 pisa el tipo derivado. Una entrada que repite lo que el dataset ya dice
+ * es una corrección que dejó de corregir: rompe el build en vez de quedar
+ * escrita sin efecto.
+ */
+export function aplicarTipoCurado(
+  id: string,
+  tipoDerivado: Recipe['tipo'],
+  tabla: Record<string, { tipo: Recipe['tipo'] }> = CURATED_TYPES,
+): Recipe['tipo'] {
+  const curado = tabla[id];
+  if (!curado) return tipoDerivado;
+  if (curado.tipo === tipoDerivado) {
+    throw new Error(`T12: ${id} ya sale "${tipoDerivado}" del dataset; la entrada no corrige nada`);
+  }
+  return curado.tipo;
+}
+
+/**
+ * T15: la lámina de la ficha. Una variante sin entrada propia hereda la de su
+ * madre; una entrada que repite lo que ya heredaría no cambia nada y rompe el
+ * build, como en T12.
+ */
+export function laminaDeReceta(
+  id: string,
+  varianteDe: string | undefined,
+  tabla: Record<string, LaminaId> = CURATED_LAMINAS,
+): { lamina?: LaminaId } {
+  const propia = tabla[id];
+  const heredada = varianteDe !== undefined ? tabla[varianteDe] : undefined;
+  if (propia !== undefined && propia === heredada) {
+    throw new Error(`T15: ${id} ya hereda "${heredada}" de ${varianteDe}; la entrada no cambia nada`);
+  }
+  const lamina = propia ?? heredada;
+  return lamina !== undefined ? { lamina } : {};
+}
+
+/** Una línea antes de saber en qué paso entra. */
+type LineaSinPaso = Omit<Line, 'paso'>;
+
+/**
+ * T14: en qué paso entra cada línea. La tabla cuenta los pasos desde 1, como
+ * se leen; la semilla guarda el índice en `pasos`. Forma desconocida rompe el
+ * build: una receta sin mapeo, una posición de más o de menos, un paso que no
+ * existe, un imprescindible sin paso.
+ */
+export function asignarPasos(
+  id: string,
+  lineas: LineaSinPaso[],
+  pasos: string[],
+  tabla: Record<string, ReadonlyArray<number | null>> = PASO_DE_CADA_LINEA,
+): Line[] {
+  const posiciones = tabla[id];
+  if (posiciones === undefined) throw new Error(`T14: ${id} sin el paso de cada línea`);
+  if (posiciones.length !== lineas.length) {
+    throw new Error(`T14: ${id} tiene ${lineas.length} líneas y ${posiciones.length} posiciones`);
+  }
+  return lineas.map((linea, i) => {
+    const paso = posiciones[i] ?? null;
+    if (paso !== null && (!Number.isInteger(paso) || paso < 1 || paso > pasos.length)) {
+      throw new Error(`T14: ${id}, línea ${i}: el paso ${paso} no existe (hay ${pasos.length})`);
+    }
+    if (paso === null && linea.imprescindible) throw new Error(`T14: ${id}, línea ${i}: imprescindible sin paso`);
+    return { ...linea, paso: paso === null ? null : paso - 1 };
+  });
+}
+
 export function transformRecipe(
   raw: RawRecipe,
   setKey: 1 | 2 | 3 | 'P',
@@ -151,9 +217,10 @@ export function transformRecipe(
   const ic = setKey === 'P' ? raw.confianza : raw.confianza_adaptacion;
   if (estado === undefined || ic === undefined) throw new Error(`${id}: sin estado/confianza`);
 
-  // tipo: el set 1 no lo trae → salada (set fundacional salado)
-  const tipo = (setKey === 1 ? 'salada' : raw.tipo) as Recipe['tipo'];
-  if (tipo === undefined) throw new Error(`${id}: sin tipo`);
+  // tipo: el set 1 no lo trae → salada (set fundacional salado), salvo lo que corrija T12
+  const tipoDerivado = (setKey === 1 ? 'salada' : raw.tipo) as Recipe['tipo'];
+  if (tipoDerivado === undefined) throw new Error(`${id}: sin tipo`);
+  const tipo = aplicarTipoCurado(id, tipoDerivado);
 
   // porciones: número directo o tabla curada T1
   let porciones_num: number | null;
@@ -174,8 +241,10 @@ export function transformRecipe(
   if (es_preparado && !yieldEntry) throw new Error(`${id}: preparado sin rendimiento_g en T2`);
   if (!es_preparado && yieldEntry) throw new Error(`${id}: tiene rendimiento_g pero no es preparado`);
 
+  const pasos = CURATED_STEPS[id]?.pasos ?? raw.pasos;
+
   // líneas: fantasmas T3 + agregadas
-  const lineas: Line[] = raw.ingredientes.map((l) => transformLine(id, l, ingredientIds));
+  const lineas: LineaSinPaso[] = raw.ingredientes.map((l) => transformLine(id, l, ingredientIds));
   for (const added of ADDED_LINES.filter((a) => a.receta_id === id)) {
     lineas.push({
       ref: { tipo: 'receta', id: added.ref_receta_id },
@@ -241,14 +310,17 @@ export function transformRecipe(
     set_origen: setKey,
     ...(raw.familia !== undefined ? { familia: raw.familia } : {}),
     ...(raw.variante_de !== undefined ? { variante_de: raw.variante_de } : {}),
+    // Algunos quedan solo como enlace, sin línea, y está bien: p10→p01 consume
+    // el okara y no la leche; p30→p02 ya desagrega la leche de coco en agua y
+    // coco rallado; p44→p06 el queso va sobre la pizza armada, no en la masa.
     usa_preparados: raw.usa_preparados ?? [],
     ...(raw.indulgente !== undefined ? { indulgente: raw.indulgente } : {}),
     ...(raw.candidata_clasica !== undefined ? { candidata_clasica: raw.candidata_clasica } : {}),
     dificultad: raw.dificultad as Recipe['dificultad'],
     tiempo_prep_min: raw.tiempo_prep_min,
     tiempo_coccion_min: raw.tiempo_coccion_min,
-    lineas,
-    pasos: CURATED_STEPS[id]?.pasos ?? raw.pasos,
+    lineas: asignarPasos(id, lineas, pasos),
+    pasos,
     secretos_chef: raw.secretos_chef ?? [],
     ...(raw.guarda !== undefined
       ? {
@@ -266,6 +338,7 @@ export function transformRecipe(
     utensilios,
     ...(objetivo !== undefined ? { objetivo } : {}),
     ...(raw.nota !== undefined ? { nota: raw.nota } : {}),
+    ...laminaDeReceta(id, raw.variante_de),
   };
 }
 
@@ -281,6 +354,20 @@ export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recip
   const ids = new Set(recetas.map((r) => r.id));
   const huerfanas = Object.keys(CURATED_STEPS).filter((id) => !ids.has(id));
   if (huerfanas.length > 0) throw new Error(`T9: pasos curados para recetas que no existen: ${huerfanas.join(', ')}`);
+  const tiposHuerfanos = Object.keys(CURATED_TYPES).filter((id) => !ids.has(id));
+  if (tiposHuerfanos.length > 0) {
+    throw new Error(`T12: tipo curado para recetas que no existen: ${tiposHuerfanos.join(', ')}`);
+  }
+
+  const pasosHuerfanos = Object.keys(PASO_DE_CADA_LINEA).filter((id) => !ids.has(id));
+  if (pasosHuerfanos.length > 0) {
+    throw new Error(`T14: paso de cada línea para recetas que no existen: ${pasosHuerfanos.join(', ')}`);
+  }
+
+  const laminasHuerfanas = Object.keys(CURATED_LAMINAS).filter((id) => !ids.has(id));
+  if (laminasHuerfanas.length > 0) {
+    throw new Error(`T15: lámina curada para recetas que no existen: ${laminasHuerfanas.join(', ')}`);
+  }
 
   return recetas;
 }

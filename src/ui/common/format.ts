@@ -1,3 +1,6 @@
+import type { BaseDeMedida } from '../../domain/nutrition';
+import type { Line } from '../../seed/schema';
+
 /** Utilidades de presentación compartidas (sin estado, sin datos). */
 
 export function formatMinutes(min: number): string {
@@ -20,6 +23,11 @@ export function formatNumber(value: number, decimals = 1): string {
   return String(rounded).replace('.', ',');
 }
 
+/** Un valor de la semilla para mostrar: `leche_de_coco` → «leche de coco». */
+export function legible(valorDeSemilla: string): string {
+  return valorDeSemilla.replaceAll('_', ' ');
+}
+
 const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.75': '¾' };
 
 /**
@@ -31,6 +39,11 @@ export function formatCantidad(valor: number): string {
   const glifo = GLIFO_DE_CUARTO[String(Number((valor - entero).toFixed(2)))];
   if (glifo === undefined) return formatNumber(valor, 1);
   return entero === 0 ? glifo : `${entero}${glifo}`;
+}
+
+/** «1½ taza»: la cantidad de una línea con su unidad, como la escribe la receta. */
+export function cantidadConUnidad(linea: Pick<Line, 'cantidad' | 'unidad_display'>): string {
+  return `${formatCantidad(linea.cantidad)} ${legible(linea.unidad_display)}`;
 }
 
 /** Debajo del gramo el entero miente: 0,5 g de azafrán no es 1 g. */
@@ -60,16 +73,31 @@ export function currentMonth(): number {
 /** La unidad de cantidades vive en el dominio; acá solo se reexporta para la UI. */
 export { amountUnitOf as amountUnit } from '../../domain/units';
 
-/** Dificultad → cantidad de llamas (1-3) según el enum ordenado de 5. */
-export function difficultyFlames(dificultad: string): 1 | 2 | 3 {
-  if (dificultad === 'trivial' || dificultad === 'muy fácil') return 1;
-  if (dificultad === 'fácil' || dificultad === 'media') return 2;
-  return 3;
-}
-
 /** IC 1-10 → brotes 1-3 (bajo ≤4, medio 5-7, alto ≥8). */
 export function icSprouts(ic: number): 1 | 2 | 3 {
   if (ic <= 4) return 1;
   if (ic <= 7) return 2;
   return 3;
+}
+
+/** Un porcentaje del día: con un decimal debajo de 10, donde el decimal todavía cambia la lectura. */
+export function formatPorcentaje(porcentaje: number): string {
+  return `${formatNumber(porcentaje, porcentaje < 10 ? 1 : 0)} %`;
+}
+
+/** Cómo se nombra la base de un aporte: «qué aporta una porción», «147 kcal por porción». */
+export const MEDIDA_DE_BASE: Record<BaseDeMedida, { sujeto: string; por: string }> = {
+  porcion: { sujeto: 'una porción', por: 'por porción' },
+  '100g': { sujeto: 'cada 100 g', por: 'cada 100 g' },
+};
+
+/** Lo que alguien tipea como cantidad, con coma o con punto. `null` si no es un número, o si está a medio tipear. */
+export function leerNumero(texto: string): number | null {
+  const limpio = texto.trim().replace(',', '.');
+  return /^\d+(\.\d+)?$/.test(limpio) ? Number(limpio) : null;
+}
+
+/** Una cantidad para un campo: con coma y sin glifos de fracción, que no se pueden tipear. */
+export function cantidadEditable(valor: number): string {
+  return formatNumber(valor, Number.isInteger(valor) ? 0 : 2);
 }

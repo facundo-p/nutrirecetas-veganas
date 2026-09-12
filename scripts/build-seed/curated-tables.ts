@@ -1,4 +1,5 @@
-import type { IngredientCategory } from '../../src/seed/schema';
+import type { IngredientCategory, Recipe } from '../../src/seed/schema';
+import type { LaminaId } from '../../src/seed/laminas';
 
 /**
  * TODAS las decisiones de datos tomadas a mano viven acá, en un solo lugar,
@@ -152,18 +153,6 @@ export const ADDED_LINES: AddedLineEntry[] = [
     nota: 'línea agregada en la ingesta: el dataset lista solo el relleno',
     flag_gate: true,
   },
-];
-
-/**
- * usa_preparados que quedan como enlace navegacional (sin tocar líneas):
- * p10→p01 consume el okara (subproducto), no la leche; p30→p02 ya desagrega
- * la leche de coco en agua+coco rallado; p44→p06 el queso va sobre la pizza
- * armada, no dentro de la masa.
- */
-export const NAV_ONLY_PREPARADOS: Array<{ receta_id: string; preparado_id: string }> = [
-  { receta_id: 'p10', preparado_id: 'p01' },
-  { receta_id: 'p30', preparado_id: 'p02' },
-  { receta_id: 'p44', preparado_id: 'p06' },
 ];
 
 // ---------- T6: conceptos usados por reglas R que no son ids/categorías reales ----------
@@ -1568,4 +1557,149 @@ export const NUTRIENT_DESCRIPTIONS: Record<string, NutrientDescription> = {
  */
 export const NUTRIENT_NAME_OVERRIDES: Record<string, string> = {
   proteina: 'Proteína',
+};
+
+// ---------- T12: tipo de receta que el set 1 no trae ----------
+
+/**
+ * El set 1 no tiene `tipo` y el pipeline lo asume salado, que es correcto en 9
+ * de sus 10 recetas. La décima es un desayuno con banana, kiwi y dátiles.
+ * La tabla pisa el default; una entrada que coincida con lo ya derivado rompe
+ * el build, para que no quede escrita sin efecto.
+ */
+
+export interface TypeEntry {
+  tipo: Recipe['tipo'];
+  base: string;
+  flag_gate: boolean;
+}
+
+export const CURATED_TYPES: Record<string, TypeEntry> = {
+  r10: {
+    tipo: 'dulce',
+    base: 'recetas.md:193 la titula "(desayuno)"; lleva banana, kiwi, dátiles y jarabe de arce, y ningún ingrediente salado',
+    flag_gate: true,
+  },
+};
+
+// ---------- T13: fuentes cuyo texto del dataset no es para el usuario ----------
+
+/**
+ * El catálogo de fuentes va a la ficha de la receta, así que su texto lo lee
+ * quien cocina. Dos entradas venían escritas para quien construye la app:
+ * hablan de "IC" y de "por-probar", que son vocabulario del pipeline. Se
+ * reescriben acá; el resto del catálogo pasa tal cual.
+ */
+
+export interface SourceOverride {
+  nombre?: string;
+  credencial?: string;
+  base: string;
+}
+
+export const CURATED_SOURCES: Record<string, SourceOverride> = {
+  libro_vgourmet: {
+    credencial: 'autoeditado, sin certificación externa',
+    base: 'la nota del dataset seguía con "todas entran como por-probar; subir IC al validarlas en cocina": instrucciones del pipeline, y el IC ya no está en las recetas (#144)',
+  },
+  recetario_personal: {
+    nombre: 'Recetario personal de Facu',
+    base: 'meta.origen dice "recetario personal de Facu (Google Doc)"; dónde estaba guardado no es parte del origen de la receta',
+  },
+};
+
+// ---------- T14: en qué paso entra cada línea ----------
+
+export { PASO_DE_CADA_LINEA } from './curated-pasos';
+
+// ---------- T15: la lámina de cada receta ----------
+
+/**
+ * El grabado de la ficha: el del ingrediente que nombra a la receta, no el del
+ * más pesado —en la sopa sería el caldo—. El tofu lleva la soja; seitán, panes,
+ * pastas y masas, el trigo. Si ese ingrediente no tiene lámina, la del siguiente
+ * que la tenga: la chía no tiene ninguna, el kiwi solo a color, y la palta se
+ * descartó porque era una foto.
+ *
+ * Una variante sin entrada hereda la de su madre (p09, p18, p21, p29, p30,
+ * p32–p35, p39). Solo lleva entrada la que tiene otro protagonista.
+ */
+export const CURATED_LAMINAS: Record<string, LaminaId> = {
+  // set 1 y 2: saladas
+  r01: 'lentejas',
+  r02: 'garbanzo',
+  r03: 'garbanzo',
+  r04: 'lentejas',
+  r05: 'soja',
+  r06: 'porotos',
+  r07: 'batata', // la quinoa no tiene lámina y la batata es lo que más pesa
+  r08: 'calabaza',
+  r09: 'lentejas',
+  r10: 'banana', // ni la chía ni el kiwi tienen lámina en tinta
+  r11: 'soja',
+  r12: 'repollo', // el kale es un repollo que no cierra
+  r13: 'arroz',
+  r14: 'trigo',
+  r15: 'porotos',
+  r16: 'garbanzo',
+  r17: 'porotos',
+  r18: 'lentejas',
+  r19: 'tomate', // el perejil ya es la viñeta de cierre de todas
+  r20: 'arroz',
+  r21: 'soja',
+  r22: 'lentejas',
+  r23: 'porotos',
+  r24: 'tomate',
+  r25: 'morron',
+  r26: 'garbanzo',
+  r27: 'arroz',
+  r28: 'trigo',
+  r29: 'garbanzo',
+  // set 2: dulces
+  d01: 'porotos',
+  d02: 'banana',
+  d03: 'frutilla', // la palta se descartó
+  d04: 'banana',
+  d05: 'datil',
+  d06: 'manzana',
+  d07: 'banana',
+  d08: 'arroz',
+  d09: 'banana', // la chía no tiene lámina
+  d10: 'zanahoria',
+  // set P
+  p01: 'soja',
+  p02: 'coco',
+  p03: 'soja',
+  p04: 'mani',
+  p05: 'soja',
+  p06: 'papa',
+  p07: 'trigo',
+  p08: 'trigo',
+  p10: 'soja',
+  p11: 'mandioca',
+  p12: 'garbanzo',
+  p13: 'coliflor',
+  p14: 'espinaca',
+  p15: 'calabaza',
+  p16: 'soja',
+  p17: 'soja', // variante de r06, pero de texturizada y no de porotos
+  p19: 'papa',
+  p20: 'choclo',
+  p22: 'calabaza', // el zapallito es una calabaza
+  p23: 'trigo',
+  p24: 'lechuga',
+  p25: 'banana',
+  p26: 'porotos',
+  p27: 'porotos',
+  p28: 'banana',
+  p31: 'membrillo',
+  p36: 'mandioca',
+  p37: 'limon',
+  p38: 'banana',
+  p40: 'frutilla', // variante de d09, pero lleva frutilla y no banana
+  p41: 'coco',
+  p42: 'limon',
+  p43: 'calabaza',
+  p44: 'trigo',
+  p45: 'trigo',
 };

@@ -1,114 +1,34 @@
 /* ============ Detalle de receta ============ */
 
-.detalle {
-  display: grid;
-  gap: var(--sp-5);
-  max-width: 760px;
+/* Con la especificidad de .encabezado-pantalla h1: sin ella, esa le gana. */
+.encabezado-pantalla .ficha-titulo {
+  font-size: var(--fs-3xl);
+  text-wrap: pretty;
 }
 
-.detalle section > h2 {
-  font-size: var(--fs-xl);
-  margin-bottom: var(--sp-3);
-  padding-bottom: var(--sp-1);
-  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+.encabezado-pantalla .ficha-titulo.largo {
+  font-size: var(--fs-titulo-largo);
 }
 
-.volver {
-  margin-top: var(--sp-2);
+/* Sobre .detalle-meta: más aire y la letra de los metadatos. */
+.ficha-meta {
+  margin: var(--sp-3) 0;
+  font-size: var(--fs-meta);
 }
 
-[data-cat] .encabezado-pantalla h1 {
-  color: var(--titulo-receta);
+/* El estado cierra el renglón de meta, contra el margen derecho. */
+.ficha-meta .menu-estado {
+  margin-left: auto;
 }
 
-.volver a {
-  color: var(--navegar);
-  text-decoration: none;
-  font-size: var(--fs-sm);
-}
-
-.detalle-tipo {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.detalle-tipo svg {
-  font-size: 18px;
-}
-
-.detalle .encabezado-pantalla {
-  margin-bottom: 0;
-}
-
-.detalle-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-2) var(--sp-4);
-  margin-top: var(--sp-2);
-  font-size: var(--fs-sm);
-  color: var(--tinta-suave);
-}
-
-.detalle-meta .meta-item svg {
-  font-size: 16px;
-}
-
-.meta-suave {
-  color: var(--dato-suave);
-  margin-left: var(--sp-1);
-}
-
-/* Las kcal por porción, en bloque propio y arriba del aviso de B12: es el
-   único dato nutricional que se mira cocinando. El resto queda al final. */
-.detalle-energia {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  border: var(--borde);
-  border-radius: var(--radio);
-  background: var(--superficie);
-}
-
-.detalle-energia-etiqueta {
-  font-family: var(--font-data);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tinta-suave);
-}
-
-.detalle-energia-cifra {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--sp-1);
-  color: var(--tinta-suave);
-  font-size: var(--fs-sm);
-}
-
-.detalle-energia-cifra .cifra {
-  font-size: var(--fs-xl);
-}
-
-.chip-probada {
-  background: color-mix(in srgb, var(--confirmado) 16%, var(--superficie));
-  border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
+.ficha-clasica {
+  color: var(--confirmado);
 }
 
 .chip-preparado {
   background: color-mix(in srgb, var(--chip-preparado) 15%, var(--superficie));
   border-color: color-mix(in srgb, var(--chip-preparado) 45%, transparent);
   color: var(--chip-preparado);
-}
-
-.relaciones {
-  font-size: var(--fs-sm);
-  display: grid;
-  gap: var(--sp-1);
-  color: var(--tinta-suave);
 }
 
 /* alerta B12: la única tarjeta con voz de alerta (rabanito) */
@@ -129,26 +49,54 @@
   flex-shrink: 0;
 }
 
-/* ingredientes estilo carta */
+/* ---------- la lista de ingredientes ----------
+   La pieza tipográfica de la ficha: es lo que se mira treinta veces cocinando.
+   Filas bajas, para que 28 ingredientes sigan siendo navegables. */
+
+.ficha-ingredientes {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.lista-lineas-cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.lista-lineas-titulo {
+  font-family: var(--font-data);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
 
 .lista-lineas {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-3);
+}
+
+.linea-ingrediente {
+  padding: var(--sp-2) 0;
+  border-bottom: var(--borde-suave);
 }
 
 .linea-principal {
   display: flex;
   align-items: baseline;
-  gap: var(--sp-1);
+  gap: var(--sp-3);
 }
 
 .linea-nombre {
+  flex: 1;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-1);
   min-width: 0;
+  line-height: 1.25;
 }
 
 .linea-nombre a {
@@ -160,11 +108,25 @@
 .linea-cantidad {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
+}
+
+.linea-valor {
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
 }
 
 .linea-gramos {
+  font-size: var(--fs-xs);
   color: var(--dato-suave);
+}
+
+/* Lo que va debajo del nombre se alinea con el nombre, no con el punto. */
+.linea-en-vez-de,
+.linea-original,
+.linea-detalles {
+  padding-left: calc(var(--punto-nutriente) + var(--sp-3));
 }
 
 .linea-detalles {
@@ -177,13 +139,46 @@
   align-items: center;
 }
 
-.linea-funcion {
-  color: var(--funcion-ingrediente);
+.linea-original {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
 }
 
-.chip-texto {
-  border-style: dashed;
+.lista-lineas-ajuste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+}
+
+.lista-lineas-ayuda,
+.nota-a-gusto {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+/* El campo de cantidad: la cifra a la derecha, subrayada en el color de lo que
+   se recalcula. */
+.linea-input {
+  width: var(--ancho-campo-cantidad);
+  padding: 0 var(--sp-1);
+  border: none;
+  border-bottom: 2px solid var(--recalculando);
+  border-radius: 0;
   background: none;
+  font: inherit;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--tinta);
+}
+
+/* La línea cambiada dice de qué viene: sin eso, la receta miente sobre sí misma
+   a quien vuelve a mirarla dos minutos después. */
+.linea-en-vez-de {
+  font-style: italic;
+  color: var(--dato-suave);
 }
 
 /* tips de reglas */
@@ -260,23 +255,12 @@
   width: 26px;
   height: 26px;
   border: 1px solid var(--accion-texto);
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   color: var(--accion-texto);
   font-family: var(--font-data);
   font-size: var(--fs-xs);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-}
-
-.lista-secretos {
-  padding-left: 1.2rem;
-  display: grid;
-  gap: var(--sp-2);
-  font-size: var(--fs-sm);
-}
-
-.lista-secretos li::marker {
-  color: var(--tip-positivo);
 }
 
 .lista-utensilios {
@@ -293,36 +277,86 @@
   color: var(--tinta-suave);
 }
 
-.detalle-fuente {
-  font-size: var(--fs-xs);
-  color: var(--dato-suave);
-}
-
-/* ============ Escalador ============ */
+/* ============ Escalador ============
+   Pegado arriba en el celular: se mira mientras se leen las cantidades. En
+   escritorio la nav también es sticky arriba y se pisarían, y sobra lugar. */
 
 .escalador {
-  margin-bottom: var(--sp-4);
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: grid;
-  gap: var(--sp-3);
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  margin-inline: calc(var(--sp-4) * -1);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
+  border-bottom: var(--borde);
 }
 
-.escalador-control {
+@media (min-width: 900px) {
+  .escalador {
+    position: static;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.escalador-rinde {
+  display: grid;
+  gap: 2px;
+}
+
+.escalador-etiqueta,
+.escalador-masa {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.escalador-porciones {
   display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  flex-wrap: wrap;
-}
-
-.escalador-botones {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
+  align-items: baseline;
+  gap: var(--sp-2);
+  color: var(--tinta-suave);
 }
 
 .escalador-valor {
-  font-size: var(--fs-xl);
-  min-width: 2.5rem;
-  text-align: center;
+  font-size: var(--fs-rinde);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.escalador-masa .cifra {
+  font-weight: 400;
+}
+
+.escalador-botones {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.boton-escalador {
+  width: var(--boton-escalador);
+  height: var(--boton-escalador);
+  background: none;
+  border-color: color-mix(in srgb, var(--tinta) 30%, transparent);
+}
+
+.boton-escalador.lleno {
+  background: var(--accion);
+  border-color: var(--accion);
+  color: var(--sobre-accion);
+}
+
+.escalador-volver {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+/* Mientras las cantidades viajan se tiñen: es lo que muestra qué se recalculó. */
+.recalculando .cifra {
+  color: var(--recalculando);
 }
 
 .avisos-escalado {
@@ -330,17 +364,6 @@
   padding: 0;
   display: grid;
   gap: var(--sp-2);
-}
-
-.aviso {
-  display: flex;
-  gap: var(--sp-2);
-  align-items: flex-start;
-  font-size: var(--fs-sm);
-  padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radio-chico);
-  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
 }
 
 .aviso-horneado {
@@ -354,3 +377,133 @@
   margin-top: 2px;
 }
 
+/* ============ Qué aporta una porción ============
+   Al final de la ficha y cerrado; las kcal quedan a la vista igual. */
+
+.panel-aporte {
+  display: grid;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: var(--borde);
+}
+
+.panel-aporte-titulo {
+  font-size: var(--fs-xl);
+}
+
+.panel-aporte-toggle {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.panel-aporte-signo {
+  font-family: var(--font-data);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-referencia {
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-kcal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-kcal .cifra {
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.03em;
+}
+
+.panel-aporte-cuerpo {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.panel-aporte-grupo-titulo {
+  margin-bottom: var(--sp-1);
+  font-family: var(--font-data);
+  font-size: var(--fs-meta);
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
+
+.panel-aporte-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.fila-aporte {
+  display: grid;
+  gap: var(--sp-1);
+  padding: var(--sp-3) 0;
+  border-top: var(--borde-suave);
+}
+
+.fila-aporte-cabecera {
+  display: grid;
+  grid-template-columns: auto 1fr auto var(--ancho-porcentaje);
+  align-items: baseline;
+  gap: var(--sp-3);
+}
+
+.fila-aporte-valor {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.fila-aporte-valor .cifra {
+  font-size: var(--fs-lg);
+}
+
+.fila-aporte-pct {
+  text-align: right;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.fila-aporte-medida {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.fila-aporte-franja {
+  flex: 1;
+  height: var(--alto-franja-fila);
+}
+
+/* Los que no tienen color llenan en tinta suave: la barra dice cuánto, no qué. */
+.fila-aporte-franja:not([data-nut]) .franja-relleno {
+  fill: var(--tinta-suave);
+}
+
+.fila-aporte.sin-datos {
+  color: var(--dato-suave);
+}
+
+.fila-aporte-detalle {
+  display: grid;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+}
+
+.fila-aporte-origen {
+  color: var(--dato-suave);
+}
+
+.panel-aporte-sin-dato {
+  font-size: var(--fs-sm);
+  color: var(--link);
+}

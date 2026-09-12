@@ -1,4 +1,6 @@
 import { db } from './db';
+import { estadoDeReceta, estadoTrasCocinar } from '../domain/estado';
+import type { Recipe } from '../seed/schema';
 import {
   USER_SCHEMA_VERSION,
   cookingDataSchema,
@@ -68,11 +70,6 @@ export async function marcarEsquemaVisto(): Promise<void> {
   await db.meta.put({ ...meta, user_schema_version: USER_SCHEMA_VERSION });
 }
 
-export async function registrarSeedVersion(seed_version: string): Promise<void> {
-  const meta = await getMeta();
-  if (meta.seed_version !== seed_version) await db.meta.put({ ...meta, seed_version });
-}
-
 // ---------- perfil ----------
 
 export function getPerfil(): Promise<Perfil | undefined> {
@@ -100,24 +97,22 @@ export async function addCoccion(datos: CoccionData): Promise<number> {
   return id;
 }
 
-export function getCoccion(id: number): Promise<Coccion | undefined> {
-  return db.cocciones.get(id);
-}
-
-/** Cocciones más recientes primero (el diario y "última cocción" las quieren así). */
-export async function listCocciones(): Promise<Coccion[]> {
-  const todas = await db.cocciones.toArray();
-  return todas.sort((a, b) => b.fecha.localeCompare(a.fecha));
-}
-
 // ---------- overlays ----------
 
 export function getOverlay(receta_id: string): Promise<Overlay | undefined> {
   return db.overlays.get(receta_id);
 }
 
-export function listOverlays(): Promise<Overlay[]> {
-  return db.overlays.toArray();
+/**
+ * Registrar una cocción marca la receta como probada. La regla de qué no
+ * degradar vive en el dominio (`estadoTrasCocinar`); acá solo se lee el estado
+ * efectivo y se escribe si cambió, para no ensuciar `actualizado_en` de una
+ * favorita cada vez que se cocina.
+ */
+export async function marcarProbadaAlCocinar(receta: Pick<Recipe, 'id' | 'estado'>): Promise<void> {
+  const actual = estadoDeReceta(receta, await getOverlay(receta.id));
+  const siguiente = estadoTrasCocinar(actual);
+  if (siguiente !== actual) await saveOverlay(receta.id, { estado: siguiente });
 }
 
 export async function saveOverlay(

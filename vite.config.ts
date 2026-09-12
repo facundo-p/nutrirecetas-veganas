@@ -28,8 +28,9 @@ export default defineConfig({
         description: 'Recetario vegano personal con base nutricional. Offline, sin cuentas.',
         lang: 'es-AR',
         display: 'standalone',
-        background_color: '#F5EFDC',
-        theme_color: '#F5EFDC',
+        // El splash de instalación admite un solo color: el papel del tema claro.
+        background_color: '#E4DCC6',
+        theme_color: '#E4DCC6',
         icons: [
           { src: 'icono-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icono-512.png', sizes: '512x512', type: 'image/png' },

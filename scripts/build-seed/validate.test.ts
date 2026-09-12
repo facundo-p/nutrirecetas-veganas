@@ -24,6 +24,7 @@ function recipeStub(id: string, extra: Partial<Recipe> = {}): Recipe {
         unidad_display: 'g',
         g_aprox: 100,
         sustitutos: [],
+        paso: null,
       },
     ],
     pasos: ['Listo.'],
@@ -34,10 +35,11 @@ function recipeStub(id: string, extra: Partial<Recipe> = {}): Recipe {
   };
 }
 
-function seedStub(recetas: Recipe[]): Omit<Seed, 'content_hash'> {
+function seedStub(recetas: Recipe[], fuentes: Seed['fuentes'] = {}): Omit<Seed, 'content_hash'> {
   return {
     seed_schema_version: '1.0.0',
     dataset_version: 'test',
+    fuentes,
     ingredientes: [
       {
         id: 'garbanzos',
@@ -109,15 +111,24 @@ describe('validateIntegrity', () => {
       unidad_display: 'g',
       g_aprox: 100,
       sustitutos: [],
+      paso: null,
     });
     expect(() => validateIntegrity(seedStub([consumidora, normal]))).toThrow(/no es preparado/);
+  });
+
+  test('una fuente sin entrada en el catálogo rompe el build (issue #149)', () => {
+    const conFuente = recipeStub('a', { fuente: { ref: 'mb' } });
+    expect(() => validateIntegrity(seedStub([conFuente]))).toThrow(/sin entrada en el catálogo/);
+    expect(() =>
+      validateIntegrity(seedStub([conFuente], { mb: { nombre: 'Minimalist Baker' } })),
+    ).not.toThrow();
   });
 
   test('detecta ciclos de preparados', () => {
     const a = recipeStub('a', { es_preparado: true, rendimiento_g: 100 });
     const b = recipeStub('b', { es_preparado: true, rendimiento_g: 100 });
-    a.lineas.push({ ref: { tipo: 'receta', id: 'b' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [] });
-    b.lineas.push({ ref: { tipo: 'receta', id: 'a' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [] });
+    a.lineas.push({ ref: { tipo: 'receta', id: 'b' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [], paso: null });
+    b.lineas.push({ ref: { tipo: 'receta', id: 'a' }, cantidad: 1, unidad_display: 'g', g_aprox: 50, sustitutos: [], paso: null });
     expect(() => validateIntegrity(seedStub([a, b]))).toThrow(/ciclo de preparados/);
   });
 });

@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { CURATED_SOURCES } from './curated-tables';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -108,17 +109,80 @@ export interface RawData {
   conservacion: Array<Record<string, unknown>>;
   glosario: Array<Record<string, unknown>>;
   utensilios: Record<string, unknown>;
+  fuentes: Record<string, RawSourceEntry>;
+}
+
+/** Una entrada del catálogo de fuentes, ya normalizada desde sus tres formas. */
+export interface RawSourceEntry {
+  nombre: string;
+  url?: string;
+  credencial?: string;
 }
 
 function loadJson<T>(file: string): T {
   return JSON.parse(readFileSync(join(ARTIFACTS_DIR, file), 'utf8')) as T;
 }
 
+type RawSourceCatalog = Record<string, { nombre?: string; url?: string | null; credencial?: string }>;
+
+/**
+ * `fuente.ref` viaja en las 84 recetas, pero lo que traduce "mb" a "Minimalist
+ * Baker" vive repartido en tres formas: el catálogo `fuentes` de los sets 1 y 2,
+ * `meta.fuente_libro` en el 3, y `meta.origen` en el personal. Sin esto la ficha
+ * mostraba el código crudo (#149).
+ *
+ * Los sets 1 y 2 comparten refs y solo el 1 trae `credencial`: se fusionan campo
+ * por campo, sin que un valor presente lo pise uno ausente.
+ */
+function fundirFuente(previa: RawSourceEntry | undefined, nueva: RawSourceCatalog[string]): RawSourceEntry {
+  const url = nueva.url ?? undefined; // el dataset usa null donde no hay sitio
+  return {
+    nombre: previa?.nombre ?? nueva.nombre ?? '',
+    ...(previa?.url ?? url ? { url: previa?.url ?? url } : {}),
+    ...(previa?.credencial ?? nueva.credencial ? { credencial: previa?.credencial ?? nueva.credencial } : {}),
+  };
+}
+
+function catalogoDeFuentes(
+  catalogos: RawSourceCatalog[],
+  libro: { ref?: string; nombre?: string; nota?: string } | undefined,
+  personal: { ref: string; nombre: string } | undefined,
+): Record<string, RawSourceEntry> {
+  const fuentes: Record<string, RawSourceEntry> = {};
+  for (const catalogo of catalogos) {
+    for (const [ref, entrada] of Object.entries(catalogo)) {
+      fuentes[ref] = fundirFuente(fuentes[ref], entrada);
+    }
+  }
+  // El set 3 declara su libro en meta; su `nota` es lo que en los otros sets es
+  // la credencial ("autoeditado sin certificación").
+  if (libro?.ref && libro.nombre) {
+    fuentes[libro.ref] = { nombre: libro.nombre, ...(libro.nota ? { credencial: libro.nota } : {}) };
+  }
+  // El set personal no tiene catálogo: `meta.origen` es el nombre y la ref la
+  // ponen sus 45 recetas. Si alguna vez deja de coincidir, `validate` lo rompe.
+  if (personal) fuentes[personal.ref] = { nombre: personal.nombre };
+
+  // T13 pisa lo que el dataset escribió para el pipeline y no para quien cocina.
+  for (const [ref, override] of Object.entries(CURATED_SOURCES)) {
+    const previa = fuentes[ref];
+    if (!previa) throw new Error(`T13: override para la fuente "${ref}", que no existe en el catálogo`);
+    fuentes[ref] = {
+      ...previa,
+      ...(override.nombre ? { nombre: override.nombre } : {}),
+      ...(override.credencial ? { credencial: override.credencial } : {}),
+    };
+  }
+  return fuentes;
+}
+
 export function loadRawData(): RawData {
-  const set1 = loadJson<{ recetas: RawRecipe[] }>('recetas.json');
-  const set2 = loadJson<{ recetas: RawRecipe[] }>('recetas-set2.json');
-  const set3 = loadJson<{ recetas: RawRecipe[] }>('recetas-set3.json');
-  const setP = loadJson<{ recetas: RawRecipe[] }>('recetas-personales.json');
+  const set1 = loadJson<{ recetas: RawRecipe[]; fuentes?: RawSourceCatalog }>('recetas.json');
+  const set2 = loadJson<{ recetas: RawRecipe[]; fuentes?: RawSourceCatalog }>('recetas-set2.json');
+  const set3 = loadJson<{ recetas: RawRecipe[]; meta?: { fuente_libro?: { ref?: string; nombre?: string; nota?: string } } }>(
+    'recetas-set3.json',
+  );
+  const setP = loadJson<{ recetas: RawRecipe[]; meta?: { origen?: string } }>('recetas-personales.json');
   const ingredientes = loadJson<{ ingredientes: RawIngredient[] }>('ingredientes-v1.3.json');
   const nutrientes = loadJson<{ nutrientes: RawNutrient[]; reglas_combinacion: RawRule[] }>(
     'nutrientes-veganos-v1.1.json',
@@ -134,5 +198,10 @@ export function loadRawData(): RawData {
     conservacion: loadJson<{ items: Array<Record<string, unknown>> }>('conservacion.json').items,
     glosario: loadJson<{ terminos: Array<Record<string, unknown>> }>('glosario.json').terminos,
     utensilios: loadJson('utensilios.json'),
+    fuentes: catalogoDeFuentes(
+      [set1.fuentes ?? {}, set2.fuentes ?? {}],
+      set3.meta?.fuente_libro,
+      setP.meta?.origen ? { ref: 'recetario_personal', nombre: setP.meta.origen } : undefined,
+    ),
   };
 }

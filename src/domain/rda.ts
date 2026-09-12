@@ -1,6 +1,6 @@
 import type { Nutrient } from '../seed/schema';
 import { midpoint } from './interval';
-import { per100g, perPortion, type RecipeNutrition } from './nutrition';
+import { enSuBase, type RecipeNutrition } from './nutrition';
 
 /**
  * Resolución de RDA canónicas por perfil. En Fase 1 la UI solo usa la
@@ -77,7 +77,7 @@ const RICH_THRESHOLD = 0.2;
  * Sin eso, una receta cuya B12 va "de 0 a 12,7 µg" aparecería como rica en B12.
  */
 export function isRichIn(nutrition: RecipeNutrition, nutrient: Nutrient): boolean {
-  const base = perPortion(nutrition) ?? per100g(nutrition);
+  const base = enSuBase(nutrition).medida;
   const result = base.por_nutriente[nutrient.clave_ingrediente];
   if (result.ic === null) return false; // sin datos no se afirma nada
   if (result.intervalo.min <= 0) return false;

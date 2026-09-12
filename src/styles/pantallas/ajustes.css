@@ -15,13 +15,19 @@
   font-size: var(--fs-sm);
   background: var(--superficie);
   border: var(--borde);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   padding: var(--sp-3);
 }
 
 .acciones-ajustes {
   display: flex;
   gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.control-apariencia {
+  display: flex;
+  gap: var(--sp-2);
   flex-wrap: wrap;
 }
 

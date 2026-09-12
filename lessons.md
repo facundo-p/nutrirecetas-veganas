@@ -328,3 +328,206 @@ podía fallar: el motivo era correcto según su propia lógica.
   fallaba: "IC 8" pasó a "confianza 8 de 10", en los seis lugares donde salía
   —dos más de los que se habían contado, y tres comunicaban el dato solo con el
   ícono y un `title`, que en el celular no existe.
+
+---
+
+## Lo que apareció usando el recetario (2026-09-06, #136–#152)
+
+Ocho entregables salidos de que Facu usara la app por primera vez en serio. No
+de una auditoría ni de un test: de cocinar con ella.
+
+- **Un dato que quien construye la app no entiende no puede estar en pantalla.**
+  El disparador fue "no recuerdo bien qué es el índice de confianza". El IC de
+  una receta mide cuánta confianza tiene **la fuente** en que **su adaptación
+  vegana** esté bien, y el código ya lo sabía: el motor de recomendaciones lo
+  excluía a propósito de su ranking, con el comentario *"mezclarlos sería mentir
+  con precisión"* al lado. Ese comentario existía porque el IC **no entraba al
+  cálculo** — mientras tanto, en la tarjeta, entraba a los ojos. **Un invariante
+  escrito para el motor no protege a la vista**, y nadie lo había notado en tres
+  fases.
+- **La inferencia le gana al dato cuando el dato falta en un solo set.** El
+  budín de chía salía salado porque el set 1 es el único sin campo `tipo` y el
+  pipeline lo asumía en bloque: acierta en 9 de 10, y la décima es un desayuno
+  con banana y kiwi. `recetas.md` lo titulaba "(desayuno)" desde el principio.
+  La corrección trajo una guarda que vale más que el arreglo: **una entrada
+  curada que repite lo que el dataset ya dice rompe el build**. Una corrección
+  que dejó de corregir es una línea que nadie va a volver a leer.
+- **El origen estaba entero y se mostraba en código.** Las 84 recetas conservan
+  `fuente.ref`; lo que traduce `mb` a "Minimalist Baker" vivía en `.artifacts/`
+  desde siempre y `load.ts` solo extraía `.recetas`. Es la contracara de la
+  lección de la Fase 0: no alcanza con verificar que el dato exista en el JSON,
+  hay que verificar **qué se lleva el pipeline**. Y al traerlo apareció lo otro:
+  dos entradas del catálogo estaban escritas para quien construye la app
+  ("subir IC al validarlas en cocina"), y ahora las lee quien cocina.
+- **La semilla ya tenía la respuesta que parecía necesitar una migración.** Los
+  estados de receta arrancaban pidiendo un valor inicial para 84 recetas; el
+  `estado` del dataset ya parte 45 probadas (el recetario personal de Facu) y 39
+  por probar. Se lee, no se copia. El corolario incómodo es que **`sin-probar`
+  tiene que ser un valor guardable y no la ausencia**: es la única forma de
+  desmarcar una de esas 45.
+- **La misma información con dos tratamientos es una de las dos mal.** Los
+  sustitutos eran botones que recalculan en la cocina y links informativos en la
+  ficha. La ficha estaba mal, y arreglarla regaló algo que no se buscaba: ahora
+  **solo los tocables parecen tocables** — los 68 resolubles son botones, los 100
+  de texto libre siguen inertes. Antes se veían igual y ninguno hacía nada.
+- **Los tests verdes no dicen nada si no pueden fallar.** Los dos de la memoria
+  de filtros se verificaron al revés: neutralizada la escritura, dan rojo. Vale
+  la pena el minuto — el test de huérfanas de T9 que había de antes reimplementa
+  el guard en vez de ejercitarlo, y por eso el de T12 se extrajo a función pura.
+- **La lección de #115 volvió a cobrar en la misma sesión**: `npm test` en verde
+  y `npm run build` en 1, por un `TS2532` en un test que vitest no compila. Se
+  agarró porque el exit code se chequea sin pipe. Van dos.
+- **Los renders siguen encontrando lo que ningún test mira**: el control de
+  estado de la ficha salió sin rótulo y se leía como un filtro más. Le faltaba
+  una palabra ("PARA VOS"), y eso no lo dice un `getByRole`.
+- **`.chip-mini` vivía en `recetario.css` y lo leían seis pantallas.** La regla
+  de CLAUDE.md nombra exactamente esa señal. Se degradó sola, como la de los
+  colores antes del contrato de temas: **una regla sin test se cae, aunque esté
+  escrita**.
+
+---
+
+## El cromatograma: lo que se decidió antes de pintar (2026-09-11, #170)
+
+- **Un casillero vacío afirma.** El rediseño de Claude Design le daba al yodo un
+  color fijo en la barra de aporte. Medido contra las 72 recetas con porciones:
+  3 de 158 ingredientes tienen dato y ninguna receta llega al 20 %, así que su
+  casillero quedaba vacío en 70 de 72 — y vacío se lee "no tiene", cuando la
+  verdad es "no sabemos". Es el invariante 5 aplicado a un gráfico. El criterio
+  quedó con dos condiciones: que importe para un vegano **y** que haya dato. La
+  medición mostró además que la lista del handoff no salía de ningún criterio:
+  cuatro de sus once eran `importante`, y el selenio, crítico, no estaba.
+- **El handoff no es la especificación, otra vez.** Traía de vuelta dos
+  decisiones ya tomadas —las tres rayas del IC (#127) y un promedio semanal en el
+  Diario— y asumía tres datos que la semilla no tiene: ingrediente→paso,
+  ingrediente ancla, pasos en paralelo. Leerlo contra `lessons.md` y el esquema
+  antes de planificar los destapó en la entrevista, no a mitad de implementación.
+- **Un rol entra con su consumidor.** El test de tokens muertos no deja declarar
+  `--nut-*` en el tema antes de que alguna hoja los use: los colores de nutriente
+  entran en #157 con la barra, no en #156 con la paleta.
+- **El exit code con pipe mintió por tercera vez.** El baseline con
+  `npm test | tail` dio exit 0 con un test rojo (el timeout de 5 s conocido).
+  Van tres.
+
+### Tanda 2: el recetario (2026-09-11, #158)
+
+- **Una clase compartida vive donde la leen todos, no donde nació.**
+  `.meta-item`, `.inline-icono` y `.conteo-resultados` estaban en
+  `recetario.css` y las leían seis pantallas. Achicar el ícono para el título de
+  27 px lo achicó en la receta, el diario y cocina. Ningún test lo ve —en jsdom
+  no hay CSS—; lo encontró un `grep` antes de mirar los renders. Tercera vez que
+  la regla cobra: la nutrición en la Fase 3, `.chip-mini` en #136–#152.
+- **Rojo aislado no es flakiness.** El test de `App` ya fallaba por el timeout
+  de 5 s bajo carga, y el diagnóstico estaba a mano. Corrido solo seguía rojo:
+  esperaba un `h1` «Recetario» que el rediseño cambió a «Nutrirecetas». En
+  staging tardaba 746 ms. Medir contra el baseline separó las dos causas.
+- **El grep cubre toda clase cuya regla se tocó, no solo las que se
+  renombraron.** En #158 se buscaron los consumidores de las clases movidas;
+  `.filtros-busqueda` se cambió en el lugar, y la lista de ingredientes —que la
+  leía desde `recetario.css`— llegó a staging con el buscador sin caja. Estaba
+  en un recorte que se miró para otra cosa. Lo destapó el grep de #159, al
+  borrar `.filtros-fila`.
+
+### Tanda 2: la ficha (2026-09-11, #160)
+
+- **Mudar una regla no es neutro: cambia la cascada.** `.detalle-tipo svg`
+  vivía en `receta.css`, que se carga después de `componentes.css`, y le ganaba
+  por orden a `.confianza svg`, que tiene la misma especificidad. Mudada arriba
+  de esa regla, perdió, y los brotes de dos fichas cambiaron de tamaño. Lo
+  encontró comparar píxeles contra la tanda anterior (`git show HEAD:` y la
+  diferencia de las imágenes): 2.900 píxeles en un renglón. Con la sección al
+  final de `componentes.css`, las otras pantallas dan cero. Es el baseline y
+  `cmp` de CLAUDE.md, y vale también para el CSS que se mueve "sin cambios".
+- **Un test con el nombre correcto puede probar otra cosa.** "La levadura
+  dentro de un preparado da punto hueco" pasaba con p19, que también tiene
+  levadura como línea propia: sacar la regla del preparado no lo rompía. La
+  mutación lo destapó, y el test pasó a mirar la línea exacta de p31, que la
+  trae solo en la manteca vegana.
+- **Un dato que ya cumple la regla tapa el test.** En #162, tres tests verdes a
+  la primera probaban menos que su nombre: "de más a menos" pasaba porque r01 ya
+  lista las líneas de más a menos hierro; "las kcal con su intervalo" no miraba
+  el intervalo; "lleva su color" no miraba si el cuadrado era relleno. Los
+  arreglos no dependen de la casualidad: las líneas al revés, una receta
+  buscada en la semilla por tener banda. Van cuatro en la fase: mutar después
+  de cada verde a la primera es parte del test, no un extra.
+
+### Revisión con contexto fresco de las tandas 1 y 2 (2026-09-11, #179)
+
+- **Una porción no se calcula con cantidades redondeadas.** La ficha
+  recalculaba la nutrición con `escalarLineas`, que redondea a medidas de
+  cocina: a un cuarto, p28 decía 300 kcal por porción en vez de 147. El
+  comentario de al lado afirmaba lo contrario. Ningún test escalaba hasta el
+  tope, donde el redondeo pesa; lo encontró un revisor midiendo las 84 recetas.
+- **Estado por índice más componente reusado es estado ajeno.** Sin `key`, React
+  reusaba la ficha al saltar de receta, y las sustituciones —un mapa por número
+  de línea— caían en la línea equivalente de la otra. `key={route.id}`.
+- **Lo barato se acumula.** De 48 hallazgos, la mayoría costaba minutos: una
+  prop `mini` que nunca tuvo usuario, un aviso que su única pantalla filtraba,
+  la misma cuenta de objetivos en cinco pantallas, un `font-size` que nunca se
+  aplicó porque `.encabezado-pantalla h1` le ganaba por especificidad (el título
+  medía 38 px, no los 40 del diseño). Revisar al final de cada tanda, no al
+  cierre de fase: cada tanda se apoya en la anterior.
+
+### Qué ingrediente entra en cada paso (2026-09-11, #163)
+
+- **Un agente barato alcanza si trae evidencia.** 84 agentes Haiku, uno por
+  receta, ~2,7 M tokens y 5 minutos para 804 líneas. Cada respuesta traía la
+  cita textual del paso: con eso se revisa en segundos en vez de releer la
+  receta. De 804 líneas se corrigieron 3.
+- **El matcher mira para un solo lado.** La segunda opinión marcaba lo que el
+  agente ubicaba *después* del primer paso que nombra al ingrediente, y casi
+  todo fue falso positivo ("dulce" en *base dulce*). Los errores reales estaban
+  del otro lado: la harina y el aceite de p41 en el paso que enharina y aceita
+  el molde, *antes* de nombrarlos. Los encontró listar lo que caía en un paso que
+  no nombra al ingrediente. Una lista de palabras vacías que incluía "agua"
+  escondía además todas las líneas de agua de ese mismo control.
+
+### Modo cocina: la receta entera a la vista (2026-09-11, #164)
+
+- **Un mutante que sobrevive puede ser código repetido, no un test flojo.**
+  Sacar el `l.activa` del color del paso no rompía nada porque
+  `nutricionSesion` ya filtra lo activo: el filtro estaba dos veces. Se borró
+  el de afuera y el test pasó a morder el único que queda.
+- **El wake lock nunca volvía.** El navegador lo suelta al pasar a segundo
+  plano, pero el hook no lo anotaba y `alVolver` creía tenerlo: desde la Fase 2,
+  la pantalla se apagaba después de mirar un mensaje. Sin test, nadie lo vio.
+  Escuchar `release` lo arregla y deja decir la verdad en la nota del pie.
+- **`goto` a la misma URL solo cambia el hash.** En los renders, la segunda ruta
+  de cocina heredaba la sesión de la primera. Recargar la arranca de cero.
+
+---
+
+## Papel y musgo: el tema claro y el oscuro (2026-09-12, #185)
+
+- **Se mide el CSS que se escribe, no la tabla que se anotó.** Las medidas del
+  prototipo daban todo en verde, pero no incluían el par acción–proteína del
+  tema claro: quedó a ΔE 9, parecido sin ser igual, que se lee peor que
+  idéntico. Lo encontró un script que lee los temas reales y busca pares entre
+  ΔE 0,5 y 13. La salida fue la de G: que la acción comparta a propósito el
+  verde de la proteína.
+- **Un hook que mira la rama desde su propio directorio no ve un worktree.**
+  `guard-main` calcula la rama con el cwd del hook, que es el del repo
+  principal: con ese árbol en `staging`, bloquea el commit hecho en la rama del
+  worktree. La salida es que la sesión entre al worktree (`EnterWorktree`), no
+  esquivar el guard.
+- **La lección de #115, por tercera vez**: el test de láminas lee el disco,
+  vitest lo corrió verde y `tsc -b` lo rechazó por no tener los tipos de node.
+  Un test así va al proyecto de node (`tsconfig.node.json`), como el del
+  contrato de temas.
+- **Un dibujo junto a un título que puede ser largo es un float, no un
+  absolute.** Absoluto, «Hamburguesas de porotos negros» pasaba por debajo de
+  la lámina. Flotado, el título la rodea; pero a la altura del título le robaba
+  ancho a dos líneas y estiraba la sopa a cuatro renglones. Subido casi entero
+  al renglón vacío de «‹ Recetario», solo acorta la primera. Se vio en tres
+  vueltas de capturas: ningún test mira dónde corta un título.
+
+### Menos texto, más receta (2026-09-12, #194)
+
+- **Un `fixed` adentro de un contexto de apilado aislado no escapa de él.** La
+  hoja de la «i» vive en encabezados y fichas que tienen `isolation: isolate`
+  (por las láminas): su `z-index` quedaba confinado ahí y la nav la tapaba. La
+  salida es montarla en `body` con un portal, no subir números de `z-index`.
+- **Mudar un texto no es borrarlo, y el test lo tiene que saber.** Los tests de
+  la B12 buscaban la advertencia a la vista; ahora abren la «i» y la encuentran
+  ahí, con la levadura suelta y dentro de un preparado. Borrarlos habría dejado
+  el invariante 6 sin nadie que lo cuide.

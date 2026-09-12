@@ -42,8 +42,8 @@ export function Glossary() {
             <section key={grupo}>
               <h2 className="etiqueta-seccion nutricion-grupo">{grupo}</h2>
               <ul className="lista-iconos">
-                {ICON_CATALOG.filter((e) => e.grupo === grupo).map(({ id, Componente, significado, cat }) => (
-                  <li key={id} className="tarjeta ficha-icono" data-cat={cat}>
+                {ICON_CATALOG.filter((e) => e.grupo === grupo).map(({ id, Componente, significado }) => (
+                  <li key={id} className="tarjeta ficha-icono">
                     <Componente className="ficha-icono-svg" />
                     <span>{significado}</span>
                   </li>

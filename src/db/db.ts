@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
-import { migrarPerfilV1, migrarPerfilV3 } from './migrations';
+import { migrarOverlayV4, migrarPerfilV1, migrarPerfilV3 } from './migrations';
 import type { Coccion, Meta, Overlay, Perfil } from './schema';
 
 /**
@@ -64,6 +64,19 @@ export class UserDb extends Dexie {
           .toCollection()
           .modify((perfil, ref) => {
             ref.value = migrarPerfilV3(perfil as Record<string, unknown>);
+          }),
+      );
+    // v5: el overlay pierde `favorita` e `ic_usuario` y gana `estado`. Los
+    // índices no cambian; sí la forma del registro, y `overlaySchema` es
+    // estricto: un campo de más haría rebotar el próximo guardado.
+    this.version(5)
+      .stores({})
+      .upgrade((tx) =>
+        tx
+          .table('overlays')
+          .toCollection()
+          .modify((overlay, ref) => {
+            ref.value = migrarOverlayV4(overlay as Record<string, unknown>);
           }),
       );
   }

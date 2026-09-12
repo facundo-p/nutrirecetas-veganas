@@ -26,6 +26,10 @@
   color: var(--icono-indulgente);
 }
 
+.icono-aviso {
+  color: var(--aviso);
+}
+
 /* ---------- chips y badges ---------- */
 
 .chip {
@@ -33,7 +37,7 @@
   align-items: center;
   gap: var(--sp-1);
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   border: 1px solid color-mix(in srgb, var(--chip) 70%, var(--tinta) 8%);
   background: color-mix(in srgb, var(--chip) 18%, var(--superficie));
   font-size: var(--fs-xs);
@@ -47,6 +51,14 @@
   font: inherit;
   font-size: var(--fs-sm);
   min-height: 34px;
+}
+
+/* Va después de .chip-boton: un chip mini que además es botón se queda con el
+   cuerpo chico y con la altura de toque. Vivía en recetario.css y lo leían seis
+   pantallas, que es la señal de que la regla estaba rota. */
+.chip-mini {
+  font-size: 0.7rem;
+  padding: 0 8px;
 }
 
 .chip-boton[aria-pressed='true'] {
@@ -73,7 +85,7 @@
 .toast-actualizacion button {
   appearance: none;
   border: none;
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: var(--accion);
   color: var(--sobre-accion);
   font: inherit;
@@ -82,9 +94,131 @@
   cursor: pointer;
 }
 
-/* el ícono de tipo hereda la categoría del data-cat de su tarjeta */
+/* El tipo va en tinta suave: el color es de los nutrientes. */
 .icono-tipo {
-  color: var(--cat-actual);
+  color: var(--tinta-suave);
+}
+
+/* ---------- datos sueltos ----------
+   Los leen el recetario, la receta, ingredientes, nutrientes, el diario y
+   cocina. Vivían en recetario.css, y retocarlos para el recetario los
+   cambiaba en las otras cinco. */
+
+.conteo-resultados {
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  margin-bottom: var(--sp-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-item svg {
+  font-size: 14px;
+}
+
+.inline-icono {
+  font-size: 0.85em;
+  display: inline-block;
+  vertical-align: -0.1em;
+  margin-left: var(--sp-1);
+}
+
+/* ---------- aporte: un color por nutriente ----------
+   El color codifica, no decora: cada uno de estos colores es un nutriente y
+   nada más. `[data-nut]` fija --nut sobre el propio elemento —una property con
+   var() se resuelve donde se declara— y las piezas de abajo lo leen. */
+
+[data-nut='hierro'] {
+  --nut: var(--nut-hierro);
+}
+[data-nut='calcio'] {
+  --nut: var(--nut-calcio);
+}
+[data-nut='magnesio'] {
+  --nut: var(--nut-magnesio);
+}
+[data-nut='zinc'] {
+  --nut: var(--nut-zinc);
+}
+[data-nut='selenio'] {
+  --nut: var(--nut-selenio);
+}
+[data-nut='vita'] {
+  --nut: var(--nut-vita);
+}
+[data-nut='vitc'] {
+  --nut: var(--nut-vitc);
+}
+[data-nut='folato'] {
+  --nut: var(--nut-folato);
+}
+[data-nut='proteina'] {
+  --nut: var(--nut-proteina);
+}
+[data-nut='fibra'] {
+  --nut: var(--nut-fibra);
+}
+[data-nut='omega3'] {
+  --nut: var(--nut-omega3);
+}
+[data-nut='ninguno'],
+[data-nut='condicional'] {
+  --nut: var(--sin-aporte);
+}
+
+/* Seis casilleros de ancho igual. La escala es la misma en todas las recetas:
+   9 % mide igual en cualquier fila. */
+.barra-aporte {
+  display: flex;
+  gap: var(--gap-franja);
+}
+
+.franja {
+  flex: 1;
+  height: var(--alto-franja);
+}
+
+.franja-fondo {
+  fill: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.franja-relleno {
+  fill: var(--nut);
+}
+
+.punto-nutriente {
+  display: inline-block;
+  flex: none;
+  width: var(--punto-nutriente);
+  height: var(--punto-nutriente);
+  background: var(--nut);
+}
+
+/* Hueco: la levadura trae B12 solo si la marca está fortificada. */
+.punto-nutriente[data-nut='condicional'] {
+  background: none;
+  border: 1.5px solid var(--nut);
+}
+
+/* Sin data-nut —los que no entran a las barras— el borde cae a un gris de tinta. */
+.cuadrado-nutriente {
+  display: inline-block;
+  flex: none;
+  width: var(--cuadrado-nutriente);
+  height: var(--cuadrado-nutriente);
+  background: var(--nut);
+  border: 1px solid var(--nut, color-mix(in srgb, var(--tinta) 35%, transparent));
+}
+
+.cuadrado-nutriente.hueco {
+  background: none;
 }
 
 /* ============ Formularios (perfil, registro, ajustes) ============ */
@@ -123,10 +257,10 @@
   font: inherit;
   padding: var(--sp-2) var(--sp-3);
   border: var(--borde);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   background: var(--superficie);
   color: var(--tinta);
-  min-height: 44px;
+  min-height: var(--toque-minimo);
   width: 100%;
 }
 
@@ -179,7 +313,7 @@
 .boton-secundario {
   appearance: none;
   border: none;
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
   font: inherit;
   font-weight: 600;
   padding: var(--sp-3) var(--sp-5);
@@ -215,7 +349,7 @@
   font-size: var(--fs-sm);
   padding: var(--sp-1) var(--sp-3);
   min-height: 38px;
-  border-radius: 999px;
+  border-radius: var(--radio-chip);
   border: 1px solid color-mix(in srgb, var(--tinta) 22%, transparent);
   background: var(--superficie);
   color: var(--tinta);
@@ -238,10 +372,24 @@
   text-align: left;
 }
 
+/* Un botón que no se ve como botón: lo que se toca es la fila o el título.
+   Cada pantalla le pone su forma encima. */
+.boton-plano {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  min-height: var(--toque-minimo);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
 .boton-redondo {
   appearance: none;
-  width: 44px;
-  height: 44px;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--tinta) 25%, transparent);
   background: var(--superficie);
@@ -254,12 +402,6 @@
 .boton-redondo:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-}
-
-.boton-grande {
-  font-size: var(--fs-lg);
-  min-height: 60px;
-  flex: 1;
 }
 
 .boton-cocinar {
@@ -275,7 +417,7 @@
 .mensaje-error {
   font-size: var(--fs-sm);
   padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radio-chico);
+  border-radius: var(--radio);
 }
 
 .mensaje-ok {
@@ -286,6 +428,24 @@
 .mensaje-error {
   background: color-mix(in srgb, var(--aviso) 12%, var(--superficie));
   color: var(--tinta);
+}
+
+/* Confirmar algo que no se deshace: cocina y ajustes. */
+.confirmacion {
+  background: color-mix(in srgb, var(--aviso) 8%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--aviso) 40%, transparent);
+  border-radius: var(--radio);
+  padding: var(--sp-3);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.confirmacion-acciones {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
 }
 
 .intro-vacia {
@@ -310,6 +470,56 @@
 }
 
 
+/* ---------- buscador: lo usan el recetario y los ingredientes ---------- */
+
+.filtros {
+  display: grid;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+/* El borde es del campo entero, con la lupa adentro: por eso el foco se
+   dibuja en el contenedor y no en el input. */
+.filtros-buscador {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--alto-control);
+  padding: 0 var(--sp-3);
+  border: var(--borde-control);
+  border-radius: var(--radio);
+  color: var(--tinta-suave);
+}
+
+.filtros-buscador:focus-within {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.filtros-buscador svg {
+  flex: none;
+  font-size: 18px;
+}
+
+.filtros-busqueda {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  font: inherit;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--tinta);
+}
+
+.filtros-busqueda:focus-visible {
+  outline: none;
+}
+
+.filtros-busqueda::placeholder {
+  color: var(--dato-suave);
+}
+
 /* Puente entre un filtro y la ficha del nutriente que lo explica. */
 .filtros-enlace {
   font-size: var(--fs-sm);
@@ -317,9 +527,9 @@
 }
 
 /* ============ Nutrición ============
-   La comparten tres pantallas —detalle de receta, ficha de ingrediente y
-   ficha de nutriente—, así que por la regla 2 vive acá y no en la hoja de
-   ninguna de las tres. Estuvo en receta.css hasta la Fase 3. */
+   La leen la ficha de ingrediente, Nutrientes y el Glosario, y las bandas
+   también la ficha de receta: por la regla 2 vive acá y no en la hoja de
+   ninguna. */
 .nutricion {
   background: var(--superficie);
   border: var(--borde);
@@ -336,39 +546,7 @@
 }
 
 .nutricion-cabecera h2 {
-  border: none !important;
-  margin-bottom: 0 !important;
-  font-size: var(--fs-lg) !important;
-}
-
-/* El h2 sigue siendo h2 (encabezado real); el botón es solo el mecanismo. */
-.nutricion-toggle {
-  appearance: none;
-  border: none;
-  background: none;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-  min-height: 44px;
-}
-
-.nutricion-sin-datos-toggle {
-  appearance: none;
-  border: none;
-  background: none;
-  font: inherit;
-  font-size: var(--fs-sm);
-  color: var(--dato-suave);
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  text-align: left;
-  min-height: 44px;
-  margin-top: var(--sp-2);
-  padding-top: var(--sp-2);
-  border-top: var(--borde-suave);
+  font-size: var(--fs-lg);
 }
 
 .nutricion-cobertura-global {
@@ -464,21 +642,6 @@
   color: var(--tinta-suave);
 }
 
-.nutriente-calidad svg {
-  font-size: 13px;
-}
-
-.nutriente-cobertura {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  margin-left: var(--sp-3);
-}
-
-.nutriente.sin-datos {
-  color: var(--dato-suave);
-}
-
 .nutriente-sin-datos {
   display: inline-flex;
   align-items: center;
@@ -504,4 +667,526 @@
 
 .confianza svg {
   font-size: 15px;
+}
+
+/* ---------- tu estado con una receta ---------- */
+
+/* El color va en el ícono y en un lavado de fondo; el texto se queda en tinta.
+   Un chip de color entero compite con el sello de categoría, que es lo que
+   ubica la receta de un vistazo. */
+.chip-estado svg {
+  font-size: 14px;
+}
+
+.estado-probada {
+  background: color-mix(in srgb, var(--confirmado) 14%, var(--superficie));
+  border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
+}
+.estado-probada svg {
+  color: var(--confirmado);
+}
+
+.estado-pendiente {
+  background: color-mix(in srgb, var(--estado-pendiente) 14%, var(--superficie));
+  border-color: color-mix(in srgb, var(--estado-pendiente) 45%, transparent);
+}
+.estado-pendiente svg {
+  color: var(--estado-pendiente);
+}
+
+.estado-favorita {
+  background: color-mix(in srgb, var(--estado-favorita) 16%, var(--superficie));
+  border-color: color-mix(in srgb, var(--estado-favorita) 50%, transparent);
+}
+.estado-favorita svg {
+  color: var(--estado-favorita);
+}
+
+/* En la ficha, el estado es un botón chico que abre las cuatro opciones. El
+   toque es de 44 px aunque el ícono sea chico; el margen negativo evita que
+   estire el renglón donde vive. */
+.menu-estado {
+  position: relative;
+  display: inline-flex;
+}
+
+.menu-estado-boton {
+  display: grid;
+  place-items: center;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  margin-block: calc(var(--sp-3) * -1);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radio-chip);
+  background: none;
+  color: var(--tinta-suave);
+  font-size: 22px;
+}
+
+.menu-estado-boton:hover,
+.menu-estado-boton[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--tinta) 8%, transparent);
+}
+
+.menu-estado [data-estado='probada'] svg {
+  color: var(--confirmado);
+}
+.menu-estado [data-estado='pendiente'] svg {
+  color: var(--estado-pendiente);
+}
+.menu-estado [data-estado='favorita'] svg {
+  color: var(--estado-favorita);
+}
+
+/* Flota sobre lo que haya abajo: opaco y con el papel, como el modal. */
+.menu-estado-opciones {
+  position: absolute;
+  top: calc(100% + var(--sp-1));
+  right: 0;
+  z-index: 10;
+  display: grid;
+  min-width: 11rem;
+  margin: 0;
+  padding: var(--sp-1);
+  list-style: none;
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
+  border: var(--borde-control);
+  border-radius: var(--radio);
+}
+
+.menu-estado-opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  min-height: var(--toque-minimo);
+  padding: 0 var(--sp-3);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radio);
+  background: none;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--tinta);
+  text-align: left;
+}
+
+.menu-estado-opcion svg {
+  font-size: 18px;
+}
+
+.menu-estado-opcion:hover,
+.menu-estado-opcion:focus-visible {
+  background: color-mix(in srgb, var(--tinta) 8%, transparent);
+}
+
+/* La elegida se lee antes que cuál es cuál. */
+.menu-estado-opcion[aria-checked='true'] {
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accion) 14%, transparent);
+}
+
+/* ---------- las fichas: receta, ingrediente y nutriente ----------
+   Las leen las tres fichas, más cocina (.volver, .chip-texto, .linea-funcion).
+   Van al final del archivo a propósito: .chip-texto pisa a .chip con la misma
+   especificidad. */
+
+.detalle {
+  display: grid;
+  gap: var(--sp-5);
+  max-width: 760px;
+}
+
+.detalle .encabezado-pantalla {
+  margin-bottom: 0;
+}
+
+.detalle section > h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-1);
+  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+}
+
+.volver {
+  margin-top: var(--sp-2);
+}
+
+.volver a {
+  color: var(--navegar);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+
+.detalle-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Explícito para el índice de confianza: si no, .confianza svg y esta
+   empatan, y gana la que esté más abajo. */
+.detalle-tipo svg,
+.detalle-tipo .confianza svg {
+  font-size: 18px;
+}
+
+.detalle-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+.detalle-meta .meta-item svg {
+  font-size: 16px;
+}
+
+.meta-suave {
+  color: var(--dato-suave);
+  margin-left: var(--sp-1);
+}
+
+.relaciones {
+  font-size: var(--fs-sm);
+  display: grid;
+  gap: var(--sp-1);
+  color: var(--tinta-suave);
+}
+
+.linea-funcion {
+  color: var(--funcion-ingrediente);
+}
+
+.chip-texto {
+  border-style: dashed;
+  background: none;
+}
+
+.lista-secretos {
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+
+.lista-secretos li::marker {
+  color: var(--tip-positivo);
+}
+
+.detalle-fuente {
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+  display: grid;
+  gap: 2px;
+}
+
+/* La credencial dice cuánto confiar en el origen; va en su renglón para que se
+   lea, no colgada del nombre con un punto medio. */
+.detalle-fuente-credencial {
+  font-style: italic;
+}
+
+.aviso {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+  font-size: var(--fs-sm);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radio);
+  background: color-mix(in srgb, var(--precaucion) 10%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--precaucion) 35%, transparent);
+}
+
+/* Las notas de una ficha: la tuya en la receta, la de la semilla en el
+   ingrediente y en el nutriente. */
+.nota-usuario {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  margin-top: var(--sp-2);
+}
+
+.nota-ingrediente {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+}
+
+/* ---------- láminas: grabados de verduras en tinta ----------
+   El trazo sale de la máscara y el color, de --ilustracion: cada tema entinta
+   el mismo grabado. Van solo en aire que está vacío —nunca debajo de texto, en
+   la cocina, entre filas ni en un modal— y no reciben toques. */
+
+.lamina {
+  display: block;
+  flex: none;
+  pointer-events: none;
+  background: var(--ilustracion);
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+/* Detrás del texto del encabezado, en el aire entre el título y el engranaje:
+   el encabezado le da el contexto de apilado (layout.css). */
+.lamina-encabezado {
+  position: absolute;
+  z-index: -1;
+  top: var(--sp-3);
+  right: calc(var(--toque-minimo) + var(--sp-2));
+  width: var(--lamina-encabezado);
+  height: var(--lamina-encabezado);
+  transform: rotate(-10deg);
+}
+
+/* La de la receta flota a la derecha del título, como la ilustración de un
+   capítulo: el título la rodea y nunca queda texto debajo. Sube casi entera al
+   renglón de «‹ Recetario», que a la derecha está vacío, para acortar solo la
+   primera línea del título: más abajo le robaba ancho a dos y lo estiraba a
+   cuatro renglones. */
+.lamina-ficha {
+  float: right;
+  width: var(--lamina-ficha);
+  height: var(--lamina-ficha);
+  margin: calc((var(--sp-7) + var(--sp-2)) * -1) 0 var(--sp-2) var(--sp-3);
+}
+
+/* Viñeta de cierre, como en los libros de cocina: la receta terminó. */
+.lamina-cierre {
+  width: var(--lamina-cierre);
+  height: var(--lamina-cierre);
+  margin: var(--sp-6) auto 0;
+}
+
+/* En un vacío el dibujo puede ser grande: no hay nada más que mirar. */
+.lamina-vacio {
+  justify-self: center;
+  width: var(--lamina-vacio);
+  height: var(--lamina-vacio);
+  margin: var(--sp-5) auto 0;
+}
+
+.lamina[data-lamina='ajo'] {
+  mask-image: url('../assets/laminas/ajo.webp');
+}
+.lamina[data-lamina='arroz'] {
+  mask-image: url('../assets/laminas/arroz.webp');
+}
+.lamina[data-lamina='banana'] {
+  mask-image: url('../assets/laminas/banana.webp');
+}
+.lamina[data-lamina='batata'] {
+  mask-image: url('../assets/laminas/batata.webp');
+}
+.lamina[data-lamina='berenjena'] {
+  mask-image: url('../assets/laminas/berenjena.webp');
+}
+.lamina[data-lamina='calabaza'] {
+  mask-image: url('../assets/laminas/calabaza.webp');
+}
+.lamina[data-lamina='cebolla'] {
+  mask-image: url('../assets/laminas/cebolla.webp');
+}
+.lamina[data-lamina='choclo'] {
+  mask-image: url('../assets/laminas/choclo.webp');
+}
+.lamina[data-lamina='coco'] {
+  mask-image: url('../assets/laminas/coco.webp');
+}
+.lamina[data-lamina='coliflor'] {
+  mask-image: url('../assets/laminas/coliflor.webp');
+}
+.lamina[data-lamina='datil'] {
+  mask-image: url('../assets/laminas/datil.webp');
+}
+.lamina[data-lamina='espinaca'] {
+  mask-image: url('../assets/laminas/espinaca.webp');
+}
+.lamina[data-lamina='frutilla'] {
+  mask-image: url('../assets/laminas/frutilla.webp');
+}
+.lamina[data-lamina='garbanzo'] {
+  mask-image: url('../assets/laminas/garbanzo.webp');
+}
+.lamina[data-lamina='lechuga'] {
+  mask-image: url('../assets/laminas/lechuga.webp');
+}
+.lamina[data-lamina='lentejas'] {
+  mask-image: url('../assets/laminas/lentejas.webp');
+}
+.lamina[data-lamina='limon'] {
+  mask-image: url('../assets/laminas/limon.webp');
+}
+.lamina[data-lamina='mandioca'] {
+  mask-image: url('../assets/laminas/mandioca.webp');
+}
+.lamina[data-lamina='mani'] {
+  mask-image: url('../assets/laminas/mani.webp');
+}
+.lamina[data-lamina='manzana'] {
+  mask-image: url('../assets/laminas/manzana.webp');
+}
+.lamina[data-lamina='membrillo'] {
+  mask-image: url('../assets/laminas/membrillo.webp');
+}
+.lamina[data-lamina='morron'] {
+  mask-image: url('../assets/laminas/morron.webp');
+}
+.lamina[data-lamina='nabo'] {
+  mask-image: url('../assets/laminas/nabo.webp');
+}
+.lamina[data-lamina='papa'] {
+  mask-image: url('../assets/laminas/papa.webp');
+}
+.lamina[data-lamina='perejil'] {
+  mask-image: url('../assets/laminas/perejil.webp');
+}
+.lamina[data-lamina='porotos'] {
+  mask-image: url('../assets/laminas/porotos.webp');
+}
+.lamina[data-lamina='puerro'] {
+  mask-image: url('../assets/laminas/puerro.webp');
+}
+.lamina[data-lamina='repollo'] {
+  mask-image: url('../assets/laminas/repollo.webp');
+}
+.lamina[data-lamina='soja'] {
+  mask-image: url('../assets/laminas/soja.webp');
+}
+.lamina[data-lamina='tomate'] {
+  mask-image: url('../assets/laminas/tomate.webp');
+}
+.lamina[data-lamina='trigo'] {
+  mask-image: url('../assets/laminas/trigo.webp');
+}
+.lamina[data-lamina='zanahoria'] {
+  mask-image: url('../assets/laminas/zanahoria.webp');
+}
+
+/* Con la «i» junto al engranaje, la lámina del encabezado se corre un botón. */
+.encabezado-pantalla-con-accion:has(.boton-informacion) .lamina-encabezado {
+  right: calc(var(--toque-minimo) * 2 + var(--sp-2));
+}
+
+/* ---------- la «i»: lo que explica la app ----------
+   Una por pantalla: a la vista queda la receta y lo que ayuda a cocinarla, y el
+   porqué, a un toque. Abre una hoja desde abajo, opaca y con el papel. */
+
+.boton-informacion {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
+  margin-block: calc(var(--sp-3) * -1);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radio-chip);
+  background: none;
+  color: var(--navegar);
+  font-size: 22px;
+}
+
+.boton-informacion:hover,
+.boton-informacion[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--tinta) 8%, transparent);
+}
+
+/* El renglón de arriba de una pantalla —el de «‹ volver» o el de la etiqueta—
+   con la «i» contra el margen derecho. */
+.fila-con-informacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.hoja-informacion {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hoja-informacion-velo {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: color-mix(in srgb, var(--papel) 80%, transparent);
+}
+
+.hoja-informacion-panel {
+  position: relative;
+  display: grid;
+  gap: var(--sp-4);
+  max-height: 78dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-5) var(--sp-4) calc(var(--sp-6) + env(safe-area-inset-bottom));
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
+  border-top: 2px solid var(--accion);
+}
+
+@media (min-width: 900px) {
+  .hoja-informacion-panel {
+    width: min(40rem, 100%);
+    margin: 0 auto;
+  }
+}
+
+.hoja-informacion-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hoja-informacion-cabecera h2 {
+  font-size: var(--fs-xl);
+  color: var(--tinta);
+}
+
+.hoja-informacion-cerrar {
+  display: grid;
+  place-items: center;
+  min-width: var(--toque-minimo);
+  min-height: var(--toque-minimo);
+  margin: calc(var(--sp-2) * -1);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--navegar);
+  font-size: 22px;
+}
+
+.hoja-informacion-cuerpo {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 38rem;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.hoja-informacion-cuerpo h3 {
+  margin-top: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--tinta);
+}
+
+.hoja-informacion-cuerpo strong {
+  color: var(--tinta);
 }

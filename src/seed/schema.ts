@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { LAMINAS } from './laminas';
 
 /**
  * Esquema Zod de la semilla canónica: única fuente de tipos compartida entre
@@ -199,6 +200,8 @@ export const lineSchema = z.strictObject({
   imprescindible: z.boolean().optional(),
   sustitutos: z.array(z.strictObject({ tipo: z.enum(['id', 'texto']), valor: z.string() })),
   nota: z.string().optional(),
+  /** Índice en `pasos` del paso donde entra, desde 0 (T14). null: ningún paso lo usa. */
+  paso: z.number().int().nonnegative().nullable(),
 });
 export type Line = z.infer<typeof lineSchema>;
 
@@ -209,6 +212,16 @@ export const recipeSourceSchema = z.strictObject({
   receta_original_num: z.union([z.string(), z.number()]).optional(),
   pagina_pdf: z.union([z.string(), z.number()]).optional(),
   nota: z.string().optional(),
+});
+
+/**
+ * El catálogo que traduce `fuente.ref` a algo legible. Sin él la ficha muestra
+ * el código crudo del dataset, que no le dice nada a nadie.
+ */
+export const sourceCatalogEntrySchema = z.strictObject({
+  nombre: z.string().min(1),
+  url: z.string().min(1).optional(),
+  credencial: z.string().min(1).optional(),
 });
 
 export const DIFFICULTY_LEVELS = ['trivial', 'muy fácil', 'fácil', 'media', 'difícil'] as const;
@@ -265,6 +278,8 @@ export const recipeSchema = z.strictObject({
   utensilios: z.array(recipeUtensilSchema),
   objetivo: z.string().optional(),
   nota: z.string().optional(),
+  /** El grabado de la ficha (T15). Sin lámina, la ficha va sin dibujo. */
+  lamina: z.enum(LAMINAS).optional(),
 });
 export type Recipe = z.infer<typeof recipeSchema>;
 
@@ -394,6 +409,7 @@ export const seedSchema = z.strictObject({
   nutrientes: z.array(nutrientSchema).min(1),
   reglas: z.array(ruleSchema).min(1),
   recetas: z.array(recipeSchema).min(1),
+  fuentes: z.record(z.string(), sourceCatalogEntrySchema),
   equivalencias: equivalencesSchema,
   estacionalidad: z.array(seasonalitySchema),
   conservacion: z.array(storageItemSchema),
