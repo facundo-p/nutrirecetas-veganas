@@ -6,6 +6,7 @@ import { ENTRENAMIENTO, NIVELES_ENTRENAMIENTO, PISO_POR_EDAD, type NivelEntrenam
 import { objetivosDelPerfil } from '../../domain/profile';
 import { getSeedIndex } from '../../seed';
 import { formatNumber } from '../common/format';
+import { Informacion } from '../common/Informacion';
 
 /**
  * Perfil real, y opcional. Lo único que hace es que el porcentaje de la ficha
@@ -77,12 +78,32 @@ export function ProfileScreen() {
   return (
     <>
       <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Mi perfil</span>
+        <div className="fila-con-informacion">
+          <span className="etiqueta-seccion">Mi perfil</span>
+          <Informacion>
+            <p>
+              Es opcional. Sirve para una sola cosa: que cuando mires cuánto aporta una receta, el porcentaje sea de{' '}
+              <strong>tu</strong> dosis diaria y no de una referencia adulta genérica. Nada de esto sale de tu teléfono.
+            </p>
+            <p>
+              El sexo es el parámetro fisiológico que usan las tablas de referencia (RDA), no una pregunta sobre
+              identidad.
+            </p>
+            <p>
+              El entrenamiento solo mueve el objetivo de proteína. De los {PISO_POR_EDAD.desde_anios} en adelante sube
+              solo, sin que tengas que declararlo.
+            </p>
+            <p>
+              Los nutrientes que te interesan aparecen primero en la nutrición de cada receta. No es una meta ni una
+              obligación: la app no lleva la cuenta de lo que comés.
+            </p>
+            <p>
+              La app informa, no diagnostica. Queda fuera de alcance: embarazo, lactancia, menores de edad y condiciones
+              médicas. Controlá B12, vitamina D y ferritina con análisis.
+            </p>
+          </Informacion>
+        </div>
         <h1>{perfilGuardado ? 'Tus datos' : 'Contame de vos, si querés'}</h1>
-        <p className="intro-vacia">
-          Es opcional. Sirve para una sola cosa: que cuando mires cuánto aporta una receta, el porcentaje sea de{' '}
-          <strong>tu</strong> dosis diaria y no de una referencia adulta genérica. Nada de esto sale de tu teléfono.
-        </p>
       </header>
 
       <form className="formulario" onSubmit={(e) => void guardar(e)}>
@@ -93,9 +114,6 @@ export function ProfileScreen() {
 
         <fieldset className="campo">
           <legend className="campo-etiqueta">Sexo para requerimientos</legend>
-          <p className="campo-ayuda">
-            Es el parámetro fisiológico que usan las tablas de referencia (RDA), no una pregunta sobre identidad.
-          </p>
           <div className="opciones">
             {(['masculino', 'femenino'] as const).map((valor) => (
               <label key={valor} className="opcion">
@@ -146,10 +164,6 @@ export function ProfileScreen() {
 
         <fieldset className="campo">
           <legend className="campo-etiqueta">Entrenamiento</legend>
-          <p className="campo-ayuda">
-            Solo mueve el objetivo de proteína. De los {PISO_POR_EDAD.desde_anios} en adelante sube solo, sin que
-            tengas que declararlo acá.
-          </p>
           <div className="opciones opciones-columna">
             {NIVELES_ENTRENAMIENTO.map((nivel) => (
               <label key={nivel} className="opcion">
@@ -169,10 +183,6 @@ export function ProfileScreen() {
 
         <fieldset className="campo">
           <legend className="campo-etiqueta">Nutrientes que te interesan</legend>
-          <p className="campo-ayuda">
-            Aparecen primero en la nutrición de cada receta. No es una meta ni una obligación: la app no lleva
-            la cuenta de lo que comés.
-          </p>
           <div className="opciones">
             {idx.seed.nutrientes.map((n) => (
               <label key={n.id} className="opcion">
@@ -211,11 +221,6 @@ export function ProfileScreen() {
           </ul>
         </section>
       )}
-
-      <p className="disclaimer">
-        La app informa, no diagnostica. Queda fuera de alcance: embarazo, lactancia, menores de edad y condiciones
-        médicas. Controlá B12, vitamina D y ferritina con análisis.
-      </p>
     </>
   );
 }

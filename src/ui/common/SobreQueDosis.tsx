@@ -15,3 +15,16 @@ export function SobreQueDosis({ fuente }: { fuente: FuenteDeObjetivo }) {
     </>
   );
 }
+
+/**
+ * La forma corta, la que queda a la vista junto a los porcentajes. La
+ * invitación al perfil va con el resto de la explicación, en la «i».
+ */
+export function SobreQueDosisCorta({ fuente }: { fuente: FuenteDeObjetivo }) {
+  if (fuente === 'perfil') return <>tu dosis diaria</>;
+  return (
+    <>
+      la <strong>referencia adulta genérica</strong>
+    </>
+  );
+}

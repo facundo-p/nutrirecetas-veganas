@@ -4,6 +4,7 @@ import { useCocciones, useMeta } from '../../db/hooks';
 import { registrarBackup } from '../../db/repos';
 import { getSeedIndex } from '../../seed';
 import { elegirPreferencia, preferenciaGuardada, type Preferencia } from '../../app/tema';
+import { Informacion } from '../common/Informacion';
 
 const OPCIONES_DE_APARIENCIA: { preferencia: Preferencia; rotulo: string }[] = [
   { preferencia: 'auto', rotulo: 'Automático' },
@@ -84,16 +85,21 @@ export function SettingsScreen() {
   return (
     <>
       <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Ajustes y datos</span>
+        <div className="fila-con-informacion">
+          <span className="etiqueta-seccion">Ajustes y datos</span>
+          <Informacion>
+            <p>
+              Todo lo tuyo vive solo en este dispositivo. Si borrás el sitio o cambiás de teléfono, el backup es lo único
+              que lo trae de vuelta.
+            </p>
+            <p>En automático, la apariencia sigue al modo claro u oscuro del teléfono.</p>
+          </Informacion>
+        </div>
         <h1>Tus datos</h1>
       </header>
 
       <section className="bloque-ajustes">
         <h2>Copia de seguridad</h2>
-        <p className="campo-ayuda">
-          Todo lo tuyo vive solo en este dispositivo. Si borrás el sitio o cambiás de teléfono, el backup es lo único
-          que lo trae de vuelta.
-        </p>
         <p className="estado-backup">
           {meta?.ultimo_backup ? (
             <>
@@ -180,7 +186,6 @@ export function SettingsScreen() {
             </button>
           ))}
         </div>
-        <p className="campo-ayuda">En automático sigue al modo claro u oscuro del teléfono.</p>
       </section>
 
       <section className="bloque-ajustes">

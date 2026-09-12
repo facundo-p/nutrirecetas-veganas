@@ -26,8 +26,9 @@ describe('perfil', () => {
     expect(screen.queryByDisplayValue('1990-01-01')).toBeNull();
   });
 
-  test('aclara que el sexo es un parámetro de las tablas, no identidad', () => {
+  test('su «i» aclara que el sexo es un parámetro de las tablas, no identidad', () => {
     render(<ProfileScreen />);
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
     expect(screen.getByText(/no una pregunta sobre identidad/i)).toBeDefined();
   });
 
@@ -57,8 +58,10 @@ describe('perfil', () => {
     expect(screen.queryByText(/cubierto por suplemento/)).toBeNull();
   });
 
-  test('dice que es opcional y para qué sirve', () => {
+  test('su «i» dice que es opcional y para qué sirve', () => {
     render(<ProfileScreen />);
+    expect(screen.queryByText(/Es opcional/)).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
     expect(screen.getByText(/Es opcional/)).toBeDefined();
     expect(screen.getByText(/no de una referencia adulta genérica/)).toBeDefined();
   });
@@ -112,8 +115,9 @@ describe('perfil', () => {
     expect(screen.getByText('150 g')).toBeDefined();
   });
 
-  test('deja claro que la app informa y no diagnostica', () => {
+  test('su «i» deja claro que la app informa y no diagnostica', () => {
     render(<ProfileScreen />);
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
     expect(screen.getByText(/informa, no diagnostica/i)).toBeDefined();
     expect(screen.getByText(/embarazo, lactancia/i)).toBeDefined();
   });

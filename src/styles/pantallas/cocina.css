@@ -152,6 +152,13 @@
   padding: var(--sp-1) var(--sp-4);
 }
 
+/* El número de paso y la «i», juntos a la derecha. */
+.mesada-acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
 .mesada-volver {
   color: var(--tinta-suave);
   font-size: var(--fs-sm);
@@ -268,12 +275,6 @@
   font-size: var(--fs-xs);
   font-variant-numeric: tabular-nums;
   padding-top: 0.2em;
-}
-
-.mesada-nota {
-  padding: var(--sp-4);
-  color: var(--dato-suave);
-  font-size: var(--fs-xs);
 }
 
 .mesada-controles {

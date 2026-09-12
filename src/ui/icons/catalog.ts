@@ -18,6 +18,7 @@ import {
   IconHeladera,
   IconHojaPunteada,
   IconAjustes,
+  IconInfo,
   IconLaurel,
   IconLibro,
   IconLlama,
@@ -87,4 +88,5 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'zanahoria', Componente: IconZanahoria, significado: 'Sección Ingredientes', grupo: 'navegación' },
   { id: 'libro', Componente: IconLibro, significado: 'Sección Glosario', grupo: 'navegación' },
   { id: 'ajustes', Componente: IconAjustes, significado: 'Ajustes y datos: temas, export e import', grupo: 'navegación' },
+  { id: 'info', Componente: IconInfo, significado: 'Para saber: lo que explica cada pantalla', grupo: 'navegación' },
 ];

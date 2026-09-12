@@ -8,10 +8,14 @@ import { RecipeDetail } from './RecipeDetail';
 const verNotas = () => fireEvent.click(screen.getByRole('button', { name: 'ver notas y sustitutos' }));
 
 describe('Detalle de receta', () => {
-  test('p19 muestra la alerta B12, el enlace al queso de maní y nutrición por porción', () => {
+  test('p19 lleva la explicación de la B12 en su «i», el enlace al queso de maní y nutrición por porción', () => {
     render(<RecipeDetail id="p19" />);
     expect(screen.getByRole('heading', { name: /Pastel de papas/ })).toBeDefined();
+    // invariante 6: no está a la vista, pero la «i» de la ficha la tiene
+    expect(screen.queryByText(/no están fortificadas/)).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
     expect(screen.getByText(/no están fortificadas/)).toBeDefined();
+    fireEvent.click(screen.getAllByRole('button', { name: 'Cerrar' })[0]!);
     expect(screen.getByRole('link', { name: /Queso de maní/ })).toBeDefined();
     expect(screen.getByRole('heading', { name: /Qué aporta una porción/ })).toBeDefined();
   });
@@ -229,10 +233,11 @@ describe('Detalle de receta', () => {
         ?.querySelector('.punto-nutriente')
         ?.getAttribute('data-nut');
 
-    test('la levadura nutricional va con punto hueco, y la nota dice lo de la B12', () => {
+    test('la levadura nutricional va con punto hueco, y la «i» dice lo de la B12', () => {
       const { container } = render(<RecipeDetail id="p19" />);
       expect(puntoDe(container, /levadura/i)).toBe('condicional');
-      expect(screen.getByText(/trae B12 solo si la marca está fortificada/)).toBeDefined();
+      fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
+      expect(screen.getByText(/no están fortificadas/)).toBeDefined();
     });
 
     test('también cuando la trae un preparado: la pastafrola la lleva dentro de la manteca vegana', () => {
@@ -242,7 +247,8 @@ describe('Detalle de receta', () => {
       expect(nombres.length).toBeGreaterThan(0);
       expect(nombres.some((n) => /levadura/i.test(n))).toBe(false);
       expect(puntoDe(container, /Manteca vegana/)).toBe('condicional');
-      expect(screen.getByText(/trae B12 solo si la marca está fortificada/)).toBeDefined();
+      fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
+      expect(screen.getByText(/no están fortificadas/)).toBeDefined();
     });
 
     test('una receta sin levadura no habla de B12', () => {

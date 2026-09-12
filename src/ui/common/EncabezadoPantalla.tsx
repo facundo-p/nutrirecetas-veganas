@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { routeHash } from '../../app/router';
 import type { LaminaId } from '../../seed/laminas';
 import { IconAjustes } from '../icons/icons';
+import { Informacion } from './Informacion';
 import { Lamina } from './Lamina';
 
 /**
@@ -12,17 +13,20 @@ import { Lamina } from './Lamina';
  *
  * `--encabezado` lo pinta a sangre; el tema de hoy le pasa su propio papel.
  * `children` es la bajada, debajo del título. `lamina` es la verdura de la
- * sección, en el aire entre el título y el engranaje.
+ * sección, en el aire entre el título y el engranaje. `informacion` es lo que
+ * explica la pantalla: va detrás de la «i», junto al engranaje.
  */
 export function EncabezadoPantalla({
   etiqueta,
   titulo,
   lamina,
+  informacion,
   children,
 }: {
   etiqueta?: string;
   titulo: ReactNode;
   lamina?: LaminaId;
+  informacion?: ReactNode;
   children?: ReactNode;
 }) {
   return (
@@ -33,9 +37,12 @@ export function EncabezadoPantalla({
         <h1>{titulo}</h1>
         {children}
       </div>
-      <a className="boton-ajustes" href={routeHash({ screen: 'settings' })} aria-label="Ajustes y datos">
-        <IconAjustes />
-      </a>
+      <div className="encabezado-acciones">
+        {informacion && <Informacion>{informacion}</Informacion>}
+        <a className="boton-ajustes" href={routeHash({ screen: 'settings' })} aria-label="Ajustes y datos">
+          <IconAjustes />
+        </a>
+      </div>
     </header>
   );
 }

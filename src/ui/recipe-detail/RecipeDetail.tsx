@@ -19,6 +19,9 @@ import { RuleTips } from './RuleTips';
 import { ListaDeIngredientes } from './ListaDeIngredientes';
 import { useRecetaEnVista } from './useRecetaEnVista';
 import { Lamina } from '../common/Lamina';
+import { Informacion } from '../common/Informacion';
+import { SobreQueDosis } from '../common/SobreQueDosis';
+import type { FuenteDeObjetivo } from '../../domain/objetivos';
 
 /** Desde acá el nombre de la receta baja de tamaño: a 40 px no entra en dos renglones. */
 const NOMBRE_LARGO = 40;
@@ -148,6 +151,31 @@ function Fuente({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
   );
 }
 
+/**
+ * Lo que explica la ficha, detrás de su «i»: la B12 primero, cuando la receta
+ * lleva levadura, y después cómo leer la lista y el panel de aporte.
+ */
+function InfoDeLaFicha({ alertaB12, fuente }: { alertaB12: boolean; fuente: FuenteDeObjetivo }) {
+  return (
+    <>
+      {alertaB12 && <B12Alert />}
+      <h3>Los ingredientes</h3>
+      <p>
+        Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
+        ingrediente, con el mismo color que las barras del recetario: neutro si no trae ninguno con dato, y hueco si el
+        aporte es condicional. El asterisco marca lo que no se puede sacar.
+      </p>
+      <h3>Qué aporta</h3>
+      <p>
+        Todos los nutrientes, ingrediente por ingrediente, y cada dato dice de dónde salió. Los porcentajes son sobre{' '}
+        <SobreQueDosis fuente={fuente} />: es información, no una cuenta que haya que cerrar. Con color, los que aparecen
+        en las barras del recetario.
+      </p>
+      <p>Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre una porción.</p>
+    </>
+  );
+}
+
 function FichaDeReceta({ recipe }: { recipe: Recipe }) {
   const idx = getSeedIndex();
   const vista = useRecetaEnVista(idx, recipe);
@@ -195,12 +223,14 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
             estado={estadoDeReceta(recipe, overlay)}
             onChange={(estado) => void saveOverlay(recipe.id, { estado })}
           />
+          <Informacion>
+            <InfoDeLaFicha alertaB12={vista.nutrition.alerta_b12} fuente={objetivos.fuente} />
+          </Informacion>
         </div>
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
       </header>
 
       <RelatedLinks idx={idx} recipe={recipe} />
-      {vista.nutrition.alerta_b12 && <B12Alert />}
 
       <PortionScaler
         porcionesBase={recipe.porciones_num}

@@ -22,14 +22,27 @@ export function NutrientList() {
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Nutrientes" titulo="Nutrientes" lamina="lechuga" />
+      <EncabezadoPantalla
+        etiqueta="Nutrientes"
+        titulo="Nutrientes"
+        lamina="lechuga"
+        informacion={
+          objetivos.fuente === 'perfil' ? (
+            <p>Las dosis son las tuyas, calculadas desde tu perfil.</p>
+          ) : (
+            <p>
+              Las dosis son las de la <strong>referencia adulta genérica</strong>.{' '}
+              <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean las tuyas.
+            </p>
+          )
+        }
+      />
       <p className="nutricion-referencia">
         {objetivos.fuente === 'perfil' ? (
-          <>Las dosis son las tuyas, calculadas desde tu perfil.</>
+          'Tus dosis diarias'
         ) : (
           <>
-            Las dosis son las de la <strong>referencia adulta genérica</strong>.{' '}
-            <a href={routeHash({ screen: 'profile' })}>Completá tu perfil</a> para que sean las tuyas.
+            Dosis de la <strong>referencia adulta genérica</strong>
           </>
         )}
       </p>

@@ -9,6 +9,7 @@ import { nutritionOf } from '../common/nutritionCache';
 import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import { useObjetivos } from '../common/useObjetivos';
 import { useWakeLock } from './useWakeLock';
+import { Informacion } from '../common/Informacion';
 
 /**
  * La mesada: la receta entera a la vista y el paso actual abierto, con lo que
@@ -50,9 +51,15 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
         <button type="button" className="boton-plano mesada-volver" onClick={() => irA('personalizar')}>
           ‹ Ingredientes
         </button>
-        <p className="mesada-posicion">
-          Paso {pasoActual + 1} de {total}
-        </p>
+        <div className="mesada-acciones">
+          <p className="mesada-posicion">
+            Paso {pasoActual + 1} de {total}
+          </p>
+          <Informacion>
+            <p>Tocá cualquier paso para saltar a él.</p>
+            {pantallaRetenida && <p>La pantalla no se apaga mientras estás acá.</p>}
+          </Informacion>
+        </div>
       </div>
 
       <div className="mesada-cuerpo">
@@ -78,9 +85,6 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
             ),
           )}
         </ol>
-        <p className="mesada-nota">
-          {pantallaRetenida && 'La pantalla no se apaga mientras estás acá. '}Tocá cualquier paso para saltar.
-        </p>
       </div>
 
       <div className="mesada-controles">

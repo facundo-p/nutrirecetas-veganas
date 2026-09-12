@@ -5,6 +5,8 @@ import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estad
 import { enOrdenCanonico, nombreDeNutriente, nutrienteConColor } from '../../domain/aporte';
 import { legible } from '../common/format';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
+import { SobreQueDosisCorta } from '../common/SobreQueDosis';
+import { useObjetivos } from '../common/useObjetivos';
 import { allFamilies, EMPTY_FILTERS, type RecipeFiltersState } from './filtering';
 
 const TIPOS: Array<{ valor: RecipeFiltersState['tipo']; etiqueta: string }> = [
@@ -27,7 +29,7 @@ function etiquetaDeCierre(resultados: number): string {
   return resultados === 1 ? 'Ver 1 receta' : `Ver ${resultados} recetas`;
 }
 
-function Grupo({ titulo, ayuda, children }: { titulo: string; ayuda?: string; children: ReactNode }) {
+function Grupo({ titulo, ayuda, children }: { titulo: string; ayuda?: ReactNode; children: ReactNode }) {
   return (
     <fieldset className="grupo-filtros">
       <legend className="grupo-filtros-titulo">{titulo}</legend>
@@ -68,6 +70,7 @@ interface Props {
  */
 export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Props) {
   const idx = getSeedIndex();
+  const objetivos = useObjetivos();
   const hoja = useRef<HTMLDivElement>(null);
   const cerrar = useRef(onCerrar);
   useEffect(() => {
@@ -154,7 +157,11 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
 
         <Grupo
           titulo="Que cubra al menos un quinto del día en"
-          ayuda="Por porción, sobre la referencia adulta genérica. Con color, los que aparecen en las barras."
+          ayuda={
+            <>
+              Por porción, sobre <SobreQueDosisCorta fuente={objetivos.fuente} />.
+            </>
+          }
         >
           {enOrdenCanonico(idx.seed.nutrientes).map((n) => (
             <Chip

@@ -2,7 +2,7 @@
 
 PWA personal de recetas veganas. Un usuario por dispositivo, sin backend, offline-first, mantenida por una persona en su tiempo libre: **simplicidad de mantenimiento por sobre sofisticación, siempre**.
 
-**Es un recetario.** La nutrición es un agregado que se consulta, no un régimen que se lleva: la app no registra lo que comés ni evalúa cómo venís. Queda para tres cosas —buscar recetas por nutriente, buscar ingredientes por nutriente, y ver cuánto aporta una porción de la dosis diaria— y el criterio que resuelve cualquier duda de diseño es que **a quien no le interese el dato no le tiene que estorbar**. Ante empate de espacio, gana lo que ayuda a cocinar.
+**Es un recetario.** La nutrición es un agregado que se consulta, no un régimen que se lleva: la app no registra lo que comés ni evalúa cómo venís. Queda para tres cosas —buscar recetas por nutriente, buscar ingredientes por nutriente, y ver cuánto aporta una porción de la dosis diaria— y el criterio que resuelve cualquier duda de diseño es que **a quien no le interese el dato no le tiene que estorbar**. Ante empate de espacio, gana lo que ayuda a cocinar. Lo que explica la app va detrás de la **«i» de su pantalla**: a la vista queda la receta y lo que ayuda a cocinarla.
 
 Idioma: código en inglés, UI y docs en **español rioplatense**.
 
@@ -30,10 +30,10 @@ Desempates: (1) gana el más alto; (2) corregir datos de la semilla es patch, sa
 
 1. **El gramo es la unidad canónica**: `g_aprox` es la única fuente de verdad para cálculo; `unidad` (295 valores de texto libre) es solo display.
 2. La nutrición **se calcula desde los ingredientes**; `perfil_nutricional_porcion_aprox` no se usa (45 % de desvíos >30 %).
-3. **La nutrición se informa por porción contra una dosis diaria, y nunca se evalúa.** El objetivo es una referencia, no una cuenta que haya que cerrar. La `ventana` del nutriente (`dia` | `semana`) sobrevive como nota —"no hace falta llegar todos los días"—, no como criterio. Sin perfil se usa la referencia adulta genérica, **dicho con todas las letras**: un porcentaje que no aclara contra qué se mide es un número sin significado.
+3. **La nutrición se informa por porción contra una dosis diaria, y nunca se evalúa.** El objetivo es una referencia, no una cuenta que haya que cerrar. La `ventana` del nutriente (`dia` | `semana`) sobrevive como nota —"no hace falta llegar todos los días"—, no como criterio. Sin perfil se usa la referencia adulta genérica, **dicho con todas las letras**: un porcentaje que no aclara contra qué se mide es un número sin significado. A la vista va un rótulo corto junto a los porcentajes («% sobre la referencia adulta genérica» o «sobre tu dosis diaria»); la explicación larga, en la «i» de la pantalla.
 4. **El perfil nunca es un portón.** Ninguna pantalla puede exigirlo, bloquear ni pedirlo antes de dejar ver una receta. Su único trabajo es que el porcentaje diga "de tu dosis".
 5. **La incertidumbre se muestra**: rangos {min,max} como bandas con punto medio, IC 1-10 visible, cobertura reportada. Nulos jamás son cero en silencio, y eso incluye los rankings: sin dato reportable no hay puesto, porque el último se lee como "casi no tiene".
-6. **Alerta B12 obligatoria**: si una receta usa levadura nutricional como fuente de B12, advertir que muchas marcas argentinas NO están fortificadas. Y la ficha de un nutriente abre con su `ajuste_vegano.descripcion` antes que cualquier número — sin eso, un "40 % de la dosis" de B12 alimentaria se lee tranquilizador. Es seguridad, no cosmética.
+6. **B12**: si una receta usa levadura nutricional como fuente de B12, el cálculo la deja en cero, la lista la marca con el punto hueco y la «i» de la ficha explica que muchas marcas argentinas NO están fortificadas. Y la ficha de un nutriente abre con su `ajuste_vegano.descripcion` antes que cualquier número — sin eso, un "40 % de la dosis" de B12 alimentaria se lee tranquilizador. Es seguridad, no cosmética.
 7. **Un UL que solo aplica a suplementos no se alerta nunca** (`ul_nota`, caso magnesio): la app no sabe qué tomás aparte, así que solo lo informa en la ficha del nutriente.
 8. **La app informa, no diagnostica.** Fuera de alcance: embarazo, lactancia, menores, condiciones médicas.
 

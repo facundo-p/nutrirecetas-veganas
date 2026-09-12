@@ -6,6 +6,7 @@ import { getSeedIndex } from '../../seed';
 import { CustomizeStep } from './CustomizeStep';
 import { RegisterStep } from './RegisterStep';
 import { StepsView } from './StepsView';
+import { Informacion } from '../common/Informacion';
 
 /**
  * La sesión de cocina, en tres tiempos: personalizar lo que va a la olla,
@@ -54,13 +55,18 @@ export function CookSession({ recetaId }: { recetaId: string }) {
         <a href={routeHash({ screen: 'recipe', id: recipe.id })}>‹ {recipe.nombre}</a>
       </p>
       <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Cocinando</span>
+        <div className="fila-con-informacion">
+          <span className="etiqueta-seccion">Cocinando</span>
+          {paso === 'personalizar' && (
+            <Informacion>
+              <p>
+                Desmarcá lo que no tenés, sustituí lo que quieras cambiar y agregá lo que sume. La nutrición se recalcula
+                sola.
+              </p>
+            </Informacion>
+          )}
+        </div>
         <h1>{paso === 'personalizar' ? 'Qué va a la olla' : 'Registrar la cocción'}</h1>
-        {paso === 'personalizar' && (
-          <p className="campo-ayuda">
-            Desmarcá lo que no tenés, sustituí lo que quieras cambiar y agregá lo que sume. La nutrición se recalcula sola.
-          </p>
-        )}
       </header>
 
       {paso === 'personalizar' ? (

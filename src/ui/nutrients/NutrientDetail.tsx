@@ -9,6 +9,7 @@ import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
+import { Informacion } from '../common/Informacion';
 
 /**
  * Qué es un nutriente, cuánto necesitás y de dónde sacarlo. La semilla ya traía
@@ -51,9 +52,18 @@ export function NutrientDetail({ id }: { id: string }) {
 
   return (
     <article className="detalle">
-      <p className="volver">
-        <a href={routeHash({ screen: 'nutrients' })}>‹ Nutrientes</a>
-      </p>
+      <div className="fila-con-informacion">
+        <p className="volver">
+          <a href={routeHash({ screen: 'nutrients' })}>‹ Nutrientes</a>
+        </p>
+        <Informacion>
+          {nutriente.ventana === 'semana' && <p>Se mira en la semana: no hace falta llegar todos los días.</p>}
+          <p>Los ingredientes que más aportan se miden cada 100 g del ingrediente crudo, tal como lo trae la semilla.</p>
+          <p>
+            La app informa, no diagnostica. Estas dosis son referencias, no una meta que haya que cerrar todos los días.
+          </p>
+        </Informacion>
+      </div>
 
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
@@ -78,7 +88,7 @@ export function NutrientDetail({ id }: { id: string }) {
               <span className="meta-suave">
                 {nutriente.ventana === 'dia'
                   ? 'se mira día a día'
-                  : 'se mira en la semana: no hace falta llegar todos los días'}
+                  : 'se mira en la semana'}
               </span>
             </span>
           </p>
@@ -140,7 +150,7 @@ export function NutrientDetail({ id }: { id: string }) {
 
       <section>
         <h2>Ingredientes que más aportan</h2>
-        <p className="nutricion-referencia">Cada 100 g del ingrediente crudo, tal como lo trae la semilla.</p>
+        <p className="nutricion-referencia">Cada 100 g, en crudo.</p>
         <ul className="lista-fuentes">
           {fuentes.ingredientes.map(({ ingrediente, cantidad }) => (
             <li key={ingrediente.id}>
@@ -173,10 +183,6 @@ export function NutrientDetail({ id }: { id: string }) {
           </ul>
         </section>
       )}
-
-      <p className="disclaimer">
-        La app informa, no diagnostica. Estas dosis son referencias, no una meta que haya que cerrar todos los días.
-      </p>
     </article>
   );
 }

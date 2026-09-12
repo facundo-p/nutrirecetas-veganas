@@ -139,14 +139,6 @@
   align-items: center;
 }
 
-.lista-lineas-nota {
-  display: grid;
-  gap: var(--sp-2);
-  margin-top: var(--sp-2);
-  font-size: var(--fs-xs);
-  color: var(--tinta-suave);
-}
-
 .linea-original {
   display: block;
   font-size: var(--fs-xs);
@@ -179,11 +171,6 @@
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: right;
-  color: var(--tinta);
-}
-
-/* La B12 es seguridad, no cosmética (invariante 6): va en tinta, no en suave. */
-.nota-b12 {
   color: var(--tinta);
 }
 
@@ -417,9 +404,7 @@
   color: var(--tinta-suave);
 }
 
-.panel-aporte-bajada,
-.panel-aporte-referencia,
-.panel-aporte-pie {
+.panel-aporte-referencia {
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
 }
