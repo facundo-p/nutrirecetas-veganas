@@ -3,6 +3,13 @@ import { analizarImport, diasDesde, exportar, importar, nombreDeArchivo, type Re
 import { useCocciones, useMeta } from '../../db/hooks';
 import { registrarBackup } from '../../db/repos';
 import { getSeedIndex } from '../../seed';
+import { elegirPreferencia, preferenciaGuardada, type Preferencia } from '../../app/tema';
+
+const OPCIONES_DE_APARIENCIA: { preferencia: Preferencia; rotulo: string }[] = [
+  { preferencia: 'auto', rotulo: 'Automático' },
+  { preferencia: 'papel', rotulo: 'Claro' },
+  { preferencia: 'musgo', rotulo: 'Oscuro' },
+];
 
 /**
  * Ajustes y datos. Sin backend, exportar es la única forma de que estos datos
@@ -19,6 +26,7 @@ export function SettingsScreen() {
   const [pendiente, setPendiente] = useState<{ json: unknown; reporte: ReporteImport } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
+  const [apariencia, setApariencia] = useState<Preferencia>(preferenciaGuardada);
 
   const seedVersion = idx.seed.seed_schema_version;
 
@@ -152,6 +160,27 @@ export function SettingsScreen() {
 
         {error && <p className="mensaje-error">{error}</p>}
         {mensaje && <p className="mensaje-ok">{mensaje}</p>}
+      </section>
+
+      <section className="bloque-ajustes">
+        <h2>Apariencia</h2>
+        <div className="control-apariencia" role="group" aria-label="Apariencia">
+          {OPCIONES_DE_APARIENCIA.map(({ preferencia, rotulo }) => (
+            <button
+              key={preferencia}
+              type="button"
+              className="chip chip-boton"
+              aria-pressed={apariencia === preferencia}
+              onClick={() => {
+                elegirPreferencia(preferencia);
+                setApariencia(preferencia);
+              }}
+            >
+              {rotulo}
+            </button>
+          ))}
+        </div>
+        <p className="campo-ayuda">En automático sigue al modo claro u oscuro del teléfono.</p>
       </section>
 
       <section className="bloque-ajustes">

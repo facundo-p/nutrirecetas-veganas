@@ -78,7 +78,7 @@
 .panel-nutricion-vivo {
   position: sticky;
   bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom));
-  background: var(--superficie);
+  background: var(--superficie-opaca); /* flota sobre la lista */
   border: var(--borde);
   border-radius: var(--radio);
   padding: var(--sp-3);

@@ -49,7 +49,7 @@
 
   /* Aporte: las piezas del color por nutriente */
   --gap-franja: 3px;
-  --alto-franja: 15px;
+  --alto-franja: 7px; /* firma de la receta, no gráfico: no le pelea al título */
   --punto-nutriente: 8px;
   --cuadrado-nutriente: 10px;
   --rayita-ancho: 3px;
