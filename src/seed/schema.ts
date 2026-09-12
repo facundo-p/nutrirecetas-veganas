@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { LAMINAS } from './laminas';
 
 /**
  * Esquema Zod de la semilla canónica: única fuente de tipos compartida entre
@@ -277,6 +278,8 @@ export const recipeSchema = z.strictObject({
   utensilios: z.array(recipeUtensilSchema),
   objetivo: z.string().optional(),
   nota: z.string().optional(),
+  /** El grabado de la ficha (T15). Sin lámina, la ficha va sin dibujo. */
+  lamina: z.enum(LAMINAS).optional(),
 });
 export type Recipe = z.infer<typeof recipeSchema>;
 

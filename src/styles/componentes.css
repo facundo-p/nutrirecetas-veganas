@@ -878,6 +878,18 @@
   transform: rotate(-10deg);
 }
 
+/* La de la receta flota a la derecha del título, como la ilustración de un
+   capítulo: el título la rodea y nunca queda texto debajo. Sube casi entera al
+   renglón de «‹ Recetario», que a la derecha está vacío, para acortar solo la
+   primera línea del título: más abajo le robaba ancho a dos y lo estiraba a
+   cuatro renglones. */
+.lamina-ficha {
+  float: right;
+  width: var(--lamina-ficha);
+  height: var(--lamina-ficha);
+  margin: calc((var(--sp-7) + var(--sp-2)) * -1) 0 var(--sp-2) var(--sp-3);
+}
+
 /* Viñeta de cierre, como en los libros de cocina: la receta terminó. */
 .lamina-cierre {
   width: var(--lamina-cierre);

@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "38a84f0a89354700e6a325a9cf7e4e056f692bd567475d40ea045a47e7e182de",
+ "content_hash": "f2c43bc010bfbd519ec6913d24fe3d50293d95180cd38c7fde6c3685d10aa64f",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -6686,7 +6686,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lentejas"
   },
   {
    "id": "r02",
@@ -6928,7 +6929,8 @@
      "id": "R8"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "garbanzo"
   },
   {
    "id": "r03",
@@ -7086,7 +7088,8 @@
      "id": "R1"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "garbanzo"
   },
   {
    "id": "r04",
@@ -7326,7 +7329,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lentejas"
   },
   {
    "id": "r05",
@@ -7488,7 +7492,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "r06",
@@ -7666,7 +7671,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "r07",
@@ -7884,7 +7890,8 @@
      "id": "R6"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "batata"
   },
   {
    "id": "r08",
@@ -8051,7 +8058,8 @@
      "id": "R10"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "calabaza"
   },
   {
    "id": "r09",
@@ -8318,7 +8326,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lentejas"
   },
   {
    "id": "r10",
@@ -8470,7 +8479,8 @@
      "id": "R9"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "banana"
   },
   {
    "id": "r11",
@@ -8665,7 +8675,8 @@
      "id": "U8"
     }
    ],
-   "objetivo": "calcio biodisponible (hueco del set 1)"
+   "objetivo": "calcio biodisponible (hueco del set 1)",
+   "lamina": "soja"
   },
   {
    "id": "r12",
@@ -8813,7 +8824,8 @@
     }
    ],
    "utensilios": [],
-   "objetivo": "calcio biodisponible + C"
+   "objetivo": "calcio biodisponible + C",
+   "lamina": "repollo"
   },
   {
    "id": "r13",
@@ -8989,7 +9001,8 @@
     }
    ],
    "utensilios": [],
-   "objetivo": "YODO (el gran hueco del recetario)"
+   "objetivo": "YODO (el gran hueco del recetario)",
+   "lamina": "arroz"
   },
   {
    "id": "r14",
@@ -9154,7 +9167,8 @@
      "id": "U7"
     }
    ],
-   "objetivo": "selenio + omega-3"
+   "objetivo": "selenio + omega-3",
+   "lamina": "trigo"
   },
   {
    "id": "r15",
@@ -9371,7 +9385,8 @@
      "id": "U3"
     }
    ],
-   "objetivo": "hierro + zinc"
+   "objetivo": "hierro + zinc",
+   "lamina": "porotos"
   },
   {
    "id": "r16",
@@ -9535,7 +9550,8 @@
      "calificador": "critico"
     }
    ],
-   "objetivo": "proteína sin gluten"
+   "objetivo": "proteína sin gluten",
+   "lamina": "garbanzo"
   },
   {
    "id": "r17",
@@ -9735,7 +9751,8 @@
      "id": "U3"
     }
    ],
-   "objetivo": "calcio + hierro"
+   "objetivo": "calcio + hierro",
+   "lamina": "porotos"
   },
   {
    "id": "r18",
@@ -9924,7 +9941,8 @@
     }
    ],
    "utensilios": [],
-   "objetivo": "hierro con técnica nueva"
+   "objetivo": "hierro con técnica nueva",
+   "lamina": "lentejas"
   },
   {
    "id": "r19",
@@ -10083,7 +10101,8 @@
     }
    ],
    "utensilios": [],
-   "objetivo": "plato fresco + C"
+   "objetivo": "plato fresco + C",
+   "lamina": "tomate"
   },
   {
    "id": "r20",
@@ -10273,7 +10292,8 @@
      "id": "U8"
     }
    ],
-   "objetivo": "folato + B2 (huecos del set 1)"
+   "objetivo": "folato + B2 (huecos del set 1)",
+   "lamina": "arroz"
   },
   {
    "id": "d01",
@@ -10444,7 +10464,8 @@
      "tipo": "equipo",
      "id": "budinera_muffinera"
     }
-   ]
+   ],
+   "lamina": "porotos"
   },
   {
    "id": "d02",
@@ -10559,7 +10580,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "banana"
   },
   {
    "id": "d03",
@@ -10713,7 +10735,8 @@
      "tipo": "regla_utensilio",
      "id": "U7"
     }
-   ]
+   ],
+   "lamina": "frutilla"
   },
   {
    "id": "d04",
@@ -10903,7 +10926,8 @@
      "tipo": "regla_utensilio",
      "id": "U10"
     }
-   ]
+   ],
+   "lamina": "banana"
   },
   {
    "id": "d05",
@@ -11047,7 +11071,8 @@
      "tipo": "regla_utensilio",
      "id": "U7"
     }
-   ]
+   ],
+   "lamina": "datil"
   },
   {
    "id": "d06",
@@ -11211,7 +11236,8 @@
      "tipo": "equipo",
      "id": "placa_horno"
     }
-   ]
+   ],
+   "lamina": "manzana"
   },
   {
    "id": "d07",
@@ -11321,7 +11347,8 @@
      "id": "U7",
      "calificador": "critico"
     }
-   ]
+   ],
+   "lamina": "banana"
   },
   {
    "id": "d08",
@@ -11462,7 +11489,8 @@
      "tipo": "regla_utensilio",
      "id": "U3"
     }
-   ]
+   ],
+   "lamina": "arroz"
   },
   {
    "id": "d09",
@@ -11598,7 +11626,8 @@
      "tipo": "equipo",
      "id": "frascos"
     }
-   ]
+   ],
+   "lamina": "banana"
   },
   {
    "id": "d10",
@@ -11812,7 +11841,8 @@
      "tipo": "regla_utensilio",
      "id": "U10"
     }
-   ]
+   ],
+   "lamina": "zanahoria"
   },
   {
    "id": "r21",
@@ -12063,7 +12093,8 @@
      "id": "placa_horno"
     }
    ],
-   "objetivo": "plato-puente cultural argentino"
+   "objetivo": "plato-puente cultural argentino",
+   "lamina": "soja"
   },
   {
    "id": "r22",
@@ -12361,7 +12392,8 @@
      "id": "R3"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lentejas"
   },
   {
    "id": "r23",
@@ -12645,7 +12677,8 @@
     }
    ],
    "utensilios": [],
-   "objetivo": "batch cooking estrella"
+   "objetivo": "batch cooking estrella",
+   "lamina": "porotos"
   },
   {
    "id": "r24",
@@ -12965,7 +12998,8 @@
      "id": "placa_horno"
     }
    ],
-   "objetivo": "técnica de marinado de tofu"
+   "objetivo": "técnica de marinado de tofu",
+   "lamina": "tomate"
   },
   {
    "id": "r25",
@@ -13280,7 +13314,8 @@
      "tipo": "equipo",
      "id": "placa_horno"
     }
-   ]
+   ],
+   "lamina": "morron"
   },
   {
    "id": "r26",
@@ -13623,7 +13658,8 @@
      "tipo": "regla_utensilio",
      "id": "U3"
     }
-   ]
+   ],
+   "lamina": "garbanzo"
   },
   {
    "id": "r27",
@@ -13919,7 +13955,8 @@
      "id": "R1"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "arroz"
   },
   {
    "id": "r28",
@@ -14273,7 +14310,8 @@
      "id": "R1"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "trigo"
   },
   {
    "id": "r29",
@@ -14536,7 +14574,8 @@
      "id": "R1"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "garbanzo"
   },
   {
    "id": "p01",
@@ -14631,7 +14670,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p02",
@@ -14695,7 +14735,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "coco"
   },
   {
    "id": "p03",
@@ -14845,7 +14886,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p04",
@@ -14988,7 +15030,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "mani"
   },
   {
    "id": "p05",
@@ -15158,7 +15201,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p06",
@@ -15302,7 +15346,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "papa"
   },
   {
    "id": "p07",
@@ -15436,7 +15481,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "trigo"
   },
   {
    "id": "p08",
@@ -15563,7 +15609,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "trigo"
   },
   {
    "id": "p09",
@@ -15740,7 +15787,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lentejas"
   },
   {
    "id": "p10",
@@ -15873,7 +15921,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p11",
@@ -16034,7 +16083,8 @@
    },
    "reglas": [],
    "utensilios": [],
-   "nota": "combo componible: la app la arma como checklist referenciando otras recetas"
+   "nota": "combo componible: la app la arma como checklist referenciando otras recetas",
+   "lamina": "mandioca"
   },
   {
    "id": "p12",
@@ -16217,7 +16267,8 @@
      "id": "R8"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "garbanzo"
   },
   {
    "id": "p13",
@@ -16387,7 +16438,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "coliflor"
   },
   {
    "id": "p14",
@@ -16519,7 +16571,8 @@
      "tipo": "equipo",
      "id": "minipimer"
     }
-   ]
+   ],
+   "lamina": "espinaca"
   },
   {
    "id": "p15",
@@ -16694,7 +16747,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "calabaza"
   },
   {
    "id": "p16",
@@ -16824,7 +16878,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p17",
@@ -16980,7 +17035,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "soja"
   },
   {
    "id": "p18",
@@ -17160,7 +17216,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "arroz"
   },
   {
    "id": "p19",
@@ -17357,7 +17414,8 @@
      "id": "R1"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "papa"
   },
   {
    "id": "p20",
@@ -17618,7 +17676,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "choclo"
   },
   {
    "id": "p21",
@@ -17840,7 +17899,8 @@
      "tipo": "regla_utensilio",
      "id": "U2"
     }
-   ]
+   ],
+   "lamina": "porotos"
   },
   {
    "id": "p22",
@@ -18040,7 +18100,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "calabaza"
   },
   {
    "id": "p23",
@@ -18287,7 +18348,8 @@
    },
    "reglas": [],
    "utensilios": [],
-   "nota": "plato de fiesta: diciembre resuelto"
+   "nota": "plato de fiesta: diciembre resuelto",
+   "lamina": "trigo"
   },
   {
    "id": "p24",
@@ -18421,7 +18483,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "lechuga"
   },
   {
    "id": "p25",
@@ -18507,7 +18570,8 @@
    },
    "reglas": [],
    "utensilios": [],
-   "nota": "la curiosa del recetario: probada y aprobada por el dueño, entra tal cual"
+   "nota": "la curiosa del recetario: probada y aprobada por el dueño, entra tal cual",
+   "lamina": "banana"
   },
   {
    "id": "p26",
@@ -18643,7 +18707,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "p27",
@@ -18768,7 +18833,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "p28",
@@ -18898,7 +18964,8 @@
      "tipo": "regla_utensilio",
      "id": "U1"
     }
-   ]
+   ],
+   "lamina": "banana"
   },
   {
    "id": "p29",
@@ -19034,7 +19101,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "banana"
   },
   {
    "id": "p30",
@@ -19197,7 +19265,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "zanahoria"
   },
   {
    "id": "p31",
@@ -19328,7 +19397,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "membrillo"
   },
   {
    "id": "p32",
@@ -19485,7 +19555,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "p33",
@@ -19610,7 +19681,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "p34",
@@ -19738,7 +19810,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "porotos"
   },
   {
    "id": "p35",
@@ -19873,7 +19946,8 @@
      "tipo": "regla_utensilio",
      "id": "U3"
     }
-   ]
+   ],
+   "lamina": "arroz"
   },
   {
    "id": "p36",
@@ -20050,7 +20124,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "mandioca"
   },
   {
    "id": "p37",
@@ -20167,7 +20242,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "limon"
   },
   {
    "id": "p38",
@@ -20284,7 +20360,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "banana"
   },
   {
    "id": "p39",
@@ -20441,7 +20518,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "manzana"
   },
   {
    "id": "p40",
@@ -20584,7 +20662,8 @@
      "tipo": "equipo",
      "id": "frascos"
     }
-   ]
+   ],
+   "lamina": "frutilla"
   },
   {
    "id": "p41",
@@ -20695,7 +20774,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "coco"
   },
   {
    "id": "p42",
@@ -20863,7 +20943,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "limon"
   },
   {
    "id": "p43",
@@ -21014,7 +21095,8 @@
     "freezer": true
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "calabaza"
   },
   {
    "id": "p44",
@@ -21154,7 +21236,8 @@
      "id": "R4"
     }
    ],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "trigo"
   },
   {
    "id": "p45",
@@ -21255,7 +21338,8 @@
     "freezer": false
    },
    "reglas": [],
-   "utensilios": []
+   "utensilios": [],
+   "lamina": "trigo"
   }
  ],
  "fuentes": {
