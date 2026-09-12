@@ -514,3 +514,9 @@ de una auditoría ni de un test: de cocinar con ella.
   vitest lo corrió verde y `tsc -b` lo rechazó por no tener los tipos de node.
   Un test así va al proyecto de node (`tsconfig.node.json`), como el del
   contrato de temas.
+- **Un dibujo junto a un título que puede ser largo es un float, no un
+  absolute.** Absoluto, «Hamburguesas de porotos negros» pasaba por debajo de
+  la lámina. Flotado, el título la rodea; pero a la altura del título le robaba
+  ancho a dos líneas y estiraba la sopa a cuatro renglones. Subido casi entero
+  al renglón vacío de «‹ Recetario», solo acorta la primera. Se vio en tres
+  vueltas de capturas: ningún test mira dónde corta un título.

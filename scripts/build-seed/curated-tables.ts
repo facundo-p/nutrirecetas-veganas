@@ -1,4 +1,5 @@
 import type { IngredientCategory, Recipe } from '../../src/seed/schema';
+import type { LaminaId } from '../../src/seed/laminas';
 
 /**
  * TODAS las decisiones de datos tomadas a mano viven acá, en un solo lugar,
@@ -1610,3 +1611,95 @@ export const CURATED_SOURCES: Record<string, SourceOverride> = {
 // ---------- T14: en qué paso entra cada línea ----------
 
 export { PASO_DE_CADA_LINEA } from './curated-pasos';
+
+// ---------- T15: la lámina de cada receta ----------
+
+/**
+ * El grabado de la ficha: el del ingrediente que nombra a la receta, no el del
+ * más pesado —en la sopa sería el caldo—. El tofu lleva la soja; seitán, panes,
+ * pastas y masas, el trigo. Si ese ingrediente no tiene lámina, la del siguiente
+ * que la tenga: la chía no tiene ninguna, el kiwi solo a color, y la palta se
+ * descartó porque era una foto.
+ *
+ * Una variante sin entrada hereda la de su madre (p09, p18, p21, p29, p30,
+ * p32–p35, p39). Solo lleva entrada la que tiene otro protagonista.
+ */
+export const CURATED_LAMINAS: Record<string, LaminaId> = {
+  // set 1 y 2: saladas
+  r01: 'lentejas',
+  r02: 'garbanzo',
+  r03: 'garbanzo',
+  r04: 'lentejas',
+  r05: 'soja',
+  r06: 'porotos',
+  r07: 'batata', // la quinoa no tiene lámina y la batata es lo que más pesa
+  r08: 'calabaza',
+  r09: 'lentejas',
+  r10: 'banana', // ni la chía ni el kiwi tienen lámina en tinta
+  r11: 'soja',
+  r12: 'repollo', // el kale es un repollo que no cierra
+  r13: 'arroz',
+  r14: 'trigo',
+  r15: 'porotos',
+  r16: 'garbanzo',
+  r17: 'porotos',
+  r18: 'lentejas',
+  r19: 'tomate', // el perejil ya es la viñeta de cierre de todas
+  r20: 'arroz',
+  r21: 'soja',
+  r22: 'lentejas',
+  r23: 'porotos',
+  r24: 'tomate',
+  r25: 'morron',
+  r26: 'garbanzo',
+  r27: 'arroz',
+  r28: 'trigo',
+  r29: 'garbanzo',
+  // set 2: dulces
+  d01: 'porotos',
+  d02: 'banana',
+  d03: 'frutilla', // la palta se descartó
+  d04: 'banana',
+  d05: 'datil',
+  d06: 'manzana',
+  d07: 'banana',
+  d08: 'arroz',
+  d09: 'banana', // la chía no tiene lámina
+  d10: 'zanahoria',
+  // set P
+  p01: 'soja',
+  p02: 'coco',
+  p03: 'soja',
+  p04: 'mani',
+  p05: 'soja',
+  p06: 'papa',
+  p07: 'trigo',
+  p08: 'trigo',
+  p10: 'soja',
+  p11: 'mandioca',
+  p12: 'garbanzo',
+  p13: 'coliflor',
+  p14: 'espinaca',
+  p15: 'calabaza',
+  p16: 'soja',
+  p17: 'soja', // variante de r06, pero de texturizada y no de porotos
+  p19: 'papa',
+  p20: 'choclo',
+  p22: 'calabaza', // el zapallito es una calabaza
+  p23: 'trigo',
+  p24: 'lechuga',
+  p25: 'banana',
+  p26: 'porotos',
+  p27: 'porotos',
+  p28: 'banana',
+  p31: 'membrillo',
+  p36: 'mandioca',
+  p37: 'limon',
+  p38: 'banana',
+  p40: 'frutilla', // variante de d09, pero lleva frutilla y no banana
+  p41: 'coco',
+  p42: 'limon',
+  p43: 'calabaza',
+  p44: 'trigo',
+  p45: 'trigo',
+};

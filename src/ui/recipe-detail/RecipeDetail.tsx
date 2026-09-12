@@ -166,6 +166,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
         <a href={routeHash({ screen: 'recipes' })}>‹ Recetario</a>
       </p>
       <header className="encabezado-pantalla ficha-encabezado">
+        {recipe.lamina && <Lamina id={recipe.lamina} lugar="ficha" />}
         <h1 className={recipe.nombre.length > NOMBRE_LARGO ? 'ficha-titulo largo' : 'ficha-titulo'}>{recipe.nombre}</h1>
         <p className="detalle-meta ficha-meta">
           <span className="meta-item" title={label}>

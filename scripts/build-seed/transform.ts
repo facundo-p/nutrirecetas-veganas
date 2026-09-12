@@ -12,6 +12,7 @@ import type {
 import {
   ADDED_LINES,
   APORTE_NULO_IDS,
+  CURATED_LAMINAS,
   CURATED_PORTIONS,
   CURATED_STEPS,
   CURATED_TYPES,
@@ -27,6 +28,7 @@ import {
 } from './curated-tables';
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
+import type { LaminaId } from '../../src/seed/laminas';
 
 // ---------- valores ----------
 
@@ -151,6 +153,25 @@ export function aplicarTipoCurado(
     throw new Error(`T12: ${id} ya sale "${tipoDerivado}" del dataset; la entrada no corrige nada`);
   }
   return curado.tipo;
+}
+
+/**
+ * T15: la lámina de la ficha. Una variante sin entrada propia hereda la de su
+ * madre; una entrada que repite lo que ya heredaría no cambia nada y rompe el
+ * build, como en T12.
+ */
+export function laminaDeReceta(
+  id: string,
+  varianteDe: string | undefined,
+  tabla: Record<string, LaminaId> = CURATED_LAMINAS,
+): { lamina?: LaminaId } {
+  const propia = tabla[id];
+  const heredada = varianteDe !== undefined ? tabla[varianteDe] : undefined;
+  if (propia !== undefined && propia === heredada) {
+    throw new Error(`T15: ${id} ya hereda "${heredada}" de ${varianteDe}; la entrada no cambia nada`);
+  }
+  const lamina = propia ?? heredada;
+  return lamina !== undefined ? { lamina } : {};
 }
 
 /** Una línea antes de saber en qué paso entra. */
@@ -317,6 +338,7 @@ export function transformRecipe(
     utensilios,
     ...(objetivo !== undefined ? { objetivo } : {}),
     ...(raw.nota !== undefined ? { nota: raw.nota } : {}),
+    ...laminaDeReceta(id, raw.variante_de),
   };
 }
 
@@ -340,6 +362,11 @@ export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recip
   const pasosHuerfanos = Object.keys(PASO_DE_CADA_LINEA).filter((id) => !ids.has(id));
   if (pasosHuerfanos.length > 0) {
     throw new Error(`T14: paso de cada línea para recetas que no existen: ${pasosHuerfanos.join(', ')}`);
+  }
+
+  const laminasHuerfanas = Object.keys(CURATED_LAMINAS).filter((id) => !ids.has(id));
+  if (laminasHuerfanas.length > 0) {
+    throw new Error(`T15: lámina curada para recetas que no existen: ${laminasHuerfanas.join(', ')}`);
   }
 
   return recetas;

@@ -1,8 +1,9 @@
 import { beforeAll, describe, expect, test } from 'vitest';
-import { CURATED_STEPS, CURATED_TYPES } from './curated-tables';
+import { CURATED_LAMINAS, CURATED_STEPS, CURATED_TYPES } from './curated-tables';
 import { loadRawData, type RawData } from './load';
 import {
   aplicarTipoCurado,
+  laminaDeReceta,
   toNutrientValue,
   transformIngredient,
   transformNutrient,
@@ -76,6 +77,30 @@ describe('unificación de recetas', () => {
     const p19 = byId.get('p19')!;
     expect(p19.estado).toBe('probada');
     expect(p19.ic).toBe(8);
+  });
+});
+
+describe('la lámina de cada receta (T15)', () => {
+  test('toda receta sale con su lámina', () => {
+    expect(recipes.filter((r) => r.lamina === undefined).map((r) => r.id)).toEqual([]);
+  });
+
+  test('una variante sin entrada propia hereda la de su madre', () => {
+    const sushi = byId.get('p18')!;
+    expect(sushi.variante_de).toBe('r13');
+    expect(CURATED_LAMINAS.p18).toBeUndefined();
+    expect(sushi.lamina).toBe(byId.get('r13')!.lamina);
+  });
+
+  test('una entrada que repite lo que la variante ya hereda rompe el build', () => {
+    expect(() => laminaDeReceta('p18', 'r13', { r13: 'arroz', p18: 'arroz' })).toThrow(/no cambia nada/);
+    expect(laminaDeReceta('p18', 'r13', { r13: 'arroz', p18: 'soja' })).toEqual({ lamina: 'soja' });
+    expect(laminaDeReceta('r13', undefined, {})).toEqual({});
+  });
+
+  test('T15 solo nombra recetas que existen', () => {
+    const ids = new Set(recipes.map((r) => r.id));
+    expect(Object.keys(CURATED_LAMINAS).filter((id) => !ids.has(id))).toEqual([]);
   });
 });
 
