@@ -1190,3 +1190,18 @@
 .hoja-informacion-cuerpo strong {
   color: var(--tinta);
 }
+
+/* ============ Las cantidades dentro de un paso ============
+   La prosa de un paso no escribe sus números: los referencia, y se dibujan acá
+   con la cantidad que la receta tiene puesta ahora. Marcarlas las hace leer
+   como cifras y muestra de un vistazo qué se movió al ajustar las porciones.
+   Las usan la ficha y la mesada. */
+
+.paso-cantidad {
+  color: var(--cifra);
+  font-variant-numeric: tabular-nums;
+}
+
+.recalculando .paso-cantidad {
+  color: var(--recalculando);
+}

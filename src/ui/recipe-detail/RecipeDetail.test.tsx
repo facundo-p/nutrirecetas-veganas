@@ -325,6 +325,56 @@ describe('Detalle de receta', () => {
     });
   });
 
+  /**
+   * #200: la lista decía 800 g y el paso seguía diciendo 400. Las cantidades de
+   * un paso se referencian, no se escriben, así que viajan con el escalador.
+   */
+  describe('las cantidades de los pasos siguen al escalador (#200)', () => {
+    const AVISO = /todavía están escritos con las originales/;
+    const sumarPorciones = (veces: number) => {
+      for (let i = 0; i < veces; i++) fireEvent.click(screen.getByRole('button', { name: 'Más porciones' }));
+    };
+    const pasos = (container: HTMLElement) => container.querySelector('.lista-pasos')!.textContent ?? '';
+
+    test('el paso dice lo mismo que la lista al doblar las porciones', () => {
+      const { container } = render(<RecipeDetail id="r02" />); // rinde 4
+      expect(pasos(container)).toContain('los 400 g de tomate triturado');
+      sumarPorciones(4);
+      expect(pasos(container)).toContain('los 800 g de tomate triturado');
+      const tomate = [...container.querySelectorAll('.linea-ingrediente')].find((li) => /tomate triturado/i.test(li.textContent ?? ''));
+      expect(tomate?.textContent).toContain('800');
+    });
+
+    test('la cantidad del paso va marcada, para que se vea qué se movió', () => {
+      const { container } = render(<RecipeDetail id="r01" />);
+      const marcadas = [...container.querySelectorAll('.lista-pasos .paso-cantidad')].map((n) => n.textContent);
+      expect(marcadas).toContain('las 3 cucharadas');
+      expect(marcadas).toContain('las 1½ tazas');
+    });
+
+    test('ninguna receta migrada deja una llave a la vista', () => {
+      for (const receta of getSeedIndex().seed.recetas.filter((r) => r.pasos_escalables)) {
+        const { container, unmount } = render(<RecipeDetail id={receta.id} />);
+        expect(pasos(container), receta.id).not.toMatch(/[{}]/);
+        unmount();
+      }
+    });
+
+    test('una receta sin migrar avisa al escalar en vez de mentir', () => {
+      const sinMigrar = getSeedIndex().seed.recetas.find((r) => !r.pasos_escalables && r.porciones_num !== null)!;
+      render(<RecipeDetail id={sinMigrar.id} />);
+      expect(screen.queryByText(AVISO)).toBeNull();
+      sumarPorciones(1);
+      expect(screen.getByText(AVISO)).toBeDefined();
+    });
+
+    test('una receta migrada no avisa: sus pasos se ajustan solos', () => {
+      render(<RecipeDetail id="r01" />);
+      sumarPorciones(1);
+      expect(screen.queryByText(AVISO)).toBeNull();
+    });
+  });
+
   test('«Cocinar ahora» se lleva las porciones elegidas (issue #201)', () => {
     render(<RecipeDetail id="r01" />); // rinde 4
     const cocinar = () => screen.getByRole('link', { name: 'Cocinar ahora' }).getAttribute('href');

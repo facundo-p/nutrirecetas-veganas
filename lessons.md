@@ -531,3 +531,33 @@ de una auditoría ni de un test: de cocinar con ella.
   la B12 buscaban la advertencia a la vista; ahora abren la «i» y la encuentran
   ahí, con la levadura suelta y dentro de un preparado. Borrarlos habría dejado
   el invariante 6 sin nadie que lo cuide.
+
+### Las cantidades de los pasos, escaladas (2026-09-18, #199)
+
+- **Un dato escrito dos veces se despega.** La cantidad vivía en la línea de
+  ingrediente *y* en la prosa del paso; el escalador movía una sola, y la ficha
+  llegó a decir 800 g en la lista y 400 en el paso. La salida no fue sincronizar
+  las dos: fue que el paso deje de tener la suya y la referencie
+  (`{tomate_triturado}`).
+- **Antes de elegir el arreglo, medir el dataset.** Parecía cuestión de
+  reemplazar números con un regex: de 804 líneas con paso, solo 326 tienen su
+  cantidad como número literal —el resto está en letras, «la taza y media»— y 5
+  números que son tiempos coinciden con una cantidad de su propio paso. Un
+  reemplazo ciego habría escalado un tiempo de cocción.
+- **La cabeza de `unidad_display` ya estaba resuelta.** `familiaDeUnidad` la
+  extraía desde la Fase 2 para redondear; alcanzó con exponerla. 296 valores de
+  texto libre se reducen a 22 unidades que se saben decir, y eso cubre el 83 %
+  de las líneas. El 17 % restante son piezas descriptivas (`mediana`, `jugo`)
+  donde el sustantivo a pluralizar está en la prosa: para esas, la regla es que
+  el paso no dice la cantidad.
+- **El validador tiene que mirar la medida, no la línea.** La primera versión
+  comparaba los números del paso contra las cantidades de sus líneas, y dejaba
+  pasar «600 ml de agua» en r04 y «3 cucharadas de agua» en r06: proporciones de
+  ingredientes de despensa, que no son línea y tampoco escalan. Pasaron a «hasta
+  cubrir» y «el triple».
+- **Un token nunca es sujeto de un verbo.** «las 2 cucharadas de levadura va por
+  encima» concuerda mal en cuanto cambia el número. La prosa se escribe con el
+  token como objeto («poné {levadura_nutricional} por encima»).
+- **El matcher de imprescindibles leía el id adentro del token** y daba por
+  nombrado lo que el paso ya no decía. El test ahora borra los tokens antes de
+  buscar: una red que se mide a sí misma no mide nada.

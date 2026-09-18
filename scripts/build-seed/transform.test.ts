@@ -10,8 +10,9 @@ import {
   transformRecipes,
   transformSeasonality,
   transformStorage,
+  validarPasos,
 } from './transform';
-import type { Recipe } from '../../src/seed/schema';
+import type { Line, Recipe } from '../../src/seed/schema';
 
 let raw: RawData;
 let recipes: Recipe[];
@@ -294,6 +295,9 @@ describe('pasos (T9)', () => {
           : new RegExp(`\\b${token}\\b`).test(pasos),
       );
 
+  /** El id vive dentro del token; contarlo daría por nombrado lo que el paso no dice. */
+  const sinTokens = (texto: string) => texto.replace(/\{~?[a-z0-9_]+(?:#\d+)?\}/g, ' ');
+
   const curadas = () => recipes.filter((r) => Object.keys(CURATED_STEPS).includes(r.id));
 
   test('las 84 recetas tienen pasos curados', () => {
@@ -337,7 +341,7 @@ describe('pasos (T9)', () => {
 
   test('todo ingrediente imprescindible se nombra en los pasos', () => {
     for (const r of curadas()) {
-      const pasos = normalizar(r.pasos.join(' '));
+      const pasos = normalizar(sinTokens(r.pasos.join(' ')));
       const olvidados = r.lineas
         .filter((l) => l.imprescindible && l.ref.tipo === 'ingrediente')
         .map((l) => l.ref.id)
@@ -364,4 +368,84 @@ describe('pasos (T9)', () => {
     }
   });
 
+});
+
+/**
+ * #200: el paso decía «los 400 g de tomate» mientras la lista ya decía 800. El
+ * número escrito a mano no sigue al escalador, así que no puede quedar ninguno:
+ * o va como token, o el paso no dice la cantidad.
+ */
+describe('las cantidades de un paso van como token (#200)', () => {
+  const linea = (id: string, cantidad: number, unidad_display: string, paso: number, g_aprox = cantidad): Line => ({
+    ref: { tipo: 'ingrediente', id },
+    cantidad,
+    unidad_display,
+    g_aprox,
+    sustitutos: [],
+    paso,
+  });
+
+  const validar = (pasos: string[], lineas: Line[]) => () => validarPasos('rXX', pasos, lineas, true);
+
+  test('un token que no es línea de ese paso rompe el build', () => {
+    expect(validar(['Agregar {perejil} de perejil.'], [linea('tomate', 400, 'g', 0)])).toThrow(
+      /\{perejil\} no es una línea de ese paso/,
+    );
+    expect(validar(['Agregar {tomate} de tomate.', 'Servir.'], [linea('tomate', 400, 'g', 1)])).toThrow(
+      /no es una línea de ese paso/,
+    );
+  });
+
+  test('una unidad que no se sabe decir no se puede tokenizar', () => {
+    expect(validar(['Picar {cebolla} de cebolla.'], [linea('cebolla', 1, 'grande', 0, 250)])).toThrow(
+      /no se sabe decir en prosa/,
+    );
+  });
+
+  test('dos líneas del mismo ingrediente en un paso obligan a desambiguar', () => {
+    const dos = [linea('aceitunas', 100, 'g', 0), linea('aceitunas', 50, 'g', 0)];
+    expect(validar(['Sumar {aceitunas} de aceitunas.'], dos)).toThrow(/es ambiguo/);
+    expect(validar(['Sumar {aceitunas#2} de aceitunas.'], dos)).not.toThrow();
+  });
+
+  test('una medida escrita a mano rompe el build, sea o no de una línea', () => {
+    expect(validar(['Agregar los 400 g de tomate.'], [linea('tomate', 400, 'g', 0)])).toThrow(
+      /"400 g" es una medida escrita/,
+    );
+    // El agua no es línea de la receta y el número igual no escala: al doble, el
+    // paso pide la mitad de lo que hace falta.
+    expect(validar(['Cubrir con 600 ml de agua.'], [linea('lentejas', 250, 'g', 0)])).toThrow(
+      /"600 ml" es una medida escrita/,
+    );
+  });
+
+  test('un número sin unidad que es una cantidad del paso también rompe', () => {
+    expect(validar(['Picar las 2 zanahorias.'], [linea('zanahoria', 2, 'mediana', 0, 140)])).toThrow(
+      /es una cantidad de ese paso y quedó escrito/,
+    );
+  });
+
+  test('los tiempos y las temperaturas no son cantidades', () => {
+    expect(validar(['Hornear 20 minutos a 180 °C.'], [linea('harina', 20, 'g', 0, 180)])).not.toThrow();
+    expect(validar(['Batir 2 a 3 minutos.'], [linea('azucar', 3, 'cda', 0)])).not.toThrow();
+    expect(validar(['Dejar 2 horas.'], [linea('sal', 2, 'cdta', 0)])).not.toThrow();
+  });
+
+  test('una receta sin tokenizar no puede llevar tokens', () => {
+    expect(() => validarPasos('rXX', ['Agregar {tomate}.'], [linea('tomate', 400, 'g', 0)], false)).toThrow(
+      /no está en RECETAS_CON_PASOS_TOKENIZADOS/,
+    );
+  });
+
+  test('las recetas ya migradas de la semilla pasan las cuatro validaciones', () => {
+    const migradas = recipes.filter((r) => r.pasos_escalables);
+    expect(migradas.length).toBeGreaterThan(0);
+    for (const r of migradas) expect(() => validarPasos(r.id, r.pasos, r.lineas, true), r.id).not.toThrow();
+  });
+
+  test('ninguna receta sin migrar tiene tokens sueltos', () => {
+    for (const r of recipes.filter((r) => !r.pasos_escalables)) {
+      for (const paso of r.pasos) expect(paso, r.id).not.toMatch(/\{~?[a-z0-9_]+(?:#\d+)?\}/);
+    }
+  });
 });

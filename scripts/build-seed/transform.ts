@@ -23,11 +23,14 @@ import {
   NUTRIENT_NAME_OVERRIDES,
   PASO_DE_CADA_LINEA,
   PHANTOM_LINES,
+  RECETAS_CON_PASOS_TOKENIZADOS,
   STORAGE_GROUPS,
   VEGAN_FACTORS_FROM_PROSE,
 } from './curated-tables';
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
+import { tokensDePaso } from '../../src/domain/pasos';
+import { unidadDecible } from '../../src/domain/unidades-decibles';
 import type { LaminaId } from '../../src/seed/laminas';
 
 // ---------- valores ----------
@@ -204,6 +207,69 @@ export function asignarPasos(
   });
 }
 
+/** Números del paso que no son cantidades: «20 a 25 minutos», «180 °C». */
+const TIEMPO_O_TEMPERATURA = /^\s*(?:a\s*\d+(?:[,.]\d+)?\s*)?(?:min|hora|segundo|°|grados?)/i;
+
+const NUMERO_SUELTO = /(?<![\d,.])\d+(?:[,.]\d+)?(?![\d,.])/g;
+
+/**
+ * Cualquier medida escrita, sea o no de una línea: «600 ml de agua» no escala
+ * aunque el agua no figure en la receta, y al doble el paso pide la mitad de lo
+ * que hace falta. Lo que se mide va como token o se dice sin número («hasta
+ * cubrir»).
+ */
+const MEDIDA_ESCRITA =
+  /(?<![\d,.])\d+(?:[,.]\d+)?\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
+
+/**
+ * T9/#200: una receta tokenizada dice sus cantidades con `{ingrediente}` y no
+ * con un número escrito. Un número fijo en la prosa miente en cuanto se ajustan
+ * las porciones —la lista decía 800 g y el paso 400—, y este es el único lugar
+ * donde se puede impedir de una vez.
+ */
+export function validarPasos(
+  id: string,
+  pasos: string[],
+  lineas: Line[],
+  tokenizada: boolean = RECETAS_CON_PASOS_TOKENIZADOS.has(id),
+): void {
+  pasos.forEach((texto, indice) => {
+    const enElPaso = lineas.filter((linea) => linea.paso === indice);
+    const donde = `T9: ${id}, paso ${indice + 1}`;
+
+    for (const token of tokensDePaso(texto)) {
+      if (!tokenizada) throw new Error(`${donde}: ${token.crudo} pero la receta no está en RECETAS_CON_PASOS_TOKENIZADOS`);
+      const candidatas = enElPaso.filter((linea) => linea.ref.id === token.id);
+      if (candidatas.length > 1 && token.ocurrencia === 1 && !token.crudo.includes('#')) {
+        throw new Error(`${donde}: ${token.crudo} es ambiguo, el paso tiene ${candidatas.length} líneas de ${token.id}`);
+      }
+      const elegida = candidatas[token.ocurrencia - 1];
+      if (elegida === undefined) throw new Error(`${donde}: ${token.crudo} no es una línea de ese paso`);
+      if (unidadDecible(elegida.unidad_display) === null) {
+        throw new Error(`${donde}: ${token.crudo} mide en "${elegida.unidad_display}", que no se sabe decir en prosa`);
+      }
+    }
+
+    if (!tokenizada) return;
+    const cantidades = new Set(
+      enElPaso.flatMap((linea) => [linea.cantidad, linea.g_aprox, Math.round(linea.g_aprox)].map(String)),
+    );
+    const medida = MEDIDA_ESCRITA.exec(texto);
+    MEDIDA_ESCRITA.lastIndex = 0;
+    if (medida !== null) {
+      throw new Error(`${donde}: "${medida[0]}" es una medida escrita; va como token o sin número`);
+    }
+
+    for (const match of texto.matchAll(NUMERO_SUELTO)) {
+      const valor = String(Number(match[0].replace(',', '.')));
+      const sigue = texto.slice(match.index + match[0].length);
+      if (cantidades.has(valor) && !TIEMPO_O_TEMPERATURA.test(sigue)) {
+        throw new Error(`${donde}: el ${match[0]} es una cantidad de ese paso y quedó escrito; va como token`);
+      }
+    }
+  });
+}
+
 export function transformRecipe(
   raw: RawRecipe,
   setKey: 1 | 2 | 3 | 'P',
@@ -294,6 +360,9 @@ export function transformRecipe(
     fuente = raw.fuente as Recipe['fuente'];
   }
 
+  const lineasConPaso = asignarPasos(id, lineas, pasos);
+  validarPasos(id, pasos, lineasConPaso);
+
   const objetivo = raw.objetivo ?? raw.objetivo_nutricional;
 
   return {
@@ -319,8 +388,9 @@ export function transformRecipe(
     dificultad: raw.dificultad as Recipe['dificultad'],
     tiempo_prep_min: raw.tiempo_prep_min,
     tiempo_coccion_min: raw.tiempo_coccion_min,
-    lineas: asignarPasos(id, lineas, pasos),
+    lineas: lineasConPaso,
     pasos,
+    pasos_escalables: RECETAS_CON_PASOS_TOKENIZADOS.has(id),
     secretos_chef: raw.secretos_chef ?? [],
     ...(raw.guarda !== undefined
       ? {
@@ -362,6 +432,11 @@ export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recip
   const pasosHuerfanos = Object.keys(PASO_DE_CADA_LINEA).filter((id) => !ids.has(id));
   if (pasosHuerfanos.length > 0) {
     throw new Error(`T14: paso de cada línea para recetas que no existen: ${pasosHuerfanos.join(', ')}`);
+  }
+
+  const tokenizadasHuerfanas = [...RECETAS_CON_PASOS_TOKENIZADOS].filter((id) => !ids.has(id));
+  if (tokenizadasHuerfanas.length > 0) {
+    throw new Error(`T9: pasos tokenizados para recetas que no existen: ${tokenizadasHuerfanas.join(', ')}`);
   }
 
   const laminasHuerfanas = Object.keys(CURATED_LAMINAS).filter((id) => !ids.has(id));

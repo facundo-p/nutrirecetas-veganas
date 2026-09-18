@@ -1079,12 +1079,12 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas.md ("bloom 45 s", "tostarlo 1-2 min revolviendo hasta que oscurezca", "hervir suave 20-25 min hasta que se deshagan"); funcion de cada línea (aceite = vehículo del bloom, limón = ácido final que activa el hierro R1, lentejas = cremosidad sin licuar, extracto = umami y color TOSTAR, zanahoria = dulzor de fondo); técnica estándar: enjuagar hasta agua clara, señales del sofrito',
     flag_gate: true,
     pasos: [
-      'Picar la cebolla grande y las 2 zanahorias, y sofreírlas en las 3 cucharadas de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.',
-      'Sumar los 4 dientes de ajo picados, las 2 cucharaditas de comino y —si lo usás— la cucharadita de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.',
-      'Agregar las 2 cucharadas de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.',
-      'Enjuagar la taza y media de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con los 1200 ml de caldo de verduras y llevar a hervor.',
+      'Picar la cebolla y las zanahorias, y sofreírlas en {aceite_oliva} de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.',
+      'Sumar {ajo} de ajo picados, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.',
+      'Agregar {extracto_tomate} de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.',
+      'Enjuagar {lentejas_turcas} de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con {caldo_verduras} de caldo de verduras y llevar a hervor.',
       'Bajar a hervor suave y cocinar 20 a 25 minutos, hasta que las lentejas se deshagan solas y la sopa espese: esa cremosidad sin pasar por la licuadora es la gracia del plato.',
-      'Rectificar la sal, apagar el fuego y recién entonces exprimir el jugo del limón: el ácido, lejos de la hornalla, es lo que activa la absorción del hierro de las lentejas. Servir con las 2 cucharadas de perejil picado por encima, si lo usás.',
+      'Rectificar la sal, apagar el fuego y recién entonces exprimir el jugo del limón: el ácido, lejos de la hornalla, es lo que activa la absorción del hierro de las lentejas. Servir con {perejil} de perejil picado por encima, si lo usás.',
     ],
   },
 
@@ -1092,13 +1092,13 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas.md ("no apurar: acá vive el sabor", "hasta que la grasa corte la salsa", "espinaca en tandas hasta que colapse"); funcion de cada línea (pimienta = piperina activa la curcumina R8, espinaca = hierro/folato entra al final, limón = balance final + vitamina C, leche de coco = grasa que absorbe especias); técnica estándar: el acompañamiento declarado al principio',
     flag_gate: true,
     pasos: [
-      'Si lo vas a acompañar con arroz, ponerlo a cocinar primero: la taza de arroz blanco llega justo para cuando el curry está listo.',
-      'Picar la cebolla grande y dorarla en un fondo de aceite a fuego medio, 8 a 10 minutos, sin apurarla: tiene que quedar bien dorada, porque en ese dorado vive buena parte del sabor del curry.',
-      'Sumar los 4 dientes de ajo y las 2 cucharadas de jengibre rallado, y revolver un minuto. Agregar la cucharada y media de curry, la cucharadita de cúrcuma y la media cucharadita de pimienta negra, y tostarlas 30 a 60 segundos, hasta que perfumen. La pimienta no es un detalle: sin ella, la curcumina de la cúrcuma casi no se absorbe.',
-      'Agregar los 400 g de tomate triturado y cocinar unos 5 minutos revolviendo, hasta que la salsa se vea cortada, con la grasa separándose del tomate: esa es la señal de que la base del curry está hecha.',
-      'Sumar los garbanzos de las 2 latas, escurridos, y los 400 ml de leche de coco. Cocinar 10 minutos a fuego suave, hasta que la salsa espese apenas y los garbanzos tomen el sabor del curry.',
-      'Agregar el paquete de espinaca en tandas, revolviendo hasta que cada tanda pierda volumen y se integre: dos minutos y ya está. Va al final a propósito, para que no se recocine y conserve el folato que trae al plato.',
-      'Apagar el fuego, exprimir el jugo del medio limón y rectificar la sal. El ácido final equilibra la leche de coco, y su vitamina C ayuda a absorber el hierro de garbanzos y espinaca.',
+      'Si lo vas a acompañar con arroz, poner a cocinar {~arroz_blanco} de arroz blanco antes que nada: llega justo para cuando el curry está listo.',
+      'Picar la cebolla y dorarla en un fondo de aceite a fuego medio, 8 a 10 minutos, sin apurarla: tiene que quedar bien dorada, porque en ese dorado vive buena parte del sabor del curry.',
+      'Sumar {ajo} de ajo y {jengibre} de jengibre rallado, y revolver un minuto. Agregar {curry_polvo} de curry, {curcuma} de cúrcuma y {pimienta_negra} de pimienta negra, y tostarlas 30 a 60 segundos, hasta que perfumen. La pimienta no es un detalle: sin ella, la curcumina de la cúrcuma casi no se absorbe.',
+      'Agregar {tomate_triturado} de tomate triturado y cocinar unos 5 minutos revolviendo, hasta que la salsa se vea cortada, con la grasa separándose del tomate: esa es la señal de que la base del curry está hecha.',
+      'Sumar los garbanzos de {garbanzos}, escurridos, y {leche_coco} de leche de coco. Cocinar 10 minutos a fuego suave, hasta que la salsa espese apenas y los garbanzos tomen el sabor del curry.',
+      'Agregar {espinaca} de espinaca en tandas, revolviendo hasta que cada tanda pierda volumen y se integre: dos minutos y ya está. Va al final a propósito, para que no se recocine y conserve el folato que trae al plato.',
+      'Apagar el fuego, exprimir el limón encima y rectificar la sal. El ácido final equilibra la leche de coco, y su vitamina C ayuda a absorber el hierro de garbanzos y espinaca.',
     ],
   },
 
@@ -1106,26 +1106,26 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas.md ("hasta que se deshagan al apretarlos", "se forma una pasta clara", "procesar 3-4 min (sí, minutos)", "agua helada de a chorros hasta textura de mousse"); funcion de cada línea (bicarbonato = ablanda pieles, agua helada = emulsión que vuelve el tahini sedoso); técnica estándar: los garbanzos calientes se procesan mejor que fríos',
     flag_gate: true,
     pasos: [
-      'Poner los 400 g de garbanzos ya cocidos en una olla con agua limpia y la media cucharadita de bicarbonato, y hervirlos 15 a 20 minutos más. Están cuando un garbanzo se deshace apenas lo apretás entre dos dedos: el bicarbonato ablanda las pieles, y de esa sobrecocción sale la cremosidad.',
-      'Procesar primero la media taza de tahini con el jugo de un limón y medio y los 2 dientes de ajo, hasta que la mezcla aclare y quede una crema lisa. El orden importa: el tahini batido con el ácido antes que nada es la base sedosa del hummus.',
+      'Poner {garbanzos} de garbanzos ya cocidos en una olla con agua limpia y {bicarbonato} de bicarbonato, y hervirlos 15 a 20 minutos más. Están cuando un garbanzo se deshace apenas lo apretás entre dos dedos: el bicarbonato ablanda las pieles, y de esa sobrecocción sale la cremosidad.',
+      'Procesar primero {tahini} de tahini con el jugo del limón y {ajo} de ajo, hasta que la mezcla aclare y quede una crema lisa. El orden importa: el tahini batido con el ácido antes que nada es la base sedosa del hummus.',
       'Escurrir los garbanzos y sumarlos al vaso todavía calientes, porque calientes se procesan mucho mejor que fríos. Procesar 3 a 4 minutos seguidos, parando solo para raspar los bordes: es más tiempo del que parece necesario, y es a propósito.',
-      'Con el motor andando, agregar los 90 ml de agua helada de a chorritos y seguir hasta que el hummus aclare y tome textura de mousse, aireado y sedoso: el agua bien fría es la que emulsiona el tahini.',
-      'Salar, sumar la media cucharadita de comino si lo usás, y probar para ajustar sal y limón. Servir con la cucharada de aceite de oliva por encima, si la usás.',
+      'Con el motor andando, agregar {agua_helada} de agua helada de a chorritos y seguir hasta que el hummus aclare y tome textura de mousse, aireado y sedoso: el agua bien fría es la que emulsiona el tahini.',
+      'Salar, sumar {comino} de comino si lo usás, y probar para ajustar sal y limón. Servir con {aceite_oliva} de aceite de oliva por encima, si la usás.',
     ],
   },
 
   r04: {
     base: 'prosa de recetas.md ("soffritto a fuego medio 10 min", "desglasar con vino, reducir a la mitad", "600 ml de agua/caldo", "reposar 10 min"); funcion de cada línea (nueces = textura granulada + grasa + ALA, extracto = umami tostar, salsa de soja = segunda fuente de umami, levadura nutricional = queso umami final); técnica estándar: rectificar la sal después de la soja, señal de ragú',
     flag_gate: true,
-    nota: 'Los pasos viejos pedían 600 ml de caldo que no existe como línea de la receta: queda como agua —o caldo, si hay—, con el agua de despensa.',
+    nota: 'Los pasos viejos pedían 600 ml de caldo que no existe como línea de la receta: queda como agua —o caldo, si hay—, con el agua de despensa. Al tokenizar (#200) los 600 ml pasaron a «hasta cubrir apenas»: sin línea que los sostenga, el número no escala y al doble pedía la mitad de lo que hace falta.',
     pasos: [
-      'Picar fino la cebolla, la zanahoria y la rama de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.',
-      'Sumar los 3 dientes de ajo picados y revolver un minuto. Agregar las 2 cucharadas de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.',
-      'Si lo usás, desglasar con los 100 ml de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.',
-      'Agregar los 250 g de lentejas enjuagadas, los 60 g de nueces picadas finas, los 800 g de tomate triturado, la hoja de laurel si la usás y 600 ml de agua —o caldo, si tenés— y llevar a hervor suave.',
+      'Picar fino la cebolla, la zanahoria y {apio} de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.',
+      'Sumar {ajo} de ajo picados y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.',
+      'Si lo usás, desglasar con {vino_tinto} de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.',
+      'Agregar {lentejas} de lentejas enjuagadas, {nueces} de nueces picadas finas, {tomate_triturado} de tomate triturado, {laurel} de laurel si la usás, y agua —o caldo, si tenés— hasta cubrir apenas. Llevar a hervor suave.',
       'Cocinar a fuego bajo 30 a 40 minutos, revolviendo cada tanto, hasta que las lentejas estén tiernas y la salsa tome cuerpo de ragú. Las nueces van desde el principio: sueltan su grasa y dan esa textura granulada de picada.',
-      'Sumar la cucharada y media de salsa de soja y, si lo usás, la cucharadita de orégano. Probar y rectificar la sal recién ahora, porque la soja ya sala.',
-      'Apagar y dejar reposar 10 minutos antes de servir, para que la salsa asiente y termine de espesar. Si la usás, la levadura nutricional va por encima en el plato, como un queso rallado.',
+      'Sumar {salsa_soja} de salsa de soja y, si lo usás, {oregano} de orégano. Probar y rectificar la sal recién ahora, porque la soja ya sala.',
+      'Apagar y dejar reposar 10 minutos antes de servir, para que la salsa asiente y termine de espesar. Si la usás, poné {levadura_nutricional} de levadura nutricional por encima en el plato, como un queso rallado.',
     ],
   },
 
@@ -1133,24 +1133,25 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas.md ("a mano en trozos irregulares: no picar prolijo, la irregularidad es la gracia", "sin revolver de más, que agarre color", "apagar el fuego y AHÍ el kala namak"); funcion de cada línea (kala namak = gusto sulfuroso a huevo al final fuera del fuego, cúrcuma = color huevo, levadura = umami cremoso); técnica estándar: aceite antes del relleno',
     flag_gate: true,
     pasos: [
-      'Desmenuzar el bloque de tofu firme A MANO, en trozos irregulares y sin buscar prolijidad: justamente esa irregularidad es lo que lo hace parecer huevo revuelto.',
-      'Calentar la cucharada y media de aceite de oliva en una sartén a fuego medio y, si los usás, sofreír la media cebolla y el medio morrón rojo picados hasta que ablanden.',
+      'Desmenuzar {tofu_firme} de tofu firme A MANO, en trozos irregulares y sin buscar prolijidad: justamente esa irregularidad es lo que lo hace parecer huevo revuelto.',
+      'Calentar {aceite_oliva} de aceite de oliva en una sartén a fuego medio y, si los usás, sofreír la cebolla y el morrón rojo picados hasta que ablanden.',
       'Sumar el tofu y dorarlo 5 a 6 minutos revolviendo lo justo: si lo movés todo el tiempo, no llega a tomar color.',
-      'Agregar la media cucharadita de cúrcuma, las 2 cucharadas de levadura nutricional y —si la usás— las 2 cucharadas de bebida vegetal, y revolver un minuto, hasta que el amarillo quede parejo: la cúrcuma pinta de huevo, no cambia el gusto.',
-      'Apagar el fuego y recién entonces mezclar la media cucharadita de kala namak: es la sal que le da el gusto a huevo, y ese efecto no sobrevive a la sartén caliente.',
+      'Agregar {curcuma} de cúrcuma, {levadura_nutricional} de levadura nutricional y —si la usás— {bebida_vegetal_fortificada} de bebida vegetal, y revolver un minuto, hasta que el amarillo quede parejo: la cúrcuma pinta de huevo, no cambia el gusto.',
+      'Apagar el fuego y recién entonces mezclar {kala_namak} de kala namak: es la sal que le da el gusto a huevo, y ese efecto no sobrevive a la sartén caliente.',
     ],
   },
 
   r06: {
     base: 'prosa de recetas.md ("el secreto anti-hamburguesa-pastosa", "ENFRIAR 30 min", "sin toquetear"); funcion de cada línea (avena = liga seca, lino = "huevo" de liga húmeda hidratado 5 min, cebolla = cruda suelta agua, comino y pimentón = perfil parrilla); técnica estándar: señal para dar vuelta dicha con otras palabras que el secreto',
     flag_gate: true,
+    nota: 'Al tokenizar (#200), el agua del lino pasó de "3 cucharadas" a "el triple": es una proporción, y escrita en número quedaba fija mientras el lino escalaba. Las "6 hamburguesas" pasaron a "una por porción" por lo mismo.',
     pasos: [
-      'Poner los 400 g de porotos negros cocidos y bien escurridos en una placa y secarlos 10 minutos en horno a 150°. Es el paso que separa una hamburguesa firme de una pastosa: el poroto húmedo nunca liga.',
-      'Hidratar la cucharada de lino molido en 3 cucharadas de agua y dejarlo reposar 5 minutos, hasta que espese como un gel: ese "huevo" de lino es lo que va a mantener unida la mezcla.',
-      'Sofreír la cebolla chica picada en un chorrito de aceite hasta que quede transparente y dulce. Va siempre cocida: cruda suelta agua adentro de la hamburguesa.',
+      'Poner {porotos_negros} de porotos negros cocidos y bien escurridos en una placa y secarlos 10 minutos en horno a 150°. Es el paso que separa una hamburguesa firme de una pastosa: el poroto húmedo nunca liga.',
+      'Hidratar {lino} de lino molido en el triple de agua y dejarlo reposar 5 minutos, hasta que espese como un gel: ese "huevo" de lino es lo que va a mantener unida la mezcla.',
+      'Sofreír la cebolla picada en un chorrito de aceite hasta que quede transparente y dulce. Va siempre cocida: cruda suelta agua adentro de la hamburguesa.',
       'Pisar los porotos tibios en un bol grande, dejando trozos enteros: buscás textura, no un puré liso.',
-      'Sumar los 80 g de avena procesada, los 60 g de nueces tostadas y molidas, la cebolla sofrita, la cucharadita de comino, la de pimentón ahumado y el gel de lino, con la cucharada de salsa de soja si la usás. Mezclar hasta poder formar una bola que no se pegotea en las manos.',
-      'Formar 6 hamburguesas y llevarlas a la heladera 30 minutos: frías mantienen la forma sobre el fuego.',
+      'Sumar {avena} de avena procesada, {nueces} de nueces tostadas y molidas, la cebolla sofrita, {comino} de comino, {pimenton} de pimentón ahumado y el gel de lino, con {salsa_soja} de salsa de soja si la usás. Mezclar hasta poder formar una bola que no se pegotea en las manos.',
+      'Formar las hamburguesas, una por porción, y llevarlas a la heladera 30 minutos: frías mantienen la forma sobre el fuego.',
       'Cocinarlas en plancha o sartén bien caliente con aceite, 4 a 5 minutos por lado, sin toquetearlas: se giran una sola vez, cuando la base formó costra y se suelta sin esfuerzo. En horno bien fuerte también salen, unos 10 minutos por lado.',
     ],
   },
@@ -1158,13 +1159,14 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
   r07: {
     base: 'prosa de recetas.md ("secados con repasador", "primero espesa, después se suelta: es normal", "reposo tapada 5"); funcion de cada línea (limón = corta el tahini y activa el hierro, batata = dulzor asado, pimentón y comino = costra de sabor); técnica estándar: anillito blanco de la quinoa, señal del garbanzo crocante',
     flag_gate: true,
+    nota: 'Al tokenizar (#200), el agua de la quinoa pasó de "una taza y tres cuartos" a "casi el doble": el agua no es línea de la receta, así que en número quedaba fija mientras la quinoa escalaba.',
     pasos: [
-      'Prender el horno a 210°. Cortar las 2 batatas en cubos, mezclarlas con un chorrito de aceite y sal, y hornearlas 25 a 30 minutos, hasta que estén tiernas por dentro y doradas en los bordes.',
-      'Secar a conciencia los 250 g de garbanzos cocidos con un repasador, mezclarlos con aceite, la cucharadita de comino y la de pimentón ahumado, y hornearlos 20 a 25 minutos en una placa donde queden desparramados, sin tocarse entre sí. Están cuando suenan secos al sacudir la placa y crujen al morderlos.',
-      'Enjuagar la taza de quinoa bajo el chorro hasta que el agua salga clara — se lleva el amargor natural de la cáscara — y cocinarla con una taza y tres cuartos de agua: llevar a hervor, bajar el fuego y tapar 15 minutos, más 5 de reposo sin destapar. Está lista cuando cada grano muestra su anillito blanco.',
-      'Para la salsa, mezclar las 3 cucharadas de tahini con el jugo del limón y el diente chico de ajo rallado, y agregar agua de a cucharadas revolviendo: primero se pone más espesa y parece arruinada, y de golpe se afloja hasta quedar cremosa. Es así, no falla.',
-      'Armar los bowls sobre la base de quinoa: los cubos de batata a un lado, los garbanzos crocantes al otro, y las hojas verdes si las usás.',
-      'Regar con la salsa y terminar con la cucharada de semillas de zapallo si las sumás. El limón de la salsa no es solo sabor: es lo que hace que el hierro del plato se absorba.',
+      'Prender el horno a 210°. Cortar las batatas en cubos, mezclarlas con un chorrito de aceite y sal, y hornearlas 25 a 30 minutos, hasta que estén tiernas por dentro y doradas en los bordes.',
+      'Secar a conciencia {garbanzos} de garbanzos cocidos con un repasador, mezclarlos con aceite, {comino} de comino y {pimenton} de pimentón ahumado, y hornearlos 20 a 25 minutos en una placa donde queden desparramados, sin tocarse entre sí. Están cuando suenan secos al sacudir la placa y crujen al morderlos.',
+      'Enjuagar {quinoa} de quinoa bajo el chorro hasta que el agua salga clara — se lleva el amargor natural de la cáscara — y cocinarla con casi el doble de agua: llevar a hervor, bajar el fuego y tapar 15 minutos, más 5 de reposo sin destapar. Está lista cuando cada grano muestra su anillito blanco.',
+      'Para la salsa, mezclar {tahini} de tahini con el jugo del limón y {ajo} de ajo rallado, y agregar agua de a cucharadas revolviendo: primero se pone más espesa y parece arruinada, y de golpe se afloja hasta quedar cremosa. Es así, no falla.',
+      'Armar los bowls sobre la base de quinoa: los cubos de batata a un lado, los garbanzos crocantes al otro, y {hojas_verdes} de hojas verdes si las usás.',
+      'Regar con la salsa y terminar con {semillas_zapallo} de semillas de zapallo si las sumás. El limón de la salsa no es solo sabor: es lo que hace que el hierro del plato se absorba.',
     ],
   },
 
@@ -1174,11 +1176,11 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     nota: 'Los pasos viejos rectificaban con "gotas de limón", que no existe como línea de ingrediente: se saca.',
     pasos: [
       'Cortar la calabaza al medio a lo largo, sacarle las semillas y asarla boca abajo en una placa aceitada a 200° durante 40 minutos, hasta que un cuchillo la atraviese sin resistencia. Asada y no hervida es la gracia: el horno le concentra el dulzor y le tuesta los bordes.',
-      'A los 20 minutos de horno, sumar a la placa los 3 dientes de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.',
-      'Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar la cucharada de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.',
-      'Agregar la pulpa de la calabaza, los ajos ya pelados y los 750 ml de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.',
-      'Licuar con los 200 ml de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.',
-      'Rectificar de sal y pimienta y servir. Si las usás, las 2 cucharadas de semillas de zapallo tostadas van por encima, para el contraste crocante.',
+      'A los 20 minutos de horno, sumar a la placa {ajo} de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.',
+      'Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar {jengibre} de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.',
+      'Agregar la pulpa de la calabaza, los ajos ya pelados y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.',
+      'Licuar con {leche_coco} de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.',
+      'Rectificar de sal y pimienta y servir. Si las usás, poné {semillas_zapallo} de semillas de zapallo tostadas por encima, para el contraste crocante.',
     ],
   },
 
@@ -1187,11 +1189,11 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     flag_gate: true,
     nota: 'Los pasos viejos cocinaban con "caldo", que no existe como línea de ingrediente: se usa agua hirviendo — la salsa de soja ya pone el fondo de sabor.',
     pasos: [
-      'Hacer el sofrito criollo en una olla grande: la cebolla, el morrón rojo y los 4 dientes de ajo picados, a fuego medio con aceite, hasta que todo esté bien dorado — no apenas transparente: dorado, que ahí vive el sabor del guiso.',
-      'Apagar el fuego y recién ahí sumar las 2 cucharaditas de pimentón ahumado, revolviendo 30 segundos con el calor de la olla. Sobre la hornalla se quema y amarga, y este pimentón es el chorizo fantasma del guiso: el que pone el ahumado.',
-      'Volver la olla al fuego y agregar los 400 g de lentejas, las 2 zanahorias en rodajas, las hojas de laurel, la cucharadita de comino y la de orégano, y cubrir con agua hirviendo. Cocinar 30 minutos a fuego medio, hasta que a la lenteja le falte poco: tierna por fuera, apenas firme al centro.',
-      'Sumar los 400 g de tomate triturado, la papa y la batata en cubos, y las 2 cucharadas de salsa de soja, que ponen el umami de fondo. Cocinar 20 minutos más, hasta que papa y batata se pinchen sin resistencia. El tomate entra recién ahora a propósito: su acidez pone dura la lenteja si va desde el principio.',
-      'Si la usás, hidratar la soja texturizada 10 minutos en agua caliente con un chorrito de salsa de soja, escurrirla apretando bien, dorarla en una sartén con aceite hasta que tome color y sumarla al guiso al final: es la mordida del plato.',
+      'Hacer el sofrito criollo en una olla grande: la cebolla, el morrón rojo y {ajo} de ajo picados, a fuego medio con aceite, hasta que todo esté bien dorado — no apenas transparente: dorado, que ahí vive el sabor del guiso.',
+      'Apagar el fuego y recién ahí sumar {pimenton} de pimentón ahumado, revolviendo 30 segundos con el calor de la olla. Sobre la hornalla se quema y amarga, y este pimentón es el chorizo fantasma del guiso: el que pone el ahumado.',
+      'Volver la olla al fuego y agregar {lentejas} de lentejas, las zanahorias en rodajas, {laurel} de laurel, {comino} de comino y {oregano} de orégano, y cubrir con agua hirviendo. Cocinar 30 minutos a fuego medio, hasta que a la lenteja le falte poco: tierna por fuera, apenas firme al centro.',
+      'Sumar {tomate_triturado} de tomate triturado, la papa y la batata en cubos, y {salsa_soja} de salsa de soja, que ponen el umami de fondo. Cocinar 20 minutos más, hasta que papa y batata se pinchen sin resistencia. El tomate entra recién ahora a propósito: su acidez pone dura la lenteja si va desde el principio.',
+      'Si la usás, hidratar {soja_texturizada} de soja texturizada 10 minutos en agua caliente con un chorrito de salsa de soja, escurrirla apretando bien, dorarla en una sartén con aceite hasta que tome color y sumarla al guiso al final: es la mordida del plato.',
       'Apagar y dejar reposar 15 minutos con la olla tapada: el guiso se asienta y espesa solo.',
       'Servir bien caliente, con el verdeo picado por encima si lo sumás: esa frescura le corta la contundencia.',
     ],
@@ -1201,11 +1203,11 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas.md ("Revolver OTRA VEZ a los 10 min (evita el bloque de chía en el fondo)", "mínimo 4 h"); funcion de cada línea (bebida = elegir CON calcio agregado, chía = gelifica, kiwi = vitamina C al servir); técnica estándar: señal de cuchara parada, fitatos dichos con otras palabras que el secreto',
     flag_gate: true,
     pasos: [
-      'Mezclar en un frasco o bol los 80 g de avena con las 3 cucharadas de chía y, si la usás, la cucharadita de canela.',
-      'Verter los 400 ml de bebida vegetal fortificada — fijate que el envase diga calcio agregado, que para eso está elegida — y revolver bien hasta que no quede nada seco. Si la sumás, la banana pisada entra acá y endulza todo.',
+      'Mezclar en un frasco o bol {avena} de avena con {chia} de chía y, si la usás, {canela} de canela.',
+      'Verter {bebida_vegetal_fortificada} de bebida vegetal fortificada — fijate que el envase diga calcio agregado, que para eso está elegida — y revolver bien hasta que no quede nada seco. Si la sumás, la banana pisada entra acá y endulza todo.',
       'Esperar 10 minutos y revolver OTRA VEZ: la chía ya empezó a largar su gel y, sin esa segunda pasada, se hunde toda y arma un ladrillo en el fondo.',
       'Tapar y dejar en la heladera toda la noche, mínimo 4 horas. A la mañana tiene que estar firme y cremoso, de cuchara parada. El reposo largo además desarma los fitatos, y eso deja los minerales de la avena más disponibles.',
-      'Servir con la fruta fresca por encima si la usás: la taza de kiwi en rodajas suma la vitamina C. Frío de la heladera está en su punto justo.',
+      'Servir con la fruta fresca por encima si la usás: con {kiwi} de kiwi en rodajas sumás la vitamina C. Frío de la heladera está en su punto justo.',
     ],
   },
 
@@ -1610,7 +1612,7 @@ export const CURATED_SOURCES: Record<string, SourceOverride> = {
 
 // ---------- T14: en qué paso entra cada línea ----------
 
-export { PASO_DE_CADA_LINEA } from './curated-pasos';
+export { PASO_DE_CADA_LINEA, RECETAS_CON_PASOS_TOKENIZADOS } from './curated-pasos';
 
 // ---------- T15: la lámina de cada receta ----------
 

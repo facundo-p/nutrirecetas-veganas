@@ -20,6 +20,8 @@ import { ListaDeIngredientes } from './ListaDeIngredientes';
 import { useRecetaEnVista } from './useRecetaEnVista';
 import { Lamina } from '../common/Lamina';
 import { Informacion } from '../common/Informacion';
+import { TextoDePaso } from '../common/TextoDePaso';
+import type { LineaDePaso } from '../../domain/pasos';
 import { SobreQueDosis } from '../common/SobreQueDosis';
 import type { FuenteDeObjetivo } from '../../domain/objetivos';
 
@@ -188,6 +190,18 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
   const totalMin = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
   const masaEnLaOlla = vista.lineasMostradas.reduce((total, linea) => total + linea.g_aprox, 0);
 
+  // El token nombra la línea de la receta y se dibuja con la que se está
+  // mostrando: sustituir cambia la referencia, no la cantidad ni el paso.
+  const lineasDePaso = (indice: number): LineaDePaso[] =>
+    recipe.lineas
+      .map((linea, i) => ({ linea, mostrada: vista.lineasMostradas[i] ?? linea }))
+      .filter(({ linea }) => linea.paso === indice)
+      .map(({ linea, mostrada }) => ({
+        id: linea.ref.id,
+        cantidad: mostrada.cantidad,
+        unidad_display: mostrada.unidad_display,
+      }));
+
   return (
     <article className="detalle">
       <p className="volver">
@@ -247,13 +261,21 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
 
       <section>
         <h2>Pasos</h2>
-        <ol className="lista-pasos">
+        {!recipe.pasos_escalables && vista.factor !== 1 && (
+          <p className="aviso-pasos-viejos">
+            Ajustaste las cantidades, pero los pasos de esta receta todavía están escritos con las
+            originales: las que valen son las de la lista.
+          </p>
+        )}
+        <ol className={vista.animando ? 'lista-pasos recalculando' : 'lista-pasos'}>
           {recipe.pasos.map((paso, i) => (
             <li key={i}>
               <span className="paso-numero" aria-hidden="true">
                 {i + 1}
               </span>
-              <span className="paso-texto">{paso}</span>
+              <span className="paso-texto">
+                <TextoDePaso texto={paso} lineas={lineasDePaso(i)} />
+              </span>
             </li>
           ))}
         </ol>

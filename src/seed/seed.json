@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "f2c43bc010bfbd519ec6913d24fe3d50293d95180cd38c7fde6c3685d10aa64f",
+ "content_hash": "a465dea488dda27b8f55e1c001ec6df2bb6043446817de4477d7bd1e4b4b9371",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -6656,13 +6656,14 @@
     }
    ],
    "pasos": [
-    "Picar la cebolla grande y las 2 zanahorias, y sofreírlas en las 3 cucharadas de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.",
-    "Sumar los 4 dientes de ajo picados, las 2 cucharaditas de comino y —si lo usás— la cucharadita de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.",
-    "Agregar las 2 cucharadas de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.",
-    "Enjuagar la taza y media de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con los 1200 ml de caldo de verduras y llevar a hervor.",
+    "Picar la cebolla y las zanahorias, y sofreírlas en {aceite_oliva} de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.",
+    "Sumar {ajo} de ajo picados, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.",
+    "Agregar {extracto_tomate} de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.",
+    "Enjuagar {lentejas_turcas} de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con {caldo_verduras} de caldo de verduras y llevar a hervor.",
     "Bajar a hervor suave y cocinar 20 a 25 minutos, hasta que las lentejas se deshagan solas y la sopa espese: esa cremosidad sin pasar por la licuadora es la gracia del plato.",
-    "Rectificar la sal, apagar el fuego y recién entonces exprimir el jugo del limón: el ácido, lejos de la hornalla, es lo que activa la absorción del hierro de las lentejas. Servir con las 2 cucharadas de perejil picado por encima, si lo usás."
+    "Rectificar la sal, apagar el fuego y recién entonces exprimir el jugo del limón: el ácido, lejos de la hornalla, es lo que activa la absorción del hierro de las lentejas. Servir con {perejil} de perejil picado por encima, si lo usás."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Tostar el extracto de tomate (Maillard + umami) es lo que separa una sopa correcta de una memorable",
     "El limón siempre fuera del fuego",
@@ -6901,14 +6902,15 @@
     }
    ],
    "pasos": [
-    "Si lo vas a acompañar con arroz, ponerlo a cocinar primero: la taza de arroz blanco llega justo para cuando el curry está listo.",
-    "Picar la cebolla grande y dorarla en un fondo de aceite a fuego medio, 8 a 10 minutos, sin apurarla: tiene que quedar bien dorada, porque en ese dorado vive buena parte del sabor del curry.",
-    "Sumar los 4 dientes de ajo y las 2 cucharadas de jengibre rallado, y revolver un minuto. Agregar la cucharada y media de curry, la cucharadita de cúrcuma y la media cucharadita de pimienta negra, y tostarlas 30 a 60 segundos, hasta que perfumen. La pimienta no es un detalle: sin ella, la curcumina de la cúrcuma casi no se absorbe.",
-    "Agregar los 400 g de tomate triturado y cocinar unos 5 minutos revolviendo, hasta que la salsa se vea cortada, con la grasa separándose del tomate: esa es la señal de que la base del curry está hecha.",
-    "Sumar los garbanzos de las 2 latas, escurridos, y los 400 ml de leche de coco. Cocinar 10 minutos a fuego suave, hasta que la salsa espese apenas y los garbanzos tomen el sabor del curry.",
-    "Agregar el paquete de espinaca en tandas, revolviendo hasta que cada tanda pierda volumen y se integre: dos minutos y ya está. Va al final a propósito, para que no se recocine y conserve el folato que trae al plato.",
-    "Apagar el fuego, exprimir el jugo del medio limón y rectificar la sal. El ácido final equilibra la leche de coco, y su vitamina C ayuda a absorber el hierro de garbanzos y espinaca."
+    "Si lo vas a acompañar con arroz, poner a cocinar {~arroz_blanco} de arroz blanco antes que nada: llega justo para cuando el curry está listo.",
+    "Picar la cebolla y dorarla en un fondo de aceite a fuego medio, 8 a 10 minutos, sin apurarla: tiene que quedar bien dorada, porque en ese dorado vive buena parte del sabor del curry.",
+    "Sumar {ajo} de ajo y {jengibre} de jengibre rallado, y revolver un minuto. Agregar {curry_polvo} de curry, {curcuma} de cúrcuma y {pimienta_negra} de pimienta negra, y tostarlas 30 a 60 segundos, hasta que perfumen. La pimienta no es un detalle: sin ella, la curcumina de la cúrcuma casi no se absorbe.",
+    "Agregar {tomate_triturado} de tomate triturado y cocinar unos 5 minutos revolviendo, hasta que la salsa se vea cortada, con la grasa separándose del tomate: esa es la señal de que la base del curry está hecha.",
+    "Sumar los garbanzos de {garbanzos}, escurridos, y {leche_coco} de leche de coco. Cocinar 10 minutos a fuego suave, hasta que la salsa espese apenas y los garbanzos tomen el sabor del curry.",
+    "Agregar {espinaca} de espinaca en tandas, revolviendo hasta que cada tanda pierda volumen y se integre: dos minutos y ya está. Va al final a propósito, para que no se recocine y conserve el folato que trae al plato.",
+    "Apagar el fuego, exprimir el limón encima y rectificar la sal. El ácido final equilibra la leche de coco, y su vitamina C ayuda a absorber el hierro de garbanzos y espinaca."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Cuando el aceite aparece en los bordes de la salsa de tomate, la base está lista (indicador índico clásico)",
     "Pisar unos pocos garbanzos espesa la salsa naturalmente",
@@ -7069,12 +7071,13 @@
     }
    ],
    "pasos": [
-    "Poner los 400 g de garbanzos ya cocidos en una olla con agua limpia y la media cucharadita de bicarbonato, y hervirlos 15 a 20 minutos más. Están cuando un garbanzo se deshace apenas lo apretás entre dos dedos: el bicarbonato ablanda las pieles, y de esa sobrecocción sale la cremosidad.",
-    "Procesar primero la media taza de tahini con el jugo de un limón y medio y los 2 dientes de ajo, hasta que la mezcla aclare y quede una crema lisa. El orden importa: el tahini batido con el ácido antes que nada es la base sedosa del hummus.",
+    "Poner {garbanzos} de garbanzos ya cocidos en una olla con agua limpia y {bicarbonato} de bicarbonato, y hervirlos 15 a 20 minutos más. Están cuando un garbanzo se deshace apenas lo apretás entre dos dedos: el bicarbonato ablanda las pieles, y de esa sobrecocción sale la cremosidad.",
+    "Procesar primero {tahini} de tahini con el jugo del limón y {ajo} de ajo, hasta que la mezcla aclare y quede una crema lisa. El orden importa: el tahini batido con el ácido antes que nada es la base sedosa del hummus.",
     "Escurrir los garbanzos y sumarlos al vaso todavía calientes, porque calientes se procesan mucho mejor que fríos. Procesar 3 a 4 minutos seguidos, parando solo para raspar los bordes: es más tiempo del que parece necesario, y es a propósito.",
-    "Con el motor andando, agregar los 90 ml de agua helada de a chorritos y seguir hasta que el hummus aclare y tome textura de mousse, aireado y sedoso: el agua bien fría es la que emulsiona el tahini.",
-    "Salar, sumar la media cucharadita de comino si lo usás, y probar para ajustar sal y limón. Servir con la cucharada de aceite de oliva por encima, si la usás."
+    "Con el motor andando, agregar {agua_helada} de agua helada de a chorritos y seguir hasta que el hummus aclare y tome textura de mousse, aireado y sedoso: el agua bien fría es la que emulsiona el tahini.",
+    "Salar, sumar {comino} de comino si lo usás, y probar para ajustar sal y limón. Servir con {aceite_oliva} de aceite de oliva por encima, si la usás."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Los 3 no negociables de Solomonov: garbanzos pasados de cocción, procesar mucho más de lo razonable, agua helada al final",
     "Ajo: licuar primero con el limón, reposar 10 min y colar: pica menos y perfuma más"
@@ -7301,14 +7304,15 @@
     }
    ],
    "pasos": [
-    "Picar fino la cebolla, la zanahoria y la rama de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.",
-    "Sumar los 3 dientes de ajo picados y revolver un minuto. Agregar las 2 cucharadas de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.",
-    "Si lo usás, desglasar con los 100 ml de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.",
-    "Agregar los 250 g de lentejas enjuagadas, los 60 g de nueces picadas finas, los 800 g de tomate triturado, la hoja de laurel si la usás y 600 ml de agua —o caldo, si tenés— y llevar a hervor suave.",
+    "Picar fino la cebolla, la zanahoria y {apio} de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.",
+    "Sumar {ajo} de ajo picados y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.",
+    "Si lo usás, desglasar con {vino_tinto} de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.",
+    "Agregar {lentejas} de lentejas enjuagadas, {nueces} de nueces picadas finas, {tomate_triturado} de tomate triturado, {laurel} de laurel si la usás, y agua —o caldo, si tenés— hasta cubrir apenas. Llevar a hervor suave.",
     "Cocinar a fuego bajo 30 a 40 minutos, revolviendo cada tanto, hasta que las lentejas estén tiernas y la salsa tome cuerpo de ragú. Las nueces van desde el principio: sueltan su grasa y dan esa textura granulada de picada.",
-    "Sumar la cucharada y media de salsa de soja y, si lo usás, la cucharadita de orégano. Probar y rectificar la sal recién ahora, porque la soja ya sala.",
-    "Apagar y dejar reposar 10 minutos antes de servir, para que la salsa asiente y termine de espesar. Si la usás, la levadura nutricional va por encima en el plato, como un queso rallado."
+    "Sumar {salsa_soja} de salsa de soja y, si lo usás, {oregano} de orégano. Probar y rectificar la sal recién ahora, porque la soja ya sala.",
+    "Apagar y dejar reposar 10 minutos antes de servir, para que la salsa asiente y termine de espesar. Si la usás, poné {levadura_nutricional} de levadura nutricional por encima en el plato, como un queso rallado."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Extracto tostado + salsa de soja = sinergia umami: nadie pregunta por la carne",
     "Mejor al día siguiente, como toda boloñesa",
@@ -7476,12 +7480,13 @@
     }
    ],
    "pasos": [
-    "Desmenuzar el bloque de tofu firme A MANO, en trozos irregulares y sin buscar prolijidad: justamente esa irregularidad es lo que lo hace parecer huevo revuelto.",
-    "Calentar la cucharada y media de aceite de oliva en una sartén a fuego medio y, si los usás, sofreír la media cebolla y el medio morrón rojo picados hasta que ablanden.",
+    "Desmenuzar {tofu_firme} de tofu firme A MANO, en trozos irregulares y sin buscar prolijidad: justamente esa irregularidad es lo que lo hace parecer huevo revuelto.",
+    "Calentar {aceite_oliva} de aceite de oliva en una sartén a fuego medio y, si los usás, sofreír la cebolla y el morrón rojo picados hasta que ablanden.",
     "Sumar el tofu y dorarlo 5 a 6 minutos revolviendo lo justo: si lo movés todo el tiempo, no llega a tomar color.",
-    "Agregar la media cucharadita de cúrcuma, las 2 cucharadas de levadura nutricional y —si la usás— las 2 cucharadas de bebida vegetal, y revolver un minuto, hasta que el amarillo quede parejo: la cúrcuma pinta de huevo, no cambia el gusto.",
-    "Apagar el fuego y recién entonces mezclar la media cucharadita de kala namak: es la sal que le da el gusto a huevo, y ese efecto no sobrevive a la sartén caliente."
+    "Agregar {curcuma} de cúrcuma, {levadura_nutricional} de levadura nutricional y —si la usás— {bebida_vegetal_fortificada} de bebida vegetal, y revolver un minuto, hasta que el amarillo quede parejo: la cúrcuma pinta de huevo, no cambia el gusto.",
+    "Apagar el fuego y recién entonces mezclar {kala_namak} de kala namak: es la sal que le da el gusto a huevo, y ese efecto no sobrevive a la sartén caliente."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "El kala namak pierde el azufre con el calor: siempre fuera del fuego",
     "Prensar el tofu 15 min antes: dora en vez de hervirse",
@@ -7649,14 +7654,15 @@
     }
    ],
    "pasos": [
-    "Poner los 400 g de porotos negros cocidos y bien escurridos en una placa y secarlos 10 minutos en horno a 150°. Es el paso que separa una hamburguesa firme de una pastosa: el poroto húmedo nunca liga.",
-    "Hidratar la cucharada de lino molido en 3 cucharadas de agua y dejarlo reposar 5 minutos, hasta que espese como un gel: ese \"huevo\" de lino es lo que va a mantener unida la mezcla.",
-    "Sofreír la cebolla chica picada en un chorrito de aceite hasta que quede transparente y dulce. Va siempre cocida: cruda suelta agua adentro de la hamburguesa.",
+    "Poner {porotos_negros} de porotos negros cocidos y bien escurridos en una placa y secarlos 10 minutos en horno a 150°. Es el paso que separa una hamburguesa firme de una pastosa: el poroto húmedo nunca liga.",
+    "Hidratar {lino} de lino molido en el triple de agua y dejarlo reposar 5 minutos, hasta que espese como un gel: ese \"huevo\" de lino es lo que va a mantener unida la mezcla.",
+    "Sofreír la cebolla picada en un chorrito de aceite hasta que quede transparente y dulce. Va siempre cocida: cruda suelta agua adentro de la hamburguesa.",
     "Pisar los porotos tibios en un bol grande, dejando trozos enteros: buscás textura, no un puré liso.",
-    "Sumar los 80 g de avena procesada, los 60 g de nueces tostadas y molidas, la cebolla sofrita, la cucharadita de comino, la de pimentón ahumado y el gel de lino, con la cucharada de salsa de soja si la usás. Mezclar hasta poder formar una bola que no se pegotea en las manos.",
-    "Formar 6 hamburguesas y llevarlas a la heladera 30 minutos: frías mantienen la forma sobre el fuego.",
+    "Sumar {avena} de avena procesada, {nueces} de nueces tostadas y molidas, la cebolla sofrita, {comino} de comino, {pimenton} de pimentón ahumado y el gel de lino, con {salsa_soja} de salsa de soja si la usás. Mezclar hasta poder formar una bola que no se pegotea en las manos.",
+    "Formar las hamburguesas, una por porción, y llevarlas a la heladera 30 minutos: frías mantienen la forma sobre el fuego.",
     "Cocinarlas en plancha o sartén bien caliente con aceite, 4 a 5 minutos por lado, sin toquetearlas: se giran una sola vez, cuando la base formó costra y se suelta sin esfuerzo. En horno bien fuerte también salen, unos 10 minutos por lado."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Los 2 errores universales: porotos húmedos y no enfriar antes de cocinar",
     "Voltear UNA vez, cuando la costra se despega sola",
@@ -7863,13 +7869,14 @@
     }
    ],
    "pasos": [
-    "Prender el horno a 210°. Cortar las 2 batatas en cubos, mezclarlas con un chorrito de aceite y sal, y hornearlas 25 a 30 minutos, hasta que estén tiernas por dentro y doradas en los bordes.",
-    "Secar a conciencia los 250 g de garbanzos cocidos con un repasador, mezclarlos con aceite, la cucharadita de comino y la de pimentón ahumado, y hornearlos 20 a 25 minutos en una placa donde queden desparramados, sin tocarse entre sí. Están cuando suenan secos al sacudir la placa y crujen al morderlos.",
-    "Enjuagar la taza de quinoa bajo el chorro hasta que el agua salga clara — se lleva el amargor natural de la cáscara — y cocinarla con una taza y tres cuartos de agua: llevar a hervor, bajar el fuego y tapar 15 minutos, más 5 de reposo sin destapar. Está lista cuando cada grano muestra su anillito blanco.",
-    "Para la salsa, mezclar las 3 cucharadas de tahini con el jugo del limón y el diente chico de ajo rallado, y agregar agua de a cucharadas revolviendo: primero se pone más espesa y parece arruinada, y de golpe se afloja hasta quedar cremosa. Es así, no falla.",
-    "Armar los bowls sobre la base de quinoa: los cubos de batata a un lado, los garbanzos crocantes al otro, y las hojas verdes si las usás.",
-    "Regar con la salsa y terminar con la cucharada de semillas de zapallo si las sumás. El limón de la salsa no es solo sabor: es lo que hace que el hierro del plato se absorba."
+    "Prender el horno a 210°. Cortar las batatas en cubos, mezclarlas con un chorrito de aceite y sal, y hornearlas 25 a 30 minutos, hasta que estén tiernas por dentro y doradas en los bordes.",
+    "Secar a conciencia {garbanzos} de garbanzos cocidos con un repasador, mezclarlos con aceite, {comino} de comino y {pimenton} de pimentón ahumado, y hornearlos 20 a 25 minutos en una placa donde queden desparramados, sin tocarse entre sí. Están cuando suenan secos al sacudir la placa y crujen al morderlos.",
+    "Enjuagar {quinoa} de quinoa bajo el chorro hasta que el agua salga clara — se lleva el amargor natural de la cáscara — y cocinarla con casi el doble de agua: llevar a hervor, bajar el fuego y tapar 15 minutos, más 5 de reposo sin destapar. Está lista cuando cada grano muestra su anillito blanco.",
+    "Para la salsa, mezclar {tahini} de tahini con el jugo del limón y {ajo} de ajo rallado, y agregar agua de a cucharadas revolviendo: primero se pone más espesa y parece arruinada, y de golpe se afloja hasta quedar cremosa. Es así, no falla.",
+    "Armar los bowls sobre la base de quinoa: los cubos de batata a un lado, los garbanzos crocantes al otro, y {hojas_verdes} de hojas verdes si las usás.",
+    "Regar con la salsa y terminar con {semillas_zapallo} de semillas de zapallo si las sumás. El limón de la salsa no es solo sabor: es lo que hace que el hierro del plato se absorba."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Enjuagar la quinoa elimina saponinas amargas",
     "Garbanzos crocantes: van SECOS al horno y con espacio en la placa (amontonados se hierven)",
@@ -8036,12 +8043,13 @@
    ],
    "pasos": [
     "Cortar la calabaza al medio a lo largo, sacarle las semillas y asarla boca abajo en una placa aceitada a 200° durante 40 minutos, hasta que un cuchillo la atraviese sin resistencia. Asada y no hervida es la gracia: el horno le concentra el dulzor y le tuesta los bordes.",
-    "A los 20 minutos de horno, sumar a la placa los 3 dientes de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.",
-    "Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar la cucharada de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.",
-    "Agregar la pulpa de la calabaza, los ajos ya pelados y los 750 ml de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.",
-    "Licuar con los 200 ml de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.",
-    "Rectificar de sal y pimienta y servir. Si las usás, las 2 cucharadas de semillas de zapallo tostadas van por encima, para el contraste crocante."
+    "A los 20 minutos de horno, sumar a la placa {ajo} de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.",
+    "Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar {jengibre} de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.",
+    "Agregar la pulpa de la calabaza, los ajos ya pelados y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.",
+    "Licuar con {leche_coco} de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.",
+    "Rectificar de sal y pimienta y servir. Si las usás, poné {semillas_zapallo} de semillas de zapallo tostadas por encima, para el contraste crocante."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Asar en lugar de hervir concentra azúcares y suma Maillard: cambia la sopa por completo",
     "Las semillas de la propia calabaza, lavadas y tostadas con sal, son el topping gratis"
@@ -8298,14 +8306,15 @@
     }
    ],
    "pasos": [
-    "Hacer el sofrito criollo en una olla grande: la cebolla, el morrón rojo y los 4 dientes de ajo picados, a fuego medio con aceite, hasta que todo esté bien dorado — no apenas transparente: dorado, que ahí vive el sabor del guiso.",
-    "Apagar el fuego y recién ahí sumar las 2 cucharaditas de pimentón ahumado, revolviendo 30 segundos con el calor de la olla. Sobre la hornalla se quema y amarga, y este pimentón es el chorizo fantasma del guiso: el que pone el ahumado.",
-    "Volver la olla al fuego y agregar los 400 g de lentejas, las 2 zanahorias en rodajas, las hojas de laurel, la cucharadita de comino y la de orégano, y cubrir con agua hirviendo. Cocinar 30 minutos a fuego medio, hasta que a la lenteja le falte poco: tierna por fuera, apenas firme al centro.",
-    "Sumar los 400 g de tomate triturado, la papa y la batata en cubos, y las 2 cucharadas de salsa de soja, que ponen el umami de fondo. Cocinar 20 minutos más, hasta que papa y batata se pinchen sin resistencia. El tomate entra recién ahora a propósito: su acidez pone dura la lenteja si va desde el principio.",
-    "Si la usás, hidratar la soja texturizada 10 minutos en agua caliente con un chorrito de salsa de soja, escurrirla apretando bien, dorarla en una sartén con aceite hasta que tome color y sumarla al guiso al final: es la mordida del plato.",
+    "Hacer el sofrito criollo en una olla grande: la cebolla, el morrón rojo y {ajo} de ajo picados, a fuego medio con aceite, hasta que todo esté bien dorado — no apenas transparente: dorado, que ahí vive el sabor del guiso.",
+    "Apagar el fuego y recién ahí sumar {pimenton} de pimentón ahumado, revolviendo 30 segundos con el calor de la olla. Sobre la hornalla se quema y amarga, y este pimentón es el chorizo fantasma del guiso: el que pone el ahumado.",
+    "Volver la olla al fuego y agregar {lentejas} de lentejas, las zanahorias en rodajas, {laurel} de laurel, {comino} de comino y {oregano} de orégano, y cubrir con agua hirviendo. Cocinar 30 minutos a fuego medio, hasta que a la lenteja le falte poco: tierna por fuera, apenas firme al centro.",
+    "Sumar {tomate_triturado} de tomate triturado, la papa y la batata en cubos, y {salsa_soja} de salsa de soja, que ponen el umami de fondo. Cocinar 20 minutos más, hasta que papa y batata se pinchen sin resistencia. El tomate entra recién ahora a propósito: su acidez pone dura la lenteja si va desde el principio.",
+    "Si la usás, hidratar {soja_texturizada} de soja texturizada 10 minutos en agua caliente con un chorrito de salsa de soja, escurrirla apretando bien, dorarla en una sartén con aceite hasta que tome color y sumarla al guiso al final: es la mordida del plato.",
     "Apagar y dejar reposar 15 minutos con la olla tapada: el guiso se asienta y espesa solo.",
     "Servir bien caliente, con el verdeo picado por encima si lo sumás: esa frescura le corta la contundencia."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "Pimentón ahumado + texturizada dorada aparte reconstruyen el rol del chorizo (ahumado + mordida)",
     "El tomate va cuando la lenteja está casi tierna: el ácido retrasa la cocción",
@@ -8456,12 +8465,13 @@
     }
    ],
    "pasos": [
-    "Mezclar en un frasco o bol los 80 g de avena con las 3 cucharadas de chía y, si la usás, la cucharadita de canela.",
-    "Verter los 400 ml de bebida vegetal fortificada — fijate que el envase diga calcio agregado, que para eso está elegida — y revolver bien hasta que no quede nada seco. Si la sumás, la banana pisada entra acá y endulza todo.",
+    "Mezclar en un frasco o bol {avena} de avena con {chia} de chía y, si la usás, {canela} de canela.",
+    "Verter {bebida_vegetal_fortificada} de bebida vegetal fortificada — fijate que el envase diga calcio agregado, que para eso está elegida — y revolver bien hasta que no quede nada seco. Si la sumás, la banana pisada entra acá y endulza todo.",
     "Esperar 10 minutos y revolver OTRA VEZ: la chía ya empezó a largar su gel y, sin esa segunda pasada, se hunde toda y arma un ladrillo en el fondo.",
     "Tapar y dejar en la heladera toda la noche, mínimo 4 horas. A la mañana tiene que estar firme y cremoso, de cuchara parada. El reposo largo además desarma los fitatos, y eso deja los minerales de la avena más disponibles.",
-    "Servir con la fruta fresca por encima si la usás: la taza de kiwi en rodajas suma la vitamina C. Frío de la heladera está en su punto justo."
+    "Servir con la fruta fresca por encima si la usás: con {kiwi} de kiwi en rodajas sumás la vitamina C. Frío de la heladera está en su punto justo."
    ],
+   "pasos_escalables": true,
    "secretos_chef": [
     "El segundo revuelto a los 10 min es la diferencia entre budín parejo y bloque pegado",
     "Dura 3 días en heladera: hacer tandas",
@@ -8651,6 +8661,7 @@
     "Volver todo al wok a fuego máximo — tofu, brócoli y la salsa — y saltear un minuto, hasta que la salsa espese y se pegue brillante a los cubos. No más que eso: es un golpe de fuego, no una cocción.",
     "Apagar, lloverle por encima las 2 cucharadas de sésamo integral — mejor si antes lo pasás un momento por una sartén seca hasta que perfume — y servir sobre el arroz."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La fécula es la costra crocante de restaurante",
     "El brócoli llega casi cocido al wok: el salteado solo lo laquea",
@@ -8810,6 +8821,7 @@
     "Sumar los 250 g de garbanzos cocidos y, si los usás, la media palta en cubos y las 2 cucharadas de semillas de zapallo tostadas.",
     "Aliñar recién al servir con el jugo del medio limón y mezclar. El cítrico no es solo aliño: la vitamina C de la naranja y el limón hace que el hierro de los garbanzos se aproveche."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El masajeado rompe la celulosa: kale crudo comestible de verdad",
     "Gajos de naranja 'a vivo' (sin membrana) elevan el plato"
@@ -8984,6 +8996,7 @@
     "Enrollar desde el borde más cercano, apretando con la esterilla a medida que avanzás, y sellar el borde libre con unas gotas de agua. Repetir con las 6 hojas de nori.",
     "Cortar cada roll con un cuchillo filoso y mojado, mojándolo otra vez entre corte y corte. Servir con el sésamo por encima y salsa de soja para mojar."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Lavar el arroz y sazonarlo caliente son el 80% del sushi",
     "Cuchillo mojado entre corte y corte",
@@ -9146,6 +9159,7 @@
     "Mezclar los fideos con el pesto FUERA del fuego, en un bol o en la olla ya apagada: el calor directo lo oxida y lo pone amargo, y con la temperatura de la pasta alcanza y sobra.",
     "Aflojar con el agua reservada de a chorritos mientras revolvés, hasta que la salsa quede fluida y pegada al fideo — el almidón de esa agua es el que la une. Servir con los tomates asados por encima."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El pesto nunca toca el fuego: la pasta caliente lo templa",
     "El agua de cocción almidonosa hace que la salsa abrace el fideo",
@@ -9359,6 +9373,7 @@
     "Si lo querés más espeso todavía, aplastar unos cuantos porotos contra la pared de la olla con el cucharón y revolver.",
     "Apagar y dejar reposar 15 minutos: el chili se asienta y los sabores se terminan de juntar. Servir con gajos de limón para exprimir en el plato — el ácido refresca y de paso ayuda a absorber el hierro de los porotos."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El cacao no endulza: redondea y oscurece (efecto mole)",
     "Pisar 1/2 taza de porotos espesa sin fécula",
@@ -9533,6 +9548,7 @@
     "Doblar recién entonces, con espátula y sin apuro, y darle un minuto más. Repetir con otra cucharada de aceite y el resto del batido. El fuego se queda en medio todo el tiempo: si lo subís, se dora afuera y queda crudo adentro.",
     "Si la usás, espolvorear la pizca de kala namak ya en el plato, fuera del fuego: el calor le borra el gusto a huevo, así que va siempre al final."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El reposo del batido evita gusto a crudo",
     "Paciencia antes de doblar: si lo apurás se rompe",
@@ -9729,6 +9745,7 @@
     "En los últimos 5 minutos, sumar el atado de kale sin tallos y en trozos, con la cucharadita de orégano si lo usás. El kale está cuando bajó de volumen y quedó verde oscuro pero entero.",
     "Servir y terminar cada plato con las 3 cucharadas de aceite de oliva repartidas en crudo por encima — acá el aceite no adorna: es el ingrediente que hace toscano al guiso. Si lo sumás, al costado va el pan integral tostado y frotado con ajo, que convierte la sopa en comida completa."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Pisar porotos EN la olla es la cremosidad toscana (sin crema)",
     "El hilo de oliva crudo final es el sabor del plato, no decoración"
@@ -9924,6 +9941,7 @@
     "Volcar el tadka hirviendo sobre el dal — el \"tsss\" es el plato — y revolver una sola vez, para que quede veteado y no uniforme.",
     "Apagar el fuego, exprimir el jugo del limón y salar. El limón va al final y fuera del fuego: es lo que activa la absorción del hierro."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El tadka es técnica, no ingrediente: especias fritas 30 s y volcadas al final elevan cualquier legumbre",
     "El ajo pasa de dorado a amargo en 5 segundos: sacarlo antes de lo que creés"
@@ -10086,6 +10104,7 @@
     "Juntar en un bol grande la quinoa ya FRÍA, las hierbas, los tomates y el pepino, y aliñar con el jugo de un limón y medio, las 4 cucharadas de aceite de oliva y sal: el aliño va abundante, que para eso es tabule.",
     "Llevar 30 minutos a la heladera antes de servir: el frío termina de casar los sabores, y el tabule se come fresco o no es tabule."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Enfriar la quinoa extendida evita el engrudo",
     "El tabule real es ensalada de perejil con granos, no al revés",
@@ -10272,6 +10291,7 @@
     "Verter las 3 cucharadas de salsa de soja por los bordes del wok y no sobre el arroz: al tocar el metal caliente se carameliza y perfuma todo el salteado.",
     "Sumar al final los 200 g de edamame, las 3 cebollas de verdeo en rodajas y los 40 g de maní tostado, y saltear un minuto más, lo justo para que el edamame se caliente sin perder color. Si lo usás, rematar con la cucharada de sésamo integral por encima."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Arroz recién hecho = engrudo; frío del día anterior = granos que tuestan",
     "La soja por el borde del wok se tuesta y perfuma",
@@ -10445,6 +10465,7 @@
     "Hornear 22 a 26 minutos a 180°, horno moderado: los bordes se ven cocidos y el centro tiene que salir apenas húmedo al pincharlo. Es brownie: seco del todo es señal de que se pasó.",
     "Dejar enfriar COMPLETOS antes de desmoldar: calientes se desarman."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Nadie detecta el poroto si el enjuague es serio y el procesado total",
     "Mejor sacarlos un pelo antes: el punto es húmedo, no crudo",
@@ -10571,6 +10592,7 @@
     "Tomar cucharadas de masa, apoyarlas en una placa con papel manteca y aplastarlas dándoles forma: en el horno no se expanden solas, quedan tal cual las dejás.",
     "Hornear 15 minutos a 180°, hasta que los bordes tomen color dorado. Salen tiernas y húmedas: son así, no les falta cocción."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Banana verde = galletita triste: tiene que estar MUY madura",
     "Húmedas por diseño; más firmes: 5 min extra y rejilla"
@@ -10720,6 +10742,7 @@
     "Repartir en compoteras y llevar a la heladera una hora como mínimo: entra crema y sale mousse.",
     "Servir bien frío y, si las sumás, con la taza de frutillas frescas por encima."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Palta en su punto: dura = grumos, pasada = gusto",
     "La pizca de sal es el postre serio",
@@ -10907,6 +10930,7 @@
     "Hornear 50 a 60 minutos a 175°, hasta que un palillo clavado en el centro salga seco: esa es la única señal confiable con tanta banana.",
     "Dejarlo 10 minutos en el molde y recién después desmoldarlo sobre una rejilla: caliente todavía está frágil y se quiebra."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Sobremezclar = gluten = budín gomoso: 15 movimientos de espátula",
     "Bananas congeladas y descongeladas rinden más dulzor",
@@ -11057,6 +11081,7 @@
     "Armar bolitas de un bocado con las manos apenas húmedas y, si lo usás, hacerlas rodar por las 3 cucharadas de coco rallado.",
     "Llevarlas a la heladera una media hora, hasta que estén firmes: frías toman textura de golosina."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "No liga: 1 cdta de agua o un dátil más; empasta: más avena",
     "2 semanas en heladera, meses en freezer: el arma anti-kiosco"
@@ -11222,6 +11247,7 @@
     "Repartir la cobertura sobre la fruta SIN apretarla: suelta se hornea crocante, compactada sale masa cruda.",
     "Hornear 35 minutos a 180°, hasta ver el jugo burbujeando en los bordes y la superficie dorada: las dos señales juntas, no una sola."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Los grumos grandes de cobertura (apretar puñados y romperlos) son el crocante",
     "Reposo 10 min: hirviente no se siente el sabor"
@@ -11331,6 +11357,7 @@
     "Sumar el sabor al final, si lo usás: las 2 cucharadas de cacao amargo, la cucharada de pasta de maní o la media taza de frutillas congeladas, con unas pulsadas apenas para integrar.",
     "Comerlo enseguida si lo querés cremoso tipo soft, o darle una hora de freezer si lo querés firme, de cortar."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Congelar SIEMPRE en rodajas",
     "El momento 'de golpe se hace crema' es real: no abandonar antes",
@@ -11474,6 +11501,7 @@
     "Apagar cuando todavía está más líquido de lo que lo querés comer: al enfriar espesa muchísimo. Si la usás, la cucharadita de esencia de vainilla entra acá, ya fuera del fuego, para que no se evapore el perfume.",
     "Retirar la rama de canela y la cáscara, repartir en compoteras y llevar a la heladera. Al servir, si la usás, terminar con la canela molida por arriba."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El azúcar temprano endurece el grano: siempre al final",
     "Revolver libera almidón = cremosidad sin crema",
@@ -11607,6 +11635,7 @@
     "Repartir en frascos, tapar y dejar toda la noche en la heladera: a la mañana la chía armó un gel espeso, de cuchara, y el budín está listo.",
     "Si la sumás, la banana en rodajas va por arriba recién al momento de comer."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La pasta previa de cacao evita el gran fracaso: grumos amargos",
     "Licuar a la mañana = textura mousse"
@@ -11818,6 +11847,7 @@
     "Unir húmedos y secos sin sobremezclar, apenas hasta que no se vea harina seca, e incorporar la zanahoria con movimientos envolventes. Si los sumás, los 60 g de nueces y los 40 g de pasas entran en esa misma pasada.",
     "Llenar los moldes de la muffinera hasta tres cuartos y hornear 20 a 24 minutos a 190°: esta masa quiere el horno bien caliente de entrada, es lo que la hace subir con domo. Están listos cuando un palillo clavado en el centro sale seco."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Vinagre + bicarbonato = buttermilk vegano: miga esponjosa sin huevo",
     "Rallado fino: el grueso queda crudo",
@@ -12071,6 +12101,7 @@
     "Acomodar las milanesas en una placa con papel de horno y pincelar las dos caras con las 3 cucharadas de aceite de oliva: ese pincelado es lo que las dora sin freírlas.",
     "Hornear a 200° unos 15 minutos, dar vuelta y seguir 10 a 15 minutos más, hasta que la costra esté dorada y crocante. Servir con gajos de limón si los usás — el clásico de toda milanesa."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El prensado separa milanesa crocante de esponja húmeda",
     "La levadura nutricional en el empanado es lo que hace que 'sepa a milanesa'",
@@ -12374,6 +12405,7 @@
     "Calentar las 12 tortillas de maíz de a una en una sartén seca bien caliente, unos segundos por lado, y llevarlas a la mesa tapadas con un repasador para que no se enfríen.",
     "Armar cada taco: una base de relleno caliente, la palta en láminas, un puñado del repollo colorado cortado bien fino, los rabanitos en láminas si los sumás, y una cucharada generosa de la crema fría por encima. El taco se come apenas armado."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El relleno debe quedar espeso: si chorrea, el taco muere",
     "Tortillas siempre calientes y de a una",
@@ -12659,6 +12691,7 @@
     "Entibiar las tortillas integrales de a una en una sartén seca hasta que se vuelvan flexibles. Poner en el centro de cada una una capa de arroz, otra de porotos y los frescos por encima, sin llenarla de más: tiene que poder cerrarse.",
     "Doblar los laterales hacia adentro y enrollar apretado desde abajo, y apoyar cada burrito con el cierre hacia abajo para que no se abra."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El pisado parcial de porotos evita que el burrito se desarme",
     "No sobrecargar: el que no cierra no es generosidad, es derrota",
@@ -12982,6 +13015,7 @@
     "Aliñar con lo que quedó de la marinada: ese jugo con ajo y hierbas es el aderezo del plato, no se tira.",
     "Recién al final sumar los 40 g de albahaca y los 40 g de perejil apenas cortados, el tofu horneado y, si las usás, las semillas de girasol tostadas. Mezclar suave y servir: el tofu entra último para seguir crocante."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La marinada penetra solo con tofu prensado (o congelado/descongelado: esponja)",
     "Tofu y hierbas al final para que no se ablanden",
@@ -13292,6 +13326,7 @@
     "Juntar en una fuente la quinoa, los garbanzos y las verduras asadas todavía tibias y bañar con el aliño. El limón no es solo gusto: su vitamina C ayuda a que el hierro de garbanzos y quinoa se absorba.",
     "Terminar con lo fresco que quieras sumar: las hojas verdes, las aceitunas, el perejil y la menta picados, y los pistachos tostados por encima. El contraste entre lo tibio y lo fresco es el plato."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El ajo asado pisado EN el aliño es el truco del plato",
     "La canela en el asado no endulza: perfuma (cocina árabe)",
@@ -13633,6 +13668,7 @@
     "Sacar el laurel, sumar los 100 g de espinaca y revolver un minuto, hasta que colapse con el calor del guiso.",
     "Fuera del fuego, exprimir el jugo del limón y sumar el perejil picado, y la menta si la usás. El limón no es adorno: su vitamina C es lo que hace que el hierro de garbanzos y quinoa se absorba. Servir con las almendras tostadas por encima, si las usás."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La quinoa absorbe muchísimo: al recalentar, sumar caldo",
     "Yogur vegano por encima al servir: contraste ácido-cremoso",
@@ -13941,6 +13977,7 @@
     "Juntar en un bol grande el arroz frío, los 400 g de lentejas cocidas, el brócoli y los crudos, sumar las pasas si las usás, y bañar con el aliño. La naranja no es un capricho: entre su vitamina C y la del limón, el hierro de las lentejas se absorbe mucho mejor.",
     "Terminar con los 40 g de perejil picado y, si las sumás, las almendras tostadas por encima, y darle media hora de heladera antes de servir para que los sabores se asienten."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Jugo Y ralladura de naranja es lo que la distingue de toda ensalada de arroz",
     "Nutricionalmente: vitamina C doble sobre hierro de lentejas (R1 de manual)",
@@ -14296,6 +14333,7 @@
     "Incorporar las hierbas y las pasas al final, para que no se ablanden ni pierdan color. Las almendras fileteadas, si las usás, van también acá.",
     "Dejar reposar 15 minutos antes de servir: es el rato en que el cuscús toma el aliño."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Esponjar con tenedor, jamás cuchara (engrudo)",
     "Absorbe aliño con el tiempo: guardar aliño extra para el día siguiente",
@@ -14560,6 +14598,7 @@
     "Recién al final sumar las 2 paltas en cubos y, si las usás, el cilantro y la menta picados. Envolver con cuidado y pocas vueltas: palta pisada de más y esto se vuelve guacamole con garbanzos — rico, pero otro plato.",
     "Dejar reposar 10 a 15 minutos a temperatura ambiente antes de servir, para que los garbanzos tomen el aliño."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La palta SIEMPRE última y con movimientos envolventes",
     "De vianda: palta aparte, cortada en el momento con limón extra",
@@ -14660,6 +14699,7 @@
     "Guardar el bagazo en un recipiente: es el okara, y con él se hacen las milanesas de soja del recetario. Aguanta unos tres días en la heladera o meses en el freezer.",
     "Si las usás, agregar las gotas de esencia de vainilla y la pizca de sal a la leche ya filtrada, y guardarla en botella en la heladera."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "⚠️ El hervor de 40-45 min es OBLIGATORIO: inactiva los antinutrientes de la soja cruda",
     "El bagazo (okara) NO se tira: alimenta las milanesas P10 (heladera 3 días / freezer 3 meses)",
@@ -14726,6 +14766,7 @@
     "Dejar reposar cinco minutos con la licuadora apagada, para que el agua termine de sacarle todo el sabor al coco.",
     "Filtrar con una tela sobre un frasco o bol, retorciendo bien para exprimir hasta la última gota. El bagazo que queda sirve para unas galletitas del recetario, así que no lo tires."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El bagazo va a galletitas (D02)",
     "En heladera separa una capa de crema: es crema de coco montable (técnica de P30)"
@@ -14876,6 +14917,7 @@
     "Licuar 30 segundos a velocidad baja y un minuto a velocidad alta, hasta que la mezcla se vea espesa, pálida y sin vetas de aceite suelto.",
     "Volcar en un molde o frasco y llevar a la heladera hasta que solidifique del todo, unas horas. De ahí en más rinde como cualquier manteca: es la que va en la masa de la pastafrola y del crumble del recetario."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La lecitina es opcional en la lista pero obligatoria en la práctica si no querés que se separe",
     "Variante untable: reemplazar ⅓ del coco por girasol",
@@ -15021,6 +15063,7 @@
     "Disolver las 4 cucharadas de fécula de mandioca en 4 cucharadas de agua fría y volcarlas en la olla en forma de hilo, revolviendo sin parar.",
     "Seguir revolviendo a fuego bajo unos 5 minutos, hasta que la mezcla se ponga elástica, brillante y haga hilos al levantar la cuchara. Para usarlo fundente va del fuego a la pizza sin escalas, y para bloque, pasarlo caliente a un recipiente apenas pincelado con aceite y dejarlo enfriar."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Usar inmediato sobre pizza, o enfriar en recipiente aceitado",
     "Es la capa del pastel de papas P19"
@@ -15193,6 +15236,7 @@
     "Disolver la cucharada de fécula de maíz en un chorrito de agua fría, agregarla a la olla y seguir revolviendo dos o tres minutos, hasta que espese y se despegue de las paredes al pasar la cuchara.",
     "En caliente es un dip para untar ya mismo. Si lo querés en bloque, pasarlo a un molde y dejarlo enfriar en la heladera hasta que tome firmeza."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El más rápido y proteico de los quesos del recetario"
    ],
@@ -15337,6 +15381,7 @@
     "Pasar la crema a una olla a fuego medio-bajo y revolver sin parar 3 a 5 minutos. Está listo cuando se vuelve brillante, elástico y se despega solo del fondo de la olla.",
     "Repartirlo con una cuchara húmeda —para que no se pegue— sobre la pizza ya armada, y llevar a horno fuerte, de 220 a 250 grados, hasta que tome color por arriba."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Gratina y toma color; pincelar apenas con aceite para más dorado",
     "Con la masa P44: pizza 100% del recetario"
@@ -15473,6 +15518,7 @@
     "Dejarla reposar 10 minutos tapada, para que se relaje y se deje estirar sin encogerse, y estirarla a 3 o 4 milímetros de espesor.",
     "Forrar el molde aceitado, pinchar la base con un tenedor para que no se infle, y prehornear 10 minutos a 180 grados si el relleno va húmedo, o rellenar directo y hornear todo junto."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Base de la tarta P22 y de cualquier tarta salada del sistema"
    ],
@@ -15599,6 +15645,7 @@
     "Apagar y dejar enfriar dentro del caldo hasta poder manipularla. Recién ahí cortar los bifecitos, de un centímetro más o menos.",
     "Al servir, sellarlos vuelta y vuelta en una sartén bien caliente con un hilo de aceite, o empanarlos pasándolos por un batido de harina y agua y después por pan rallado. Tienen que quedar con costra dorada, no solo calientes."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Proporción gluten:harina 2:1 y hervor suave = seitán tierno (la técnica correcta, la tenías)",
     "Sellado final en sartén = Maillard = otro nivel",
@@ -15767,6 +15814,7 @@
     "Sumar los 450 g de papa en cubos —dos papas grandes— y cocinar 20 a 25 minutos a fuego medio-bajo, hasta que las lentejas estén tiernas y los bordes de la papa empiecen a deshacerse en el caldo.",
     "Condimentar con las 2 cucharadas de orégano, la cucharada de pimentón dulce y la cucharadita de sal, y darle 5 minutos más a fuego bajo para que se integren. Apagar y dejarlo asentar un ratito: espesa solo."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El diferencial: verduras licuadas como caldo-crema, guiso bajo en grasa sin sofrito",
     "Tu nota de mezclar legumbres (pre-cocinando garbanzos/porotos aparte) quedó como variante",
@@ -15911,6 +15959,7 @@
     "Formar unas 8 milanesas aplastando porciones entre las palmas, acomodarlas separadas en una bandeja y llevarlas al freezer SIN empanar, hasta que estén bien duras.",
     "Ya congeladas, pasarlas por los 100 g de pan integral rallado apretando para que se pegue, y devolverlas al freezer. Duras se rebozan enteras, sin quebrarse, y quedan listas para cocinarse directo del freezer el día que haga falta."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Congelar ANTES de empanar es tu técnica y es la correcta: sólidas no se rompen",
     "Doble freezado = stock permanente de milanesas",
@@ -16073,6 +16122,7 @@
     "Armar la tabla repartiendo por zonas y no en pilas, y chequear que estén las cuatro patas: crocante (los bastones al horno, el pan, los garbanzos), untable (guacamole, hummus, quesos), ácido (las berenjenas en escabeche) y proteico (las nueces, los cajús, el seitán).",
     "Los bastones al horno y el pan van a la mesa recién salidos: es lo único de la picada que no espera."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Regla de picada: algo crocante + algo untable + algo ácido + algo proteico",
     "Los bastones de mandioca al horno son el diferencial argento"
@@ -16253,6 +16303,7 @@
     "Cocinar a fuego lento unos 30 minutos, revolviendo cada tanto, hasta que la salsa espese y todo tome el color del curry. Si se va secando, aflojar con un poco de agua — la de enjuagar el envase del tomate, que acá no se desperdicia nada.",
     "Probar y recién entonces sumar el almíbar reservado DE A POCO, en chorritos, probando entre uno y otro: tiene que quedar apenas dulce, nunca empalagoso."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El almíbar entra al final y de a poco: regula dulzor sin empalagar",
     "El seitán absorbe el curry: mejor si reposa",
@@ -16429,6 +16480,7 @@
     "Destapar, subir a fuego fuerte y dejar que la salsa reduzca hasta ponerse brillante y napar los gajos. Recién acá se prueba y se corrige, porque antes de reducir el agridulce engaña.",
     "Servir con la cebolla de verdeo picada por encima, cortada a último momento. Si lo sumás, acompañar con una taza de arroz integral cocido aparte."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El balance agridulce-salado-ácido ES el adobo: no corregirlo hasta el final",
     "La coliflor pasada pierde todo: crocante interior es el punto"
@@ -16553,6 +16605,7 @@
     "Licuar unos 2 minutos, hasta que quede una crema homogénea, sin tropezones de garbanzo. Salar a gusto.",
     "Servir directo —el agua caliente ya la deja tibia— o calentarla un par de minutos en una cacerola a fuego medio hasta que humee."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La manzana es el truco: dulzor que balancea la espinaca",
     "Con comino y limón sube dos escalones (y activa el hierro)"
@@ -16737,6 +16790,7 @@
     "Sofreír en una sartén con las 2 cucharadas de aceite de oliva la cebolla, la cebolla de verdeo y el morrón —mitad rojo, mitad verde— picados, hasta que la cebolla esté transparente. Unir con la crema de frutos secos, salpimentar y mantener a fuego mínimo.",
     "Hervir los ñoquis en abundante agua con sal, en tandas: cuando flotan, están listos. Si alguno queda pegado al fondo, despegarlo con cuchara antes de que retome el hervor. Servirlos enseguida con la salsa por encima."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Tu regla escrita es LA regla del ñoqui: mínima harina en la masa, forma con la de la mesada",
     "Congelan crudos en placa y después a bolsa",
@@ -16869,6 +16923,7 @@
     "Volver la texturizada a la sartén, unir todo y condimentar con la cucharadita de pimentón ahumado, sal, pimienta y ajo en polvo.",
     "Verter un cuarto de taza del agua de remojo de los hongos, colada, y cocinar revolviendo hasta que el relleno quede jugoso pero no aguado. Probar, corregir, y listo: este relleno después arma tartas, empanadas, canelones o el pastel de papas."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El agua de remojo de hongos devuelta al final es umami líquido: técnica seria",
     "Alimenta tartas, empanadas, canelones y el pastel P19"
@@ -17026,6 +17081,7 @@
     "Formar las hamburguesas —salen unas 15, el lote entero del mes— y llevarlas al freezer en una placa, con separadores para que no se peguen entre sí.",
     "Cocinarlas SIEMPRE CONGELADAS, directo del freezer a la sartén o al horno: es durante esa cocción que se aglutinan y quedan enteras. Descongeladas antes, se desarman."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "'No os preocupéis si está chirlo' — cierto: el reposo y la cocción del freezer resuelven",
     "15 unidades = batch total del mes"
@@ -17206,6 +17262,7 @@
     "Volcar el sushizu sobre el arroz EN CALIENTE, mezclando con movimientos envolventes y sin aplastar los granos: caliente absorbe el aliño, aplastado se hace pasta.",
     "Armar los rolls recién cuando el arroz esté frío: la hoja de nori con el lado brillante hacia abajo, una capa fina de arroz dejando 2 cm libres en el borde de arriba para poder cerrar, y el relleno al medio — si los sumás: tomates secos, los shiitake remojados, bastones de pepino, zanahoria en juliana o champiñones. Salen 3 rolls."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Esta técnica de arroz DESTRONA a la del set 2: promovida a oficial de la familia sushi",
     "El 15 s de fuego fuerte final seca el fondo: arroz suelto",
@@ -17401,6 +17458,7 @@
     "Armar en una fuente de 28 × 22: una base de puré, el relleno completo y —si lo usás— el queso de maní repartido en una capa pareja por el medio. Tapar con el resto del puré.",
     "Llevar a horno moderado hasta que la superficie gratine y tome color dorado. Dejarlo reposar un buen rato antes de cortar — y si llega al día siguiente, corta perfecto y hasta gana en sabor."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La capa de queso de maní al medio es el lujo del sistema de preparados",
     "Frío corta perfecto: mejor al día siguiente"
@@ -17666,6 +17724,7 @@
     "Retirar la sartén del fuego y recién entonces sumar la cucharada de pimentón con ají molido y una pizca de sal: fuera del fuego, porque el pimentón se quema en segundos y amarga.",
     "Servir el locro bien caliente con la salsita en un bol aparte, para que cada uno le ponga el picante que quiera."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El zapallo deshecho ES el espesante: no apurarlo",
     "El puñado de algas ablanda las legumbres y suma yodo: tu truco quedó como regla",
@@ -17885,6 +17944,7 @@
     "Formar los 6 a 8 medallones y llevarlos a la heladera entre 20 y 30 minutos: fríos se afirman y no se abren al cocinarlos.",
     "Cocinarlos en una sartén apenas aceitada a fuego medio, 3 a 4 minutos por lado, o al horno a 200° entre 20 y 25 minutos dándolos vuelta a la mitad. Están cuando la costra quedó dorada y firme."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Coincidís con el estándar del set 1 sin haberlo leído: pisado parcial + reposo + pimentón ahumado",
     "El aduki es más dulzón y cocina más rápido que el poroto común"
@@ -18090,6 +18150,7 @@
     "Unir las verduras con la ricota y probar: rectificar de sal y pimienta y, si los usás, sumar la cucharadita de orégano y una rallada de nuez moscada.",
     "Volcar el relleno sobre la masa, emparejar y hornear a 180° entre 35 y 40 minutos, hasta que esté firme al centro y con los bordes dorados. Dejarla entibiar antes de cortar, que asentada corta mejor."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El tofu+fécula+limón ES la técnica de ricota vegana que buscábamos: la tenías",
     "Licuar la mitad del relleno = versión más cremosa (tu tip)",
@@ -18336,6 +18397,7 @@
     "Probar la tonnata y ajustar: más limón si la querés más viva —el ácido le corta la grasa a la mayonesa y hace lucir las alcaparras—, un chorrito de aceite si se pasó de ácida.",
     "Cortar el seitán en fetas finas, acomodarlas apenas superpuestas en una fuente y cubrirlas con una capa generosa de salsa. Volver a la heladera de 6 a 24 horas —ahí el plato se termina de hacer— y al servir terminar con alcaparras enteras, el perejil picado si lo usás, un hilo de aceite de oliva y pimienta."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Los tres NO: no sal en la masa, no amasar de más, no hervir",
     "El reposo armado de 6-24 h es donde 'madura': planificarlo la víspera",
@@ -18475,6 +18537,7 @@
     "Sumar todo al bol de las hojas, aliñar con el chorrito de aceite de oliva y sal, y mezclar con las manos de abajo hacia arriba, para no aplastar la palta.",
     "Terminar con el sésamo tostado por encima recién en el plato: si entra antes se humedece y pierde todo el crocante."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El sésamo recién tostado es la diferencia"
    ],
@@ -18560,6 +18623,7 @@
     "Sumar la remolacha en cubitos, el chorrito de limón, la media cucharadita de comino y una pizca de sal, y mezclar. El limón es el que amarra lo dulce de la banana con lo terroso de la remolacha.",
     "Servir fresca y comerla en el día, que la banana pisada no espera a nadie. Sí, es la ensalada más rara del recetario: por eso está."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Funciona por el trío dulce-terroso-ácido (primo del beet-banana bowl nórdico)",
     "Folato + potasio en un bowl improbable"
@@ -18698,6 +18762,7 @@
     "Seguir licuando, parando a bajar lo que sube por las paredes, hasta que quede tersa y no se sienta el poroto. Si a la licuadora le cuesta, aflojar con un chorrito del agua de cocción.",
     "Pasar a un frasco y a la heladera: al enfriarse se endurece por el aceite de coco. Con más coco sale firme, para cortar. Con mitad de girasol, más blanda de untar."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Dura ~10 días en heladera; congelable en bomboncitos",
     "Base de P34; 'nutella' honesta del sistema"
@@ -18823,6 +18888,7 @@
     "Sumar la cucharada de ralladura de naranja —o de limón, canela o café, según qué crema quieras— y darle un último golpe de procesadora, apenas para integrar.",
     "Probar, ajustar el dulzor con más puré de dátiles y guardar en un frasco en la heladera. Contenerse."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "⚠️ AJUSTADA: la receta original llevaba miel (no vegana); tu propio texto habilitaba 'el endulzante que prefieras'",
     "Para freezar (helados/bombones): subir la materia grasa para que no cristalice (tu nota)",
@@ -18951,6 +19017,7 @@
     "Dejar descansar la mezcla 5 minutos en el vaso de la licuadora: en ese rato la avena se hidrata y después los panqueques se dan vuelta enteros, sin quebrarse.",
     "Calentar una sartén o panquequera a fuego medio con unas gotas de aceite y verter 2 o 3 cucharadas de mezcla por panqueque. Cuando la superficie se llene de burbujitas, dar vuelta y dorar el otro lado un minuto. Salen 4."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El reposo de 5 min es la magia agregada: panqueques que no se quiebran"
    ],
@@ -19093,6 +19160,7 @@
     "Verter en la budinera y hornear a horno bajo unos 40 minutos, hasta que un palillo clavado en el centro salga seco.",
     "Dejarlo enfriar en el molde antes de desmoldar: caliente todavía está frágil y se quiebra."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La versión 'domingo' (azúcar entera + leudante); D04 es la integral: la app muestra ambas como familia"
    ],
@@ -19256,6 +19324,7 @@
     "Volcar en la budinera y hornear entre 20 y 30 minutos, hasta que la superficie esté dorada y un palillo salga seco del centro.",
     "Dejarla enfriar en el molde antes de desmoldar: recién fría corta prolijo."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Crema de coco PRO: leche de coco casera 12-24 h en heladera, separar la capa espesa con cuchara; procesable con cajús remojados 8-12 h para más cuerpo",
     "Variante de D10 con casi nada de grasa"
@@ -19388,6 +19457,7 @@
     "Estirar la masa reservada, cortarla en tiras y armar el enrejado sobre el membrillo.",
     "Hornear a 200° entre 25 y 30 minutos, hasta que el enrejado y los bordes estén dorados. Dejar enfriar antes de cortar: el membrillo sale hirviendo y la masa se asienta al entibiarse."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Con TU manteca P03: cadena de preparados en acción",
     "Indulgente y gloriosa: así debe quedar registrada"
@@ -19547,6 +19617,7 @@
     "Volcar en una placa forrada con papel manteca, emparejar y hornear a 180° unos 20 minutos. La señal es la contraria a la de una torta: bordes firmes y centro todavía HÚMEDO, con el palillo saliendo con migas mojadas. Si sale seco, se pasó.",
     "Dejar enfriar por completo en la placa antes de cortar: calientes se desarman, fríos se afirman."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Endulzado con dátiles: el más 'limpio' de la familia brownies"
    ],
@@ -19672,6 +19743,7 @@
     "Volcar la mezcla, emparejar y hornear a 180° entre 20 y 30 minutos, hasta que los bordes estén firmes y el centro apenas húmedo: el palillo tiene que salir con migas, ni limpio ni chorreando.",
     "Dejar entibiar en la placa antes de cortar, que recién salidos no tienen estructura."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El girasol remojado reemplaza harina Y parte de la grasa: fudge denso",
     "Espolvorear la placa con cacao (no harina): no deja borde blanco"
@@ -19801,6 +19873,7 @@
     "Volcar al molde y, si querés que arriba se forme una costra crocante, espolvorear la cucharada de azúcar sobre la superficie antes de hornear.",
     "Hornear a 190° unos 25 minutos, aunque según el molde puede ir de 20 a 40: la señal que manda es la superficie firme y un palillo que sale con migas húmedas. Es brownie, no budín: seco del todo quiere decir que se pasó."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Tres ingredientes estructurales + un preparado: la receta más corta de la familia",
     "Tu tip de la corteza azucarada quedó como campo general de dulces"
@@ -19932,6 +20005,7 @@
     "Fuera del fuego, retirar las cáscaras y la rama de canela y, si la usás, perfumar con la cucharadita de esencia de vainilla.",
     "Dejar enfriar y, ya frío, incorporar revolviendo los 150 ml de leche de coco restantes: ese agregado en frío es lo que lo deja cremoso y fresco en vez de apelmazado. A la heladera hasta servir."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Tu doble técnica destrona a D08: pre-hervor (almidón sin cortar la leche) + leche fría final (cremosidad fresca) → promovida a técnica oficial de la familia",
     "La cáscara sin lo blanco: lo amargo queda afuera"
@@ -20115,6 +20189,7 @@
     "Hornear a 180° entre 35 y 45 minutos, hasta que la superficie esté dorada y un palillo salga seco del centro.",
     "Dejar enfriar en el molde antes de desmoldar: en caliente se rompe. Espolvorear azúcar impalpable al servir."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La mandioca cruda licuada ES la masa: sin gluten por diseño",
     "La exótica del recetario: única con mandioca"
@@ -20233,6 +20308,7 @@
     "Volcar en la fuente, emparejar y hornear unos 30 minutos. La señal: bordes dorados que se despegan de la fuente y centro firme al tacto pero todavía húmedo adentro, con el palillo saliendo con migas. Es pariente del brownie, no un bizcochuelo: seco del todo pierde la gracia.",
     "Dejar enfriar en la fuente antes de cortar en cuadrados, que tibios se desarman."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Blondie de limón sin huevo; variante: base de masa de pastafrola (tu nota)",
     "Indulgente declarado: sin disfraz"
@@ -20351,6 +20427,7 @@
     "Llevar al freezer entre 1 hora y 1 hora y media. La señal: sólidos pero todavía blandos, que un cuchillo entre sin astillarlos. El aceite de coco es el que endurece con el frío y les da la mordida de bombón helado. Con girasol u oliva también salen, pero más blandos.",
     "Cortar en bocaditos y guardarlos en el freezer. Sacarlos unos minutos antes de comer, que directo del frío están demasiado duros."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El aceite de coco solidifica en frío: eso los vuelve 'bombón' y no puré congelado",
     "Familia 'banana congelada' con D07 (nice cream)"
@@ -20509,6 +20586,7 @@
     "Cubrir con el resto del crumble y hornear a horno suave a moderado —unos 170°— alrededor de 30 minutos, hasta que el crumble esté dorado y la manzana se sienta tierna al pincharla. Va todo al horno en una sola tanda, con la masa cruda abajo: así sale cocida sin resecarse.",
     "Dejar entibiar en el molde antes de cortar, que recién salido el crumble se desarma."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Tres preparados encadenados (P03 + P27 + esta): el sistema funcionando en un postre",
     "Tu opción de hornear todo junto (sin prehornear la base) quedó como la recomendada: la base no se seca"
@@ -20649,6 +20727,7 @@
     "Tapar y llevar a la heladera toda la noche. A los 10 o 15 minutos vale la pena un segundo removido, antes de que la chía decida quedarse toda abajo. La señal a la mañana: cuajado parejo, con textura de pudding que no se vuelca al inclinar el frasco.",
     "Al servir, coronar con los toppings si los sumás: la media taza de frutillas, la cucharada de nibs de cacao y la cucharada de coco rallado."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Casi idéntica a D09: queda como variante con tus toppings (nibs + coco en escamas)"
    ],
@@ -20766,6 +20845,7 @@
     "Si la usás, pisar la banana madura con un tenedor e integrarla a la masa.",
     "Volcar en la budinera y hornear unos 40 minutos a 180°, hasta que un palillo pinchado en el centro salga seco."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "El budín de un bowl: cero técnica, funciona siempre"
    ],
@@ -20934,6 +21014,7 @@
     "Sumar el cuarto de taza de bebida vegetal, cocinar 2 minutos más revolviendo y apagar. Fuera del fuego, agregar la cucharada de ralladura de limón: así conserva todo el perfume.",
     "Volcar el relleno caliente sobre la base fría, alisar la superficie y llevar a la heladera 3 horas como mínimo, hasta que esté firme al tacto. Cortar en 12 cuadrados y, si la usás, terminarlos con la cucharada de azúcar impalpable."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Doble gelificación (agar en caliente + maicena): curd sin huevo que corta limpio",
     "La cúrcuma es el amarillo: una pizca, invisible al gusto"
@@ -21086,6 +21167,7 @@
     "Tapar el bol y dejar levar una hora, hasta que la masa doble su volumen.",
     "Desgasificar apenas, acomodar la masa en una budinera engrasada —o formar bollitos— y hornear a 160-180° entre 20 y 25 minutos, hasta que esté dorado y la base suene hueca al golpearla."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Harina de garbanzo 1:1 con integral: pan con lisina (complementa el día)",
     "Dura 4-5 días ambiente, 30 en freezer (tu dato, coincide con conservación)"
@@ -21222,6 +21304,7 @@
     "A la mañana la masa tiene que verse crecida y llena de burbujas: esa es la señal de que la fermentación hizo su parte. Si está igual que anoche, dejarla un rato a temperatura ambiente hasta que arranque.",
     "Volcar la masa sobre la mesada enharinada y dividirla en 5 bollos. Antes de estirarlos, dejarlos tapados hasta que pierdan el frío y se estiren sin encogerse de vuelta: esa resistencia que cede es la señal de que están listos."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "La noche de heladera hace el trabajo del amasado Y degrada fitatos (R4 en panificación)",
     "Bollos sobrantes al freezer",
@@ -21329,6 +21412,7 @@
     "Hornear a 180-200° hasta que estén dorados y crocantes, unos 20 a 25 minutos según el horno.",
     "Apagar el horno y dejarlos adentro un rato más: ese secado final es el que les da el crocante que aguanta. Guardarlos en un frasco bien cerrado recién cuando estén fríos del todo."
    ],
+   "pasos_escalables": false,
    "secretos_chef": [
     "Se separan solos por las marcas durante la cocción",
     "En frasco duran semanas: la vianda crocante permanente"
