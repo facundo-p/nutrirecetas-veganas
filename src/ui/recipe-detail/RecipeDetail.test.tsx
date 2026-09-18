@@ -325,6 +325,14 @@ describe('Detalle de receta', () => {
     });
   });
 
+  test('«Cocinar ahora» se lleva las porciones elegidas (issue #201)', () => {
+    render(<RecipeDetail id="r01" />); // rinde 4
+    const cocinar = () => screen.getByRole('link', { name: 'Cocinar ahora' }).getAttribute('href');
+    expect(cocinar()).toBe('#/cocinar/r01');
+    fireEvent.click(screen.getByRole('button', { name: 'Más porciones' }));
+    expect(cocinar()).toBe('#/cocinar/r01/x1.25');
+  });
+
   test('una receta inexistente no rompe', () => {
     render(<RecipeDetail id="zzz" />);
     expect(screen.getByRole('heading', { name: /Receta no encontrada/ })).toBeDefined();

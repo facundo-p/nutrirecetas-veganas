@@ -257,7 +257,10 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
             </li>
           ))}
         </ol>
-        <a className="boton-principal boton-cocinar" href={`${routeHash({ screen: 'cook', id: recipe.id })}`}>
+        <a
+          className="boton-principal boton-cocinar"
+          href={routeHash({ screen: 'cook', id: recipe.id, factor: vista.factor })}
+        >
           Cocinar ahora
         </a>
       </section>

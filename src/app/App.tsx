@@ -25,7 +25,7 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
     case 'profile':
       return <ProfileScreen />;
     case 'cook':
-      return <CookSession recetaId={route.id} />;
+      return <CookSession recetaId={route.id} factor={route.factor} />;
     case 'diary':
       return <DiaryScreen />;
     case 'settings':
