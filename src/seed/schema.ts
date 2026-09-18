@@ -265,6 +265,13 @@ export const recipeSchema = z.strictObject({
   tiempo_coccion_min: z.number().nonnegative(),
   lineas: z.array(lineSchema).min(1),
   pasos: z.array(z.string()).min(1),
+  /**
+   * Transitorio (#200): si los pasos dicen sus cantidades con tokens, y por lo
+   * tanto siguen al escalador. Mientras sea false la ficha avisa al ajustar las
+   * porciones, porque la prosa tiene los números de la receta original. Se borra
+   * cuando estén las 84.
+   */
+  pasos_escalables: z.boolean(),
   secretos_chef: z.array(z.string()),
   guarda: z
     .strictObject({

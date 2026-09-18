@@ -10,6 +10,8 @@ import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import { useObjetivos } from '../common/useObjetivos';
 import { useWakeLock } from './useWakeLock';
 import { Informacion } from '../common/Informacion';
+import { TextoDePaso } from '../common/TextoDePaso';
+import type { LineaDePaso } from '../../domain/pasos';
 
 /**
  * La mesada: la receta entera a la vista y el paso actual abierto, con lo que
@@ -38,6 +40,18 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
 
   const total = recipe.pasos.length;
   const esUltimo = pasoActual === total - 1;
+
+  // Con el id original: el paso se escribió nombrando al ingrediente de la
+  // receta, y sustituirlo no cambia ni la cantidad ni el paso donde entra.
+  // Lo desmarcado sigue contando: el texto del paso lo nombra igual.
+  const lineasDePaso = (indice: number): LineaDePaso[] =>
+    lineas
+      .filter((linea) => linea.paso === indice)
+      .map((linea) => ({
+        id: linea.original?.ref.id ?? linea.ref.id,
+        cantidad: linea.cantidad,
+        unidad_display: linea.unidad_display,
+      }));
 
   return (
     <article className="mesada" data-nut={colores[pasoActual] ?? undefined} aria-label={recipe.nombre}>
@@ -70,6 +84,7 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
                 <PasoAbierto
                   numero={i + 1}
                   texto={texto}
+                  enElTexto={lineasDePaso(i)}
                   lineas={lineas.filter((l) => l.activa && l.paso === i)}
                   // Todos juntos y antes de arrancar: son técnica de la receta
                   // entera. Aparearlos por índice con los pasos fue un bug.
@@ -79,7 +94,10 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
             ) : (
               <li key={i} className="mesada-paso" data-nut={colores[i] ?? 'ninguno'}>
                 <button type="button" className="boton-plano mesada-salto" onClick={() => irAPaso(i)}>
-                  <span className="mesada-salto-numero">{i + 1}</span> <span>{texto}</span>
+                  <span className="mesada-salto-numero">{i + 1}</span>{' '}
+                  <span>
+                    <TextoDePaso texto={texto} lineas={lineasDePaso(i)} />
+                  </span>
                 </button>
               </li>
             ),
@@ -111,11 +129,13 @@ export function StepsView({ recipe }: { recipe: Recipe }) {
 function PasoAbierto({
   numero,
   texto,
+  enElTexto,
   lineas,
   secretos,
 }: {
   numero: number;
   texto: string;
+  enElTexto: LineaDePaso[];
   lineas: LineaSesion[];
   secretos: string[];
 }) {
@@ -124,7 +144,9 @@ function PasoAbierto({
   return (
     <>
       <p className="mesada-paso-numero">Paso {numero}</p>
-      <p className="mesada-paso-texto">{texto}</p>
+      <p className="mesada-paso-texto">
+        <TextoDePaso texto={texto} lineas={enElTexto} />
+      </p>
       {lineas.length > 0 && (
         <ul className="mesada-ingredientes">
           {lineas.map((linea) => (

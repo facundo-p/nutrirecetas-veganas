@@ -1,4 +1,5 @@
 import type { BaseDeMedida } from '../../domain/nutrition';
+import { unidadDecible } from '../../domain/unidades-decibles';
 import type { Line } from '../../seed/schema';
 
 /** Utilidades de presentación compartidas (sin estado, sin datos). */
@@ -44,6 +45,32 @@ export function formatCantidad(valor: number): string {
 /** «1½ taza»: la cantidad de una línea con su unidad, como la escribe la receta. */
 export function cantidadConUnidad(linea: Pick<Line, 'cantidad' | 'unidad_display'>): string {
   return `${formatCantidad(linea.cantidad)} ${legible(linea.unidad_display)}`;
+}
+
+const ARTICULO = {
+  m: { singular: 'el', plural: 'los' },
+  f: { singular: 'la', plural: 'las' },
+} as const;
+
+/**
+ * La cantidad de una línea dicha dentro de un paso: «los 400 g», «la taza»,
+ * «las 3 cucharadas». El 1 no se escribe, porque «la 1 taza» no lo dice nadie.
+ * `null` cuando la unidad no se sabe decir — ahí el paso no lleva la cantidad.
+ */
+export function cantidadEnPalabras(
+  linea: Pick<Line, 'cantidad' | 'unidad_display'>,
+  conArticulo = true,
+): string | null {
+  const unidad = unidadDecible(linea.unidad_display);
+  if (unidad === null) return null;
+  const plural = unidad.siemprePlural === true || linea.cantidad > 1;
+  const palabra = plural ? unidad.plural : unidad.singular;
+  // El 1 se calla solo cuando hay artículo que lo sostenga: «la taza», pero
+  // «1 taza de arroz» — «taza de arroz» a secas no es español.
+  const sinNumero = conArticulo && linea.cantidad === 1 && unidad.siemprePlural !== true;
+  const numero = sinNumero ? '' : `${formatCantidad(linea.cantidad)} `;
+  const cantidad = `${numero}${palabra}`;
+  return conArticulo ? `${ARTICULO[unidad.genero][plural ? 'plural' : 'singular']} ${cantidad}` : cantidad;
 }
 
 /** Debajo del gramo el entero miente: 0,5 g de azafrán no es 1 g. */

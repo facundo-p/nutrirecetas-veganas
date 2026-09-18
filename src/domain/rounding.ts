@@ -31,8 +31,13 @@ const CANTIDADES_A_OJO = new Set([
   'cn',
 ]);
 
+/** `taza_cocidos_calientes` → `taza`. Lo que sigue describe, no mide. */
+export function cabezaDeUnidad(unidadDisplay: string): string {
+  return (CABEZA.exec(unidadDisplay.trim().toLowerCase())?.[0] ?? '').replace(/[.,;:]$/, '');
+}
+
 export function familiaDeUnidad(unidadDisplay: string): FamiliaDeUnidad {
-  const cabeza = (CABEZA.exec(unidadDisplay.trim().toLowerCase())?.[0] ?? '').replace(/[.,;:]$/, '');
+  const cabeza = cabezaDeUnidad(unidadDisplay);
   if (UNIDADES_DE_PESO.has(cabeza)) return 'peso';
   if (MEDIDAS_DE_COCINA.has(cabeza)) return 'medida';
   if (CANTIDADES_A_OJO.has(cabeza)) return 'a_ojo';

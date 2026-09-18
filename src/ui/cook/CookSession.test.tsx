@@ -237,3 +237,29 @@ describe('el factor de la ficha llega a la mesada (issue #201)', () => {
     await waitFor(() => expect(useSession.getState().porciones).toBe(8));
   });
 });
+
+describe('las cantidades del paso, en la mesada (#200)', () => {
+  const textoDelPasoAbierto = () => screen.getByRole('listitem', { current: 'step' }).textContent ?? '';
+
+  test('el paso dice la cantidad de la sesión, no la de la receta', async () => {
+    render(<CookSession recetaId="r01" factor={2} />);
+    await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
+    empezarACocinar();
+    saltarAlPaso(4);
+    expect(textoDelPasoAbierto()).toContain('las 3 tazas de lentejas turcas');
+  });
+
+  test('sin escalar dice lo que dice la receta', async () => {
+    await enPersonalizar();
+    empezarACocinar();
+    saltarAlPaso(4);
+    expect(textoDelPasoAbierto()).toContain('las 1½ tazas de lentejas turcas');
+  });
+
+  test('el paso no deja ninguna llave a la vista', async () => {
+    await enPersonalizar();
+    empezarACocinar();
+    saltarAlPaso(4);
+    expect(textoDelPasoAbierto()).not.toMatch(/[{}]/);
+  });
+});

@@ -359,6 +359,17 @@
   color: var(--recalculando);
 }
 
+/* Transitorio (#200): mientras los pasos de una receta no sigan al escalador,
+   decirlo es mejor que dejar leer un número que ya no vale. */
+.aviso-pasos-viejos {
+  background: color-mix(in srgb, var(--aviso) 9%, var(--superficie));
+  border: 1px solid color-mix(in srgb, var(--aviso) 45%, transparent);
+  border-radius: var(--radio);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  margin: 0 0 var(--sp-4);
+}
+
 .avisos-escalado {
   list-style: none;
   padding: 0;
