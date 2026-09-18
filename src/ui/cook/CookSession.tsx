@@ -12,21 +12,20 @@ import { Informacion } from '../common/Informacion';
  * La sesión de cocina, en tres tiempos: personalizar lo que va a la olla,
  * cocinar con la pantalla despierta, y registrar qué salió y cuánto se comió.
  */
-export function CookSession({ recetaId }: { recetaId: string }) {
+export function CookSession({ recetaId, factor = 1 }: { recetaId: string; factor?: number }) {
   const idx = getSeedIndex();
   const recipe = idx.recipeById.get(recetaId);
-  const { recetaId: enCurso, lineas, paso, porciones, iniciar } = useSession();
+  const { recetaId: enCurso, factor: factorEnCurso, lineas, paso, porciones, iniciar } = useSession();
 
   // Entrar a una receta distinta (o recargar la página) arranca la sesión de cero.
+  // Volver con otras porciones también: cambiar la escala es una decisión, y la
+  // sesión entera cuelga de ella.
   useEffect(() => {
-    if (recipe && enCurso !== recipe.id) {
-      const factorGuardado = Number(new URLSearchParams(window.location.search).get('factor'));
-      iniciar(recipe, Number.isFinite(factorGuardado) && factorGuardado > 0 ? factorGuardado : 1, idx.seed);
-    }
-  }, [recipe, enCurso, iniciar, idx]);
+    if (recipe && (enCurso !== recipe.id || factorEnCurso !== factor)) iniciar(recipe, factor, idx.seed);
+  }, [recipe, enCurso, factorEnCurso, factor, iniciar, idx]);
 
   // Hasta que el efecto de arriba corre, las líneas son las de la sesión anterior.
-  const sesionDeEstaReceta = recipe !== undefined && enCurso === recipe.id;
+  const sesionDeEstaReceta = recipe !== undefined && enCurso === recipe.id && factorEnCurso === factor;
   const nutricion = useMemo(() => {
     if (!recipe || !sesionDeEstaReceta) return null;
     return nutricionSesion(lineas, recipe, Math.max(1, porciones), idx);

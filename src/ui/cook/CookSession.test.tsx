@@ -211,3 +211,29 @@ describe('la mesada (issue #164)', () => {
     expect(screen.getByRole('heading', { name: 'Qué va a la olla' })).toBeDefined();
   });
 });
+
+/**
+ * El factor se elegía en la ficha y se perdía al entrar: `CookSession` lo leía
+ * de `location.search`, que en un router de hash nunca tiene nada.
+ */
+describe('el factor de la ficha llega a la mesada (issue #201)', () => {
+  test('cocinar al doble arranca la sesión al doble', async () => {
+    render(<CookSession recetaId="r01" factor={2} />);
+    await waitFor(() => screen.getByRole('heading', { name: 'Qué va a la olla' }));
+    expect(useSession.getState().porciones).toBe(8); // r01 rinde 4
+    const lentejas = useSession.getState().lineas.find((l) => l.ref.id === 'lentejas_turcas')!;
+    expect(lentejas.g_aprox).toBe(600);
+  });
+
+  test('sin factor se cocina la receta como es', async () => {
+    await enPersonalizar();
+    expect(useSession.getState().porciones).toBe(4);
+  });
+
+  test('volver a la ficha y cambiar las porciones rearma la sesión', async () => {
+    const { rerender } = render(<CookSession recetaId="r01" />);
+    await waitFor(() => expect(useSession.getState().porciones).toBe(4));
+    rerender(<CookSession recetaId="r01" factor={2} />);
+    await waitFor(() => expect(useSession.getState().porciones).toBe(8));
+  });
+});
