@@ -3,7 +3,14 @@ import { analizarImport, diasDesde, exportar, importar, nombreDeArchivo, type Re
 import { useCocciones, useMeta } from '../../db/hooks';
 import { registrarBackup } from '../../db/repos';
 import { getSeedIndex } from '../../seed';
-import { INFO_DE_TEMA, setTema, TEMAS, temaActivo, type Tema } from '../../app/tema';
+import { elegirPreferencia, preferenciaGuardada, type Preferencia } from '../../app/tema';
+import { Informacion } from '../common/Informacion';
+
+const OPCIONES_DE_APARIENCIA: { preferencia: Preferencia; rotulo: string }[] = [
+  { preferencia: 'auto', rotulo: 'Automático' },
+  { preferencia: 'papel', rotulo: 'Claro' },
+  { preferencia: 'musgo', rotulo: 'Oscuro' },
+];
 
 /**
  * Ajustes y datos. Sin backend, exportar es la única forma de que estos datos
@@ -17,11 +24,10 @@ export function SettingsScreen() {
   const cocciones = useCocciones();
   const inputArchivo = useRef<HTMLInputElement>(null);
 
-  // El tema no vive en la base: es del dispositivo, y lo guarda tema.ts.
-  const [tema, elegirTema] = useState<Tema>(() => temaActivo());
   const [pendiente, setPendiente] = useState<{ json: unknown; reporte: ReporteImport } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
+  const [apariencia, setApariencia] = useState<Preferencia>(preferenciaGuardada);
 
   const seedVersion = idx.seed.seed_schema_version;
 
@@ -79,16 +85,21 @@ export function SettingsScreen() {
   return (
     <>
       <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Ajustes y datos</span>
+        <div className="fila-con-informacion">
+          <span className="etiqueta-seccion">Ajustes y datos</span>
+          <Informacion>
+            <p>
+              Todo lo tuyo vive solo en este dispositivo. Si borrás el sitio o cambiás de teléfono, el backup es lo único
+              que lo trae de vuelta.
+            </p>
+            <p>En automático, la apariencia sigue al modo claro u oscuro del teléfono.</p>
+          </Informacion>
+        </div>
         <h1>Tus datos</h1>
       </header>
 
       <section className="bloque-ajustes">
         <h2>Copia de seguridad</h2>
-        <p className="campo-ayuda">
-          Todo lo tuyo vive solo en este dispositivo. Si borrás el sitio o cambiás de teléfono, el backup es lo único
-          que lo trae de vuelta.
-        </p>
         <p className="estado-backup">
           {meta?.ultimo_backup ? (
             <>
@@ -158,32 +169,23 @@ export function SettingsScreen() {
       </section>
 
       <section className="bloque-ajustes">
-        <h2>Tema visual</h2>
-        <p className="campo-ayuda">
-          Cambia solo los colores: las mismas pantallas, el mismo fondo, las mismas tipografías. Queda guardado en este
-          dispositivo.
-        </p>
-        <fieldset className="campo">
-          <legend className="campo-etiqueta">Elegí un tema</legend>
-          <div className="opciones opciones-columna">
-            {TEMAS.map((id) => (
-              <label key={id} className="opcion">
-                <input
-                  type="radio"
-                  name="tema"
-                  checked={tema === id}
-                  onChange={() => {
-                    setTema(id);
-                    elegirTema(id);
-                  }}
-                />
-                <span>
-                  {INFO_DE_TEMA[id].nombre} <em className="campo-ayuda">· {INFO_DE_TEMA[id].resumen}</em>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
+        <h2>Apariencia</h2>
+        <div className="control-apariencia" role="group" aria-label="Apariencia">
+          {OPCIONES_DE_APARIENCIA.map(({ preferencia, rotulo }) => (
+            <button
+              key={preferencia}
+              type="button"
+              className="chip chip-boton"
+              aria-pressed={apariencia === preferencia}
+              onClick={() => {
+                elegirPreferencia(preferencia);
+                setApariencia(preferencia);
+              }}
+            >
+              {rotulo}
+            </button>
+          ))}
+        </div>
       </section>
 
       <section className="bloque-ajustes">
@@ -197,6 +199,10 @@ export function SettingsScreen() {
           </li>
           <li>
             {idx.seed.recetas.length} recetas · {idx.seed.ingredientes.length} ingredientes
+          </li>
+          <li>
+            Láminas de dominio público: Vilmorin-Andrieux, <em>Les Plantes potagères</em> (1883), y otras obras de la
+            época
           </li>
         </ul>
       </section>

@@ -1,22 +1,22 @@
-import type { Ingredient, Line, Recipe, Seed } from '../seed/schema';
+import type { Ingredient, Line, Recipe } from '../seed/schema';
 import { redondearLinea } from './rounding';
 
 /**
  * Escalado de porciones. Todo escala lineal por `g_aprox` (decisión de Facu),
  * pero la cocina no es lineal: la sal y las especias se ajustan a gusto, los
  * tiempos no se multiplican, y una torta al doble no entra en el mismo molde.
- * Por eso el escalado devuelve avisos junto con las líneas.
+ * Lo que va a gusto se marca línea por línea (`lineaAGusto`); los tiempos y el
+ * molde, con avisos.
  *
  * La regla de tres tampoco da números cocinables: `rounding` los lleva a la
  * medida que la unidad admite antes de que salgan de acá.
  */
 
-export type TipoAviso = 'ajustar_a_gusto' | 'revisar_tiempo' | 'horneado';
+export type TipoAviso = 'revisar_tiempo' | 'horneado';
 
 export interface AvisoEscalado {
   tipo: TipoAviso;
   mensaje: string;
-  ingredientes?: string[];
 }
 
 export const FACTOR_MIN = 0.25;
@@ -59,23 +59,31 @@ export function escalarLineas(lineas: Line[], factor: number): Line[] {
   );
 }
 
-export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): AvisoEscalado[] {
+/** Una línea que va a gusto: la sal y las especias no escalan lineal. */
+export function lineaAGusto(linea: Line, ingredientById: ReadonlyMap<string, Ingredient>): boolean {
+  if (linea.ref.tipo !== 'ingrediente') return false;
+  const ingrediente = ingredientById.get(linea.ref.id);
+  return ingrediente !== undefined && noEscalaLineal(ingrediente);
+}
+
+/** Lo que admite el selector de porciones: de un cuarto a cuatro veces la receta. */
+export function acotarFactor(factor: number): number {
+  return Math.min(FACTOR_MAX, Math.max(FACTOR_MIN, factor));
+}
+
+/**
+ * El factor que hace que una línea valga `valorNuevo`, en su propia unidad: es
+ * el escalado al revés —tengo 400 g de lentejas, ¿para cuánto me alcanza?—.
+ * `null` si el valor no sirve.
+ */
+export function factorDesdeLinea(base: Line, valorNuevo: number): number | null {
+  if (!Number.isFinite(valorNuevo) || valorNuevo <= 0 || base.cantidad <= 0) return null;
+  return acotarFactor(valorNuevo / base.cantidad);
+}
+
+export function avisosDeEscalado(recipe: Recipe, factor: number): AvisoEscalado[] {
   if (factor === 1) return [];
   const avisos: AvisoEscalado[] = [];
-  const ingredientById = new Map(seed.ingredientes.map((i) => [i.id, i]));
-
-  const aGusto = recipe.lineas
-    .filter((l) => l.ref.tipo === 'ingrediente')
-    .map((l) => ingredientById.get(l.ref.id))
-    .filter((i): i is Ingredient => i !== undefined && noEscalaLineal(i));
-
-  if (aGusto.length > 0) {
-    avisos.push({
-      tipo: 'ajustar_a_gusto',
-      mensaje: 'Estos no escalan lineal: ajustalos a gusto y probá antes de sumar más.',
-      ingredientes: [...new Set(aGusto.map((i) => i.nombre))],
-    });
-  }
 
   if (recipe.tiempo_coccion_min > 0) {
     avisos.push({
@@ -93,16 +101,4 @@ export function avisosDeEscalado(recipe: Recipe, factor: number, seed: Seed): Av
   }
 
   return avisos;
-}
-
-export function escalarReceta(
-  recipe: Recipe,
-  factor: number,
-  seed: Seed,
-): { lineas: Line[]; avisos: AvisoEscalado[]; porciones: number | null } {
-  return {
-    lineas: escalarLineas(recipe.lineas, factor),
-    avisos: avisosDeEscalado(recipe, factor, seed),
-    porciones: recipe.porciones_num === null ? null : recipe.porciones_num * factor,
-  };
 }

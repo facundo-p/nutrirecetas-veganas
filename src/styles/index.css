@@ -15,14 +15,12 @@
    Lo hace cumplir src/styles/contrato-de-temas.test.ts, no la buena voluntad.
 
    La única dependencia de orden que importa: componentes antes que pantallas
-   (las variantes .chip-* pisan a .chip con la misma especificidad). Entre temas
-   el orden es indiferente: sus selectores son mutuamente excluyentes. */
+   (las variantes .chip-* pisan a .chip con la misma especificidad). */
 
 @import './tokens.css';
 
-@import './temas/tema-e.css';
-@import './temas/tema-f.css';
-@import './temas/categorias.css';
+@import './temas/tema-papel.css';
+@import './temas/tema-musgo.css';
 
 @import './base.css';
 @import './layout.css';

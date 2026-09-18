@@ -1,211 +1,309 @@
 /* ============ Recetario ============ */
 
-.filtros {
-  display: grid;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-4);
+/* ---------- el botón de filtros y su modal ---------- */
+
+.filtros-fila-busqueda {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: stretch;
 }
 
-.filtros-busqueda {
-  font: inherit;
-  width: 100%;
-  padding: var(--sp-3) var(--sp-4);
-  border: var(--borde);
+.filtros-fila-busqueda .filtros-buscador {
+  flex: 1;
+  min-width: 0;
+}
+
+.filtros-boton {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--alto-control);
+  min-height: var(--alto-control);
+  appearance: none;
+  cursor: pointer;
+  border: var(--borde-control);
   border-radius: var(--radio);
-  background: var(--superficie);
+  background: none;
+  color: var(--tinta);
+  font-size: 20px;
+}
+
+.filtros-boton.activo {
+  border-color: var(--accion);
+  color: var(--accion);
+}
+
+.filtros-contador {
+  position: absolute;
+  top: calc(var(--sp-2) * -1);
+  right: calc(var(--sp-2) * -1);
+  display: grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--sp-1);
+  border-radius: var(--radio-chip);
+  background: var(--accion);
+  color: var(--sobre-accion);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.modal-filtros {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.modal-velo {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--papel) 80%, transparent);
+}
+
+.modal-hoja {
+  position: relative;
+  display: grid;
+  gap: var(--sp-5);
+  max-height: 78dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-5) var(--sp-4) 0;
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
+  border-top: 2px solid var(--accion);
+}
+
+@media (min-width: 900px) {
+  .modal-hoja {
+    width: min(40rem, 100%);
+    margin: 0 auto;
+  }
+}
+
+.modal-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-cabecera h2 {
+  font-size: var(--fs-xl);
   color: var(--tinta);
 }
 
-.filtros-busqueda::placeholder {
+.grupo-filtros {
+  display: grid;
+  gap: var(--sp-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.grupo-filtros-titulo {
+  padding: 0;
+  font-size: var(--fs-meta);
+  color: var(--tinta-suave);
+}
+
+.grupo-filtros-ayuda {
+  font-size: var(--fs-xs);
   color: var(--dato-suave);
 }
 
-/* Los tres chips en su propia fila, antes de los selects: son pocos y entran
-   sin scroll, y detrás de cinco selects quedaban fuera de la pantalla. */
-.filtros-chips {
+.grupo-filtros-chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
 }
 
-/* `overflow-x: auto` computa `overflow-y` a `auto` por spec, así que este
-   contenedor recorta también arriba. El anillo de foco se pinta 4 px afuera
-   del control (2 de offset + 2 de grosor) y se comía el borde de arriba y el
-   del margen izquierdo. El padding lo aloja; el margen negativo lo devuelve,
-   para que la fila siga llegando al borde de la pantalla. */
-.filtros-fila {
-  display: flex;
+.chip-filtro {
+  display: inline-flex;
+  align-items: center;
   gap: var(--sp-2);
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: var(--sp-1);
-  margin: calc(var(--sp-1) * -1);
-  scroll-padding-inline: var(--sp-1);
-  scrollbar-width: thin;
-}
-
-@media (min-width: 900px) {
-  .filtros-fila {
-    flex-wrap: wrap;
-    overflow: visible;
-  }
-}
-
-.filtros-fila select {
+  min-height: var(--toque-minimo);
+  padding: var(--sp-2) var(--sp-4);
+  appearance: none;
+  cursor: pointer;
+  border: var(--borde-control);
+  border-radius: var(--radio-chip);
+  background: none;
   font: inherit;
   font-size: var(--fs-sm);
-  padding: var(--sp-1) var(--sp-2);
-  border: var(--borde);
-  border-radius: var(--radio-chico);
-  background: var(--superficie);
   color: var(--tinta);
-  min-height: 34px;
-  max-width: 12rem;
 }
 
-.conteo-resultados {
-  font-size: var(--fs-sm);
-  color: var(--tinta-suave);
-  margin-bottom: var(--sp-3);
-  font-variant-numeric: tabular-nums;
+.chip-filtro:hover {
+  border-color: var(--tinta);
 }
+
+/* El texto va en papel, sobre la tinta o sobre el color de un nutriente: los
+   once pasan 4,5:1 como texto sobre el papel, y el contraste es simétrico. */
+.chip-filtro[aria-pressed='true'] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+  font-weight: 600;
+}
+
+/* Un nutriente con color se prende en su color: el chip dice lo mismo que la barra. */
+.chip-filtro[data-nut][aria-pressed='true'] {
+  background: var(--nut);
+  border-color: var(--nut);
+}
+
+.chip-filtro[aria-pressed='true'] .cuadrado-nutriente {
+  background: currentColor;
+  border-color: currentColor;
+}
+
+/* Fijo al pie de la hoja: el botón dice el resultado en vivo, y con veinte
+   chips de nutriente abajo no se vería mientras se eligen. El pie lleva el
+   fondo de la hoja para tapar lo que pasa por debajo. */
+.modal-pie {
+  position: sticky;
+  bottom: 0;
+  padding: var(--sp-3) 0 calc(var(--sp-4) + env(safe-area-inset-bottom));
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca);
+}
+
+.modal-cerrar {
+  width: 100%;
+  min-height: 3.5rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+}
+
+/* ---------- conteo y leyenda ---------- */
+
+.conteo-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.conteo-fila .conteo-resultados {
+  margin-bottom: 0;
+  font-size: var(--fs-meta);
+}
+
+/* Contra qué se miden las barras, dicho corto. La leyenda entera, en la «i». */
+.rotulo-referencia {
+  font-size: var(--fs-meta);
+  color: var(--dato-suave);
+  text-align: right;
+}
+
+/* La leyenda vive en la «i». Solo el fondo, sin filete lateral: sería el reborde
+   decorativo que la regla 7 prohíbe, porque ese borde no codificaría nada. */
+.leyenda-colores {
+  display: grid;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: color-mix(in srgb, var(--tinta) 5%, transparent);
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
+}
+
+.leyenda-nutrientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-meta);
+  color: var(--tinta);
+}
+
+.leyenda-nutrientes li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* ---------- las recetas ---------- */
 
 .lista-recetas {
   display: grid;
-  gap: var(--sp-3);
 }
 
 @media (min-width: 900px) {
   .lista-recetas {
     grid-template-columns: 1fr 1fr;
+    column-gap: var(--sp-6);
     align-items: start;
   }
 }
 
-/* La banda recorta contra el radio de la tarjeta; sin esto el relleno se
-   escapa por las esquinas. Va acá y no en `.tarjeta`, que la comparten
-   pantallas donde no hay nada que recortar. */
-.tarjeta-receta {
-  overflow: hidden;
+/* Filas separadas por filete, no tarjetas: la jerarquía la hacen la escala y el aire. */
+.fila-receta {
+  border-top: var(--borde);
 }
 
-.tarjeta-receta-cuerpo {
+.fila-receta-cuerpo {
   display: grid;
-  grid-template-columns: 42px 1fr;
+  gap: var(--sp-3);
+  padding: var(--sp-5) 0 var(--sp-4);
   text-decoration: none;
   color: inherit;
 }
 
-/*
- * La banda de categoría. NO es el reborde lateral de acento que la regla
- * anti-look-IA prohíbe: eso es un filete decorativo de 3-4 px que no dice nada.
- * Esta es una columna que contiene el ícono de tipo, o sea el lugar donde la
- * categoría se lee. Un tema que no quiera el relleno lo apaga con
- * --banda-fondo-fijo y el ícono vuelve al color de la categoría.
- */
-.tarjeta-receta-tipo {
-  display: flex;
-  justify-content: center;
-  padding-top: var(--sp-3);
-  background: var(--banda-fondo);
-  font-size: 26px;
-  line-height: 1;
-}
-
-.tarjeta-receta-tipo .icono-tipo {
-  color: var(--banda-icono);
-}
-
-.tarjeta-receta-textos {
-  display: grid;
-  gap: var(--sp-1);
-  min-width: 0;
-  padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-3);
-}
-
-/* El sello no se encoge y el nombre sí: a 390 px «conserva» entra siempre y
-   lo que sobra se lo lleva el título, que puede seguir en el renglón de abajo. */
-.tarjeta-receta-titular {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--sp-2);
-}
-
-.tarjeta-receta-nombre {
+.fila-receta-nombre {
   font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  font-weight: 560;
-  color: var(--titulo-receta);
-  line-height: 1.2;
-  min-width: 0;
-}
-
-.sello-categoria {
-  flex-shrink: 0;
-  background: var(--sello-fondo);
-  color: var(--sello-texto);
-  border: 1px solid var(--cat-actual);
-  font-family: var(--font-data);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-titulo-fila);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.6;
-  padding: 1px var(--sp-2);
-  border-radius: var(--radio-chico);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+  text-wrap: pretty;
 }
 
-.inline-icono {
-  font-size: 0.85em;
-  display: inline-block;
-  vertical-align: -0.1em;
-  margin-left: var(--sp-1);
+.fila-receta-cuerpo:hover .fila-receta-nombre {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
-.tarjeta-receta-meta {
+.fila-receta-nombre .inline-icono {
+  font-size: 0.6em;
+  vertical-align: 0.1em;
+  margin-left: var(--sp-2);
+}
+
+.fila-receta-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-1) var(--sp-3);
-  font-size: var(--fs-xs);
+  align-items: center;
+  gap: var(--sp-1) var(--sp-4);
+  font-size: var(--fs-meta);
   color: var(--tinta-suave);
-  align-items: center;
 }
 
-.meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
+/* El nutriente más fuerte, en su propio color: los once pasan 4,5:1 como texto. */
+.meta-fuerte {
+  color: var(--nut);
 }
 
-.meta-item svg {
-  font-size: 14px;
-}
-
-.chip-mini {
-  font-size: 0.7rem;
-  padding: 0 8px;
-}
-
-.tarjeta-receta-variantes {
-  appearance: none;
-  border: none;
-  border-top: var(--borde-suave);
-  background: none;
-  width: 100%;
-  text-align: left;
-  padding: var(--sp-2) var(--sp-4);
-  font: inherit;
-  font-size: var(--fs-sm);
+.fila-receta-variantes {
+  margin-top: calc(var(--sp-3) * -1);
+  font-size: var(--fs-meta);
   color: var(--navegar);
-  cursor: pointer;
 }
 
 .lista-variantes {
-  margin: var(--sp-2) 0 0 var(--sp-5);
+  margin-left: var(--sp-5);
   display: grid;
-  gap: var(--sp-2);
   position: relative;
 }
 
@@ -213,59 +311,24 @@
   content: '';
   position: absolute;
   left: calc(-1 * var(--sp-3));
-  top: 4px;
-  bottom: 4px;
+  top: var(--sp-4);
+  bottom: var(--sp-4);
   border-left: 1px dotted color-mix(in srgb, var(--tinta) 30%, transparent);
 }
 
 .sin-resultados {
-  color: var(--tinta-suave);
-  padding: var(--sp-5) 0;
-  text-align: center;
-  font-style: italic;
-  font-family: var(--font-display);
-}
-
-/* ---------- qué cocinar: las recomendaciones arriba de la lista ---------- */
-.recomendaciones {
-  margin-bottom: var(--sp-5);
-}
-
-.lista-recomendaciones {
-  list-style: none;
-  padding: 0;
-  margin-top: var(--sp-2);
   display: grid;
-  gap: var(--sp-2);
-}
-
-.fila-recomendacion {
-  display: flex;
-  align-items: flex-start;
+  justify-items: start;
   gap: var(--sp-3);
-  padding: var(--sp-3);
-}
-
-.recomendacion-tipo {
-  display: inline-flex;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.recomendacion-textos {
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-.recomendacion-nombre {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  color: var(--titulo-receta);
-  text-decoration: none;
-}
-
-.recomendacion-motivo {
-  font-size: var(--fs-xs);
+  padding: var(--sp-5) 0;
+  border-top: var(--borde);
   color: var(--tinta-suave);
+}
+
+.sin-resultados-titulo {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--tinta);
 }

@@ -5,6 +5,7 @@ import { midpoint } from '../../domain/interval';
 import { formatNumber } from '../common/format';
 import { IconEscudoB12, IconPlato } from '../icons/icons';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { Lamina } from '../common/Lamina';
 
 /** El diario: qué se cocinó y qué se cambió. Lo que se comió no se registra. */
 
@@ -60,7 +61,7 @@ export function DiaryScreen() {
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Diario" titulo="Lo que cocinaste" />
+      <EncabezadoPantalla etiqueta="Diario" titulo="Lo que cocinaste" lamina="puerro" />
 
       <p className="enlaces-secundarios">
         <a href={routeHash({ screen: 'profile' })}>Mi perfil</a> ·{' '}
@@ -69,10 +70,13 @@ export function DiaryScreen() {
       </p>
 
       {cocciones.length === 0 ? (
-        <p className="intro-vacia">
-          Todavía no hay cocciones registradas. Cuando cocines algo del{' '}
-          <a href={routeHash({ screen: 'recipes' })}>recetario</a>, va a quedar acá con sus variaciones.
-        </p>
+        <>
+          <p className="intro-vacia">
+            Todavía no hay cocciones registradas. Cuando cocines algo del{' '}
+            <a href={routeHash({ screen: 'recipes' })}>recetario</a>, va a quedar acá con sus variaciones.
+          </p>
+          <Lamina id="repollo" lugar="vacio" />
+        </>
       ) : (
         <div className="lista-cocciones">
           {cocciones.map((coccion) => (

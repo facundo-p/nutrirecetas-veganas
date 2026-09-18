@@ -4,6 +4,7 @@ import { isRichIn } from '../../domain/rda';
 import { currentMonth, normalize } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { recipeInSeason } from '../../domain/season';
+import { estadoDeReceta, type EstadoDeReceta } from '../../domain/estado';
 
 /** Lógica de filtrado del recetario, pura y testeable. */
 
@@ -14,7 +15,7 @@ export interface RecipeFiltersState {
   tiempoMax: number | null;
   familia: string;
   deEstacion: boolean;
-  estado: '' | Recipe['estado'];
+  estado: '' | EstadoDeReceta;
   ricaEn: string;
 }
 
@@ -29,6 +30,23 @@ export const EMPTY_FILTERS: RecipeFiltersState = {
   ricaEn: '',
 };
 
+/**
+ * Si hay algún filtro puesto. Campo por campo y no por `JSON.stringify`: el
+ * orden de las claves no puede decidir si el conteo dice "con estos filtros".
+ */
+export function hayFiltros(f: RecipeFiltersState): boolean {
+  return (Object.keys(EMPTY_FILTERS) as Array<keyof RecipeFiltersState>).some(
+    (k) => f[k] !== EMPTY_FILTERS[k],
+  );
+}
+
+/** Cuántos filtros hay puestos sin contar la búsqueda: es lo que dice el contador del botón. */
+export function cuantosFiltros(f: RecipeFiltersState): number {
+  return (Object.keys(EMPTY_FILTERS) as Array<keyof RecipeFiltersState>).filter(
+    (k) => k !== 'q' && f[k] !== EMPTY_FILTERS[k],
+  ).length;
+}
+
 /** ids de ingredientes cuyo nombre o sinónimos matchean la búsqueda */
 function matchingIngredientIds(idx: SeedIndex, q: string): Set<string> {
   const ids = new Set<string>();
@@ -40,7 +58,20 @@ function matchingIngredientIds(idx: SeedIndex, q: string): Set<string> {
   return ids;
 }
 
-export function matchesFilters(idx: SeedIndex, recipe: Recipe, f: RecipeFiltersState): boolean {
+/**
+ * Estados que el usuario eligió, por receta. Vacío es la respuesta correcta y no
+ * un hueco: sin elección propia el estado sale de la semilla, así que estas
+ * funciones siguen siendo puras y los tests no necesitan base.
+ */
+export type EstadosElegidos = ReadonlyMap<string, EstadoDeReceta>;
+const SIN_ELECCIONES: EstadosElegidos = new Map();
+
+export function matchesFilters(
+  idx: SeedIndex,
+  recipe: Recipe,
+  f: RecipeFiltersState,
+  estados: EstadosElegidos = SIN_ELECCIONES,
+): boolean {
   if (f.tipo === 'preparados') {
     if (!recipe.es_preparado) return false;
   } else if (f.tipo !== 'todas' && recipe.tipo !== f.tipo) {
@@ -49,7 +80,7 @@ export function matchesFilters(idx: SeedIndex, recipe: Recipe, f: RecipeFiltersS
   if (f.dificultad !== '' && recipe.dificultad !== f.dificultad) return false;
   if (f.tiempoMax !== null && recipe.tiempo_prep_min + recipe.tiempo_coccion_min > f.tiempoMax) return false;
   if (f.familia !== '' && recipe.familia !== f.familia) return false;
-  if (f.estado !== '' && recipe.estado !== f.estado) return false;
+  if (f.estado !== '' && estadoDeReceta(recipe, { estado: estados.get(recipe.id) }) !== f.estado) return false;
   if (f.deEstacion && !recipeInSeason(idx, recipe, currentMonth())) return false;
   if (f.ricaEn !== '') {
     const nutrient = idx.nutrientById.get(f.ricaEn);
@@ -75,13 +106,17 @@ export interface RecipeGroup {
 }
 
 /** Variantes agrupadas bajo su madre; el grupo aparece si la madre o alguna variante matchea. */
-export function groupRecipes(f: RecipeFiltersState, idx = getSeedIndex()): RecipeGroup[] {
+export function groupRecipes(
+  f: RecipeFiltersState,
+  estados: EstadosElegidos = SIN_ELECCIONES,
+  idx = getSeedIndex(),
+): RecipeGroup[] {
   const groups: RecipeGroup[] = [];
   for (const recipe of idx.seed.recetas) {
     if (recipe.variante_de !== undefined) continue; // aparece bajo su madre
     const variants = idx.variantsOf(recipe.id);
-    const motherMatches = matchesFilters(idx, recipe, f);
-    const matchingVariants = variants.filter((v) => matchesFilters(idx, v, f));
+    const motherMatches = matchesFilters(idx, recipe, f, estados);
+    const matchingVariants = variants.filter((v) => matchesFilters(idx, v, f, estados));
     if (motherMatches || matchingVariants.length > 0) {
       groups.push({ mother: recipe, variants, motherMatches, matchingVariants });
     }

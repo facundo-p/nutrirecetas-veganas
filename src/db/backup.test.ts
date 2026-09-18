@@ -39,7 +39,7 @@ const coccion: CoccionData = {
 async function sembrar() {
   await savePerfil(perfil);
   await addCoccion(coccion);
-  await saveOverlay('r01', { favorita: true, ic_usuario: 8 });
+  await saveOverlay('r01', { estado: 'favorita' });
 }
 
 beforeEach(async () => {
@@ -63,7 +63,7 @@ describe('export / import', () => {
     expect(cocciones).toHaveLength(1);
     expect(cocciones[0]!.variaciones).toEqual([{ tipo: 'desmarcado', nombre: 'Vino tinto' }]);
     expect(cocciones[0]!.nutricion_porcion.alerta_b12).toBe(true);
-    expect((await db.overlays.get('r01'))!.ic_usuario).toBe(8);
+    expect((await db.overlays.get('r01'))!.estado).toBe('favorita');
   });
 
   test('el import reemplaza, no mergea', async () => {

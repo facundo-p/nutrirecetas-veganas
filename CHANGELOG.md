@@ -9,6 +9,91 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.7.0] — 2026-09-12
+
+El recetario se rediseña entero. Cada receta se reconoce por lo que le da al
+cuerpo: una barra con un color por nutriente, debajo del título. La app tiene un
+tema claro, **papel**, y uno oscuro, **musgo**, que siguen al teléfono; el papel
+tiene textura y cada receta su grabado de verduras. Cocinar muestra la receta
+entera, con el paso actual abierto. Y lo que explica la app queda detrás de una
+«i»: a la vista, la receta.
+
+Además cada receta dice **tu** relación con ella —sin probar, probada, pendiente
+o favorita— en vez del índice de confianza, y de dónde salió con todas las
+letras.
+
+No hay nada que hacer antes de actualizar. Las favoritas siguen siéndolo y las
+que aprobaste al cocinarlas quedan como probadas. Si tenías elegido Mercado o
+Pizarra, la app sigue al tema del teléfono; se cambia en Ajustes → Apariencia.
+
+### Agregado
+
+- **Un color por nutriente.** Los once críticos para una dieta vegana que tienen
+  dato suficiente llevan su color. Bajo el título de cada receta, una barra con
+  los seis que más cubre una porción, siempre en el mismo orden. (#157, #158)
+- **Qué aporta una porción**, desplegable al pie de la ficha. (#162)
+- **Ajustar las cantidades desde cualquier ingrediente**: escribís cuánto tenés
+  de uno y el resto de la receta se acomoda. (#161)
+- **Los filtros, en una hoja que sube desde abajo.** (#159)
+- **El escalador de porciones queda pegado arriba** mientras bajás por la ficha.
+  (#160)
+- **Cocinar con la receta entera a la vista**: el paso actual abierto, con los
+  ingredientes que entran en él. (#164, #163)
+- **Papel y musgo**, claro y oscuro. Por defecto siguen al teléfono, también si
+  cambia con la app abierta; en Ajustes → Apariencia se puede fijar uno. (#186)
+- **Papel artesanal y grabados de verduras**: textura de papel en cada tema, y
+  grabados del siglo XIX en tinta en los encabezados, el cierre de las
+  pantallas, los estados vacíos y cada receta. (#187, #188, #189)
+- **Tu estado con cada receta**: sin probar, probada, pendiente o favorita. Se
+  marca desde un ícono al lado del tiempo y las porciones, y se filtra desde el
+  recetario. Las 45 del recetario personal arrancan como probadas, porque son
+  las que ya cocinaste. Registrar una cocción la marca como probada, salvo que
+  sea favorita. (#145, #195)
+- **La receta dice de dónde salió**: "Minimalist Baker (Dana Shultz)" con
+  enlace al sitio, en vez del código "mb", y debajo qué tan confiable es esa
+  fuente ("test kitchen profesional", "sin certificador: validar en casa").
+  (#149)
+- **Tocar un ingrediente alternativo lo cambia en la receta** y mueve la
+  nutrición en vivo; tocándolo de nuevo, vuelve al original. Dura mientras
+  mirás la receta, igual que el selector de porciones. (#150)
+- **Volver al recetario conserva el filtro y el lugar de la lista**: filtrar,
+  abrir una receta y volver ya no obliga a empezar de cero. El scroll queda
+  arreglado en todas las pantallas. (#139)
+
+### Cambiado
+
+- **Lo que explica la app, detrás de una «i» por pantalla.** A la vista queda
+  un rótulo corto junto a los porcentajes: «sobre la referencia adulta
+  genérica», o «sobre tu dosis diaria» si cargaste el perfil. La advertencia de
+  la B12 pasa a la «i» de la ficha; la lista sigue marcando la levadura
+  nutricional con el punto hueco. (#196)
+- **Tipografía nueva**: Petrona en los títulos, Archivo en los datos y las
+  cifras. (#156)
+- **Cada receta es una fila** del recetario, sin tarjeta ni banda de
+  categoría: la reconoce su barra de nutrientes. (#158)
+
+### Quitado
+
+- **Los temas Mercado y Pizarra**, reemplazados por papel y musgo. (#186)
+- **La sección "Qué cocinar"**: el recetario abre en la búsqueda, que es a lo
+  que se entra. (#138, #75)
+- **El índice de confianza de las recetas**, de la tarjeta y de la ficha. Sigue
+  donde mide algo verificable: ingredientes, nutrientes, glosario y la tabla
+  nutricional de cada receta. (#144)
+- **Los enlaces de la lista de ingredientes**: cocinando te sacaban de la
+  receta. Los preparados siguen enlazando, porque llevan a otra receta. (#137)
+
+### Datos
+
+- **Cada ingrediente sabe en qué paso entra**, para que cocinando se vea qué
+  usar en cada momento. (#163)
+- **Cada receta tiene su grabado**, elegido a mano por su ingrediente
+  protagonista: el tofu lleva la planta de soja; panes y pastas, el trigo.
+  (#189)
+- **El budín de chía y avena nocturno pasa a ser dulce.** Salía salado porque
+  es del único set que no trae el tipo y el pipeline lo asumía en bloque.
+  (#136)
+
 ## [0.6.0] — 2026-09-03
 
 Dos temas nuevos en lugar de los tres viejos, y el primero oscuro. **Mercado** es

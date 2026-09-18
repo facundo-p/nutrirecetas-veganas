@@ -18,16 +18,21 @@ import {
   IconHeladera,
   IconHojaPunteada,
   IconAjustes,
+  IconInfo,
+  IconLaurel,
   IconLibro,
   IconLlama,
+  IconMarcar,
   IconMortero,
   IconPlato,
   IconRamaBifurca,
   IconReloj,
   IconSemanaArco,
+  IconSenalador,
   IconSol,
   IconSustituir,
   IconTemporada,
+  IconTildeBrote,
   IconZanahoria,
   type IconProps,
 } from './icons';
@@ -41,8 +46,6 @@ export interface CatalogEntry {
   id: string;
   Componente: ComponentType<IconProps>;
   significado: string;
-  /** Categoría de receta que representa, cuando el ícono es de tipo: la usa el tema para colorearlo. */
-  cat?: 'principal' | 'dulce' | 'preparado' | 'pan' | 'conserva';
   grupo: 'ventana' | 'datos' | 'tipo de receta' | 'prácticos' | 'alerta' | 'extras' | 'navegación';
 }
 
@@ -53,19 +56,18 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'brotes-ic', Componente: IconBrotesIc, significado: 'Índice de confianza del dato (1 a 3 brotes)', grupo: 'datos' },
   { id: 'cobertura', Componente: IconCobertura, significado: 'Cobertura del cálculo: % del peso con dato', grupo: 'datos' },
   { id: 'hoja-punteada', Componente: IconHojaPunteada, significado: 'Sin datos suficientes para afirmar nada', grupo: 'datos' },
-  { id: 'mortero', Componente: IconMortero, significado: 'Receta salada', cat: 'principal', grupo: 'tipo de receta' },
-  { id: 'flor', Componente: IconFlor, significado: 'Receta dulce', cat: 'dulce', grupo: 'tipo de receta' },
-  { id: 'espiga', Componente: IconEspiga, significado: 'Pan / masa', cat: 'pan', grupo: 'tipo de receta' },
-  { id: 'frasco', Componente: IconFrasco, significado: 'Preparado: componente reutilizable', cat: 'preparado', grupo: 'tipo de receta' },
+  { id: 'mortero', Componente: IconMortero, significado: 'Receta salada', grupo: 'tipo de receta' },
+  { id: 'flor', Componente: IconFlor, significado: 'Receta dulce', grupo: 'tipo de receta' },
+  { id: 'espiga', Componente: IconEspiga, significado: 'Pan / masa', grupo: 'tipo de receta' },
+  { id: 'frasco', Componente: IconFrasco, significado: 'Preparado: componente reutilizable', grupo: 'tipo de receta' },
   {
     id: 'frasco-fermento',
     Componente: IconFrascoFermento,
     significado: 'Conserva o fermento (escabeches, encurtidos)',
-    cat: 'conserva',
     grupo: 'tipo de receta',
   },
   { id: 'rama-bifurca', Componente: IconRamaBifurca, significado: 'Variante de otra receta', grupo: 'tipo de receta' },
-  { id: 'bandeja', Componente: IconBandeja, significado: 'Combo (plato compuesto)', cat: 'principal', grupo: 'tipo de receta' },
+  { id: 'bandeja', Componente: IconBandeja, significado: 'Combo (plato compuesto)', grupo: 'tipo de receta' },
   { id: 'reloj', Componente: IconReloj, significado: 'Tiempo total (preparación + cocción)', grupo: 'prácticos' },
   { id: 'llama', Componente: IconLlama, significado: 'Dificultad (1 a 3 llamas)', grupo: 'prácticos' },
   { id: 'plato', Componente: IconPlato, significado: 'Porciones que rinde', grupo: 'prácticos' },
@@ -75,11 +77,16 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'heladera', Componente: IconHeladera, significado: 'Guarda en heladera (días)', grupo: 'prácticos' },
   { id: 'temporada', Componente: IconTemporada, significado: 'En temporada (AMBA)', grupo: 'prácticos' },
   { id: 'escudo-b12', Componente: IconEscudoB12, significado: 'Advertencia B12: levadura no siempre fortificada', grupo: 'alerta' },
-  { id: 'estrella-brotada', Componente: IconEstrellaBrotada, significado: 'Candidata a clásica / probada y aprobada', grupo: 'extras' },
+  { id: 'marcar', Componente: IconMarcar, significado: 'Sin probar: tocalo en la ficha para marcar la receta', grupo: 'extras' },
+  { id: 'tilde-brote', Componente: IconTildeBrote, significado: 'La cocinaste: probada', grupo: 'extras' },
+  { id: 'senalador', Componente: IconSenalador, significado: 'Pendiente: de las que querés cocinar', grupo: 'extras' },
+  { id: 'estrella-brotada', Componente: IconEstrellaBrotada, significado: 'Favorita: de las que repetís', grupo: 'extras' },
+  { id: 'laurel', Componente: IconLaurel, significado: 'Candidata a clásica (lo dice el recetario, no vos)', grupo: 'extras' },
   { id: 'cuchara', Componente: IconCuchara, significado: 'Indulgente: para disfrutar sin cuentas', grupo: 'extras' },
   { id: 'carta', Componente: IconCarta, significado: 'Sección Recetario', grupo: 'navegación' },
   { id: 'gota', Componente: IconGota, significado: 'Sección Nutrientes', grupo: 'navegación' },
   { id: 'zanahoria', Componente: IconZanahoria, significado: 'Sección Ingredientes', grupo: 'navegación' },
   { id: 'libro', Componente: IconLibro, significado: 'Sección Glosario', grupo: 'navegación' },
   { id: 'ajustes', Componente: IconAjustes, significado: 'Ajustes y datos: temas, export e import', grupo: 'navegación' },
+  { id: 'info', Componente: IconInfo, significado: 'Para saber: lo que explica cada pantalla', grupo: 'navegación' },
 ];

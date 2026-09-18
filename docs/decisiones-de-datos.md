@@ -296,3 +296,36 @@ El texto completo se lee en la ficha (renders de la fase) o en `NUTRIENT_DESCRIP
 ## 10. T11 — el nombre del nutriente de proteína (2026-08-28, #123)
 
 El dataset lo llama "Proteína (lisina)", pero la clave que se mide es `prot_g`: proteína total. Ningún ingrediente trae lisina medida, así que el paréntesis afirma una validación que no existe — y en la peor dirección: la masa de pizza `p44`, 100 % trigo (el cereal pobre en lisina), aparecía aportando 28 % de "Proteína (lisina)". `NUTRIENT_NAME_OVERRIDES` (T11) lo renombra a **"Proteína"** en toda la app; la lisina como limitante práctico sigue explicada en su ficha (T10) y en el ajuste vegano del dataset ("~3 porciones/día de legumbres/soja/quinoa").
+
+## 11. T12 — el tipo que el set 1 no trae (2026-09-06, #136)
+
+El set 1 es el único sin campo `tipo`, y el pipeline lo asumía salado en bloque ("set fundacional salado"). Acierta en nueve de sus diez recetas y falla en `r10`, **Budín de chía y avena nocturno**: un desayuno con banana, kiwi, dátiles y jarabe de arce que aparecía entre las saladas y no salía al filtrar por dulces. `.artifacts/recetas.md:193` ya lo titulaba "(desayuno)"; el dato estaba, lo perdía la inferencia.
+
+`CURATED_TYPES` (T12) pisa el tipo derivado. Dos guardas para que la tabla no envejezca en silencio: una entrada para una receta inexistente rompe el build, y **una que repita el tipo que el dataset ya dice también** — una corrección que dejó de corregir es una línea que nadie va a volver a leer.
+
+| Receta | Tipo | Base | Gate |
+|---|---|---|---|
+| `r10` Budín de chía y avena nocturno | `dulce` | `recetas.md:193` la titula "(desayuno)"; lleva banana, kiwi, dátiles y jarabe de arce, y ningún ingrediente salado | ✔ revisar |
+
+## 12. T13 — el catálogo de fuentes que nunca entraba (2026-09-06, #149)
+
+La ficha decía **«Fuente: mb»**. El origen viaja completo en las 84 recetas (`fuente.ref`), pero lo que traduce `mb` a «Minimalist Baker (Dana Shultz)» vivía en `.artifacts/` sin entrar nunca al build: `load.ts` solo extraía `.recetas` de cada archivo.
+
+El catálogo está repartido en **tres formas** —`fuentes` (sets 1 y 2), `meta.fuente_libro` (set 3), `meta.origen` (set P)—, y los sets 1 y 2 comparten refs con **solo el 1 trayendo `credencial`**: se funden campo por campo, sin que un valor presente lo pise uno ausente. Una `ref` sin entrada en el catálogo rompe el build.
+
+`CURATED_SOURCES` (T13) reescribe las dos entradas cuyo texto del dataset estaba escrito para quien construye la app y no para quien cocina:
+
+| Fuente | Qué se cambia | Base |
+|---|---|---|
+| `libro_vgourmet` | credencial → «autoeditado, sin certificación externa» | la nota seguía con *"todas entran como por-probar; subir IC al validarlas en cocina"*: vocabulario del pipeline, y el IC ya no está en las recetas (#144) |
+| `recetario_personal` | nombre → «Recetario personal de Facu» | `meta.origen` dice *"recetario personal de Facu (Google Doc)"*; dónde estaba guardado no es parte del origen de la receta |
+
+## 13. T14 — en qué paso entra cada línea (2026-09-11, #163)
+
+El modo cocina muestra los ingredientes de cada paso, y la semilla no lo sabía: las cantidades se repetían en la prosa del paso, que es convención de escritura, no dato.
+
+`PASO_DE_CADA_LINEA` (T14, en `curated-pasos.ts`) lo dice para las 804 líneas de las 84 recetas: el **primer** paso en que se toca el ingrediente —donde se lo pica, remoja o agrega—, porque es donde quien cocina necesita la cantidad. La tabla cuenta los pasos desde 1, como se leen; la semilla guarda el índice. `null` queda para lo que ningún paso usa.
+
+Lo leyó un agente por receta (Haiku) con los pasos ya curados (T9), y cada respuesta trajo la cita textual del paso que la justifica. La segunda opinión fue el matcher de nombres de los tests de T9: lo que el agente ubicaba después del primer paso que nombra al ingrediente se revisó a mano. Casi todo eran falsos positivos del matcher —"dulce" en *base dulce*, el "arroz" de *vinagre de arroz*, el extracto de tomate contra el triturado—.
+
+El build falla si una receta queda sin mapeo, si una línea cae en un paso que no existe, si un imprescindible queda sin paso, o si hay una entrada para una receta que no existe.

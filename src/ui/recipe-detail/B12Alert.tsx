@@ -1,9 +1,9 @@
 import { IconEscudoB12 } from '../icons/icons';
 
 /**
- * Invariante de seguridad del proyecto (CLAUDE.md #6): si la receta usa
- * levadura nutricional como fuente de B12, advertir SIEMPRE que muchas marcas
- * argentinas no están fortificadas. No es cosmético: no se quita.
+ * Invariante 6 de CLAUDE.md: si la receta usa levadura nutricional, la «i» de la
+ * ficha explica que muchas marcas argentinas no están fortificadas. En la lista
+ * la levadura lleva el punto hueco, y el cálculo la deja en cero.
  */
 export function B12Alert() {
   return (

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import 'fake-indexeddb/auto';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { NutrientDetail } from './NutrientDetail';
 import { NutrientList } from './NutrientList';
@@ -56,9 +56,12 @@ describe('ficha de nutriente', () => {
     expect(aviso.textContent).toMatch(/uplementaci/);
   });
 
-  test('un nutriente de ventana semanal dice que no hace falta llegar todos los días', async () => {
+  test('un nutriente de ventana semanal lo dice, y su «i» aclara que no hace falta llegar todos los días', async () => {
     render(<NutrientDetail id="b12" />);
     await waitFor(() => expect(screen.getByRole('heading', { name: /B12/ })).toBeDefined());
+    expect(screen.getByText('se mira en la semana')).toBeDefined();
+    expect(screen.queryByText(/no hace falta llegar todos los días/i)).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
     expect(screen.getByText(/no hace falta llegar todos los días/i)).toBeDefined();
   });
 

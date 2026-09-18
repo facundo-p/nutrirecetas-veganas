@@ -19,6 +19,6 @@
     "types": ["vite/client", "vite-plugin-pwa/client"]
   },
   "include": ["src"],
-  // corre en node y lee archivos del disco: vive en el proyecto de node
-  "exclude": ["src/styles/contrato-de-temas.test.ts"]
+  // corren en node y leen archivos del disco: viven en el proyecto de node
+  "exclude": ["src/styles/contrato-de-temas.test.ts", "src/ui/common/laminas.test.ts"]
 }

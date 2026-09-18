@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
-import { usePerfil } from '../../db/hooks';
 import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
-import { objetivosDeReferencia, porcentajeDeObjetivo } from '../../domain/objetivos';
+import { porcentajeDeObjetivo } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
 import { amountUnit, formatNumber } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
+import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
 import { IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
+import { Informacion } from '../common/Informacion';
 
 /**
  * Qué es un nutriente, cuánto necesitás y de dónde sacarlo. La semilla ya traía
@@ -21,7 +22,7 @@ const CUANTAS = 12;
 
 export function NutrientDetail({ id }: { id: string }) {
   const idx = getSeedIndex();
-  const perfil = usePerfil();
+  const objetivos = useObjetivos();
   const nutriente = idx.nutrientById.get(id);
 
   const fuentes = useMemo(() => {
@@ -45,16 +46,24 @@ export function NutrientDetail({ id }: { id: string }) {
     );
   }
 
-  const objetivos = objetivosDeReferencia(perfil ?? null, idx.seed.nutrientes, new Date());
   const objetivo = objetivos.porNutriente.get(nutriente.id);
   const unidad = amountUnit(nutriente.clave_ingrediente);
   const Ventana = nutriente.ventana === 'dia' ? IconSol : IconSemanaArco;
 
   return (
     <article className="detalle">
-      <p className="volver">
-        <a href={routeHash({ screen: 'nutrients' })}>‹ Nutrientes</a>
-      </p>
+      <div className="fila-con-informacion">
+        <p className="volver">
+          <a href={routeHash({ screen: 'nutrients' })}>‹ Nutrientes</a>
+        </p>
+        <Informacion>
+          {nutriente.ventana === 'semana' && <p>Se mira en la semana: no hace falta llegar todos los días.</p>}
+          <p>Los ingredientes que más aportan se miden cada 100 g del ingrediente crudo, tal como lo trae la semilla.</p>
+          <p>
+            La app informa, no diagnostica. Estas dosis son referencias, no una meta que haya que cerrar todos los días.
+          </p>
+        </Informacion>
+      </div>
 
       <header className="encabezado-pantalla">
         <span className="etiqueta-seccion detalle-tipo">
@@ -79,7 +88,7 @@ export function NutrientDetail({ id }: { id: string }) {
               <span className="meta-suave">
                 {nutriente.ventana === 'dia'
                   ? 'se mira día a día'
-                  : 'se mira en la semana: no hace falta llegar todos los días'}
+                  : 'se mira en la semana'}
               </span>
             </span>
           </p>
@@ -115,9 +124,9 @@ export function NutrientDetail({ id }: { id: string }) {
         <ul className="lista-fuentes">
           {fuentes.recetas.map(({ receta, cantidad, resultado }) => {
             const pct = porcentajeDeObjetivo(resultado, objetivo);
-            const { slug, label } = typeInfo(receta);
+            const { label } = typeInfo(receta);
             return (
-              <li key={receta.id} data-cat={slug}>
+              <li key={receta.id}>
                 <a className="tarjeta fila-fuente" href={routeHash({ screen: 'recipe', id: receta.id })}>
                   <span className="fuente-tipo" title={label}>
                     <TypeIcon recipe={receta} />
@@ -141,7 +150,7 @@ export function NutrientDetail({ id }: { id: string }) {
 
       <section>
         <h2>Ingredientes que más aportan</h2>
-        <p className="nutricion-referencia">Cada 100 g del ingrediente crudo, tal como lo trae la semilla.</p>
+        <p className="nutricion-referencia">Cada 100 g, en crudo.</p>
         <ul className="lista-fuentes">
           {fuentes.ingredientes.map(({ ingrediente, cantidad }) => (
             <li key={ingrediente.id}>
@@ -174,10 +183,6 @@ export function NutrientDetail({ id }: { id: string }) {
           </ul>
         </section>
       )}
-
-      <p className="disclaimer">
-        La app informa, no diagnostica. Estas dosis son referencias, no una meta que haya que cerrar todos los días.
-      </p>
     </article>
   );
 }

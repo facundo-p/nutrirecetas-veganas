@@ -7,6 +7,7 @@ const lineaBase = {
   unidad_display: 'g_cocidos',
   g_aprox: 400,
   sustitutos: [],
+  paso: null,
 };
 
 describe('ingredientSchema', () => {
@@ -53,6 +54,7 @@ describe('recipeSchema', () => {
     tiempo_coccion_min: 20,
     lineas: [lineaBase],
     pasos: ['Hervir.'],
+    pasos_escalables: false,
     secretos_chef: [],
     reglas: [{ id: 'R1' }],
     utensilios: [{ tipo: 'equipo', id: 'olla_fondo_grueso' }],

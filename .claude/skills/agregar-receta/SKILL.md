@@ -37,8 +37,14 @@ r99: {
 },
 ```
 
+## La lámina (T15)
+
+Toda receta lleva su lámina en `CURATED_LAMINAS`: la del ingrediente que la nombra, no la del más pesado (en la sopa sería el caldo). El tofu lleva `soja`; seitán, panes, pastas y masas, `trigo`. Si ese ingrediente no tiene lámina, la del siguiente que la tenga. Una variante sin entrada hereda la de su madre, y repetirla rompe el build.
+
+Una lámina nueva: grabado de dominio público bajado **con OK de Facu** (nombre, fuente y tamaño) a `docs/assets/laminas/`, con su entrada en `fuentes.json`; después `node scripts/laminas.mjs`, el id en `src/seed/laminas.ts` y su regla en `componentes.css`. El test de láminas avisa si falta alguna pieza.
+
 ## Verificación
 
-`npm test` corre los tests de T9 (`transform.test.ts`): cobertura de las 84, largo mínimo, imprescindibles nombrados, secretos no repetidos (ventana de 6 palabras), sin códigos. Si un paso viola algo, el test nombra la receta y el paso.
+`npm test` corre los tests de T9 (`transform.test.ts`): cobertura de las 84, largo mínimo, imprescindibles nombrados, secretos no repetidos (ventana de 6 palabras), sin códigos. Si un paso viola algo, el test nombra la receta y el paso. Los de T15 exigen que las 84 salgan con lámina.
 
 Toda entrada con `flag_gate: true` se lista en el gate de datos de la fase para que Facu la valide cocinando (`docs/decisiones-de-datos.md` § 8).

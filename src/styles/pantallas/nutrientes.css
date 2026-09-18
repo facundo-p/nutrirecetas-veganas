@@ -40,7 +40,6 @@
 .fuente-tipo {
   display: inline-flex;
   flex-shrink: 0;
-  color: var(--cat-actual);
 }
 
 .fuente-nombre {
@@ -48,7 +47,7 @@
   min-width: 0;
   font-family: var(--font-display);
   font-size: var(--fs-lg);
-  color: var(--titulo-receta);
+  color: var(--tinta);
 }
 
 /* Alineadas a la derecha y en columna: la cifra manda, el resto la matiza. */

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { NIVELES_ENTRENAMIENTO } from '../domain/actividad';
+import { ESTADOS_DE_RECETA } from '../domain/estado';
 import { intervalSchema } from '../seed/schema';
 
 /**
@@ -15,8 +16,12 @@ import { intervalSchema } from '../seed/schema';
  * v4: se van los suplementos y los overrides del perfil. Servían para apagar y
  *     pisar exigencias del semáforo; lo único que hace el perfil ahora es que
  *     el porcentaje diga "de tu dosis" y no "de la referencia genérica".
+ * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`. El IC
+ *     se fue de las recetas porque medía la confianza de la fuente en su
+ *     adaptación vegana, no si la receta es buena; lo que se gana al cocinar es
+ *     el estado "probada". Favorita sobrevive como uno de los cuatro estados.
  */
-export const USER_SCHEMA_VERSION = 4;
+export const USER_SCHEMA_VERSION = 5;
 
 // ---------- perfil ----------
 
@@ -29,7 +34,7 @@ export const profileDataSchema = z.strictObject({
   altura_cm: z.number().positive().optional(),
   /** La elección, no el número: el g/kg y su fuente viven en `domain/actividad`. */
   nivel_entrenamiento: z.enum(NIVELES_ENTRENAMIENTO),
-  /** Los que te interesan: ordenan la tabla de la receta y pesan en las recomendaciones. */
+  /** Los que te interesan: ordenan la tabla nutricional de cada receta. */
   nutrientes_destacados: z.array(z.string()),
 });
 export type ProfileData = z.infer<typeof profileDataSchema>;
@@ -63,14 +68,12 @@ export const cookedLineSchema = z.strictObject({
   g_aprox: z.number().nonnegative(),
   unidad_display: z.string(),
 });
-export type LineaCocinada = z.infer<typeof cookedLineSchema>;
 
 export const variationSchema = z.strictObject({
   tipo: z.enum(['desmarcado', 'sustituido', 'agregado']),
   nombre: z.string(),
   detalle: z.string().optional(),
 });
-export type Variacion = z.infer<typeof variationSchema>;
 
 /**
  * Snapshot denormalizado completo: el historial no depende de futuras versiones
@@ -99,8 +102,8 @@ export type Coccion = z.infer<typeof cookingSchema>;
 /** Lo que el usuario agrega sobre una receta de la semilla. La semilla jamás se muta. */
 export const overlaySchema = z.strictObject({
   receta_id: z.string().min(1),
-  ic_usuario: z.number().int().min(1).max(10).optional(),
-  favorita: z.boolean().optional(),
+  /** Ausente = sin elección propia: manda lo que dice la semilla (`estadoDeReceta`). */
+  estado: z.enum(ESTADOS_DE_RECETA).optional(),
   nota: z.string().optional(),
   actualizado_en: z.string(),
 });
