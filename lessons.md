@@ -561,3 +561,43 @@ de una auditoría ni de un test: de cocinar con ella.
 - **El matcher de imprescindibles leía el id adentro del token** y daba por
   nombrado lo que el paso ya no decía. El test ahora borra los tokens antes de
   buscar: una red que se mide a sí misma no mide nada.
+
+### El guardia de gramos (2026-09-23, #209)
+
+- **El reporte no era el bug.** Facu vio «1½ de limón = 23 g» y «1½ de vinagre =
+  8 g» y dedujo que los gramos estaban mal. Eran `cda` y `cdta` de `p05` a ×1,5:
+  los dos a 1 g/ml, correctísimos. Lo que falla es que la lista pinta
+  `unidad_display` casi crudo y la única diferencia visible entre las dos líneas
+  es una letra, en el tamaño más chico. Reproducir el caso exacto antes de tocar
+  nada fue lo que separó un problema de UI de uno de datos.
+- **Pero la desconfianza estaba justificada.** `g_aprox` es el único campo del
+  dataset sin método, sin IC, sin rango y sin fuente. La auditoría de la Fase 1
+  verificó que estaba presente en el 100 % de las líneas y concluyó «es viable
+  como única fuente de cálculo»: presencia leída como plausibilidad. Nadie había
+  mirado que el azúcar impalpable pesa 150 g/taza contra 113 de King Arthur.
+- **La tolerancia no puede ser un porcentaje.** Sobre-reporta lo chico (0,7
+  contra 0,75 g de cúrcuma es 7 % y es redondeo puro) y sub-reporta lo grande
+  (el 8 % del aceite de coco son 18 g por taza, y es sistemático). Medio escalón
+  de `redondearPeso` dice literalmente «el dataset no podía escribirlo más
+  fino», y reusa la escalera de la app, así que guardia y escalado no pueden
+  discrepar. Comparación estricta marcaba 30 grupos; con medio escalón, 13 — y
+  lo que se cayó fue exactamente el ruido.
+- **13 / 13,3 / 13,5 g por cucharada de aceite no son tres tarifas**, son 13,5
+  redondeado al gramo en cada línea. Casi la mitad de las «incoherencias» que
+  encontré a ojo eran eso. Contar divergencias sin modelar el redondeo es contar
+  ruido.
+- **`ml` está en la familia `peso` de `rounding.ts`,** y eso es correcto para
+  redondear y falso para convertir: 40 ml de aceite son 36 g. El guardia reusa
+  `cabezaDeUnidad` —si discrepara con el escalado sería un bug por
+  construcción— pero no `familiaDeUnidad`. Dos preguntas parecidas, dos
+  funciones.
+- **Una inferencia no es una cita, y el informe lo tiene que decir.** Cuando la
+  unidad no nombra ninguna fila, el guardia infiere la pieza entera: «2 bananas
+  muy maduras» mide bananas. Funciona en 59 de 60 líneas, y falla en `p43`, que
+  cuenta 4 rodajas de calabaza y no 4 calabazas (esperado: 4800 g). La salida no
+  fue tapar el caso con un tope de magnitud —eso escondería un error real de
+  10×— sino marcar la referencia como «inferida» para que se lea que lo dudoso
+  es la inferencia, no el dato.
+- **Ante dos filas que empatan, `ambigua`.** Es la diferencia entre un guardia y
+  una heurística. Cuesta una decisión curada (`r19`, `taza_cruda_cocida_fria`) y
+  compra que ninguna elección quede tácita.

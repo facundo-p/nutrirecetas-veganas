@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { INGREDIENT_CATEGORIES, INGREDIENT_NUTRIENT_KEYS, type Seed } from '../../src/seed/schema';
+import { resumenCortoDeGramos } from './informe-gramos';
 import { loadRawData } from './load';
 import { compileRule } from './rules-ast';
 import {
@@ -60,6 +61,8 @@ export function buildSeed(): { seed: Seed; notes: string[] } {
     glosario: transformGlossary(raw.glosario),
     utensilios,
   };
+
+  notes.push(resumenCortoDeGramos(seedSinHash));
 
   const previous: Seed | null = existsSync(SEED_PATH)
     ? (JSON.parse(readFileSync(SEED_PATH, 'utf8')) as Seed)
