@@ -38,7 +38,7 @@ no le tiene que estorbar**.
 - **Alerta B12 de levadura nutricional** *(invariante de seguridad del BRIEF)*: 14 recetas la usan; el rango del dato arranca en 0 → advertencia siempre visible: "muchas levaduras argentinas NO están fortificadas; leé la etiqueta".
 - **Agrupación de variantes**: las 12 variantes se muestran bajo su receta madre (3 brownies de porotos = 1 entrada expandible). La "madre" es el destino de `variante_de` (siempre resoluble según auditoría).
 - **Preparados navegables**: enlaces receta↔preparado en ambos sentidos, con la nutrición real encadenada (modelo migrado).
-- **Overlay de confianza**: al registrar una cocción de una receta IC 5 (set 3) y aprobarla, la app ofrece subir el IC del usuario. La semilla no se muta: es un overlay local.
+- ~~**Overlay de confianza**~~ — **descartado (2026-09-06, #144).** Al registrar una cocción, la app ofrecía subirle el IC. El problema no era el overlay sino el número: `recipe.ic` mide cuánta confianza tiene la fuente en **su adaptación vegana**, no si la receta es buena, y en la tarjeta se leía como una nota. El IC se fue de las recetas; lo que el usuario gana al cocinar es el estado **probada** (#145). El IC sigue donde mide algo verificable: ingredientes, nutrientes, glosario y la tabla nutricional.
 - **Glosario doble**: sección con pestaña de **íconos** (pedido explícito de Facu: cada ícono explicado) y pestaña de **términos culinarios** (los 37 del dataset con implicancia nutricional).
 - **Filtros por ingrediente y por nutriente** *(pedido de Facu en revisión)*: "recetas con garbanzos", "ricas en hierro" — este último aprovecha el cálculo en vivo, no valores precargados. **Subió a funcionalidad principal en la Fase 3**: es una de las tres cosas que la app conserva de lo nutricional.
 
@@ -46,7 +46,7 @@ no le tiene que estorbar**.
 
 | Qué | Decisión | Argumento |
 |---|---|---|
-| Modo cocina manos libres completo (timers por paso, navegación por gestos) | Backlog | La pantalla de cocción de Fase 2 ya trae tipografía grande + wake lock + avance simple. El modo completo se diseña con la experiencia de uso real acumulada. |
+| Modo cocina manos libres completo (timers por paso, navegación por gestos) | Backlog | Desde la Fase 4 el modo cocina muestra la receta entera con el paso actual abierto y sus ingredientes, salta de paso de un toque y mantiene la pantalla encendida. Timers y gestos se diseñan con la experiencia de uso real acumulada. |
 | Despensa / freezer | Backlog | Valioso (conecta conservación + porciones congeladas + compras) pero requiere disciplina de registro que conviene validar primero con el diario de cocciones. |
 | Promoción automática de variaciones repetidas a receta propia | Backlog (la promoción manual desde una cocción SÍ entra en Fase 4) | La detección automática ("hiciste esta variación 3 veces") necesita historial acumulado para no ser ruido. |
 | Reglas de utensilios U1–U10 como avisos contextuales | Backlog | Aporte marginal frente al costo de normalizar las referencias mezcladas; las recomendaciones por receta se muestran como texto. |

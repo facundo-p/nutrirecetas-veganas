@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Mantiene la pantalla encendida mientras se cocina. Si el navegador no lo
  * soporta o lo rechaza (Safari lo niega sin gesto del usuario), no pasa nada:
  * es una comodidad, no un requisito, y jamás debe romper la pantalla de pasos.
+ * Devuelve si la pantalla está retenida ahora, para no prometerlo en vano.
  */
-export function useWakeLock(activo: boolean): void {
+export function useWakeLock(activo: boolean): boolean {
+  const [retenida, setRetenida] = useState(false);
+
   useEffect(() => {
     if (!activo || typeof navigator === 'undefined' || !('wakeLock' in navigator)) return;
 
@@ -20,6 +23,13 @@ export function useWakeLock(activo: boolean): void {
           return;
         }
         lock = sentinel;
+        setRetenida(true);
+        // El navegador lo suelta solo al pasar a segundo plano; sin anotarlo,
+        // `alVolver` creía tenerlo y no lo volvía a pedir.
+        sentinel.addEventListener('release', () => {
+          lock = null;
+          setRetenida(false);
+        });
       } catch {
         // permiso denegado o pestaña en segundo plano: se sigue sin wake lock
       }
@@ -27,7 +37,6 @@ export function useWakeLock(activo: boolean): void {
 
     void pedir();
 
-    // Al volver de segundo plano el lock se pierde: se vuelve a pedir.
     const alVolver = () => {
       if (document.visibilityState === 'visible' && lock === null) void pedir();
     };
@@ -40,4 +49,6 @@ export function useWakeLock(activo: boolean): void {
       lock = null;
     };
   }, [activo]);
+
+  return retenida;
 }

@@ -68,23 +68,6 @@
   margin-top: var(--sp-1);
 }
 
-.confirmacion {
-  background: color-mix(in srgb, var(--aviso) 8%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--aviso) 40%, transparent);
-  border-radius: var(--radio-chico);
-  padding: var(--sp-3);
-  margin-top: var(--sp-2);
-  font-size: var(--fs-sm);
-  display: grid;
-  gap: var(--sp-2);
-}
-
-.confirmacion-acciones {
-  display: flex;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
-}
-
 .agregar-ingrediente {
   border-top: var(--borde-suave);
   padding-top: var(--sp-3);
@@ -95,7 +78,7 @@
 .panel-nutricion-vivo {
   position: sticky;
   bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom));
-  background: var(--superficie);
+  background: var(--textura) 0 0 / var(--tile-textura), var(--superficie-opaca); /* flota sobre la lista */
   border: var(--borde);
   border-radius: var(--radio);
   padding: var(--sp-3);
@@ -121,39 +104,207 @@
   color: var(--tinta-suave);
 }
 
-/* modo cocción: tipografía grande, manos ocupadas */
+/* ---------- la mesada: la receta entera, el paso actual abierto ----------
+   Ocupa la pantalla: progreso y controles quietos, los pasos scrollean en el
+   medio. Cada paso trae su nutriente en `data-nut`, que componentes.css vuelve
+   --nut; el de la raíz es el del paso actual, y lo heredan el fondo y el botón
+   de avance. */
 
-.modo-coccion {
-  display: grid;
-  gap: var(--sp-5);
+.mesada {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.coccion-progreso {
-  font-size: var(--fs-sm);
+/* Un tinte apenas: orienta sin distraer. Sin nutriente, el papel de siempre. */
+.mesada[data-nut] {
+  background: var(--textura) 0 0 / var(--tile-textura), color-mix(in srgb, var(--nut) 6%, var(--papel));
+}
+
+.mesada-progreso {
+  flex: none;
+  display: flex;
+  gap: var(--gap-franja);
+  list-style: none;
+  margin: 0;
+  padding: var(--sp-3) var(--sp-4) 0;
+}
+
+.mesada-progreso li {
+  flex: 1;
+  height: var(--alto-progreso);
+  background: var(--nut);
+}
+
+.mesada-progreso li.pendiente {
+  background: color-mix(in srgb, var(--tinta) 16%, transparent);
+}
+
+.mesada-cabecera {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-1) var(--sp-4);
+}
+
+/* El número de paso y la «i», juntos a la derecha. */
+.mesada-acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.mesada-volver {
   color: var(--tinta-suave);
-  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-sm);
 }
 
-.coccion-paso {
-  font-size: var(--fs-2xl);
-  line-height: 1.35;
+.mesada-posicion {
+  color: var(--tinta-suave);
+  font-size: var(--fs-meta);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mesada-cuerpo {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.mesada-pasos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Este filete NO es el reborde decorativo que prohíbe la regla 7 de CLAUDE.md:
+   lleva el color del nutriente del paso, o sea información. */
+.mesada-paso {
+  border-left: var(--filete-paso) solid color-mix(in srgb, var(--tinta) 14%, transparent);
+}
+
+.mesada-paso[aria-current='step'] {
+  border-left-color: var(--nut);
+  background: color-mix(in srgb, var(--tinta) 5%, transparent);
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+}
+
+.mesada-paso-numero {
+  color: var(--nut);
+  font-size: var(--fs-xs);
+}
+
+.mesada-paso-texto {
+  margin-top: var(--sp-1);
   font-family: var(--font-display);
+  font-size: var(--fs-paso-abierto);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
   color: var(--tinta);
 }
 
-.coccion-secreto {
+.mesada-ingredientes {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+}
+
+.mesada-ingrediente {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-top: var(--borde);
+}
+
+.mesada-ingrediente-nombre {
+  flex: 1;
+  font-size: var(--fs-lg);
+}
+
+.mesada-ingrediente-cantidad {
+  font-family: var(--font-data);
+  font-size: var(--fs-cantidad-mesada);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mesada-ingrediente-unidad {
+  color: var(--tinta-suave);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.mesada-secretos {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
   background: var(--superficie);
   border: var(--borde);
   border-radius: var(--radio);
-  padding: var(--sp-3) var(--sp-4);
-  font-size: var(--fs-lg);
-  display: grid;
-  gap: var(--sp-2);
 }
 
-.coccion-acciones {
-  display: flex;
+.mesada-salto {
+  display: grid;
+  grid-template-columns: var(--sp-4) 1fr;
   gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  color: var(--dato-suave);
+  font-size: var(--fs-base);
+  line-height: 1.35;
+}
+
+.mesada-salto:hover {
+  color: var(--tinta);
+}
+
+.mesada-salto-numero {
+  color: var(--nut);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.2em;
+}
+
+.mesada-controles {
+  flex: none;
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.mesada-atras {
+  width: var(--toque-mesada);
+  min-height: var(--toque-mesada);
+  border-top: var(--borde-control);
+  color: var(--tinta-suave);
+  text-align: center;
+}
+
+.mesada-atras:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mesada-avanzar {
+  flex: 1;
+  min-height: var(--toque-mesada);
+  background: var(--nut, var(--sin-aporte));
+  color: var(--sobre-accion);
+  font-family: var(--font-display);
+  font-size: var(--fs-boton-mesada);
+  font-weight: 700;
+  text-align: center;
 }
 
 /* registro */

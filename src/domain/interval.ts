@@ -22,6 +22,14 @@ export function midpoint(a: Interval): number {
   return (a.min + a.max) / 2;
 }
 
+/** Debajo de esto la diferencia entre las puntas es ruido de punto flotante. */
+const RANGO_DESPRECIABLE = 1e-9;
+
+/** Si el intervalo es una banda de verdad y no un valor puntual. */
+export function tieneBanda(a: Interval): boolean {
+  return a.max - a.min > RANGO_DESPRECIABLE;
+}
+
 export function sum(xs: Interval[]): Interval {
   return xs.reduce(add, interval(0));
 }

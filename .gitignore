@@ -1,6 +1,7 @@
 # Artefactos de Claude
 .artifacts/.DS_Store
 .artifacts/Rediseño-CC-Design
+.artifacts/design_handoff_nutrirecetas
 
 # macOS
 .DS_Store

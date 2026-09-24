@@ -3,7 +3,7 @@ import type { Line } from '../seed/schema';
 import { familiaDeUnidad, redondearCantidad, redondearLinea } from './rounding';
 
 function linea(cantidad: number, unidad_display: string, g_aprox: number): Line {
-  return { ref: { tipo: 'ingrediente', id: 'x' }, cantidad, unidad_display, g_aprox, sustitutos: [] };
+  return { ref: { tipo: 'ingrediente', id: 'x' }, cantidad, unidad_display, g_aprox, sustitutos: [], paso: null };
 }
 
 describe('familiaDeUnidad', () => {

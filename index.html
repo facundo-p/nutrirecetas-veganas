@@ -1,21 +1,24 @@
 <!doctype html>
-<html lang="es-AR" data-tema="e">
+<html lang="es-AR" data-tema="papel">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#F7EEDC" />
+    <meta name="theme-color" content="#E4DCC6" />
     <meta name="description" content="Recetario vegano personal con base nutricional. Offline, sin cuentas, sin backend." />
     <title>Nutrirecetas</title>
-    <!-- Aplica el tema guardado antes de pintar: sin esto la app cargaría en el
-         default y saltaría de color. Corre antes del bundle, así que la lista
-         se repite acá; que no se desincronice de src/app/tema.ts lo verifica
+    <!-- Resuelve el tema antes de pintar: sin esto la app cargaría en el default
+         y saltaría de color. Es la misma lógica que leerPreferencia y
+         resolverTema de src/app/tema.ts, repetida porque corre antes del bundle;
+         que la lista no se desincronice lo verifica
          src/styles/contrato-de-temas.test.ts. -->
     <script>
       (function () {
-        var TEMAS = ['e', 'f'];
+        var TEMAS = ['papel', 'musgo'];
         try {
-          var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('tema');
-          if (TEMAS.indexOf(t) !== -1) document.documentElement.dataset.tema = t;
+          var t = new URLSearchParams(location.search).get('tema');
+          if (t !== 'auto' && TEMAS.indexOf(t) === -1) t = localStorage.getItem('tema');
+          if (TEMAS.indexOf(t) === -1) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'musgo' : 'papel';
+          document.documentElement.dataset.tema = t;
         } catch (e) {}
       })();
     </script>

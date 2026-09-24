@@ -1,82 +1,79 @@
 import type { Recipe } from '../../seed/schema';
+import type { EstadoDeReceta } from '../../domain/estado';
+import { fuerteDeAporte, NOMBRE_CORTO, type AporteDeReceta } from '../../domain/aporte';
+import { ChipDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
-import { difficultyFlames, formatMinutes } from '../common/format';
-import { IndiceConfianza } from '../common/IndiceConfianza';
+import { formatMinutes, formatPorcentaje, MEDIDA_DE_BASE } from '../common/format';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
-import {
-  IconCopoNieve,
-  IconCuchara,
-  IconEstrellaBrotada,
-  IconLlama,
-  IconPlato,
-  IconReloj,
-  IconTemporada,
-} from '../icons/icons';
+import { BarraDeAporte } from '../common/BarraDeAporte';
+import { IconCopoNieve, IconCuchara, IconLaurel, IconTemporada } from '../icons/icons';
 
 interface Props {
   recipe: Recipe;
+  estado: EstadoDeReceta;
+  aporte: AporteDeReceta;
   variantCount?: number;
   inSeason?: boolean;
   onToggleVariants?: () => void;
   variantsOpen?: boolean;
 }
 
-export function RecipeCard({ recipe, variantCount = 0, inSeason = false, onToggleVariants, variantsOpen }: Props) {
-  const flames = difficultyFlames(recipe.dificultad);
+/**
+ * Una receta del recetario: el nombre, la barra de lo que le da al cuerpo y una
+ * línea de datos. Fila y no tarjeta: lo que la hace reconocible es la barra.
+ */
+export function RecipeCard({
+  recipe,
+  estado,
+  aporte,
+  variantCount = 0,
+  inSeason = false,
+  onToggleVariants,
+  variantsOpen,
+}: Props) {
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
-  const { label, slug, sello } = typeInfo(recipe);
+  const { label, sello } = typeInfo(recipe);
+  const fuerte = fuerteDeAporte(aporte.porcentajes);
   return (
-    <article className="tarjeta tarjeta-receta" data-cat={slug}>
-      <a className="tarjeta-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
-        <span className="tarjeta-receta-tipo" title={label}>
-          <TypeIcon recipe={recipe} />
+    <article className="fila-receta">
+      <a className="fila-receta-cuerpo" href={routeHash({ screen: 'recipe', id: recipe.id })}>
+        <span className="fila-receta-nombre">
+          {recipe.nombre}
+          {recipe.candidata_clasica && (
+            <IconLaurel className="inline-icono icono-clasica" aria-label="candidata a clásica" />
+          )}
+          {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
         </span>
-        <span className="tarjeta-receta-textos">
-          {/* El sello comparte renglón con el título y no se encoge: la
-              categoría es lo que ubica la receta de un vistazo. */}
-          <span className="tarjeta-receta-titular">
-            <span className="tarjeta-receta-nombre">
-              {recipe.nombre}
-              {recipe.candidata_clasica && <IconEstrellaBrotada className="inline-icono icono-clasica" />}
-              {recipe.indulgente && <IconCuchara className="inline-icono icono-indulgente" />}
-            </span>
-            <span className="sello-categoria">{sello}</span>
+        <BarraDeAporte porcentajes={aporte.porcentajes} />
+        <span className="fila-receta-meta">
+          <span className="meta-item" title={label}>
+            <TypeIcon recipe={recipe} /> {sello}
           </span>
-          <span className="tarjeta-receta-meta">
-            <span className="meta-item">
-              <IconReloj /> {formatMinutes(total)}
-            </span>
-            <span className="meta-item" aria-label={`dificultad ${recipe.dificultad}`} title={recipe.dificultad}>
-              {Array.from({ length: flames }, (_, i) => (
-                <IconLlama key={i} />
-              ))}
-            </span>
-            {recipe.porciones_num !== null && (
-              <span className="meta-item">
-                <IconPlato /> {recipe.porciones_num}
-              </span>
-            )}
-            {recipe.guarda?.freezer && (
-              <span className="meta-item" title="va bien al freezer">
-                <IconCopoNieve className="icono-freezer" />
-              </span>
-            )}
-            {inSeason && (
-              <span className="meta-item icono-temporada" title="con ingredientes en temporada">
-                <IconTemporada /> temporada
-              </span>
-            )}
+          <span className="meta-item">{formatMinutes(total)}</span>
+          <span className="meta-item">
+            {recipe.porciones_num !== null ? `rinde ${recipe.porciones_num}` : recipe.porciones_display}
           </span>
-          <span className="tarjeta-receta-meta">
-            <span className="meta-item">
-              <IndiceConfianza ic={recipe.ic} />
+          {fuerte && (
+            <span className="meta-item meta-fuerte" data-nut={fuerte.nutriente}>
+              {NOMBRE_CORTO[fuerte.nutriente]} {formatPorcentaje(fuerte.porcentaje)}
+              {aporte.base === '100g' && ` ${MEDIDA_DE_BASE['100g'].por}`}
             </span>
-            {recipe.estado === 'por-probar' && <span className="chip chip-mini">por probar</span>}
-          </span>
+          )}
+          {recipe.guarda?.freezer && (
+            <span className="meta-item" title="va bien al freezer">
+              <IconCopoNieve className="icono-freezer" />
+            </span>
+          )}
+          {inSeason && (
+            <span className="meta-item icono-temporada" title="con ingredientes en temporada">
+              <IconTemporada /> temporada
+            </span>
+          )}
+          {estado !== 'sin-probar' && <ChipDeEstado estado={estado} />}
         </span>
       </a>
       {variantCount > 0 && onToggleVariants && (
-        <button type="button" className="tarjeta-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
+        <button type="button" className="boton-plano fila-receta-variantes" onClick={onToggleVariants} aria-expanded={variantsOpen}>
           {variantsOpen ? '▾' : '▸'} {variantCount} {variantCount === 1 ? 'variante' : 'variantes'}
         </button>
       )}

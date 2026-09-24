@@ -37,7 +37,7 @@ Justificación (criterio dominante: mantenibilidad a años vista por una persona
 |---|---|
 | `perfil` | singleton: datos para RDA, suplementos declarados |
 | `recetas_propias` | recetas del usuario; si nace de una semilla o cocción: linaje `deriva_de` + `seed_version_base` |
-| `overlays` | por `receta_id` semilla: IC ganado al probar, notas, sustituciones favoritas, favorita/oculta. **La semilla jamás se muta.** |
+| `overlays` | por `receta_id` semilla: estado del usuario (sin probar / probada / pendiente / favorita) y notas. **La semilla jamás se muta.** |
 | `cocciones` | registro con **snapshot denormalizado completo** (líneas con gramos reales, porciones, fecha, variaciones, anotaciones): el historial sobrevive a cualquier actualización de semilla |
 | `listas_compras` | listas generadas + estado de checklist |
 | `plan_semanal` | asignaciones receta→día |

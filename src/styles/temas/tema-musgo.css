@@ -1,0 +1,130 @@
+/* ══════════ Tema musgo (oscuro) ══════════
+   El Cromatograma aclarado y hecho papel: un verde hondo que ya no es casi
+   negro. El color queda reservado para los nutrientes. El aviso y el
+   imprescindible lo comparten a propósito con la fibra y la vitamina A; la
+   acción no: un botón tiene que sobresalir, así que sigue en el brote pleno y
+   la proteína pasa a su versión desaturada.
+
+   Los once van desaturados: a croma pleno sobre este verde vibraban, y el
+   hierro de antes no llegaba a 4,5:1. Medidos: ΔE ≥ 25,3 entre ellos (zinc
+   contra proteína) y ≥ 4,99:1 como texto sobre el papel (magnesio). Sobre la
+   superficie opaca hierro y magnesio bajan a 4,4 y 4,3: ningún texto de
+   nutriente va ahí.
+
+   `color-scheme: dark` le dice al navegador que pinte con criterio oscuro lo
+   que el CSS no controla: barras de scroll, autofill, controles nativos.
+
+   Estructura de todo archivo de tema:
+     1) su paleta cruda, con prefijo --p-, PRIVADA de este archivo
+     2) el contrato de roles, que es lo único que la app puede nombrar */
+:root[data-tema='musgo'] {
+  color-scheme: dark;
+
+  /* ── paleta cruda (nadie fuera de este archivo la nombra) ── */
+  --p-musgo: #1d3024;
+  --p-musgo-alto: #253b2d;
+  --p-musgo-hondo: #16261b;
+  --p-noche: #0a160e;
+  --p-hueso: #ede9d8;
+  --p-liquen: #9eae9c;
+  --p-liquen-hondo: #93a391;
+  --p-brote: #4cd070;
+  --p-remolacha: #db8397;
+  --p-cielo: #88d1e4;
+  --p-berenjena: #c286c3;
+  --p-lima: #87ac61;
+  --p-lavanda: #bfbcfe;
+  --p-zanahoria: #ffac95;
+  --p-paja: #d4c66e;
+  --p-menta: #33b4a9;
+  --p-hoja: #86daa8;
+  --p-curcuma: #cc944e;
+  --p-mar: #5da6dd;
+  --p-garbanzo: #d9cfa8;
+
+  /* ── contrato de roles ── */
+
+  /* Tipografía: la display para títulos; la de datos para todo lo demás, y
+     siempre para las cifras. */
+  --font-display: 'Petrona Variable', 'Iowan Old Style', Georgia, serif;
+  --font-data: 'Archivo Variable', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Superficie y tinta. Como texto, sobre musgo / musgo alto:
+     hueso 11,5 / 9,9 · liquen 6,0 / 5,2 · liquen hondo 5,3 / 4,5.
+     La superficie es translúcida para que las tarjetas dejen ver el papel;
+     lo que flota sobre otra cosa usa la opaca. */
+  --papel: var(--p-musgo);
+  --textura: url('../../assets/texturas/musgo.webp'); /* scripts/textura.mjs */
+  --superficie: color-mix(in srgb, var(--p-hueso) 5.5%, transparent);
+  --superficie-opaca: var(--p-musgo-alto);
+  --tinta: var(--p-hueso);
+  --tinta-suave: var(--p-liquen);
+
+  /* Identidad y acción */
+  --marca: var(--p-hueso);
+  --kicker: var(--p-liquen);
+  --titulo-seccion: var(--p-hueso);
+  --accion: var(--p-brote);
+  --accion-texto: var(--p-brote);
+  --sobre-accion: var(--p-noche); /* 9,3:1 sobre el brote */
+  --seleccion: var(--p-brote);
+
+  /* Navegación y enlaces */
+  --navegar: var(--p-liquen);
+  --link: var(--p-brote);
+  --foco: var(--p-hueso);
+
+  /* Datos */
+  --cifra: var(--p-hueso);
+  --dato-suave: var(--p-liquen-hondo);
+  --chip: var(--p-liquen);
+
+  /* Avisos y tips */
+  --aviso: var(--p-curcuma);
+  --tip-positivo: var(--p-brote);
+  --tip-atencion: var(--p-curcuma);
+  --tip-neutro: var(--p-liquen);
+
+  /* Atributos de receta e ingrediente. Freezer, indulgente y preparado van en
+     liquen: no son nutrientes, y un color de más sería un color que miente. */
+  --icono-imprescindible: var(--p-zanahoria);
+  --recalculando: var(--p-zanahoria); /* las cifras mientras viajan al escalar */
+  --funcion-ingrediente: var(--p-liquen-hondo);
+  --confirmado: var(--p-brote);
+  --icono-freezer: var(--p-liquen);
+  --icono-clasica: var(--p-brote);
+  --icono-indulgente: var(--p-liquen);
+  --estado-pendiente: var(--p-curcuma);
+  --estado-favorita: var(--p-hueso);
+  --chip-preparado: var(--p-liquen);
+
+  --precaucion: var(--p-curcuma);
+  --exito: var(--p-brote);
+
+  /* Un color por nutriente, en el orden canónico de las barras. */
+  --nut-hierro: var(--p-remolacha);
+  --nut-calcio: var(--p-cielo);
+  --nut-magnesio: var(--p-berenjena);
+  --nut-zinc: var(--p-lima);
+  --nut-selenio: var(--p-lavanda);
+  --nut-vita: var(--p-zanahoria);
+  --nut-vitc: var(--p-paja);
+  --nut-folato: var(--p-menta);
+  --nut-proteina: var(--p-hoja);
+  --nut-fibra: var(--p-curcuma);
+  --nut-omega3: var(--p-mar);
+  --sin-aporte: var(--p-garbanzo); /* no trae ninguno de los once */
+
+  /* Las láminas: el trazo es del grabado y el color, este. Al 17 % se leen
+     como tiza y no le compiten al texto. */
+  --ilustracion: color-mix(in srgb, var(--p-hueso) 17%, transparent);
+
+  /* Encabezado y nav: el encabezado es papel; la nav, un tono más honda. */
+  --encabezado: var(--p-musgo);
+  --sobre-encabezado: var(--p-hueso);
+  --encabezado-kicker: var(--p-liquen);
+  --nav-fondo: var(--p-musgo-hondo);
+  --nav-inactivo: var(--p-liquen-hondo);
+  --nav-activo: var(--p-hueso);
+  --nav-marca-activa: var(--p-brote);
+}

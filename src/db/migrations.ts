@@ -41,6 +41,25 @@ export function migrarPerfilV3(perfil: Record<string, unknown>): Record<string, 
   return resto;
 }
 
+/**
+ * v5: el overlay guarda un `estado` en vez de `favorita` + `ic_usuario`. Los dos
+ * campos viejos son opiniones sobre la receta y las dos sobreviven traducidas:
+ *
+ * - `favorita: true` es la misma opinión con otro nombre. Gana sobre lo demás:
+ *   era una elección, no un registro, y no se degrada a "probada".
+ * - `ic_usuario` solo lo escribía un lugar, el checkbox de la cocina que decía
+ *   "La probé y la apruebo", y solo sobre recetas por probar. O sea que su
+ *   presencia **es** el registro de haberla cocinado y aprobado: se traduce a
+ *   "probada". Descartarlo sin más borraba ese hecho, que es justo lo que el
+ *   estado nuevo viene a decir.
+ */
+export function migrarOverlayV4(overlay: Record<string, unknown>): Record<string, unknown> {
+  const { favorita, ic_usuario, ...resto } = overlay;
+  if ('estado' in resto) return resto;
+  if (favorita === true) return { ...resto, estado: 'favorita' };
+  return ic_usuario !== undefined ? { ...resto, estado: 'probada' } : resto;
+}
+
 /** Cuántos consumos trae un backup viejo: lo que el import va a descartar. */
 export function consumosEnBackup(json: unknown): number {
   if (typeof json !== 'object' || json === null) return 0;
@@ -59,11 +78,20 @@ export function consumosEnBackup(json: unknown): number {
  */
 export function migrarBackup(json: unknown): unknown {
   if (typeof json !== 'object' || json === null) return json;
-  const backup = json as { data?: { perfil?: Record<string, unknown> | null; consumos?: unknown } };
+  const backup = json as {
+    data?: { perfil?: Record<string, unknown> | null; consumos?: unknown; overlays?: unknown };
+  };
   if (!backup.data) return json;
 
   // se descartan sin reemplazo: lo que contaban ya no se cuenta en ningún lado
   const { consumos: _consumos, ...data } = backup.data;
-  const perfil = data.perfil;
-  return { ...backup, data: perfil ? { ...data, perfil: migrarPerfilV3(migrarPerfilV1(perfil)) } : data };
+  const overlays = Array.isArray(data.overlays)
+    ? data.overlays.map((o) => migrarOverlayV4(o as Record<string, unknown>))
+    : data.overlays;
+  const conOverlays = { ...data, ...(overlays !== undefined ? { overlays } : {}) };
+  const perfil = conOverlays.perfil;
+  return {
+    ...backup,
+    data: perfil ? { ...conOverlays, perfil: migrarPerfilV3(migrarPerfilV1(perfil)) } : conOverlays,
+  };
 }

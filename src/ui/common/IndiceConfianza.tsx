@@ -13,20 +13,11 @@ import { icSprouts } from './format';
  *
  * `compacto` es para las filas de nutrientes, donde no entra la frase entera.
  */
-export function IndiceConfianza({
-  ic,
-  compacto = false,
-  sufijo,
-}: {
-  ic: number;
-  compacto?: boolean;
-  sufijo?: string;
-}) {
+export function IndiceConfianza({ ic, compacto = false }: { ic: number; compacto?: boolean }) {
   return (
     <span className="confianza" title={`índice de confianza ${ic}/10`}>
       <IconBrotesIc nivel={icSprouts(ic)} />
       {compacto ? `${ic}/10` : `confianza ${ic} de 10`}
-      {sufijo && <em className="meta-suave">{sufijo}</em>}
     </span>
   );
 }

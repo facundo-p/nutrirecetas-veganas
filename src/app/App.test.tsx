@@ -3,8 +3,11 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, test } from 'vitest';
 import { App } from './App';
-import { addCoccion, savePerfil } from '../db/repos';
+import { routeHash } from './router';
+import { useSession } from './store';
+import { addCoccion } from '../db/repos';
 import { db } from '../db/db';
+import { USER_SCHEMA_VERSION } from '../db/schema';
 
 beforeEach(async () => {
   // limpiar en vez de borrar: cerrar la base deja colgadas las queries en vuelo
@@ -22,27 +25,14 @@ test('la app arranca en el recetario con la navegación completa', async () => {
   expect(screen.queryByRole('link', { name: /Hoy/ })).toBeNull();
 
   // sin perfil cargado la app funciona igual: no hay portón que llenar
-  await waitFor(() => expect(screen.getByRole('heading', { name: 'Recetario', level: 1 })).toBeDefined());
+  await waitFor(() => expect(screen.getByRole('heading', { name: 'Nutrirecetas', level: 1 })).toBeDefined());
   expect(screen.queryByRole('link', { name: /Completar mi perfil/ })).toBeNull();
 });
 
-test('lo primero del recetario es qué cocinar, no un formulario vacío', async () => {
+test('lo primero del recetario es el buscador (issue #138)', async () => {
   render(<App />);
-  await waitFor(() => expect(screen.getByText('Qué cocinar')).toBeDefined());
-});
-
-test('con nutrientes marcados, las recomendaciones lo usan como motivo', async () => {
-  // el dominio no puede detectar una prop que la pantalla no pasa: esto sí
-  await savePerfil({
-    sexo_para_requerimientos: 'masculino',
-    fecha_nacimiento: '1990-01-01',
-    peso_kg: 75,
-    nivel_entrenamiento: 'sedentario',
-    nutrientes_destacados: ['hierro'],
-  });
-
-  render(<App />);
-  await waitFor(() => expect(screen.getAllByText(/% de la dosis de hierro/).length).toBeGreaterThan(0));
+  await waitFor(() => expect(screen.getByRole('searchbox')).toBeDefined());
+  expect(screen.queryByText('Qué cocinar')).toBeNull();
 });
 
 test('el aviso de backup se puede posponer sin hacer un backup', async () => {
@@ -85,7 +75,38 @@ test('a quien venía de antes le avisa qué se borró, y se puede cerrar', async
   fireEvent.click(screen.getByRole('button', { name: 'Entendido' }));
 
   await waitFor(() => expect(screen.queryByText(/dejó de llevar la cuenta/)).toBeNull());
-  expect((await db.meta.get(1))!.user_schema_version).toBe(4);
+  expect((await db.meta.get(1))!.user_schema_version).toBe(USER_SCHEMA_VERSION);
+});
+
+test('pasar de una receta a otra no arrastra lo que se tocó en la primera', async () => {
+  window.location.hash = routeHash({ screen: 'recipe', id: 'r07' });
+  try {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: 'ver notas y sustitutos' }));
+    fireEvent.click(screen.getByRole('button', { name: /Arroz integral/ }));
+    expect(screen.getByText(/en vez de Quinoa/)).toBeDefined();
+
+    window.location.hash = routeHash({ screen: 'recipe', id: 'r01' });
+    await screen.findByRole('heading', { name: /Sopa/, level: 1 });
+    expect(screen.queryByText(/en vez de/)).toBeNull();
+  } finally {
+    window.location.hash = '';
+  }
+});
+
+test('la mesada ocupa la pantalla: sin navegación, que vuelve al salir (issue #164)', async () => {
+  window.location.hash = routeHash({ screen: 'cook', id: 'r01' });
+  try {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Empezar a cocinar' }));
+    expect(screen.queryByRole('navigation', { name: 'Secciones' })).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: '‹ Ingredientes' }));
+    expect(screen.getByRole('navigation', { name: 'Secciones' })).toBeDefined();
+  } finally {
+    window.location.hash = '';
+    useSession.getState().terminar();
+  }
 });
 
 test('una instalación nueva no ve el aviso de una migración que no vivió', async () => {

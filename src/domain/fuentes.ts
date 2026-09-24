@@ -1,7 +1,7 @@
 import type { SeedIndex } from '../seed';
-import type { Ingredient, Nutrient, Recipe } from '../seed/schema';
+import type { Ingredient, IngredientNutrientKey, Line, Nutrient, Recipe } from '../seed/schema';
 import { midpoint } from './interval';
-import { hasReportableValue, per100g, perPortion, type NutrientResult, type RecipeNutrition } from './nutrition';
+import { enSuBase, hasReportableValue, per100g, type NutrientResult, type RecipeNutrition } from './nutrition';
 
 /**
  * Quién aporta qué. Es el reverso de la ficha de receta: en vez de "qué tiene
@@ -36,7 +36,7 @@ export function recetasQueMasAportan(
     // y ganarían tres veces el mismo plato
     if (receta.variante_de !== undefined) continue;
 
-    const base = perPortion(nutricionDe(receta.id)) ?? per100g(nutricionDe(receta.id));
+    const base = enSuBase(nutricionDe(receta.id)).medida;
     const resultado = base.por_nutriente[nutriente.clave_ingrediente];
     if (resultado === undefined || !hasReportableValue(resultado)) continue;
 
@@ -61,4 +61,45 @@ export function ingredientesQueMasAportan(idx: SeedIndex, nutriente: Nutrient): 
   return fuentes.sort(
     (a, b) => b.cantidad - a.cantidad || a.ingrediente.nombre.localeCompare(b.ingrediente.nombre, 'es'),
   );
+}
+
+export interface AporteDeLinea {
+  nombre: string;
+  /** Punto medio de lo que trae esa línea, en la unidad del nutriente. */
+  cantidad: number;
+}
+
+/**
+ * Qué líneas de una receta traen un nutriente, de más a menos. Recibe las
+ * líneas y no la receta: así sirve también para la receta escalada o con un
+ * sustituto puesto. Un preparado aporta lo suyo por gramo, como en el motor.
+ */
+export function lineasQueAportan(
+  idx: SeedIndex,
+  lineas: Line[],
+  clave: IngredientNutrientKey,
+  nutricionDe: (recetaId: string) => RecipeNutrition,
+): AporteDeLinea[] {
+  const aportes: AporteDeLinea[] = [];
+  for (const linea of lineas) {
+    let nombre: string;
+    let cada100g: number | undefined;
+    if (linea.ref.tipo === 'ingrediente') {
+      const ingrediente = idx.ingredientById.get(linea.ref.id);
+      if (!ingrediente) continue;
+      nombre = ingrediente.nombre;
+      const valor = ingrediente.nutrientes[clave];
+      cada100g = valor ? midpoint(valor.intervalo) : undefined;
+    } else {
+      const preparado = idx.recipeById.get(linea.ref.id);
+      if (!preparado) continue;
+      nombre = preparado.nombre;
+      const resultado = per100g(nutricionDe(preparado.id)).por_nutriente[clave];
+      cada100g = hasReportableValue(resultado) ? midpoint(resultado.intervalo) : undefined;
+    }
+    if (cada100g === undefined) continue;
+    const cantidad = (cada100g * linea.g_aprox) / 100;
+    if (cantidad > 0) aportes.push({ nombre, cantidad });
+  }
+  return aportes.sort((a, b) => b.cantidad - a.cantidad || a.nombre.localeCompare(b.nombre, 'es'));
 }
