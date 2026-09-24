@@ -310,7 +310,7 @@ describe('Detalle de receta', () => {
       ajustar();
       expect(screen.queryByText(/no escalan lineal/)).toBeNull();
       fireEvent.change(campos(container)[0]!, { target: { value: '3' } });
-      expect(screen.getByText(/la receta decía 2 cdta/)).toBeDefined();
+      expect(screen.getByText(/la receta decía 2 cucharaditas/)).toBeDefined();
       expect(screen.getAllByText(/no escalan lineal/)).toHaveLength(1);
     });
 
