@@ -9,13 +9,18 @@ import { memoriaDeFiltros } from './memoria-de-filtros';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { LeyendaDeColores } from './LeyendaDeColores';
-import { TEXTO_DE_DIFICULTAD } from '../common/Dificultad';
+import { LeyendaDeIconos } from '../common/LeyendaDeIconos';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { Lamina } from '../common/Lamina';
 import { SobreQueDosisCorta } from '../common/SobreQueDosis';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { currentMonth } from '../common/format';
+
+const ICONOS_DE_LA_TARJETA = [
+  'mortero', 'flor', 'espiga', 'frasco', 'frasco-fermento', 'bandeja',
+  'dificultad', 'copo-nieve', 'temporada', 'tilde-brote', 'senalador', 'estrella-brotada', 'laurel', 'cuchara',
+] as const;
 
 export function RecipeList() {
   const idx = getSeedIndex();
@@ -69,7 +74,8 @@ export function RecipeList() {
           <>
             <p>Cada receta se dibuja con lo que le da al cuerpo: un color por nutriente.</p>
             <LeyendaDeColores id="leyenda-colores" fuente={objetivos.fuente} />
-            <p>{TEXTO_DE_DIFICULTAD}</p>
+            <h3>Los íconos</h3>
+            <LeyendaDeIconos ids={ICONOS_DE_LA_TARJETA} />
           </>
         }
       />

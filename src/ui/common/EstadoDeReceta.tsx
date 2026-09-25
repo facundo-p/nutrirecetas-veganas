@@ -10,16 +10,15 @@ const ICONO: Record<EstadoDeReceta, ComponentType<IconProps>> = {
 };
 
 /**
- * Tu estado con una receta, en la tarjeta del recetario. `sin-probar` no se
- * dibuja: marcar 39 recetas con "todavía no" es ruido, no información.
+ * Tu estado con una receta, en la tarjeta del recetario: el ícono solo, y su
+ * nombre en la «i». `sin-probar` no se dibuja: marcar 39 recetas con "todavía
+ * no" es ruido, no información.
  */
-export function ChipDeEstado({ estado }: { estado: EstadoDeReceta }) {
+export function IconoDeEstado({ estado }: { estado: EstadoDeReceta }) {
   if (estado === 'sin-probar') return null;
   const Icono = ICONO[estado];
   return (
-    <span className={`chip chip-mini chip-estado estado-${estado}`}>
-      <Icono /> {ETIQUETA_DE_ESTADO[estado]}
-    </span>
+    <Icono className="icono-estado" data-estado={estado} role="img" aria-hidden={false} aria-label={ETIQUETA_DE_ESTADO[estado]} />
   );
 }
 

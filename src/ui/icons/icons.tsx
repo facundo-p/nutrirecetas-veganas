@@ -106,9 +106,15 @@ const CASILLAS_DE_DIFICULTAD = [0, 1, 2, 3, 4] as const;
  * verde, y eso lo decide el CSS. Verde que se oscurece y no rojo: lo difícil
  * no es un peligro.
  */
-export function IconDificultad({ nivel = 3, ...props }: IconProps & { nivel?: 1 | 2 | 3 | 4 | 5 }) {
+export function IconDificultad({ nivel = 3, className, ...props }: IconProps & { nivel?: 1 | 2 | 3 | 4 | 5 }) {
   return (
-    <Base viewBox="0 0 34 6" strokeWidth={1} className="icono-dificultad" data-nivel={nivel} {...props}>
+    <Base
+      viewBox="0 0 34 6"
+      strokeWidth={1}
+      className={className ? `icono-dificultad ${className}` : 'icono-dificultad'}
+      data-nivel={nivel}
+      {...props}
+    >
       {CASILLAS_DE_DIFICULTAD.map((i) => (
         <rect key={i} className="dificultad-casilla" x={i * 7 + 0.5} y="0.5" width="5" height="5" rx="1" />
       ))}
@@ -204,15 +210,6 @@ export function IconReloj(props: IconProps) {
     <Base {...props}>
       <circle cx="12" cy="12" r="8.5" />
       <path d="M12 7.5V12l3 2" />
-    </Base>
-  );
-}
-
-export function IconLlama(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 3c1.2 3.2 5 5.2 5 9.8a5 5 0 0 1-10 0C7 8.2 10.8 6.2 12 3Z" />
-      <path d="M12 12.5c.9 1.3 2 2.1 2 3.6a2 2 0 0 1-4 0c0-1.5 1.1-2.3 2-3.6Z" />
     </Base>
   );
 }

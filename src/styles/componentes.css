@@ -127,6 +127,26 @@
   font-size: 14px;
 }
 
+/* La leyenda de íconos de la «i»: un ícono por renglón, con su significado. */
+.leyenda-iconos {
+  display: grid;
+  gap: var(--sp-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-meta);
+}
+
+.leyenda-iconos li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.leyenda-iconos-icono {
+  font-size: var(--fs-lg);
+  flex-shrink: 0;
+}
+
 /* Cinco casilleros: el nivel dice cuántos se llenan y de qué verde. */
 .icono-dificultad {
   height: var(--casilla-dificultad);
@@ -696,34 +716,17 @@
 
 /* ---------- tu estado con una receta ---------- */
 
-/* El color va en el ícono y en un lavado de fondo; el texto se queda en tinta.
-   Un chip de color entero compite con el sello de categoría, que es lo que
-   ubica la receta de un vistazo. */
-.chip-estado svg {
-  font-size: 14px;
-}
-
-.estado-probada {
-  background: color-mix(in srgb, var(--confirmado) 14%, var(--superficie));
-  border-color: color-mix(in srgb, var(--confirmado) 45%, transparent);
-}
-.estado-probada svg {
+/* En la tarjeta, el ícono solo y con su color: el nombre está en la «i». */
+.icono-estado[data-estado='probada'],
+.menu-estado [data-estado='probada'] svg {
   color: var(--confirmado);
 }
-
-.estado-pendiente {
-  background: color-mix(in srgb, var(--estado-pendiente) 14%, var(--superficie));
-  border-color: color-mix(in srgb, var(--estado-pendiente) 45%, transparent);
-}
-.estado-pendiente svg {
+.icono-estado[data-estado='pendiente'],
+.menu-estado [data-estado='pendiente'] svg {
   color: var(--estado-pendiente);
 }
-
-.estado-favorita {
-  background: color-mix(in srgb, var(--estado-favorita) 16%, var(--superficie));
-  border-color: color-mix(in srgb, var(--estado-favorita) 50%, transparent);
-}
-.estado-favorita svg {
+.icono-estado[data-estado='favorita'],
+.menu-estado [data-estado='favorita'] svg {
   color: var(--estado-favorita);
 }
 
@@ -755,15 +758,6 @@
   background: color-mix(in srgb, var(--tinta) 8%, transparent);
 }
 
-.menu-estado [data-estado='probada'] svg {
-  color: var(--confirmado);
-}
-.menu-estado [data-estado='pendiente'] svg {
-  color: var(--estado-pendiente);
-}
-.menu-estado [data-estado='favorita'] svg {
-  color: var(--estado-favorita);
-}
 
 /* Flota sobre lo que haya abajo: opaco y con el papel, como el modal. */
 .menu-estado-opciones {
