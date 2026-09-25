@@ -18,6 +18,3 @@ export function Dificultad({ dificultad }: { dificultad: Recipe['dificultad'] })
     />
   );
 }
-
-export const TEXTO_DE_DIFICULTAD =
-  'Los cinco casilleros van de trivial (uno) a difícil (los cinco): muy fácil, fácil y media en el medio. Cuanto más llenos, más oscuro el verde.';

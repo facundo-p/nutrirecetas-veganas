@@ -70,9 +70,10 @@
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
+  --alto-linea-ingrediente: 2.5rem; /* 40 px: el nombre de un preparado es un link */
   --toque-minimo: 2.75rem; /* 44 px: lo mínimo que se puede tocar con un dedo */
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
-  --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
+  --boton-escalador: 3rem; /* 48 px: se toca con la mano sucia, no bajar de acá */
   --toque-mesada: 5.25rem; /* 84 px: se toca sin mirar */
   --ancho-campo-cantidad: 4.5rem;
   --lado-check: 1.375rem; /* 22 px: la casilla de «qué va a la olla» */

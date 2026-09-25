@@ -2,7 +2,7 @@
 
 /* Con la especificidad de .encabezado-pantalla h1: sin ella, esa le gana. */
 .encabezado-pantalla .ficha-titulo {
-  font-size: var(--fs-3xl);
+  font-size: var(--fs-2xl);
   text-wrap: pretty;
 }
 
@@ -11,8 +11,12 @@
 }
 
 /* Sobre .detalle-meta: más aire y la letra de los metadatos. */
+/* Debajo de la lámina: con un título corto, la lámina le robaba ancho y
+   mandaba la estrella y la «i» a otro renglón. */
 .ficha-meta {
-  margin: var(--sp-3) 0;
+  clear: both;
+  margin: var(--sp-2) 0 0;
+  gap: var(--sp-2) var(--sp-3);
   font-size: var(--fs-meta);
 }
 
@@ -79,7 +83,10 @@
 }
 
 .linea-ingrediente {
-  padding: var(--sp-2) 0;
+  display: grid;
+  align-content: center;
+  min-height: var(--alto-linea-ingrediente);
+  padding: var(--sp-1) 0;
   border-bottom: var(--borde-suave);
 }
 
@@ -290,7 +297,7 @@
   align-items: center;
   gap: var(--sp-2) var(--sp-4);
   margin-inline: calc(var(--sp-4) * -1);
-  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
   background: var(--textura) 0 0 / var(--tile-textura), var(--papel);
   border-bottom: var(--borde);
 }
@@ -303,12 +310,14 @@
   }
 }
 
+/* Porciones y masa en un renglón: «Rinde» sobraba, el número ya lo dice. */
 .escalador-rinde {
-  display: grid;
-  gap: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--sp-3);
 }
 
-.escalador-etiqueta,
 .escalador-masa {
   font-size: var(--fs-xs);
   color: var(--tinta-suave);

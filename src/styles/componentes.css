@@ -815,7 +815,7 @@
 
 .detalle {
   display: grid;
-  gap: var(--sp-5);
+  gap: var(--sp-4);
   max-width: 760px;
 }
 
