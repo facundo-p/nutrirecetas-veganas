@@ -123,6 +123,33 @@
   font-size: 14px;
 }
 
+/* Cinco casilleros: el nivel dice cuántos se llenan y de qué verde. */
+.icono-dificultad {
+  height: var(--casilla-dificultad);
+  width: calc(var(--casilla-dificultad) * 34 / 6);
+  flex-shrink: 0;
+}
+
+.dificultad-casilla {
+  fill: none;
+  stroke: var(--dato-suave);
+}
+
+.icono-dificultad[data-nivel='1'] { color: var(--dificultad-1); }
+.icono-dificultad[data-nivel='2'] { color: var(--dificultad-2); }
+.icono-dificultad[data-nivel='3'] { color: var(--dificultad-3); }
+.icono-dificultad[data-nivel='4'] { color: var(--dificultad-4); }
+.icono-dificultad[data-nivel='5'] { color: var(--dificultad-5); }
+
+.icono-dificultad[data-nivel='1'] .dificultad-casilla:nth-child(-n + 1),
+.icono-dificultad[data-nivel='2'] .dificultad-casilla:nth-child(-n + 2),
+.icono-dificultad[data-nivel='3'] .dificultad-casilla:nth-child(-n + 3),
+.icono-dificultad[data-nivel='4'] .dificultad-casilla:nth-child(-n + 4),
+.icono-dificultad[data-nivel='5'] .dificultad-casilla {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 .inline-icono {
   font-size: 0.85em;
   display: inline-block;
