@@ -601,3 +601,11 @@ de una auditoría ni de un test: de cocinar con ella.
 - **Ante dos filas que empatan, `ambigua`.** Es la diferencia entre un guardia y
   una heurística. Cuesta una decisión curada (`r19`, `taza_cruda_cocida_fria`) y
   compra que ninguna elección quede tácita.
+
+### Menos alto en el celular (2026-09-25, #219 a #223)
+
+- **Un ícono con su nombre al lado no ahorra nada.** Los nombres pasan a la «i» con `LeyendaDeIconos`, que lee el catálogo del Glosario: una sola fuente de significados. La tarjeta del recetario bajó de ~171 a ~117 px y la ficha muestra 10 ingredientes en vez de 4.
+- **Una lámina flotante le roba ancho a lo que viene después**, no solo al título: con títulos cortos mandaba la «i» a otro renglón. `clear: both` en la meta.
+- **La dificultad no es un semáforo.** Facu descartó el rojo («se lee como peligro, como no lo intentes»): cinco casilleros iguales en un verde que se oscurece. El número de casilleros llenos lleva la información y el color la acompaña.
+- **Un agente por pantalla, en worktrees, funciona si las pantallas no comparten hoja.** Donde se cruzaban (la dificultad aparece en la tarjeta y en la ficha), fue en serie.
+- **Los gramos no se deciden eligiendo tablas ajenas** (#217): Facu los mide en su cocina y esas mediciones son la fuente.
