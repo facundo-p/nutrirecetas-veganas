@@ -13,13 +13,30 @@
   gap: var(--sp-2);
 }
 
+.lista-nutrientes {
+  gap: var(--sp-1);
+}
+
 .fila-nutriente {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--sp-3);
-  padding: var(--sp-3);
+  min-height: var(--toque-minimo);
+  padding: var(--sp-2) var(--sp-3);
   text-decoration: none;
+}
+
+.grupo-nutrientes-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 var(--sp-3);
+}
+
+.grupo-nutrientes-cabecera .nutricion-referencia {
+  margin-bottom: 0;
 }
 
 .fila-nutriente-nombre {

@@ -4,7 +4,7 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-2);
+  gap: var(--sp-1);
 }
 
 @media (min-width: 900px) {
@@ -18,7 +18,8 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
+  min-height: var(--toque-minimo);
+  padding: var(--sp-2) var(--sp-4);
   text-decoration: none;
   color: inherit;
 }
@@ -38,6 +39,24 @@
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
   white-space: nowrap;
+}
+
+/* El % va en el renglón del valor, en su propia columna: el rótulo de arriba
+   ya dice contra qué dosis. Subgrid para que las cifras de todas las filas
+   queden encolumnadas. */
+.nutricion-lista-con-porcentaje {
+  grid-template-columns: 1fr auto auto;
+}
+
+.nutricion-lista-con-porcentaje .nutriente {
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.nutriente-porcentaje {
+  justify-self: end;
+  font-size: var(--fs-xs);
+  color: var(--tinta-suave);
 }
 
 .lista-conservacion {

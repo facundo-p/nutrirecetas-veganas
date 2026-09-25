@@ -87,7 +87,7 @@ export function IngredientDetail({ id }: { id: string }) {
             <p className="nutricion-referencia">
               % sobre <SobreQueDosisCorta fuente={objetivos.fuente} />
             </p>
-            <ul className="nutricion-lista">
+            <ul className="nutricion-lista nutricion-lista-con-porcentaje">
               {valores.map(([clave, value]) => {
                 const cat = byClave.get(clave as never);
                 const label = cat
@@ -104,7 +104,7 @@ export function IngredientDetail({ id }: { id: string }) {
                     <IntervalBand intervalo={value.intervalo} unidad={label.unidad} />
                     {pct !== null && (
                       <span className="nutriente-porcentaje">
-                        <span className="cifra">{formatPorcentaje(pct)}</span> de la dosis diaria
+                        <span className="cifra">{formatPorcentaje(pct)}</span>
                       </span>
                     )}
                     {value.nota && <span className="nutriente-calidad">{value.nota}</span>}

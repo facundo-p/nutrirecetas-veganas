@@ -7,7 +7,7 @@ describe('ficha de ingrediente', () => {
   test('cada nutriente del catálogo dice qué porcentaje de la dosis aporta cada 100 g', () => {
     render(<IngredientDetail id="lentejas" />);
     const hierro = screen.getByText('Hierro').closest('li')!;
-    expect(hierro.textContent).toMatch(/\d+ % de la dosis/);
+    expect(hierro.querySelector('.nutriente-porcentaje')?.textContent).toMatch(/^\d+(,\d+)? %$/);
   });
 
   test('aclara contra qué referencia se mide el porcentaje', () => {
@@ -19,7 +19,7 @@ describe('ficha de ingrediente', () => {
     // sodio y grasa saturada no tienen RDA en la semilla: no hay contra qué medirlos
     render(<IngredientDetail id="lentejas" />);
     const sodio = screen.queryByText('Sodio')?.closest('li');
-    if (sodio) expect(sodio.textContent).not.toMatch(/% de la dosis/);
+    if (sodio) expect(sodio.querySelector('.nutriente-porcentaje')).toBeNull();
   });
 
   test('un ingrediente inexistente no rompe', () => {
