@@ -75,6 +75,19 @@ describe('sesión de cocina', () => {
     expect((lentejas as HTMLInputElement).checked).toBe(false);
   });
 
+  test('sustituir es un ícono en el renglón del nombre que despliega las opciones', async () => {
+    await enPersonalizar();
+    const botones = screen.getAllByRole('button', { name: /^Sustituir / });
+    expect(botones.every((b) => b.getAttribute('aria-expanded') === 'false')).toBe(true);
+
+    botones.forEach((b) => fireEvent.click(b));
+    expect(botones.every((b) => b.getAttribute('aria-expanded') === 'true')).toBe(true);
+
+    const reemplazable = botones.map((b) => b.closest('li')!).find((li) => li.querySelector('.chip-boton'))!;
+    fireEvent.click(reemplazable.querySelector('.chip-boton')!);
+    expect(within(reemplazable).getByText(/en vez de/)).toBeDefined();
+  });
+
   test('la nutrición en vivo baja al sacar un ingrediente', async () => {
     await enPersonalizar();
     const leerKcal = () => Number(/(\d+) kcal/.exec(screen.getByText(/kcal/).textContent ?? '')?.[1] ?? 0);

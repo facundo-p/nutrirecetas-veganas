@@ -74,4 +74,5 @@
   --boton-escalador: 3.375rem; /* 54 px: se toca con la mano sucia */
   --toque-mesada: 5.25rem; /* 84 px: se toca sin mirar */
   --ancho-campo-cantidad: 4.5rem;
+  --lado-check: 1.375rem; /* 22 px: la casilla de «qué va a la olla» */
 }
