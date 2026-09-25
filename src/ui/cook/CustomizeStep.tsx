@@ -17,6 +17,7 @@ function LineaEditable({ linea }: { linea: LineaSesion }) {
 
   const resolubles = linea.sustitutos.filter((s) => s.tipo === 'id');
   const textuales = linea.sustitutos.filter((s) => s.tipo === 'texto');
+  const sustituible = linea.activa && linea.sustitutos.length > 0;
 
   const alDesmarcar = () => {
     if (linea.activa) {
@@ -31,21 +32,34 @@ function LineaEditable({ linea }: { linea: LineaSesion }) {
 
   return (
     <li className={linea.activa ? 'linea-sesion' : 'linea-sesion inactiva'}>
-      <label className="linea-sesion-check">
-        <input type="checkbox" checked={linea.activa} onChange={alDesmarcar} />
-        <span className="linea-sesion-nombre">
-          {linea.nombre}
-          {linea.imprescindible && (
-            <IconAsterisco className="inline-icono icono-imprescindible" aria-label="imprescindible" />
-          )}
-          {linea.original && <em className="linea-sesion-original"> (en vez de {linea.original.nombre})</em>}
-          {linea.agregada && <em className="linea-sesion-original"> (agregado)</em>}
-        </span>
-        <span className="linea-sesion-cantidad">
-          {cantidadConUnidad(linea)}
-          {!gramosRedundantes(linea) && ` · ${formatGramos(linea.g_aprox)} g`}
-        </span>
-      </label>
+      <div className="linea-sesion-fila">
+        <label className="linea-sesion-check">
+          <input type="checkbox" checked={linea.activa} onChange={alDesmarcar} />
+          <span className="linea-sesion-nombre">
+            {linea.nombre}
+            {linea.imprescindible && (
+              <IconAsterisco className="inline-icono icono-imprescindible" aria-label="imprescindible" />
+            )}
+            {linea.original && <em className="linea-sesion-original"> (en vez de {linea.original.nombre})</em>}
+            {linea.agregada && <em className="linea-sesion-original"> (agregado)</em>}
+          </span>
+          <span className="linea-sesion-cantidad">
+            {cantidadConUnidad(linea)}
+            {!gramosRedundantes(linea) && ` · ${formatGramos(linea.g_aprox)} g`}
+          </span>
+        </label>
+        {sustituible && (
+          <button
+            type="button"
+            className="boton-sustituir"
+            aria-label={`Sustituir ${linea.nombre}`}
+            aria-expanded={mostrarSustitutos}
+            onClick={() => setMostrarSustitutos((v) => !v)}
+          >
+            <IconSustituir className="icono-sustituir" aria-hidden="true" />
+          </button>
+        )}
+      </div>
 
       {linea.funcion && <p className="linea-funcion">{linea.funcion}</p>}
 
@@ -70,33 +84,26 @@ function LineaEditable({ linea }: { linea: LineaSesion }) {
         </div>
       )}
 
-      {linea.activa && linea.sustitutos.length > 0 && (
-        <div className="linea-sustitutos">
-          <button type="button" className="boton-enlace" onClick={() => setMostrarSustitutos((v) => !v)}>
-            <IconSustituir /> sustituir
-          </button>
-          {mostrarSustitutos && (
-            <div className="sustitutos-opciones">
-              {resolubles.map((s) => (
-                <button
-                  key={s.valor}
-                  type="button"
-                  className="chip chip-boton"
-                  onClick={() => {
-                    sustituir(linea.key, { tipo: 'ingrediente', id: s.valor }, idx.seed);
-                    setMostrarSustitutos(false);
-                  }}
-                >
-                  {idx.ingredientById.get(s.valor)?.nombre ?? s.valor}
-                </button>
-              ))}
-              {textuales.map((s) => (
-                <span key={s.valor} className="chip chip-mini chip-texto" title="sugerencia sin recálculo">
-                  {s.valor}
-                </span>
-              ))}
-            </div>
-          )}
+      {sustituible && mostrarSustitutos && (
+        <div className="sustitutos-opciones">
+          {resolubles.map((s) => (
+            <button
+              key={s.valor}
+              type="button"
+              className="chip chip-boton"
+              onClick={() => {
+                sustituir(linea.key, { tipo: 'ingrediente', id: s.valor }, idx.seed);
+                setMostrarSustitutos(false);
+              }}
+            >
+              {idx.ingredientById.get(s.valor)?.nombre ?? s.valor}
+            </button>
+          ))}
+          {textuales.map((s) => (
+            <span key={s.valor} className="chip chip-mini chip-texto" title="sugerencia sin recálculo">
+              {s.valor}
+            </span>
+          ))}
         </div>
       )}
     </li>

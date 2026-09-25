@@ -18,6 +18,10 @@
   color: var(--icono-freezer);
 }
 
+.icono-sustituir {
+  color: var(--link);
+}
+
 .icono-clasica {
   color: var(--icono-clasica);
 }
