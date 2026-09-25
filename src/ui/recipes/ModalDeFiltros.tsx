@@ -4,6 +4,8 @@ import { DIFFICULTY_LEVELS } from '../../seed/schema';
 import { ESTADOS_DE_RECETA, ETIQUETA_PLURAL_DE_ESTADO } from '../../domain/estado';
 import { enOrdenCanonico, nombreDeNutriente, nutrienteConColor } from '../../domain/aporte';
 import { legible } from '../common/format';
+import { nivelDeDificultad } from '../common/Dificultad';
+import { IconDificultad } from '../icons/icons';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
 import { SobreQueDosisCorta } from '../common/SobreQueDosis';
 import { useObjetivos } from '../common/useObjetivos';
@@ -126,7 +128,7 @@ export function ModalDeFiltros({ filters, onChange, resultados, onCerrar }: Prop
         <Grupo titulo="Dificultad">
           {DIFFICULTY_LEVELS.map((d) => (
             <Chip key={d} activo={filters.dificultad === d} onClick={() => set({ dificultad: filters.dificultad === d ? '' : d })}>
-              {d}
+              <IconDificultad nivel={nivelDeDificultad(d)} /> {d}
             </Chip>
           ))}
         </Grupo>

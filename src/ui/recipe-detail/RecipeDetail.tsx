@@ -6,6 +6,7 @@ import { formatMinutes, legible } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
+import { Dificultad, TEXTO_DE_DIFICULTAD } from '../common/Dificultad';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconHeladera, IconRamaBifurca, IconReloj } from '../icons/icons';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
@@ -174,6 +175,8 @@ function InfoDeLaFicha({ alertaB12, fuente }: { alertaB12: boolean; fuente: Fuen
         en las barras del recetario.
       </p>
       <p>Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre una porción.</p>
+      <h3>La dificultad</h3>
+      <p>{TEXTO_DE_DIFICULTAD}</p>
     </>
   );
 }
@@ -220,7 +223,9 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
               ({formatMinutes(recipe.tiempo_prep_min)} prep + {formatMinutes(recipe.tiempo_coccion_min)} cocción)
             </span>
           </span>
-          <span className="meta-item">dificultad {recipe.dificultad}</span>
+          <span className="meta-item">
+            <Dificultad dificultad={recipe.dificultad} />
+          </span>
           {recipe.porciones_num === null && <span className="meta-item">rinde {recipe.porciones_display}</span>}
           {recipe.familia && <span className="meta-item">familia {legible(recipe.familia)}</span>}
           {recipe.candidata_clasica && (

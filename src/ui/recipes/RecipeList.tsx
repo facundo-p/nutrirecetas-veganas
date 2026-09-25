@@ -9,6 +9,7 @@ import { memoriaDeFiltros } from './memoria-de-filtros';
 import { RecipeCard } from './RecipeCard';
 import { RecipeFilters } from './RecipeFilters';
 import { LeyendaDeColores } from './LeyendaDeColores';
+import { TEXTO_DE_DIFICULTAD } from '../common/Dificultad';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { Lamina } from '../common/Lamina';
 import { SobreQueDosisCorta } from '../common/SobreQueDosis';
@@ -68,6 +69,7 @@ export function RecipeList() {
           <>
             <p>Cada receta se dibuja con lo que le da al cuerpo: un color por nutriente.</p>
             <LeyendaDeColores id="leyenda-colores" fuente={objetivos.fuente} />
+            <p>{TEXTO_DE_DIFICULTAD}</p>
           </>
         }
       />

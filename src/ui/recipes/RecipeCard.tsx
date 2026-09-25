@@ -5,6 +5,7 @@ import { ChipDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
 import { formatMinutes, formatPorcentaje, MEDIDA_DE_BASE } from '../common/format';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
+import { Dificultad } from '../common/Dificultad';
 import { BarraDeAporte } from '../common/BarraDeAporte';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconTemporada } from '../icons/icons';
 
@@ -50,6 +51,9 @@ export function RecipeCard({
             <TypeIcon recipe={recipe} /> {sello}
           </span>
           <span className="meta-item">{formatMinutes(total)}</span>
+          <span className="meta-item">
+            <Dificultad dificultad={recipe.dificultad} />
+          </span>
           <span className="meta-item">
             {recipe.porciones_num !== null ? `rinde ${recipe.porciones_num}` : recipe.porciones_display}
           </span>

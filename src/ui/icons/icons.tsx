@@ -99,6 +99,23 @@ export function IconCobertura(props: IconProps) {
   );
 }
 
+const CASILLAS_DE_DIFICULTAD = [0, 1, 2, 3, 4] as const;
+
+/**
+ * Cinco casilleros iguales; `data-nivel` dice cuántos se llenan y de qué
+ * verde, y eso lo decide el CSS. Verde que se oscurece y no rojo: lo difícil
+ * no es un peligro.
+ */
+export function IconDificultad({ nivel = 3, ...props }: IconProps & { nivel?: 1 | 2 | 3 | 4 | 5 }) {
+  return (
+    <Base viewBox="0 0 34 6" strokeWidth={1} className="icono-dificultad" data-nivel={nivel} {...props}>
+      {CASILLAS_DE_DIFICULTAD.map((i) => (
+        <rect key={i} className="dificultad-casilla" x={i * 7 + 0.5} y="0.5" width="5" height="5" rx="1" />
+      ))}
+    </Base>
+  );
+}
+
 // ---------- tipos de receta ----------
 
 export function IconMortero(props: IconProps) {
