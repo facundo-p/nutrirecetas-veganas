@@ -23,7 +23,6 @@ export function NutrientList() {
   return (
     <>
       <EncabezadoPantalla
-        etiqueta="Nutrientes"
         titulo="Nutrientes"
         lamina="lechuga"
         informacion={
@@ -37,19 +36,23 @@ export function NutrientList() {
           )
         }
       />
-      <p className="nutricion-referencia">
-        {objetivos.fuente === 'perfil' ? (
-          'Tus dosis diarias'
-        ) : (
-          <>
-            Dosis de la <strong>referencia adulta genérica</strong>
-          </>
-        )}
-      </p>
-
-      {GRUPOS.map(({ etiqueta, filtro }) => (
+      {GRUPOS.map(({ etiqueta, filtro }, i) => (
         <section key={filtro} className="grupo-nutrientes">
-          <h2 className="etiqueta-seccion">{etiqueta}</h2>
+          <div className="grupo-nutrientes-cabecera">
+            <h2 className="etiqueta-seccion">{etiqueta}</h2>
+            {/* Una vez, en el renglón del primer grupo: vale para toda la lista. */}
+            {i === 0 && (
+              <p className="nutricion-referencia">
+                {objetivos.fuente === 'perfil' ? (
+                  'Tus dosis diarias'
+                ) : (
+                  <>
+                    Dosis de la <strong>referencia adulta genérica</strong>
+                  </>
+                )}
+              </p>
+            )}
+          </div>
           <ul className="lista-nutrientes">
             {idx.seed.nutrientes
               .filter((n) => n.grupo === filtro)

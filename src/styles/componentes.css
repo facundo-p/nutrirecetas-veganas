@@ -293,14 +293,17 @@
 
 .opcion {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--sp-2);
   font-size: var(--fs-sm);
   cursor: pointer;
   min-height: 32px;
 }
 
+/* Sin el alto ni el relleno de `.campo input`: el que se toca es el label entero. */
 .opcion input {
+  min-height: 0;
+  padding: 0;
   width: 18px;
   height: 18px;
   accent-color: var(--seleccion);
@@ -616,15 +619,6 @@
 .banda-rango {
   font-size: var(--fs-xs);
   color: var(--dato-suave);
-}
-
-/* Segunda fila de la grilla, alineada a la derecha con la banda: es la lectura
-   rápida del renglón, y va pegada al número del que se deriva. */
-.nutriente-porcentaje {
-  grid-column: 2;
-  justify-self: end;
-  font-size: var(--fs-xs);
-  color: var(--tinta-suave);
 }
 
 .nutricion-referencia {

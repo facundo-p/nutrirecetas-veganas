@@ -43,7 +43,7 @@ export function IngredientList() {
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Ingredientes" titulo="Ingredientes" lamina="nabo" />
+      <EncabezadoPantalla titulo="Ingredientes" lamina="nabo" />
       <div className="filtros">
         <label className="filtros-buscador">
           <IconLupa />
