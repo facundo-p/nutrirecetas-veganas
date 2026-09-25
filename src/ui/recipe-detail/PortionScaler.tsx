@@ -30,7 +30,6 @@ export function PortionScaler({ porcionesBase, factor, mostrado, animando, masaE
   return (
     <div className={animando ? 'escalador recalculando' : 'escalador'}>
       <div className="escalador-rinde">
-        <span className="escalador-etiqueta">Rinde</span>
         <span className="escalador-porciones">
           {/* aria-busy mientras viaja: el lector de pantalla espera y anuncia
               solo el número final, no los veinticinco del camino. */}

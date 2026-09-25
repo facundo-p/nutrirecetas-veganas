@@ -6,7 +6,8 @@ import { formatMinutes, legible } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
-import { Dificultad, TEXTO_DE_DIFICULTAD } from '../common/Dificultad';
+import { Dificultad } from '../common/Dificultad';
+import { LeyendaDeIconos } from '../common/LeyendaDeIconos';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconHeladera, IconRamaBifurca, IconReloj } from '../icons/icons';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
@@ -154,14 +155,33 @@ function Fuente({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
   );
 }
 
+const ICONOS_DE_LA_FICHA = [
+  'mortero', 'flor', 'espiga', 'frasco', 'frasco-fermento', 'bandeja',
+  'reloj', 'dificultad', 'laurel', 'cuchara', 'asterisco', 'temporada',
+] as const;
+
 /**
  * Lo que explica la ficha, detrás de su «i»: la B12 primero, cuando la receta
  * lleva levadura, y después cómo leer la lista y el panel de aporte.
  */
-function InfoDeLaFicha({ alertaB12, fuente }: { alertaB12: boolean; fuente: FuenteDeObjetivo }) {
+function InfoDeLaFicha({
+  recipe,
+  alertaB12,
+  fuente,
+}: {
+  recipe: Recipe;
+  alertaB12: boolean;
+  fuente: FuenteDeObjetivo;
+}) {
   return (
     <>
       {alertaB12 && <B12Alert />}
+      <h3>Los íconos</h3>
+      <p>
+        {formatMinutes(recipe.tiempo_prep_min + recipe.tiempo_coccion_min)} en total:{' '}
+        {formatMinutes(recipe.tiempo_prep_min)} de preparación y {formatMinutes(recipe.tiempo_coccion_min)} de cocción.
+      </p>
+      <LeyendaDeIconos ids={ICONOS_DE_LA_FICHA} />
       <h3>Los ingredientes</h3>
       <p>
         Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
@@ -175,8 +195,6 @@ function InfoDeLaFicha({ alertaB12, fuente }: { alertaB12: boolean; fuente: Fuen
         en las barras del recetario.
       </p>
       <p>Los brotes dicen cuánta confianza tiene el dato; la barra, cuánto del día cubre una porción.</p>
-      <h3>La dificultad</h3>
-      <p>{TEXTO_DE_DIFICULTAD}</p>
     </>
   );
 }
@@ -215,13 +233,10 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
         <h1 className={recipe.nombre.length > NOMBRE_LARGO ? 'ficha-titulo largo' : 'ficha-titulo'}>{recipe.nombre}</h1>
         <div className="detalle-meta ficha-meta">
           <span className="meta-item" title={label}>
-            <TypeIcon recipe={recipe} /> {label}
+            <TypeIcon recipe={recipe} />
           </span>
           <span className="meta-item">
             <IconReloj /> {formatMinutes(totalMin)}
-            <span className="meta-suave">
-              ({formatMinutes(recipe.tiempo_prep_min)} prep + {formatMinutes(recipe.tiempo_coccion_min)} cocción)
-            </span>
           </span>
           <span className="meta-item">
             <Dificultad dificultad={recipe.dificultad} />
@@ -230,12 +245,12 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
           {recipe.familia && <span className="meta-item">familia {legible(recipe.familia)}</span>}
           {recipe.candidata_clasica && (
             <span className="meta-item ficha-clasica">
-              <IconLaurel /> candidata a clásica
+              <IconLaurel role="img" aria-hidden={false} aria-label="candidata a clásica" />
             </span>
           )}
           {recipe.indulgente && (
             <span className="meta-item">
-              <IconCuchara className="icono-indulgente" /> indulgente
+              <IconCuchara className="icono-indulgente" role="img" aria-hidden={false} aria-label="indulgente" />
             </span>
           )}
           <MenuDeEstado
@@ -243,7 +258,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
             onChange={(estado) => void saveOverlay(recipe.id, { estado })}
           />
           <Informacion>
-            <InfoDeLaFicha alertaB12={vista.nutrition.alerta_b12} fuente={objetivos.fuente} />
+            <InfoDeLaFicha recipe={recipe} alertaB12={vista.nutrition.alerta_b12} fuente={objetivos.fuente} />
           </Informacion>
         </div>
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
