@@ -30,10 +30,6 @@
   color: var(--icono-indulgente);
 }
 
-.icono-aviso {
-  color: var(--aviso);
-}
-
 /* ---------- chips y badges ---------- */
 
 .chip {
@@ -641,12 +637,6 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-}
-
-.nutriente-ventana {
-  color: var(--dato-suave);
-  font-size: 15px;
-  flex-shrink: 0;
 }
 
 .banda {

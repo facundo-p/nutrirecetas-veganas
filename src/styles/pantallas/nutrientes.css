@@ -1,9 +1,5 @@
 /* ============ Nutrientes ============ */
 
-.grupo-nutrientes {
-  margin-bottom: var(--sp-5);
-}
-
 .lista-nutrientes,
 .lista-fuentes {
   list-style: none;
@@ -18,32 +14,40 @@
 }
 
 .fila-nutriente {
-  display: flex;
-  justify-content: space-between;
+  padding: 0 var(--sp-3);
+}
+
+/* Cuadrado, nombre y recetas en un renglón; la confianza, debajo del nombre. */
+.fila-nutriente-cabecera {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: var(--sp-3);
-  min-height: var(--toque-minimo);
-  padding: var(--sp-2) var(--sp-3);
-  text-decoration: none;
-}
-
-.grupo-nutrientes-cabecera {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0 var(--sp-3);
-}
-
-.grupo-nutrientes-cabecera .nutricion-referencia {
-  margin-bottom: 0;
+  gap: 0 var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2) 0;
 }
 
 .fila-nutriente-nombre {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
   color: var(--tinta);
+}
+
+.fila-nutriente-recetas {
+  font-size: var(--fs-sm);
+  color: var(--tinta-suave);
+  text-align: right;
+}
+
+.fila-nutriente-confianza {
+  grid-column: 2 / -1;
+  font-size: var(--fs-xs);
+  color: var(--dato-suave);
+}
+
+.fila-nutriente-detalle {
+  display: grid;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-3);
+  font-size: var(--fs-sm);
 }
 
 .fila-fuente {
@@ -91,7 +95,7 @@
 
 /* El aviso del ajuste vegano va antes que cualquier número de la ficha. */
 .aviso-nutriente {
-  margin-bottom: var(--sp-4);
+  margin: var(--sp-2) 0;
 }
 
 /* Qué es y por qué importa: prosa que acompaña, nunca antes que el aviso. */
