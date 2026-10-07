@@ -8,13 +8,13 @@ import { RecipeDetail } from './RecipeDetail';
 const verNotas = () => fireEvent.click(screen.getByRole('button', { name: 'ver notas y sustitutos' }));
 
 describe('Detalle de receta', () => {
-  test('p19 lleva la explicación de la B12 en su «i», el enlace al queso de maní y nutrición por porción', () => {
-    render(<RecipeDetail id="p19" />);
+  test('p19 explica la B12 en la nota al pie y no en la «i», enlaza al queso de maní y da nutrición por porción', () => {
+    const { container } = render(<RecipeDetail id="p19" />);
     expect(screen.getByRole('heading', { name: /Pastel de papas/ })).toBeDefined();
-    // invariante 6: no está a la vista, pero la «i» de la ficha la tiene
-    expect(screen.queryByText(/no están fortificadas/)).toBeNull();
+    // invariante 6: la nota al pie lo dice en contexto; la explicación larga vive en Nutrientes
+    expect(container.querySelector('.nota-b12')!.textContent).toMatch(/fortificada/);
     fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
-    expect(screen.getByText(/no están fortificadas/)).toBeDefined();
+    expect(document.querySelector('.hoja-informacion')!.textContent).not.toMatch(/B12/);
     fireEvent.click(screen.getAllByRole('button', { name: 'Cerrar' })[0]!);
     expect(screen.getByRole('link', { name: /Queso de maní/ })).toBeDefined();
     expect(screen.getByRole('heading', { name: /Qué aporta una porción/ })).toBeDefined();
@@ -233,11 +233,15 @@ describe('Detalle de receta', () => {
         ?.querySelector('.punto-nutriente')
         ?.getAttribute('data-nut');
 
-    test('la levadura nutricional va con punto hueco, y la «i» dice lo de la B12', () => {
+    test('la levadura nutricional va con punto hueco, y la nota al pie dice lo de la B12', () => {
       const { container } = render(<RecipeDetail id="p19" />);
       expect(puntoDe(container, /levadura/i)).toBe('condicional');
-      fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
-      expect(screen.getByText(/no están fortificadas/)).toBeDefined();
+      expect(container.querySelector('.ficha-ingredientes .nota-b12')!.textContent).toMatch(/deja en cero/);
+    });
+
+    test('la nota lleva a la ficha de la B12, donde está la explicación entera', () => {
+      render(<RecipeDetail id="p19" />);
+      expect(screen.getByRole('link', { name: 'Más sobre la B12' }).getAttribute('href')).toBe('#/nutriente/b12');
     });
 
     test('también cuando la trae un preparado: la pastafrola la lleva dentro de la manteca vegana', () => {
@@ -247,13 +251,13 @@ describe('Detalle de receta', () => {
       expect(nombres.length).toBeGreaterThan(0);
       expect(nombres.some((n) => /levadura/i.test(n))).toBe(false);
       expect(puntoDe(container, /Manteca vegana/)).toBe('condicional');
-      fireEvent.click(screen.getByRole('button', { name: /^Para saber/ }));
-      expect(screen.getByText(/no están fortificadas/)).toBeDefined();
+      expect(container.querySelector('.nota-b12')!.textContent).toMatch(/deja en cero/);
     });
 
     test('una receta sin levadura no habla de B12', () => {
-      render(<RecipeDetail id="r07" />);
-      expect(screen.queryByText(/trae B12 solo si/)).toBeNull();
+      const { container } = render(<RecipeDetail id="r07" />);
+      expect(container.querySelector('.nota-b12')).toBeNull();
+      expect(screen.queryByText(/B12 solo si/)).toBeNull();
     });
 
     test('el escalador dice cuánto hay en la olla, y lo recalcula', () => {
