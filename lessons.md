@@ -609,3 +609,9 @@ de una auditoría ni de un test: de cocinar con ella.
 - **La dificultad no es un semáforo.** Facu descartó el rojo («se lee como peligro, como no lo intentes»): cinco casilleros iguales en un verde que se oscurece. El número de casilleros llenos lleva la información y el color la acompaña.
 - **Un agente por pantalla, en worktrees, funciona si las pantallas no comparten hoja.** Donde se cruzaban (la dificultad aparece en la tarjeta y en la ficha), fue en serie.
 - **Los gramos no se deciden eligiendo tablas ajenas** (#217): Facu los mide en su cocina y esas mediciones son la fuente.
+
+### Cobertura de los críticos (2026-10-07, #169)
+
+- **Un valor sin unidad propia se lee en la unidad del archivo.** El dataset declara «por 100 g» y tres ingredientes guardaron su yodo por gramo: la sal sumaba 2 µg por cucharadita en vez de 200. La `base` decía «por gramo» y nadie la leía: el motor no la mira. Antes de cargar datos nuevos, buscar los viejos que mienten en la escala.
+- **DEMO_KEY de FoodData Central da 10 pedidos por día**, no por hora: el `retry-after` del 429 lo dice. Una búsqueda con frases entre comillas unidas por `OR` trae 30 alimentos con todos sus nutrientes en un pedido; guardar esas respuestas y que el script las lea (`--desde`) salvó la carga.
+- **Elegir el alimento es decisión, traer el número no.** Los matches viven en `curated-tables.ts` (T17) y los valores en un archivo generado; el build no usa red y el test exige que cada ingrediente con huecos tenga una decisión escrita, match o motivo.
