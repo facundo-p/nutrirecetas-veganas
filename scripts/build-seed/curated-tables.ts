@@ -489,7 +489,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     flag_gate: true,
     nota: 'Al tokenizar (#205), «unas 2 cucharadas de los 90 g de azúcar» para la fruta pasó a «un cuarto» del azúcar.',
     pasos: [
-      'Encender el horno a 180°. Pelar las manzanas — verdes o ácidas equilibran mejor — y cortarlas en gajos a la fuente de horno, mezcladas con el jugo de limón, que evita que se oscurezcan, {canela} de canela y un cuarto de {azucar_mascabo} de azúcar mascabo. Si las sumás, las pasas entran acá.',
+      'Encender el horno a 180°. Pelar las manzanas — verdes o ácidas equilibran mejor — y cortarlas en gajos y pasarlas a la fuente de horno, mezcladas con el jugo de limón, que evita que se oscurezcan, {canela} de canela y un cuarto de {azucar_mascabo} de azúcar mascabo. Si las sumás, las pasas entran acá.',
       'Hacer la cobertura aparte: {avena} de avena, {harina_integral} de harina integral, el resto del azúcar y {aceite_oliva} de aceite de oliva en un bol, frotando con la punta de los dedos hasta una arena gruesa y despareja, con grumos grandes. Si las usás, sumar {nueces} de nueces picadas.',
       'Repartir la cobertura sobre la fruta SIN apretarla: suelta se hornea crocante, compactada sale masa cruda.',
       'Hornear 35 minutos a 180°, hasta ver el jugo burbujeando en los bordes y la superficie dorada: las dos señales juntas, no una sola.',
@@ -516,7 +516,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
       'Cocinar a fuego MÍNIMO, destapado, revolviendo seguido con cuchara de madera: ese revolver constante le va sacando el almidón al grano, y de ahí sale la cremosidad sin una gota de crema.',
       'Sumar {azucar_mascabo} de azúcar mascabo recién a los 25 o 30 minutos, cuando el grano ya está tierno, y seguir revolviendo 10 minutos más. El azúcar va al FINAL: si entra desde el principio, el arroz no se termina de ablandar nunca.',
       'Apagar cuando todavía está más líquido de lo que lo querés comer: al enfriar espesa muchísimo. Si la usás, sumar acá {esencia_vainilla} de esencia de vainilla, ya fuera del fuego, para que no se evapore el perfume.',
-      'Retirar la rama de canela y la cáscara, repartir en compoteras y llevar a la heladera. Al servir, si la usás, terminar con {canela} de canela molida por arriba.',
+      'Retirar la canela y la cáscara, repartir en compoteras y llevar a la heladera. Al servir, si la usás, terminar con {canela} de canela molida por arriba.',
     ],
   },
 
