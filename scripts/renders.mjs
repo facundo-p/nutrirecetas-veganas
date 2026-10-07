@@ -44,6 +44,10 @@ const RUTAS = [
   ['nutrientes', '#/nutrientes'],
   ['nutriente-b12', '#/nutriente/b12'],
   ['glosario', '#/glosario'],
+  ...[
+    ['ingrediente-sin-dato', '#/ingrediente/hojas_verdes'],
+    ['ingrediente-levadura', '#/ingrediente/levadura_nutricional'],
+  ],
 ];
 
 const VIEWPORTS = [
