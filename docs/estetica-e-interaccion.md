@@ -5,30 +5,36 @@
 Tres contextos de uso real mandan sobre todo lo demás:
 
 1. **Cocinar con el celular en la mesada** (manos ocupadas, quizá sin señal): targets grandes, tipografía grande, pantalla siempre encendida, cero pasos innecesarios.
-2. **Comprar en la verdulería** (una mano, apuro): checklist de lectura instantánea, gramos primero.
-3. **Planificar sentado** (Mac o celular): densidad de información cómoda, el semáforo como protagonista.
+2. ~~**Comprar en la verdulería** (una mano, apuro): checklist de lectura instantánea, gramos primero.~~ Las compras se descartaron por ahora (#6/#14, épica #170).
+3. **Consultar sentado** (Mac o celular): densidad cómoda; la nutrición se consulta, no se lleva. Hasta la Fase 3 era "planificar, con el semáforo como protagonista": el semáforo y el tracking se fueron en #98.
 
 **Toda pantalla es mobile-first y 100 % usable desde el celular** — sin backend no hay sync entre dispositivos, así que ninguna función puede quedar "solo desktop". En desktop las mismas vistas aprovechan el espacio (columnas laterales, grillas más anchas).
 
 ## 2. Mapa de pantallas
 
-1. **Inicio / Hoy** — semáforo del día y la semana móvil (cada nutriente en SU ventana), qué toca cocinar según el plan, accesos rápidos (última cocción, lista de compras activa). Responde "¿cómo vengo y qué cocino?".
-2. **Recetario** — búsqueda y filtros: tipo, dificultad, tiempo total, familia, en temporada, tu estado (sin probar / probada / pendiente / favorita), **por ingrediente** y **por nutriente** ("ricas en hierro", calculado en vivo). Variantes agrupadas bajo su madre (expandibles); preparados con badge. Tarjetas que resumen con íconos: tipo, tiempo, dificultad, freezer, estado.
-3. **Detalle de receta** — selector de porciones con escalado y avisos; ingredientes con función/imprescindible/sustitutos; nutrición por porción en vivo (bandas ≈, IC, cobertura, nota B12 al pie de los ingredientes); reglas R como tips; enlaces a preparados y variantes; guarda y estacionalidad. Acciones: **Cocinar ahora · Al plan · A compras**.
-4. **Cocinar (sesión)** — 1º personalizar: desmarcar (advertencia si imprescindible), sustituir (resolubles recalculan), agregar; la nutrición se mueve en vivo. 2º pasos con tipografía enorme, wake lock, secretos del chef en contexto. 3º registrar: qué cambió, notas, porciones que quedaron.
-5. **Planificador semanal** — grilla de la semana; asignar recetas y ver el semáforo proyectado moverse por nutriente/ventana. Genera la lista de compras de la semana. En mobile: semana como lista vertical + semáforo colapsable siempre a un tap.
-6. **Lista de compras** — consolidada por góndola; **gramos como medida principal**, unidades como referencia ("≈ 3 medianas"), latas como dato secundario; badges de estacionalidad. **Modo verdulería**: checklist offline de targets grandes.
-7. **Diario** — historial de cocciones con variaciones y anotaciones; evolución del semáforo; desde una cocción: "convertir en receta propia".
-8. **Ingredientes** — ficha de los 158: nutrición /100 g con bandas e IC, sinónimos, estacionalidad, conservación, equivalencias. Búsqueda por nombre/sinónimo ("chickpeas" encuentra garbanzos), filtros por categoría y por nutriente ("fuentes de calcio" ordenadas por aporte).
-9. **Mi perfil** — datos para RDA (sin placeholders), suplementos declarados (apagan exigencia), objetivos derivados visibles.
-10. **Glosario** — pestañas: **íconos** (cada uno con su significado) y **términos culinarios** (37 del dataset).
-11. **Ajustes y datos** — export/import, recordatorio de backup, selector de tema, versión de semilla, actualización de la app. Se abre con el **engranaje del encabezado**, presente en las cuatro pantallas de sección; también desde Diario y con `#/ajustes`.
+Lo que existe hoy (`src/app/router.ts`; la nav tiene cuatro: Recetario, Ingredientes, Nutrientes, Diario):
 
-La carga/edición de recetas propias vive dentro del Recetario (Fase 4).
+1. **Recetario** — búsqueda y filtros en un modal (tipo, tiempo y estación, dificultad, tu estado, familia y "que cubra al menos un quinto del día en" un nutriente). Variantes bajo su madre, preparados con su marca. Cada tarjeta lleva la **barra de seis**: los nutrientes que más cubre una porción, en orden canónico.
+2. **Ficha de receta** — escalador de porciones y ajuste por ingrediente; ingredientes con el punto de color del nutriente que más traen, imprescindibles y sustitutos; la **nota de B12** al pie de la lista; "Qué aporta una porción" (bandas, IC, cobertura) agrupado en minerales, vitaminas y macro; reglas como tips; guarda y estacionalidad. Acciones: **Cocinar** y tu estado de la receta.
+3. **Cocinar** — 1º personalizar (desmarcar, sustituir; la nutrición se mueve en vivo). 2º la receta entera con el paso abierto en grande, wake lock, secretos del chef. 3º registrar: qué cambió, notas.
+4. **Diario** — historial de cocciones; de ahí cuelgan Perfil, Glosario y Ajustes.
+5. **Ingredientes** + ficha — nutrición /100 g con bandas e IC, sinónimos, estacionalidad, conservación, sustitutos.
+6. **Nutrientes** + ficha — abre con el ajuste vegano; ranking de recetas e ingredientes. La B12 se explica solo acá.
+7. **Mi perfil** — opcional; datos para la RDA, entrenamiento y nutrientes que te interesan, en el orden y con el color de Nutrientes. Sin suplementos desde el esquema v4.
+8. **Glosario** — pestañas: **íconos y colores** (todo lo de `src/ui/icons/catalog.ts`) y **términos culinarios**.
+9. **Ajustes y datos** — copia de seguridad, apariencia (auto / claro / oscuro), versiones. Se abre con el **engranaje del encabezado**, desde Diario y con `#/ajustes`.
+10. **Sin conexión** — qué funciona y qué espera a la red.
+11. **La carga inicial** — el esqueleto de `index.html`, con las clases reales de la app.
+
+Descartado, con su motivo:
+
+- ~~**Inicio / Hoy**~~ y ~~**Planificador semanal**~~ — vivían del semáforo, que se fue en la Fase 3 (#98): la app no lleva la cuenta de lo que comés.
+- ~~**Lista de compras** y modo verdulería~~ — descartada por ahora (#6/#14, épica #170).
+- ~~Desde una cocción, "convertir en receta propia"~~ y ~~la carga de recetas propias dentro del Recetario (Fase 4)~~ — pasan a la Fase 5 (#7).
 
 ## 3. Estética: temas intercambiables
 
-**Estado actual: dos temas vivos, E "Mercado" (default) y F "Pizarra".** Las propuestas A, C y D fueron los temas de las fases 1 a 3 y se borraron en #128 y #129; la B nunca se implementó. Las cuatro quedan registradas acá abajo: se fueron de la app, no del registro. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
+**Estado actual: papel (claro, default) y musgo (oscuro), con preferencia `auto` que sigue al teléfono.** E "Mercado" y F "Pizarra" se fueron con el Cromatograma (#171); las propuestas A, C y D fueron los temas de las fases 1 a 3 y se borraron en #128 y #129; la B nunca se implementó. Todas quedan registradas acá abajo: se fueron de la app, no del registro. Ver el detalle del sistema en `CLAUDE.md` § Temas visuales.
 
 Desde el 20/8/2026 el sistema son **tres capas** (forma / temas / app) y un test que las hace cumplir: la capa de la app no puede escribir un color ni nombrar un tema, y cada tema debe declarar el contrato de roles completo. Agregar un tema es crear un archivo y sumarlo a tres listas.
 
@@ -40,17 +46,45 @@ Historial de iteraciones ([Render 0](https://claude.ai/code/artifact/b25c5547-de
 - **Iteración 6** → **Propuesta D**, a partir de los renders reales: la categoría de cada receta se lee en el color de su título, espinaca y zanahoria pasan al frente. **Es el tema default desde el 19/8/2026.**
 - **Iteración 7** (20/8/2026) → el sistema de temas se vuelve de verdad extensible: tres capas, contrato de 39 roles y un test que lo hace cumplir. Con eso entra la **A** como tercer tema y aparece el selector en Ajustes.
 - **Iteración 8** (2/9/2026) → rediseño con dos direcciones nuevas, **E "Mercado"** y **F "Pizarra"** (el primer tema oscuro), y la decisión de Facu de quedarse solo con esas dos. El color deja de vivir únicamente en la tipografía y pasa a la superficie: encabezados plenos, banda de categoría en la tarjeta. Épica #127.
+- **Iteración 9** (11/9/2026, #156/#171) → **G "Cromatograma"**: un único tema oscuro, Petrona y Archivo, y **un color por nutriente** en lugar de uno por categoría de receta. El color pasa a decir qué aporta la receta, no de qué tipo es.
+- **Iteración 10** (12/9/2026, #185/#190) → **papel y musgo**: el Cromatograma aclarado (musgo) y su versión clara (papel), con la misma estructura y los mismos once nutrientes. Vuelve la elección en Ajustes → Apariencia, con `auto` como default.
 
 Que tres temas se borren sin tocar un solo componente es la prueba de que la iteración 7 hizo lo que decía: el contrato es la única interfaz, y el archivo del tema es todo lo que un tema es.
+
+### Papel y musgo (vigente)
+
+Los once colores de nutriente, en el orden de `ORDEN_BARRA`. Sobre papel claro tienen que ser oscuros para llegar a texto; sobre musgo van desaturados.
+
+| Nutriente | Papel | Musgo |
+|---|---|---|
+| Hierro | remolacha `#8d4556` | remolacha `#db8397` |
+| Calcio | cielo `#026695` | cielo `#88d1e4` |
+| Magnesio | berenjena `#7b3e78` | berenjena `#c286c3` |
+| Zinc | lima `#456a13` | lima `#87ac61` |
+| Selenio | lavanda `#58579e` | lavanda `#bfbcfe` |
+| Vitamina A | zanahoria `#943f2b` | zanahoria `#ffac95` |
+| Vitamina C | oliva `#615815` | paja `#d4c66e` |
+| Folato | menta `#056c5f` | menta `#33b4a9` |
+| Proteína | brote `#015729` | hoja `#86daa8` |
+| Fibra | cúrcuma `#875307` | cúrcuma `#cc944e` |
+| Omega 3 | mar `#075160` | mar `#5da6dd` |
+
+Roles que comparten color con un nutriente a propósito: en papel, acción = proteína, aviso = fibra, imprescindible = vitamina A. En musgo, aviso = fibra e imprescindible = vitamina A; la acción no, porque el botón tiene que sobresalir.
+
+Medidas (las declaran las cabeceras de `src/styles/temas/`, ΔE en **CIE76** como la vara histórica):
+
+- **Papel**: ΔE ≥ 21,8 entre los once (calcio–omega 3); como texto ≥ 4,60:1 sobre el papel (calcio) y ≥ 5,05:1 sobre la superficie opaca, que es más clara.
+- **Musgo**: ΔE ≥ 25,3 (zinc–proteína); ≥ 4,99:1 sobre el papel (magnesio). Sobre la superficie opaca hierro y magnesio bajan a 4,4 y 4,3: ningún texto de nutriente va ahí.
+- De contexto: el Cromatograma tenía un mínimo de 15,2.
 
 ### Reglas comunes a cualquier propuesta (anti-look-IA, pedido explícito de Facu)
 
 1. **Prohibido el reborde lateral de acento en tarjetas** — es el "tell" clásico de UI generada. El tipo de receta lo comunica el ícono.
 2. **Comprometerse con un mundo de color propio**, no repartir colores "de buen gusto" en partes iguales.
-3. **Firmas de dominio propias**: semáforo-hoja, bandas de incertidumbre, brotes de IC — elementos que ningún template trae.
+3. **Firmas de dominio propias**: ~~semáforo-hoja~~ (se fue en #98), bandas de incertidumbre, brotes de IC, la barra de seis — elementos que ningún template trae.
 4. **Tipografía con opinión**: nada de Inter/Roboto/Space Grotesk como default.
 5. **Cero emoji como íconos, cero gradientes decorativos**; jerarquía derivada del uso real.
-6. El semáforo **nunca comunica solo con color**: siempre ícono + texto.
+6. **El color nunca comunica solo**: va con el nombre del nutriente, una posición fija en la barra y su leyenda en la «i». (Antes decía lo mismo del semáforo, que ya no existe.)
 7. Tipografías self-hosted (offline). Modo cocina: contraste reforzado y cuerpo tipográfico +2 escalas.
 
 ### Propuesta A — "Botánica editorial" (tema vivo del 20/8/2026 al 3/9/2026; registrada)
@@ -183,7 +217,9 @@ Estructura: tarjetas blancas con **contorno de tinta 1.5 px + sombra dura despla
 
 Set SVG custom, trazo uniforme (~1.75 px en 24 px de caja), estilo línea botánica coherente con la estética. **Regla: ver el ícono debe alcanzar para entender el concepto.** Cada ícono se valida en el Render 0 y el set completo entra en Fase 1 junto con su glosario en la app.
 
-### Glosario de íconos (spec inicial, ~26)
+### Glosario de íconos (spec inicial, ~26; histórica)
+
+La fuente viva es `src/ui/icons/catalog.ts`, que alimenta el Glosario y la «i» de cada pantalla; `catalog.test.ts` avisa si un ícono queda sin entrada. La tabla queda como registro: el semáforo se fue en #98 y la dificultad ya no es una llama sino cinco casilleros (#224).
 
 | Grupo | Ícono (concepto visual) | Significado |
 |---|---|---|
@@ -218,11 +254,11 @@ Set SVG custom, trazo uniforme (~1.75 px en 24 px de caja), estilo línea botán
 ## 5. Flujos principales (resumen)
 
 - **Cocinar**: Recetario → Detalle (elegir porciones) → Cocinar ahora → personalizar → pasos → registrar. Máximo 2 taps entre detalle y primer paso.
-- **Comprar**: Planificador (o multi-selección en Recetario) → Lista de compras → modo verdulería → tildar.
-- **Planificar**: Planificador → arrastrar/asignar recetas → mirar semáforo proyectado → generar compras.
+- ~~**Comprar**: Planificador (o multi-selección en Recetario) → Lista de compras → modo verdulería → tildar.~~ Descartado por ahora (#6/#14).
+- ~~**Planificar**: Planificador → arrastrar/asignar recetas → mirar semáforo proyectado → generar compras.~~ Murió con el semáforo (#98).
 - **Backup**: Ajustes → Exportar → compartir archivo (AirDrop/Drive). Banner si pasaron >30 días con cambios (o si nunca se hizo uno). Se puede posponer: la X lo calla 7 días, o hasta que se acumulen 20 cambios nuevos. Un backup real lo resetea.
 
 ## 6. Renders por fase
 
 - **Render 0** (Fase 0): mockups estáticos HTML de 5 vistas (home/recetario mobile, detalle mobile, cocción mobile, planificador desktop y mobile) con estética e íconos. Throwaway: no es código de la app.
-- **Fases 1-4**: screenshots reales de la app corriendo (Playwright, 390 px y 1280 px) generados por `npm run renders` / skill `/renders`, publicados como Artifact para revisión conjunta al cierre de cada fase.
+- **Fases 1-4**: screenshots reales de la app corriendo (Playwright, 390 px y 1280 px) generados por `npm run renders` / skill `/renders`, publicados como Artifact para revisión conjunta al cierre de cada fase. El cierre de la Fase 4 es `docs/renders/fase-4-tema-{papel,musgo}/`.

@@ -1,6 +1,6 @@
 # 03 — Funcionalidades
 
-> **Actualizado en la Fase 3 (2026-08-27).** El giro a recetario cambió el peso
+> **Actualizado en la Fase 4 (2026-10-07).** El giro a recetario cambió el peso
 > de casi todo lo de abajo. Lo que se descartó quedó escrito con su motivo en vez
 > de borrado: el argumento de por qué algo entró sigue valiendo aunque haya
 > salido.
@@ -21,11 +21,11 @@ declarados y los objetivos manuales. Lo nutricional quedó para tres cosas:
 El criterio que resuelve las dudas de diseño: **a quien no le interese el dato,
 no le tiene que estorbar**.
 
-## 1. Las 6 pedidas por Facu (todas entran)
+## 1. Las 6 pedidas por Facu (entran todas menos las compras; la carga de recetas, en la Fase 5)
 
 1. **Consulta nutricional** de cualquier ingrediente o receta: por 100 g y por porción, con bandas de incertidumbre (≈ + rango), índice de confianza visible y cobertura del cálculo ("calculado sobre el 94 % del peso"). Nunca se usa el perfil precargado del dataset (auditoría §2.4).
-2. **Carga de recetas nuevas**: formulario completo con líneas de ingrediente (cantidad, `funcion`, `imprescindible`, sustitutos), pasos, guarda. Las recetas propias conviven con la semilla con linaje claro. (Fase 4.)
-3. **Lista de compras consolidada**: multi-selección de recetas (o la semana del planificador) → ingredientes sumados en gramos. **El peso es la medida principal** (Facu compra por peso y tiene balanza); las unidades ("≈ 3 cebollas medianas") acompañan como referencia donde hay dato (21/38 frescos). Latas: dato secundario (Facu no compra enlatados; útil para otros). Agrupada por góndola, con estacionalidad.
+2. **Carga de recetas nuevas**: formulario completo con líneas de ingrediente (cantidad, `funcion`, `imprescindible`, sustitutos), pasos, guarda. Las recetas propias conviven con la semilla con linaje claro. (Pasa a la Fase 5, #7.)
+3. ~~**Lista de compras consolidada**~~ — **descartada por ahora** (épica #170: #6/#14). Lo que se había pensado: multi-selección de recetas (o la semana del planificador) → ingredientes sumados en gramos. **El peso es la medida principal** (Facu compra por peso y tiene balanza); las unidades ("≈ 3 cebollas medianas") acompañan como referencia donde hay dato (21/38 frescos). Latas: dato secundario (Facu no compra enlatados; útil para otros). Agrupada por góndola, con estacionalidad.
 4. **Registro de cocciones**: qué se cocinó, con qué variaciones (desmarcados, sustituciones, agregados), anotaciones libres, porciones obtenidas, fecha. Snapshot completo: el historial no depende de futuras versiones de la semilla.
 5. **Escalado de porciones**: todo escala lineal con avisos por tipo (decisión de Facu): sal/especias/levaduras → "ajustar a gusto, no escalar lineal"; tiempos de cocción no se escalan → "revisar tiempo"; recetas horneadas → advertencia fuerte sugiriendo tandas o múltiplos del molde.
 6. **Personalización al cocinar**: desmarcar (advertencia si `imprescindible: true`, con la `funcion` como argumento: "estás sacando la proteína del plato"), sustituir (los 66 sustitutos resolubles recalculan nutrición en vivo; los 100 de texto libre se muestran como sugerencia), agregar cualquier ingrediente de la base. Recálculo nutricional en vivo durante toda la edición.
@@ -34,7 +34,7 @@ no le tiene que estorbar**.
 
 - ~~**Semáforo por ventanas + planificador semanal**~~ — **descartado en la Fase 3.** Se construyó, se usó y Facu decidió que la app no debía llevar esa cuenta. La lección no es que estuviera mal hecho: era la funcionalidad que más explotaba el activo nutricional del dataset, y ese fue exactamente el problema — se optimizó el activo en vez del uso. El planificador (#15) murió con él.
 - **Consulta por nutriente** *(lo que sobrevivió del activo nutricional)*: pantalla propia con la dosis diaria, las notas curadas del dataset, y las recetas e ingredientes que más aportan. Es el mismo activo, en modo consulta en vez de modo régimen.
-- **Estacionalidad en compras y recetas** *(prioridad elegida por Facu)*: badges "en pico" / "fuera de temporada" (AMBA) en lista de compras, detalle de receta y filtro del recetario. Barato de construir (40/41 match directo), alto valor en la verdulería.
+- **Estacionalidad en recetas e ingredientes** *(prioridad elegida por Facu)*: badges "en pico" / "fuera de temporada" (AMBA) en detalle de receta, ingredientes y filtro del recetario. Barato de construir (40/41 match directo).
 - **Alerta B12 de levadura nutricional** *(invariante de seguridad del BRIEF)*: 14 recetas la usan; el rango del dato arranca en 0 → el cálculo la deja en cero, la levadura lleva punto hueco y una nota al pie de los ingredientes lo dice y enlaza a la ficha de la B12. La explicación entera ("acá casi ninguna levadura está fortificada; si la etiqueta no la nombra, no la tiene") vive solo en Nutrientes (#166).
 - **Agrupación de variantes**: las 12 variantes se muestran bajo su receta madre (3 brownies de porotos = 1 entrada expandible). La "madre" es el destino de `variante_de` (siempre resoluble según auditoría).
 - **Preparados navegables**: enlaces receta↔preparado en ambos sentidos, con la nutrición real encadenada (modelo migrado).
@@ -48,7 +48,7 @@ no le tiene que estorbar**.
 |---|---|---|
 | Modo cocina manos libres completo (timers por paso, navegación por gestos) | Backlog | Desde la Fase 4 el modo cocina muestra la receta entera con el paso actual abierto y sus ingredientes, salta de paso de un toque y mantiene la pantalla encendida. Timers y gestos se diseñan con la experiencia de uso real acumulada. |
 | Despensa / freezer | Backlog | Valioso (conecta conservación + porciones congeladas + compras) pero requiere disciplina de registro que conviene validar primero con el diario de cocciones. |
-| Promoción automática de variaciones repetidas a receta propia | Backlog (la promoción manual desde una cocción SÍ entra en Fase 4) | La detección automática ("hiciste esta variación 3 veces") necesita historial acumulado para no ser ruido. |
+| Promoción automática de variaciones repetidas a receta propia | Backlog (la promoción manual desde una cocción pasa a la Fase 5, #7) | La detección automática ("hiciste esta variación 3 veces") necesita historial acumulado para no ser ruido. |
 | Reglas de utensilios U1–U10 como avisos contextuales | Backlog | Aporte marginal frente al costo de normalizar las referencias mezcladas; las recomendaciones por receta se muestran como texto. |
 | Auditoría USDA de ingredientes más usados | Tarea de datos, no de app | Sube el IC de la base; no cambia el código. |
 | Sincronización automática entre dispositivos | Backlog (evaluar sync vía archivo en nube del usuario) | Sin backend no hay sync real; el export/import cubre la transferencia manual. |

@@ -57,7 +57,7 @@ const VIEWPORTS = [
 ];
 
 /**
- * El diario y Hoy no tienen nada que mostrar sin datos de usuario, así que el
+ * El diario no tiene nada que mostrar sin datos de usuario, así que el
  * script siembra un estado de demo determinista, con fechas relativas a hoy.
  * Vive solo acá: la app jamás escribe datos de ejemplo.
  */
@@ -138,7 +138,7 @@ await new Promise((resolve, reject) => {
     tx.objectStore('overlays').put({ receta_id: 'r01', estado: 'favorita', actualizado_en: iso(50) });
     tx.objectStore('overlays').put({ receta_id: 'r02', estado: 'pendiente', actualizado_en: iso(40) });
     // al día a propósito: con la marca vieja, el aviso de la migración saldría
-    // en las 24 capturas y no es lo que se viene a revisar
+    // en todas las capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
       user_schema_version: 5,

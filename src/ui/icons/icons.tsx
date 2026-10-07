@@ -27,15 +27,6 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-export function IconHojaPunteada(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" strokeDasharray="2.6 2.6" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" strokeDasharray="2.6 2.6" />
-    </Base>
-  );
-}
-
 // ---------- ventanas de evaluación ----------
 
 export function IconSol(props: IconProps) {
