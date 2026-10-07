@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "seed": "tsx scripts/build-seed/index.ts",
     "gramos": "tsx scripts/build-seed/informe-gramos.ts",
+    "usda": "tsx scripts/usda/traer-fdc.ts",
     "tablero": "tsx scripts/tablero-publicado.ts",
     "renders": "node scripts/renders.mjs"
   },
