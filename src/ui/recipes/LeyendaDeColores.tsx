@@ -25,8 +25,8 @@ export function LeyendaDeColores({ id, fuente }: { id: string; fuente: FuenteDeO
         casilleros que sobran quedan vacíos. Todos están en la ficha.
       </p>
       <p>
-        No aparecen la B12 ni la vitamina D, que no las da la comida, ni el yodo: casi no hay dato de cuánto trae cada
-        ingrediente, y un casillero vacío diría que no tiene. Los tres están en{' '}
+        No aparecen la B12 ni la vitamina D, que no las da la comida, ni el yodo, que viene casi todo de la sal: cuánta
+        le ponés lo decidís vos, y la receta solo la estima. Los tres están en{' '}
         <a href={routeHash({ screen: 'nutrients' })}>Nutrientes</a>.
       </p>
     </div>

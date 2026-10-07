@@ -35,7 +35,7 @@ describe('qué nutrientes tienen color', () => {
     expect(ORDEN_BARRA.filter((id) => !ids.has(id))).toEqual([]);
   });
 
-  test('ni B12 ni vitamina D, que no da la comida, ni yodo, que no tiene dato', () => {
+  test('ni B12 ni vitamina D, que no da la comida, ni yodo, que depende de la sal', () => {
     for (const afuera of ['b12', 'vitd', 'yodo']) expect(ORDEN_BARRA).not.toContain(afuera);
   });
 

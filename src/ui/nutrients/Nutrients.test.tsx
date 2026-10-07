@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { ORDEN_BARRA, ORDEN_SIN_COLOR } from '../../domain/aporte';
-import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
+import { recetasQueMasAportan } from '../../domain/fuentes';
 import { computeNutrition } from '../../domain/nutrition';
 import { getSeedIndex } from '../../seed';
 import { NutrientDetail } from './NutrientDetail';
@@ -58,15 +58,15 @@ describe('lista de nutrientes', () => {
     expect(detalle).not.toMatch(/Lo aportan sobre todo: Levadura/);
   });
 
-  test('el yodo dice por qué no está en las barras, con la cobertura de la semilla', async () => {
+  test('el yodo dice por qué no está en las barras: sale de la sal, que es estimada', async () => {
     const { container } = render(<NutrientList />);
     await waitFor(() => expect(screen.getByText('Hierro')).toBeDefined());
     const yodo = filaDe(container, 'Yodo');
     abrir(yodo);
-    const conDato = ingredientesQueMasAportan(idx, idx.nutrientById.get('yodo')!).length;
     const detalle = yodo.querySelector('.fila-nutriente-detalle')!.textContent!;
-    expect(detalle).toContain(`${conDato} de los ${idx.seed.ingredientes.length}`);
-    expect(detalle).toMatch(/no sabemos/);
+    expect(detalle).toMatch(/sal yodada/);
+    expect(detalle).toMatch(/estimación/);
+    expect(detalle).not.toMatch(/\d+ de los \d+/);
   });
 
   test('un nutriente sin dato en ningún ingrediente no dice que nadie lo aporta', async () => {
