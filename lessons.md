@@ -561,6 +561,15 @@ de una auditoría ni de un test: de cocinar con ella.
 - **El matcher de imprescindibles leía el id adentro del token** y daba por
   nombrado lo que el paso ya no decía. El test ahora borra los tokens antes de
   buscar: una red que se mide a sí misma no mide nada.
+- **Las 84 migradas, el andamio afuera (#204–#207).** Sin la lista de
+  transición, `validarPasos` vale para toda receta y ya no hay aviso de «pasos
+  viejos». Casi todo el trabajo fueron medidas en letras («la taza y media»), que
+  el validador aprendió a cazar en #204: el render solo no alcanzaba.
+- **Una línea que suma dos usos no se tokeniza entera** («125 g masa + 150
+  crumble»): va «algo menos de la mitad» / «el resto». Partirla en dos datos es
+  la deuda.
+- **Tercios truncados** (0,33 / 0,66 taza) se leían «0,3 taza»; `formatCantidad`
+  conoce ⅓ y ⅔.
 
 ### El guardia de gramos (2026-09-23, #209)
 

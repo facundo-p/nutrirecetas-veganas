@@ -28,6 +28,7 @@
     "src/domain/unidades-decibles.ts",
     "src/seed/laminas.ts",
     "src/styles/contrato-de-temas.test.ts",
-    "src/ui/common/laminas.test.ts"
+    "src/ui/common/laminas.test.ts",
+    "src/app/carga-inicial.test.ts"
   ]
 }

@@ -30,7 +30,15 @@ export function legible(valorDeSemilla: string): string {
   return valorDeSemilla.replaceAll('_', ' ');
 }
 
-const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.75': '¾' };
+/** Los tercios entran porque la semilla los trae truncados (0,33 y 0,66 taza). */
+const GLIFO_DE_FRACCION: Record<string, string> = {
+  '0.25': '¼',
+  '0.33': '⅓',
+  '0.5': '½',
+  '0.66': '⅔',
+  '0.67': '⅔',
+  '0.75': '¾',
+};
 
 /**
  * Cantidad de una línea de receta. Media cebolla se escribe ½, no 0,5: las
@@ -38,7 +46,7 @@ const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.
  */
 export function formatCantidad(valor: number): string {
   const entero = Math.floor(valor);
-  const glifo = GLIFO_DE_CUARTO[String(Number((valor - entero).toFixed(2)))];
+  const glifo = GLIFO_DE_FRACCION[String(Number((valor - entero).toFixed(2)))];
   if (glifo === undefined) return formatNumber(valor, 1);
   return entero === 0 ? glifo : `${entero}${glifo}`;
 }

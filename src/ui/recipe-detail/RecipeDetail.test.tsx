@@ -334,7 +334,6 @@ describe('Detalle de receta', () => {
    * un paso se referencian, no se escriben, así que viajan con el escalador.
    */
   describe('las cantidades de los pasos siguen al escalador (#200)', () => {
-    const AVISO = /todavía están escritos con las originales/;
     const sumarPorciones = (veces: number) => {
       for (let i = 0; i < veces; i++) fireEvent.click(screen.getByRole('button', { name: 'Más porciones' }));
     };
@@ -356,27 +355,14 @@ describe('Detalle de receta', () => {
       expect(marcadas).toContain('las 1½ tazas');
     });
 
-    test('ninguna receta migrada deja una llave a la vista', () => {
-      for (const receta of getSeedIndex().seed.recetas.filter((r) => r.pasos_escalables)) {
+    test('ninguna receta deja una llave a la vista', () => {
+      for (const receta of getSeedIndex().seed.recetas) {
         const { container, unmount } = render(<RecipeDetail id={receta.id} />);
         expect(pasos(container), receta.id).not.toMatch(/[{}]/);
         unmount();
       }
     });
 
-    test('una receta sin migrar avisa al escalar en vez de mentir', () => {
-      const sinMigrar = getSeedIndex().seed.recetas.find((r) => !r.pasos_escalables && r.porciones_num !== null)!;
-      render(<RecipeDetail id={sinMigrar.id} />);
-      expect(screen.queryByText(AVISO)).toBeNull();
-      sumarPorciones(1);
-      expect(screen.getByText(AVISO)).toBeDefined();
-    });
-
-    test('una receta migrada no avisa: sus pasos se ajustan solos', () => {
-      render(<RecipeDetail id="r01" />);
-      sumarPorciones(1);
-      expect(screen.queryByText(AVISO)).toBeNull();
-    });
   });
 
   test('«Cocinar ahora» se lleva las porciones elegidas (issue #201)', () => {

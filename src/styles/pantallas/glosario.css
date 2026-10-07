@@ -4,7 +4,7 @@
   display: flex;
   gap: var(--sp-2);
   margin-bottom: var(--sp-4);
-  border-bottom: 3px double color-mix(in srgb, var(--tinta) 30%, transparent);
+  border-bottom: var(--borde);
   padding-bottom: var(--sp-2);
 }
 
@@ -16,7 +16,7 @@
   font: inherit;
   font-size: var(--fs-sm);
   padding: var(--sp-1) var(--sp-4);
-  min-height: 36px;
+  min-height: var(--toque-minimo);
   cursor: pointer;
   color: var(--tinta-suave);
 }
@@ -28,26 +28,41 @@
   font-weight: 600;
 }
 
+/* Filas y no tarjetas: son más de treinta, y en tarjetas el celular las scrollea de a cuatro. */
 .lista-iconos {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: var(--sp-2);
+  column-gap: var(--sp-5);
 }
 
-.ficha-icono {
+@media (min-width: 900px) {
+  .lista-iconos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fila-icono {
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  padding: var(--sp-3);
+  min-height: var(--toque-minimo);
+  padding: var(--sp-1) 0;
+  border-top: var(--borde-suave);
   font-size: var(--fs-sm);
 }
 
-.ficha-icono-svg {
-  font-size: 26px;
+/* Columna de ancho fijo: los significados arrancan alineados aunque el glifo sea una barra. */
+.fila-icono-glifo {
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: var(--ancho-glifo-barra);
+}
+
+.fila-icono-svg {
+  font-size: var(--fs-lg);
   color: var(--marca);
-  flex-shrink: 0;
 }
 
 .lista-terminos {
@@ -68,12 +83,11 @@
 
 .termino-ic {
   color: var(--tinta-suave);
-  font-size: 13px;
+  font-size: var(--fs-meta);
   display: inline-flex;
 }
 
 .termino dd {
-  margin: 2px 0 0;
+  margin: var(--sp-1) 0 0;
   font-size: var(--fs-sm);
-  line-height: 1.55;
 }

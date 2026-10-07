@@ -342,9 +342,10 @@ describe('pasos (T9)', () => {
   });
 
   test('ningún paso nombra un código del dataset', () => {
-    // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina.
+    // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina. El
+    // token `{p03}` de un preparado no se lee: rinde su cantidad.
     for (const r of curadas()) {
-      for (const paso of r.pasos) expect(paso, `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
+      for (const paso of r.pasos) expect(sinTokens(paso), `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
     }
   });
 
@@ -422,7 +423,7 @@ describe('las cantidades de un paso van como token (#200)', () => {
     paso,
   });
 
-  const validar = (pasos: string[], lineas: Line[]) => () => validarPasos('rXX', pasos, lineas, true);
+  const validar = (pasos: string[], lineas: Line[]) => () => validarPasos('rXX', pasos, lineas);
 
   test('un token que no es línea de ese paso rompe el build', () => {
     expect(validar(['Agregar {perejil} de perejil.'], [linea('tomate', 400, 'g', 0)])).toThrow(
@@ -443,6 +444,9 @@ describe('las cantidades de un paso van como token (#200)', () => {
     const dos = [linea('aceitunas', 100, 'g', 0), linea('aceitunas', 50, 'g', 0)];
     expect(validar(['Sumar {aceitunas} de aceitunas.'], dos)).toThrow(/es ambiguo/);
     expect(validar(['Sumar {aceitunas#2} de aceitunas.'], dos)).not.toThrow();
+    // El 2 del `#2` no es una cantidad escrita, aunque una línea mida 2.
+    const conDos = [linea('aceitunas', 100, 'g', 0), linea('aceitunas', 2, 'cda', 0)];
+    expect(validar(['Sumar {aceitunas#1} de aceitunas y {aceitunas#2} de alcaparras.'], conDos)).not.toThrow();
   });
 
   test('una medida escrita a mano rompe el build, sea o no de una línea', () => {
@@ -454,6 +458,31 @@ describe('las cantidades de un paso van como token (#200)', () => {
     expect(validar(['Cubrir con 600 ml de agua.'], [linea('lentejas', 250, 'g', 0)])).toThrow(
       /"600 ml" es una medida escrita/,
     );
+    // La fracción en símbolo es una cifra más: «½ taza» tampoco escala.
+    expect(validar(['Sumar ½ taza de agua.'], [linea('lentejas', 250, 'g', 0)])).toThrow(/"½ taza" es una medida escrita/);
+    expect(validar(['Sumar 1½ cucharadita de comino.'], [linea('lentejas', 250, 'g', 0)])).toThrow(
+      /"1½ cucharadita" es una medida escrita/,
+    );
+  });
+
+  test('una medida en letras rompe igual que en cifras', () => {
+    const arroz = [linea('arroz', 1.5, 'taza', 0, 300)];
+    for (const paso of [
+      'Lavar la taza y media de arroz.',
+      'Sumar media cucharadita de comino.',
+      'Agregar una taza de agua.',
+      'Sumar el cuarto de cucharadita de cúrcuma.',
+      'Sumar los dos tercios de taza de azúcar.',
+      'Picar los dos dientes de ajo.',
+    ]) {
+      expect(validar([paso], arroz), paso).toThrow(/es una medida en letras/);
+    }
+  });
+
+  test('lo que se dice por unidad no es un total y puede ir en letras', () => {
+    const aceite = [linea('aceite_oliva', 1, 'cda_por_omelette', 0, 13)];
+    expect(validar(['Calentar una cucharada por omelette.'], aceite)).not.toThrow();
+    expect(validar(['Revolver con una cuchara de madera.'], aceite)).not.toThrow();
   });
 
   test('un número sin unidad que es una cantidad del paso también rompe', () => {
@@ -468,21 +497,7 @@ describe('las cantidades de un paso van como token (#200)', () => {
     expect(validar(['Dejar 2 horas.'], [linea('sal', 2, 'cdta', 0)])).not.toThrow();
   });
 
-  test('una receta sin tokenizar no puede llevar tokens', () => {
-    expect(() => validarPasos('rXX', ['Agregar {tomate}.'], [linea('tomate', 400, 'g', 0)], false)).toThrow(
-      /no está en RECETAS_CON_PASOS_TOKENIZADOS/,
-    );
-  });
-
-  test('las recetas ya migradas de la semilla pasan las cuatro validaciones', () => {
-    const migradas = recipes.filter((r) => r.pasos_escalables);
-    expect(migradas.length).toBeGreaterThan(0);
-    for (const r of migradas) expect(() => validarPasos(r.id, r.pasos, r.lineas, true), r.id).not.toThrow();
-  });
-
-  test('ninguna receta sin migrar tiene tokens sueltos', () => {
-    for (const r of recipes.filter((r) => !r.pasos_escalables)) {
-      for (const paso of r.pasos) expect(paso, r.id).not.toMatch(/\{~?[a-z0-9_]+(?:#\d+)?\}/);
-    }
+  test('las 84 recetas de la semilla pasan las cuatro validaciones', () => {
+    for (const r of recipes) expect(() => validarPasos(r.id, r.pasos, r.lineas), r.id).not.toThrow();
   });
 });
