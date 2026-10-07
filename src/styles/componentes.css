@@ -251,7 +251,7 @@
 /* Hueco: la levadura trae B12 solo si la marca está fortificada. */
 .punto-nutriente[data-nut='condicional'] {
   background: none;
-  border: 1.5px solid var(--nut);
+  border: var(--borde-cuadrado) solid var(--nut);
 }
 
 /* Sin data-nut —los que no entran a las barras— el borde cae a un gris de tinta. */
