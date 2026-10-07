@@ -10,10 +10,13 @@ import {
 } from './format';
 
 describe('formatCantidad', () => {
-  test('los cuartos se muestran como fracción, no como decimal', () => {
+  test('los cuartos y los tercios se muestran como fracción, no como decimal', () => {
     expect(formatCantidad(0.25)).toBe('¼');
     expect(formatCantidad(0.5)).toBe('½');
     expect(formatCantidad(0.75)).toBe('¾');
+    expect(formatCantidad(0.33)).toBe('⅓');
+    expect(formatCantidad(0.66)).toBe('⅔');
+    expect(formatCantidad(1.33)).toBe('1⅓');
   });
 
   test('con parte entera, la fracción se le pega al lado', () => {
