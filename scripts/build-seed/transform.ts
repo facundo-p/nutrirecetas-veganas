@@ -219,7 +219,21 @@ const NUMERO_SUELTO = /(?<![\d,.])\d+(?:[,.]\d+)?(?![\d,.])/g;
  * cubrir»).
  */
 const MEDIDA_ESCRITA =
-  /(?<![\d,.])\d+(?:[,.]\d+)?\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
+  /(?<![\d,.])(?:\d+(?:[,.]\d+)?|(?:\d+\s*)?[½¼¾⅓⅔])\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
+
+/**
+ * La misma medida dicha en letras: «la taza y media», «media cucharadita».
+ * Miente igual que la cifra al escalar. Lo que es por unidad no es un total y
+ * se escribe seguido de «por»: «una cucharada por omelette».
+ */
+const FRACCION_EN_LETRAS = String.raw`(?:cuarto|tercio|dos\s+tercios|tres\s+cuartos)\s+de`;
+const NUMERO_EN_LETRAS = String.raw`(?:una?|medi[oa]|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce|otr[oa]s?|${FRACCION_EN_LETRAS})`;
+const MEDIDA_EN_LETRAS = new RegExp(
+  String.raw`(?<!\p{L})(?:(?:la|las|el|los)\s+(?:${NUMERO_EN_LETRAS}\s+)?|${NUMERO_EN_LETRAS}\s+)` +
+    String.raw`(?:tazas?|cucharadas?|cucharaditas?|cdas?|cdtas?|litros?|dientes?|latas?)` +
+    String.raw`(?:\s+y\s+(?:media|medio|cuarto|(?:un|dos|tres)\s+(?:tercios?|cuartos?)))?(?!\p{L})(?!\s+por\b)`,
+  'iu',
+);
 
 /**
  * T9/#200: una receta tokenizada dice sus cantidades con `{ingrediente}` y no
@@ -254,15 +268,21 @@ export function validarPasos(
     const cantidades = new Set(
       enElPaso.flatMap((linea) => [linea.cantidad, linea.g_aprox, Math.round(linea.g_aprox)].map(String)),
     );
-    const medida = MEDIDA_ESCRITA.exec(texto);
+    // El `#2` de `{aceitunas#2}` no es una cantidad escrita.
+    const prosa = texto.replace(/\{~?[a-z0-9_]+(?:#\d+)?\}/g, '{}');
+    const medida = MEDIDA_ESCRITA.exec(prosa);
     MEDIDA_ESCRITA.lastIndex = 0;
     if (medida !== null) {
       throw new Error(`${donde}: "${medida[0]}" es una medida escrita; va como token o sin número`);
     }
+    const enLetras = MEDIDA_EN_LETRAS.exec(prosa);
+    if (enLetras !== null) {
+      throw new Error(`${donde}: "${enLetras[0]}" es una medida en letras; va como token, sin cantidad o «por» unidad`);
+    }
 
-    for (const match of texto.matchAll(NUMERO_SUELTO)) {
+    for (const match of prosa.matchAll(NUMERO_SUELTO)) {
       const valor = String(Number(match[0].replace(',', '.')));
-      const sigue = texto.slice(match.index + match[0].length);
+      const sigue = prosa.slice(match.index + match[0].length);
       if (cantidades.has(valor) && !TIEMPO_O_TEMPERATURA.test(sigue)) {
         throw new Error(`${donde}: el ${match[0]} es una cantidad de ese paso y quedó escrito; va como token`);
       }

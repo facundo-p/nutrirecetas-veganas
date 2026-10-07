@@ -25,7 +25,7 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   r14: [4, 2, 2, 2, 2, 2, 3, 1], // Fideos al pesto de albahaca y nueces con tomates asados
   r15: [3, 3, 1, 1, 1, 3, 2, 2, 3, 3, 3, 6], // Chili sin carne con cacao
   r16: [1, 1, 1, 1, 6, 2, 2, 2, 3], // Omelette de harina de garbanzo con verduras
-  r17: [3, 5, 1, 1, 1, 2, 2, 3, 1, 5, 6], // Guiso toscano de alubias y kale
+  r17: [3, 5, 1, 1, 1, 2, 2, 3, 6, 5, 6], // Guiso toscano de alubias y kale (el aceite crudo va al servir, #204)
   r18: [1, 1, 5, 5, 6, 6, 1, 6, 8, 4], // Dal de lentejas turcas con tadka
   r19: [1, 3, 3, 4, 4, 5, 5, 4], // Tabule de quinoa con menta
   r20: [1, 6, 2, 5, 3, 3, 6, 6, 2, 6], // Arroz integral salteado con edamame, champiñones y maní
@@ -104,4 +104,4 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
  *
  * Cuando estén las 84, se borran la lista, el campo `pasos_escalables` y el aviso.
  */
-export const RECETAS_CON_PASOS_TOKENIZADOS: ReadonlySet<string> = new Set<string>(['r01', 'r02', 'r03', 'r04', 'r05', 'r06', 'r07', 'r08', 'r09', 'r10']);
+export const RECETAS_CON_PASOS_TOKENIZADOS: ReadonlySet<string> = new Set<string>(['r01', 'r02', 'r03', 'r04', 'r05', 'r06', 'r07', 'r08', 'r09', 'r10', 'r11', 'r12', 'r13', 'r14', 'r15', 'r16', 'r17', 'r18', 'r19', 'r20', 'r21', 'r22', 'r23', 'r24', 'r25', 'r26', 'r27', 'r28', 'r29']);

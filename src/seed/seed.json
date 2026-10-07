@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "a465dea488dda27b8f55e1c001ec6df2bb6043446817de4477d7bd1e4b4b9371",
+ "content_hash": "2d1800038638ed62dec8c4bc00f725f6aa4359a883f1962c07cd2b562adeff5a",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -6657,7 +6657,7 @@
    ],
    "pasos": [
     "Picar la cebolla y las zanahorias, y sofreírlas en {aceite_oliva} de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.",
-    "Sumar {ajo} de ajo picados, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.",
+    "Sumar {ajo} de ajo picado, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.",
     "Agregar {extracto_tomate} de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.",
     "Enjuagar {lentejas_turcas} de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con {caldo_verduras} de caldo de verduras y llevar a hervor.",
     "Bajar a hervor suave y cocinar 20 a 25 minutos, hasta que las lentejas se deshagan solas y la sopa espese: esa cremosidad sin pasar por la licuadora es la gracia del plato.",
@@ -7305,7 +7305,7 @@
    ],
    "pasos": [
     "Picar fino la cebolla, la zanahoria y {apio} de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.",
-    "Sumar {ajo} de ajo picados y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.",
+    "Sumar {ajo} de ajo picado y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.",
     "Si lo usás, desglasar con {vino_tinto} de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.",
     "Agregar {lentejas} de lentejas enjuagadas, {nueces} de nueces picadas finas, {tomate_triturado} de tomate triturado, {laurel} de laurel si la usás, y agua —o caldo, si tenés— hasta cubrir apenas. Llevar a hervor suave.",
     "Cocinar a fuego bajo 30 a 40 minutos, revolviendo cada tanto, hasta que las lentejas estén tiernas y la salsa tome cuerpo de ragú. Las nueces van desde el principio: sueltan su grasa y dan esa textura granulada de picada.",
@@ -8043,9 +8043,9 @@
    ],
    "pasos": [
     "Cortar la calabaza al medio a lo largo, sacarle las semillas y asarla boca abajo en una placa aceitada a 200° durante 40 minutos, hasta que un cuchillo la atraviese sin resistencia. Asada y no hervida es la gracia: el horno le concentra el dulzor y le tuesta los bordes.",
-    "A los 20 minutos de horno, sumar a la placa {ajo} de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.",
+    "A los 20 minutos de horno, sumar a la placa {ajo} de ajo, sin pelar: en camisa no se quema y queda dulce.",
     "Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar {jengibre} de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.",
-    "Agregar la pulpa de la calabaza, los ajos ya pelados y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.",
+    "Agregar la pulpa de la calabaza, el ajo ya pelado y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.",
     "Licuar con {leche_coco} de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.",
     "Rectificar de sal y pimienta y servir. Si las usás, poné {semillas_zapallo} de semillas de zapallo tostadas por encima, para el contraste crocante."
    ],
@@ -8653,15 +8653,15 @@
     }
    ],
    "pasos": [
-    "Poner a cocinar la taza de arroz integral en abundante agua con sal: es lo que más tarda, unos 35 a 40 minutos, y todo el resto se hace mientras. Está listo cuando el grano se muerde tierno pero entero.",
-    "Prensar los 400 g de tofu firme: envolverlo en un repasador limpio y apoyarle un peso encima — una tabla con algo arriba — 15 minutos. Cuanta más agua suelta acá, mejor dora después. Cortarlo en cubos.",
-    "Mezclar los cubos de tofu con la cucharada de fécula de maíz y sal hasta que queden apenas empolvados, y dorarlos en el wok con aceite a fuego fuerte, en tandas para que no se amontonen, hasta que las caras estén doradas y crujientes. Reservar. Esa película de fécula es la que arma el crocante.",
-    "Cocinar el brócoli en ramitos al vapor 3 minutos, o en la sartén tapada con un chorrito de agua, hasta que esté verde intenso y apenas tierno: tiene que llegar al wok casi hecho, porque adentro no se cocina, se barniza.",
-    "Mezclar la salsa en un vasito: las 3 cucharadas de salsa de soja, los 3 dientes de ajo picados, la cucharada de jengibre rallado y, si los usás, la cucharada de vinagre de arroz y la cucharadita de azúcar.",
+    "Poner a cocinar {arroz_integral} de arroz integral en abundante agua con sal: es lo que más tarda, unos 35 a 40 minutos, y todo el resto se hace mientras. Está listo cuando el grano se muerde tierno pero entero.",
+    "Prensar {tofu_firme} de tofu firme: envolverlo en un repasador limpio y apoyarle un peso encima — una tabla con algo arriba — 15 minutos. Cuanta más agua suelta acá, mejor dora después. Cortarlo en cubos.",
+    "Mezclar los cubos de tofu con {fecula_maiz} de fécula de maíz y sal hasta que queden apenas empolvados, y dorarlos en el wok con aceite a fuego fuerte, en tandas para que no se amontonen, hasta que las caras estén doradas y crujientes. Reservar. Esa película de fécula es la que arma el crocante.",
+    "Cocinar {brocoli} de brócoli en ramitos al vapor 3 minutos, o en la sartén tapada con un chorrito de agua, hasta que esté verde intenso y apenas tierno: tiene que llegar al wok casi hecho, porque adentro no se cocina, se barniza.",
+    "Mezclar la salsa en un vasito: {salsa_soja} de salsa de soja, {ajo} de ajo picado, {jengibre} de jengibre rallado y, si los usás, {vinagre} de vinagre de arroz y {azucar} de azúcar.",
     "Volver todo al wok a fuego máximo — tofu, brócoli y la salsa — y saltear un minuto, hasta que la salsa espese y se pegue brillante a los cubos. No más que eso: es un golpe de fuego, no una cocción.",
-    "Apagar, lloverle por encima las 2 cucharadas de sésamo integral — mejor si antes lo pasás un momento por una sartén seca hasta que perfume — y servir sobre el arroz."
+    "Apagar, lloverle por encima {sesamo_integral} de sésamo integral — mejor si antes lo pasás un momento por una sartén seca hasta que perfume — y servir sobre el arroz."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La fécula es la costra crocante de restaurante",
     "El brócoli llega casi cocido al wok: el salteado solo lo laquea",
@@ -8815,13 +8815,13 @@
     }
    ],
    "pasos": [
-    "Sacarle los tallos al atado de kale, cortar las hojas en trozos de bocado y ponerlas en un bol amplio con la cucharada de aceite de oliva y una pizca de sal.",
+    "Deshojar {kale} de kale —sacarle los tallos—, cortar las hojas en trozos de bocado y ponerlas en un bol amplio con {aceite_oliva} de aceite de oliva y una pizca de sal.",
     "Masajear el kale con las dos manos 2 a 3 minutos, apretando de verdad, como quien amasa, hasta que las hojas se oscurezcan, pierdan volumen y se ablanden. Las manos hacen acá el trabajo de la cocción: quiebran la fibra y la hoja cruda se vuelve tierna.",
     "Pelar la naranja y cortarla en gajos sobre el bol, para no perder el jugo. Si además le sacás la telita blanca a cada gajo, el plato sube de categoría.",
-    "Sumar los 250 g de garbanzos cocidos y, si los usás, la media palta en cubos y las 2 cucharadas de semillas de zapallo tostadas.",
-    "Aliñar recién al servir con el jugo del medio limón y mezclar. El cítrico no es solo aliño: la vitamina C de la naranja y el limón hace que el hierro de los garbanzos se aproveche."
+    "Sumar {garbanzos} de garbanzos cocidos y, si los usás, la palta en cubos y {semillas_zapallo} de semillas de zapallo tostadas.",
+    "Aliñar recién al servir con el jugo de limón y mezclar. El cítrico no es solo aliño: la vitamina C de la naranja y el limón hace que el hierro de los garbanzos se aproveche."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El masajeado rompe la celulosa: kale crudo comestible de verdad",
     "Gajos de naranja 'a vivo' (sin membrana) elevan el plato"
@@ -8987,16 +8987,16 @@
     }
    ],
    "pasos": [
-    "Lavar la taza y media de arroz blanco —mejor grano corto, tipo doble carolina— bajo el chorro, frotándolo con la mano y cambiando el agua hasta que salga clara. Sin ese enjuague el arroz se apelmaza en vez de pegar.",
-    "Cocinar el arroz como de costumbre y, apenas esté, pasarlo a una fuente ancha y sazonarlo EN CALIENTE con las 3 cucharadas de vinagre de arroz, la cucharada de azúcar y sal, mezclando con movimientos de corte para no aplastar el grano. Caliente absorbe; frío no.",
+    "Lavar {arroz_blanco} de arroz blanco —mejor grano corto, tipo doble carolina— bajo el chorro, frotándolo con la mano y cambiando el agua hasta que salga clara. Sin ese enjuague el arroz se apelmaza en vez de pegar.",
+    "Cocinar el arroz como de costumbre y, apenas esté, pasarlo a una fuente ancha y sazonarlo EN CALIENTE con {vinagre} de vinagre de arroz, {azucar} de azúcar y sal, mezclando con movimientos de corte para no aplastar el grano. Caliente absorbe; frío no.",
     "Enfriar el arroz abanicándolo hasta que quede a temperatura ambiente y brillante. No va a la heladera: se endurece y deja de pegar.",
     "Mientras se enfría, cortar la palta en láminas, el pepino en bastones largos y, si la usás, la zanahoria en juliana fina.",
-    "Apoyar una hoja de nori con el lado brillante hacia abajo sobre la esterilla —o un repasador limpio— y extender una capa fina de arroz, dejando 2 cm libres en el borde de arriba.",
+    "Apoyar una de {nori} de nori con el lado brillante hacia abajo sobre la esterilla —o un repasador limpio— y extender una capa fina de arroz, dejando 2 cm libres en el borde de arriba.",
     "Poner el relleno en una línea sobre el tercio más cercano a vos, sin pasarte de cantidad: si sobrecargás, el roll no cierra.",
-    "Enrollar desde el borde más cercano, apretando con la esterilla a medida que avanzás, y sellar el borde libre con unas gotas de agua. Repetir con las 6 hojas de nori.",
-    "Cortar cada roll con un cuchillo filoso y mojado, mojándolo otra vez entre corte y corte. Servir con el sésamo por encima y salsa de soja para mojar."
+    "Enrollar desde el borde más cercano, apretando con la esterilla a medida que avanzás, y sellar el borde libre con unas gotas de agua. Repetir con el resto de las hojas de nori.",
+    "Cortar cada roll con un cuchillo filoso y mojado, mojándolo otra vez entre corte y corte. Servir con {sesamo_integral} de sésamo por encima y {salsa_soja} de salsa de soja para mojar."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Lavar el arroz y sazonarlo caliente son el 80% del sushi",
     "Cuchillo mojado entre corte y corte",
@@ -9152,14 +9152,14 @@
     }
    ],
    "pasos": [
-    "Si los sumás, poner primero los 300 g de tomates cherry en una placa con un chorro de oliva y sal, a horno fuerte 20 a 25 minutos, hasta que se arruguen y empiecen a reventarse: ese dulzor asado corona el plato.",
-    "Procesar las 2 tazas de albahaca con los 60 g de nueces, los 2 dientes de ajo, las 3 cucharadas de levadura nutricional — que acá hace de parmesano — y el jugo del medio limón, hasta tener una pasta gruesa.",
-    "Con el motor andando, sumar los 80 ml de aceite de oliva en un hilo fino, hasta que el pesto quede cremoso pero con textura, no una crema lisa. Probar y salar.",
-    "Hervir los 400 g de fideos en abundante agua con sal hasta que estén al dente. Antes de colar, sacar una taza del agua de la olla y guardarla.",
+    "Si los sumás, poner primero {tomate} de tomates cherry en una placa con un chorro de oliva y sal, a horno fuerte 20 a 25 minutos, hasta que se arruguen y empiecen a reventarse: ese dulzor asado corona el plato.",
+    "Procesar {albahaca} de albahaca con {nueces} de nueces, {ajo} de ajo, {levadura_nutricional} de levadura nutricional — que acá hace de parmesano — y el jugo de limón, hasta tener una pasta gruesa.",
+    "Con el motor andando, sumar {aceite_oliva} de aceite de oliva en un hilo fino, hasta que el pesto quede cremoso pero con textura, no una crema lisa. Probar y salar.",
+    "Hervir {fideos} de fideos en abundante agua con sal hasta que estén al dente. Antes de colar, sacar un poco del agua de la olla y guardarla.",
     "Mezclar los fideos con el pesto FUERA del fuego, en un bol o en la olla ya apagada: el calor directo lo oxida y lo pone amargo, y con la temperatura de la pasta alcanza y sobra.",
     "Aflojar con el agua reservada de a chorritos mientras revolvés, hasta que la salsa quede fluida y pegada al fideo — el almidón de esa agua es el que la une. Servir con los tomates asados por encima."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El pesto nunca toca el fuego: la pasta caliente lo templa",
     "El agua de cocción almidonosa hace que la salsa abrace el fideo",
@@ -9366,14 +9366,14 @@
     }
    ],
    "pasos": [
-    "Sofreír la cebolla, el morrón rojo y los 4 dientes de ajo picados en una olla de fondo grueso con aceite, a fuego medio, hasta que estén bien dorados, no apenas blandos: ese dorado es la base de sabor del chili.",
-    "Sumar las 2 cucharaditas de comino y las 2 de pimentón ahumado y revolver 30 segundos, hasta que perfumen: las especias despiertan en la grasa caliente, pero de ahí a quemarse hay un paso.",
-    "Agregar los 800 g de tomate triturado, los porotos negros y colorados — 250 g de cada uno —, la cucharada de cacao amargo y, si los usás, la soja texturizada hidratada 10 minutos en agua caliente y escurrida, y la taza de choclo. El cacao no va a endulzar nada: pone fondo y color oscuro, el mismo truco del mole.",
+    "Sofreír la cebolla, el morrón rojo y {ajo} de ajo picado en una olla de fondo grueso con aceite, a fuego medio, hasta que estén bien dorados, no apenas blandos: ese dorado es la base de sabor del chili.",
+    "Sumar {comino} de comino y {pimenton} de pimentón ahumado y revolver 30 segundos, hasta que perfumen: las especias despiertan en la grasa caliente, pero de ahí a quemarse hay un paso.",
+    "Agregar {tomate_triturado} de tomate triturado, {porotos_negros} de porotos negros y {porotos_colorados} de porotos colorados, {cacao_amargo} de cacao amargo y, si los usás, {soja_texturizada} de soja texturizada hidratada 10 minutos en agua caliente y escurrida, y {choclo} de choclo. El cacao no va a endulzar nada: pone fondo y color oscuro, el mismo truco del mole.",
     "Cocinar 35 a 40 minutos a fuego bajo, destapado, revolviendo cada tanto, hasta que espese: al pasar la cuchara se tiene que ver el fondo de la olla un segundo antes de que la salsa vuelva a cerrarse.",
     "Si lo querés más espeso todavía, aplastar unos cuantos porotos contra la pared de la olla con el cucharón y revolver.",
     "Apagar y dejar reposar 15 minutos: el chili se asienta y los sabores se terminan de juntar. Servir con gajos de limón para exprimir en el plato — el ácido refresca y de paso ayuda a absorber el hierro de los porotos."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El cacao no endulza: redondea y oscurece (efecto mole)",
     "Pisar 1/2 taza de porotos espesa sin fécula",
@@ -9541,14 +9541,14 @@
     }
    ],
    "pasos": [
-    "Batir en un bol la taza de harina de garbanzo con la taza de agua, el cuarto de cucharadita de cúrcuma, la media cucharadita de comino y sal, hasta que no queden grumos.",
+    "Batir en un bol {harina_garbanzo} de harina de garbanzo con {agua} de agua, {~curcuma} de cúrcuma, {~comino} de comino y sal, hasta que no queden grumos.",
     "Dejar reposar el batido 10 minutos: la harina se hidrata del todo y desaparece el sabor harinoso. Mientras, picar el relleno si lo usás: el verdeo, el tomate y la espinaca.",
-    "Calentar una sartén antiadherente de verdad — o de hierro bien curada: en una sartén que se pega este plato no tiene salvación — a fuego medio con una cucharada del aceite de oliva.",
+    "Calentar una sartén antiadherente de verdad — o de hierro bien curada: en una sartén que se pega este plato no tiene salvación — a fuego medio con un poco del aceite de oliva.",
     "Verter la mitad del batido en una capa fina, desparramar la mitad del relleno por encima y tapar 3 a 4 minutos, hasta que la superficie pierda el brillo húmedo y los bordes se despeguen solos.",
-    "Doblar recién entonces, con espátula y sin apuro, y darle un minuto más. Repetir con otra cucharada de aceite y el resto del batido. El fuego se queda en medio todo el tiempo: si lo subís, se dora afuera y queda crudo adentro.",
-    "Si la usás, espolvorear la pizca de kala namak ya en el plato, fuera del fuego: el calor le borra el gusto a huevo, así que va siempre al final."
+    "Doblar recién entonces, con espátula y sin apuro, y darle un minuto más. Repetir con el resto del aceite y el resto del batido. El fuego se queda en medio todo el tiempo: si lo subís, se dora afuera y queda crudo adentro.",
+    "Si la usás, espolvorear {~kala_namak} de kala namak ya en el plato, fuera del fuego: el calor le borra el gusto a huevo, así que va siempre al final."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El reposo del batido evita gusto a crudo",
     "Paciencia antes de doblar: si lo apurás se rompe",
@@ -9708,7 +9708,7 @@
      "funcion": "el toque toscano",
      "imprescindible": true,
      "sustitutos": [],
-     "paso": 0
+     "paso": 5
     },
     {
      "ref": {
@@ -9738,14 +9738,14 @@
     }
    ],
    "pasos": [
-    "Picar fino la cebolla, la zanahoria y la rama de apio, y sofreírlos en la olla con un chorro de aceite a fuego medio-bajo unos 10 minutos, hasta que estén blandos y dulces, sin que lleguen a dorarse: es el soffritto, la base silenciosa de todo guiso toscano.",
-    "Sumar los 4 dientes de ajo picados y, al minuto, los 200 g de tomate triturado. Cocinar 5 minutos, hasta que el tomate pierda el olor a crudo. Es poco tomate a propósito: no es un guiso rojo, es un guiso pálido con rubor.",
-    "Agregar los 500 g de porotos alubia cocidos y los 750 ml de caldo de verduras, y cocinar 15 minutos a fuego medio con la olla destapada, para que el caldo tome cuerpo.",
+    "Picar fino la cebolla, la zanahoria y {apio} de apio, y sofreírlos en la olla con un chorro de aceite a fuego medio-bajo unos 10 minutos, hasta que estén blandos y dulces, sin que lleguen a dorarse: es el soffritto, la base silenciosa de todo guiso toscano.",
+    "Sumar {ajo} de ajo picado y, al minuto, {tomate_triturado} de tomate triturado. Cocinar 5 minutos, hasta que el tomate pierda el olor a crudo. Es poco tomate a propósito: no es un guiso rojo, es un guiso pálido con rubor.",
+    "Agregar {porotos_alubia} de porotos alubia cocidos y {caldo_verduras} de caldo de verduras, y cocinar 15 minutos a fuego medio con la olla destapada, para que el caldo tome cuerpo.",
     "A mitad de esa cocción, aplastar con el cucharón un tercio de los porotos contra el fondo, sin sacarlos de la olla: eso vuelve el caldo cremoso sin una gota de crema.",
-    "En los últimos 5 minutos, sumar el atado de kale sin tallos y en trozos, con la cucharadita de orégano si lo usás. El kale está cuando bajó de volumen y quedó verde oscuro pero entero.",
-    "Servir y terminar cada plato con las 3 cucharadas de aceite de oliva repartidas en crudo por encima — acá el aceite no adorna: es el ingrediente que hace toscano al guiso. Si lo sumás, al costado va el pan integral tostado y frotado con ajo, que convierte la sopa en comida completa."
+    "En los últimos 5 minutos, sumar {kale} de kale sin tallos y en trozos, con {oregano} de orégano si lo usás. El kale está cuando bajó de volumen y quedó verde oscuro pero entero.",
+    "Servir y terminar cada plato con {aceite_oliva} de aceite de oliva repartido en crudo por encima — acá el aceite no adorna: es el ingrediente que hace toscano al guiso. Si lo sumás, al costado va el pan integral tostado y frotado con ajo, que convierte la sopa en comida completa."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Pisar porotos EN la olla es la cremosidad toscana (sin crema)",
     "El hilo de oliva crudo final es el sabor del plato, no decoración"
@@ -9932,16 +9932,16 @@
     }
    ],
    "pasos": [
-    "Enjuagar las lentejas turcas hasta que el agua salga clara y ponerlas en una olla con 900 ml de agua fría, la cucharadita de cúrcuma y la media cucharadita de pimienta negra. La pimienta no es condimento acá: es lo que hace que la curcumina se absorba.",
+    "Enjuagar {lentejas_turcas} de lentejas turcas hasta que el agua salga clara y ponerlas en una olla con el triple de agua fría, {curcuma} de cúrcuma y {pimienta_negra} de pimienta negra. La pimienta no es condimento acá: es lo que hace que la curcumina se absorba.",
     "Llevar a hervor, bajar a fuego medio-bajo y cocinar 20 a 25 minutos destapado, revolviendo cada tanto para que no se pegue al fondo. Están listas cuando se deshacen solas y ya no se distingue el grano.",
     "Batir el dal con batidor o cuchara de madera hasta que quede cremoso y parejo. Si quedó muy espeso, aflojar con un chorrito de agua caliente: tiene que caer de la cuchara, no quedarse pegado.",
-    "Si vas a acompañar con arroz, poner ahora la taza de arroz blanco a cocinar: llega justo con el dal.",
-    "El tadka se hace aparte, en una sartencita, nunca en la olla del dal. Calentar las 3 cucharadas de aceite de oliva a fuego medio-alto, tirar la cucharadita de comino en grano y esperar a que crepite, unos 30 segundos.",
-    "Sumar los 4 dientes de ajo laminados y la cucharada de jengibre, y revolver SEGUNDOS, hasta que el ajo apenas tome color. Si lo usás, el tomate picado entra acá y se saltea 30 segundos más.",
+    "Si vas a acompañar con arroz, poner ahora {arroz_blanco} de arroz blanco a cocinar: llega justo con el dal.",
+    "El tadka se hace aparte, en una sartencita, nunca en la olla del dal. Calentar {aceite_oliva} de aceite de oliva a fuego medio-alto, tirar {comino} de comino en grano y esperar a que crepite, unos 30 segundos.",
+    "Sumar {ajo} de ajo laminado y {jengibre} de jengibre, y revolver SEGUNDOS, hasta que el ajo apenas tome color. Si lo usás, el tomate picado entra acá y se saltea 30 segundos más.",
     "Volcar el tadka hirviendo sobre el dal — el \"tsss\" es el plato — y revolver una sola vez, para que quede veteado y no uniforme.",
     "Apagar el fuego, exprimir el jugo del limón y salar. El limón va al final y fuera del fuego: es lo que activa la absorción del hierro."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El tadka es técnica, no ingrediente: especias fritas 30 s y volcadas al final elevan cualquier legumbre",
     "El ajo pasa de dorado a amargo en 5 segundos: sacarlo antes de lo que creés"
@@ -10097,14 +10097,14 @@
     }
    ],
    "pasos": [
-    "Enjuagar la taza de quinoa en un colador fino hasta que el agua salga clara —así se va el amargor de la saponina— y cocinarla en agua hirviendo con sal unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco.",
+    "Enjuagar {quinoa} de quinoa en un colador fino hasta que el agua salga clara —así se va el amargor de la saponina— y cocinarla en agua hirviendo con sal unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco.",
     "Extender la quinoa cocida en una placa o fuente amplia y dejar que se enfríe del todo: apilada y caliente se apelmaza; abierta, queda suelta, que es como la necesita el tabule.",
-    "Picar bien chico la taza de perejil y la media taza de menta. Acá el perejil no es adorno: es una verdura más del plato — y la menta es la frescura que lo define.",
-    "Cortar en cubitos los 2 tomates y el pepino y, si la usás, picar bien fina el cuarto de cebolla morada.",
-    "Juntar en un bol grande la quinoa ya FRÍA, las hierbas, los tomates y el pepino, y aliñar con el jugo de un limón y medio, las 4 cucharadas de aceite de oliva y sal: el aliño va abundante, que para eso es tabule.",
+    "Picar bien chico {perejil} de perejil y {menta} de menta. Acá el perejil no es adorno: es una verdura más del plato — y la menta es la frescura que lo define.",
+    "Cortar en cubitos los tomates y el pepino y, si la usás, picar bien fina la cebolla morada.",
+    "Juntar en un bol grande la quinoa ya FRÍA, las hierbas, los tomates y el pepino, y aliñar con el jugo de limón, {aceite_oliva} de aceite de oliva y sal: el aliño va abundante, que para eso es tabule.",
     "Llevar 30 minutos a la heladera antes de servir: el frío termina de casar los sabores, y el tabule se come fresco o no es tabule."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Enfriar la quinoa extendida evita el engrudo",
     "El tabule real es ensalada de perejil con granos, no al revés",
@@ -10284,14 +10284,14 @@
     }
    ],
    "pasos": [
-    "Empezar con las 3 tazas de arroz integral cocido y FRÍO, idealmente del día anterior: desgranarlo con las manos o con un tenedor antes de prender el fuego. Es el requisito innegociable del plato — recién hecho se apelmaza y no hay salteado que lo salve.",
-    "Calentar el wok o una sartén grande a fuego fuerte con una cucharada del aceite de oliva y saltear los 200 g de champiñones laminados solos, sin revolver de más: primero largan agua, y recién cuando evapora empiezan a dorarse. Esperar ese dorado, que es donde está el sabor.",
-    "Correr los champiñones a un costado, sumar el resto del aceite, los 3 dientes de ajo picados y la cucharada de jengibre rallado, y revolver apenas 30 segundos, hasta que perfumen sin quemarse.",
+    "Empezar con {arroz_integral} de arroz integral cocido y FRÍO, idealmente del día anterior: desgranarlo con las manos o con un tenedor antes de prender el fuego. Es el requisito innegociable del plato — recién hecho se apelmaza y no hay salteado que lo salve.",
+    "Calentar el wok o una sartén grande a fuego fuerte con la mitad del aceite de oliva y saltear {champinones} de champiñones laminados solos, sin revolver de más: primero largan agua, y recién cuando evapora empiezan a dorarse. Esperar ese dorado, que es donde está el sabor.",
+    "Correr los champiñones a un costado, sumar el resto del aceite, {ajo} de ajo picado y {jengibre} de jengibre rallado, y revolver apenas 30 segundos, hasta que perfumen sin quemarse.",
     "Agregar el arroz frío desgranado y aplastarlo contra el wok con la cuchara, dejándolo quieto por tandas para que tueste. Ahí está la gracia del plato: granos sueltos y tostados, no un revuelto húmedo.",
-    "Verter las 3 cucharadas de salsa de soja por los bordes del wok y no sobre el arroz: al tocar el metal caliente se carameliza y perfuma todo el salteado.",
-    "Sumar al final los 200 g de edamame, las 3 cebollas de verdeo en rodajas y los 40 g de maní tostado, y saltear un minuto más, lo justo para que el edamame se caliente sin perder color. Si lo usás, rematar con la cucharada de sésamo integral por encima."
+    "Verter {salsa_soja} de salsa de soja por los bordes del wok y no sobre el arroz: al tocar el metal caliente se carameliza y perfuma todo el salteado.",
+    "Sumar al final {edamame} de edamame, las cebollas de verdeo en rodajas y {mani} de maní tostado, y saltear un minuto más, lo justo para que el edamame se caliente sin perder color. Si lo usás, rematar con {sesamo_integral} de sésamo integral por encima."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Arroz recién hecho = engrudo; frío del día anterior = granos que tuestan",
     "La soja por el borde del wok se tuesta y perfuma",
@@ -12094,14 +12094,14 @@
     }
    ],
    "pasos": [
-    "Prensar los 2 bloques de tofu firme unos 20 minutos entre dos tablas con peso encima, para que larguen el agua: cuanta más suelten ahora, más crocante sale la milanesa. Después cortarlos en láminas de 1 cm.",
-    "Preparar el batido en un plato hondo: los 60 ml de bebida vegetal, las 2 cucharadas de harina de garbanzo —que acá hace de huevo y liga el rebozado—, la cucharada de salsa de soja y la cucharadita de ajo y la de cebolla en polvo. Si la usás, la media cucharadita de cúrcuma le da color. Batir hasta que no queden grumos.",
-    "Armar el empanado en otro plato: los 150 g de pan integral rallado, los 50 g de levadura nutricional —que acá hace de queso y aporta el umami de milanesa—, las 2 cucharaditas de orégano, la de tomillo y la de pimentón ahumado.",
+    "Prensar {tofu_firme} de tofu firme unos 20 minutos entre dos tablas con peso encima, para que largue el agua: cuanta más suelte ahora, más crocante sale la milanesa. Después cortar el tofu en láminas de 1 cm.",
+    "Preparar el batido en un plato hondo: {bebida_vegetal_fortificada} de bebida vegetal, {harina_garbanzo} de harina de garbanzo —que acá hace de huevo y liga el rebozado—, {salsa_soja} de salsa de soja, {ajo} de ajo en polvo y {cebolla} de cebolla en polvo. Si la usás, agregale {curcuma} de cúrcuma para darle color. Batir hasta que no queden grumos.",
+    "Armar el empanado en otro plato: {pan_integral} de pan integral rallado, {levadura_nutricional} de levadura nutricional —que acá hace de queso y aporta el umami de milanesa—, {oregano} de orégano, {tomillo} de tomillo y {pimenton} de pimentón ahumado.",
     "Pasar cada lámina primero por el batido y después por el empanado, presionando con los dedos para que la costra se pegue bien y no se caiga en el horno.",
-    "Acomodar las milanesas en una placa con papel de horno y pincelar las dos caras con las 3 cucharadas de aceite de oliva: ese pincelado es lo que las dora sin freírlas.",
+    "Acomodar las milanesas en una placa con papel de horno y pincelar las dos caras con {aceite_oliva} de aceite de oliva: ese pincelado es lo que las dora sin freírlas.",
     "Hornear a 200° unos 15 minutos, dar vuelta y seguir 10 a 15 minutos más, hasta que la costra esté dorada y crocante. Servir con gajos de limón si los usás — el clásico de toda milanesa."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El prensado separa milanesa crocante de esponja húmeda",
     "La levadura nutricional en el empanado es lo que hace que 'sepa a milanesa'",
@@ -12397,15 +12397,15 @@
     }
    ],
    "pasos": [
-    "Arrancar por la crema: mezclar los 200 g de yogur vegano con el jugo y la ralladura de medio limón, un diente de ajo rallado y, si lo usás, una cucharada de cilantro picado. Guardarla en la heladera hasta el armado: va bien fría.",
-    "Picar la cebolla, el morrón rojo y el otro diente de ajo, rallar la zanahoria, y sofreír todo en una sartén amplia con un fondo de aceite a fuego medio unos 4 minutos, hasta que la cebolla esté transparente.",
-    "Sumar las 2 cucharadas de extracto de tomate junto con las 2 cucharaditas de comino y la de pimentón ahumado, y tostar todo un minuto revolviendo: ahí el extracto suelta su umami y las especias despiertan.",
-    "Agregar los 400 g de lentejas cocidas y los 200 ml de salsa de tomate y cocinar 5 a 7 minutos, hasta que el relleno espese y la cuchara deje un surco al pasar por el fondo: tiene que sostenerse en la tortilla sin escurrirse.",
+    "Arrancar por la crema: mezclar {yogur_vegano} de yogur vegano con el jugo y la ralladura de limón, la mitad del ajo rallado y, si lo usás, un poco de cilantro picado. Guardarla en la heladera hasta el armado: va bien fría.",
+    "Picar la cebolla, el morrón rojo y el resto del ajo, rallar la zanahoria, y sofreír todo en una sartén amplia con un fondo de aceite a fuego medio unos 4 minutos, hasta que la cebolla esté transparente.",
+    "Sumar {extracto_tomate} de extracto de tomate junto con {comino} de comino y {pimenton} de pimentón ahumado, y tostar todo un minuto revolviendo: ahí el extracto suelta su umami y las especias despiertan.",
+    "Agregar {lentejas} de lentejas cocidas y {salsa_tomate} de salsa de tomate y cocinar 5 a 7 minutos, hasta que el relleno espese y la cuchara deje un surco al pasar por el fondo: tiene que sostenerse en la tortilla sin escurrirse.",
     "Fuera del fuego, exprimir el limón restante sobre el relleno y sumar más cilantro picado si lo usás. El limón no es un detalle: su vitamina C ayuda a absorber el hierro de las lentejas.",
-    "Calentar las 12 tortillas de maíz de a una en una sartén seca bien caliente, unos segundos por lado, y llevarlas a la mesa tapadas con un repasador para que no se enfríen.",
-    "Armar cada taco: una base de relleno caliente, la palta en láminas, un puñado del repollo colorado cortado bien fino, los rabanitos en láminas si los sumás, y una cucharada generosa de la crema fría por encima. El taco se come apenas armado."
+    "Calentar las tortillas de maíz de a una en una sartén seca bien caliente, unos segundos por lado, y llevarlas a la mesa tapadas con un repasador para que no se enfríen.",
+    "Armar cada taco: una base de relleno caliente, la palta en láminas, un puñado del repollo colorado cortado bien fino, los rabanitos en láminas si los sumás, y la crema fría por encima, sin tacañear. El taco se come apenas armado."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El relleno debe quedar espeso: si chorrea, el taco muere",
     "Tortillas siempre calientes y de a una",
@@ -12683,15 +12683,15 @@
     }
    ],
    "pasos": [
-    "Cocinar los 200 g de arroz integral en abundante agua con sal unos 30 minutos, hasta que esté tierno pero entero. Fuera del fuego, mezclarlo con la ralladura y el jugo de un limón y, si lo usás, la mitad del cilantro picado: ese es el arroz al limón que le da nombre al plato.",
-    "Picar la cebolla, el morrón rojo y los 2 dientes de ajo, y sofreírlos en una olla con un fondo de aceite a fuego medio hasta que la cebolla se ablande. Sumar la cucharadita de pimentón, la de comino y la media de orégano y revolver 30 segundos, para que las especias despierten en la olla caliente.",
-    "Agregar los 500 g de porotos negros cocidos y los 200 ml de caldo de verduras y cocinar 10 minutos, PISANDO parte de los porotos contra la olla: ese puré parcial es lo que liga el relleno y hace que el burrito no se abra al comerlo.",
+    "Cocinar {arroz_integral} de arroz integral en abundante agua con sal unos 30 minutos, hasta que esté tierno pero entero. Fuera del fuego, mezclarlo con la ralladura y el jugo de uno de los limones y, si lo usás, la mitad del cilantro picado: ese es el arroz al limón que le da nombre al plato.",
+    "Picar la cebolla, el morrón rojo y {ajo} de ajo, y sofreírlos en una olla con un fondo de aceite a fuego medio hasta que la cebolla se ablande. Sumar {~pimenton} de pimentón, {~comino} de comino y {~oregano} de orégano y revolver 30 segundos, para que las especias despierten en la olla caliente.",
+    "Agregar {porotos_negros} de porotos negros cocidos y {caldo_verduras} de caldo de verduras y cocinar 10 minutos, PISANDO parte de los porotos contra la olla: ese puré parcial es lo que liga el relleno y hace que el burrito no se abra al comerlo.",
     "Fuera del fuego, exprimir el otro limón sobre los porotos y sumar el resto del cilantro si lo usás. El limón acá también trabaja: su vitamina C mejora la absorción del hierro de los porotos.",
-    "Preparar los frescos: la palta en láminas, los 200 g de choclo desgranado, el tomate en cubitos y, si las sumás, las hojas verdes.",
+    "Preparar los frescos: la palta en láminas, {choclo} de choclo desgranado, el tomate en cubitos y, si las sumás, las hojas verdes.",
     "Entibiar las tortillas integrales de a una en una sartén seca hasta que se vuelvan flexibles. Poner en el centro de cada una una capa de arroz, otra de porotos y los frescos por encima, sin llenarla de más: tiene que poder cerrarse.",
     "Doblar los laterales hacia adentro y enrollar apretado desde abajo, y apoyar cada burrito con el cierre hacia abajo para que no se abra."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El pisado parcial de porotos evita que el burrito se desarme",
     "No sobrecargar: el que no cierra no es generosidad, es derrota",
@@ -13007,15 +13007,15 @@
     }
    ],
    "pasos": [
-    "Prensar los 400 g de tofu firme unos 20 minutos con peso encima y cortarlo en cubos: sin prensar, el tofu viene tan cargado de agua que la marinada no tiene por dónde entrar.",
-    "Armar la marinada en un bol: las 3 cucharadas de aceite de oliva, las 2 cucharadas de jugo de limón, la cucharada de vinagre —aceto si tenés—, los 2 dientes de ajo picados, la cucharadita de orégano, la de tomillo, el cuarto de cucharadita de pimentón ahumado y, si lo usás, la media cucharadita de romero. Sumergir los cubos de tofu y dejarlos tomar sabor al menos 2 horas, mejor toda la noche en la heladera.",
+    "Prensar {tofu_firme} de tofu firme unos 20 minutos con peso encima y cortarlo en cubos: sin prensar, el tofu viene tan cargado de agua que la marinada no tiene por dónde entrar.",
+    "Armar la marinada en un bol: {aceite_oliva} de aceite de oliva, el jugo del limón, {vinagre} de vinagre —aceto si tenés—, {ajo} de ajo picado, {~oregano} de orégano, {~tomillo} de tomillo, {~pimenton} de pimentón ahumado y, si lo usás, {~romero} de romero. Sumergir los cubos de tofu y dejarlos tomar sabor al menos 2 horas, mejor toda la noche en la heladera.",
     "Escurrir el tofu —guardar la marinada, que todavía tiene trabajo— y hornearlo a 200° en una placa unos 20 a 25 minutos, dándolo vuelta a mitad de camino, hasta que los cubos estén dorados y firmes por fuera.",
-    "Mientras, cocinar los 200 g de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y extenderla para que se enfríe.",
-    "Cortar el pepino en cubitos, los 300 g de tomates cherry al medio, el morrón rojo en cubitos y la media cebolla morada en pluma fina. Juntarlos en un bol grande con la quinoa fría, los 100 g de aceitunas negras y, si las usás, las alcaparras.",
+    "Mientras, cocinar {quinoa} de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y extenderla para que se enfríe.",
+    "Cortar el pepino en cubitos, {tomate} de tomates cherry al medio, el morrón rojo en cubitos y la cebolla morada en pluma fina. Juntarlos en un bol grande con la quinoa fría, {aceitunas#1} de aceitunas negras y, si las usás, {aceitunas#2} de alcaparras.",
     "Aliñar con lo que quedó de la marinada: ese jugo con ajo y hierbas es el aderezo del plato, no se tira.",
-    "Recién al final sumar los 40 g de albahaca y los 40 g de perejil apenas cortados, el tofu horneado y, si las usás, las semillas de girasol tostadas. Mezclar suave y servir: el tofu entra último para seguir crocante."
+    "Recién al final sumar {albahaca} de albahaca y {perejil} de perejil apenas cortados, el tofu horneado y, si las usás, las semillas de girasol tostadas. Mezclar suave y servir: el tofu entra último para seguir crocante."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La marinada penetra solo con tofu prensado (o congelado/descongelado: esponja)",
     "Tofu y hierbas al final para que no se ablanden",
@@ -13319,14 +13319,14 @@
     }
    ],
    "pasos": [
-    "Cortar en trozos parejos la berenjena, los 2 morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con los 400 g de garbanzos cocidos bien escurridos y los 3 dientes de ajo enteros, con su piel: asados adentro de la camisa se vuelven una crema dulce.",
-    "Rociar con 3 cucharadas del aceite de oliva y espolvorear la cucharadita de comino —reservando una pizca para el aliño—, la de pimentón ahumado y la media de canela, que acá es la firma árabe del plato. Asar a 200° unos 25 a 30 minutos, hasta que las verduras tengan los bordes dorados y los garbanzos estén crocantes. Que todo quede con espacio: amontonado se hierve en vez de asarse.",
-    "Mientras, cocinar los 200 g de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y dejarla reposar tapada unos minutos.",
-    "Preparar el aliño: pelar los ajos asados, pisarlos con un tenedor hasta hacer una pasta y batirlos con el jugo y la ralladura del limón, las otras 3 cucharadas de aceite de oliva, la cucharada de tahini, la pizca de comino reservada y, si la usás, la cucharadita de azúcar mascabo. Emulsionar hasta que quede cremoso.",
+    "Cortar en trozos parejos la berenjena, los morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con {garbanzos} de garbanzos cocidos bien escurridos y {ajo} de ajo entero, con su piel: al asarse adentro de la camisa, el ajo se vuelve una crema dulce.",
+    "Rociar con la mitad de {aceite_oliva} de aceite de oliva y espolvorear {~comino} de comino —reservando un poco para el aliño—, {~pimenton} de pimentón ahumado y {~canela} de canela, que acá es la firma árabe del plato. Asar a 200° unos 25 a 30 minutos, hasta que las verduras tengan los bordes dorados y los garbanzos estén crocantes. Que todo quede con espacio: amontonado se hierve en vez de asarse.",
+    "Mientras, cocinar {quinoa} de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y dejarla reposar tapada unos minutos.",
+    "Preparar el aliño: pelar el ajo asado, pisarlo con un tenedor hasta hacer una pasta y batirla con el jugo y la ralladura del limón, el resto del aceite de oliva, {tahini} de tahini, el comino reservado y, si la usás, {azucar_mascabo} de azúcar mascabo. Emulsionar hasta que quede cremoso.",
     "Juntar en una fuente la quinoa, los garbanzos y las verduras asadas todavía tibias y bañar con el aliño. El limón no es solo gusto: su vitamina C ayuda a que el hierro de garbanzos y quinoa se absorba.",
     "Terminar con lo fresco que quieras sumar: las hojas verdes, las aceitunas, el perejil y la menta picados, y los pistachos tostados por encima. El contraste entre lo tibio y lo fresco es el plato."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El ajo asado pisado EN el aliño es el truco del plato",
     "La canela en el asado no endulza: perfuma (cocina árabe)",
@@ -13660,15 +13660,15 @@
    ],
    "pasos": [
     "Poner la quinoa en un colador fino y enjuagarla bajo la canilla hasta que el agua salga clara: es lo que le saca el amargor de la saponina. Dejarla escurriendo.",
-    "Picar la cebolla, los 3 dientes de ajo, las 2 zanahorias y las 2 ramas de apio. Calentar un fondo de aceite en una olla grande a fuego medio y sofreírlos 5 minutos, hasta que la cebolla se vea transparente.",
+    "Picar la cebolla, {ajo} de ajo, las zanahorias y {apio} de apio. Calentar un fondo de aceite en una olla grande a fuego medio y sofreírlos 5 minutos, hasta que la cebolla se vea transparente.",
     "Cortar en cubos el morrón rojo, la berenjena y el zucchini. Sumar primero el morrón y la berenjena y cocinar 5 minutos; después el zucchini, 5 minutos más, revolviendo para que nada se dore de más.",
-    "Abrir un hueco en el centro de la olla, tirar ahí las 2 cucharaditas de comino, el pimentón ahumado y la media cucharadita de canela, y revolver un minuto hasta que perfumen: ese \"bloom\" en la olla caliente es lo que despierta las especias. La canela es la firma del plato: no la saltees.",
-    "Incorporar la quinoa enjuagada, los 400 g de garbanzos cocidos y escurridos, el tomate triturado, los 750 ml de caldo caliente y las 2 hojas de laurel. Llevar a hervor.",
+    "Abrir un hueco en el centro de la olla, tirar ahí {~comino} de comino, el pimentón ahumado y {~canela} de canela, y revolver un minuto hasta que perfumen: ese \"bloom\" en la olla caliente es lo que despierta las especias. La canela es la firma del plato: no la saltees.",
+    "Incorporar la quinoa enjuagada, {garbanzos} de garbanzos cocidos y escurridos, el tomate triturado, {caldo_verduras} de caldo caliente y {laurel} de laurel. Llevar a hervor.",
     "Bajar a fuego bajo, tapar y cocinar 15 a 18 minutos, hasta que la quinoa muestre el anillito blanco del grano abierto y el guiso espese. Si se seca antes de tiempo, aflojar con un chorro de caldo.",
-    "Sacar el laurel, sumar los 100 g de espinaca y revolver un minuto, hasta que colapse con el calor del guiso.",
+    "Sacar el laurel, sumar {espinaca} de espinaca y revolver un minuto, hasta que colapse con el calor del guiso.",
     "Fuera del fuego, exprimir el jugo del limón y sumar el perejil picado, y la menta si la usás. El limón no es adorno: su vitamina C es lo que hace que el hierro de garbanzos y quinoa se absorba. Servir con las almendras tostadas por encima, si las usás."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La quinoa absorbe muchísimo: al recalentar, sumar caldo",
     "Yogur vegano por encima al servir: contraste ácido-cremoso",
@@ -13970,14 +13970,14 @@
     }
    ],
    "pasos": [
-    "Cocinar los 250 g de arroz integral en caldo 35 a 40 minutos, hasta que el grano esté tierno pero siga entero, y extenderlo en una fuente para que se enfríe rápido y quede suelto.",
+    "Cocinar {arroz_integral} de arroz integral en caldo 35 a 40 minutos, hasta que el grano esté tierno pero siga entero, y extenderlo en una fuente para que se enfríe rápido y quede suelto.",
     "Cocinar el brócoli al vapor apenas 3 minutos y pasarlo enseguida por agua bien fría: el corte de calor lo deja verde brillante y firme, no gris y blando.",
-    "Picar en cubitos chicos el zucchini crudo y el morrón rojo, rallar la zanahoria y cortar las 4 cebollas de verdeo en rodajitas finas.",
-    "Armar el aliño en un frasco con tapa: el jugo y la ralladura de la naranja, el jugo del limón, las 3 cucharadas de aceite de oliva, la cucharadita de mostaza, la de jengibre rallado, el diente de ajo rallado y, si la usás, la cucharadita de azúcar mascabo. Cerrar y agitar fuerte hasta que emulsione: la mostaza es la que mantiene todo unido.",
-    "Juntar en un bol grande el arroz frío, los 400 g de lentejas cocidas, el brócoli y los crudos, sumar las pasas si las usás, y bañar con el aliño. La naranja no es un capricho: entre su vitamina C y la del limón, el hierro de las lentejas se absorbe mucho mejor.",
-    "Terminar con los 40 g de perejil picado y, si las sumás, las almendras tostadas por encima, y darle media hora de heladera antes de servir para que los sabores se asienten."
+    "Picar en cubitos chicos el zucchini crudo y el morrón rojo, rallar la zanahoria y cortar las cebollas de verdeo en rodajitas finas.",
+    "Armar el aliño en un frasco con tapa: el jugo y la ralladura de la naranja, el jugo del limón, {aceite_oliva} de aceite de oliva, {mostaza} de mostaza, {jengibre} de jengibre rallado, {ajo} de ajo rallado y, si la usás, {azucar_mascabo} de azúcar mascabo. Cerrar y agitar fuerte hasta que emulsione: la mostaza es la que mantiene todo unido.",
+    "Juntar en un bol grande el arroz frío, {lentejas} de lentejas cocidas, el brócoli y los crudos, sumar las pasas si las usás, y bañar con el aliño. La naranja no es un capricho: entre su vitamina C y la del limón, el hierro de las lentejas se absorbe mucho mejor.",
+    "Terminar con {perejil} de perejil picado y, si las sumás, las almendras tostadas por encima, y darle media hora de heladera antes de servir para que los sabores se asienten."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Jugo Y ralladura de naranja es lo que la distingue de toda ensalada de arroz",
     "Nutricionalmente: vitamina C doble sobre hierro de lentejas (R1 de manual)",
@@ -14324,16 +14324,16 @@
     }
    ],
    "pasos": [
-    "Poner los 250 g de cuscús integral en un bol grande y volcarle encima los 350 ml de caldo de verduras hirviendo. Tapar con un plato y dejar 10 minutos sin tocar: se hidrata solo.",
-    "Mientras tanto cortar en cubitos chicos el zucchini, el morrón rojo y el medio pepino, todo crudo; rallar la zanahoria y picar fino las 4 cebollas de verdeo.",
-    "Picar las aceitunas verdes y, si los usás, los tomates secos escurridos. Picar la menta y el perejil gruesos: acá las hierbas son verdura y no adorno, por eso van 40 g de cada una. El cilantro es opcional.",
-    "Armar el aliño en un frasco con tapa: el jugo y la ralladura del limón, las 4 cucharadas de aceite de oliva, el diente de ajo bien picado, la cucharadita de comino, un cuarto de cucharadita de canela y otro de cúrcuma, sal y pimienta. Cerrar y agitar hasta que emulsione. La cucharadita de azúcar mascabo, si querés redondearlo.",
+    "Poner {cuscus} de cuscús integral en un bol grande y volcarle encima {caldo_verduras} de caldo de verduras hirviendo. Tapar con un plato y dejar 10 minutos sin tocar: se hidrata solo.",
+    "Mientras tanto cortar en cubitos chicos el zucchini, el morrón rojo y el pepino, todo crudo; rallar la zanahoria y picar fino las cebollas de verdeo.",
+    "Picar las aceitunas verdes y, si los usás, los tomates secos escurridos. Picar la menta y el perejil gruesos: acá las hierbas son verdura y no adorno, por eso llevan {~menta} de menta y {~perejil} de perejil. El cilantro es opcional.",
+    "Armar el aliño en un frasco con tapa: el jugo y la ralladura del limón, {aceite_oliva} de aceite de oliva, {ajo} de ajo bien picado, {~comino} de comino, {~canela} de canela y {~curcuma} de cúrcuma, sal y pimienta. Cerrar y agitar hasta que emulsione. Si querés redondearlo, sumar {azucar_mascabo} de azúcar mascabo.",
     "Destapar el cuscús y esponjarlo con un TENEDOR, separando los granos de a poco. Con cuchara se aplastan y no hay vuelta atrás.",
-    "Sumar al bol los garbanzos cocidos y escurridos y todas las verduras cortadas, volcar el aliño y mezclar.",
+    "Sumar al bol {garbanzos} de garbanzos cocidos y escurridos y todas las verduras cortadas, volcar el aliño y mezclar.",
     "Incorporar las hierbas y las pasas al final, para que no se ablanden ni pierdan color. Las almendras fileteadas, si las usás, van también acá.",
     "Dejar reposar 15 minutos antes de servir: es el rato en que el cuscús toma el aliño."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Esponjar con tenedor, jamás cuchara (engrudo)",
     "Absorbe aliño con el tiempo: guardar aliño extra para el día siguiente",
@@ -14592,13 +14592,13 @@
     }
    ],
    "pasos": [
-    "Poner en un bol grande los 500 g de garbanzos cocidos y escurridos, los 300 g de tomates cherry al medio, el pepino y el morrón rojo en cubitos, la media cebolla morada en pluma fina y los 60 g de aceitunas.",
-    "Armar el aliño en un frasco con tapa: el jugo de los 2 limones, las 4 cucharadas de aceite de oliva, el diente de ajo rallado, la cucharadita de comino —la especia que manda acá—, la media de pimentón, la media de cúrcuma y, si la usás, la cucharadita de azúcar mascabo. Agitar fuerte hasta que emulsione.",
+    "Poner en un bol grande {garbanzos} de garbanzos cocidos y escurridos, {tomate} de tomates cherry al medio, el pepino y el morrón rojo en cubitos, la cebolla morada en pluma fina y {aceitunas} de aceitunas.",
+    "Armar el aliño en un frasco con tapa: el jugo de los limones, {aceite_oliva} de aceite de oliva, {ajo} de ajo rallado, {~comino} de comino —la especia que manda acá—, {~pimenton} de pimentón, {~curcuma} de cúrcuma y, si la usás, {azucar_mascabo} de azúcar mascabo. Agitar fuerte hasta que emulsione.",
     "Volcar el aliño sobre el bol y mezclar bien. Tanto limón no es exageración: su vitamina C es la que hace aprovechable el hierro de los garbanzos.",
-    "Recién al final sumar las 2 paltas en cubos y, si las usás, el cilantro y la menta picados. Envolver con cuidado y pocas vueltas: palta pisada de más y esto se vuelve guacamole con garbanzos — rico, pero otro plato.",
+    "Recién al final sumar la palta en cubos y, si las usás, el cilantro y la menta picados. Envolver con cuidado y pocas vueltas: palta pisada de más y esto se vuelve guacamole con garbanzos — rico, pero otro plato.",
     "Dejar reposar 10 a 15 minutos a temperatura ambiente antes de servir, para que los garbanzos tomen el aliño."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La palta SIEMPRE última y con movimientos envolventes",
     "De vianda: palta aparte, cortada en el momento con limón extra",
