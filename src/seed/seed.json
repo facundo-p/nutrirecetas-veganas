@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "2d1800038638ed62dec8c4bc00f725f6aa4359a883f1962c07cd2b562adeff5a",
+ "content_hash": "a97619d5eccb4cf756e448528942a4455278cce3eefcb4fce22639baeb01ec4a",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -14661,7 +14661,7 @@
      "funcion": "650 licuado + 1500 en olla",
      "imprescindible": true,
      "sustitutos": [],
-     "paso": 0
+     "paso": 2
     },
     {
      "ref": {
@@ -14691,15 +14691,15 @@
     }
    ],
    "pasos": [
-    "Poner los 250 g de porotos de soja en un bol grande, cubrirlos con abundante agua fría y dejarlos en remojo 10 a 12 horas. Al otro día enjuagarlos bien: tienen que estar hinchados, al doble de tamaño.",
-    "Licuar los porotos en dos tandas, cada una con 325 ml de agua, dos o tres minutos por tanda, hasta que no se sienta grano y quede una crema blanca pareja.",
-    "Volcar el licuado en una olla grande, sumar el litro y medio de agua restante y llevar a hervor a fuego medio. OJO al romper hervor: sube muchísimo de golpe, así que quedarse al lado con la espumadera.",
+    "Poner {soja_grano} de porotos de soja en un bol grande, cubrirlos con abundante agua fría y dejarlos en remojo 10 a 12 horas. Al otro día enjuagarlos bien: tienen que estar hinchados, al doble de tamaño.",
+    "Licuar los porotos en dos tandas, cada una con un poco del agua, dos o tres minutos por tanda, hasta que no se sienta grano y quede una crema blanca pareja.",
+    "Volcar el licuado en una olla grande, sumar el agua que falta hasta completar {~agua} en total y llevar a hervor a fuego medio. OJO al romper hervor: sube muchísimo de golpe, así que quedarse al lado con la espumadera.",
     "Hervir DESTAPADA 40 a 45 minutos a fuego medio-bajo, espumando cada tanto. El hervor largo no se negocia: la soja cruda trae compuestos que bloquean la digestión y solo la cocción prolongada los desactiva.",
     "Dejar entibiar y filtrar con una tela sobre otra olla o un bol, retorciendo y escurriendo bien hasta sacarle todo el líquido al bagazo.",
     "Guardar el bagazo en un recipiente: es el okara, y con él se hacen las milanesas de soja del recetario. Aguanta unos tres días en la heladera o meses en el freezer.",
-    "Si las usás, agregar las gotas de esencia de vainilla y la pizca de sal a la leche ya filtrada, y guardarla en botella en la heladera."
+    "Si las usás, agregar {esencia_vainilla} de esencia de vainilla y {sal_yodada} de sal a la leche ya filtrada, y guardarla en botella en la heladera."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "⚠️ El hervor de 40-45 min es OBLIGATORIO: inactiva los antinutrientes de la soja cruda",
     "El bagazo (okara) NO se tira: alimenta las milanesas P10 (heladera 3 días / freezer 3 meses)",
@@ -14761,12 +14761,12 @@
     }
    ],
    "pasos": [
-    "Poner la taza de coco rallado en la licuadora con las dos tazas de agua bien caliente. El agua caliente es lo que ayuda a soltar la grasa del coco, y si la querés más concentrada, usar una taza sola.",
+    "Poner {coco_rallado} de coco rallado en la licuadora con {agua} de agua bien caliente. El agua caliente es lo que ayuda a soltar la grasa del coco, y si la querés más concentrada, usar solo la mitad del agua.",
     "Licuar fuerte dos o tres minutos, hasta que las fibras se rompan y el líquido quede blanco y opaco.",
     "Dejar reposar cinco minutos con la licuadora apagada, para que el agua termine de sacarle todo el sabor al coco.",
     "Filtrar con una tela sobre un frasco o bol, retorciendo bien para exprimir hasta la última gota. El bagazo que queda sirve para unas galletitas del recetario, así que no lo tires."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El bagazo va a galletitas (D02)",
     "En heladera separa una capa de crema: es crema de coco montable (técnica de P30)"
@@ -14910,14 +14910,14 @@
     }
    ],
    "pasos": [
-    "Batir el cuarto de taza de leche de soja con la media cucharada de vinagre de manzana y el cuarto de cucharadita de sal durante un minuto, y dejar reposar diez minutos hasta que se corte y espese apenas. Tiene que ser leche de soja o de almendras: son las únicas que cuajan con el vinagre.",
-    "Mientras reposa, si el aceite de coco está sólido, derretir la media taza a baño maría suave. Tiene que quedar líquido pero apenas tibio, no caliente, para que después solidifique parejo y no corte la emulsión.",
-    "Poner en la licuadora la leche cortada, el aceite de coco líquido y la cucharada de aceite de oliva. Si la usás —y conviene—, sumar la cucharadita de lecitina de soja: es la que mantiene todo unido y evita que la manteca se corte en la heladera.",
-    "Si las sumás, entran también la cucharada de levadura nutricional, que da gusto y suma vitaminas del grupo B, y la pizca de cúrcuma, que es puro color manteca.",
+    "Batir {bebida_soja} de leche de soja con {~vinagre} de vinagre de manzana y {~sal_yodada} de sal durante un minuto, y dejar reposar diez minutos hasta que se corte y espese apenas. Tiene que ser leche de soja o de almendras: son las únicas que cuajan con el vinagre.",
+    "Mientras reposa, si el aceite de coco está sólido, derretir {aceite_coco} de ese aceite a baño maría suave. Tiene que quedar líquido pero apenas tibio, no caliente, para que después solidifique parejo y no corte la emulsión.",
+    "Poner en la licuadora la leche cortada, el aceite de coco líquido y {aceite_oliva} de aceite de oliva. Si la usás —y conviene—, sumar {lecitina_soja} de lecitina de soja: es la que mantiene todo unido y evita que la manteca se corte en la heladera.",
+    "Si las sumás, entran también {levadura_nutricional} de levadura nutricional, que da gusto y suma vitaminas del grupo B, y {curcuma} de cúrcuma, que es puro color manteca.",
     "Licuar 30 segundos a velocidad baja y un minuto a velocidad alta, hasta que la mezcla se vea espesa, pálida y sin vetas de aceite suelto.",
     "Volcar en un molde o frasco y llevar a la heladera hasta que solidifique del todo, unas horas. De ahí en más rinde como cualquier manteca: es la que va en la masa de la pastafrola y del crumble del recetario."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La lecitina es opcional en la lista pero obligatoria en la práctica si no querés que se separe",
     "Variante untable: reemplazar ⅓ del coco por girasol",
@@ -14975,7 +14975,7 @@
      "funcion": "leche de maní",
      "imprescindible": true,
      "sustitutos": [],
-     "paso": 0
+     "paso": 1
     },
     {
      "ref": {
@@ -15056,14 +15056,14 @@
     }
    ],
    "pasos": [
-    "Remojar la taza de maní crudo pelado en agua fría durante 4 horas y colarlo. El remojo ablanda el grano y la leche sale más cremosa.",
-    "Licuar el maní con las dos tazas de agua bien caliente durante un minuto, hasta que quede un líquido blanco y parejo.",
+    "Remojar {mani} de maní crudo pelado en agua fría durante 4 horas y colarlo. El remojo ablanda el grano y la leche sale más cremosa.",
+    "Licuar el maní con {agua} de agua bien caliente durante un minuto, hasta que quede un líquido blanco y parejo.",
     "Filtrar con una tela, exprimiendo bien: eso que cae es leche de maní, la base del queso.",
-    "Poner la leche de maní en una olla a fuego medio con las 2 cucharadas de jugo de limón, la cucharada de vinagre de manzana, la cucharadita de sal, las 4 cucharadas de levadura nutricional y el cuarto de taza de aceite de oliva. Al romper el hervor, bajar el fuego a mínimo: la acidez ya empezó a cuajar la leche.",
-    "Disolver las 4 cucharadas de fécula de mandioca en 4 cucharadas de agua fría y volcarlas en la olla en forma de hilo, revolviendo sin parar.",
+    "Poner la leche de maní en una olla a fuego medio con {limon} de jugo de limón, {vinagre} de vinagre de manzana, {sal_yodada} de sal, {levadura_nutricional} de levadura nutricional y {~aceite_oliva} de aceite de oliva. Al romper el hervor, bajar el fuego a mínimo: la acidez ya empezó a cuajar la leche.",
+    "Disolver {fecula_mandioca} de fécula de mandioca en otro tanto de agua fría y volcar la mezcla en la olla en forma de hilo, revolviendo sin parar.",
     "Seguir revolviendo a fuego bajo unos 5 minutos, hasta que la mezcla se ponga elástica, brillante y haga hilos al levantar la cuchara. Para usarlo fundente va del fuego a la pizza sin escalas, y para bloque, pasarlo caliente a un recipiente apenas pincelado con aceite y dejarlo enfriar."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Usar inmediato sobre pizza, o enfriar en recipiente aceitado",
     "Es la capa del pastel de papas P19"
@@ -15229,14 +15229,14 @@
     }
    ],
    "pasos": [
-    "Escurrir bien los 200 g de tofu firme, apretándolo entre las manos o con un repasador: cuanta menos agua traiga, más sabor concentra la crema.",
-    "Procesarlo con las 3 cucharadas de levadura nutricional, la cucharada de jugo de limón, las 2 cucharadas de aceite de oliva, la media cucharadita de sal y la media taza de agua —o de bebida vegetal— hasta que quede una crema lisa, sin grumos.",
-    "Si los usás, sumar el diente de ajo, el cuarto de cucharadita de cúrcuma —que es puro color— y la cucharadita de vinagre de manzana, que empuja el sabor a queso, y dar un golpe más de procesadora para integrarlos.",
+    "Escurrir bien {tofu_firme} de tofu firme, apretándolo entre las manos o con un repasador: cuanta menos agua traiga, más sabor concentra la crema.",
+    "Procesarlo con {levadura_nutricional} de levadura nutricional, {limon} de jugo de limón, {aceite_oliva} de aceite de oliva, {~sal_yodada} de sal y {~agua} de agua —o de bebida vegetal— hasta que quede una crema lisa, sin grumos.",
+    "Si los usás, sumar {ajo} de ajo, {~curcuma} de cúrcuma —que es puro color— y {vinagre} de vinagre de manzana, que empuja el sabor a queso, y dar un golpe más de procesadora para integrarlos.",
     "Volcar la crema en una olla chica a fuego medio y revolver hasta que empiece a burbujear.",
-    "Disolver la cucharada de fécula de maíz en un chorrito de agua fría, agregarla a la olla y seguir revolviendo dos o tres minutos, hasta que espese y se despegue de las paredes al pasar la cuchara.",
+    "Disolver {fecula_maiz} de fécula de maíz en un chorrito de agua fría, agregarla a la olla y seguir revolviendo dos o tres minutos, hasta que espese y se despegue de las paredes al pasar la cuchara.",
     "En caliente es un dip para untar ya mismo. Si lo querés en bloque, pasarlo a un molde y dejarlo enfriar en la heladera hasta que tome firmeza."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El más rápido y proteico de los quesos del recetario"
    ],
@@ -15375,13 +15375,13 @@
     }
    ],
    "pasos": [
-    "Pelar las dos papas medianas —unos 300 a 350 gramos—, cortarlas en cubos y hervirlas hasta que un cuchillo entre sin resistencia. Antes de colar, reservar media taza del agua de cocción.",
-    "Procesar las papas todavía calientes con las 2 cucharadas colmadas de fécula de mandioca, las 3 cucharadas de levadura nutricional, las 2 de aceite de oliva, la cucharada de jugo de limón, la media cucharadita de sal y, si lo usás, el diente de ajo chico. En caliente el almidón trabaja a favor y la crema sale lisa.",
-    "Agregar el agua de cocción reservada de a poco, procesando entre tanda y tanda, hasta lograr una crema espesa que caiga pesada de la cuchara, no líquida.",
+    "Pelar las papas, cortarlas en cubos y hervirlas hasta que un cuchillo entre sin resistencia. Antes de colar, reservar un poco del agua de cocción.",
+    "Procesar las papas todavía calientes con {fecula_mandioca} de fécula de mandioca (colmando la medida), {levadura_nutricional} de levadura nutricional, {aceite_oliva} de aceite de oliva, {limon} de jugo de limón, {~sal_yodada} de sal y, si lo usás, {ajo} de ajo chico. En caliente el almidón trabaja a favor y la crema sale lisa.",
+    "Agregar {~agua} de agua de cocción reservada, de a poco, procesando entre tanda y tanda, hasta lograr una crema espesa que caiga pesada de la cuchara, no líquida.",
     "Pasar la crema a una olla a fuego medio-bajo y revolver sin parar 3 a 5 minutos. Está listo cuando se vuelve brillante, elástico y se despega solo del fondo de la olla.",
     "Repartirlo con una cuchara húmeda —para que no se pegue— sobre la pizza ya armada, y llevar a horno fuerte, de 220 a 250 grados, hasta que tome color por arriba."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Gratina y toma color; pincelar apenas con aceite para más dorado",
     "Con la masa P44: pizza 100% del recetario"
@@ -15511,14 +15511,14 @@
     }
    ],
    "pasos": [
-    "Moler gruesas las 3 cucharadas de semillas —chía, sésamo, lino, amapola, las que haya—. Enteras pasan de largo, sobre todo el lino: molidas es como de verdad se aprovechan.",
-    "Mezclar en un bol la taza de harina integral, la media taza de harina común, las semillas y la media cucharadita de sal. Si la tarta va dulce, cambiar la sal por una cucharadita de azúcar. Y si lo usás, acá entra también la cucharadita de polvo de hornear, que da una masa más esponjosa.",
-    "Agregar las 3 cucharadas de aceite de oliva y frotar con la punta de los dedos hasta que todo quede como arena húmeda, sin pegotes grandes.",
-    "Sumar la media taza de agua de a poco, amasando apenas hasta que la masa se una. Tierna y lisa alcanza: NO sobreamasar, porque el trabajo de más la endurece.",
+    "Moler gruesas {chia} de semillas —chía, sésamo, lino, amapola, las que haya—. Enteras pasan de largo, sobre todo el lino: molidas es como de verdad se aprovechan.",
+    "Mezclar en un bol {~harina_integral} de harina integral, {~harina_trigo_fortificada} de harina común, las semillas y {~sal_yodada} de sal. Si la tarta va dulce, cambiar la sal por azúcar, en la misma cantidad. Y si lo usás, acá entra también {polvo_hornear} de polvo de hornear, que da una masa más esponjosa.",
+    "Agregar {aceite_oliva} de aceite de oliva y frotar con la punta de los dedos hasta que todo quede como arena húmeda, sin pegotes grandes.",
+    "Sumar {~agua} de agua de a poco, amasando apenas hasta que la masa se una. Tierna y lisa alcanza: NO sobreamasar, porque el trabajo de más la endurece.",
     "Dejarla reposar 10 minutos tapada, para que se relaje y se deje estirar sin encogerse, y estirarla a 3 o 4 milímetros de espesor.",
     "Forrar el molde aceitado, pinchar la base con un tenedor para que no se infle, y prehornear 10 minutos a 180 grados si el relleno va húmedo, o rellenar directo y hornear todo junto."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Base de la tarta P22 y de cualquier tarta salada del sistema"
    ],
@@ -15636,16 +15636,16 @@
     }
    ],
    "pasos": [
-    "Mezclar en un bol los 250 g de gluten de trigo con los 125 g de harina integral (o pan integral rallado) y los secos: la cucharadita de pimentón ahumado, más ajo y cebolla en polvo, curry y orégano a gusto. Esa proporción de 2 a 1 entre gluten y harina no es casual: es la que define la textura.",
-    "Sumar las 10 cucharadas de salsa de soja y después la media taza de agua de a poco, mezclando, hasta formar una masa pesada y algo pegajosa. Puede que no necesites toda el agua.",
+    "Mezclar en un bol {gluten_trigo} de gluten de trigo con {harina_integral} de harina integral (o pan integral rallado) y los secos: {~pimenton} de pimentón ahumado, más ajo y cebolla en polvo, curry y orégano a gusto. Esa proporción de dos a uno entre gluten y harina no es casual: es la que define la textura.",
+    "Sumar {salsa_soja} de salsa de soja y después {~agua} de agua de a poco, mezclando, hasta formar una masa pesada y algo pegajosa. Puede que no necesites toda el agua.",
     "Amasar SOLO hasta que se integre, un minuto como mucho. Amasar de más desarrolla el gluten y el bifecito sale duro.",
     "Tapar el bol y dejar reposar entre 10 y 20 minutos: la masa se relaja y después se corta mucho mejor.",
-    "Calentar las 2 tazas de caldo de verduras con media taza más de salsa de soja en una olla ancha. Cuando rompa el hervor, bajar a fuego medio para que borbotee apenas: un hervor fuerte deshace la pieza.",
+    "Calentar {caldo_verduras} de caldo de verduras con más salsa de soja en una olla ancha. Cuando rompa el hervor, bajar a fuego medio para que borbotee apenas: un hervor fuerte deshace la pieza.",
     "Meter la masa entera y cocinar 20 minutos de un lado y 20 del otro, 40 en total, dándola vuelta a la mitad.",
     "Apagar y dejar enfriar dentro del caldo hasta poder manipularla. Recién ahí cortar los bifecitos, de un centímetro más o menos.",
     "Al servir, sellarlos vuelta y vuelta en una sartén bien caliente con un hilo de aceite, o empanarlos pasándolos por un batido de harina y agua y después por pan rallado. Tienen que quedar con costra dorada, no solo calientes."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Proporción gluten:harina 2:1 y hervor suave = seitán tierno (la técnica correcta, la tenías)",
     "Sellado final en sartén = Maillard = otro nivel",
@@ -15807,14 +15807,14 @@
     }
    ],
    "pasos": [
-    "Si podés, remojar los 150 g de lentejas —tres cuartos de taza— desde la noche anterior, unas 8 horas. Cocinan bien sin remojo, pero remojadas se digieren mejor y sueltan lo que traba la absorción de sus minerales. Enjuagarlas antes de usar.",
-    "Hervir la media cebolla, la zanahoria y el morrón —uno verde y medio rojo— en una olla con 2 tazas de agua durante 10 minutos, hasta que estén blandos.",
+    "Si podés, remojar {lentejas} de lentejas desde la noche anterior, unas 8 horas. Cocinan bien sin remojo, pero remojadas se digieren mejor y sueltan lo que traba la absorción de sus minerales. Enjuagarlas antes de usar.",
+    "Hervir la cebolla, la zanahoria y el morrón verde y el rojo en una olla con algo menos de la mitad de {agua} de agua, durante 10 minutos, hasta que estén blandos.",
     "Licuar las verduras con su propia agua de cocción hasta que quede una crema lisa. Esa base licuada hace de sofrito y de crema a la vez: el guiso sale liviano y con cuerpo sin una gota de aceite.",
-    "Volver la base a la olla con las 2 cucharadas de salsa de tomate, las lentejas escurridas y las 3 tazas de agua restantes, y llevar a hervor a fuego medio.",
-    "Sumar los 450 g de papa en cubos —dos papas grandes— y cocinar 20 a 25 minutos a fuego medio-bajo, hasta que las lentejas estén tiernas y los bordes de la papa empiecen a deshacerse en el caldo.",
-    "Condimentar con las 2 cucharadas de orégano, la cucharada de pimentón dulce y la cucharadita de sal, y darle 5 minutos más a fuego bajo para que se integren. Apagar y dejarlo asentar un ratito: espesa solo."
+    "Volver la base a la olla con {salsa_tomate} de salsa de tomate, las lentejas escurridas y el resto del agua, y llevar a hervor a fuego medio.",
+    "Sumar {papa} de papa en cubos y cocinar 20 a 25 minutos a fuego medio-bajo, hasta que las lentejas estén tiernas y los bordes de la papa empiecen a deshacerse en el caldo.",
+    "Condimentar con {oregano} de orégano, {pimenton} de pimentón dulce y {sal_yodada} de sal, y darle 5 minutos más a fuego bajo para que se integren. Apagar y dejarlo asentar un ratito: espesa solo."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El diferencial: verduras licuadas como caldo-crema, guiso bajo en grasa sin sofrito",
     "Tu nota de mezclar legumbres (pre-cocinando garbanzos/porotos aparte) quedó como variante",
@@ -15953,13 +15953,13 @@
     }
    ],
    "pasos": [
-    "Poner en un bol grande los 300 g de okara —el bagazo que queda al filtrar la leche de soja casera, que sirve tal cual— junto con los 125 g de avena instantánea y los 125 g de harina de maíz blanca, que son la liga seca de la masa.",
-    "Condimentar con las 2 cucharaditas de provenzal, la cucharadita de pimentón ahumado y sal, y si te gustan, curry y ajo en polvo. Mezclar en seco hasta que el condimento quede repartido parejo.",
-    "Agregar la leche vegetal de a poco, unos 100 ml, mezclando con la mano hasta que la masa se unifique y se deje moldear sin pegotearse ni desgranarse.",
-    "Formar unas 8 milanesas aplastando porciones entre las palmas, acomodarlas separadas en una bandeja y llevarlas al freezer SIN empanar, hasta que estén bien duras.",
-    "Ya congeladas, pasarlas por los 100 g de pan integral rallado apretando para que se pegue, y devolverlas al freezer. Duras se rebozan enteras, sin quebrarse, y quedan listas para cocinarse directo del freezer el día que haga falta."
+    "Poner en un bol grande {soja_grano} de okara —el bagazo que queda al filtrar la leche de soja casera, que sirve tal cual— junto con {avena} de avena instantánea y {harina_maiz_blanca} de harina de maíz blanca, que son la liga seca de la masa.",
+    "Condimentar con {provenzal} de provenzal, {pimenton} de pimentón ahumado y sal, y si te gustan, curry y ajo en polvo. Mezclar en seco hasta que el condimento quede repartido parejo.",
+    "Agregar {bebida_vegetal_fortificada} de leche vegetal de a poco, mezclando con la mano hasta que la masa se unifique y se deje moldear sin pegotearse ni desgranarse.",
+    "Formar las milanesas aplastando porciones entre las palmas, acomodarlas separadas en una bandeja y llevarlas al freezer SIN empanar, hasta que estén bien duras.",
+    "Ya congeladas, pasarlas por {pan_integral} de pan integral rallado apretando para que se pegue, y devolverlas al freezer. Duras se rebozan enteras, sin quebrarse, y quedan listas para cocinarse directo del freezer el día que haga falta."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Congelar ANTES de empanar es tu técnica y es la correcta: sólidas no se rompen",
     "Doble freezado = stock permanente de milanesas",
@@ -16114,15 +16114,15 @@
     }
    ],
    "pasos": [
-    "Arrancar por lo que más tarda: los 300 g de mandioca y los 300 g de papa cortados en bastones, con aceite y sal, a horno fuerte (200°) entre 30 y 40 minutos, hasta que estén dorados y crocantes por fuera.",
-    "Tostar los 150 g de pan integral en rodajas, en horno o tostadora, hasta que queden firmes: tienen que aguantar el untable sin doblarse.",
+    "Arrancar por lo que más tarda: {mandioca} de mandioca y {papa} de papa cortadas en bastones, con aceite y sal, a horno fuerte (200°) entre 30 y 40 minutos, hasta que estén dorados y crocantes por fuera.",
+    "Tostar {pan_integral} de pan integral en rodajas, en horno o tostadora, hasta que queden firmes: tienen que aguantar el untable sin doblarse.",
     "Preparar el guacamole pisando la palta con limón y sal. Si sumás hummus, queso de maní o quesofu, es el momento de sacarlos de la heladera: los untables van a temperatura ambiente, fríos no saben a nada.",
-    "Cortar los crudos: la zanahoria y el morrón rojo en bastones, y los 150 g de tomates cherry enteros.",
-    "Escurrir los 200 g de berenjenas en escabeche y, si sumás seitán salteado o garbanzos crocantes, dorarlos ahora para que lleguen tibios a la mesa.",
+    "Cortar los crudos: la zanahoria y el morrón rojo en bastones, y {tomate} de tomates cherry enteros.",
+    "Escurrir {berenjena} de berenjenas en escabeche y, si sumás seitán salteado o garbanzos crocantes, dorarlos ahora para que lleguen tibios a la mesa.",
     "Armar la tabla repartiendo por zonas y no en pilas, y chequear que estén las cuatro patas: crocante (los bastones al horno, el pan, los garbanzos), untable (guacamole, hummus, quesos), ácido (las berenjenas en escabeche) y proteico (las nueces, los cajús, el seitán).",
     "Los bastones al horno y el pan van a la mesa recién salidos: es lo único de la picada que no espera."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Regla de picada: algo crocante + algo untable + algo ácido + algo proteico",
     "Los bastones de mandioca al horno son el diferencial argento"
@@ -16296,14 +16296,14 @@
     }
    ],
    "pasos": [
-    "Escurrir la lata de duraznos en almíbar reservando el almíbar en un vaso —es la rareza golosa de esta receta y se usa al final— y picar los duraznos en cubos. Cortar también los 100 g de seitán (gluten de trigo) en cubos tamaño garbanzo: los bifecitos de seitán ya hervidos van perfecto.",
-    "Sofreír en una olla con un chorro de aceite, a fuego medio-suave, la cebolla picada, los 2 dientes de ajo y el ají (o cayena, o pimentón picante, lo que tengas), hasta que la cebolla se vea transparente.",
-    "Sumar las dos cucharaditas de comino y sal, y enseguida los duraznos picados, los cubos de seitán y los 400 g de garbanzos cocidos. Dar unas vueltas para que todo se impregne del sofrito.",
-    "Agregar los 400 g de tomate triturado, la cucharadita de cúrcuma y la media cucharadita de pimienta negra. La pimienta acá no es adorno: es lo que hace que la curcumina de la cúrcuma se absorba. Si lo usás, el medio cubito de caldo de verduras entra en este momento.",
+    "Escurrir {durazno_almibar} de duraznos en almíbar reservando el almíbar en un vaso —es la rareza golosa de esta receta y se usa al final— y picar los duraznos en cubos. Cortar también {p08} de seitán (gluten de trigo) en cubos tamaño garbanzo: los bifecitos de seitán ya hervidos van perfecto.",
+    "Sofreír en una olla con un chorro de aceite, a fuego medio-suave, la cebolla picada, {ajo} de ajo y el ají (o cayena, o pimentón picante, lo que tengas), hasta que la cebolla se vea transparente.",
+    "Sumar {comino} de comino y sal, y enseguida los duraznos picados, los cubos de seitán y {garbanzos} de garbanzos cocidos. Dar unas vueltas para que todo se impregne del sofrito.",
+    "Agregar {tomate_triturado} de tomate triturado, {curcuma} de cúrcuma y {pimienta_negra} de pimienta negra. La pimienta acá no es adorno: es lo que hace que la curcumina de la cúrcuma se absorba. Si lo usás, sumar en este momento {caldo_verduras} de caldo de verduras.",
     "Cocinar a fuego lento unos 30 minutos, revolviendo cada tanto, hasta que la salsa espese y todo tome el color del curry. Si se va secando, aflojar con un poco de agua — la de enjuagar el envase del tomate, que acá no se desperdicia nada.",
     "Probar y recién entonces sumar el almíbar reservado DE A POCO, en chorritos, probando entre uno y otro: tiene que quedar apenas dulce, nunca empalagoso."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El almíbar entra al final y de a poco: regula dulzor sin empalagar",
     "El seitán absorbe el curry: mejor si reposa",
@@ -16472,15 +16472,15 @@
     }
    ],
    "pasos": [
-    "Cortar la coliflor entera en 8 gajos grandes, tratando de que cada uno conserve parte del tronco para que no se desarme, y salpimentarlos.",
-    "Calentar los 40 ml de aceite de oliva en una sartén amplia a fuego fuerte y dorar los gajos 4 minutos de un solo lado, en tandas para no encimarlos: tienen que quedar bien tostados de esa cara, porque ese dorado es la base de sabor del plato.",
-    "Volver todos los gajos a la sartén con el lado crudo hacia abajo y agregar 60 ml de agua.",
-    "Batir en un bol los 125 ml de vinagre de arroz, los 75 ml de salsa de soja —importa que sea baja en sal, porque la salsa después reduce y la sal se concentra— y los 5 g de azúcar mascabo, y volcar sobre la coliflor. Repartir los 6 dientes de ajo enteros y pelados y las 3 hojas de laurel. Si lo usás, el ají fresco también entra acá.",
+    "Cortar la coliflor en gajos grandes, unos 8 por cabeza, tratando de que cada uno conserve parte del tronco para que no se desarme, y salpimentarlos.",
+    "Calentar {aceite_oliva} de aceite de oliva en una sartén amplia a fuego fuerte y dorar los gajos 4 minutos de un solo lado, en tandas para no encimarlos: tienen que quedar bien tostados de esa cara, porque ese dorado es la base de sabor del plato.",
+    "Volver todos los gajos a la sartén con el lado crudo hacia abajo y agregar un chorrito de agua.",
+    "Batir en un bol {vinagre} de vinagre de arroz, {salsa_soja} de salsa de soja —importa que sea baja en sal, porque la salsa después reduce y la sal se concentra— y {azucar_mascabo} de azúcar mascabo, y volcar sobre la coliflor. Repartir {ajo} de ajo entero y pelado, y {laurel} de laurel. Si lo usás, el ají fresco también entra acá.",
     "Tapar y cocinar a fuego medio-bajo unos 30 minutos, agitando la sartén cada tanto para que nada se pegue. Está en su punto cuando el cuchillo entra pero todavía hace un poco de fuerza: tierna por fuera, entera por dentro.",
     "Destapar, subir a fuego fuerte y dejar que la salsa reduzca hasta ponerse brillante y napar los gajos. Recién acá se prueba y se corrige, porque antes de reducir el agridulce engaña.",
-    "Servir con la cebolla de verdeo picada por encima, cortada a último momento. Si lo sumás, acompañar con una taza de arroz integral cocido aparte."
+    "Servir con la cebolla de verdeo picada por encima, cortada a último momento. Si lo sumás, acompañar con {~arroz_integral} de arroz integral cocido aparte."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El balance agridulce-salado-ácido ES el adobo: no corregirlo hasta el final",
     "La coliflor pasada pierde todo: crocante interior es el punto"
@@ -16600,12 +16600,12 @@
     }
    ],
    "pasos": [
-    "Poner en la licuadora —o en un jarro alto, si vas con la minipimer— las 2 tazas de garbanzos cocidos, la taza de espinaca cruda, la manzana roja pelada y en trozos, la taza de agua caliente (o de aquafaba, el caldito de los mismos garbanzos) y el chorro generoso de aceite de oliva. La manzana no es adorno: su dulzor es lo que compensa el amargor de la espinaca cruda.",
-    "Si los usás, la media cucharadita de comino y el jugo de medio limón entran acá: el comino la hace más honda y el limón, además de redondearla, ayuda a que el hierro de la espinaca se absorba.",
+    "Poner en la licuadora —o en un jarro alto, si vas con la minipimer— {garbanzos} de garbanzos cocidos, {espinaca} de espinaca cruda, la manzana roja pelada y en trozos, {agua} de agua caliente (o de aquafaba, el caldito de los mismos garbanzos) y {aceite_oliva} de aceite de oliva, sin ahorrar. La manzana no es adorno: su dulzor es lo que compensa el amargor de la espinaca cruda.",
+    "Si los usás, sumar acá {comino} de comino y el jugo de limón: el comino la hace más honda y el limón, además de redondearla, ayuda a que el hierro de la espinaca se absorba.",
     "Licuar unos 2 minutos, hasta que quede una crema homogénea, sin tropezones de garbanzo. Salar a gusto.",
     "Servir directo —el agua caliente ya la deja tibia— o calentarla un par de minutos en una cacerola a fuego medio hasta que humee."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La manzana es el truco: dulzor que balancea la espinaca",
     "Con comino y limón sube dos escalones (y activa el hierro)"
@@ -16781,16 +16781,16 @@
     }
    ],
    "pasos": [
-    "Poner a remojar en agua fría, con 4 horas de anticipación, las 2 tazas de almendras, nueces y cajús: van a ser la crema de la salsa, y sin ese remojo no licúan fino.",
-    "Asar los 500 g de calabaza al horno hasta que un cuchillo entre sin resistencia, y hervir los 500 g de papa con cáscara hasta que estén tiernas. La calabaza va asada y no hervida a propósito: pierde agua en el horno y después pide menos harina.",
-    "Pisar la calabaza y la papa pelada juntas hasta un puré liso, y condimentar con la cucharadita de sal, nuez moscada y ajo en polvo. Si la usás, sumar también las 2 cucharadas de levadura nutricional.",
-    "Agregar la harina DE A POCO, mezclando apenas, hasta lograr una masa blanda que se pueda trabajar sin pegarse: de los 700 g usá los menos que puedas, porque cuanta menos harina va adentro, más tierno sale el ñoqui.",
+    "Poner a remojar en agua fría, con 4 horas de anticipación, {almendras} de almendras, nueces y cajús: van a ser la crema de la salsa, y sin ese remojo no licúan fino.",
+    "Asar {calabaza} de calabaza al horno hasta que un cuchillo entre sin resistencia, y hervir {papa} de papa con cáscara hasta que estén tiernas. La calabaza va asada y no hervida a propósito: pierde agua en el horno y después pide menos harina.",
+    "Pisar la calabaza y la papa pelada juntas hasta un puré liso, y condimentar con {sal_yodada} de sal, nuez moscada y ajo en polvo. Si la usás, sumar también {levadura_nutricional} de levadura nutricional.",
+    "Agregar la harina DE A POCO, mezclando apenas, hasta lograr una masa blanda que se pueda trabajar sin pegarse: de {harina_trigo_fortificada} de harina usá los menos que puedas, porque cuanta menos harina va adentro, más tierno sale el ñoqui.",
     "Formar choricitos sobre la mesada MUY enharinada, cortarlos en ñoquis y marcarlos con tenedor si querés el clásico. La forma se la da la harina de afuera, no la de adentro: por eso la mesada va generosa y la masa no.",
     "Para la salsa, escurrir los frutos secos y licuarlos con agua limpia, agregándola de a poco, hasta una crema lisa y espesa que caiga de la cuchara.",
-    "Sofreír en una sartén con las 2 cucharadas de aceite de oliva la cebolla, la cebolla de verdeo y el morrón —mitad rojo, mitad verde— picados, hasta que la cebolla esté transparente. Unir con la crema de frutos secos, salpimentar y mantener a fuego mínimo.",
+    "Sofreír en una sartén con {aceite_oliva} de aceite de oliva la cebolla, la cebolla de verdeo y el morrón, rojo y verde, picados, hasta que la cebolla esté transparente. Unir con la crema de frutos secos, salpimentar y mantener a fuego mínimo.",
     "Hervir los ñoquis en abundante agua con sal, en tandas: cuando flotan, están listos. Si alguno queda pegado al fondo, despegarlo con cuchara antes de que retome el hervor. Servirlos enseguida con la salsa por encima."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Tu regla escrita es LA regla del ñoqui: mínima harina en la masa, forma con la de la mesada",
     "Congelan crudos en placa y después a bolsa",
@@ -16917,13 +16917,13 @@
     }
    ],
    "pasos": [
-    "Hidratar los 100 g de soja texturizada en agua caliente y, en otro bol, remojar la media taza de hongos de pino secos. EL AGUA SE GUARDA: colada, es puro sabor concentrado y vuelve al final de la receta.",
-    "Escurrir la texturizada apretándola bien con las manos y saltearla en una sartén con un chorro de aceite a fuego medio-alto, junto con el diente de ajo picado, el chorro de salsa de soja y —si lo usás— el chorro de vino tinto, hasta que se seque y tome color. Reservar.",
+    "Hidratar {soja_texturizada} de soja texturizada en agua caliente y, en otro bol, remojar {~hongos_secos} de hongos de pino secos. EL AGUA SE GUARDA: colada, es puro sabor concentrado y vuelve al final de la receta.",
+    "Escurrir la texturizada apretándola bien con las manos y saltearla en una sartén con un chorro de aceite a fuego medio-alto, junto con {ajo} de ajo picado, {salsa_soja} de salsa de soja y —si lo usás— {vino_tinto} de vino tinto, hasta que se seque y tome color. Reservar.",
     "En la misma sartén, sofreír la cebolla picada hasta que se vea transparente y sumar los hongos remojados y picados un par de minutos más, hasta que larguen perfume.",
-    "Volver la texturizada a la sartén, unir todo y condimentar con la cucharadita de pimentón ahumado, sal, pimienta y ajo en polvo.",
-    "Verter un cuarto de taza del agua de remojo de los hongos, colada, y cocinar revolviendo hasta que el relleno quede jugoso pero no aguado. Probar, corregir, y listo: este relleno después arma tartas, empanadas, canelones o el pastel de papas."
+    "Volver la texturizada a la sartén, unir todo y condimentar con {~pimenton} de pimentón ahumado, sal, pimienta y ajo en polvo.",
+    "Verter un poco del agua de remojo de los hongos, colada, y cocinar revolviendo hasta que el relleno quede jugoso pero no aguado. Probar, corregir, y listo: este relleno después arma tartas, empanadas, canelones o el pastel de papas."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El agua de remojo de hongos devuelta al final es umami líquido: técnica seria",
     "Alimenta tartas, empanadas, canelones y el pastel P19"
@@ -17073,15 +17073,15 @@
     }
    ],
    "pasos": [
-    "Hidratar los 200 g de soja texturizada en agua caliente, escurrirla y apretarla bien con las manos: cuanta menos agua le quede, mejor liga después.",
-    "Saltear la cebolla grande picada en una sartén con un chorro de aceite hasta que se vea transparente, sumar la texturizada escurrida y —si lo usás— un chorro de salsa de soja, y cocinar revolviendo hasta que se seque y tome color.",
-    "Rallar la papa grande y la remolacha CRUDAS, sin cocción previa, y ponerlas en un bol amplio. La papa cruda es la jugosidad de la hamburguesa; la remolacha pone el color a carne y un toque dulce.",
-    "Sumar al bol la texturizada salteada, los 100 g de harina de garbanzo, los 100 g de avena instantánea, la cucharadita de pimentón ahumado, sal, pimienta, ajo y cebolla en polvo y orégano. Si las sumás, las 2 cucharadas de chía ayudan a ligar. Mezclar con las manos hasta integrar.",
+    "Hidratar {soja_texturizada} de soja texturizada en agua caliente, escurrirla y apretarla bien con las manos: cuanta menos agua le quede, mejor liga después.",
+    "Saltear la cebolla picada en una sartén con un chorro de aceite hasta que se vea transparente, sumar la texturizada escurrida y —si lo usás— {salsa_soja} de salsa de soja, y cocinar revolviendo hasta que se seque y tome color.",
+    "Rallar la papa y la remolacha CRUDAS, sin cocción previa, y ponerlas en un bol amplio. La papa cruda es la jugosidad de la hamburguesa; la remolacha pone el color a carne y un toque dulce.",
+    "Sumar al bol la texturizada salteada, {harina_garbanzo} de harina de garbanzo, {avena} de avena instantánea, {~pimenton} de pimentón ahumado, sal, pimienta, ajo y cebolla en polvo y orégano. Si la usás, sumar {~chia} de chía para ayudar a ligar. Mezclar con las manos hasta integrar.",
     "Dejar reposar la mezcla 20 minutos en la heladera. Va a seguir estando chirla y no es un problema: la avena y la harina absorben durante el reposo, y del resto se encarga el frío.",
     "Formar las hamburguesas —salen unas 15, el lote entero del mes— y llevarlas al freezer en una placa, con separadores para que no se peguen entre sí.",
     "Cocinarlas SIEMPRE CONGELADAS, directo del freezer a la sartén o al horno: es durante esa cocción que se aglutinan y quedan enteras. Descongeladas antes, se desarman."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "'No os preocupéis si está chirlo' — cierto: el reposo y la cocción del freezer resuelven",
     "15 unidades = batch total del mes"
@@ -17253,16 +17253,16 @@
     }
    ],
    "pasos": [
-    "Lavar los 250 g de arroz doble carolina cambiándole el agua las veces que haga falta, hasta que salga transparente: sin ese lavado, el almidón suelto hace engrudo.",
-    "Poner el arroz en una olla con los 300 ml de agua —un 20 % más de agua que de arroz; si escalás, van 1200 ml por kilo— y tapar. La olla queda TAPADA SIEMPRE, de acá hasta el final: cada levantada de tapa deja escapar el vapor que cocina el arroz.",
+    "Lavar {arroz_blanco} de arroz doble carolina cambiándole el agua las veces que haga falta, hasta que salga transparente: sin ese lavado, el almidón suelto hace engrudo.",
+    "Poner el arroz en una olla con {agua} de agua —un 20 % más de agua que de arroz— y tapar. La olla queda TAPADA SIEMPRE, de acá hasta el final: cada levantada de tapa deja escapar el vapor que cocina el arroz.",
     "Llevar a hervor a fuego fuerte y, apenas rompe, bajar a fuego minimísimo y contar 11 minutos exactos por reloj. Sin pispear.",
     "Cumplidos los 11 minutos, subir a fuego fuerte 15 segundos y apagar: ese golpe final evapora el agua que queda en el fondo, y es la diferencia entre un arroz suelto y uno apelmazado.",
     "Dejar reposar 10 minutos con el fuego apagado y la olla todavía tapada. Recién ahí se puede destapar.",
-    "Mientras el arroz se cocina, preparar el sushizu: batir los 50 ml de vinagre —80 % de alcohol y 20 % de manzana—, los 25 g de azúcar y la cucharadita de sal entre 5 y 10 minutos, hasta que no quede un solo grano sin disolver.",
+    "Mientras el arroz se cocina, preparar el sushizu: batir {vinagre} de vinagre —80 % de alcohol y 20 % de manzana—, {azucar} de azúcar y {~sal_yodada} de sal entre 5 y 10 minutos, hasta que no quede un solo grano sin disolver.",
     "Volcar el sushizu sobre el arroz EN CALIENTE, mezclando con movimientos envolventes y sin aplastar los granos: caliente absorbe el aliño, aplastado se hace pasta.",
-    "Armar los rolls recién cuando el arroz esté frío: la hoja de nori con el lado brillante hacia abajo, una capa fina de arroz dejando 2 cm libres en el borde de arriba para poder cerrar, y el relleno al medio — si los sumás: tomates secos, los shiitake remojados, bastones de pepino, zanahoria en juliana o champiñones. Salen 3 rolls."
+    "Armar los rolls recién cuando el arroz esté frío, con {nori} de nori, una por roll: el lado brillante hacia abajo, una capa fina de arroz dejando 2 cm libres en el borde de arriba para poder cerrar, y el relleno al medio — si los sumás: {tomates_secos} de tomates secos, {hongos_secos} de shiitake remojados, bastones de pepino, zanahoria en juliana o {champinones} de champiñones."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Esta técnica de arroz DESTRONA a la del set 2: promovida a oficial de la familia sushi",
     "El 15 s de fuego fuerte final seca el fondo: arroz suelto",
@@ -17450,15 +17450,15 @@
     }
    ],
    "pasos": [
-    "Hervir el kilo de papas hasta que un cuchillo entre sin esfuerzo y hacer un puré con un chorro de aceite, las 3 cucharadas de levadura nutricional, nuez moscada y sal. Tiene que quedar maleable pero consistente: que conserve la forma en el plato, no que se desparrame.",
-    "Hidratar los 250 g de soja texturizada en agua caliente y escurrirla apretándola bien con las manos.",
-    "Saltear en una sartén amplia con un chorro de aceite la cebolla grande, el morrón rojo y los 2 dientes de ajo picados, hasta que la cebolla se vea transparente. Sumar la texturizada, el chorrito de salsa de soja y —si lo usás— el chorrito de vino tinto, y dejar que evapore.",
-    "Agregar las 4 cucharadas de puré de tomate y la cucharadita colmada de pimentón ahumado, y cocinar 10 minutos a fuego bajo, hasta que el relleno quede jugoso y con la salsa apenas espesa.",
-    "Apagar el fuego y recién ahí exprimir la cucharada de jugo de limón sobre el relleno. El limón va AL FINAL y fuera del fuego: así conserva la chispa que levanta todo el relleno, y de paso ayuda a que el hierro se absorba.",
-    "Armar en una fuente de 28 × 22: una base de puré, el relleno completo y —si lo usás— el queso de maní repartido en una capa pareja por el medio. Tapar con el resto del puré.",
+    "Hervir {papa} de papas hasta que un cuchillo entre sin esfuerzo y hacer un puré con un chorro de aceite, {levadura_nutricional} de levadura nutricional, nuez moscada y sal. Tiene que quedar maleable pero consistente: que conserve la forma en el plato, no que se desparrame.",
+    "Hidratar {soja_texturizada} de soja texturizada en agua caliente y escurrirla apretándola bien con las manos.",
+    "Saltear en una sartén amplia con un chorro de aceite la cebolla, el morrón rojo y {ajo} de ajo picado, hasta que la cebolla se vea transparente. Sumar la texturizada, {salsa_soja} de salsa de soja y —si lo usás— {vino_tinto} de vino tinto, y dejar que evapore.",
+    "Agregar {extracto_tomate} de puré de tomate y {~pimenton} de pimentón ahumado, y cocinar 10 minutos a fuego bajo, hasta que el relleno quede jugoso y con la salsa apenas espesa.",
+    "Apagar el fuego y recién ahí exprimir {limon} de jugo de limón sobre el relleno. El limón va AL FINAL y fuera del fuego: así conserva la chispa que levanta todo el relleno, y de paso ayuda a que el hierro se absorba.",
+    "Armar en una fuente de 28 × 22: una base de puré, el relleno completo y —si lo usás— {p04} de queso de maní repartido en una capa pareja por el medio. Tapar con el resto del puré.",
     "Llevar a horno moderado hasta que la superficie gratine y tome color dorado. Dejarlo reposar un buen rato antes de cortar — y si llega al día siguiente, corta perfecto y hasta gana en sabor."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La capa de queso de maní al medio es el lujo del sistema de preparados",
     "Frío corta perfecto: mejor al día siguiente"
@@ -17715,16 +17715,16 @@
     }
    ],
    "pasos": [
-    "Remojar las 2 tazas de maíz blanco partido y la taza de porotos pallares en abundante agua fría desde la víspera: necesitan 24 horas. Tirar el agua del remojo antes de cocinar.",
-    "Poner maíz y pallares en una olla grande con agua nueva que los cubra por cuatro dedos y llevar a hervor. Si lo usás, el puñado de algas nori entra acá —o una cucharadita de bicarbonato—, para que las legumbres se ablanden bien. Bajar a fuego moderado y cocinar más o menos una hora.",
-    "Pasada esa hora, sumar los 750 g de calabaza —cabutia o zapallo plomo— en cubos grandes, la batata en cubos, la cebolla y el puerro picados y la cucharada de aceite de coco. Condimentar con la cucharadita de sal y pimienta.",
-    "Seguir a fuego moderado, revolviendo cada tanto y raspando el fondo para que no se pegue. En la última media hora sumar los 100 g de hongos secos, de pino.",
-    "Esperar a que la calabaza se deshaga por completo y el caldo quede espeso y anaranjado: esa es la señal. Recién ahí sumar la cucharada de pimentón y la cucharadita de comino, revolver y apagar.",
-    "La salsita se hace aparte: calentar las 4 cucharadas de aceite de coco en una sartén a fuego medio y rehogar las 2 cebollas de verdeo picadas con los 200 g de bifecitos de seitán en cubos y los 2 dientes de ajo picados, hasta que el verdeo esté tierno y el seitán dorado.",
-    "Retirar la sartén del fuego y recién entonces sumar la cucharada de pimentón con ají molido y una pizca de sal: fuera del fuego, porque el pimentón se quema en segundos y amarga.",
+    "Remojar {maiz_blanco} de maíz blanco partido y {porotos_pallares} de porotos pallares en abundante agua fría desde la víspera: necesitan 24 horas. Tirar el agua del remojo antes de cocinar.",
+    "Poner maíz y pallares en una olla grande con agua nueva que los cubra por cuatro dedos y llevar a hervor. Si lo usás, sumar acá {nori} de algas nori —o, en su lugar, un poco de bicarbonato—, para que las legumbres se ablanden bien. Bajar a fuego moderado y cocinar más o menos una hora.",
+    "Pasada esa hora, sumar {calabaza} de calabaza —cabutia o zapallo plomo— en cubos grandes, la batata en cubos, la cebolla y el puerro picados y {aceite_coco} de aceite de coco. Condimentar con {~sal_yodada} de sal y pimienta.",
+    "Seguir a fuego moderado, revolviendo cada tanto y raspando el fondo para que no se pegue. En la última media hora sumar {hongos_secos} de hongos secos, de pino.",
+    "Esperar a que la calabaza se deshaga por completo y el caldo quede espeso y anaranjado: esa es la señal. Recién ahí sumar {pimenton} de pimentón y {~comino} de comino, revolver y apagar.",
+    "La salsita se hace aparte: calentar {aceite_coco} de aceite de coco en una sartén a fuego medio y rehogar la cebolla de verdeo picada con {p08} de bifecitos de seitán en cubos y {ajo} de ajo picado, hasta que el verdeo esté tierno y el seitán dorado.",
+    "Retirar la sartén del fuego y recién entonces sumar {pimenton} de pimentón con ají molido y una pizca de sal: fuera del fuego, porque el pimentón se quema en segundos y amarga.",
     "Servir el locro bien caliente con la salsita en un bol aparte, para que cada uno le ponga el picante que quiera."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El zapallo deshecho ES el espesante: no apurarlo",
     "El puñado de algas ablanda las legumbres y suma yodo: tu truco quedó como regla",
@@ -17936,15 +17936,15 @@
     }
    ],
    "pasos": [
-    "Preparar el huevo de lino: mezclar las 2 cucharadas de lino molido con 5 de agua y dejarlo descansar mientras seguís con el resto, hasta que tome consistencia de gel. Es lo que va a ligar la masa.",
-    "Rehogar en una sartén con un poco de aceite la cebolla picada, los 2 dientes de ajo y el medio morrón rojo en cubitos, a fuego medio hasta que la cebolla esté transparente. Sumar la zanahoria rallada fina, darle 2 minutos más y dejar entibiar.",
-    "Pisar las 2 tazas de porotos aduki cocidos con un tenedor, dejando una parte de los porotos enteros: ese pisado a medias es lo que da la textura.",
-    "Mezclar todo junto y A MANO en un bol grande: los aduki, el sofrito, la media taza de avena arrollada fina, el huevo de lino, la cucharada de salsa de soja, la cucharadita de pimentón ahumado —el gusto a parrilla sale de acá— y la cucharadita de comino.",
-    "Ajustar la consistencia con la media taza de pan integral rallado hasta lograr una masa húmeda que no se desarme, con más pan o más avena si hace falta. Si los usás, acá entran también la cucharada de levadura nutricional, el chorrito de limón y el perejil o cilantro picado.",
+    "Preparar el huevo de lino: mezclar {lino} de lino molido con dos veces y media esa cantidad de agua y dejarlo descansar mientras seguís con el resto, hasta que tome consistencia de gel. Es lo que va a ligar la masa.",
+    "Rehogar en una sartén con un poco de aceite la cebolla picada, {ajo} de ajo y el morrón rojo en cubitos, a fuego medio hasta que la cebolla esté transparente. Sumar la zanahoria rallada fina, darle 2 minutos más y dejar entibiar.",
+    "Pisar {porotos_aduki} de porotos aduki cocidos con un tenedor, dejando una parte de los porotos enteros: ese pisado a medias es lo que da la textura.",
+    "Mezclar todo junto y A MANO en un bol grande: los aduki, el sofrito, {~avena} de avena arrollada fina, el huevo de lino, {salsa_soja} de salsa de soja, {~pimenton} de pimentón ahumado —el gusto a parrilla sale de acá— y {~comino} de comino.",
+    "Ajustar la consistencia con {~pan_integral} de pan integral rallado hasta lograr una masa húmeda que no se desarme, con más pan o más avena si hace falta. Si los usás, sumar acá también {levadura_nutricional} de levadura nutricional, {limon} de limón y {perejil} de perejil o cilantro picado.",
     "Formar los 6 a 8 medallones y llevarlos a la heladera entre 20 y 30 minutos: fríos se afirman y no se abren al cocinarlos.",
     "Cocinarlos en una sartén apenas aceitada a fuego medio, 3 a 4 minutos por lado, o al horno a 200° entre 20 y 25 minutos dándolos vuelta a la mitad. Están cuando la costra quedó dorada y firme."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Coincidís con el estándar del set 1 sin haberlo leído: pisado parcial + reposo + pimentón ahumado",
     "El aduki es más dulzón y cocina más rápido que el poroto común"
@@ -18144,13 +18144,13 @@
    ],
    "pasos": [
     "Precalentar el horno a 180°. Forrar un molde de tarta aceitado con la masa integral para tartas y pinchar el fondo con un tenedor para que no se infle.",
-    "Saltear la cebolla picada y el diente de ajo en las 2 cucharadas de aceite de oliva a fuego medio, hasta que la cebolla esté transparente.",
-    "Sumar los 3 zapallitos redondos en cubos chicos y cocinar 5 a 7 minutos: primero sueltan el agua y hay que seguir hasta que se evapore, o la tarta sale aguachenta. Agregar la zanahoria rallada, darle 3 minutos más y apagar.",
-    "Hacer la ricota: desmenuzar los 200 g de tofu firme con las manos y mezclarlo con las 2 cucharadas de fécula de maíz, la cucharada de jugo de limón —o de vinagre de manzana— y, si las usás, las 2 cucharadas de levadura nutricional y la cucharadita de cúrcuma. La fécula liga y el limón pone el acidito de ricota. Si quedó seca, aflojar con una o dos cucharadas de agua.",
-    "Unir las verduras con la ricota y probar: rectificar de sal y pimienta y, si los usás, sumar la cucharadita de orégano y una rallada de nuez moscada.",
+    "Saltear la cebolla picada y {ajo} de ajo en {aceite_oliva} de aceite de oliva a fuego medio, hasta que la cebolla esté transparente.",
+    "Sumar los zapallitos redondos en cubos chicos y cocinar 5 a 7 minutos: primero sueltan el agua y hay que seguir hasta que se evapore, o la tarta sale aguachenta. Agregar la zanahoria rallada, darle 3 minutos más y apagar.",
+    "Hacer la ricota: desmenuzar {tofu_firme} de tofu firme con las manos y mezclar el tofu con {fecula_maiz} de fécula de maíz, {limon} de jugo de limón —o de vinagre de manzana— y, si las usás, {levadura_nutricional} de levadura nutricional y {~curcuma} de cúrcuma. La fécula liga y el limón pone el acidito de ricota. Si quedó seca, aflojar con un chorrito de agua.",
+    "Unir las verduras con la ricota y probar: rectificar de sal y pimienta y, si los usás, sumar {~oregano} de orégano y una rallada de nuez moscada.",
     "Volcar el relleno sobre la masa, emparejar y hornear a 180° entre 35 y 40 minutos, hasta que esté firme al centro y con los bordes dorados. Dejarla entibiar antes de cortar, que asentada corta mejor."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El tofu+fécula+limón ES la técnica de ricota vegana que buscábamos: la tenías",
     "Licuar la mitad del relleno = versión más cremosa (tu tip)",
