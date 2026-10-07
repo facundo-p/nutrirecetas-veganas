@@ -8,6 +8,7 @@ describe('router hash', () => {
     expect(parseHash('#/diario')).toEqual({ screen: 'diary' });
     expect(parseHash('#/perfil')).toEqual({ screen: 'profile' });
     expect(parseHash('#/ajustes')).toEqual({ screen: 'settings' });
+    expect(parseHash('#/sin-conexion')).toEqual({ screen: 'offline' });
     expect(parseHash('#/receta/p19')).toEqual({ screen: 'recipe', id: 'p19' });
     expect(parseHash('#/ingredientes')).toEqual({ screen: 'ingredients' });
     expect(parseHash('#/ingrediente/garbanzos')).toEqual({ screen: 'ingredient', id: 'garbanzos' });
@@ -47,6 +48,7 @@ describe('router hash', () => {
       '#/diario',
       '#/perfil',
       '#/ajustes',
+      '#/sin-conexion',
     ]) {
       expect(routeHash(parseHash(hash))).toBe(hash);
     }

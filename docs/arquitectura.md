@@ -56,6 +56,8 @@ Justificación (criterio dominante: mantenibilidad a años vista por una persona
 - **Actualización**: `registerType: 'prompt'` — toast "Hay una versión nueva" con changelog; **jamás auto-reload** (podés estar cocinando). Se aplica al aceptar o en el próximo arranque.
 - **Instalabilidad**: manifest `standalone`, íconos maskable, meta iOS. Onboarding insiste en "Agregar a inicio" en iOS (la web app instalada queda fuera de la purga de 7 días de ITP de Safari).
 - `navigator.storage.persist()` al primer arranque. Wake Lock API en la pantalla de cocción.
+- **Sin conexión**: `useEnLinea` (`navigator.onLine` + eventos) muestra un banner que lleva a `#/sin-conexion`, el inventario de qué anda. No aparece en la ruta de cocina.
+- **Carga inicial**: esqueleto estático dentro de `#root` en `index.html`, con las clases reales; React lo reemplaza en el primer render. `src/app/carga-inicial.test.ts` cuida que esas clases existan.
 
 ## 4. Export / Import
 
