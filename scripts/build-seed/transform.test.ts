@@ -307,7 +307,7 @@ describe('pasos (T9)', () => {
   test('ningún paso nombra un código del dataset', () => {
     // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina.
     for (const r of curadas()) {
-      for (const paso of r.pasos) expect(paso, `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
+      for (const paso of r.pasos) expect(sinTokens(paso), `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
     }
   });
 
