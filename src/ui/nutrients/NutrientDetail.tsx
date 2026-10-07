@@ -7,9 +7,10 @@ import { amountUnit, formatNumber } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
-import { IconCobertura, IconEscudoB12, IconSemanaArco, IconSol } from '../icons/icons';
+import { IconCobertura, IconSemanaArco, IconSol } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
 import { Informacion } from '../common/Informacion';
+import { ExplicacionB12 } from './ExplicacionB12';
 
 /**
  * Qué es un nutriente, cuánto necesitás y de dónde sacarlo. La semilla ya traía
@@ -73,6 +74,18 @@ export function NutrientDetail({ id }: { id: string }) {
           </span>
         </span>
         <h1>{nutriente.nombre}</h1>
+        {/* Antes que cualquier número: sin esto un "40 % de la dosis"
+            alimentaria se lee tranquilizador cuando no lo es. */}
+        {nutriente.ajuste_vegano?.descripcion && (
+          <p className="aviso aviso-nutriente">
+            <span>
+              {nutriente.ajuste_vegano.descripcion}
+              {nutriente.ajuste_vegano.ic !== undefined && (
+                <em className="meta-suave"> · IC {nutriente.ajuste_vegano.ic}</em>
+              )}
+            </span>
+          </p>
+        )}
         {objetivo && (
           <p className="detalle-meta">
             <span className="meta-item">
@@ -96,20 +109,6 @@ export function NutrientDetail({ id }: { id: string }) {
         {nutriente.ventana_nota && <p className="nota-ingrediente">{nutriente.ventana_nota}</p>}
       </header>
 
-      {/* Arriba de todo, antes que cualquier número: sin esto un "40 % de la
-          dosis" alimentaria se lee tranquilizador cuando no lo es. */}
-      {nutriente.ajuste_vegano?.descripcion && (
-        <p className="aviso aviso-nutriente">
-          <IconEscudoB12 className="inline-icono icono-aviso" aria-hidden="true" />
-          <span>
-            {nutriente.ajuste_vegano.descripcion}
-            {nutriente.ajuste_vegano.ic !== undefined && (
-              <em className="meta-suave"> · IC {nutriente.ajuste_vegano.ic}</em>
-            )}
-          </span>
-        </p>
-      )}
-
       <p className="nutriente-descripcion">{nutriente.descripcion}</p>
 
       {nutriente.ul !== null && (
@@ -121,6 +120,8 @@ export function NutrientDetail({ id }: { id: string }) {
 
       <section>
         <h2>Recetas que más aportan</h2>
+        {fuentes.recetas.length === 0 &&
+          (nutriente.id === 'b12' ? <ExplicacionB12 /> : <p>Ninguna receta trae un dato que se pueda afirmar.</p>)}
         <ul className="lista-fuentes">
           {fuentes.recetas.map(({ receta, cantidad, resultado }) => {
             const pct = porcentajeDeObjetivo(resultado, objetivo);
@@ -150,7 +151,11 @@ export function NutrientDetail({ id }: { id: string }) {
 
       <section>
         <h2>Ingredientes que más aportan</h2>
-        <p className="nutricion-referencia">Cada 100 g, en crudo.</p>
+        {fuentes.ingredientes.length === 0 ? (
+          <p>Ningún ingrediente tiene dato cargado.</p>
+        ) : (
+          <p className="nutricion-referencia">Cada 100 g, en crudo.</p>
+        )}
         <ul className="lista-fuentes">
           {fuentes.ingredientes.map(({ ingrediente, cantidad }) => (
             <li key={ingrediente.id}>
