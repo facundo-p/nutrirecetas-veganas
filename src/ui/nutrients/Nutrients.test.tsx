@@ -78,6 +78,15 @@ describe('lista de nutrientes', () => {
     );
   });
 
+  test('un nutriente con dato pero sin fuente afirmable no dice «sin dato cargado»', async () => {
+    const { container } = render(<NutrientList />);
+    await waitFor(() => expect(screen.getByText('Hierro')).toBeDefined());
+    const vitd = filaDe(container, 'Vitamina D');
+    expect(vitd.querySelector('.fila-nutriente-recetas')!.textContent).toBe('ninguna receta la aporta');
+    abrir(vitd);
+    expect(vitd.querySelector('.fila-nutriente-detalle')!.textContent).not.toMatch(/dato cargado|Lo aportan/);
+  });
+
   test('se abre una fila por vez, y lleva a su ficha', async () => {
     const { container } = render(<NutrientList />);
     await waitFor(() => expect(screen.getByText('Hierro')).toBeDefined());
@@ -138,6 +147,14 @@ describe('ficha de nutriente', () => {
     await waitFor(() => expect(screen.getByRole('heading', { name: /B12/ })).toBeDefined());
     expect(container.querySelector('.explicacion-b12')!.textContent).toMatch(/levadura nutricional/);
     expect(screen.getByText(/Recetas que más aportan/).parentElement!.querySelectorAll('.fila-fuente')).toHaveLength(0);
+  });
+
+  test('la ficha de la B12 no rankea a la levadura entre los ingredientes', async () => {
+    render(<NutrientDetail id="b12" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: /B12/ })).toBeDefined());
+    const seccion = screen.getByText(/Ingredientes que más aportan/).parentElement!;
+    expect(seccion.querySelectorAll('.fila-fuente')).toHaveLength(0);
+    expect(seccion.textContent).toMatch(/Ningún ingrediente trae un dato que se pueda afirmar/);
   });
 
   test('un nutriente de ventana semanal lo dice, y su «i» aclara que no hace falta llegar todos los días', async () => {

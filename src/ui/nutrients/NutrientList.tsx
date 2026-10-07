@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { routeHash } from '../../app/router';
 import { enOrdenCanonico, esNutrienteDeBarra } from '../../domain/aporte';
-import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
+import { algunIngredienteTieneDato, ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
 import { getSeedIndex, type SeedIndex } from '../../seed';
 import type { Nutrient } from '../../seed/schema';
 import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
@@ -23,6 +23,7 @@ const CUANTOS_APORTANTES = 3;
 interface ResumenDeNutriente {
   nutriente: Nutrient;
   recetas: number;
+  conDato: boolean;
   aportantes: string[];
 }
 
@@ -32,20 +33,21 @@ function resumir(idx: SeedIndex, nutriente: Nutrient): ResumenDeNutriente {
   return {
     nutriente,
     recetas: recetasQueMasAportan(idx, nutriente, (recetaId) => nutritionOf(idx, recetaId)).length,
+    conDato: algunIngredienteTieneDato(idx, nutriente),
     aportantes: ingredientesQueMasAportan(idx, nutriente).map(({ ingrediente }) => enMinuscula(ingrediente.nombre)),
   };
 }
 
-function enCuantasRecetas({ recetas, aportantes }: ResumenDeNutriente): string {
-  if (aportantes.length === 0) return 'sin dato cargado';
+function enCuantasRecetas({ recetas, conDato }: ResumenDeNutriente): string {
+  if (!conDato) return 'sin dato cargado';
   if (recetas === 0) return 'ninguna receta la aporta';
   return recetas === 1 ? 'en 1 receta' : `en ${recetas} recetas`;
 }
 
 function PorQue({ resumen }: { resumen: ResumenDeNutriente }) {
-  const { nutriente, aportantes } = resumen;
+  const { nutriente, conDato } = resumen;
   if (nutriente.id === 'b12') return <ExplicacionB12 />;
-  if (aportantes.length === 0)
+  if (!conDato)
     return <p>Ningún ingrediente tiene dato cargado: preferimos dejarlo vacío antes que estimar.</p>;
   if (esNutrienteDeBarra(nutriente.id)) return <p>Está en las barras de las recetas.</p>;
   if (nutriente.id === 'yodo')
@@ -76,7 +78,7 @@ function FilaDeNutriente({
   onAlternar: () => void;
 }) {
   const { nutriente, aportantes } = resumen;
-  // La semilla pone primero a la levadura: nombrarla contradiría la explicación.
+  // Ningún ingrediente la trae afirmable: se dice de dónde sale de verdad.
   const loAportan =
     nutriente.id === 'b12'
       ? 'suplementos; alimentos fortificados, si la etiqueta lo dice'
