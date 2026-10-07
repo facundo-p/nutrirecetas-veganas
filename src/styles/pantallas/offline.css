@@ -1,0 +1,45 @@
+/* ============ Sin conexión ============ */
+
+.sin-conexion-cuenta {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-5);
+  max-width: 40ch;
+}
+
+.inventario {
+  margin-bottom: var(--sp-5);
+}
+
+.inventario ul {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-2);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+/* Lleno o hueco, sin color de aviso: lo que espera no es un error. */
+.inventario-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  color: var(--tinta);
+}
+
+.inventario-item::before {
+  content: '';
+  flex: none;
+  width: var(--cuadrado-nutriente);
+  height: var(--cuadrado-nutriente);
+  background: var(--tinta-suave);
+  border: 1.5px solid var(--tinta-suave);
+}
+
+.inventario-item[data-anda='no'] {
+  color: var(--tinta-suave);
+}
+
+.inventario-item[data-anda='no']::before {
+  background: none;
+}

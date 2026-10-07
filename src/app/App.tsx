@@ -14,6 +14,7 @@ import { ProfileScreen } from '../ui/profile/ProfileScreen';
 import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
 import { SettingsScreen } from '../ui/settings/SettingsScreen';
+import { OfflineScreen } from '../ui/offline/OfflineScreen';
 import { useMeta } from '../db/hooks';
 import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
 import { marcarEsquemaVisto } from '../db/repos';
@@ -45,6 +46,8 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
       return <NutrientDetail id={route.id} />;
     case 'glossary':
       return <Glossary />;
+    case 'offline':
+      return <OfflineScreen />;
   }
 }
 
