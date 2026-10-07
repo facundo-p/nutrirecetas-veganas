@@ -22,9 +22,9 @@ import { porcentajeAfirmableSolo, type ObjetivosDeReferencia } from './objetivos
  *
  * Tienen color los que importan para un vegano —más proteína y fibra— y además
  * tienen dato en suficientes ingredientes como para que un casillero diga algo.
- * El yodo es crítico y queda afuera: con dato en 3 de 158 ingredientes, su
- * casillero estaría vacío en 70 de 72 recetas, y vacío se lee "no tiene" cuando
- * la verdad es "no sabemos" (#169). B12 y vitamina D no vienen de la comida.
+ * El yodo es crítico y queda afuera: casi todo el de una receta viene de la sal,
+ * que es una pizca o una cucharadita estimada, y un casillero pintaría una
+ * precisión que no tiene (#169). B12 y vitamina D no vienen de la comida.
  *
  * El orden es canónico —minerales, vitaminas, macro y grasas— y no cambia: la
  * barra se lee igual aunque sus seis nutrientes cambien de receta en receta.

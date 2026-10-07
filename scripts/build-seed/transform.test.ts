@@ -2,10 +2,12 @@ import { beforeAll, describe, expect, test } from 'vitest';
 import { CURATED_LAMINAS, CURATED_STEPS, CURATED_TYPES } from './curated-tables';
 import { loadRawData, type RawData } from './load';
 import {
+  aplicarCorreccion,
   aplicarTipoCurado,
   laminaDeReceta,
   toNutrientValue,
   transformIngredient,
+  transformIngredients,
   transformNutrient,
   transformRecipes,
   transformSeasonality,
@@ -208,6 +210,41 @@ describe('valores nutricionales', () => {
     const lev = transformIngredient(raw.ingredientes.find((i) => i.id === 'levadura_nutricional')!);
     expect(lev.nutrientes.b12_ug?.intervalo.min).toBe(0);
     expect(lev.nutrientes.b12_ug?.nota).toContain('fortificada');
+  });
+});
+
+describe('T16: valores que el dataset guardó por gramo', () => {
+  const porId = (id: string) => transformIngredients(raw.ingredientes).find((i) => i.id === id)!;
+
+  test('la sal yodada lleva el yodo del CAA por 100 g y deja de decir «por gramo»', () => {
+    const sal = porId('sal_yodada');
+    expect(sal.nutrientes.yodo_ug?.intervalo).toEqual({ min: 2500, max: 4167 });
+    expect(sal.base).not.toMatch(/gramo/i);
+    expect(sal.nutrientes.yodo_ug?.nota).not.toMatch(/marinas/);
+    expect(sal.fuentes).toContain('caa1272');
+  });
+
+  test('la nori y la kombu, también por 100 g', () => {
+    const nori = porId('nori');
+    expect(nori.base).not.toMatch(/gramo/i);
+    expect(nori.kcal?.intervalo).toEqual({ min: 350, max: 350 });
+    expect(nori.nutrientes.yodo_ug?.intervalo).toEqual({ min: 1600, max: 4300 });
+    expect(porId('kombu').nutrientes.yodo_ug?.intervalo).toEqual({ min: 100000, max: 250000 });
+  });
+
+  const sal = () => transformIngredient(raw.ingredientes.find((i) => i.id === 'sal_yodada')!);
+
+  test('una corrección que repite el dataset rompe el build', () => {
+    expect(() => aplicarCorreccion(sal(), { nutrientes: { yodo_ug: { min: 25, max: 40 } }, porque: '' })).toThrow(
+      /ya es 25–40/,
+    );
+    expect(() => aplicarCorreccion(sal(), { base: 'por gramo', porque: '' })).toThrow(/la base ya es/);
+  });
+
+  test('una clave que el dataset no trae no es corrección: va a T17', () => {
+    expect(() => aplicarCorreccion(sal(), { nutrientes: { zinc_mg: { min: 1, max: 1 } }, porque: '' })).toThrow(
+      /va a T17/,
+    );
   });
 });
 

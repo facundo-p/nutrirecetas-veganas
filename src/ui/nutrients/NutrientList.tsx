@@ -42,7 +42,7 @@ function enCuantasRecetas({ recetas, aportantes }: ResumenDeNutriente): string {
   return recetas === 1 ? 'en 1 receta' : `en ${recetas} recetas`;
 }
 
-function PorQue({ resumen, totalIngredientes }: { resumen: ResumenDeNutriente; totalIngredientes: number }) {
+function PorQue({ resumen }: { resumen: ResumenDeNutriente }) {
   const { nutriente, aportantes } = resumen;
   if (nutriente.id === 'b12') return <ExplicacionB12 />;
   if (aportantes.length === 0)
@@ -51,8 +51,9 @@ function PorQue({ resumen, totalIngredientes }: { resumen: ResumenDeNutriente; t
   if (nutriente.id === 'yodo')
     return (
       <p>
-        Es crítico, pero solo {aportantes.length} de los {totalIngredientes} ingredientes tienen dato de yodo. Un
-        casillero suyo mentiría por omisión: vacío se lee «no tiene», y la verdad es «no sabemos».
+        Es crítico, pero casi todo el yodo de una receta sale de la sal yodada, y la sal de cada receta es una
+        estimación («una pizca», «una cucharadita»). Está en la ficha de cada receta; en la barra no, porque pintaría
+        una precisión que no tiene.
       </p>
     );
   if (nutriente.id === 'vitd')
@@ -67,12 +68,10 @@ function PorQue({ resumen, totalIngredientes }: { resumen: ResumenDeNutriente; t
 
 function FilaDeNutriente({
   resumen,
-  totalIngredientes,
   abierta,
   onAlternar,
 }: {
   resumen: ResumenDeNutriente;
-  totalIngredientes: number;
   abierta: boolean;
   onAlternar: () => void;
 }) {
@@ -94,7 +93,7 @@ function FilaDeNutriente({
       </button>
       {abierta && (
         <div className="fila-nutriente-detalle">
-          <PorQue resumen={resumen} totalIngredientes={totalIngredientes} />
+          <PorQue resumen={resumen} />
           {loAportan && <p>Lo aportan sobre todo: {loAportan}.</p>}
           <a href={routeHash({ screen: 'nutrient', id: nutriente.id })}>Ver la ficha ›</a>
         </div>
@@ -137,7 +136,6 @@ export function NutrientList() {
           <FilaDeNutriente
             key={resumen.nutriente.id}
             resumen={resumen}
-            totalIngredientes={idx.seed.ingredientes.length}
             abierta={abierta === resumen.nutriente.id}
             onAlternar={() => setAbierta(abierta === resumen.nutriente.id ? null : resumen.nutriente.id)}
           />

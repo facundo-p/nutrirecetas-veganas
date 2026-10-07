@@ -1,4 +1,4 @@
-import type { IngredientCategory, Recipe } from '../../src/seed/schema';
+import type { IngredientCategory, IngredientNutrientKey, Recipe } from '../../src/seed/schema';
 import type { LaminaId } from '../../src/seed/laminas';
 
 /**
@@ -1722,3 +1722,600 @@ export const CURATED_LAMINAS: Record<string, LaminaId> = {
   p44: 'trigo',
   p45: 'trigo',
 };
+
+// ---------- T16: valores que el dataset guardó por gramo ----------
+
+/**
+ * El motor escala todo valor por 100 g, como declara el dataset; estos tres lo
+ * guardaron por gramo y quedaban 100 veces abajo: con 6 g de sal sumaban 2 µg
+ * de yodo en vez de 200. Lo que se nombra acá reemplaza al dato crudo; una
+ * clave que el dataset no trae es carga nueva y va a T17.
+ */
+export interface CorreccionDeIngrediente {
+  base?: string;
+  kcal?: { min: number; max: number };
+  nutrientes?: Partial<Record<IngredientNutrientKey, { min: number; max: number; nota?: string }>>;
+  fuentes_agregadas?: string[];
+  porque: string;
+}
+
+export const CORRECCIONES_POR_GRAMO: Record<string, CorreccionDeIngrediente> = {
+  sal_yodada: {
+    base: 'tal cual',
+    nutrientes: {
+      yodo_ug: {
+        min: 2500,
+        max: 4167,
+        nota: '1 cdta (6 g) ≈ 150–250 µg; las sales rosadas importadas suelen no estar yodadas',
+      },
+    },
+    fuentes_agregadas: ['caa1272'],
+    porque:
+      'CAA art. 1272 (Res. Conj. 32/2021, Ley 17.259): 1 parte de yodo en 30.000 de sal ±25 % = 25–41,7 µg/g',
+  },
+  nori: {
+    base: 'seca',
+    kcal: { min: 350, max: 350 },
+    nutrientes: { yodo_ug: { min: 1600, max: 4300, nota: '1 hoja ≈ 2,5 g ≈ 40–110 µg' } },
+    porque: 'ingredientes.md: «~35 kcal/10 g» y «16–43 µg por gramo»',
+  },
+  kombu: {
+    nutrientes: {
+      yodo_ug: { min: 100000, max: 250000, nota: 'supera el UL con facilidad: solo saborizar y retirar' },
+    },
+    porque: 'la nota del dataset dice «POR GRAMO»',
+  },
+};
+
+// ---------- T17: qué alimento de FoodData Central es cada ingrediente ----------
+
+/**
+ * La decisión humana de la carga USDA (#169): qué entrada de FoodData Central
+ * corresponde a cada ingrediente, contra la `base` de su ficha. Los números
+ * los trae `npm run usda` a `curated-usda.ts`; acá solo se elige. Solo se
+ * completan claves que el dataset no trae, nunca se pisan.
+ */
+export type ClaveCritica = 'calcio_mg' | 'zinc_mg' | 'selenio_ug' | 'ala_g' | 'yodo_ug';
+
+export const CLAVES_CRITICAS: readonly ClaveCritica[] = ['calcio_mg', 'zinc_mg', 'selenio_ug', 'ala_g', 'yodo_ug'];
+
+export interface EntradaFdc {
+  fdc_id: number;
+  data_type: 'SR Legacy' | 'Foundation';
+  /** textual del FDC: el script falla si no coincide */
+  descripcion_fdc: string;
+}
+
+export interface MatchUsda extends EntradaFdc {
+  por_que_coincide: string;
+  /** clave → por qué no se toma de esta entrada */
+  omitir?: Partial<Record<ClaveCritica, string>>;
+  /** otra entrada para claves que la principal no trae (el yodo, solo en Foundation) */
+  extra?: EntradaFdc & { claves: ClaveCritica[] };
+}
+
+const SR = 'SR Legacy' as const;
+
+export const USDA_MATCHES: Record<string, MatchUsda> = {
+  // aceites
+  aceite_coco: { fdc_id: 171412, data_type: SR, descripcion_fdc: 'Oil, coconut', por_que_coincide: 'tal cual' },
+  aceite_lino: {
+    fdc_id: 167702,
+    data_type: SR,
+    descripcion_fdc: 'Oil, flaxseed, cold pressed',
+    por_que_coincide: 'prensado en frío',
+  },
+  aceite_oliva: {
+    fdc_id: 171413,
+    data_type: SR,
+    descripcion_fdc: 'Oil, olive, salad or cooking',
+    por_que_coincide: 'el único de oliva con minerales; el extra virgen de Foundation solo trae ALA',
+  },
+  // algas
+  agar_agar: { fdc_id: 170090, data_type: SR, descripcion_fdc: 'Seaweed, agar, dried', por_que_coincide: 'seco' },
+  // cereales
+  arroz_blanco: {
+    fdc_id: 169757,
+    data_type: SR,
+    descripcion_fdc: 'Rice, white, long-grain, regular, unenriched, cooked without salt',
+    por_que_coincide: 'cocido; sin enriquecer, como el arroz de acá',
+  },
+  arroz_integral: {
+    fdc_id: 169704,
+    data_type: SR,
+    descripcion_fdc: "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+    por_que_coincide: 'cocido',
+  },
+  avena: {
+    fdc_id: 173904,
+    data_type: SR,
+    descripcion_fdc: 'Cereals, oats, regular and quick, not fortified, dry',
+    por_que_coincide: 'seca, sin fortificar',
+  },
+  burgol: { fdc_id: 170287, data_type: SR, descripcion_fdc: 'Bulgur, cooked', por_que_coincide: 'cocido' },
+  cebada: { fdc_id: 170285, data_type: SR, descripcion_fdc: 'Barley, pearled, cooked', por_que_coincide: 'perlada, cocida' },
+  fideos: {
+    fdc_id: 168928,
+    data_type: SR,
+    descripcion_fdc: 'Pasta, cooked, unenriched, without added salt',
+    por_que_coincide: 'cocidos, sin sal',
+  },
+  gluten_trigo: { fdc_id: 168147, data_type: SR, descripcion_fdc: 'Vital wheat gluten', por_que_coincide: 'seco' },
+  harina_integral: {
+    fdc_id: 168893,
+    data_type: SR,
+    descripcion_fdc: "Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)",
+    por_que_coincide: 'seca',
+  },
+  harina_leudante: {
+    fdc_id: 168895,
+    data_type: SR,
+    descripcion_fdc: 'Wheat flour, white, all-purpose, self-rising, enriched',
+    por_que_coincide: 'leudante; el enriquecimiento de EE.UU. no toca zinc, selenio ni ALA',
+    omitir: { calcio_mg: 'viene del leudante de la marca estadounidense' },
+  },
+  harina_trigo_fortificada: {
+    fdc_id: 169761,
+    data_type: SR,
+    descripcion_fdc: 'Wheat flour, white, all-purpose, unenriched',
+    por_que_coincide: 'la Ley 25.630 fortifica con hierro, ácido fólico y vitaminas B: no estos cinco',
+  },
+  maiz_blanco: { fdc_id: 168920, data_type: SR, descripcion_fdc: 'Corn grain, white', por_que_coincide: 'grano seco' },
+  pan_integral: {
+    fdc_id: 172688,
+    data_type: SR,
+    descripcion_fdc: 'Bread, whole-wheat, commercially prepared',
+    por_que_coincide: 'pan integral de panadería',
+    omitir: { calcio_mg: 'el pan industrial de EE.UU. suma sales de calcio como mejorador' },
+  },
+  semola: { fdc_id: 168933, data_type: SR, descripcion_fdc: 'Semolina, unenriched', por_que_coincide: 'seca' },
+  // condimentos
+  ajo: { fdc_id: 169230, data_type: SR, descripcion_fdc: 'Garlic, raw', por_que_coincide: 'crudo' },
+  albahaca: { fdc_id: 172232, data_type: SR, descripcion_fdc: 'Basil, fresh', por_que_coincide: 'fresca' },
+  alcaparras: { fdc_id: 172238, data_type: SR, descripcion_fdc: 'Capers, canned', por_que_coincide: 'en salmuera' },
+  cascara_citrico: {
+    fdc_id: 167749,
+    data_type: SR,
+    descripcion_fdc: 'Lemon peel, raw',
+    por_que_coincide: 'fresca; la de limón, la única que trae USDA',
+  },
+  cilantro: {
+    fdc_id: 169997,
+    data_type: SR,
+    descripcion_fdc: 'Coriander (cilantro) leaves, raw',
+    por_que_coincide: 'hojas frescas',
+  },
+  curcuma: { fdc_id: 172231, data_type: SR, descripcion_fdc: 'Spices, turmeric, ground', por_que_coincide: 'en polvo' },
+  esencia_vainilla: { fdc_id: 173471, data_type: SR, descripcion_fdc: 'Vanilla extract', por_que_coincide: 'extracto' },
+  jengibre: { fdc_id: 169231, data_type: SR, descripcion_fdc: 'Ginger root, raw', por_que_coincide: 'crudo' },
+  mostaza: {
+    fdc_id: 172234,
+    data_type: SR,
+    descripcion_fdc: 'Mustard, prepared, yellow',
+    por_que_coincide: 'preparada; la común, no la Dijon',
+  },
+  perejil: { fdc_id: 170416, data_type: SR, descripcion_fdc: 'Parsley, fresh', por_que_coincide: 'fresco' },
+  pimienta_negra: { fdc_id: 170931, data_type: SR, descripcion_fdc: 'Spices, pepper, black', por_que_coincide: 'molida' },
+  salsa_soja: {
+    fdc_id: 174277,
+    data_type: SR,
+    descripcion_fdc: 'Soy sauce made from soy and wheat (shoyu)',
+    por_que_coincide: 'de soja y trigo, la común',
+  },
+  // crucíferas
+  brocoli: {
+    fdc_id: 169967,
+    data_type: SR,
+    descripcion_fdc: 'Broccoli, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocido',
+  },
+  coliflor: {
+    fdc_id: 170397,
+    data_type: SR,
+    descripcion_fdc: 'Cauliflower, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocida',
+  },
+  kale: { fdc_id: 168421, data_type: SR, descripcion_fdc: 'Kale, raw', por_que_coincide: 'crudo' },
+  repollo: { fdc_id: 169975, data_type: SR, descripcion_fdc: 'Cabbage, raw', por_que_coincide: 'crudo' },
+  rucula: { fdc_id: 169387, data_type: SR, descripcion_fdc: 'Arugula, raw', por_que_coincide: 'cruda' },
+  // derivados de soja
+  bebida_soja: {
+    fdc_id: 172446,
+    data_type: SR,
+    descripcion_fdc: 'Soymilk, original and vanilla, unfortified',
+    por_que_coincide: 'sin fortificar; la fortificada es otro ingrediente',
+  },
+  edamame: { fdc_id: 168411, data_type: SR, descripcion_fdc: 'Edamame, frozen, prepared', por_que_coincide: 'cocido' },
+  tempeh: { fdc_id: 174272, data_type: SR, descripcion_fdc: 'Tempeh', por_que_coincide: 'tal cual, sin cocinar' },
+  tofu_firme: {
+    fdc_id: 172475,
+    data_type: SR,
+    descripcion_fdc: 'Tofu, raw, firm, prepared with calcium sulfate',
+    por_que_coincide: 'firme; el calcio ya lo trae el dataset',
+  },
+  // especias
+  canela: { fdc_id: 171320, data_type: SR, descripcion_fdc: 'Spices, cinnamon, ground', por_que_coincide: 'molida' },
+  comino: { fdc_id: 170923, data_type: SR, descripcion_fdc: 'Spices, cumin seed', por_que_coincide: 'semilla' },
+  curry_polvo: {
+    fdc_id: 170924,
+    data_type: SR,
+    descripcion_fdc: 'Spices, curry powder',
+    por_que_coincide: 'curry; USDA no trae garam masala',
+  },
+  laurel: { fdc_id: 170917, data_type: SR, descripcion_fdc: 'Spices, bay leaf', por_que_coincide: 'hoja seca' },
+  oregano: { fdc_id: 171328, data_type: SR, descripcion_fdc: 'Spices, oregano, dried', por_que_coincide: 'seco' },
+  pimenton: { fdc_id: 171329, data_type: SR, descripcion_fdc: 'Spices, paprika', por_que_coincide: 'molido' },
+  romero: { fdc_id: 171333, data_type: SR, descripcion_fdc: 'Spices, rosemary, dried', por_que_coincide: 'seco' },
+  tomillo: { fdc_id: 170938, data_type: SR, descripcion_fdc: 'Spices, thyme, dried', por_que_coincide: 'seco' },
+  // fortificados
+  miso: { fdc_id: 172442, data_type: SR, descripcion_fdc: 'Miso', por_que_coincide: 'pasta' },
+  // frutas
+  arandanos: { fdc_id: 171711, data_type: SR, descripcion_fdc: 'Blueberries, raw', por_que_coincide: 'crudos' },
+  banana: {
+    fdc_id: 173944,
+    data_type: SR,
+    descripcion_fdc: 'Bananas, raw',
+    por_que_coincide: 'cruda',
+    extra: {
+      fdc_id: 1105314,
+      data_type: 'Foundation',
+      descripcion_fdc: 'Bananas, ripe and slightly ripe, raw',
+      claves: ['yodo_ug'],
+    },
+  },
+  durazno_almibar: {
+    fdc_id: 168181,
+    data_type: SR,
+    descripcion_fdc: 'Peaches, canned, heavy syrup, drained',
+    por_que_coincide: 'en almíbar, escurrido',
+  },
+  frutilla: { fdc_id: 167762, data_type: SR, descripcion_fdc: 'Strawberries, raw', por_que_coincide: 'cruda' },
+  kiwi: { fdc_id: 168153, data_type: SR, descripcion_fdc: 'Kiwifruit, green, raw', por_que_coincide: 'crudo, verde' },
+  limon: { fdc_id: 167747, data_type: SR, descripcion_fdc: 'Lemon juice, raw', por_que_coincide: 'jugo' },
+  mandarina: {
+    fdc_id: 169105,
+    data_type: SR,
+    descripcion_fdc: 'Tangerines, (mandarin oranges), raw',
+    por_que_coincide: 'cruda',
+  },
+  manzana: {
+    fdc_id: 171688,
+    data_type: SR,
+    descripcion_fdc: "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+    por_que_coincide: 'cruda, con cáscara',
+  },
+  naranja: {
+    fdc_id: 169097,
+    data_type: SR,
+    descripcion_fdc: 'Oranges, raw, all commercial varieties',
+    por_que_coincide: 'cruda',
+  },
+  palta: {
+    fdc_id: 171705,
+    data_type: SR,
+    descripcion_fdc: 'Avocados, raw, all commercial varieties',
+    por_que_coincide: 'cruda',
+  },
+  // frutas secas
+  datiles: {
+    fdc_id: 171726,
+    data_type: SR,
+    descripcion_fdc: 'Dates, deglet noor',
+    por_que_coincide: 'la variedad común; la medjool no trae selenio',
+  },
+  higos_secos: { fdc_id: 174665, data_type: SR, descripcion_fdc: 'Figs, dried, uncooked', por_que_coincide: 'secos' },
+  orejones: {
+    fdc_id: 173941,
+    data_type: SR,
+    descripcion_fdc: 'Apricots, dried, sulfured, uncooked',
+    por_que_coincide: 'secos',
+  },
+  pasas: {
+    fdc_id: 168165,
+    data_type: SR,
+    descripcion_fdc: "Raisins, dark, seedless (Includes foods for USDA's Food Distribution Program)",
+    por_que_coincide: 'negras sin semilla',
+  },
+  // frutos secos
+  almendras: { fdc_id: 170567, data_type: SR, descripcion_fdc: 'Nuts, almonds', por_que_coincide: 'crudas' },
+  avellanas: {
+    fdc_id: 170581,
+    data_type: SR,
+    descripcion_fdc: 'Nuts, hazelnuts or filberts',
+    por_que_coincide: 'crudas',
+  },
+  cajus: { fdc_id: 170162, data_type: SR, descripcion_fdc: 'Nuts, cashew nuts, raw', por_que_coincide: 'crudas' },
+  castanas_para: {
+    fdc_id: 170569,
+    data_type: SR,
+    descripcion_fdc: 'Nuts, brazilnuts, dried, unblanched',
+    por_que_coincide: 'crudas; el selenio ya lo trae el dataset',
+  },
+  coco_rallado: {
+    fdc_id: 170170,
+    data_type: SR,
+    descripcion_fdc: 'Nuts, coconut meat, dried (desiccated), not sweetened',
+    por_que_coincide: 'seco, sin azúcar',
+  },
+  mani: { fdc_id: 172430, data_type: SR, descripcion_fdc: 'Peanuts, all types, raw', por_que_coincide: 'crudo' },
+  nueces: { fdc_id: 170187, data_type: SR, descripcion_fdc: 'Nuts, walnuts, english', por_que_coincide: 'crudas' },
+  pasta_mani: {
+    fdc_id: 172470,
+    data_type: SR,
+    descripcion_fdc: 'Peanut butter, smooth style, without salt',
+    por_que_coincide: 'sin sal',
+  },
+  pistachos: { fdc_id: 170184, data_type: SR, descripcion_fdc: 'Nuts, pistachio nuts, raw', por_que_coincide: 'crudos' },
+  // hongos
+  champinones: { fdc_id: 169251, data_type: SR, descripcion_fdc: 'Mushrooms, white, raw', por_que_coincide: 'crudos' },
+  girgolas: { fdc_id: 168580, data_type: SR, descripcion_fdc: 'Mushrooms, oyster, raw', por_que_coincide: 'crudas' },
+  // legumbres
+  arvejas_partidas: {
+    fdc_id: 172429,
+    data_type: SR,
+    descripcion_fdc: 'Peas, split, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidas',
+  },
+  garbanzos: {
+    fdc_id: 173757,
+    data_type: SR,
+    descripcion_fdc: 'Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos',
+  },
+  harina_garbanzo: { fdc_id: 174288, data_type: SR, descripcion_fdc: 'Chickpea flour (besan)', por_que_coincide: 'seca' },
+  lentejas: {
+    fdc_id: 172421,
+    data_type: SR,
+    descripcion_fdc: 'Lentils, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidas',
+  },
+  porotos_aduki: {
+    fdc_id: 173728,
+    data_type: SR,
+    descripcion_fdc: 'Beans, adzuki, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos',
+  },
+  porotos_alubia: {
+    fdc_id: 173746,
+    data_type: SR,
+    descripcion_fdc: 'Beans, navy, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos; la ficha da «navy bean» como sinónimo',
+  },
+  porotos_colorados: {
+    fdc_id: 175194,
+    data_type: SR,
+    descripcion_fdc: 'Beans, kidney, red, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos',
+  },
+  porotos_negros: {
+    fdc_id: 173735,
+    data_type: SR,
+    descripcion_fdc: 'Beans, black, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos',
+  },
+  porotos_pallares: {
+    fdc_id: 174253,
+    data_type: SR,
+    descripcion_fdc: 'Lima beans, large, mature seeds, cooked, boiled, without salt',
+    por_que_coincide: 'cocidos',
+  },
+  // otros
+  azucar: { fdc_id: 169655, data_type: SR, descripcion_fdc: 'Sugars, granulated', por_que_coincide: 'tal cual' },
+  azucar_impalpable: { fdc_id: 169656, data_type: SR, descripcion_fdc: 'Sugars, powdered', por_que_coincide: 'tal cual' },
+  bicarbonato: {
+    fdc_id: 175040,
+    data_type: SR,
+    descripcion_fdc: 'Leavening agents, baking soda',
+    por_que_coincide: 'tal cual',
+  },
+  cacao_amargo: {
+    fdc_id: 169593,
+    data_type: SR,
+    descripcion_fdc: 'Cocoa, dry powder, unsweetened',
+    por_que_coincide: 'en polvo, sin azúcar ni alcalinizar',
+  },
+  chocolate_amargo: {
+    fdc_id: 170273,
+    data_type: SR,
+    descripcion_fdc: 'Chocolate, dark, 70-85% cacao solids',
+    por_que_coincide: '≥ 70 %',
+  },
+  extracto_tomate: {
+    fdc_id: 170459,
+    data_type: SR,
+    descripcion_fdc:
+      "Tomato products, canned, paste, without salt added (Includes foods for USDA's Food Distribution Program)",
+    por_que_coincide: 'pasta de tomate',
+  },
+  fecula_maiz: { fdc_id: 169698, data_type: SR, descripcion_fdc: 'Cornstarch', por_que_coincide: 'seca' },
+  fecula_mandioca: {
+    fdc_id: 169717,
+    data_type: SR,
+    descripcion_fdc: 'Tapioca, pearl, dry',
+    por_que_coincide: 'el mismo almidón de mandioca, en perlas',
+  },
+  leche_coco: {
+    fdc_id: 170173,
+    data_type: SR,
+    descripcion_fdc: 'Nuts, coconut milk, canned (liquid expressed from grated meat and water)',
+    por_que_coincide: 'de lata',
+  },
+  lecitina_soja: { fdc_id: 171426, data_type: SR, descripcion_fdc: 'Oil, soybean lecithin', por_que_coincide: 'tal cual' },
+  levadura_fresca: {
+    fdc_id: 175042,
+    data_type: SR,
+    descripcion_fdc: "Leavening agents, yeast, baker's, compressed",
+    por_que_coincide: 'fresca prensada',
+  },
+  miel_de_cana: { fdc_id: 168820, data_type: SR, descripcion_fdc: 'Molasses', por_que_coincide: 'melaza' },
+  vino_tinto: {
+    fdc_id: 173190,
+    data_type: SR,
+    descripcion_fdc: 'Alcoholic beverage, wine, table, red',
+    por_que_coincide: 'tinto de mesa',
+  },
+  // pseudocereales
+  quinoa: { fdc_id: 168917, data_type: SR, descripcion_fdc: 'Quinoa, cooked', por_que_coincide: 'cocida' },
+  trigo_sarraceno: {
+    fdc_id: 170686,
+    data_type: SR,
+    descripcion_fdc: 'Buckwheat groats, roasted, cooked',
+    por_que_coincide: 'cocido',
+  },
+  // semillas
+  amapola: { fdc_id: 171330, data_type: SR, descripcion_fdc: 'Spices, poppy seed', por_que_coincide: 'cruda' },
+  chia: { fdc_id: 170554, data_type: SR, descripcion_fdc: 'Seeds, chia seeds, dried', por_que_coincide: 'cruda' },
+  girasol: {
+    fdc_id: 170562,
+    data_type: SR,
+    descripcion_fdc: 'Seeds, sunflower seed kernels, dried',
+    por_que_coincide: 'crudas, peladas',
+  },
+  lino: { fdc_id: 169414, data_type: SR, descripcion_fdc: 'Seeds, flaxseed', por_que_coincide: 'cruda' },
+  semillas_zapallo: {
+    fdc_id: 170556,
+    data_type: SR,
+    descripcion_fdc: 'Seeds, pumpkin and squash seed kernels, dried',
+    por_que_coincide: 'crudas',
+  },
+  sesamo_integral: {
+    fdc_id: 170150,
+    data_type: SR,
+    descripcion_fdc: 'Seeds, sesame seeds, whole, dried',
+    por_que_coincide: 'entero, con cáscara',
+  },
+  tahini: {
+    fdc_id: 170189,
+    data_type: SR,
+    descripcion_fdc: 'Seeds, sesame butter, tahini, from roasted and toasted kernels (most common type)',
+    por_que_coincide: 'el más común, de sésamo tostado',
+  },
+  // verduras
+  apio: { fdc_id: 169988, data_type: SR, descripcion_fdc: 'Celery, raw', por_que_coincide: 'crudo' },
+  berenjena: {
+    fdc_id: 169229,
+    data_type: SR,
+    descripcion_fdc: 'Eggplant, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocida',
+  },
+  calabaza: {
+    fdc_id: 169296,
+    data_type: SR,
+    descripcion_fdc: 'Squash, winter, butternut, cooked, baked, without salt',
+    por_que_coincide: 'anco es butternut; horneada, la ficha dice cocida',
+  },
+  cebolla: { fdc_id: 170000, data_type: SR, descripcion_fdc: 'Onions, raw', por_que_coincide: 'cruda' },
+  cebolla_morada: {
+    fdc_id: 790577,
+    data_type: 'Foundation',
+    descripcion_fdc: 'Onions, red, raw',
+    por_que_coincide: 'cruda; SR Legacy no separa la morada',
+  },
+  cebolla_verdeo: {
+    fdc_id: 170005,
+    data_type: SR,
+    descripcion_fdc: 'Onions, spring or scallions (includes tops and bulb), raw',
+    por_que_coincide: 'cruda, con la parte verde',
+  },
+  choclo: {
+    fdc_id: 169999,
+    data_type: SR,
+    descripcion_fdc: 'Corn, sweet, yellow, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocido',
+  },
+  mandioca: { fdc_id: 169985, data_type: SR, descripcion_fdc: 'Cassava, raw', por_que_coincide: 'cruda' },
+  morron_rojo: { fdc_id: 170108, data_type: SR, descripcion_fdc: 'Peppers, sweet, red, raw', por_que_coincide: 'crudo' },
+  papa: {
+    fdc_id: 170438,
+    data_type: SR,
+    descripcion_fdc: 'Potatoes, boiled, cooked in skin, flesh, without salt',
+    por_que_coincide: 'hervida con piel',
+  },
+  pepino: { fdc_id: 168409, data_type: SR, descripcion_fdc: 'Cucumber, with peel, raw', por_que_coincide: 'crudo' },
+  puerro: {
+    fdc_id: 169246,
+    data_type: SR,
+    descripcion_fdc: 'Leeks, (bulb and lower leaf-portion), raw',
+    por_que_coincide: 'crudo',
+  },
+  rabanito: { fdc_id: 169276, data_type: SR, descripcion_fdc: 'Radishes, raw', por_que_coincide: 'crudo' },
+  remolacha: { fdc_id: 169146, data_type: SR, descripcion_fdc: 'Beets, cooked, boiled, drained', por_que_coincide: 'cocida' },
+  tomate: {
+    fdc_id: 170457,
+    data_type: SR,
+    descripcion_fdc: 'Tomatoes, red, ripe, raw, year round average',
+    por_que_coincide: 'crudo',
+  },
+  tomate_triturado: {
+    fdc_id: 170460,
+    data_type: SR,
+    descripcion_fdc: 'Tomato products, canned, puree, without salt added',
+    por_que_coincide: 'puré de tomate',
+  },
+  tomates_secos: {
+    fdc_id: 169384,
+    data_type: SR,
+    descripcion_fdc: 'Tomatoes, sun-dried, packed in oil, drained',
+    por_que_coincide: 'en aceite, escurridos',
+  },
+  zanahoria: { fdc_id: 170393, data_type: SR, descripcion_fdc: 'Carrots, raw', por_que_coincide: 'cruda' },
+  zucchini: {
+    fdc_id: 169292,
+    data_type: SR,
+    descripcion_fdc: 'Squash, summer, zucchini, includes skin, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocido',
+  },
+  acelga: {
+    fdc_id: 170401,
+    data_type: SR,
+    descripcion_fdc: 'Chard, swiss, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocida',
+  },
+  espinaca: {
+    fdc_id: 168463,
+    data_type: SR,
+    descripcion_fdc: 'Spinach, cooked, boiled, drained, without salt',
+    por_que_coincide: 'cocida',
+  },
+};
+
+// ---------- T17b: ingredientes que USDA no cubre ----------
+
+/** Quedan nulos en lo que el dataset no trae; un nulo nunca es cero. */
+export const SIN_MATCH_USDA: Record<string, string> = {
+  margarina: 'formulación argentina',
+  mayonesa_vegana: 'depende de la marca',
+  levadura_nutricional: 'depende de la marca',
+  yogur_vegano: 'depende de la marca',
+  bebida_vegetal_fortificada: 'depende de la marca',
+  hojas_verdes: 'mezcla sin composición fija',
+  provenzal: 'mezcla',
+  caldo_verduras: 'decisión del gate de la Fase 1',
+  kala_namak: 'sal negra no yodada; USDA no la trae',
+  dulce_membrillo: 'USDA no lo trae',
+  zapallito_redondo: 'Cucurbita maxima, no el summer squash de USDA',
+  hongos_secos: 'la especie no está declarada',
+  masa_madre: 'compuesto de harina y agua',
+  nibs_cacao: 'USDA no lo trae en SR Legacy',
+  polvo_hornear: 'el calcio depende de la sal leudante de la marca',
+  lentejas_turcas: 'SR Legacy solo trae las rojas crudas; la ficha es cocidas',
+  polenta: 'USDA no trae la polenta cocida',
+  sirope: 'arce o agave: dos productos',
+  soja_texturizada: 'TVP o harina de soja desgrasada: no está claro cuál',
+  harina_maiz_blanca: 'integral o desgerminada: no está claro cuál',
+  cuscus: 'USDA solo trae el refinado; la ficha es integral',
+  tortillas: 'de maíz o integrales: dos productos',
+  aceitunas: 'verdes o negras: no está declarado',
+  azucar_mascabo: 'el brown sugar de EE.UU. es azúcar blanca con melaza, no mascabo',
+  menta: 'la especie no está declarada',
+  vinagre: 'manzana, arroz o aceto: tres productos',
+  salsa_tomate: 'casera o pura: dos productos',
+  sal_yodada: 'T16 la corrige; USDA no aporta',
+  nori: 'USDA trae la nori cruda; la ficha es seca',
+  kombu: 'USDA trae el kelp crudo; la ficha es seca',
+  // Pendientes: la DEMO_KEY se agotó antes de confirmar su id en FDC.
+  soja_grano: 'pendiente de traer: candidato 174270, «Soybeans, mature cooked, boiled, without salt»',
+  batata: 'pendiente de traer: candidato 168483, «Sweet potato, cooked, baked in skin, flesh, without salt»',
+};
+
+export { VALORES_USDA } from './curated-usda';

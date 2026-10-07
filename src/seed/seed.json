@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "c28f0f5d3a0e2f9b31508476576c830b482b44f229686fce22a6d880a22dd54b",
+ "content_hash": "dfbc4fc5984248bf3124fe65e9600103e5b65065be6077e3d54163434cbd34cb",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -20,6 +20,30 @@
      "intervalo": {
       "min": 82,
       "max": 82
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.02,
+      "max": 0.02
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.019,
+      "max": 0.019
      }
     }
    },
@@ -50,6 +74,24 @@
       "min": 53,
       "max": 53
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.07,
+      "max": 0.07
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
     }
    },
    "destacados": [
@@ -79,6 +121,31 @@
       "min": 14,
       "max": 14
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.761,
+      "max": 0.761
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -117,7 +184,33 @@
    "sinonimos": [],
    "categoria": "alga",
    "base": "polvo",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 625,
+      "max": 625
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 5.8,
+      "max": 5.8
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 7.4,
+      "max": 7.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.001,
+      "max": 0.001
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 7,
    "fuentes": [
     "usda"
@@ -134,10 +227,10 @@
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 1000,
-      "max": 2500
+      "min": 100000,
+      "max": 250000
      },
-     "nota": "POR GRAMO: supera el UL con facilidad"
+     "nota": "supera el UL con facilidad: solo saborizar y retirar"
     }
    },
    "destacados": [
@@ -157,20 +250,20 @@
     "hojas para sushi"
    ],
    "categoria": "alga",
-   "base": "seca, POR GRAMO",
+   "base": "seca",
    "kcal": {
     "intervalo": {
-     "min": 3.5,
-     "max": 3.5
+     "min": 350,
+     "max": 350
     }
    },
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 16,
-      "max": 43
+      "min": 1600,
+      "max": 4300
      },
-     "nota": "por gramo; 1 hoja ≈ 2.5 g ≈ 40-110 µg"
+     "nota": "1 hoja ≈ 2,5 g ≈ 40–110 µg"
     }
    },
    "destacados": [
@@ -200,6 +293,32 @@
       "min": 2.7,
       "max": 2.7
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.49,
+      "max": 0.49
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 7.5,
+      "max": 7.5
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.013,
+      "max": 0.013
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -241,6 +360,24 @@
       "max": 15
      },
      "nota": "depende del suelo"
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.71,
+      "max": 0.71
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.011,
+      "max": 0.011
+     }
     }
    },
    "destacados": [],
@@ -294,6 +431,26 @@
       "min": 10.6,
       "max": 10.6
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 52,
+      "max": 52
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 28.9,
+      "max": 28.9
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -339,6 +496,32 @@
       "min": 32,
       "max": 32
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.57,
+      "max": 0.57
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.004,
+      "max": 0.004
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -379,6 +562,25 @@
       "min": 4,
       "max": 14
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 11,
+      "max": 11
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.82,
+      "max": 0.82
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.021,
+      "max": 0.021
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -457,6 +659,24 @@
       "min": 15,
       "max": 35
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.51,
+      "max": 0.51
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.024,
+      "max": 0.024
+     }
     }
    },
    "destacados": [
@@ -496,6 +716,32 @@
       "min": 5.2,
       "max": 5.2
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 142,
+      "max": 142
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.85,
+      "max": 0.85
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 39.7,
+      "max": 39.7
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.048,
+      "max": 0.048
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -541,6 +787,25 @@
       "min": 30,
       "max": 70
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 34,
+      "max": 34
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.6,
+      "max": 2.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.073,
+      "max": 0.073
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 7,
@@ -574,11 +839,32 @@
       "min": 220,
       "max": 220
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.62,
+      "max": 0.62
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 34.4,
+      "max": 34.4
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.022,
+      "max": 0.022
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 7,
    "fuentes": [
-    "ley25630"
+    "ley25630",
+    "usda"
    ],
    "notas": "harina 0000 fortificada (Ley 25.630) + leudante + sal: no sumar sal aparte sin probar",
    "origen": "setP_personal"
@@ -635,6 +921,32 @@
       "min": 220,
       "max": 220
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 15,
+      "max": 15
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 33.9,
+      "max": 33.9
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.022,
+      "max": 0.022
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -644,7 +956,8 @@
    "ic": 7,
    "fuentes": [
     "ley25630",
-    "argenfoods"
+    "argenfoods",
+    "usda"
    ],
    "notas": "Argentina Ley 25.630: fortificación obligatoria con hierro (30 mg/kg), ácido fólico, B1, B2, B3"
   },
@@ -674,6 +987,32 @@
       "min": 7,
       "max": 7
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.21,
+      "max": 2.21
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 15.5,
+      "max": 15.5
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.065,
+      "max": 0.065
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 7,
@@ -718,6 +1057,18 @@
      "intervalo": {
       "min": 25,
       "max": 40
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.77,
+      "max": 1.77
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.137,
+      "max": 0.137
      }
     }
    },
@@ -784,6 +1135,25 @@
       "min": 40,
       "max": 90
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 17,
+      "max": 17
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.05,
+      "max": 1.05
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.037,
+      "max": 0.037
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 7,
@@ -842,6 +1212,31 @@
       "min": 6.4,
       "max": 6.4
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 181,
+      "max": 181
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.16,
+      "max": 1.16
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 14.2,
+      "max": 14.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.02,
+      "max": 0.02
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -863,7 +1258,33 @@
      "max": 23
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 177,
+      "max": 177
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.81,
+      "max": 0.81
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.316,
+      "max": 0.316
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -888,6 +1309,31 @@
       "min": 2350,
       "max": 2350
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 40,
+      "max": 40
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.32,
+      "max": 0.32
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.2,
+      "max": 1.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.183,
+      "max": 0.183
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -903,9 +1349,37 @@
    "sinonimos": [],
    "categoria": "condimento",
    "base": "fresca",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 134,
+      "max": 134
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.25,
+      "max": 0.25
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.026,
+      "max": 0.026
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
-   "fuentes": [],
+   "fuentes": [
+    "usda"
+   ],
    "notas": "sin lo blanco: amarga",
    "origen": "anexo_recetas"
   },
@@ -936,6 +1410,31 @@
       "min": 337,
       "max": 337
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 67,
+      "max": 67
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.9,
+      "max": 0.9
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -966,6 +1465,30 @@
       "min": 55,
       "max": 55
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 168,
+      "max": 168
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.5,
+      "max": 4.5
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 6.2,
+      "max": 6.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     }
     }
    },
    "destacados": [],
@@ -981,7 +1504,33 @@
    "sinonimos": [],
    "categoria": "condimento",
    "base": "tal cual",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 11,
+      "max": 11
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.11,
+      "max": 0.11
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.001,
+      "max": 0.001
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1002,7 +1551,33 @@
      "max": 80
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.34,
+      "max": 0.34
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.034,
+      "max": 0.034
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "destacados": [],
    "ic": 7,
    "fuentes": [
@@ -1059,6 +1634,30 @@
       "min": 1100,
       "max": 1100
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 63,
+      "max": 63
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.64,
+      "max": 0.64
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 33.5,
+      "max": 33.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.373,
+      "max": 0.373
+     }
     }
    },
    "ic": 8,
@@ -1092,6 +1691,31 @@
       "min": 6.2,
       "max": 6.2
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 138,
+      "max": 138
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.07,
+      "max": 1.07
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.008,
+      "max": 0.008
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1115,7 +1739,32 @@
      "max": 251
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 443,
+      "max": 443
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.19,
+      "max": 1.19
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.9,
+      "max": 4.9
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.152,
+      "max": 0.152
+     }
+    }
+   },
    "destacados": [],
    "ic": 6,
    "fuentes": [
@@ -1130,7 +1779,7 @@
     "sal fina común"
    ],
    "categoria": "condimento",
-   "base": "por gramo",
+   "base": "tal cual",
    "kcal": {
     "intervalo": {
      "min": 0,
@@ -1140,10 +1789,10 @@
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 25,
-      "max": 40
+      "min": 2500,
+      "max": 4167
      },
-     "nota": "por gramo, Ley 17.259; sales marinas/rosadas NO yodadas"
+     "nota": "1 cdta (6 g) ≈ 150–250 µg; las sales rosadas importadas suelen no estar yodadas"
     }
    },
    "destacados": [
@@ -1152,7 +1801,8 @@
    "ic": 7,
    "fuentes": [
     "ley17259",
-    "nih"
+    "nih",
+    "caa1272"
    ]
   },
   {
@@ -1173,6 +1823,31 @@
       "min": 5500,
       "max": 5500
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 33,
+      "max": 33
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.87,
+      "max": 0.87
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.029,
+      "max": 0.029
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -1240,6 +1915,25 @@
       "min": 40,
       "max": 40
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.45,
+      "max": 0.45
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.6,
+      "max": 1.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.119,
+      "max": 0.119
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1288,6 +1982,31 @@
       "min": 39,
       "max": 39
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.17,
+      "max": 0.17
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.167,
+      "max": 0.167
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1332,6 +2051,25 @@
       "min": 93,
       "max": 93
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.39,
+      "max": 0.39
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.9,
+      "max": 0.9
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.378,
+      "max": 0.378
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1369,6 +2107,31 @@
       "min": 37,
       "max": 37
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 40,
+      "max": 40
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.18,
+      "max": 0.18
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1412,6 +2175,25 @@
       "min": 97,
       "max": 97
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.47,
+      "max": 0.47
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.17,
+      "max": 0.17
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1449,6 +2231,26 @@
       "max": 125
      },
      "nota": "fortificada ~120; ver etiqueta, también B12/D/B2 a veces"
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.12,
+      "max": 0.12
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.8,
+      "max": 4.8
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.075,
+      "max": 0.075
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1497,6 +2299,31 @@
      "intervalo": {
       "min": 436,
       "max": 436
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 63,
+      "max": 63
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.37,
+      "max": 1.37
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.8,
+      "max": 0.8
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.358,
+      "max": 0.358
      }
     }
    },
@@ -1585,6 +2412,26 @@
       "min": 1.1,
       "max": 1.1
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 111,
+      "max": 111
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.248,
+      "max": 0.248
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1629,6 +2476,26 @@
       "min": 1.6,
       "max": 2.7
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.57,
+      "max": 1.57
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 17.4,
+      "max": 17.4
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.582,
+      "max": 0.582
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -1646,7 +2513,32 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "molida",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1000,
+      "max": 1000
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.83,
+      "max": 1.83
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 3.1,
+      "max": 3.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.011,
+      "max": 0.011
+     }
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1659,7 +2551,33 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "molido",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 931,
+      "max": 931
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.8,
+      "max": 4.8
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 5.2,
+      "max": 5.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.176,
+      "max": 0.176
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1673,7 +2591,32 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "molido",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 525,
+      "max": 525
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.7,
+      "max": 4.7
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 40.3,
+      "max": 40.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.255,
+      "max": 0.255
+     }
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1686,7 +2629,33 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "hoja seca",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 834,
+      "max": 834
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 3.7,
+      "max": 3.7
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.8,
+      "max": 2.8
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 1.05,
+      "max": 1.05
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1699,7 +2668,32 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "seco",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1600,
+      "max": 1600
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.69,
+      "max": 2.69
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.5,
+      "max": 4.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.621,
+      "max": 0.621
+     }
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1712,7 +2706,32 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "molido",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 229,
+      "max": 229
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.33,
+      "max": 4.33
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 6.3,
+      "max": 6.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.453,
+      "max": 0.453
+     }
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1736,7 +2755,33 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "seco",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1280,
+      "max": 1280
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 3.23,
+      "max": 3.23
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.6,
+      "max": 4.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 1.08,
+      "max": 1.08
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1749,7 +2794,33 @@
    "sinonimos": [],
    "categoria": "especia",
    "base": "seco",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1890,
+      "max": 1890
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 6.18,
+      "max": 6.18
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.6,
+      "max": 4.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.69,
+      "max": 0.69
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -1875,6 +2946,31 @@
       "min": 3700,
       "max": 3700
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 57,
+      "max": 57
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.56,
+      "max": 2.56
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.405,
+      "max": 0.405
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 7,
@@ -1943,6 +3039,31 @@
       "min": 9.7,
       "max": 9.7
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 6,
+      "max": 6
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.16,
+      "max": 0.16
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.058,
+      "max": 0.058
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -1978,6 +3099,37 @@
       "min": 0.37,
       "max": 0.37
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 5,
+      "max": 5
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.15,
+      "max": 0.15
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.027,
+      "max": 0.027
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    },
+    "yodo_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
     }
    },
    "destacados": [
@@ -2003,7 +3155,33 @@
      "max": 74
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.09,
+      "max": 0.09
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -2037,6 +3215,31 @@
       "min": 24,
       "max": 24
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.14,
+      "max": 0.14
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.4,
+      "max": 0.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.065,
+      "max": 0.065
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2071,6 +3274,31 @@
       "min": 3,
       "max": 3
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 34,
+      "max": 34
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.14,
+      "max": 0.14
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.042,
+      "max": 0.042
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2098,6 +3326,30 @@
      "intervalo": {
       "min": 39,
       "max": 39
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 6,
+      "max": 6
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.05,
+      "max": 0.05
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.009,
+      "max": 0.009
      }
     }
    },
@@ -2134,6 +3386,31 @@
       "min": 34,
       "max": 34
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 37,
+      "max": 37
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.07,
+      "max": 0.07
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.018,
+      "max": 0.018
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2162,6 +3439,31 @@
       "min": 2.4,
       "max": 2.4
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 6,
+      "max": 6
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.04,
+      "max": 0.04
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.009,
+      "max": 0.009
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -2201,6 +3503,25 @@
       "min": 40,
       "max": 40
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.07,
+      "max": 0.07
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.007,
+      "max": 0.007
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2249,6 +3570,30 @@
       "min": 2.1,
       "max": 2.1
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 12,
+      "max": 12
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.64,
+      "max": 0.64
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.4,
+      "max": 0.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.111,
+      "max": 0.111
+     }
     }
    },
    "destacados": [
@@ -2285,6 +3630,31 @@
       "min": 6.7,
       "max": 6.7
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 39,
+      "max": 39
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.29,
+      "max": 0.29
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -2330,6 +3700,25 @@
       "min": 9.8,
       "max": 9.8
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.55,
+      "max": 0.55
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2372,6 +3761,31 @@
       "min": 1162,
       "max": 1162
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 55,
+      "max": 55
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.39,
+      "max": 0.39
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.2,
+      "max": 2.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2406,6 +3820,30 @@
      "intervalo": {
       "min": 749,
       "max": 749
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 62,
+      "max": 62
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.36,
+      "max": 0.36
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.014,
+      "max": 0.014
      }
     }
    },
@@ -2469,6 +3907,18 @@
       "min": 1.1,
       "max": 1.1
      }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.1,
+      "max": 4.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     }
     }
    },
    "destacados": [
@@ -2511,6 +3961,31 @@
       "min": 163,
       "max": 163
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 114,
+      "max": 114
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.45,
+      "max": 2.45
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.4,
+      "max": 2.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.087,
+      "max": 0.087
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2561,6 +4036,25 @@
       "min": 292,
       "max": 292
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 37,
+      "max": 37
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 19.9,
+      "max": 19.9
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.062,
+      "max": 0.062
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2607,6 +4101,24 @@
       "min": 376,
       "max": 376
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 160,
+      "max": 160
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.06,
+      "max": 4.06
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.018,
+      "max": 0.018
+     }
     }
    },
    "destacados": [
@@ -2642,6 +4154,31 @@
       "min": 16,
       "max": 16
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 26,
+      "max": 26
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.01,
+      "max": 2.01
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 18.5,
+      "max": 18.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -2689,6 +4226,25 @@
       "min": 52,
       "max": 52
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 92,
+      "max": 92
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2732,6 +4288,24 @@
       "min": 158,
       "max": 158
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 98,
+      "max": 98
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 3.09,
+      "max": 3.09
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.9,
+      "max": 4.9
+     }
     }
    },
    "destacados": [
@@ -2767,6 +4341,30 @@
      "intervalo": {
       "min": 154,
       "max": 154
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 49,
+      "max": 49
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.51,
+      "max": 2.51
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.1,
+      "max": 4.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.027,
+      "max": 0.027
      }
     }
    },
@@ -2807,6 +4405,31 @@
       "min": 1025,
       "max": 1025
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 105,
+      "max": 105
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.2,
+      "max": 2.2
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.289,
+      "max": 0.289
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2858,6 +4481,25 @@
       "max": 10
      },
      "nota": "SOLO si expuestos a UV o sol (30-60 min al sol laminados sube D2)"
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.52,
+      "max": 0.52
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2897,6 +4539,31 @@
       "min": 0.35,
       "max": 0.35
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.77,
+      "max": 0.77
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.6,
+      "max": 2.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -2983,6 +4650,26 @@
       "min": 8.3,
       "max": 8.3
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 14,
+      "max": 14
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.028,
+      "max": 0.028
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3047,6 +4734,26 @@
       "min": 0.14,
       "max": 0.14
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 49,
+      "max": 49
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 3.7,
+      "max": 3.7
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.043,
+      "max": 0.043
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3082,6 +4789,32 @@
       "min": 4.9,
       "max": 4.9
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 45,
+      "max": 45
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 2.81,
+      "max": 2.81
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 8.3,
+      "max": 8.3
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.112,
+      "max": 0.112
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -3147,6 +4880,26 @@
       "min": 36,
       "max": 36
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 19,
+      "max": 19
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.8,
+      "max": 2.8
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.037,
+      "max": 0.037
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3248,6 +5001,25 @@
       "min": 532,
       "max": 532
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 28,
+      "max": 28
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.77,
+      "max": 1.77
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.2,
+      "max": 1.2
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
     }
    },
    "ic": 8,
@@ -3309,6 +5081,25 @@
       "min": 6.3,
       "max": 6.3
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.03,
+      "max": 1.03
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.9,
+      "max": 2.9
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.177,
+      "max": 0.177
+     }
     }
    },
    "destacados": [
@@ -3359,6 +5150,32 @@
       "min": 7.4,
       "max": 7.4
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 28,
+      "max": 28
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 1.07,
+      "max": 1.07
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.2,
+      "max": 1.2
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.168,
+      "max": 0.168
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3420,6 +5237,26 @@
       "min": 70,
       "max": 70
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 27,
+      "max": 27
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.2,
+      "max": 1.2
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.105,
+      "max": 0.105
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3470,6 +5307,32 @@
       "min": 7,
       "max": 7
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 17,
+      "max": 17
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.95,
+      "max": 0.95
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 4.5,
+      "max": 4.5
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.052,
+      "max": 0.052
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -3611,7 +5474,33 @@
      "max": 387
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.01,
+      "max": 0.01
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -3633,7 +5522,33 @@
      "max": 389
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.01,
+      "max": 0.01
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -3666,9 +5581,37 @@
    "sinonimos": [],
    "categoria": "otro",
    "base": "tal cual",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
-   "fuentes": [],
+   "fuentes": [
+    "usda"
+   ],
    "notas": "ablanda legumbres (pizca); contar sodio",
    "origen": "anexo_recetas"
   },
@@ -3696,6 +5639,31 @@
       "min": 499,
       "max": 499
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 128,
+      "max": 128
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 6.81,
+      "max": 6.81
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 14.3,
+      "max": 14.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -3748,6 +5716,30 @@
      "intervalo": {
       "min": 228,
       "max": 228
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 73,
+      "max": 73
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 3.31,
+      "max": 3.31
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.034,
+      "max": 0.034
      }
     }
    },
@@ -3803,6 +5795,31 @@
       "min": 1010,
       "max": 1010
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 36,
+      "max": 36
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.63,
+      "max": 0.63
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 5.3,
+      "max": 5.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.007,
+      "max": 0.007
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -3826,7 +5843,33 @@
      "max": 381
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 2,
+      "max": 2
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.06,
+      "max": 0.06
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.8,
+      "max": 2.8
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -3849,7 +5892,33 @@
      "max": 358
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 20,
+      "max": 20
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.12,
+      "max": 0.12
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.8,
+      "max": 0.8
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.001,
+      "max": 0.001
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -3875,6 +5944,18 @@
       "min": 21,
       "max": 21
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 18,
+      "max": 18
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.56,
+      "max": 0.56
+     }
     }
    },
    "ic": 8,
@@ -3890,7 +5971,33 @@
    "sinonimos": [],
    "categoria": "otro",
    "base": "líquida o granulada",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 5.14,
+      "max": 5.14
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 7,
    "fuentes": [
     "usda"
@@ -3906,9 +6013,37 @@
    ],
    "categoria": "otro",
    "base": "tal cual",
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 19,
+      "max": 19
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 9.97,
+      "max": 9.97
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 8.1,
+      "max": 8.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 8,
-   "fuentes": [],
+   "fuentes": [
+    "usda"
+   ],
    "notas": "equivalencia: 10 g fresca ≈ 3 g seca; distinta de la levadura nutricional (esta está viva)",
    "origen": "setP_personal"
   },
@@ -3971,6 +6106,25 @@
       "min": 40,
       "max": 200
      }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.29,
+      "max": 0.29
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 17.8,
+      "max": 17.8
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 6,
@@ -4066,7 +6220,33 @@
      "max": 85
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 8,
+      "max": 8
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.14,
+      "max": 0.14
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
+    }
+   },
    "ic": 7,
    "fuentes": [
     "usda"
@@ -4118,6 +6298,26 @@
       "min": 1.1,
       "max": 1.1
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 17,
+      "max": 17
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.8,
+      "max": 2.8
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.085,
+      "max": 0.085
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4156,6 +6356,32 @@
       "min": 51,
       "max": 51
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.61,
+      "max": 0.61
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 2.2,
+      "max": 2.2
+     },
+     "nota": "varía mucho con el suelo; dato de EE.UU."
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.014,
+      "max": 0.014
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -4182,6 +6408,24 @@
      "intervalo": {
       "min": 1438,
       "max": 1438
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 7.9,
+      "max": 7.9
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 13.5,
+      "max": 13.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.273,
+      "max": 0.273
      }
     }
    },
@@ -4241,6 +6485,18 @@
      "intervalo": {
       "min": 335,
       "max": 335
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.58,
+      "max": 4.58
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 55.2,
+      "max": 55.2
      }
     }
    },
@@ -4304,6 +6560,19 @@
       "min": 227,
       "max": 227
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 78,
+      "max": 78
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.06,
+      "max": 0.06
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4354,6 +6623,24 @@
       "min": 392,
       "max": 392
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 255,
+      "max": 255
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 4.34,
+      "max": 4.34
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 25.4,
+      "max": 25.4
+     }
     }
    },
    "destacados": [
@@ -4403,6 +6690,24 @@
      "intervalo": {
       "min": 8.8,
       "max": 8.8
+     }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 46,
+      "max": 46
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 9.4,
+      "max": 9.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.12,
+      "max": 0.12
      }
     }
    },
@@ -4455,6 +6760,19 @@
       "min": 7.8,
       "max": 7.8
      }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 34.4,
+      "max": 34.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.376,
+      "max": 0.376
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4508,6 +6826,19 @@
       "min": 4.6,
       "max": 4.6
      }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 34.4,
+      "max": 34.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.407,
+      "max": 0.407
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4536,6 +6867,31 @@
       "min": 260,
       "max": 260
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 40,
+      "max": 40
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.13,
+      "max": 0.13
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.4,
+      "max": 0.4
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -4624,6 +6980,31 @@
       "min": 2.5,
       "max": 2.5
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 6,
+      "max": 6
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.12,
+      "max": 0.12
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.015,
+      "max": 0.015
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -4673,6 +7054,31 @@
       "min": 284,
       "max": 284
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 41,
+      "max": 41
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.13,
+      "max": 0.13
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.024,
+      "max": 0.024
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4701,6 +7107,31 @@
       "min": 1.1,
       "max": 1.1
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 23,
+      "max": 23
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.17,
+      "max": 0.17
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.004,
+      "max": 0.004
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -4722,7 +7153,32 @@
      "max": 40
     }
    },
-   "nutrientes": {},
+   "nutrientes": {
+    "calcio_mg": {
+     "intervalo": {
+      "min": 17,
+      "max": 17
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.17,
+      "max": 0.17
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.5,
+      "max": 0.5
+     }
+    },
+    "yodo_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    }
+   },
    "ic": 8,
    "fuentes": [
     "usda"
@@ -4757,6 +7213,31 @@
       "min": 64,
       "max": 64
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 72,
+      "max": 72
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.39,
+      "max": 0.39
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.004,
+      "max": 0.004
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -4791,6 +7272,31 @@
       "min": 2.4,
       "max": 2.4
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.62,
+      "max": 0.62
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.018,
+      "max": 0.018
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -4821,6 +7327,31 @@
       "min": 20,
       "max": 20
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.34,
+      "max": 0.34
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.017,
+      "max": 0.017
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -4864,6 +7395,31 @@
       "min": 157,
       "max": 157
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 7,
+      "max": 7
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.25,
+      "max": 0.25
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.056,
+      "max": 0.056
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4914,6 +7470,31 @@
       "min": 0.3,
       "max": 0.3
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 5,
+      "max": 5
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.01,
+      "max": 0.01
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -4942,6 +7523,31 @@
       "min": 147,
       "max": 147
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.3,
+      "max": 0.3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.005,
+      "max": 0.005
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -4968,6 +7574,31 @@
       "min": 64,
       "max": 64
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 59,
+      "max": 59
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.12,
+      "max": 0.12
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.099,
+      "max": 0.099
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -4997,6 +7628,31 @@
       "min": 15,
       "max": 15
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 25,
+      "max": 25
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.28,
+      "max": 0.28
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.6,
+      "max": 0.6
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.031,
+      "max": 0.031
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -5032,6 +7688,31 @@
       "min": 80,
       "max": 80
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 16,
+      "max": 16
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.35,
+      "max": 0.35
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.005,
+      "max": 0.005
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -5104,6 +7785,31 @@
       "min": 237,
       "max": 237
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.17,
+      "max": 0.17
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0,
+      "max": 0
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -5140,6 +7846,31 @@
       "min": 220,
       "max": 220
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 18,
+      "max": 18
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.36,
+      "max": 0.36
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.7,
+      "max": 0.7
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.004,
+      "max": 0.004
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -5168,6 +7899,31 @@
       "min": 1565,
       "max": 1565
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 47,
+      "max": 47
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.78,
+      "max": 0.78
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.078,
+      "max": 0.078
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "ic": 8,
@@ -5207,6 +7963,31 @@
       "min": 320,
       "max": 320
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 33,
+      "max": 33
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.24,
+      "max": 0.24
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.1,
+      "max": 0.1
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.002,
+      "max": 0.002
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -5268,6 +8049,31 @@
       "min": 264,
       "max": 264
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 18,
+      "max": 18
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.33,
+      "max": 0.33
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.2,
+      "max": 0.2
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.094,
+      "max": 0.094
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [],
@@ -5312,6 +8118,31 @@
       "min": 2.3,
       "max": 2.3
      }
+    },
+    "calcio_mg": {
+     "intervalo": {
+      "min": 58,
+      "max": 58
+     }
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.33,
+      "max": 0.33
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 0.9,
+      "max": 0.9
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.003,
+      "max": 0.003
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
@@ -5366,6 +8197,25 @@
       "max": 136
      },
      "nota": "NO computar como fuente: oxalatos reducen absorción a ~5%"
+    },
+    "zinc_mg": {
+     "intervalo": {
+      "min": 0.76,
+      "max": 0.76
+     }
+    },
+    "selenio_ug": {
+     "intervalo": {
+      "min": 1.5,
+      "max": 1.5
+     }
+    },
+    "ala_g": {
+     "intervalo": {
+      "min": 0.092,
+      "max": 0.092
+     },
+     "nota": "18:3 sin diferenciar; en vegetales es casi todo ALA"
     }
    },
    "destacados": [
