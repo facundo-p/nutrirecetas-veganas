@@ -27,8 +27,10 @@ import {
   PHANTOM_LINES,
   RECETAS_CON_PASOS_TOKENIZADOS,
   STORAGE_GROUPS,
+  VALORES_USDA,
   VEGAN_FACTORS_FROM_PROSE,
 } from './curated-tables';
+import type { ValorUsda } from './curated-usda';
 import type { RawData, RawIngredient, RawLine, RawNutrient, RawNutrientValue, RawRecipe } from './load';
 import { canonizeRda } from './rda';
 import { tokensDePaso } from '../../src/domain/pasos';
@@ -85,11 +87,38 @@ export function aplicarCorreccion(
   };
 }
 
+/**
+ * T17 completa con USDA lo que el dataset no trae, como valor puntual (la
+ * convención del dataset para un promedio USDA). Pisar un dato rompe el build:
+ * corregir es trabajo de T16.
+ */
+export function aplicarUsda(
+  ingrediente: Ingredient,
+  valores: Partial<Record<keyof Ingredient['nutrientes'], ValorUsda>> | undefined,
+): Ingredient {
+  if (valores === undefined) return ingrediente;
+  const nutrientes = { ...ingrediente.nutrientes };
+  for (const [clave, { valor, nota }] of Object.entries(valores)) {
+    const key = clave as keyof Ingredient['nutrientes'];
+    if (nutrientes[key] !== undefined) {
+      throw new Error(`T17: ${ingrediente.id} ya trae ${clave} del dataset; si hay que corregir, va a T16`);
+    }
+    const intervalo = { min: valor, max: valor };
+    nutrientes[key] = nota === undefined ? { intervalo } : { intervalo, nota };
+  }
+  const fuentes = ingrediente.fuentes.includes('usda') ? ingrediente.fuentes : [...ingrediente.fuentes, 'usda'];
+  return { ...ingrediente, nutrientes, fuentes };
+}
+
 export function transformIngredients(raws: RawIngredient[]): Ingredient[] {
   const ids = new Set(raws.map((r) => r.id));
   const huerfanas = Object.keys(CORRECCIONES_POR_GRAMO).filter((id) => !ids.has(id));
   if (huerfanas.length > 0) throw new Error(`T16: correcciones para ingredientes que no existen: ${huerfanas.join(', ')}`);
-  return raws.map((raw) => aplicarCorreccion(transformIngredient(raw), CORRECCIONES_POR_GRAMO[raw.id]));
+  const sinIngrediente = Object.keys(VALORES_USDA).filter((id) => !ids.has(id));
+  if (sinIngrediente.length > 0) throw new Error(`T17: valores USDA para ingredientes que no existen: ${sinIngrediente.join(', ')}`);
+  return raws.map((raw) =>
+    aplicarUsda(aplicarCorreccion(transformIngredient(raw), CORRECCIONES_POR_GRAMO[raw.id]), VALORES_USDA[raw.id]),
+  );
 }
 
 export function transformIngredient(raw: RawIngredient): Ingredient {

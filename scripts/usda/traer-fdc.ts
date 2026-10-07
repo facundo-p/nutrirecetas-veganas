@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -15,8 +15,9 @@ import { loadRawData } from '../build-seed/load';
  * y escribe `curated-usda.ts`. `npm run usda -- --buscar "lentils cooked"`
  * lista candidatos para elegir a mano: la elección nunca es automática.
  *
- * Usa `FDC_API_KEY` si está; si no, DEMO_KEY, que admite 10 pedidos por hora.
- * Por eso pide de a 20 alimentos.
+ * Usa `FDC_API_KEY` si está; si no, DEMO_KEY, que admite 10 pedidos por día.
+ * Por eso pide de a 20 alimentos. `--desde a.json b.json` lee respuestas de FDC
+ * ya guardadas (búsqueda, listado o detalle) en vez de pedirlas.
  */
 
 const API = 'https://api.nal.usda.gov/fdc/v1';
@@ -31,10 +32,15 @@ const NOTA_ALA_619 = '18:3 sin diferenciar; en vegetales es casi todo ALA';
 const NOTA_SELENIO = 'varía mucho con el suelo; dato de EE.UU.';
 const CATEGORIAS_CON_SELENIO_DEL_SUELO = new Set(['cereal', 'pseudocereal', 'legumbre', 'derivado_soja']);
 
+/** Las tres formas en que FDC devuelve un nutriente: detalle, búsqueda y listado. */
 interface NutrienteFdc {
-  nutrient: { number: string };
+  nutrient?: { number: string };
+  nutrientNumber?: string;
+  number?: string;
   amount?: number;
+  value?: number;
   foodNutrientDerivation?: { code: string };
+  derivationCode?: string;
 }
 interface AlimentoFdc {
   fdcId: number;
@@ -72,13 +78,23 @@ async function traerAlimentos(ids: number[]): Promise<Map<number, AlimentoFdc>> 
   return alimentos;
 }
 
+function alimentosGuardados(archivos: string[]): Map<number, AlimentoFdc> {
+  const alimentos = new Map<number, AlimentoFdc>();
+  for (const archivo of archivos) {
+    const json = JSON.parse(readFileSync(archivo, 'utf8')) as AlimentoFdc[] | { foods: AlimentoFdc[] };
+    for (const alimento of Array.isArray(json) ? json : json.foods) alimentos.set(alimento.fdcId, alimento);
+  }
+  return alimentos;
+}
+
 /** Nutriente ausente = no se escribe: nulo no es cero. */
 function leer(alimento: AlimentoFdc, numero: string): Omit<ValorUsda, 'nota'> | undefined {
-  const n = alimento.foodNutrients.find((x) => x.nutrient.number === numero && x.amount !== undefined);
-  if (n === undefined || n.amount === undefined) return undefined;
-  const derivacion = n.foodNutrientDerivation?.code;
+  const n = alimento.foodNutrients.find((x) => (x.nutrient?.number ?? x.nutrientNumber ?? x.number) === numero);
+  const cantidad = n?.amount ?? n?.value;
+  if (n === undefined || cantidad === undefined) return undefined;
+  const derivacion = n.foodNutrientDerivation?.code ?? n.derivationCode;
   return {
-    valor: n.amount,
+    valor: cantidad,
     fdc_id: alimento.fdcId,
     nutriente_fdc: numero as ValorUsda['nutriente_fdc'],
     ...(derivacion !== undefined ? { derivacion } : {}),
@@ -108,12 +124,17 @@ function verificarDescripcion(entrada: EntradaFdc, alimento: AlimentoFdc | undef
   return alimento;
 }
 
+function literal(valor: ValorUsda): string {
+  const campos = Object.entries(valor).map(([k, v]) => `${k}: ${typeof v === 'string' ? `'${v}'` : v}`);
+  return `{ ${campos.join(', ')} }`;
+}
+
 function serializar(valores: Record<string, Partial<Record<ClaveCritica, ValorUsda>>>): string {
   const fecha = new Date().toISOString().slice(0, 10);
   const cuerpo = Object.entries(valores)
     .map(([id, porClave]) => {
       const lineas = CLAVES_CRITICAS.filter((c) => porClave[c] !== undefined).map(
-        (c) => `    ${c}: ${JSON.stringify(porClave[c]).replace(/"([a-z_]+)":/g, '$1: ')},`,
+        (c) => `    ${c}: ${literal(porClave[c]!)},`,
       );
       return `  ${id}: {\n${lineas.join('\n')}\n  },`;
     })
@@ -146,7 +167,8 @@ async function main(): Promise<void> {
   const crudos = new Map(loadRawData().ingredientes.map((r) => [r.id, r]));
   const matches = Object.entries(USDA_MATCHES).sort(([a], [b]) => a.localeCompare(b));
   const ids = [...new Set(matches.flatMap(([, m]) => [m.fdc_id, ...(m.extra ? [m.extra.fdc_id] : [])]))];
-  const alimentos = await traerAlimentos(ids);
+  const d = process.argv.indexOf('--desde');
+  const alimentos = d !== -1 ? alimentosGuardados(process.argv.slice(d + 1)) : await traerAlimentos(ids);
 
   const valores: Record<string, Partial<Record<ClaveCritica, ValorUsda>>> = {};
   for (const [id, match] of matches) {

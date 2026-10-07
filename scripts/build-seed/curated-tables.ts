@@ -2082,12 +2082,6 @@ export const USDA_MATCHES: Record<string, MatchUsda> = {
     descripcion_fdc: 'Lima beans, large, mature seeds, cooked, boiled, without salt',
     por_que_coincide: 'cocidos',
   },
-  soja_grano: {
-    fdc_id: 174270,
-    data_type: SR,
-    descripcion_fdc: 'Soybeans, mature cooked, boiled, without salt',
-    por_que_coincide: 'cocida',
-  },
   // otros
   azucar: { fdc_id: 169655, data_type: SR, descripcion_fdc: 'Sugars, granulated', por_que_coincide: 'tal cual' },
   azucar_impalpable: { fdc_id: 169656, data_type: SR, descripcion_fdc: 'Sugars, powdered', por_que_coincide: 'tal cual' },
@@ -2181,12 +2175,6 @@ export const USDA_MATCHES: Record<string, MatchUsda> = {
   },
   // verduras
   apio: { fdc_id: 169988, data_type: SR, descripcion_fdc: 'Celery, raw', por_que_coincide: 'crudo' },
-  batata: {
-    fdc_id: 168483,
-    data_type: SR,
-    descripcion_fdc: 'Sweet potato, cooked, baked in skin, flesh, without salt',
-    por_que_coincide: 'horneada',
-  },
   berenjena: {
     fdc_id: 169229,
     data_type: SR,
@@ -2308,6 +2296,9 @@ export const SIN_MATCH_USDA: Record<string, string> = {
   sal_yodada: 'T16 la corrige; USDA no aporta',
   nori: 'USDA trae la nori cruda; la ficha es seca',
   kombu: 'USDA trae el kelp crudo; la ficha es seca',
+  // Pendientes: la DEMO_KEY se agotó antes de confirmar su id en FDC.
+  soja_grano: 'pendiente de traer: candidato 174270, «Soybeans, mature cooked, boiled, without salt»',
+  batata: 'pendiente de traer: candidato 168483, «Sweet potato, cooked, baked in skin, flesh, without salt»',
 };
 
 export { VALORES_USDA } from './curated-usda';

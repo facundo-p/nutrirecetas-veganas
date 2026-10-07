@@ -59,11 +59,15 @@ describe('golden: p19 pastel de papas (encadena p04 queso de maní y usa levadur
     expect(n.por_nutriente.prot_g.cobertura_pct).toBeCloseTo(91.53, 1);
   });
 
-  test('el calcio no se afirma como cero: cobertura mínima ⇒ sin datos', () => {
+  test('calcio total 243.55 mg con cobertura ~86.7 %', () => {
+    // 2026-10-07 (#169): el calcio de USDA de la papa, la cebolla y el maní hizo
+    // que el cero de antes —que era "sin datos"— pase a dato. Recalculado por
+    // fuera del motor, con el mismo método del encabezado.
     const calcio = n.por_nutriente.calcio_mg;
-    expect(calcio.intervalo.max).toBe(0);
-    expect(calcio.cobertura_pct).toBeLessThan(10);
-    expect(hasReportableValue(calcio)).toBe(false);
+    expect(calcio.intervalo.min).toBeCloseTo(243.545, 2);
+    expect(calcio.intervalo.max).toBeCloseTo(243.545, 2);
+    expect(calcio.cobertura_pct).toBeCloseTo(86.7, 1);
+    expect(hasReportableValue(calcio)).toBe(true);
   });
 
   test('alerta B12: p19 usa levadura nutricional directa', () => {

@@ -49,8 +49,10 @@ describe('el color de cada paso (issue #164)', () => {
   const colores = (deHoy: LineaSesion[]) => nutrientesDeLosPasos(deHoy, r01, idx, objetivos);
 
   test('es el nutriente que más cubre lo que entra en cada paso; en el hervor no entra nada', () => {
-    // la zanahoria, el extracto de tomate, las lentejas, el limón
-    expect(colores(lineas)).toEqual(['vita', 'proteina', 'hierro', 'folato', null, 'vitc']);
+    // la zanahoria, el ajo y el comino, el extracto de tomate, las lentejas, el limón.
+    // Desde #169 el ajo y el comino tiñen de calcio y el extracto de selenio: los
+    // trae USDA, y antes no había dato.
+    expect(colores(lineas)).toEqual(['vita', 'calcio', 'selenio', 'folato', null, 'vitc']);
   });
 
   test('lo que se saca no tiñe su paso', () => {
