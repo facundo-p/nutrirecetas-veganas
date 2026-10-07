@@ -419,6 +419,26 @@ describe('las cantidades de un paso van como token (#200)', () => {
     );
   });
 
+  test('una medida en letras rompe igual que en cifras', () => {
+    const arroz = [linea('arroz', 1.5, 'taza', 0, 300)];
+    for (const paso of [
+      'Lavar la taza y media de arroz.',
+      'Sumar media cucharadita de comino.',
+      'Agregar una taza de agua.',
+      'Sumar el cuarto de cucharadita de cúrcuma.',
+      'Sumar los dos tercios de taza de azúcar.',
+      'Picar los dos dientes de ajo.',
+    ]) {
+      expect(validar([paso], arroz), paso).toThrow(/es una medida en letras/);
+    }
+  });
+
+  test('lo que se dice por unidad no es un total y puede ir en letras', () => {
+    const aceite = [linea('aceite_oliva', 1, 'cda_por_omelette', 0, 13)];
+    expect(validar(['Calentar una cucharada por omelette.'], aceite)).not.toThrow();
+    expect(validar(['Revolver con una cuchara de madera.'], aceite)).not.toThrow();
+  });
+
   test('un número sin unidad que es una cantidad del paso también rompe', () => {
     expect(validar(['Picar las 2 zanahorias.'], [linea('zanahoria', 2, 'mediana', 0, 140)])).toThrow(
       /es una cantidad de ese paso y quedó escrito/,

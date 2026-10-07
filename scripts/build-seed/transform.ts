@@ -222,6 +222,20 @@ const MEDIDA_ESCRITA =
   /(?<![\d,.])\d+(?:[,.]\d+)?\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
 
 /**
+ * La misma medida dicha en letras: «la taza y media», «media cucharadita».
+ * Miente igual que la cifra al escalar. Lo que es por unidad no es un total y
+ * se escribe seguido de «por»: «una cucharada por omelette».
+ */
+const FRACCION_EN_LETRAS = String.raw`(?:cuarto|tercio|dos\s+tercios|tres\s+cuartos)\s+de`;
+const NUMERO_EN_LETRAS = String.raw`(?:una?|medi[oa]|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce|otr[oa]s?|${FRACCION_EN_LETRAS})`;
+const MEDIDA_EN_LETRAS = new RegExp(
+  String.raw`(?<!\p{L})(?:(?:la|las|el|los)\s+(?:${NUMERO_EN_LETRAS}\s+)?|${NUMERO_EN_LETRAS}\s+)` +
+    String.raw`(?:tazas?|cucharadas?|cucharaditas?|cdas?|cdtas?|litros?|dientes?|latas?)` +
+    String.raw`(?:\s+y\s+(?:media|medio|cuarto|(?:un|dos|tres)\s+(?:tercios?|cuartos?)))?(?!\p{L})(?!\s+por\b)`,
+  'iu',
+);
+
+/**
  * T9/#200: una receta tokenizada dice sus cantidades con `{ingrediente}` y no
  * con un número escrito. Un número fijo en la prosa miente en cuanto se ajustan
  * las porciones —la lista decía 800 g y el paso 400—, y este es el único lugar
@@ -258,6 +272,10 @@ export function validarPasos(
     MEDIDA_ESCRITA.lastIndex = 0;
     if (medida !== null) {
       throw new Error(`${donde}: "${medida[0]}" es una medida escrita; va como token o sin número`);
+    }
+    const enLetras = MEDIDA_EN_LETRAS.exec(texto);
+    if (enLetras !== null) {
+      throw new Error(`${donde}: "${enLetras[0]}" es una medida en letras; va como token, sin cantidad o «por» unidad`);
     }
 
     for (const match of texto.matchAll(NUMERO_SUELTO)) {
