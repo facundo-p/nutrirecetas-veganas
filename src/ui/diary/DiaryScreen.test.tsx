@@ -60,9 +60,10 @@ describe('diario', () => {
     expect(screen.queryByText(/comiste|quedan/)).toBeNull();
   });
 
-  test('marca la alerta B12 de las cocciones que la llevan', async () => {
+  test('no repite la alerta B12: se explica solo en Nutrientes, aunque la cocción guarde el flag', async () => {
     await addCoccion(coccion);
     render(<DiaryScreen />);
-    await waitFor(() => expect(screen.getByLabelText(/levadura nutricional/)).toBeDefined());
+    await waitFor(() => screen.getByText('Pastel de papas'));
+    expect(screen.queryByLabelText(/levadura nutricional/)).toBeNull();
   });
 });

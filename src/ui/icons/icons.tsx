@@ -272,27 +272,7 @@ export function IconTemporada(props: IconProps) {
   );
 }
 
-// ---------- alerta y extras ----------
-
-export function IconEscudoB12(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 3l7 2.6v4.9c0 4.9-2.9 8.3-7 10-4.1-1.7-7-5.1-7-10V5.6Z" />
-      <text
-        x="12"
-        y="13.6"
-        textAnchor="middle"
-        fontSize="6.2"
-        fontFamily="inherit"
-        fontWeight="700"
-        fill="currentColor"
-        stroke="none"
-      >
-        B12
-      </text>
-    </Base>
-  );
-}
+// ---------- extras ----------
 
 export function IconEstrellaBrotada(props: IconProps) {
   return (
