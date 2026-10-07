@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "1956c56f9882f874a78c91d68d71664782b364c55699e118e6175e654b7f1d9c",
+ "content_hash": "2d1800038638ed62dec8c4bc00f725f6aa4359a883f1962c07cd2b562adeff5a",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -12094,7 +12094,7 @@
     }
    ],
    "pasos": [
-    "Prensar {tofu_firme} de tofu firme unos 20 minutos entre dos tablas con peso encima, para que largue el agua: cuanta más suelte ahora, más crocante sale la milanesa. Después cortarlo en láminas de 1 cm.",
+    "Prensar {tofu_firme} de tofu firme unos 20 minutos entre dos tablas con peso encima, para que largue el agua: cuanta más suelte ahora, más crocante sale la milanesa. Después cortar el tofu en láminas de 1 cm.",
     "Preparar el batido en un plato hondo: {bebida_vegetal_fortificada} de bebida vegetal, {harina_garbanzo} de harina de garbanzo —que acá hace de huevo y liga el rebozado—, {salsa_soja} de salsa de soja, {ajo} de ajo en polvo y {cebolla} de cebolla en polvo. Si la usás, agregale {curcuma} de cúrcuma para darle color. Batir hasta que no queden grumos.",
     "Armar el empanado en otro plato: {pan_integral} de pan integral rallado, {levadura_nutricional} de levadura nutricional —que acá hace de queso y aporta el umami de milanesa—, {oregano} de orégano, {tomillo} de tomillo y {pimenton} de pimentón ahumado.",
     "Pasar cada lámina primero por el batido y después por el empanado, presionando con los dedos para que la costra se pegue bien y no se caiga en el horno.",
@@ -13319,7 +13319,7 @@
     }
    ],
    "pasos": [
-    "Cortar en trozos parejos la berenjena, los morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con {garbanzos} de garbanzos cocidos bien escurridos y {ajo} de ajo entero, con su piel: asado adentro de la camisa se vuelve una crema dulce.",
+    "Cortar en trozos parejos la berenjena, los morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con {garbanzos} de garbanzos cocidos bien escurridos y {ajo} de ajo entero, con su piel: al asarse adentro de la camisa, el ajo se vuelve una crema dulce.",
     "Rociar con la mitad de {aceite_oliva} de aceite de oliva y espolvorear {~comino} de comino —reservando un poco para el aliño—, {~pimenton} de pimentón ahumado y {~canela} de canela, que acá es la firma árabe del plato. Asar a 200° unos 25 a 30 minutos, hasta que las verduras tengan los bordes dorados y los garbanzos estén crocantes. Que todo quede con espacio: amontonado se hierve en vez de asarse.",
     "Mientras, cocinar {quinoa} de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y dejarla reposar tapada unos minutos.",
     "Preparar el aliño: pelar el ajo asado, pisarlo con un tenedor hasta hacer una pasta y batirla con el jugo y la ralladura del limón, el resto del aceite de oliva, {tahini} de tahini, el comino reservado y, si la usás, {azucar_mascabo} de azúcar mascabo. Emulsionar hasta que quede cremoso.",
