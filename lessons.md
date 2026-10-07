@@ -624,3 +624,31 @@ de una auditoría ni de un test: de cocinar con ella.
 - **Un valor sin unidad propia se lee en la unidad del archivo.** El dataset declara «por 100 g» y tres ingredientes guardaron su yodo por gramo: la sal sumaba 2 µg por cucharadita en vez de 200. La `base` decía «por gramo» y nadie la leía: el motor no la mira. Antes de cargar datos nuevos, buscar los viejos que mienten en la escala.
 - **DEMO_KEY de FoodData Central da 10 pedidos por día**, no por hora: el `retry-after` del 429 lo dice. Una búsqueda con frases entre comillas unidas por `OR` trae 30 alimentos con todos sus nutrientes en un pedido; guardar esas respuestas y que el script las lea (`--desde`) salvó la carga.
 - **Elegir el alimento es decisión, traer el número no.** Los matches viven en `curated-tables.ts` (T17) y los valores en un archivo generado; el build no usa red y el test exige que cada ingrediente con huecos tenga una decisión escrita, match o motivo.
+
+## Fase 4 — El cromatograma, cierre (2026-10-07, #170)
+
+**Lo que se rompió o casi:**
+
+- **Un porcentaje que el rango no sostiene no se escribe.** La levadura decía ~2083 % de B12; con `porcentajeAfirmableSolo` dice «—». El ranking de recetas por nutriente sacó los rangos que arrancan en cero: B12 y vitamina D explican en vez de listar, y el calcio bajó de 40 a 35 puestos. Invariante 5; salió al mirar, no de un test.
+- **Los renders encontraron gramos secos con valores de cocido.** `lentejas_turcas`, `lentejas`, `arroz_*`, `quinoa`, `fideos`, `porotos_pallares` y `soja_grano` tienen `base` cocida, y ~20 líneas las pesan en seco (`taza_seca`, `g_secas`, `taza_cruda`). El motor no convierte: la sopa r01 da 8 g de proteína por porción en vez de ~18. Lo delató un número bajo, no un test; ningún golden lo cubre (#240).
+- **Una red que mira el texto crudo ve lo que nadie lee, por segunda y tercera vez.** El `#2` de `{aceitunas#2}` contaba como número suelto (#204) y «ningún paso nombra un código» rechazaba `{p08}` (#206, #207). Borrar los tokens antes de chequear, como el matcher de #199.
+- **Un filtro arreglado en un ranking y no en su gemelo** (#241): el de recetas ya dejaba afuera los rangos que arrancan en cero, el de ingredientes no, y la levadura encabezaba la B12 con 50 µg.
+- **El validador no ve una cantidad que se pierde.** Los CR de las tandas encontraron bicarbonato en «un poco», levadura sin proporción y un relleno sin cantidades: prosa válida para la red, inútil para cocinar. La revisión de la prosa sigue siendo humana.
+- **Lo que retoma al ingrediente después del token se nombra con el sustantivo.** «Cortarlo» después de «los 2 bloques» choca a ×2. Revisar a factor mínimo **y** a ×2.
+- **El handoff pedía datos que no existen, otra vez**: función por ingrediente y sustitutos con proporción. Se mostró lo que hay (`notas`, sustitutos juntados de las líneas) en vez de curar 158 frases.
+- **La carga inicial se cuida con las clases reales** (`carga-inicial.test.ts`). Para su render hubo que bloquear el service worker: servía el JS de su caché sin pasar por `route`.
+
+**Qué decisión cambió y por qué** (frente a la tabla de #170):
+
+- «Un solo tema» terminó en dos (#185). El contrato de tres capas lo absorbió sin tocar componentes; ΔE ≥ 21,8 / 25,3 contra el 15,2 del Cromatograma.
+- La B12 pasó de cuatro superficies a una (#166). La ficha guarda una nota que lee `alerta_b12`, no los puntos: el punto hueco solo ve la levadura suelta (el hueco se vio en #157).
+- Offline es inventario, no error: «Funciona / Espera a la conexión», sin color de aviso.
+- Entró lo que la épica no preveía —menos texto (#194), menos alto (#219–#223), cantidades de los pasos (#199–#207), guardia de gramos (#209)—. Lo pidió usar la app, no el handoff.
+
+**Orquestación:**
+
+- Un worktree por issue en paralelo anduvo con hojas separadas. `seed.json` se regenera al resolver conflictos, nunca a mano.
+- Dos PR de tandas paralelas tocaron el mismo test: se resolvió fijando el orden de merge, no fusionando.
+- GitHub GraphQL falló transitoriamente al mergear: reintentar, no forzar.
+- `Closes` en el PR de cierre cerraría la épica sin el OK de Facu: va `Refs`.
+- El puerto fijo de los renders (4173) chocó con otro proyecto: `--port=N`.
