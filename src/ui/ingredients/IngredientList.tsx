@@ -8,6 +8,12 @@ import { ingredientInSeason } from '../../domain/season';
 import { IconLupa, IconTemporada } from '../icons/icons';
 import { IndiceConfianza } from '../common/IndiceConfianza';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
+import { BarraDeAporte } from '../common/BarraDeAporte';
+import { LeyendaDeIconos } from '../common/LeyendaDeIconos';
+import { SobreQueDosis } from '../common/SobreQueDosis';
+import { useObjetivos } from '../common/useObjetivos';
+import { porcentajesDeAporte, resultadosDeIngrediente } from '../../domain/aporte';
+import { ingredienteSinDato } from '../../domain/ingrediente';
 
 function nutrientValue100g(ing: Ingredient, clave: string): number | null {
   const value = ing.nutrientes[clave as keyof Ingredient['nutrientes']];
@@ -16,6 +22,7 @@ function nutrientValue100g(ing: Ingredient, clave: string): number | null {
 
 export function IngredientList() {
   const idx = getSeedIndex();
+  const objetivos = useObjetivos();
   const [q, setQ] = useState('');
   const [categoria, setCategoria] = useState('');
   const [fuenteDe, setFuenteDe] = useState('');
@@ -41,9 +48,35 @@ export function IngredientList() {
     return items;
   }, [idx, q, categoria, nutrient]);
 
+  const aportes = useMemo(
+    () =>
+      new Map(
+        idx.seed.ingredientes.map((ing) => [
+          ing.id,
+          porcentajesDeAporte(resultadosDeIngrediente(ing), objetivos, idx.seed.nutrientes),
+        ]),
+      ),
+    [idx, objetivos],
+  );
+
   return (
     <>
-      <EncabezadoPantalla titulo="Ingredientes" lamina="nabo" />
+      <EncabezadoPantalla
+        titulo="Ingredientes"
+        lamina="nabo"
+        informacion={
+          <>
+            <p>
+              La barrita de cada ingrediente son los seis nutrientes que más cubren 100 g, en el mismo orden y color que
+              en el recetario, sobre <SobreQueDosis fuente={objetivos.fuente} />. Si tiene dato de menos de seis, sobran
+              casilleros vacíos.
+            </p>
+            <p>«sin dato»: la ficha no tiene ningún nutriente cargado. No quiere decir que no aporte.</p>
+            <h3>Los íconos</h3>
+            <LeyendaDeIconos ids={['temporada', 'brotes-ic']} />
+          </>
+        }
+      />
       <div className="filtros">
         <label className="filtros-buscador">
           <IconLupa />
@@ -96,13 +129,14 @@ export function IngredientList() {
           const valor = nutrient ? nutrientValue100g(ing, nutrient.clave_ingrediente) : null;
           return (
             <li key={ing.id}>
-              <a className="tarjeta fila-ingrediente" href={routeHash({ screen: 'ingredient', id: ing.id })}>
+              <a className="fila-ingrediente" href={routeHash({ screen: 'ingredient', id: ing.id })}>
                 <span className="fila-ingrediente-nombre">
                   {ing.nombre}
                   {ingredientInSeason(idx, ing.id, currentMonth()) && (
                     <IconTemporada className="inline-icono icono-temporada" aria-label="en temporada" />
                   )}
                 </span>
+                <BarraDeAporte clase="barra-aporte-mini" porcentajes={aportes.get(ing.id)!} />
                 <span className="fila-ingrediente-meta">
                   {valor !== null && nutrient && (
                     <span className="cifra">
@@ -110,9 +144,13 @@ export function IngredientList() {
                     </span>
                   )}
                   <span className="chip chip-mini">{legible(ing.categoria)}</span>
-                  <span className="meta-item">
-                    <IndiceConfianza ic={ing.ic} compacto />
-                  </span>
+                  {ingredienteSinDato(ing) ? (
+                    <span className="sin-dato">sin dato</span>
+                  ) : (
+                    <span className="meta-item">
+                      <IndiceConfianza ic={ing.ic} compacto />
+                    </span>
+                  )}
                 </span>
               </a>
             </li>

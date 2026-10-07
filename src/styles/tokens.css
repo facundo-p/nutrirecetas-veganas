@@ -50,6 +50,7 @@
   /* Aporte: las piezas del color por nutriente */
   --gap-franja: 3px;
   --alto-franja: 7px; /* firma de la receta, no gráfico: no le pelea al título */
+  --ancho-franja-mini: 14px; /* la barra de la lista de ingredientes */
 
   /* Papel: lado del tile que declara cada tema en --textura. Tiene que coincidir
      con el LADO de scripts/textura.mjs, que lo genera. */

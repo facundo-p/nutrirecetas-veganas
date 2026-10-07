@@ -4,7 +4,11 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-1);
+  column-gap: var(--sp-5);
+}
+
+.lista-ingredientes > li {
+  border-top: var(--borde);
 }
 
 @media (min-width: 900px) {
@@ -14,31 +18,54 @@
 }
 
 .fila-ingrediente {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  gap: var(--sp-3);
+  gap: var(--sp-1) var(--sp-3);
   min-height: var(--toque-minimo);
-  padding: var(--sp-2) var(--sp-4);
+  padding: var(--sp-2) 0;
   text-decoration: none;
   color: inherit;
 }
 
 .fila-ingrediente-nombre {
   font-family: var(--font-display);
-  font-weight: 540;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.1;
   color: var(--tinta);
-  display: inline-flex;
-  align-items: center;
+}
+
+.fila-ingrediente:hover .fila-ingrediente-nombre {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.fila-ingrediente-nombre .inline-icono {
+  vertical-align: -0.1em;
+  margin-left: var(--sp-1);
+}
+
+/* Casilleros de ancho fijo: la barra es una firma chica, no se estira con la fila. */
+.barra-aporte-mini .franja {
+  flex: none;
+  width: var(--ancho-franja-mini);
 }
 
 .fila-ingrediente-meta {
-  display: inline-flex;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-2);
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
-  white-space: nowrap;
+}
+
+/* Suave y no en aviso: son casi todas especias, y cuarenta filas en aviso estorban. */
+.fila-ingrediente-meta .sin-dato {
+  color: var(--dato-suave);
 }
 
 /* El % va en el renglón del valor, en su propia columna: el rótulo de arriba
@@ -57,6 +84,54 @@
   justify-self: end;
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
+}
+
+/* `.aviso` es flex para ícono + texto; acá son dos párrafos apilados. */
+.sin-dato-ingrediente {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.sin-dato-ingrediente p {
+  margin: 0;
+}
+
+.lista-sustitutos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.lista-sustitutos .chip {
+  text-decoration: none;
+}
+
+.guarda-ingrediente {
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+}
+
+.guarda-ingrediente h3 {
+  font-size: var(--fs-base);
+  margin: 0 0 var(--sp-2);
+}
+
+.lista-aparece-en {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-aparece-en a {
+  display: flex;
+  align-items: center;
+  min-height: var(--toque-minimo);
+  border-top: var(--borde-suave);
+  color: var(--navegar);
 }
 
 .lista-conservacion {
