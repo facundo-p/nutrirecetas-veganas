@@ -1,9 +1,20 @@
-import { IndiceConfianza } from '../common/IndiceConfianza';
 import { useState } from 'react';
 import { getSeedIndex } from '../../seed';
-import { ICON_CATALOG } from '../icons/catalog';
+import { IndiceConfianza } from '../common/IndiceConfianza';
+import { Informacion } from '../common/Informacion';
+import { ICON_CATALOG, type CatalogEntry } from '../icons/catalog';
 
-/** Glosario doble: pestaña de íconos (cada uno explicado) + términos culinarios. */
+/** Glosario doble: pestaña de íconos y colores (cada uno explicado) + términos culinarios. */
+
+const ICON_GROUPS: Record<CatalogEntry['grupo'], string> = {
+  colores: 'Los colores',
+  ventana: 'Cada cuánto se mira',
+  datos: 'El dato y su confianza',
+  'tipo de receta': 'Tipo de receta',
+  prácticos: 'Para cocinar',
+  extras: 'Cómo marcás cada receta',
+  navegación: 'Secciones',
+};
 
 const TERM_GROUPS: Record<string, string> = {
   tecnica_calor: 'Técnicas de calor',
@@ -24,12 +35,24 @@ export function Glossary() {
   return (
     <>
       <header className="encabezado-pantalla">
-        <span className="etiqueta-seccion">Glosario</span>
-        <h1>Glosario</h1>
+        <div className="fila-con-informacion">
+          <span className="etiqueta-seccion">Glosario</span>
+          <Informacion>
+            <p>
+              Cada ícono y cada color de la app, con lo que quiere decir. La «i» de cada pantalla explica los suyos con
+              estas mismas palabras: salen de acá.
+            </p>
+            <p>
+              Los términos culinarios son los que usan los pasos de las recetas. Los brotes dicen cuán firme es cada
+              definición.
+            </p>
+          </Informacion>
+        </div>
+        <h1>Qué quiere decir cada cosa</h1>
       </header>
       <div className="pestanas" role="tablist" aria-label="Secciones del glosario">
         <button role="tab" aria-selected={tab === 'iconos'} className="pestana" onClick={() => setTab('iconos')}>
-          Íconos
+          Íconos y colores
         </button>
         <button role="tab" aria-selected={tab === 'terminos'} className="pestana" onClick={() => setTab('terminos')}>
           Términos culinarios
@@ -40,11 +63,13 @@ export function Glossary() {
         <div className="glosario-iconos">
           {iconGroups.map((grupo) => (
             <section key={grupo}>
-              <h2 className="etiqueta-seccion nutricion-grupo">{grupo}</h2>
+              <h2 className="etiqueta-seccion nutricion-grupo">{ICON_GROUPS[grupo]}</h2>
               <ul className="lista-iconos">
                 {ICON_CATALOG.filter((e) => e.grupo === grupo).map(({ id, Componente, significado }) => (
-                  <li key={id} className="tarjeta ficha-icono">
-                    <Componente className="ficha-icono-svg" />
+                  <li key={id} className="fila-icono">
+                    <span className="fila-icono-glifo">
+                      <Componente className="fila-icono-svg" />
+                    </span>
                     <span>{significado}</span>
                   </li>
                 ))}
