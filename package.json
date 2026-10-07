@@ -13,6 +13,7 @@
     "seed": "tsx scripts/build-seed/index.ts",
     "gramos": "tsx scripts/build-seed/informe-gramos.ts",
     "usda": "tsx scripts/usda/traer-fdc.ts",
+    "cobertura": "tsx scripts/build-seed/informe-cobertura.ts",
     "tablero": "tsx scripts/tablero-publicado.ts",
     "renders": "node scripts/renders.mjs"
   },

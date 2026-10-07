@@ -329,3 +329,89 @@ El modo cocina muestra los ingredientes de cada paso, y la semilla no lo sabía:
 Lo leyó un agente por receta (Haiku) con los pasos ya curados (T9), y cada respuesta trajo la cita textual del paso que la justifica. La segunda opinión fue el matcher de nombres de los tests de T9: lo que el agente ubicaba después del primer paso que nombra al ingrediente se revisó a mano. Casi todo eran falsos positivos del matcher —"dulce" en *base dulce*, el "arroz" de *vinagre de arroz*, el extracto de tomate contra el triturado—.
 
 El build falla si una receta queda sin mapeo, si una línea cae en un paso que no existe, si un imprescindible queda sin paso, o si hay una entrada para una receta que no existe.
+
+## 14. T16 y T17 — cobertura de los nutrientes críticos (2026-10-07, #169)
+
+### T16: tres ingredientes guardaban su yodo por gramo
+
+El dataset declara «por 100 g» y el motor escala todo así; estos tres guardaron cifras por gramo y quedaban 100 veces abajo. Con una cucharadita de sal, la receta sumaba 2 µg de yodo en vez de 200.
+
+| Ingrediente | Antes | Después | Base | ¿OK? |
+|---|---|---|---|---|
+| `sal_yodada` | 25–40 µg, base «por gramo» | **2500–4167 µg/100 g**, base «tal cual» | CAA art. 1272 (Res. Conj. 32/2021, BO 04/03/2022, reglamenta la Ley 17.259): «una parte de yodo en treinta mil partes de sal», ±25 % | |
+| `nori` | yodo 16–43, kcal 3,5, base «seca, POR GRAMO» | yodo 1600–4300, kcal 350, base «seca» | `ingredientes.md`: «~35 kcal/10 g» y «16–43 µg por gramo» | |
+| `kombu` | yodo 1000–2500 | 100 000–250 000 | la nota del dataset dice «POR GRAMO» | |
+
+**Por qué el dataset no gana acá**: el rango legal es 25–41,7 µg/g; el dataset lo redondeó a 25–40 y lo guardó en otra escala. La nota de la sal decía «sales marinas NO yodadas», y el art. 1272 exige yodo a toda sal para consumo directo, marina incluida: queda «las rosadas importadas suelen no estarlo». La línea `cdta_marina` de `p20` sigue apuntando a `sal_yodada`. No se aplica pérdida de yodo en la cocción: el dataset no trae factor.
+
+El build falla si una corrección repite el dato del dataset o cae sobre una clave que el dataset no trae (eso es carga, T17).
+
+### T17: carga desde FoodData Central
+
+`USDA_MATCHES` (T17, `curated-tables.ts`) elige a mano qué alimento de FDC es cada ingrediente, contra la `base` de su ficha; `npm run usda` trae los números a `curated-usda.ts`, generado y commiteado, con el `fdc_id`, el número de nutriente y la derivación de cada valor. Reglas:
+
+- Solo se completan claves que el dataset no trae; pisar una rompe el build.
+- Nutriente que FDC no reporta = nulo, nunca cero.
+- **Ceros con derivación `Z`** («assumed zero») se aceptan como cero afirmado: `aceite_coco`, `aceite_lino`, `esencia_vainilla` y `lecitina_soja`, todos en selenio.
+- **ALA**: el 851 si está; si no, el 619 (18:3 sin diferenciar) con nota visible, «en vegetales es casi todo ALA». Así entran 95 de los 121.
+- **Selenio** de cereales, pseudocereales, legumbres y soja: nota visible, «varía mucho con el suelo; dato de EE.UU.». No cambia el esquema ni el IC.
+- **Yodo**: solo de Foundation y analítico. Entran dos ceros medidos: `banana` y `cebolla_morada`.
+- El IC del ingrediente no se toca.
+
+Matches discutibles, para revisar:
+
+| Ingrediente | Alimento FDC | Duda | ¿OK? |
+|---|---|---|---|
+| `calabaza` | 169296 butternut horneada | la ficha dice cocida, sin método | |
+| `porotos_alubia` | 173746 navy | la ficha da «navy bean» como sinónimo | |
+| `harina_leudante` | 168895 self-rising | se omite el calcio: viene del leudante estadounidense | |
+| `pan_integral` | 172688 commercially prepared | se omite el calcio: el pan industrial de EE.UU. suma sales de calcio | |
+| `harina_trigo_fortificada` | 169761 unenriched | la Ley 25.630 no toca estos cinco | |
+| `cascara_citrico` | 167749 lemon peel | la única cáscara que trae USDA | |
+| `datiles` | 171726 deglet noor | la medjool no trae selenio | |
+| `mostaza` | 172234 yellow | la común, no la Dijon | |
+| `curry_polvo` | 170924 curry powder | USDA no trae garam masala | |
+| `fecula_mandioca` | 169717 tapioca pearl | el mismo almidón, en perlas | |
+| `tahini` | 170189 de sésamo tostado | el más común | |
+| `tomate_triturado` | 170460 puree | | |
+| `cebolla_morada` | 790577 Foundation | SR Legacy no separa la morada | |
+| `maiz_blanco` | 168920 corn grain, white | | |
+
+Sin match (`SIN_MATCH_USDA`, T17b), quedan nulos en lo que el dataset no trae:
+
+| Ingrediente | Motivo |
+|---|---|
+| `margarina` | formulación argentina |
+| `mayonesa_vegana`, `levadura_nutricional`, `yogur_vegano`, `bebida_vegetal_fortificada` | depende de la marca |
+| `hojas_verdes`, `provenzal` | mezcla |
+| `caldo_verduras` | decisión del gate de la Fase 1 |
+| `kala_namak` | sal negra no yodada; USDA no la trae |
+| `dulce_membrillo`, `nibs_cacao` | USDA no lo trae |
+| `zapallito_redondo` | *Cucurbita maxima*, no el summer squash |
+| `hongos_secos`, `menta` | la especie no está declarada |
+| `masa_madre` | compuesto |
+| `polvo_hornear` | el calcio depende de la sal leudante de la marca |
+| `lentejas_turcas` | SR Legacy solo trae las rojas crudas |
+| `polenta` | USDA no trae la cocida |
+| `sirope`, `tortillas`, `vinagre`, `salsa_tomate` | dos o tres productos bajo un nombre |
+| `soja_texturizada` | TVP o harina de soja desgrasada |
+| `harina_maiz_blanca` | integral o desgerminada |
+| `cuscus` | USDA solo trae el refinado |
+| `aceitunas` | verdes o negras |
+| `azucar_mascabo` | el brown sugar de EE.UU. es azúcar blanca con melaza |
+| `sal_yodada`, `nori`, `kombu` | los corrige T16; USDA trae las algas crudas |
+| `soja_grano`, `batata` | **pendientes**: la DEMO_KEY (10 pedidos por día) se agotó antes de confirmar sus ids; candidatos 174270 y 168483 |
+
+Un test exige que todo ingrediente con un crítico sin dato esté en una de las dos tablas.
+
+### Antes y después (`npm run cobertura`)
+
+| Nutriente | Ingredientes con dato (de 158) | Recetas ≥ 20 % del día (de 73) |
+|---|---|---|
+| calcio | 18 → 125 | 7 → 11 |
+| zinc | 15 → 125 | 1 → 8 |
+| selenio | 10 → 124 | 6 → 25 |
+| omega 3 | 4 → 121 | 10 → 16 |
+| yodo | 3 → 5 | 0 → 7 |
+
+El yodo sigue fuera de la barra: casi todo el de una receta viene de la sal, que es una pizca o una cucharadita estimada.
