@@ -406,6 +406,9 @@ describe('las cantidades de un paso van como token (#200)', () => {
     const dos = [linea('aceitunas', 100, 'g', 0), linea('aceitunas', 50, 'g', 0)];
     expect(validar(['Sumar {aceitunas} de aceitunas.'], dos)).toThrow(/es ambiguo/);
     expect(validar(['Sumar {aceitunas#2} de aceitunas.'], dos)).not.toThrow();
+    // El 2 del `#2` no es una cantidad escrita, aunque una línea mida 2.
+    const conDos = [linea('aceitunas', 100, 'g', 0), linea('aceitunas', 2, 'cda', 0)];
+    expect(validar(['Sumar {aceitunas#1} de aceitunas y {aceitunas#2} de alcaparras.'], conDos)).not.toThrow();
   });
 
   test('una medida escrita a mano rompe el build, sea o no de una línea', () => {

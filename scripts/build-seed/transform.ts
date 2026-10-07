@@ -268,19 +268,21 @@ export function validarPasos(
     const cantidades = new Set(
       enElPaso.flatMap((linea) => [linea.cantidad, linea.g_aprox, Math.round(linea.g_aprox)].map(String)),
     );
-    const medida = MEDIDA_ESCRITA.exec(texto);
+    // El `#2` de `{aceitunas#2}` no es una cantidad escrita.
+    const prosa = texto.replace(/\{~?[a-z0-9_]+(?:#\d+)?\}/g, '{}');
+    const medida = MEDIDA_ESCRITA.exec(prosa);
     MEDIDA_ESCRITA.lastIndex = 0;
     if (medida !== null) {
       throw new Error(`${donde}: "${medida[0]}" es una medida escrita; va como token o sin número`);
     }
-    const enLetras = MEDIDA_EN_LETRAS.exec(texto);
+    const enLetras = MEDIDA_EN_LETRAS.exec(prosa);
     if (enLetras !== null) {
       throw new Error(`${donde}: "${enLetras[0]}" es una medida en letras; va como token, sin cantidad o «por» unidad`);
     }
 
-    for (const match of texto.matchAll(NUMERO_SUELTO)) {
+    for (const match of prosa.matchAll(NUMERO_SUELTO)) {
       const valor = String(Number(match[0].replace(',', '.')));
-      const sigue = texto.slice(match.index + match[0].length);
+      const sigue = prosa.slice(match.index + match[0].length);
       if (cantidades.has(valor) && !TIEMPO_O_TEMPERATURA.test(sigue)) {
         throw new Error(`${donde}: el ${match[0]} es una cantidad de ese paso y quedó escrito; va como token`);
       }
