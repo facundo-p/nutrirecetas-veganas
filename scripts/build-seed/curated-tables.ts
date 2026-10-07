@@ -1080,7 +1080,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     flag_gate: true,
     pasos: [
       'Picar la cebolla y las zanahorias, y sofreírlas en {aceite_oliva} de aceite de oliva a fuego medio, 6 a 8 minutos, hasta que doren apenas: esa base dulce es el piso de la sopa.',
-      'Sumar {ajo} de ajo picados, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.',
+      'Sumar {ajo} de ajo picado, {comino} de comino y —si lo usás— {pimenton} de pimentón, y revolver unos 45 segundos, hasta que perfumen: las especias despiertan en el aceite caliente, no en el caldo.',
       'Agregar {extracto_tomate} de extracto de tomate y tostarlo uno o dos minutos revolviendo, hasta que tome un color más profundo: ese tostado le da a la sopa su fondo de sabor.',
       'Enjuagar {lentejas_turcas} de lentejas turcas hasta que el agua salga clara, sumarlas a la olla con {caldo_verduras} de caldo de verduras y llevar a hervor.',
       'Bajar a hervor suave y cocinar 20 a 25 minutos, hasta que las lentejas se deshagan solas y la sopa espese: esa cremosidad sin pasar por la licuadora es la gracia del plato.',
@@ -1120,7 +1120,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     nota: 'Los pasos viejos pedían 600 ml de caldo que no existe como línea de la receta: queda como agua —o caldo, si hay—, con el agua de despensa. Al tokenizar (#200) los 600 ml pasaron a «hasta cubrir apenas»: sin línea que los sostenga, el número no escala y al doble pedía la mitad de lo que hace falta.',
     pasos: [
       'Picar fino la cebolla, la zanahoria y {apio} de apio, y sofreírlos en un fondo de aceite a fuego medio unos 10 minutos, hasta que estén blandos y apenas dorados: ese sofrito es la base de toda boloñesa.',
-      'Sumar {ajo} de ajo picados y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.',
+      'Sumar {ajo} de ajo picado y revolver un minuto. Agregar {extracto_tomate} de extracto de tomate y tostarlo un par de minutos, hasta que oscurezca y se agarre apenas al fondo: ahí concentra su umami.',
       'Si lo usás, desglasar con {vino_tinto} de vino tinto raspando el fondo de la olla, y dejarlo reducir a la mitad.',
       'Agregar {lentejas} de lentejas enjuagadas, {nueces} de nueces picadas finas, {tomate_triturado} de tomate triturado, {laurel} de laurel si la usás, y agua —o caldo, si tenés— hasta cubrir apenas. Llevar a hervor suave.',
       'Cocinar a fuego bajo 30 a 40 minutos, revolviendo cada tanto, hasta que las lentejas estén tiernas y la salsa tome cuerpo de ragú. Las nueces van desde el principio: sueltan su grasa y dan esa textura granulada de picada.',
@@ -1176,9 +1176,9 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     nota: 'Los pasos viejos rectificaban con "gotas de limón", que no existe como línea de ingrediente: se saca.',
     pasos: [
       'Cortar la calabaza al medio a lo largo, sacarle las semillas y asarla boca abajo en una placa aceitada a 200° durante 40 minutos, hasta que un cuchillo la atraviese sin resistencia. Asada y no hervida es la gracia: el horno le concentra el dulzor y le tuesta los bordes.',
-      'A los 20 minutos de horno, sumar a la placa {ajo} de ajo enteros y sin pelar: asados en camisa no se queman y quedan dulces.',
+      'A los 20 minutos de horno, sumar a la placa {ajo} de ajo, sin pelar: en camisa no se quema y queda dulce.',
       'Sofreír la cebolla picada en la olla con un chorrito de aceite a fuego medio hasta que esté transparente, y sumar {jengibre} de jengibre rallado un minuto más, hasta que perfume. El jengibre es la chispa que corta tanto dulzor.',
-      'Agregar la pulpa de la calabaza, los ajos ya pelados y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.',
+      'Agregar la pulpa de la calabaza, el ajo ya pelado y {caldo_verduras} de caldo de verduras, y hervir 10 minutos a fuego medio para que los sabores se junten.',
       'Licuar con {leche_coco} de leche de coco hasta que quede lisa como una seda, sin un solo grumo. La grasa del coco no es capricho: es la que permite absorber la vitamina A de la calabaza.',
       'Rectificar de sal y pimienta y servir. Si las usás, poné {semillas_zapallo} de semillas de zapallo tostadas por encima, para el contraste crocante.',
     ],
