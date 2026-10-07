@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { routeHash } from '../../app/router';
-import { ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
+import { algunIngredienteTieneDato, ingredientesQueMasAportan, recetasQueMasAportan } from '../../domain/fuentes';
 import { porcentajeDeObjetivo } from '../../domain/objetivos';
 import { getSeedIndex } from '../../seed';
 import { amountUnit, formatNumber } from '../common/format';
@@ -152,7 +152,11 @@ export function NutrientDetail({ id }: { id: string }) {
       <section>
         <h2>Ingredientes que más aportan</h2>
         {fuentes.ingredientes.length === 0 ? (
-          <p>Ningún ingrediente tiene dato cargado.</p>
+          <p>
+            {algunIngredienteTieneDato(idx, nutriente)
+              ? 'Ningún ingrediente trae un dato que se pueda afirmar.'
+              : 'Ningún ingrediente tiene dato cargado.'}
+          </p>
         ) : (
           <p className="nutricion-referencia">Cada 100 g, en crudo.</p>
         )}

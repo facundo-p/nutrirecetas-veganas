@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { getSeedIndex } from '../seed';
 import { computeNutrition } from './nutrition';
 import { midpoint } from './interval';
-import { ingredientesQueMasAportan, lineasQueAportan, recetasQueMasAportan } from './fuentes';
+import { algunIngredienteTieneDato, ingredientesQueMasAportan, lineasQueAportan, recetasQueMasAportan } from './fuentes';
 
 const idx = getSeedIndex();
 const nutricionDe = (id: string) => computeNutrition(id, idx);
@@ -61,10 +61,26 @@ describe('ingredientes que más aportan un nutriente', () => {
     for (const f of ingredientesQueMasAportan(idx, hierro)) expect(f.cantidad).toBeGreaterThan(0);
   });
 
-  test('un nutriente que casi ningún vegetal trae devuelve poco, no basura', () => {
-    // b12: la semilla no tiene fuentes vegetales confiables
-    const fuentes = ingredientesQueMasAportan(idx, b12);
-    expect(fuentes.length).toBeLessThan(10);
+  test('un rango que arranca en cero no entra: la levadura no encabeza la B12', () => {
+    // 0–100 según la marca: el punto medio afirmaría 50 µg que el rango no sostiene
+    expect(idx.ingredientById.get('levadura_nutricional')!.nutrientes.b12_ug).toBeDefined();
+    expect(ingredientesQueMasAportan(idx, b12)).toEqual([]);
+    const porCalcio = ingredientesQueMasAportan(idx, idx.nutrientById.get('calcio')!);
+    expect(porCalcio.length).toBeGreaterThan(5);
+    expect(porCalcio.map((f) => f.ingrediente.id)).not.toContain('bebida_soja');
+  });
+
+  test('un nutriente con todos sus rangos arriba de cero no pierde a nadie', () => {
+    const conHierro = idx.seed.ingredientes.filter((i) => i.nutrientes.hierro_mg !== undefined);
+    expect(ingredientesQueMasAportan(idx, hierro)).toHaveLength(conHierro.length);
+  });
+
+  test('tener dato es otra pregunta que tener puesto', () => {
+    // la vitamina D tiene dato, pero ningún rango afirmable; la K no tiene ni dato
+    const vitd = idx.nutrientById.get('vitd')!;
+    expect(ingredientesQueMasAportan(idx, vitd)).toEqual([]);
+    expect(algunIngredienteTieneDato(idx, vitd)).toBe(true);
+    expect(algunIngredienteTieneDato(idx, idx.nutrientById.get('vitk')!)).toBe(false);
   });
 });
 
