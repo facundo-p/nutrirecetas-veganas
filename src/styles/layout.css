@@ -277,3 +277,60 @@
   color: var(--tinta-suave);
   font-size: 20px;
 }
+
+/* ---------- carga inicial: el esqueleto estático de index.html ---------- */
+
+.carga-progreso {
+  position: relative;
+  overflow: hidden;
+  height: var(--alto-progreso-carga);
+  background: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.carga-progreso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: var(--accion);
+  animation: carga-progreso 1.2s ease-in-out infinite;
+}
+
+@keyframes carga-progreso {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carga-progreso::after {
+    animation: none;
+  }
+}
+
+.carga-barra {
+  margin: var(--sp-5) 0;
+}
+
+.esqueleto-fila {
+  display: grid;
+  align-content: center;
+  gap: var(--sp-3);
+  height: var(--alto-esqueleto-fila);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  border: var(--borde-suave);
+  border-radius: var(--radio);
+}
+
+.esqueleto-linea {
+  height: var(--sp-4);
+  background: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.esqueleto-linea-corta {
+  width: 40%;
+}

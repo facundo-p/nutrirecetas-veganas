@@ -71,6 +71,8 @@
 
   /* Alturas fijas */
   --alto-nav: 3.75rem;
+  --alto-progreso-carga: 3px;
+  --alto-esqueleto-fila: 7.3rem; /* ~117 px: la tarjeta del recetario */
   --alto-linea-ingrediente: 2.5rem; /* 40 px: el nombre de un preparado es un link */
   --toque-minimo: 2.75rem; /* 44 px: lo mínimo que se puede tocar con un dedo */
   --alto-control: 3rem; /* 48 px: objetivo táctil de los campos */
