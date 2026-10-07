@@ -25,6 +25,13 @@ describe('recetas que más aportan un nutriente', () => {
     for (const f of porHierro()) expect(f.cantidad).toBeGreaterThan(0);
   });
 
+  test('un rango que arranca en cero no entra: incluye "no tiene nada"', () => {
+    // la levadura deja la B12 de 0 a algo; con el punto medio entrarían una veintena
+    expect(recetasQueMasAportan(idx, b12, nutricionDe)).toEqual([]);
+    expect(recetasQueMasAportan(idx, idx.nutrientById.get('vitd')!, nutricionDe)).toEqual([]);
+    for (const f of porHierro()) expect(f.resultado.intervalo.min).toBeGreaterThan(0);
+  });
+
   test('las variantes no compiten con su madre', () => {
     for (const f of porHierro()) expect(f.receta.variante_de).toBeUndefined();
   });

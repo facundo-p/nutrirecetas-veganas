@@ -30,10 +30,6 @@
   color: var(--icono-indulgente);
 }
 
-.icono-aviso {
-  color: var(--aviso);
-}
-
 /* ---------- chips y badges ---------- */
 
 .chip {
@@ -255,7 +251,7 @@
 /* Hueco: la levadura trae B12 solo si la marca está fortificada. */
 .punto-nutriente[data-nut='condicional'] {
   background: none;
-  border: 1.5px solid var(--nut);
+  border: var(--borde-cuadrado) solid var(--nut);
 }
 
 /* Sin data-nut —los que no entran a las barras— el borde cae a un gris de tinta. */
@@ -641,12 +637,6 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-}
-
-.nutriente-ventana {
-  color: var(--dato-suave);
-  font-size: 15px;
-  flex-shrink: 0;
 }
 
 .banda {

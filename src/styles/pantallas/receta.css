@@ -35,24 +35,6 @@
   color: var(--chip-preparado);
 }
 
-/* alerta B12: la única tarjeta con voz de alerta (rabanito) */
-.alerta-b12 {
-  display: flex;
-  gap: var(--sp-3);
-  align-items: flex-start;
-  background: color-mix(in srgb, var(--aviso) 9%, var(--superficie));
-  border: 1px solid color-mix(in srgb, var(--aviso) 45%, transparent);
-  border-radius: var(--radio);
-  padding: var(--sp-3) var(--sp-4);
-  font-size: var(--fs-sm);
-}
-
-.alerta-b12-icono {
-  color: var(--aviso);
-  font-size: 30px;
-  flex-shrink: 0;
-}
-
 /* ---------- la lista de ingredientes ----------
    La pieza tipográfica de la ficha: es lo que se mira treinta veces cocinando.
    Filas bajas, para que 28 ingredientes sigan siendo navegables. */
@@ -159,7 +141,8 @@
 }
 
 .lista-lineas-ayuda,
-.nota-a-gusto {
+.nota-a-gusto,
+.nota-b12 {
   font-size: var(--fs-xs);
   color: var(--tinta-suave);
 }

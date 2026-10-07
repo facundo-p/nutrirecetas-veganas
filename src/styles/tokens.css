@@ -51,6 +51,7 @@
   /* Aporte: las piezas del color por nutriente */
   --gap-franja: 3px;
   --alto-franja: 7px; /* firma de la receta, no gráfico: no le pelea al título */
+  --ancho-franja-mini: 14px; /* la barra de la lista de ingredientes */
 
   /* Papel: lado del tile que declara cada tema en --textura. Tiene que coincidir
      con el LADO de scripts/textura.mjs, que lo genera. */
@@ -63,6 +64,7 @@
   --lamina-vacio: 13rem;
   --punto-nutriente: 8px;
   --cuadrado-nutriente: 10px;
+  --borde-cuadrado: 1.5px; /* el cuadrado hueco: más fino se pierde a 10 px */
   --casilla-dificultad: 0.6em; /* alto del ícono de cinco casilleros */
   --alto-franja-fila: 6px;
   --ancho-porcentaje: 2.75rem;

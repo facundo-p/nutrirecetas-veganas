@@ -14,7 +14,6 @@ import { estadoDeReceta } from '../../domain/estado';
 import { MenuDeEstado } from '../common/EstadoDeReceta';
 import { saveOverlay } from '../../db/repos';
 import { PortionScaler } from './PortionScaler';
-import { B12Alert } from './B12Alert';
 import { PanelDeAporte } from './PanelDeAporte';
 import { lineasQueAportan } from '../../domain/fuentes';
 import { RuleTips } from './RuleTips';
@@ -160,22 +159,10 @@ const ICONOS_DE_LA_FICHA = [
   'reloj', 'dificultad', 'laurel', 'cuchara', 'asterisco', 'temporada',
 ] as const;
 
-/**
- * Lo que explica la ficha, detrás de su «i»: la B12 primero, cuando la receta
- * lleva levadura, y después cómo leer la lista y el panel de aporte.
- */
-function InfoDeLaFicha({
-  recipe,
-  alertaB12,
-  fuente,
-}: {
-  recipe: Recipe;
-  alertaB12: boolean;
-  fuente: FuenteDeObjetivo;
-}) {
+/** Lo que explica la ficha, detrás de su «i»: cómo leer los íconos, la lista y el panel de aporte. */
+function InfoDeLaFicha({ recipe, fuente }: { recipe: Recipe; fuente: FuenteDeObjetivo }) {
   return (
     <>
-      {alertaB12 && <B12Alert />}
       <h3>Los íconos</h3>
       <p>
         {formatMinutes(recipe.tiempo_prep_min + recipe.tiempo_coccion_min)} en total:{' '}
@@ -186,7 +173,7 @@ function InfoDeLaFicha({
       <p>
         Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
         ingrediente, con el mismo color que las barras del recetario: neutro si no trae ninguno con dato, y hueco si el
-        aporte es condicional. El asterisco marca lo que no se puede sacar.
+        aporte es condicional (la nota al pie de la lista dice por qué). El asterisco marca lo que no se puede sacar.
       </p>
       <h3>Qué aporta</h3>
       <p>
@@ -258,7 +245,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
             onChange={(estado) => void saveOverlay(recipe.id, { estado })}
           />
           <Informacion>
-            <InfoDeLaFicha recipe={recipe} alertaB12={vista.nutrition.alerta_b12} fuente={objetivos.fuente} />
+            <InfoDeLaFicha recipe={recipe} fuente={objetivos.fuente} />
           </Informacion>
         </div>
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}

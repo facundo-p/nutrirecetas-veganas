@@ -116,13 +116,16 @@ function AvisoDeMigracion() {
  */
 function AvisoSinConexion({ route }: { route: Route }) {
   const enLinea = useEnLinea();
-  if (enLinea || route.screen === 'cook' || route.screen === 'offline') return null;
+  const visible = !enLinea && route.screen !== 'cook' && route.screen !== 'offline';
+  // La región vive siempre: un lector de pantalla anuncia lo que aparece adentro, no una región nueva.
   return (
-    <div className="banner banner-sin-conexion" role="status">
-      <a className="banner-sin-conexion-enlace" href={routeHash({ screen: 'offline' })}>
-        <span className="banner-marca" aria-hidden="true" />
-        <span>Sin conexión. Todo lo que necesitás para cocinar está guardado.</span>
-      </a>
+    <div className={visible ? 'banner banner-sin-conexion' : undefined} role="status">
+      {visible && (
+        <a className="banner-sin-conexion-enlace" href={routeHash({ screen: 'offline' })}>
+          <span className="banner-marca" aria-hidden="true" />
+          <span>Sin conexión. Todo lo que necesitás para cocinar está guardado.</span>
+        </a>
+      )}
     </div>
   );
 }

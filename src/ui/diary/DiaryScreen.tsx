@@ -3,7 +3,7 @@ import { useCocciones } from '../../db/hooks';
 import type { Coccion } from '../../db/schema';
 import { midpoint } from '../../domain/interval';
 import { formatNumber } from '../common/format';
-import { IconEscudoB12, IconPlato } from '../icons/icons';
+import { IconPlato } from '../icons/icons';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { Lamina } from '../common/Lamina';
 import { cuandoFue } from './cuando';
@@ -27,9 +27,6 @@ function CookingCard({ coccion }: { coccion: Coccion }) {
       <p className="coccion-porciones">
         <IconPlato /> rindió {formatNumber(coccion.porciones_rendidas, 1)}
         <span className="coccion-kcal cifra">{formatNumber(kcal, 0)} kcal/porción</span>
-        {coccion.nutricion_porcion.alerta_b12 && (
-          <IconEscudoB12 className="inline-icono icono-aviso" aria-label="lleva levadura nutricional" />
-        )}
       </p>
 
       {coccion.factor_escala !== 1 && (

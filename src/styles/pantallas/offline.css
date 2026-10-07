@@ -33,7 +33,7 @@
   width: var(--cuadrado-nutriente);
   height: var(--cuadrado-nutriente);
   background: var(--tinta-suave);
-  border: 1.5px solid var(--tinta-suave);
+  border: var(--borde-cuadrado) solid var(--tinta-suave);
 }
 
 .inventario-item[data-anda='no'] {
