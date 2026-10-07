@@ -59,7 +59,7 @@ description: Genera los screenshots reales de la app (390 px y 1280 px, en los d
 ## Reglas
 
 - Los renders se commitean en `docs/renders/` (son parte de la historia del proyecto). Son
-  ~33 MB por tema: el push tarda, no es que se colgó.
+  ~110 MB por tema: el push tarda, no es que se colgó.
 - Si una pantalla se ve mal, arreglar y **regenerar**: jamás publicar renders rotos "para
   mostrar avance". Y si se arregló algo después de generarlos, los renders quedaron viejos.
 - **Para verificar que un refactor no cambió nada**, esto es la única red: baseline antes,
