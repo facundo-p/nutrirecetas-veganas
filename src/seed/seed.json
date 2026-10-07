@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "a465dea488dda27b8f55e1c001ec6df2bb6043446817de4477d7bd1e4b4b9371",
+ "content_hash": "3073baed95b76cc1ad77ce545527a2ac464b89de7a1f29c984233b82ee818900",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -134,10 +134,10 @@
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 1000,
-      "max": 2500
+      "min": 100000,
+      "max": 250000
      },
-     "nota": "POR GRAMO: supera el UL con facilidad"
+     "nota": "supera el UL con facilidad: solo saborizar y retirar"
     }
    },
    "destacados": [
@@ -157,20 +157,20 @@
     "hojas para sushi"
    ],
    "categoria": "alga",
-   "base": "seca, POR GRAMO",
+   "base": "seca",
    "kcal": {
     "intervalo": {
-     "min": 3.5,
-     "max": 3.5
+     "min": 350,
+     "max": 350
     }
    },
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 16,
-      "max": 43
+      "min": 1600,
+      "max": 4300
      },
-     "nota": "por gramo; 1 hoja ≈ 2.5 g ≈ 40-110 µg"
+     "nota": "1 hoja ≈ 2,5 g ≈ 40–110 µg"
     }
    },
    "destacados": [
@@ -1130,7 +1130,7 @@
     "sal fina común"
    ],
    "categoria": "condimento",
-   "base": "por gramo",
+   "base": "tal cual",
    "kcal": {
     "intervalo": {
      "min": 0,
@@ -1140,10 +1140,10 @@
    "nutrientes": {
     "yodo_ug": {
      "intervalo": {
-      "min": 25,
-      "max": 40
+      "min": 2500,
+      "max": 4167
      },
-     "nota": "por gramo, Ley 17.259; sales marinas/rosadas NO yodadas"
+     "nota": "1 cdta (6 g) ≈ 150–250 µg; las sales rosadas importadas suelen no estar yodadas"
     }
    },
    "destacados": [
@@ -1152,7 +1152,8 @@
    "ic": 7,
    "fuentes": [
     "ley17259",
-    "nih"
+    "nih",
+    "caa1272"
    ]
   },
   {

@@ -17,6 +17,8 @@ import {
   CURATED_STEPS,
   CURATED_TYPES,
   CURATED_YIELDS,
+  CORRECCIONES_POR_GRAMO,
+  type CorreccionDeIngrediente,
   DE_FACTO_PREPARADOS,
   NUTRIENT_DESCRIPTIONS,
   NUTRIENT_INGREDIENT_KEY,
@@ -43,6 +45,52 @@ export function toNutrientValue(raw: RawNutrientValue): NutrientValue | undefine
 }
 
 // ---------- ingredientes ----------
+
+function mismoIntervalo(a: NutrientValue | undefined, b: { min: number; max: number }): boolean {
+  return a !== undefined && a.intervalo.min === b.min && a.intervalo.max === b.max;
+}
+
+/**
+ * T16 reemplaza valores crudos. Lo que repite el dataset o cae sobre una clave
+ * que el dataset no trae rompe el build: una corrección que no corrige queda
+ * escrita sin efecto, y una clave nueva es carga, no corrección (T17).
+ */
+export function aplicarCorreccion(
+  ingrediente: Ingredient,
+  correccion: CorreccionDeIngrediente | undefined,
+): Ingredient {
+  if (correccion === undefined) return ingrediente;
+  const donde = `T16: ${ingrediente.id}`;
+  if (correccion.base !== undefined && correccion.base === ingrediente.base) {
+    throw new Error(`${donde}: la base ya es "${correccion.base}"`);
+  }
+  if (correccion.kcal !== undefined && mismoIntervalo(ingrediente.kcal, correccion.kcal)) {
+    throw new Error(`${donde}: las kcal ya son ${correccion.kcal.min}–${correccion.kcal.max}`);
+  }
+  const nutrientes = { ...ingrediente.nutrientes };
+  for (const [clave, { min, max, nota }] of Object.entries(correccion.nutrientes ?? {})) {
+    const key = clave as keyof Ingredient['nutrientes'];
+    const actual = nutrientes[key];
+    if (actual === undefined) throw new Error(`${donde}: el dataset no trae ${clave}; la carga nueva va a T17`);
+    if (mismoIntervalo(actual, { min, max })) throw new Error(`${donde}: ${clave} ya es ${min}–${max}`);
+    nutrientes[key] = nota === undefined ? { intervalo: { min, max } } : { intervalo: { min, max }, nota };
+  }
+  const fuentesNuevas = (correccion.fuentes_agregadas ?? []).filter((f) => !ingrediente.fuentes.includes(f));
+  return {
+    ...ingrediente,
+    ...(correccion.base !== undefined ? { base: correccion.base } : {}),
+    ...(correccion.kcal !== undefined ? { kcal: { intervalo: correccion.kcal } } : {}),
+    nutrientes,
+    fuentes: [...ingrediente.fuentes, ...fuentesNuevas],
+  };
+}
+
+export function transformIngredients(raws: RawIngredient[]): Ingredient[] {
+  const ids = new Set(raws.map((r) => r.id));
+  const huerfanas = Object.keys(CORRECCIONES_POR_GRAMO).filter((id) => !ids.has(id));
+  if (huerfanas.length > 0) throw new Error(`T16: correcciones para ingredientes que no existen: ${huerfanas.join(', ')}`);
+  return raws.map((raw) => aplicarCorreccion(transformIngredient(raw), CORRECCIONES_POR_GRAMO[raw.id]));
+}
 
 export function transformIngredient(raw: RawIngredient): Ingredient {
   const nutrientes: Ingredient['nutrientes'] = {};

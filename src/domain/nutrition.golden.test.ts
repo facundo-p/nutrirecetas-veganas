@@ -71,6 +71,18 @@ describe('golden: p19 pastel de papas (encadena p04 queso de maní y usa levadur
   });
 });
 
+describe('golden: p44 masa de pizza (la sal yodada, por 100 g desde #169)', () => {
+  // 24 g de sal yodada a 2500–4167 µg/100 g, en 5 porciones. Calculado por
+  // fuera del motor el 2026-10-07; fija la corrección de unidad de T16.
+  const n = computeNutrition('p44', idx);
+
+  test('yodo por porción 120–200 µg', () => {
+    const porcion = perPortion(n)!;
+    expect(porcion.por_nutriente.yodo_ug.intervalo.min).toBeCloseTo(120, 1);
+    expect(porcion.por_nutriente.yodo_ug.intervalo.max).toBeCloseTo(200.02, 1);
+  });
+});
+
 describe('golden: preparados solos', () => {
   test('p04 (queso de maní) calcula por 100 g vía rendimiento 500 g', () => {
     const n = computeNutrition('p04', idx);

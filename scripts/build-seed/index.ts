@@ -8,7 +8,7 @@ import { compileRule } from './rules-ast';
 import {
   transformEquivalences,
   transformGlossary,
-  transformIngredient,
+  transformIngredients,
   transformNutrient,
   transformRecipes,
   transformSeasonality,
@@ -23,7 +23,7 @@ export function buildSeed(): { seed: Seed; notes: string[] } {
   const raw = loadRawData();
   const notes: string[] = [];
 
-  const ingredientes = raw.ingredientes.map(transformIngredient);
+  const ingredientes = transformIngredients(raw.ingredientes);
   const nutrientes = raw.nutrientes.map(transformNutrient);
 
   const ruleCtx = {

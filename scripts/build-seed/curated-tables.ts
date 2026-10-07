@@ -1,4 +1,4 @@
-import type { IngredientCategory, Recipe } from '../../src/seed/schema';
+import type { IngredientCategory, IngredientNutrientKey, Recipe } from '../../src/seed/schema';
 import type { LaminaId } from '../../src/seed/laminas';
 
 /**
@@ -1704,4 +1704,48 @@ export const CURATED_LAMINAS: Record<string, LaminaId> = {
   p43: 'calabaza',
   p44: 'trigo',
   p45: 'trigo',
+};
+
+// ---------- T16: valores que el dataset guardó por gramo ----------
+
+/**
+ * El motor escala todo valor por 100 g, como declara el dataset; estos tres lo
+ * guardaron por gramo y quedaban 100 veces abajo: con 6 g de sal sumaban 2 µg
+ * de yodo en vez de 200. Lo que se nombra acá reemplaza al dato crudo; una
+ * clave que el dataset no trae es carga nueva y va a T17.
+ */
+export interface CorreccionDeIngrediente {
+  base?: string;
+  kcal?: { min: number; max: number };
+  nutrientes?: Partial<Record<IngredientNutrientKey, { min: number; max: number; nota?: string }>>;
+  fuentes_agregadas?: string[];
+  porque: string;
+}
+
+export const CORRECCIONES_POR_GRAMO: Record<string, CorreccionDeIngrediente> = {
+  sal_yodada: {
+    base: 'tal cual',
+    nutrientes: {
+      yodo_ug: {
+        min: 2500,
+        max: 4167,
+        nota: '1 cdta (6 g) ≈ 150–250 µg; las sales rosadas importadas suelen no estar yodadas',
+      },
+    },
+    fuentes_agregadas: ['caa1272'],
+    porque:
+      'CAA art. 1272 (Res. Conj. 32/2021, Ley 17.259): 1 parte de yodo en 30.000 de sal ±25 % = 25–41,7 µg/g',
+  },
+  nori: {
+    base: 'seca',
+    kcal: { min: 350, max: 350 },
+    nutrientes: { yodo_ug: { min: 1600, max: 4300, nota: '1 hoja ≈ 2,5 g ≈ 40–110 µg' } },
+    porque: 'ingredientes.md: «~35 kcal/10 g» y «16–43 µg por gramo»',
+  },
+  kombu: {
+    nutrientes: {
+      yodo_ug: { min: 100000, max: 250000, nota: 'supera el UL con facilidad: solo saborizar y retirar' },
+    },
+    porque: 'la nota del dataset dice «POR GRAMO»',
+  },
 };
