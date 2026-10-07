@@ -987,10 +987,10 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
   p39: {
     base: 'pasos viejos (sablée con 30 min de frío, crumble a granulado grueso con reposo en freezer, poco crumble en la base "absorbe jugo", crema "sin exceso: humedad", horno suave-moderado ~30 min); usa_preparados P03 y P27 nombrados por su nombre; secreto del horneado en una tanda reescrito de cero; técnica estándar: 170° como lectura de suave-moderado, manzana tierna al pincharla',
     flag_gate: true,
-    nota: 'El paso viejo de la masa ("manteca pomada + impalpable + vainilla + harina") omitía los 50 g de fécula que la lista asigna a la masa: se incorporaron ahí. Al tokenizar (#207), los pasos dejaron de decir los 125 g de margarina de la masa y los 150 g de margarina y de harina del crumble: las líneas suman masa + crumble sin separar.',
+    nota: 'El paso viejo de la masa ("manteca pomada + impalpable + vainilla + harina") omitía los 50 g de fécula que la lista asigna a la masa: se incorporaron ahí. Al tokenizar (#207), la margarina (125 g masa + 150 crumble) y la harina (150 + 150) pasaron a «algo menos de la mitad» / «la mitad» y «el resto»: las líneas suman masa + crumble.',
     pasos: [
-      'Para la masa sablée, trabajar la margarina pomada —o la manteca vegana, que es la que usa la receta— con {azucar_impalpable} de azúcar impalpable y unas gotas de esencia de vainilla. Sumar {harina_trigo_fortificada} de harina y {fecula_maiz} de fécula de maíz y unir apenas, sin amasar: cuanto menos se trabaja, más arenosa queda. Envolver en film y llevar 30 minutos a la heladera.',
-      'Para el crumble, desgranar con la punta de los dedos la margarina bien fría con {azucar} de azúcar y la harina que quedó, hasta un granulado grueso con pedazos. También sale en procesadora, de a pulsos y con todo frío. Guardarlo en el freezer mientras se arma el resto.',
+      'Para la masa sablée, trabajar algo menos de la mitad de la margarina, pomada —o de la manteca vegana, que es la que usa la receta—, con {azucar_impalpable} de azúcar impalpable y unas gotas de esencia de vainilla. Sumar la mitad de la harina y {fecula_maiz} de fécula de maíz y unir apenas, sin amasar: cuanto menos se trabaja, más arenosa queda. Envolver en film y llevar 30 minutos a la heladera.',
+      'Para el crumble, desgranar con la punta de los dedos el resto de la margarina, bien fría, con {azucar} de azúcar y el resto de la harina, hasta un granulado grueso con pedazos. También sale en procesadora, de a pulsos y con todo frío. Guardarlo en el freezer mientras se arma el resto.',
       'Cortar las manzanas verdes en rodajas bien finas, para que se cocinen parejas en el horno.',
       'Forrar el molde de 28 cm con la masa sablée y esparcir sobre la base un puñado del crumble: absorbe el jugo que suelta la manzana y la base no se empapa.',
       'Armar capas de manzana y untar entre capa y capa {p27} de crema de vainilegumbres —porotos alubia hechos crema dulce—, sin pasarse, porque de más aporta humedad.',
@@ -1026,12 +1026,12 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
   p42: {
     base: 'prosa de recetas-personales.md ("curd de limón con agar-agar + maicena", "cúrcuma para el amarillo", "base horneada a mínima + relleno cocido aparte"); funcion de cada línea (agar = gelificante vegetal, cúrcuma = el amarillo); técnica estándar: frío antes del horno para que la masa no se encoja, el agar necesita hervir para gelificar, ralladura fuera del fuego',
     flag_gate: true,
-    nota: 'Al tokenizar (#207), el azúcar de la base (la línea suma base + relleno) y las cantidades del relleno que no cierran con la línea (azúcar 1¼ taza, fécula 3 cucharadas, agua 1⅓ taza, jugo ⅔ taza, ralladura 1 cucharada) pasaron a decirse sin cantidad; «cortar en 12 cuadrados» pasó a «cuadrados parejos».',
+    nota: 'Al tokenizar (#207), el azúcar y la fécula del relleno (las líneas suman base + relleno) pasaron a «el resto del azúcar / de la fécula»; «cortar en 12 cuadrados» pasó a «cuadrados parejos».',
     pasos: [
-      'Arrancar por la base: mezclar en un bol {harina_trigo_fortificada} de harina, el azúcar y {fecula_maiz} de fécula de maíz. Sumar {aceite_coco} de aceite de coco y deshacerlo con la punta de los dedos hasta que quede un granulado fino, como arena mojada.',
+      'Arrancar por la base: mezclar en un bol {harina_trigo_fortificada} de harina, {azucar} de azúcar y {fecula_maiz} de fécula de maíz. Sumar {aceite_coco} de aceite de coco y deshacerlo con la punta de los dedos hasta que quede un granulado fino, como arena mojada.',
       'Compactar ese granulado en el molde, subiéndolo apenas para formar un borde que contenga el relleno, y llevarlo a la heladera 30 minutos: la masa fría entra al horno sin deformarse.',
       'Hornear la base a horno mínimo unos 35 minutos, hasta que se vea sequita y apenas dorada en los bordes. Dejarla enfriar por completo antes de seguir: el relleno va siempre sobre base fría.',
-      'Para el relleno, poner en una olla el jugo de limón, el agua, más azúcar y más fécula, {agar_agar} de agar agar y {curcuma} de cúrcuma, que es la que pone el color sin que se note en el sabor.',
+      'Para el relleno, poner en una olla {limon} de jugo de limón, {agua} de agua, el resto del azúcar, el resto de la fécula, {agar_agar} de agar agar y {curcuma} de cúrcuma, que es la que pone el color sin que se note en el sabor.',
       'Llevar a fuego suave revolviendo sin parar hasta que rompa el hervor y espese. No cortar antes de tiempo: el agar recién gelifica cuando hierve.',
       'Sumar {bebida_vegetal_fortificada} de bebida vegetal, cocinar 2 minutos más revolviendo y apagar. Fuera del fuego, agregar la ralladura de limón: así conserva todo el perfume.',
       'Volcar el relleno caliente sobre la base fría, alisar la superficie y llevar a la heladera 3 horas como mínimo, hasta que esté firme al tacto. Cortar en cuadrados parejos y, si la usás, terminarlos con {azucar_impalpable} de azúcar impalpable.',
@@ -1055,10 +1055,10 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
   p44: {
     base: 'prosa de recetas-personales.md ("mezcla sin amasar + noche entera de heladera", "fermentación fría = sabor + digestibilidad + menos fitatos", "5 bollos"); funcion de la sémola (el crocante); sustitutos de la línea de masa madre (levadura fresca 10 g, seca 3 g); técnica estándar: burbujas como señal de fermentación, relajar los bollos antes de estirar',
     flag_gate: true,
-    nota: 'Al tokenizar (#207), el paso 2 dejó de decir las equivalencias de levadura fresca (10 g) y seca (3 g) y el paso 5 pasó de «5 bollos» a «un bollo por porción».',
+    nota: 'Al tokenizar (#207), las equivalencias de levadura del paso 2 (10 g fresca, 3 g seca, por 50 g de masa madre) pasaron a proporción y el paso 5 pasó de «5 bollos» a «un bollo por porción».',
     pasos: [
       'Mezclar en un bol grande {harina_integral} de harina integral, {harina_trigo_fortificada} de harina 000 y {semola} de sémola fina con {sal_yodada} de sal. La sémola no es relleno: es la que después hace el crocante de la base.',
-      'Agregar {masa_madre} de masa madre —si no tenés, vale levadura fresca o seca, en mucha menos cantidad—, {agua} de agua y {aceite_oliva} de aceite de oliva, y mezclar apenas hasta que no quede harina seca. NO amasar: queda un engrudo desprolijo y así tiene que quedar.',
+      'Agregar {masa_madre} de masa madre —si no tenés, vale levadura fresca, la quinta parte de ese peso, o seca, un tercio de lo que usarías de fresca—, {agua} de agua y {aceite_oliva} de aceite de oliva, y mezclar apenas hasta que no quede harina seca. NO amasar: queda un engrudo desprolijo y así tiene que quedar.',
       'Tapar el bol con film y llevarlo a la heladera hasta el día siguiente, unas 12 horas. En ese frío pasa todo: la fermentación lenta desarrolla el gluten sin que amases, deja la masa más sabrosa y fácil de digerir, y de paso baja los fitatos de la harina integral, que traban la absorción de sus minerales.',
       'A la mañana la masa tiene que verse crecida y llena de burbujas: esa es la señal de que la fermentación hizo su parte. Si está igual que anoche, dejarla un rato a temperatura ambiente hasta que arranque.',
       'Volcar la masa sobre la mesada enharinada y dividirla en bollos iguales, uno por porción. Antes de estirarlos, dejarlos tapados hasta que pierdan el frío y se estiren sin encogerse de vuelta: esa resistencia que cede es la señal de que están listos.',
