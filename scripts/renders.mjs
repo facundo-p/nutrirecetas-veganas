@@ -1,6 +1,6 @@
 // Renders reproducibles de cierre de fase: screenshots reales de la app
 // (build de producción servido con vite preview) a 390 px y 1280 px.
-// Uso: npm run build && npm run renders [-- fase-2] [--tema=X]
+// Uso: npm run build && npm run renders [-- fase-2] [--tema=X] [--port=N]
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -23,7 +23,8 @@ const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });
 
-const PORT = 4173;
+// elegible: el 4173 de vite preview puede estar tomado por otro proyecto
+const PORT = Number(args.find((a) => a.startsWith('--port='))?.slice(7) ?? 4173);
 const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
