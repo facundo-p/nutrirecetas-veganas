@@ -35,12 +35,6 @@
   gap: var(--sp-1) var(--sp-3);
 }
 
-@media (min-width: 900px) {
-  .opciones-nutrientes {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .objetivo-nombre {
   display: inline-flex;
   align-items: center;
