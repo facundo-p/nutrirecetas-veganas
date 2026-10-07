@@ -9,9 +9,9 @@ import { enSuBase, hasReportableValue, per100g, type NutrientResult, type Recipe
  *
  * Nadie entra al ranking sin dato reportable — el invariante 5 llevado al orden:
  * una receta de la que no sabemos nada no merece un puesto, ni siquiera el
- * último, porque el último se lee como "esta casi no tiene". Y una receta
- * entra solo si su rango arranca arriba de cero: uno que arranca en cero
- * incluye "no tiene nada", que es el caso de la levadura sin fortificar.
+ * último, porque el último se lee como "esta casi no tiene". Y una receta o
+ * un ingrediente entra solo si su rango arranca arriba de cero: uno que arranca
+ * en cero incluye "no tiene nada", que es el caso de la levadura sin fortificar.
  */
 
 export interface FuenteReceta {
@@ -49,15 +49,20 @@ export function recetasQueMasAportan(
   return fuentes.sort((a, b) => b.cantidad - a.cantidad || a.receta.nombre.localeCompare(b.receta.nombre, 'es'));
 }
 
+const valorDe = (ingrediente: Ingredient, nutriente: Nutrient) =>
+  ingrediente.nutrientes[nutriente.clave_ingrediente as keyof Ingredient['nutrientes']];
+
+/** Otra pregunta que el ranking: un cero medido es dato aunque no tenga puesto. */
+export function algunIngredienteTieneDato(idx: SeedIndex, nutriente: Nutrient): boolean {
+  return idx.seed.ingredientes.some((ingrediente) => valorDe(ingrediente, nutriente) !== undefined);
+}
+
 export function ingredientesQueMasAportan(idx: SeedIndex, nutriente: Nutrient): FuenteIngrediente[] {
   const fuentes: FuenteIngrediente[] = [];
   for (const ingrediente of idx.seed.ingredientes) {
-    const valor = ingrediente.nutrientes[nutriente.clave_ingrediente as keyof Ingredient['nutrientes']];
-    if (!valor) continue;
-
-    const cantidad = midpoint(valor.intervalo);
-    if (cantidad <= 0) continue;
-    fuentes.push({ ingrediente, cantidad });
+    const valor = valorDe(ingrediente, nutriente);
+    if (!valor || valor.intervalo.min <= 0) continue;
+    fuentes.push({ ingrediente, cantidad: midpoint(valor.intervalo) });
   }
   return fuentes.sort(
     (a, b) => b.cantidad - a.cantidad || a.ingrediente.nombre.localeCompare(b.ingrediente.nombre, 'es'),
