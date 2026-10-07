@@ -1,7 +1,7 @@
 {
  "seed_schema_version": "1.0.0",
  "dataset_version": "1.0",
- "content_hash": "2d1800038638ed62dec8c4bc00f725f6aa4359a883f1962c07cd2b562adeff5a",
+ "content_hash": "1a54689a6665d761c6138219914f8602a4ffedcf1ebd182bc23f9811ec7bff00",
  "ingredientes": [
   {
    "id": "aceite_coco",
@@ -18388,16 +18388,16 @@
     }
    ],
    "pasos": [
-    "Mezclar en un bol la taza y media de gluten de trigo con los tres cuartos de taza de harina 000 y, si la usás, las 2 cucharadas de levadura nutricional. Nada de sal acá: la va a poner el caldo. Dos partes de gluten por una de harina es la proporción del falso peceto suave.",
-    "Mezclar aparte los líquidos: los tres cuartos de taza de caldo de verduras frío, las 2 cucharadas de salsa de soja, la cucharadita de mostaza suave —que ayuda a la estructura de la masa— y la cucharada de aceite neutro. Volcar sobre los secos e integrar.",
+    "Mezclar en un bol {gluten_trigo} de gluten de trigo con {harina_trigo_fortificada} de harina 000 y, si la usás, {levadura_nutricional} de levadura nutricional. Nada de sal acá: la va a poner el caldo. Dos partes de gluten por una de harina es la proporción del falso peceto suave.",
+    "Mezclar aparte los líquidos: {caldo_verduras} de caldo de verduras frío, {salsa_soja} de salsa de soja, {mostaza} de mostaza suave —que ayuda a la estructura de la masa— y {aceite_oliva} de aceite neutro. Volcar sobre los secos e integrar.",
     "Amasar DOS MINUTOS como máximo, apenas hasta que quede parejo: si seguís, el gluten se tensa y el seitán sale de goma. Dejar descansar 20 minutos y formar un cilindro envuelto en film apto cocción o en una gasa, atado flojo, porque crece al cocinarse.",
-    "Poner a hervir 2 litros de caldo con 2 cucharadas más de salsa de soja en una olla donde el cilindro entre acostado. Cuando rompa el hervor, bajar el fuego al MÍNIMO, meter el seitán y cocinarlo 60 minutos SIN hervir: el caldo apenas se tiene que mover. Si hierve, se esponja y pierde la textura de peceto.",
+    "Poner a hervir caldo de verduras en cantidad suficiente para cubrir el cilindro, con la salsa de soja restante, en una olla donde el cilindro entre acostado. Cuando rompa el hervor, bajar el fuego al MÍNIMO, meter el seitán y cocinarlo 60 minutos SIN hervir: el caldo apenas se tiene que mover. Si hierve, se esponja y pierde la textura de peceto.",
     "Apagar y dejarlo enfriar DENTRO del caldo. Después, heladera de 6 a 12 horas: bien frío es la única forma de cortarlo en fetas finas sin que se rompa.",
-    "La tonnata: poner en la procesadora la taza de mayonesa vegana, la media taza de tofu firme, las 2 cucharadas de alcaparras lavadas, la cucharada colmada de mostaza de Dijon, la cucharada de jugo de limón y la cucharadita de vinagre de vino blanco. Si lo usás, la cucharadita de miso blanco entra acá: el detalle que le pone recuerdo a mar. Procesar hasta que quede lisa, espesa pero fluida.",
+    "La tonnata: poner en la procesadora {mayonesa_vegana} de mayonesa vegana, {tofu_firme} de tofu firme, {alcaparras} de alcaparras lavadas, {mostaza} de mostaza de Dijon, {limon} de jugo de limón y {vinagre} de vinagre de vino blanco. Si lo usás, sumá acá {miso} de miso blanco: el detalle que le pone recuerdo a mar. Procesar hasta que quede lisa, espesa pero fluida.",
     "Probar la tonnata y ajustar: más limón si la querés más viva —el ácido le corta la grasa a la mayonesa y hace lucir las alcaparras—, un chorrito de aceite si se pasó de ácida.",
-    "Cortar el seitán en fetas finas, acomodarlas apenas superpuestas en una fuente y cubrirlas con una capa generosa de salsa. Volver a la heladera de 6 a 24 horas —ahí el plato se termina de hacer— y al servir terminar con alcaparras enteras, el perejil picado si lo usás, un hilo de aceite de oliva y pimienta."
+    "Cortar el seitán en fetas finas, acomodarlas apenas superpuestas en una fuente y cubrirlas con una capa generosa de salsa. Volver a la heladera de 6 a 24 horas —ahí el plato se termina de hacer— y al servir terminar con alcaparras enteras, {perejil} de perejil picado si lo usás, un hilo de aceite de oliva y pimienta."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Los tres NO: no sal en la masa, no amasar de más, no hervir",
     "El reposo armado de 6-24 h es donde 'madura': planificarlo la víspera",
@@ -18530,14 +18530,14 @@
     }
    ],
    "pasos": [
-    "Tostar la cucharada de sésamo integral en una sartén seca a fuego medio, moviéndola, hasta que empiece a saltar y largue perfume: dos o tres minutos. Pasarlo a un plato enseguida, porque en la sartén caliente se sigue cocinando y se quema.",
-    "Lavar y secar bien los 100 g de hojas verdes y ponerlas en un bol amplio. Secas de verdad: sobre hojas mojadas el aliño resbala y se junta en el fondo.",
-    "Cortar los 4 rabanitos en rodajas finas y la manzana roja en bastones o cubos, con cáscara.",
-    "Rallar grueso la zanahoria, cortar los tomates cherry al medio y la palta en cubos.",
-    "Sumar todo al bol de las hojas, aliñar con el chorrito de aceite de oliva y sal, y mezclar con las manos de abajo hacia arriba, para no aplastar la palta.",
+    "Tostar {sesamo_integral} de sésamo integral en una sartén seca a fuego medio, moviéndola, hasta que empiece a saltar y largue perfume: dos o tres minutos. Pasarlo a un plato enseguida, porque en la sartén caliente se sigue cocinando y se quema.",
+    "Lavar y secar bien {hojas_verdes} de hojas verdes y ponerlas en un bol amplio. Secas de verdad: sobre hojas mojadas el aliño resbala y se junta en el fondo.",
+    "Cortar los rabanitos en rodajas finas y la manzana roja en bastones o cubos, con cáscara.",
+    "Rallar grueso la zanahoria, cortar {tomate} de tomates cherry al medio y la palta en cubos.",
+    "Sumar todo al bol de las hojas, aliñar con {aceite_oliva} de aceite de oliva y sal, y mezclar con las manos de abajo hacia arriba, para no aplastar la palta.",
     "Terminar con el sésamo tostado por encima recién en el plato: si entra antes se humedece y pierde todo el crocante."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El sésamo recién tostado es la diferencia"
    ],
@@ -18620,10 +18620,10 @@
    "pasos": [
     "Hervir la remolacha entera y con piel hasta que un cuchillo la atraviese sin esfuerzo: unos 20 minutos si es chica. Dejarla entibiar, pelarla —la piel sale casi sola— y cortarla en cubitos.",
     "Pisar la banana con un tenedor en un bol, hasta un puré rústico con algún pedacito entero.",
-    "Sumar la remolacha en cubitos, el chorrito de limón, la media cucharadita de comino y una pizca de sal, y mezclar. El limón es el que amarra lo dulce de la banana con lo terroso de la remolacha.",
+    "Sumar la remolacha en cubitos, {limon} de limón, {~comino} de comino y sal a gusto, y mezclar. El limón es el que amarra lo dulce de la banana con lo terroso de la remolacha.",
     "Servir fresca y comerla en el día, que la banana pisada no espera a nadie. Sí, es la ensalada más rara del recetario: por eso está."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Funciona por el trío dulce-terroso-ácido (primo del beet-banana bowl nórdico)",
     "Folato + potasio en un bowl improbable"
@@ -18756,13 +18756,13 @@
     }
    ],
    "pasos": [
-    "Partir de las 2 tazas de porotos negros cocidos y todavía calientes —van igual de bien los aduki o los blancos—: calientes se licúan a una crema mucho más sedosa que fríos.",
-    "Licuar los porotos con la media taza de cacao amargo, la taza de azúcar mascabo —o menos, o reemplazada por una taza de dátiles—, la media taza de aceite de coco y la pizca de sal.",
-    "Sumar, si las usás, la cucharadita de esencia de vainilla y la media cucharadita de canela, con un golpe más de licuadora.",
-    "Seguir licuando, parando a bajar lo que sube por las paredes, hasta que quede tersa y no se sienta el poroto. Si a la licuadora le cuesta, aflojar con un chorrito del agua de cocción.",
+    "Partir de {porotos_negros} de porotos negros cocidos y todavía calientes —van igual de bien los aduki o los blancos—: calientes se licúan a una crema mucho más sedosa que fríos.",
+    "Licuar los porotos con {cacao_amargo} de cacao amargo, {azucar_mascabo} de azúcar mascabo —o menos, o reemplazada por la misma cantidad de dátiles—, {aceite_coco} de aceite de coco y {sal_yodada} de sal.",
+    "Sumar, si las usás, {esencia_vainilla} de esencia de vainilla y {~canela} de canela, con un golpe más de licuadora.",
+    "Seguir licuando, parando a bajar lo que sube por las paredes, hasta que quede tersa y no se sienta el poroto. Si a la licuadora le cuesta, aflojar con un poco del agua de cocción.",
     "Pasar a un frasco y a la heladera: al enfriarse se endurece por el aceite de coco. Con más coco sale firme, para cortar. Con mitad de girasol, más blanda de untar."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Dura ~10 días en heladera; congelable en bomboncitos",
     "Base de P34; 'nutella' honesta del sistema"
@@ -18881,14 +18881,14 @@
     }
    ],
    "pasos": [
-    "Usar la taza y media de porotos alubia cocidos todavía tibios y escurridos. Tibios se procesan mucho mejor que fríos, y que sean blancos es lo que da el color crema.",
-    "Poner los porotos en la procesadora con el tercio de taza de puré de dátiles, el chorrito de aceite —de oliva suave o de coco— y el chorrito de esencia de vainilla.",
+    "Usar {porotos_alubia} de porotos alubia cocidos todavía tibios y escurridos. Tibios se procesan mucho mejor que fríos, y que sean blancos es lo que da el color crema.",
+    "Poner los porotos en la procesadora con {datiles} de puré de dátiles, {aceite_oliva} de aceite —de oliva suave o de coco— y {esencia_vainilla} de esencia de vainilla.",
     "Procesar a máxima potencia hasta que quede completamente lisa, parando dos o tres veces para bajar con una espátula lo que sube por las paredes. Va a pasar por una etapa de pasta granulosa antes de volverse crema: es normal, hay que seguir.",
-    "Si quedó muy espesa, aflojar con una cucharada de agua o de bebida vegetal por vez, hasta que caiga de la cuchara como un dulce de leche blando.",
-    "Sumar la cucharada de ralladura de naranja —o de limón, canela o café, según qué crema quieras— y darle un último golpe de procesadora, apenas para integrar.",
+    "Si quedó muy espesa, aflojar con un poco de agua o de bebida vegetal por vez, hasta que caiga de la cuchara como un dulce de leche blando.",
+    "Sumar {cascara_citrico} de ralladura de naranja —o de limón, canela o café, según qué crema quieras— y darle un último golpe de procesadora, apenas para integrar.",
     "Probar, ajustar el dulzor con más puré de dátiles y guardar en un frasco en la heladera. Contenerse."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "⚠️ AJUSTADA: la receta original llevaba miel (no vegana); tu propio texto habilitaba 'el endulzante que prefieras'",
     "Para freezar (helados/bombones): subir la materia grasa para que no cristalice (tu nota)",
@@ -19012,12 +19012,12 @@
     }
    ],
    "pasos": [
-    "Licuar la media taza de avena con la media banana —o una chica entera— y el cuarto de taza de bebida de soja o de agua, hasta que no queden grumos. Si la mezcla quedó muy espesa, un chorrito más de líquido.",
-    "Agregar, si los usás, la cucharadita de lino o chía, la cucharada de cacao amargo, las gotas de esencia de vainilla y la cucharadita de azúcar mascabo, y dar otro golpe de licuadora para integrar.",
+    "Licuar {avena} de avena con la banana —o una chica— y {bebida_soja} de bebida de soja o de agua, hasta que no queden grumos. Si la mezcla quedó muy espesa, un poco más de líquido.",
+    "Agregar, si los usás, {lino} de lino o chía, {cacao_amargo} de cacao amargo, {esencia_vainilla} de esencia de vainilla y {azucar_mascabo} de azúcar mascabo, y dar otro golpe de licuadora para integrar.",
     "Dejar descansar la mezcla 5 minutos en el vaso de la licuadora: en ese rato la avena se hidrata y después los panqueques se dan vuelta enteros, sin quebrarse.",
-    "Calentar una sartén o panquequera a fuego medio con unas gotas de aceite y verter 2 o 3 cucharadas de mezcla por panqueque. Cuando la superficie se llene de burbujitas, dar vuelta y dorar el otro lado un minuto. Salen 4."
+    "Calentar una sartén o panquequera a fuego medio con unas gotas de aceite y verter la mezcla de a cucharadas, 2 o 3 por panqueque. Cuando la superficie se llene de burbujitas, dar vuelta y dorar el otro lado un minuto. Salen 4."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El reposo de 5 min es la magia agregada: panqueques que no se quiebran"
    ],
@@ -19154,13 +19154,13 @@
    ],
    "pasos": [
     "Precalentar el horno bien bajo (160°) y aceitar la budinera.",
-    "Pisar las 2 bananas maduras hasta hacer un puré y mezclarlo con la taza de azúcar, la media taza de aceite neutro —girasol va bien—, los dos tercios de taza de bebida vegetal y la cucharada de esencia de vainilla, hasta que quede parejo.",
-    "Mezclar aparte los secos: la taza de harina integral superfina y la taza de harina leudante. Si lo usás, la media taza de coco rallado va con ellos.",
+    "Pisar las bananas maduras hasta hacer un puré y mezclarlo con {azucar} de azúcar, {aceite_oliva} de aceite neutro —girasol va bien—, {bebida_vegetal_fortificada} de bebida vegetal y {esencia_vainilla} de esencia de vainilla, hasta que quede parejo.",
+    "Mezclar aparte los secos: {harina_integral} de harina integral superfina y {harina_leudante} de harina leudante. Si lo usás, sumá con ellos {coco_rallado} de coco rallado.",
     "Volcar los secos sobre los húmedos e integrar con espátula, con movimientos envolventes y SIN batir: apenas deja de verse harina, listo. Batir de más desarrolla el gluten y el budín sale gomoso en vez de esponjoso.",
     "Verter en la budinera y hornear a horno bajo unos 40 minutos, hasta que un palillo clavado en el centro salga seco.",
     "Dejarlo enfriar en el molde antes de desmoldar: caliente todavía está frágil y se quiebra."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La versión 'domingo' (azúcar entera + leudante); D04 es la integral: la app muestra ambas como familia"
    ],
@@ -19318,13 +19318,13 @@
    ],
    "pasos": [
     "Precalentar el horno a temperatura moderada (180°) y aceitar la budinera.",
-    "Rallar las 2 zanahorias y mezclarlas en un bol con la taza de agua, la cucharada de aceite de coco derretido, la media taza de azúcar y la cucharadita de esencia de vainilla. Esa única cucharada de aceite es toda la grasa de la torta: de ahí lo de liviana.",
-    "Mezclar aparte los secos: la taza de harina de avena, la media taza de harina integral, el tercio de taza de coco rallado y la cucharada de polvo de hornear.",
-    "Unir los secos con los húmedos con movimientos envolventes hasta que no quede harina seca, y sumar al final los 40 g de nueces trituradas.",
+    "Rallar las zanahorias y mezclarlas en un bol con {agua} de agua, {aceite_coco} de aceite de coco derretido, {azucar} de azúcar y {esencia_vainilla} de esencia de vainilla. Ese poquito de aceite es toda la grasa de la torta: de ahí lo de liviana.",
+    "Mezclar aparte los secos: {avena} de harina de avena, {harina_integral} de harina integral, {coco_rallado} de coco rallado y {polvo_hornear} de polvo de hornear.",
+    "Unir los secos con los húmedos con movimientos envolventes hasta que no quede harina seca, y sumar al final {nueces} de nueces trituradas.",
     "Volcar en la budinera y hornear entre 20 y 30 minutos, hasta que la superficie esté dorada y un palillo salga seco del centro.",
     "Dejarla enfriar en el molde antes de desmoldar: recién fría corta prolijo."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Crema de coco PRO: leche de coco casera 12-24 h en heladera, separar la capa espesa con cuchara; procesable con cajús remojados 8-12 h para más cuerpo",
     "Variante de D10 con casi nada de grasa"
@@ -19450,14 +19450,14 @@
     }
    ],
    "pasos": [
-    "Batir los 250 g de margarina a temperatura ambiente —o mejor todavía, de manteca vegana casera— con la taza de azúcar impalpable y la ralladura de la cáscara de un limón, hasta formar una pasta pareja.",
-    "Sumar de a poco las 2 tazas de harina y la taza de fécula de maíz, integrando sin amasar de más, hasta que se forme un bollo tierno. Si quedó seco y se quiebra, alcanzan unas gotas de agua fría.",
+    "Batir {p03} de margarina a temperatura ambiente —o mejor todavía, de manteca vegana casera— con {azucar_impalpable} de azúcar impalpable y la ralladura de la cáscara de limón, hasta formar una pasta pareja.",
+    "Sumar de a poco {harina_trigo_fortificada} de harina y {fecula_maiz} de fécula de maíz, integrando sin amasar de más, hasta que se forme un bollo tierno. Si quedó seco y se quiebra, alcanzan unas gotas de agua fría.",
     "Dejar descansar el bollo 10 minutos en la heladera. Después reservar una parte para el enrejado y forrar con el resto un molde de 22 a 25 cm, base y bordes, emparejando con los dedos.",
-    "Aflojar los 500 g de dulce de membrillo en una ollita a fuego bajo con un chorrito de agua caliente, pisándolo hasta que quede untable y se pueda esparcir sin romper la masa. Rellenar la base con esa mezcla.",
+    "Aflojar {dulce_membrillo} de dulce de membrillo en una ollita a fuego bajo con un chorrito de agua caliente, pisándolo hasta que quede untable y se pueda esparcir sin romper la masa. Rellenar la base con esa mezcla.",
     "Estirar la masa reservada, cortarla en tiras y armar el enrejado sobre el membrillo.",
     "Hornear a 200° entre 25 y 30 minutos, hasta que el enrejado y los bordes estén dorados. Dejar enfriar antes de cortar: el membrillo sale hirviendo y la masa se asienta al entibiarse."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Con TU manteca P03: cadena de preparados en acción",
     "Indulgente y gloriosa: así debe quedar registrada"
@@ -19570,7 +19570,7 @@
      "g_aprox": 240,
      "imprescindible": true,
      "sustitutos": [],
-     "paso": 0
+     "paso": 1
     },
     {
      "ref": {
@@ -19610,14 +19610,14 @@
     }
    ],
    "pasos": [
-    "Remojar la taza de dátiles descarozados en agua caliente hasta que estén bien blandos, y escurrirlos. Son el único endulzante de estos brownies, así que no escatimar.",
-    "Poner en la procesadora las 2 tazas de porotos aduki cocidos, la taza de harina de avena —si la querés sin gluten, va igual de bien con harina de arroz, de sarraceno o de garbanzo—, los dátiles remojados, la media taza de cacao amargo, el cuarto de taza de aceite —de girasol o de oliva—, la taza de agua y la cucharadita de polvo de hornear.",
+    "Remojar {datiles} de dátiles descarozados en agua caliente hasta que estén bien blandos, y escurrirlos. Son el único endulzante de estos brownies, así que no escatimar.",
+    "Poner en la procesadora {porotos_aduki} de porotos aduki cocidos, {avena} de harina de avena —si la querés sin gluten, va igual de bien con harina de arroz, de sarraceno o de garbanzo—, los dátiles remojados, {cacao_amargo} de cacao amargo, {aceite_oliva} de aceite —de girasol o de oliva—, {agua} de agua y {polvo_hornear} de polvo de hornear.",
     "Procesar hasta obtener una pasta homogénea, sin que se adivine ningún pedazo de poroto. Parar y bajar con espátula lo que sube por las paredes si hace falta.",
-    "Si los sumás, integrar con cuchara las 2 cucharadas de nibs de cacao y los 30 g de nueces picadas, para que queden enteros y no molidos.",
+    "Si los sumás, integrar con cuchara {nibs_cacao} de nibs de cacao y {nueces} de nueces picadas, para que queden enteros y no molidos.",
     "Volcar en una placa forrada con papel manteca, emparejar y hornear a 180° unos 20 minutos. La señal es la contraria a la de una torta: bordes firmes y centro todavía HÚMEDO, con el palillo saliendo con migas mojadas. Si sale seco, se pasó.",
     "Dejar enfriar por completo en la placa antes de cortar: calientes se desarman, fríos se afirman."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Endulzado con dátiles: el más 'limpio' de la familia brownies"
    ],
@@ -19736,14 +19736,14 @@
     }
    ],
    "pasos": [
-    "Remojar la taza de semillas de girasol —un par de horas alcanza, toda la noche mejor— y escurrirlas bien. Remojadas hacen el trabajo de la harina y de buena parte de la materia grasa: son las que dan la textura fudge, densa, de estos brownies.",
-    "Procesar el girasol escurrido con la taza de porotos negros cocidos, el cuarto de taza de aceite de oliva, el cuarto de taza de cacao amargo, los dos tercios de taza de azúcar y la pizca de sal, hasta una pasta lisa. Todavía sin el agua.",
+    "Remojar {girasol} de semillas de girasol —un par de horas alcanza, toda la noche mejor— y escurrirlas bien. Remojadas hacen el trabajo de la harina y de buena parte de la materia grasa: son las que dan la textura fudge, densa, de estos brownies.",
+    "Procesar el girasol escurrido con {porotos_negros} de porotos negros cocidos, {aceite_oliva} de aceite de oliva, {cacao_amargo} de cacao amargo, {azucar} de azúcar y {sal_yodada} de sal, hasta una pasta lisa. Todavía sin el agua.",
     "Sumar el agua de a chorritos, procesando entre uno y otro, hasta que tome la consistencia de una mezcla de budín: espesa, pero que cae de la cuchara.",
     "Aceitar una placa y espolvorearla con cacao en vez de harina: cumple la misma función y los brownies no quedan con los bordes pintados de blanco.",
     "Volcar la mezcla, emparejar y hornear a 180° entre 20 y 30 minutos, hasta que los bordes estén firmes y el centro apenas húmedo: el palillo tiene que salir con migas, ni limpio ni chorreando.",
     "Dejar entibiar en la placa antes de cortar, que recién salidos no tienen estructura."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El girasol remojado reemplaza harina Y parte de la grasa: fudge denso",
     "Espolvorear la placa con cacao (no harina): no deja borde blanco"
@@ -19867,13 +19867,13 @@
    ],
    "pasos": [
     "Precalentar el horno a 190° y aceitar un molde chico.",
-    "Pisar con tenedor la media banana madura —o una chica entera— hasta hacerla puré.",
-    "Integrar la banana a la taza de crema chocoporotos —la de porotos negros y cacao, acá en su versión hecha con girasol y sin aceite de coco—. Mezclar hasta que no queden vetas.",
-    "Sumar las 2 cucharadas de pasta de maní y la cucharada de polvo de hornear y mezclar hasta una masa pareja. Si los sumás, acá entran los 30 g de nueces picadas y los 30 g de chips de chocolate amargo.",
-    "Volcar al molde y, si querés que arriba se forme una costra crocante, espolvorear la cucharada de azúcar sobre la superficie antes de hornear.",
+    "Pisar con tenedor la banana madura hasta hacerla puré.",
+    "Integrar la banana a {p26} de crema chocoporotos —la de porotos negros y cacao, acá en su versión hecha con girasol y sin aceite de coco—. Mezclar hasta que no queden vetas.",
+    "Sumar {pasta_mani} de pasta de maní y {polvo_hornear} de polvo de hornear y mezclar hasta una masa pareja. Si los sumás, acá entran {nueces} de nueces picadas y {chocolate_amargo} de chips de chocolate amargo.",
+    "Volcar al molde y, si querés que arriba se forme una costra crocante, espolvorear {azucar} de azúcar sobre la superficie antes de hornear.",
     "Hornear a 190° unos 25 minutos, aunque según el molde puede ir de 20 a 40: la señal que manda es la superficie firme y un palillo que sale con migas húmedas. Es brownie, no budín: seco del todo quiere decir que se pasó."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Tres ingredientes estructurales + un preparado: la receta más corta de la familia",
     "Tu tip de la corteza azucarada quedó como campo general de dulces"
@@ -19999,13 +19999,13 @@
     }
    ],
    "pasos": [
-    "Pre-hervir los 200 g de arroz —doble carolina, elegido justamente porque suelta mucho almidón— durante 10 minutos en el doble de agua, revolviendo, y colarlo. Ese hervor previo deja buena parte del almidón en el agua, y es lo que después evita que la leche de coco se corte.",
-    "Poner en una olla los 500 ml de leche de coco con los 100 g de azúcar, la pizca de sal y las 3 tiras de cáscara de limón, peladas sin nada de la parte blanca, que es la que amarga. Si la usás, sumar la canela: la rama entera o la media cucharadita molida. Llevar a hervor a fuego medio.",
+    "Pre-hervir {arroz_blanco} de arroz —doble carolina, elegido justamente porque suelta mucho almidón— durante 10 minutos en el doble de agua, revolviendo, y colarlo. Ese hervor previo deja buena parte del almidón en el agua, y es lo que después evita que la leche de coco se corte.",
+    "Poner en una olla la mayor parte de la leche de coco con {azucar} de azúcar, {sal_yodada} de sal y {cascara_citrico} de cáscara de limón, pelada sin nada de la parte blanca, que es la que amarga. Si la usás, sumar la canela: una rama entera o {~canela} de canela molida. Llevar a hervor a fuego medio.",
     "Cuando rompe el hervor, sumar el arroz colado y cocinar a fuego bajo, revolviendo cada tanto, hasta que el grano esté tierno. Si la leche reduce demasiado antes de que el arroz llegue, apagar y tapar: termina de cocinarse con el calor residual, sin seguir secándose.",
-    "Fuera del fuego, retirar las cáscaras y la rama de canela y, si la usás, perfumar con la cucharadita de esencia de vainilla.",
-    "Dejar enfriar y, ya frío, incorporar revolviendo los 150 ml de leche de coco restantes: ese agregado en frío es lo que lo deja cremoso y fresco en vez de apelmazado. A la heladera hasta servir."
+    "Fuera del fuego, retirar las cáscaras y la rama de canela y, si la usás, perfumar con {esencia_vainilla} de esencia de vainilla.",
+    "Dejar enfriar y, ya frío, incorporar revolviendo el resto de la leche de coco: ese agregado en frío es lo que lo deja cremoso y fresco en vez de apelmazado. A la heladera hasta servir."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Tu doble técnica destrona a D08: pre-hervor (almidón sin cortar la leche) + leche fría final (cremosidad fresca) → promovida a técnica oficial de la familia",
     "La cáscara sin lo blanco: lo amargo queda afuera"
@@ -20181,15 +20181,15 @@
    ],
    "pasos": [
     "Precalentar el horno a 180°. Aceitar un molde de 24 cm, mejor si es con chimenea, y enharinarlo con fécula de mandioca.",
-    "Pelar y rallar los 500 g de mandioca cruda. Va cruda y sin pelar de más: la mandioca aporta el almidón que reemplaza a la harina, así que la torta sale sin gluten.",
-    "Licuar la mandioca rallada con la media banana madura, los 200 ml de bebida de soja, las 6 cucharadas de aceite neutro y los 50 g de margarina —o manteca vegana— hasta obtener una crema lisa. Lleva su tiempo y hay que parar a bajar lo que sube por las paredes: la mandioca es fibrosa y cuesta.",
-    "Sumar los 250 g de azúcar, la pizca de sal y las 2 cucharaditas de polvo de hornear, y licuar un poco más, solo hasta integrar.",
-    "Volcar la mezcla en un bol e incorporar los 100 g de coco rallado con cuchara, con movimientos envolventes. Acá se deja la licuadora: el coco tiene que quedar entero, no molido.",
+    "Pelar y rallar {mandioca} de mandioca cruda. Va cruda y sin pelar de más: la mandioca aporta el almidón que reemplaza a la harina, así que la torta sale sin gluten.",
+    "Licuar la mandioca rallada con la banana madura, {bebida_soja} de bebida de soja, {aceite_oliva} de aceite neutro y {margarina} de margarina —o manteca vegana— hasta obtener una crema lisa. Lleva su tiempo y hay que parar a bajar lo que sube por las paredes: la mandioca es fibrosa y cuesta.",
+    "Sumar {azucar} de azúcar —o menos, a gusto—, {sal_yodada} de sal y {polvo_hornear} de polvo de hornear, y licuar un poco más, solo hasta integrar.",
+    "Volcar la mezcla en un bol e incorporar {coco_rallado} de coco rallado con cuchara, con movimientos envolventes. Acá se deja la licuadora: el coco tiene que quedar entero, no molido.",
     "Verter en el molde, emparejar la superficie y espolvorear coco rallado extra por encima.",
     "Hornear a 180° entre 35 y 45 minutos, hasta que la superficie esté dorada y un palillo salga seco del centro.",
     "Dejar enfriar en el molde antes de desmoldar: en caliente se rompe. Espolvorear azúcar impalpable al servir."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La mandioca cruda licuada ES la masa: sin gluten por diseño",
     "La exótica del recetario: única con mandioca"
@@ -20302,13 +20302,13 @@
    ],
    "pasos": [
     "Precalentar el horno a temperatura baja, unos 160°, y aceitar y enharinar una fuente chica.",
-    "Mezclar en un bol los secos: la taza de azúcar, la taza y media de harina 0000, las 2 cucharadas de fécula de maíz y la cucharada de polvo de hornear.",
-    "Derretir los 80 g de margarina —o de manteca vegana, si tenés hecha— y mezclarla con la ralladura y el jugo del limón.",
+    "Mezclar en un bol los secos: {azucar} de azúcar, {harina_trigo_fortificada} de harina 0000, {fecula_maiz} de fécula de maíz y {polvo_hornear} de polvo de hornear.",
+    "Derretir {margarina} de margarina —o de manteca vegana, si tenés hecha— y mezclarla con la ralladura y el jugo del limón.",
     "Unir lo húmedo con los secos hasta que no queden restos de harina seca, sin batir de más. Queda una masa espesa, y está bien que así sea.",
     "Volcar en la fuente, emparejar y hornear unos 30 minutos. La señal: bordes dorados que se despegan de la fuente y centro firme al tacto pero todavía húmedo adentro, con el palillo saliendo con migas. Es pariente del brownie, no un bizcochuelo: seco del todo pierde la gracia.",
     "Dejar enfriar en la fuente antes de cortar en cuadrados, que tibios se desarman."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Blondie de limón sin huevo; variante: base de masa de pastafrola (tu nota)",
     "Indulgente declarado: sin disfraz"
@@ -20421,13 +20421,13 @@
     }
    ],
    "pasos": [
-    "Procesar las 3 bananas maduras con la media taza de cacao amargo y la media taza de aceite de coco —derretido si está sólido, para que se integre— hasta obtener una crema lisa. Si la usás, la cucharadita de esencia de vainilla entra acá.",
-    "Si los sumás, incorporar con cuchara los 30 g de nueces picadas y los 30 g de pasas, para que queden repartidos y enteros.",
+    "Procesar las bananas maduras con {cacao_amargo} de cacao amargo y {aceite_coco} de aceite de coco —derretido si está sólido, para que se integre— hasta obtener una crema lisa. Si la usás, sumale acá {esencia_vainilla} de esencia de vainilla.",
+    "Si los sumás, incorporar con cuchara {nueces} de nueces picadas y {pasas} de pasas, para que queden repartidos y enteros.",
     "Volcar en un molde de silicona o en una fuente forrada con papel manteca, en una capa pareja.",
     "Llevar al freezer entre 1 hora y 1 hora y media. La señal: sólidos pero todavía blandos, que un cuchillo entre sin astillarlos. El aceite de coco es el que endurece con el frío y les da la mordida de bombón helado. Con girasol u oliva también salen, pero más blandos.",
     "Cortar en bocaditos y guardarlos en el freezer. Sacarlos unos minutos antes de comer, que directo del frío están demasiado duros."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El aceite de coco solidifica en frío: eso los vuelve 'bombón' y no puré congelado",
     "Familia 'banana congelada' con D07 (nice cream)"
@@ -20578,15 +20578,15 @@
     }
    ],
    "pasos": [
-    "Para la masa sablée, trabajar los 125 g de margarina pomada —o de manteca vegana, que es la que usa la receta— con los 75 g de azúcar impalpable y las gotas de esencia de vainilla. Sumar los 150 g de harina y los 50 g de fécula de maíz y unir apenas, sin amasar: cuanto menos se trabaja, más arenosa queda. Envolver en film y llevar 30 minutos a la heladera.",
-    "Para el crumble, desgranar con la punta de los dedos los 150 g de margarina bien fría con los 150 g de azúcar y los otros 150 g de harina, hasta un granulado grueso con pedazos. También sale en procesadora, de a pulsos y con todo frío. Guardarlo en el freezer mientras se arma el resto.",
-    "Cortar las 3 manzanas verdes en rodajas bien finas, para que se cocinen parejas en el horno.",
+    "Para la masa sablée, trabajar la margarina pomada —o la manteca vegana, que es la que usa la receta— con {azucar_impalpable} de azúcar impalpable y unas gotas de esencia de vainilla. Sumar {harina_trigo_fortificada} de harina y {fecula_maiz} de fécula de maíz y unir apenas, sin amasar: cuanto menos se trabaja, más arenosa queda. Envolver en film y llevar 30 minutos a la heladera.",
+    "Para el crumble, desgranar con la punta de los dedos la margarina bien fría con {azucar} de azúcar y la harina que quedó, hasta un granulado grueso con pedazos. También sale en procesadora, de a pulsos y con todo frío. Guardarlo en el freezer mientras se arma el resto.",
+    "Cortar las manzanas verdes en rodajas bien finas, para que se cocinen parejas en el horno.",
     "Forrar el molde de 28 cm con la masa sablée y esparcir sobre la base un puñado del crumble: absorbe el jugo que suelta la manzana y la base no se empapa.",
-    "Armar capas de manzana y untar entre capa y capa la crema de vainilegumbres —los 200 g de porotos alubia hechos crema dulce—, sin pasarse, porque de más aporta humedad.",
+    "Armar capas de manzana y untar entre capa y capa {p27} de crema de vainilegumbres —porotos alubia hechos crema dulce—, sin pasarse, porque de más aporta humedad.",
     "Cubrir con el resto del crumble y hornear a horno suave a moderado —unos 170°— alrededor de 30 minutos, hasta que el crumble esté dorado y la manzana se sienta tierna al pincharla. Va todo al horno en una sola tanda, con la masa cruda abajo: así sale cocida sin resecarse.",
     "Dejar entibiar en el molde antes de cortar, que recién salido el crumble se desarma."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Tres preparados encadenados (P03 + P27 + esta): el sistema funcionando en un postre",
     "Tu opción de hornear todo junto (sin prehornear la base) quedó como la recomendada: la base no se seca"
@@ -20722,12 +20722,12 @@
     }
    ],
    "pasos": [
-    "Poner en un frasco las 3 cucharadas de chía, las 2 cucharaditas de cacao amargo y la cucharadita de esencia de vainilla. Si lo endulzás, sumar la cucharadita de azúcar mascabo o unas gotas de stevia.",
-    "Verter el vaso de bebida de soja —u otra vegetal— y revolver a conciencia, despegando lo que se asienta: las semillas que se van al fondo son el enemigo.",
+    "Poner en un frasco {chia} de chía, {cacao_amargo} de cacao amargo y {esencia_vainilla} de esencia de vainilla. Si lo endulzás, sumar {azucar_mascabo} de azúcar mascabo o unas gotas de stevia.",
+    "Verter {bebida_soja} de bebida de soja —u otra vegetal— y revolver a conciencia, despegando lo que se asienta: las semillas que se van al fondo son el enemigo.",
     "Tapar y llevar a la heladera toda la noche. A los 10 o 15 minutos vale la pena un segundo removido, antes de que la chía decida quedarse toda abajo. La señal a la mañana: cuajado parejo, con textura de pudding que no se vuelca al inclinar el frasco.",
-    "Al servir, coronar con los toppings si los sumás: la media taza de frutillas, la cucharada de nibs de cacao y la cucharada de coco rallado."
+    "Al servir, coronar con los toppings si los sumás: {frutilla} de frutillas, {nibs_cacao} de nibs de cacao y {coco_rallado} de coco rallado."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Casi idéntica a D09: queda como variante con tus toppings (nibs + coco en escamas)"
    ],
@@ -20839,13 +20839,13 @@
    ],
    "pasos": [
     "Encender el horno a 180° y preparar la budinera: aceitada y enharinada, para que el budín después se despegue solo.",
-    "Mezclar en un bol la taza y media de harina leudante, la taza de coco rallado y la media taza de azúcar.",
-    "Sumar el tercio de taza de aceite y la taza de agua —o de leche vegetal, si preferís— y batir unos minutos, hasta que quede una masa pareja y sin grumos de harina.",
+    "Mezclar en un bol {harina_leudante} de harina leudante, {coco_rallado} de coco rallado y {azucar} de azúcar.",
+    "Sumar {aceite_oliva} de aceite y {agua} de agua —o de leche vegetal, si preferís— y batir unos minutos, hasta que quede una masa pareja y sin grumos de harina.",
     "Mirar la textura antes de seguir: tiene que caer espesa de la cuchara. Cada harina absorbe distinto, así que si quedó dura se corrige con un chorrito más de líquido.",
     "Si la usás, pisar la banana madura con un tenedor e integrarla a la masa.",
     "Volcar en la budinera y hornear unos 40 minutos a 180°, hasta que un palillo pinchado en el centro salga seco."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "El budín de un bowl: cero técnica, funciona siempre"
    ],
@@ -21006,15 +21006,15 @@
     }
    ],
    "pasos": [
-    "Arrancar por la base: mezclar en un bol la taza y tres cuartos de harina, los dos tercios de taza de azúcar y el cuarto de taza de fécula de maíz. Sumar la taza de aceite de coco y deshacerlo con la punta de los dedos hasta que quede un granulado fino, como arena mojada.",
+    "Arrancar por la base: mezclar en un bol {harina_trigo_fortificada} de harina, el azúcar y {fecula_maiz} de fécula de maíz. Sumar {aceite_coco} de aceite de coco y deshacerlo con la punta de los dedos hasta que quede un granulado fino, como arena mojada.",
     "Compactar ese granulado en el molde, subiéndolo apenas para formar un borde que contenga el relleno, y llevarlo a la heladera 30 minutos: la masa fría entra al horno sin deformarse.",
     "Hornear la base a horno mínimo unos 35 minutos, hasta que se vea sequita y apenas dorada en los bordes. Dejarla enfriar por completo antes de seguir: el relleno va siempre sobre base fría.",
-    "Para el relleno, poner en una olla los dos tercios de taza de jugo de limón, la taza y un tercio de agua, la taza y cuarto de azúcar, las 3 cucharadas de fécula, la cucharadita de agar agar y la pizca de cúrcuma, que es la que pone el color sin que se note en el sabor.",
+    "Para el relleno, poner en una olla el jugo de limón, el agua, más azúcar y más fécula, {agar_agar} de agar agar y {curcuma} de cúrcuma, que es la que pone el color sin que se note en el sabor.",
     "Llevar a fuego suave revolviendo sin parar hasta que rompa el hervor y espese. No cortar antes de tiempo: el agar recién gelifica cuando hierve.",
-    "Sumar el cuarto de taza de bebida vegetal, cocinar 2 minutos más revolviendo y apagar. Fuera del fuego, agregar la cucharada de ralladura de limón: así conserva todo el perfume.",
-    "Volcar el relleno caliente sobre la base fría, alisar la superficie y llevar a la heladera 3 horas como mínimo, hasta que esté firme al tacto. Cortar en 12 cuadrados y, si la usás, terminarlos con la cucharada de azúcar impalpable."
+    "Sumar {bebida_vegetal_fortificada} de bebida vegetal, cocinar 2 minutos más revolviendo y apagar. Fuera del fuego, agregar la ralladura de limón: así conserva todo el perfume.",
+    "Volcar el relleno caliente sobre la base fría, alisar la superficie y llevar a la heladera 3 horas como mínimo, hasta que esté firme al tacto. Cortar en cuadrados parejos y, si la usás, terminarlos con {azucar_impalpable} de azúcar impalpable."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Doble gelificación (agar en caliente + maicena): curd sin huevo que corta limpio",
     "La cúrcuma es el amarillo: una pizca, invisible al gusto"
@@ -21160,14 +21160,14 @@
     }
    ],
    "pasos": [
-    "Disolver la cucharadita de levadura con la cucharadita de azúcar en un poco del agua tibia y dejarla 15 minutos: cuando la superficie se llena de espuma, está activa y se puede seguir.",
-    "Mezclar en un bol la taza de harina integral superfina, la taza de harina de garbanzo y la cucharadita de sal. La harina de garbanzo es una legumbre metida adentro del pan: aporta lisina y hierro.",
-    "Hacer un puré con las 4 rodajas de calabaza cocidas y sumarlo al bol junto con la levadura ya espumada y la cucharada y media de aceite. Integrar todo.",
-    "Agregar el resto del agua de a poco mientras amasás, hasta lograr una masa que no se pegue a las manos pero siga blanda: ni seca ni acuosa. Si las usás, los 30 g de nueces picadas se amasan adentro al final.",
+    "Disolver {levadura_fresca} de levadura con {azucar} de azúcar en un poco del agua tibia y dejarla 15 minutos: cuando la superficie se llena de espuma, está activa y se puede seguir.",
+    "Mezclar en un bol {harina_integral} de harina integral superfina, {harina_garbanzo} de harina de garbanzo y {sal_yodada} de sal. La harina de garbanzo es una legumbre metida adentro del pan: aporta lisina y hierro.",
+    "Hacer un puré con la calabaza cocida y sumarlo al bol junto con la levadura ya espumada y {aceite_oliva} de aceite. Integrar todo.",
+    "Agregar el resto del agua de a poco mientras amasás, hasta lograr una masa que no se pegue a las manos pero siga blanda: ni seca ni acuosa. Si las usás, sumar al final {nueces} de nueces picadas y amasarlas adentro.",
     "Tapar el bol y dejar levar una hora, hasta que la masa doble su volumen.",
     "Desgasificar apenas, acomodar la masa en una budinera engrasada —o formar bollitos— y hornear a 160-180° entre 20 y 25 minutos, hasta que esté dorado y la base suene hueca al golpearla."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Harina de garbanzo 1:1 con integral: pan con lisina (complementa el día)",
     "Dura 4-5 días ambiente, 30 en freezer (tu dato, coincide con conservación)"
@@ -21298,13 +21298,13 @@
     }
    ],
    "pasos": [
-    "Mezclar en un bol grande los 500 g de harina integral, los 300 g de harina 000 y los 200 g de sémola fina con las 4 cucharaditas de sal. La sémola no es relleno: es la que después hace el crocante de la base.",
-    "Agregar los 50 g de masa madre —si no tenés, valen 10 g de levadura fresca o 3 g de la seca—, los 650 ml de agua y los 50 ml de aceite de oliva, y mezclar apenas hasta que no quede harina seca. NO amasar: queda un engrudo desprolijo y así tiene que quedar.",
+    "Mezclar en un bol grande {harina_integral} de harina integral, {harina_trigo_fortificada} de harina 000 y {semola} de sémola fina con {sal_yodada} de sal. La sémola no es relleno: es la que después hace el crocante de la base.",
+    "Agregar {masa_madre} de masa madre —si no tenés, vale levadura fresca o seca, en mucha menos cantidad—, {agua} de agua y {aceite_oliva} de aceite de oliva, y mezclar apenas hasta que no quede harina seca. NO amasar: queda un engrudo desprolijo y así tiene que quedar.",
     "Tapar el bol con film y llevarlo a la heladera hasta el día siguiente, unas 12 horas. En ese frío pasa todo: la fermentación lenta desarrolla el gluten sin que amases, deja la masa más sabrosa y fácil de digerir, y de paso baja los fitatos de la harina integral, que traban la absorción de sus minerales.",
     "A la mañana la masa tiene que verse crecida y llena de burbujas: esa es la señal de que la fermentación hizo su parte. Si está igual que anoche, dejarla un rato a temperatura ambiente hasta que arranque.",
-    "Volcar la masa sobre la mesada enharinada y dividirla en 5 bollos. Antes de estirarlos, dejarlos tapados hasta que pierdan el frío y se estiren sin encogerse de vuelta: esa resistencia que cede es la señal de que están listos."
+    "Volcar la masa sobre la mesada enharinada y dividirla en bollos iguales, uno por porción. Antes de estirarlos, dejarlos tapados hasta que pierdan el frío y se estiren sin encogerse de vuelta: esa resistencia que cede es la señal de que están listos."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "La noche de heladera hace el trabajo del amasado Y degrada fitatos (R4 en panificación)",
     "Bollos sobrantes al freezer",
@@ -21405,14 +21405,14 @@
     }
    ],
    "pasos": [
-    "Mezclar en un bol los 500 g de masa madre —el descarte que venís juntando es perfecto para esto— con los 250 g de harina integral y los 15 g de sal. Si las usás, las 2 cucharadas de chía o de mix de semillas entran acá.",
+    "Mezclar en un bol {masa_madre} de masa madre —el descarte que venís juntando es perfecto para esto— con {harina_integral} de harina integral y {sal_yodada} de sal. Si las usás, sumar también {chia} de chía o de mix de semillas.",
     "Integrar hasta tener una masa homogénea. Si la sentís algo seca, es normal: dejarla reposar 5 a 10 minutos para que la harina termine de hidratarse.",
-    "Sumar los 50 g de aceite de oliva de a poco, amasando entre chorro y chorro, hasta que la masa lo absorba todo y quede lisa y maleable.",
+    "Sumar {aceite_oliva} de aceite de oliva de a poco, amasando entre chorro y chorro, hasta que la masa lo absorba todo y quede lisa y maleable.",
     "Estirarla bien finita, a 2 mm: de ese espesor sale el crocante. Marcar una cuadrícula apretando con un cuchillo SIN filo, sin llegar a cortar: al hornearse, la plancha después se quiebra prolija siguiendo esas líneas.",
     "Hornear a 180-200° hasta que estén dorados y crocantes, unos 20 a 25 minutos según el horno.",
     "Apagar el horno y dejarlos adentro un rato más: ese secado final es el que les da el crocante que aguanta. Guardarlos en un frasco bien cerrado recién cuando estén fríos del todo."
    ],
-   "pasos_escalables": false,
+   "pasos_escalables": true,
    "secretos_chef": [
     "Se separan solos por las marcas durante la cocción",
     "En frasco duran semanas: la vianda crocante permanente"
