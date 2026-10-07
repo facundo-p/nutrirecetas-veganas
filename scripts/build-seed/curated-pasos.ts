@@ -79,7 +79,7 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   p29: [2, 2, 2, 2, 3, 3, 2, 3], // Budín de banana clásico
   p30: [3, 3, 3, 2, 2, 2, 2, 3, 2, 4], // Carrot cake liviana
   p31: [2, 2, 1, 1, 1, 4], // Pastafrola
-  p32: [2, 2, 1, 2, 2, 1, 2, 4, 4], // Brownies de aduki y avena
+  p32: [2, 2, 1, 2, 2, 2, 2, 4, 4], // Brownies de aduki y avena
   p33: [1, 2, 2, 2, 2, 2, 3], // Brownies de poroto y girasol
   p34: [3, 2, 4, 4, 4, 4, 5], // Brownies chocoporotos sin harina
   p35: [1, 2, 2, 2, 2, 2, 4], // Arroz con leche de coco
@@ -95,13 +95,3 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   p45: [1, 1, 1, 3, 1], // Crackers de masa madre
 };
 
-/**
- * Qué recetas ya dicen sus cantidades con tokens (#200). Mientras una receta no
- * esté acá, sus pasos siguen con los números escritos a mano y la ficha avisa al
- * escalar en vez de mentir. Estar en la lista activa las validaciones del build:
- * todo token resuelve a una línea de su paso, la unidad se sabe decir, y no
- * queda ningún número de cantidad escrito en la prosa.
- *
- * Cuando estén las 84, se borran la lista, el campo `pasos_escalables` y el aviso.
- */
-export const RECETAS_CON_PASOS_TOKENIZADOS: ReadonlySet<string> = new Set<string>(['d01', 'd02', 'd03', 'd04', 'd05', 'd06', 'd07', 'd08', 'd09', 'd10', 'p01', 'p02', 'p03', 'p04', 'p05', 'p06', 'p07', 'p08', 'p09', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'r01', 'r02', 'r03', 'r04', 'r05', 'r06', 'r07', 'r08', 'r09', 'r10', 'r11', 'r12', 'r13', 'r14', 'r15', 'r16', 'r17', 'r18', 'r19', 'r20', 'r21', 'r22', 'r23', 'r24', 'r25', 'r26', 'r27', 'r28', 'r29']);
