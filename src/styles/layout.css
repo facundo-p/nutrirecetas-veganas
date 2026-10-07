@@ -177,6 +177,14 @@
   letter-spacing: -0.02em;
 }
 
+.encabezado-bajada {
+  margin-top: var(--sp-2);
+  max-width: 40ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: color-mix(in srgb, var(--sobre-encabezado) 80%, transparent);
+}
+
 /* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */
 .etiqueta-seccion {
   font-family: var(--font-data);
@@ -231,6 +239,29 @@
   border-bottom: 1px solid color-mix(in srgb, var(--dato-suave) 40%, transparent);
 }
 
+.banner-sin-conexion {
+  padding-block: 0;
+  background: color-mix(in srgb, var(--dato-suave) 10%, var(--superficie));
+  border-bottom: var(--borde);
+}
+
+.banner-sin-conexion-enlace {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--toque-minimo);
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.banner-marca {
+  flex: none;
+  width: var(--cuadrado-nutriente);
+  height: var(--cuadrado-nutriente);
+  border: var(--borde-control);
+}
+
 .banner-cerrar {
   appearance: none;
   border: none;
@@ -245,4 +276,61 @@
   margin-right: calc(var(--sp-2) * -1);
   color: var(--tinta-suave);
   font-size: 20px;
+}
+
+/* ---------- carga inicial: el esqueleto estático de index.html ---------- */
+
+.carga-progreso {
+  position: relative;
+  overflow: hidden;
+  height: var(--alto-progreso-carga);
+  background: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.carga-progreso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: var(--accion);
+  animation: carga-progreso 1.2s ease-in-out infinite;
+}
+
+@keyframes carga-progreso {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carga-progreso::after {
+    animation: none;
+  }
+}
+
+.carga-barra {
+  margin: var(--sp-5) 0;
+}
+
+.esqueleto-fila {
+  display: grid;
+  align-content: center;
+  gap: var(--sp-3);
+  height: var(--alto-esqueleto-fila);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  border: var(--borde-suave);
+  border-radius: var(--radio);
+}
+
+.esqueleto-linea {
+  height: var(--sp-4);
+  background: color-mix(in srgb, var(--tinta) 9%, transparent);
+}
+
+.esqueleto-linea-corta {
+  width: 40%;
 }
