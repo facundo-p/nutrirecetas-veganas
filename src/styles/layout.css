@@ -177,6 +177,14 @@
   letter-spacing: -0.02em;
 }
 
+.encabezado-bajada {
+  margin-top: var(--sp-2);
+  max-width: 40ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: color-mix(in srgb, var(--sobre-encabezado) 80%, transparent);
+}
+
 /* Sin mayúsculas trackeadas: el rótulo es texto chico en tinta suave. */
 .etiqueta-seccion {
   font-family: var(--font-data);

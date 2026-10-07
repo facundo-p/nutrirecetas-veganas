@@ -24,23 +24,25 @@
   gap: var(--sp-2);
 }
 
+/* Grid y no flex con wrap: el «cuándo» sigue a la derecha aunque el nombre ocupe dos renglones. */
 .coccion-cabecera {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: baseline;
   gap: var(--sp-2);
-  flex-wrap: wrap;
 }
 
 .coccion-nombre {
   font-family: var(--font-display);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-titulo-coccion);
+  line-height: 1.15;
   font-weight: 560;
   color: var(--titulo-seccion);
   text-decoration: none;
 }
 
 .coccion-fecha {
+  white-space: nowrap;
   font-size: var(--fs-xs);
   color: var(--dato-suave);
 }
