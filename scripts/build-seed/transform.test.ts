@@ -420,6 +420,11 @@ describe('las cantidades de un paso van como token (#200)', () => {
     expect(validar(['Cubrir con 600 ml de agua.'], [linea('lentejas', 250, 'g', 0)])).toThrow(
       /"600 ml" es una medida escrita/,
     );
+    // La fracción en símbolo es una cifra más: «½ taza» tampoco escala.
+    expect(validar(['Sumar ½ taza de agua.'], [linea('lentejas', 250, 'g', 0)])).toThrow(/"½ taza" es una medida escrita/);
+    expect(validar(['Sumar 1½ cucharadita de comino.'], [linea('lentejas', 250, 'g', 0)])).toThrow(
+      /"1½ cucharadita" es una medida escrita/,
+    );
   });
 
   test('una medida en letras rompe igual que en cifras', () => {

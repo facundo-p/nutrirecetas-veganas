@@ -219,7 +219,7 @@ const NUMERO_SUELTO = /(?<![\d,.])\d+(?:[,.]\d+)?(?![\d,.])/g;
  * cubrir»).
  */
 const MEDIDA_ESCRITA =
-  /(?<![\d,.])\d+(?:[,.]\d+)?\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
+  /(?<![\d,.])(?:\d+(?:[,.]\d+)?|(?:\d+\s*)?[½¼¾⅓⅔])\s*(?:gr?|gramos?|ml|cc|tazas?|cdas?|cucharadas?|cdtas?|cucharaditas?|dientes?|hojas?|ramas?|rebanadas?|pizcas?|chorritos?|gotas?|puñados?|latas?|paquetes?|atados?|vasos?|bloques?|cubitos?|tiras?)\b/gi;
 
 /**
  * La misma medida dicha en letras: «la taza y media», «media cucharadita».
