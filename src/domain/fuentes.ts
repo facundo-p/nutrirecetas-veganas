@@ -9,7 +9,9 @@ import { enSuBase, hasReportableValue, per100g, type NutrientResult, type Recipe
  *
  * Nadie entra al ranking sin dato reportable — el invariante 5 llevado al orden:
  * una receta de la que no sabemos nada no merece un puesto, ni siquiera el
- * último, porque el último se lee como "esta casi no tiene".
+ * último, porque el último se lee como "esta casi no tiene". Y una receta
+ * entra solo si su rango arranca arriba de cero: uno que arranca en cero
+ * incluye "no tiene nada", que es el caso de la levadura sin fortificar.
  */
 
 export interface FuenteReceta {
@@ -40,9 +42,8 @@ export function recetasQueMasAportan(
     const resultado = base.por_nutriente[nutriente.clave_ingrediente];
     if (resultado === undefined || !hasReportableValue(resultado)) continue;
 
-    const cantidad = midpoint(resultado.intervalo);
-    if (cantidad <= 0) continue;
-    fuentes.push({ receta, cantidad, resultado });
+    if (resultado.intervalo.min <= 0) continue;
+    fuentes.push({ receta, cantidad: midpoint(resultado.intervalo), resultado });
   }
   // el desempate por nombre mantiene el orden estable entre renders
   return fuentes.sort((a, b) => b.cantidad - a.cantidad || a.receta.nombre.localeCompare(b.receta.nombre, 'es'));

@@ -9,7 +9,6 @@ import {
   IconCobertura,
   IconCopoNieve,
   IconCuchara,
-  IconEscudoB12,
   IconEspiga,
   IconEstrellaBrotada,
   IconFlor,
@@ -46,7 +45,7 @@ export interface CatalogEntry {
   id: string;
   Componente: ComponentType<IconProps>;
   significado: string;
-  grupo: 'ventana' | 'datos' | 'tipo de receta' | 'prácticos' | 'alerta' | 'extras' | 'navegación';
+  grupo: 'ventana' | 'datos' | 'tipo de receta' | 'prácticos' | 'extras' | 'navegación';
 }
 
 export const ICON_CATALOG: CatalogEntry[] = [
@@ -76,7 +75,6 @@ export const ICON_CATALOG: CatalogEntry[] = [
   { id: 'copo-nieve', Componente: IconCopoNieve, significado: 'Va bien al freezer', grupo: 'prácticos' },
   { id: 'heladera', Componente: IconHeladera, significado: 'Guarda en heladera (días)', grupo: 'prácticos' },
   { id: 'temporada', Componente: IconTemporada, significado: 'En temporada (AMBA)', grupo: 'prácticos' },
-  { id: 'escudo-b12', Componente: IconEscudoB12, significado: 'Advertencia B12: levadura no siempre fortificada', grupo: 'alerta' },
   { id: 'marcar', Componente: IconMarcar, significado: 'Sin probar: tocalo en la ficha para marcar la receta', grupo: 'extras' },
   { id: 'tilde-brote', Componente: IconTildeBrote, significado: 'La cocinaste: probada', grupo: 'extras' },
   { id: 'senalador', Componente: IconSenalador, significado: 'Pendiente: de las que querés cocinar', grupo: 'extras' },

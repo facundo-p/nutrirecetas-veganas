@@ -246,6 +246,14 @@ export function ListaDeIngredientes({
           Los condimentos y las especias no escalan lineal: probá antes de sumar el último tercio.
         </p>
       )}
+      {/* Lee el flag y no los puntos: así aparece también cuando la levadura
+          viene adentro de un preparado. */}
+      {vista.nutrition.alerta_b12 && (
+        <p className="nota-b12">
+          Lleva levadura nutricional, que da B12 solo si la marca está fortificada, y acá casi ninguna lo está: por eso
+          el cálculo la deja en cero. <a href={routeHash({ screen: 'nutrient', id: 'b12' })}>Más sobre la B12</a>
+        </p>
+      )}
       <AvisosDeEscalado avisos={vista.avisos} />
     </section>
   );

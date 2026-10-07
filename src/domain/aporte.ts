@@ -101,11 +101,15 @@ export function nutrienteConColor(id: string): NutrienteDeBarra | undefined {
   return esNutrienteDeBarra(id) ? id : undefined;
 }
 
-/** Los once con color primero y en su orden; después el resto, como los trae la semilla. */
+/** Los nueve sin color, en el orden de Nutrientes: primero los críticos que no entran a la barra. */
+export const ORDEN_SIN_COLOR = ['yodo', 'b12', 'vitd', 'b2', 'b6', 'vite', 'vitk', 'potasio', 'colina'] as const;
+
+/** Los once con color y después los nueve sin color. Uno que la semilla sume y no figure va al final, no desaparece. */
 export function enOrdenCanonico(nutrientes: Nutrient[]): Nutrient[] {
+  const orden: readonly string[] = [...ORDEN_BARRA, ...ORDEN_SIN_COLOR];
   const puesto = (n: Nutrient) => {
-    const i = (ORDEN_BARRA as readonly string[]).indexOf(n.id);
-    return i === -1 ? ORDEN_BARRA.length : i;
+    const i = orden.indexOf(n.id);
+    return i === -1 ? orden.length : i;
   };
   return [...nutrientes].sort((a, b) => puesto(a) - puesto(b));
 }

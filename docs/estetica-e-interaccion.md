@@ -14,7 +14,7 @@ Tres contextos de uso real mandan sobre todo lo demás:
 
 1. **Inicio / Hoy** — semáforo del día y la semana móvil (cada nutriente en SU ventana), qué toca cocinar según el plan, accesos rápidos (última cocción, lista de compras activa). Responde "¿cómo vengo y qué cocino?".
 2. **Recetario** — búsqueda y filtros: tipo, dificultad, tiempo total, familia, en temporada, tu estado (sin probar / probada / pendiente / favorita), **por ingrediente** y **por nutriente** ("ricas en hierro", calculado en vivo). Variantes agrupadas bajo su madre (expandibles); preparados con badge. Tarjetas que resumen con íconos: tipo, tiempo, dificultad, freezer, estado.
-3. **Detalle de receta** — selector de porciones con escalado y avisos; ingredientes con función/imprescindible/sustitutos; nutrición por porción en vivo (bandas ≈, IC, cobertura, alerta B12); reglas R como tips; enlaces a preparados y variantes; guarda y estacionalidad. Acciones: **Cocinar ahora · Al plan · A compras**.
+3. **Detalle de receta** — selector de porciones con escalado y avisos; ingredientes con función/imprescindible/sustitutos; nutrición por porción en vivo (bandas ≈, IC, cobertura, nota B12 al pie de los ingredientes); reglas R como tips; enlaces a preparados y variantes; guarda y estacionalidad. Acciones: **Cocinar ahora · Al plan · A compras**.
 4. **Cocinar (sesión)** — 1º personalizar: desmarcar (advertencia si imprescindible), sustituir (resolubles recalculan), agregar; la nutrición se mueve en vivo. 2º pasos con tipografía enorme, wake lock, secretos del chef en contexto. 3º registrar: qué cambió, notas, porciones que quedaron.
 5. **Planificador semanal** — grilla de la semana; asignar recetas y ver el semáforo proyectado moverse por nutriente/ventana. Genera la lista de compras de la semana. En mobile: semana como lista vertical + semáforo colapsable siempre a un tap.
 6. **Lista de compras** — consolidada por góndola; **gramos como medida principal**, unidades como referencia ("≈ 3 medianas"), latas como dato secundario; badges de estacionalidad. **Modo verdulería**: checklist offline de targets grandes.
@@ -211,7 +211,6 @@ Set SVG custom, trazo uniforme (~1.75 px en 24 px de caja), estilo línea botán
 | Práctico | Copo de nieve | Va bien al freezer |
 | Práctico | Heladera (puerta) | Guarda en heladera (días) |
 | Práctico | Sol naciente sobre surco | En temporada (AMBA) |
-| Alerta | Escudo con "B12" | Advertencia B12 (levadura no fortificada) |
 | Extra | Estrella brotada | Candidata a clásica / probada y aprobada |
 
 (`indulgente` se evalúa en Render 0: posible ícono de cuchara colmada.)
