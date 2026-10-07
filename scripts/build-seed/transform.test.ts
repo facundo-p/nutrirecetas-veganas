@@ -308,10 +308,7 @@ describe('pasos (T9)', () => {
     // Facu: las reglas (R8) y los ids (P04) son ruido para quien cocina. El
     // token `{p03}` de un preparado no se lee: rinde su cantidad.
     for (const r of curadas()) {
-      for (const paso of r.pasos) {
-        const prosa = paso.replace(/\{~?[a-z0-9_]+(?:#\d+)?\}/g, ' ');
-        expect(prosa, `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
-      }
+      for (const paso of r.pasos) expect(sinTokens(paso), `${r.id}: "${paso}"`).not.toMatch(/\b[rpud]\d{1,2}\b/i);
     }
   });
 
