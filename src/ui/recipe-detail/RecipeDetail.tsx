@@ -268,12 +268,6 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
 
       <section>
         <h2>Pasos</h2>
-        {!recipe.pasos_escalables && vista.factor !== 1 && (
-          <p className="aviso-pasos-viejos">
-            Ajustaste las cantidades, pero los pasos de esta receta todavía están escritos con las
-            originales: las que valen son las de la lista.
-          </p>
-        )}
         <ol className={vista.animando ? 'lista-pasos recalculando' : 'lista-pasos'}>
           {recipe.pasos.map((paso, i) => (
             <li key={i}>

@@ -386,7 +386,7 @@ describe('las cantidades de un paso van como token (#200)', () => {
     paso,
   });
 
-  const validar = (pasos: string[], lineas: Line[]) => () => validarPasos('rXX', pasos, lineas, true);
+  const validar = (pasos: string[], lineas: Line[]) => () => validarPasos('rXX', pasos, lineas);
 
   test('un token que no es línea de ese paso rompe el build', () => {
     expect(validar(['Agregar {perejil} de perejil.'], [linea('tomate', 400, 'g', 0)])).toThrow(
@@ -460,21 +460,7 @@ describe('las cantidades de un paso van como token (#200)', () => {
     expect(validar(['Dejar 2 horas.'], [linea('sal', 2, 'cdta', 0)])).not.toThrow();
   });
 
-  test('una receta sin tokenizar no puede llevar tokens', () => {
-    expect(() => validarPasos('rXX', ['Agregar {tomate}.'], [linea('tomate', 400, 'g', 0)], false)).toThrow(
-      /no está en RECETAS_CON_PASOS_TOKENIZADOS/,
-    );
-  });
-
-  test('las recetas ya migradas de la semilla pasan las cuatro validaciones', () => {
-    const migradas = recipes.filter((r) => r.pasos_escalables);
-    expect(migradas.length).toBeGreaterThan(0);
-    for (const r of migradas) expect(() => validarPasos(r.id, r.pasos, r.lineas, true), r.id).not.toThrow();
-  });
-
-  test('ninguna receta sin migrar tiene tokens sueltos', () => {
-    for (const r of recipes.filter((r) => !r.pasos_escalables)) {
-      for (const paso of r.pasos) expect(paso, r.id).not.toMatch(/\{~?[a-z0-9_]+(?:#\d+)?\}/);
-    }
+  test('las 84 recetas de la semilla pasan las cuatro validaciones', () => {
+    for (const r of recipes) expect(() => validarPasos(r.id, r.pasos, r.lineas), r.id).not.toThrow();
   });
 });

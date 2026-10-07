@@ -23,7 +23,6 @@ import {
   NUTRIENT_NAME_OVERRIDES,
   PASO_DE_CADA_LINEA,
   PHANTOM_LINES,
-  RECETAS_CON_PASOS_TOKENIZADOS,
   STORAGE_GROUPS,
   VEGAN_FACTORS_FROM_PROSE,
 } from './curated-tables';
@@ -236,23 +235,17 @@ const MEDIDA_EN_LETRAS = new RegExp(
 );
 
 /**
- * T9/#200: una receta tokenizada dice sus cantidades con `{ingrediente}` y no
+ * T9/#200: una receta dice sus cantidades con `{ingrediente}` y no
  * con un número escrito. Un número fijo en la prosa miente en cuanto se ajustan
  * las porciones —la lista decía 800 g y el paso 400—, y este es el único lugar
  * donde se puede impedir de una vez.
  */
-export function validarPasos(
-  id: string,
-  pasos: string[],
-  lineas: Line[],
-  tokenizada: boolean = RECETAS_CON_PASOS_TOKENIZADOS.has(id),
-): void {
+export function validarPasos(id: string, pasos: string[], lineas: Line[]): void {
   pasos.forEach((texto, indice) => {
     const enElPaso = lineas.filter((linea) => linea.paso === indice);
     const donde = `T9: ${id}, paso ${indice + 1}`;
 
     for (const token of tokensDePaso(texto)) {
-      if (!tokenizada) throw new Error(`${donde}: ${token.crudo} pero la receta no está en RECETAS_CON_PASOS_TOKENIZADOS`);
       const candidatas = enElPaso.filter((linea) => linea.ref.id === token.id);
       if (candidatas.length > 1 && token.ocurrencia === 1 && !token.crudo.includes('#')) {
         throw new Error(`${donde}: ${token.crudo} es ambiguo, el paso tiene ${candidatas.length} líneas de ${token.id}`);
@@ -264,7 +257,6 @@ export function validarPasos(
       }
     }
 
-    if (!tokenizada) return;
     const cantidades = new Set(
       enElPaso.flatMap((linea) => [linea.cantidad, linea.g_aprox, Math.round(linea.g_aprox)].map(String)),
     );
@@ -410,7 +402,6 @@ export function transformRecipe(
     tiempo_coccion_min: raw.tiempo_coccion_min,
     lineas: lineasConPaso,
     pasos,
-    pasos_escalables: RECETAS_CON_PASOS_TOKENIZADOS.has(id),
     secretos_chef: raw.secretos_chef ?? [],
     ...(raw.guarda !== undefined
       ? {
@@ -452,11 +443,6 @@ export function transformRecipes(raw: RawData, equipmentIds: Set<string>): Recip
   const pasosHuerfanos = Object.keys(PASO_DE_CADA_LINEA).filter((id) => !ids.has(id));
   if (pasosHuerfanos.length > 0) {
     throw new Error(`T14: paso de cada línea para recetas que no existen: ${pasosHuerfanos.join(', ')}`);
-  }
-
-  const tokenizadasHuerfanas = [...RECETAS_CON_PASOS_TOKENIZADOS].filter((id) => !ids.has(id));
-  if (tokenizadasHuerfanas.length > 0) {
-    throw new Error(`T9: pasos tokenizados para recetas que no existen: ${tokenizadasHuerfanas.join(', ')}`);
   }
 
   const laminasHuerfanas = Object.keys(CURATED_LAMINAS).filter((id) => !ids.has(id));

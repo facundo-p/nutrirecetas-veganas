@@ -1629,7 +1629,7 @@ export const CURATED_SOURCES: Record<string, SourceOverride> = {
 
 // ---------- T14: en qué paso entra cada línea ----------
 
-export { PASO_DE_CADA_LINEA, RECETAS_CON_PASOS_TOKENIZADOS } from './curated-pasos';
+export { PASO_DE_CADA_LINEA } from './curated-pasos';
 
 // ---------- T15: la lámina de cada receta ----------
 
