@@ -54,6 +54,15 @@ describe('T17: carga USDA', () => {
     }
   });
 
+  test('el selenio de cereales, legumbres y soja dice que depende del suelo', () => {
+    const conSuelo = new Set(['cereal', 'pseudocereal', 'legumbre', 'derivado_soja']);
+    const conSelenio = Object.entries(VALORES_USDA).filter(
+      ([id, porClave]) => porClave.selenio_ug !== undefined && conSuelo.has(crudos.get(id)!.categoria),
+    );
+    expect(conSelenio.length).toBeGreaterThan(0);
+    for (const [id, porClave] of conSelenio) expect(porClave.selenio_ug!.nota, id).toMatch(/suelo/);
+  });
+
   test('el yodo solo viene de Foundation', () => {
     for (const [id, porClave] of Object.entries(VALORES_USDA)) {
       if (porClave.yodo_ug === undefined) continue;
