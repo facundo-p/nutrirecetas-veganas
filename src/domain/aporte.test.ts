@@ -5,12 +5,12 @@ import {
   aporteDeReceta,
   CASILLEROS,
   enOrdenCanonico,
-  esNutrienteDeBarra,
   franjasDeAporte,
   fuerteDeAporte,
   GRUPO_DEL_PANEL,
   nombreDeNutriente,
   ORDEN_BARRA,
+  ORDEN_SIN_COLOR,
   porcentajesDeAporte,
   puntoDeIngrediente,
   puntoDeLinea,
@@ -39,11 +39,16 @@ describe('qué nutrientes tienen color', () => {
     for (const afuera of ['b12', 'vitd', 'yodo']) expect(ORDEN_BARRA).not.toContain(afuera);
   });
 
-  test('en orden canónico van primero los once, y el resto como lo trae la semilla', () => {
+  test('en orden canónico van primero los once y después los nueve sin color', () => {
     const ordenados = enOrdenCanonico(nutrientes).map((n) => n.id);
-    expect(ordenados.slice(0, ORDEN_BARRA.length)).toEqual([...ORDEN_BARRA]);
-    const resto = nutrientes.map((n) => n.id).filter((id) => !esNutrienteDeBarra(id));
-    expect(ordenados.slice(ORDEN_BARRA.length)).toEqual(resto);
+    expect(ordenados).toEqual([...ORDEN_BARRA, ...ORDEN_SIN_COLOR]);
+  });
+
+  test('un nutriente que no figura en el orden va al final, no desaparece', () => {
+    const nuevo = { ...nutrientes[0]!, id: 'nuevo' };
+    const ordenados = enOrdenCanonico([nuevo, ...nutrientes]).map((n) => n.id);
+    expect(ordenados.at(-1)).toBe('nuevo');
+    expect(ordenados).toHaveLength(nutrientes.length + 1);
   });
 });
 
