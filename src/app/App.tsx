@@ -19,7 +19,8 @@ import { useMeta } from '../db/hooks';
 import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
 import { marcarEsquemaVisto } from '../db/repos';
 import { IconCerrar } from '../ui/icons/icons';
-import { routeHash } from './router';
+import { routeHash, type Route } from './router';
+import { useEnLinea } from './conexion';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
   switch (route.screen) {
@@ -110,6 +111,23 @@ function AvisoDeMigracion() {
 }
 
 /**
+ * Sin conexión todo sigue andando: el aviso informa y lleva a la pantalla que
+ * lo detalla. En la cocina no aparece: ahí no hay nada que esperar de la red.
+ */
+function AvisoSinConexion({ route }: { route: Route }) {
+  const enLinea = useEnLinea();
+  if (enLinea || route.screen === 'cook' || route.screen === 'offline') return null;
+  return (
+    <div className="banner banner-sin-conexion" role="status">
+      <a className="banner-sin-conexion-enlace" href={routeHash({ screen: 'offline' })}>
+        <span className="banner-marca" aria-hidden="true" />
+        <span>Sin conexión. Todo lo que necesitás para cocinar está guardado.</span>
+      </a>
+    </div>
+  );
+}
+
+/**
  * main y staging se instalan como dos PWA en el mismo celular. El nombre del
  * manifest las distingue en la pantalla de inicio; esta banda las distingue una
  * vez adentro, que es donde importa: acá se cocina y se registra de verdad.
@@ -160,6 +178,7 @@ export function App() {
       {!enLaMesada && <Nav route={route} />}
       <AvisoDeMigracion />
       <BackupReminder />
+      <AvisoSinConexion route={route} />
       <main className="contenido">
         <Screen route={route} />
       </main>

@@ -239,6 +239,29 @@
   border-bottom: 1px solid color-mix(in srgb, var(--dato-suave) 40%, transparent);
 }
 
+.banner-sin-conexion {
+  padding-block: 0;
+  background: color-mix(in srgb, var(--dato-suave) 10%, var(--superficie));
+  border-bottom: var(--borde);
+}
+
+.banner-sin-conexion-enlace {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--toque-minimo);
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.banner-marca {
+  flex: none;
+  width: var(--cuadrado-nutriente);
+  height: var(--cuadrado-nutriente);
+  border: var(--borde-control);
+}
+
 .banner-cerrar {
   appearance: none;
   border: none;
