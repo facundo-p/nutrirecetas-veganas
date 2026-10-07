@@ -1324,7 +1324,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     base: 'prosa de recetas-set3.md (Libro #37: prensado de 20 min aparte del horno, "pincelar ambas caras", horno 200 con vuelta); funcion de cada línea (harina de garbanzo = el "huevo" que liga, levadura nutricional = el "queso"/umami de milanesa, aceite pincelado = dorado al horno, limón = el clásico al servir); técnica estándar: doble estación de rebozado, presionar para fijar la costra',
     flag_gate: true,
     pasos: [
-      'Prensar {tofu_firme} de tofu firme unos 20 minutos entre dos tablas con peso encima, para que largue el agua: cuanta más suelte ahora, más crocante sale la milanesa. Después cortarlo en láminas de 1 cm.',
+      'Prensar {tofu_firme} de tofu firme unos 20 minutos entre dos tablas con peso encima, para que largue el agua: cuanta más suelte ahora, más crocante sale la milanesa. Después cortar el tofu en láminas de 1 cm.',
       'Preparar el batido en un plato hondo: {bebida_vegetal_fortificada} de bebida vegetal, {harina_garbanzo} de harina de garbanzo —que acá hace de huevo y liga el rebozado—, {salsa_soja} de salsa de soja, {ajo} de ajo en polvo y {cebolla} de cebolla en polvo. Si la usás, agregale {curcuma} de cúrcuma para darle color. Batir hasta que no queden grumos.',
       'Armar el empanado en otro plato: {pan_integral} de pan integral rallado, {levadura_nutricional} de levadura nutricional —que acá hace de queso y aporta el umami de milanesa—, {oregano} de orégano, {tomillo} de tomillo y {pimenton} de pimentón ahumado.',
       'Pasar cada lámina primero por el batido y después por el empanado, presionando con los dedos para que la costra se pegue bien y no se caiga en el horno.',
@@ -1381,7 +1381,7 @@ export const CURATED_STEPS: Record<string, StepsEntry> = {
     flag_gate: true,
     nota: 'Los pasos viejos nunca ubicaban los garbanzos; la prosa pide placa amplia para "garbanzos y verduras CON espacio", así que se asan juntos. El comino figuraba a la vez en el asado y en el aliño: se reparte, con una pizca reservada para el aliño.',
     pasos: [
-      'Cortar en trozos parejos la berenjena, los morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con {garbanzos} de garbanzos cocidos bien escurridos y {ajo} de ajo entero, con su piel: asado adentro de la camisa se vuelve una crema dulce.',
+      'Cortar en trozos parejos la berenjena, los morrones rojos y el zucchini, y la cebolla morada en gajos. Repartirlos en una placa amplia con {garbanzos} de garbanzos cocidos bien escurridos y {ajo} de ajo entero, con su piel: al asarse adentro de la camisa, el ajo se vuelve una crema dulce.',
       'Rociar con la mitad de {aceite_oliva} de aceite de oliva y espolvorear {~comino} de comino —reservando un poco para el aliño—, {~pimenton} de pimentón ahumado y {~canela} de canela, que acá es la firma árabe del plato. Asar a 200° unos 25 a 30 minutos, hasta que las verduras tengan los bordes dorados y los garbanzos estén crocantes. Que todo quede con espacio: amontonado se hierve en vez de asarse.',
       'Mientras, cocinar {quinoa} de quinoa en caldo unos 15 minutos, hasta que el grano se abra y muestre su anillito blanco, y dejarla reposar tapada unos minutos.',
       'Preparar el aliño: pelar el ajo asado, pisarlo con un tenedor hasta hacer una pasta y batirla con el jugo y la ralladura del limón, el resto del aceite de oliva, {tahini} de tahini, el comino reservado y, si la usás, {azucar_mascabo} de azúcar mascabo. Emulsionar hasta que quede cremoso.',
