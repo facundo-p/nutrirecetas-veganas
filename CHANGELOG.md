@@ -9,6 +9,61 @@ El criterio para decidir qué número sube está en `CLAUDE.md`.
 
 Lo que está en `staging` y todavía no salió en un release.
 
+## [0.8.0] — 2026-10-22
+
+Cierra la Fase 4. Ingredientes y Nutrientes se rehacen con el mismo color que
+las recetas, y cada pantalla queda en menos alto en el celular. Los pasos de
+las 84 recetas dicen la cantidad que corresponde a las porciones elegidas. Y
+calcio, zinc, selenio y omega 3 pasan de tener dato en un puñado de
+ingredientes a tenerlo en casi todos.
+
+No hay nada que hacer antes de actualizar.
+
+### Agregado
+
+- **Ficha de ingrediente**: qué aporta cada 100 g, en el orden y con el color
+  de los nutrientes; qué usar si no lo tenés; cómo se compra y se guarda; y en
+  qué recetas aparece. Un ingrediente sin dato lo dice, no muestra cero. (#165)
+- **Nutrientes explica el color**: los veinte en orden fijo, cuáles llevan
+  color y por qué, y qué los aporta sobre todo. (#166)
+- **Sin conexión**: una pantalla dice qué funciona sin internet y qué espera a
+  la conexión, y un aviso lo anuncia (salvo cocinando). La app muestra su
+  esqueleto mientras carga. (#167)
+- **La dificultad, con cinco casilleros**, en el recetario, la ficha y los
+  filtros. (#221)
+- **Las cantidades de los pasos siguen a las porciones**: a ×2, «los 800 g de
+  tomate». Las 84 recetas. (#199, #200, #204, #205, #206, #207)
+- **La unidad, con palabra completa**, en la lista, la olla y la mesada. «Qué
+  va a la olla» dice cantidad y unidad, no solo gramos. (#213)
+
+### Corregido
+
+- **Cocinar respeta las porciones de la ficha**: ajustabas a 8 y la mesada
+  arrancaba en 4. (#201)
+- **Ningún ranking pone primero lo que puede no aportar nada**: la levadura
+  nutricional encabezaba la B12 con un rango que arranca en cero. (#241)
+
+### Cambiado
+
+- **Menos alto en el celular**: la tarjeta de receta, la cabecera y el
+  escalador de la ficha, «qué va a la olla» y las listas de ingredientes,
+  nutrientes y perfil. (#194, #219, #220, #222, #223)
+- **La B12 se explica en un solo lugar, Nutrientes.** En la ficha de receta
+  quedan el punto hueco de la levadura y una nota al pie que enlaza ahí. Sale
+  el escudo del diario y del glosario. (#166)
+- **Diario, perfil, ajustes y glosario al día**: el diario dice hace cuánto
+  cocinaste; el perfil, los nutrientes con su color; el glosario, en filas
+  agrupadas. (#167, #168)
+
+### Datos
+
+- **Calcio, zinc, selenio y omega 3 desde USDA FoodData Central**: de 4–18
+  ingredientes con dato a unos 125 de 158. Las recetas que cubren al menos un
+  20 % del día pasan de 6 a 25 en selenio y de 1 a 8 en zinc. (#169)
+- **El yodo, corregido**: la sal yodada, la nori y la kombu estaban guardadas
+  por gramo y salían cien veces abajo. Sigue fuera de la barra: depende de la
+  sal estimada. (#169)
+
 ## [0.7.0] — 2026-09-12
 
 El recetario se rediseña entero. Cada receta se reconoce por lo que le da al
