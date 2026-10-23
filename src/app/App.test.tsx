@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import 'fake-indexeddb/auto';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, expect, test } from 'vitest';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { App } from './App';
 import { routeHash } from './router';
 import { useSession } from './store';
@@ -14,6 +14,13 @@ beforeEach(async () => {
   if (!db.isOpen()) await db.open();
   await Promise.all(db.tables.map((t) => t.clear()));
 });
+
+afterEach(() => vi.restoreAllMocks());
+
+function cortarLaConexion() {
+  vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false);
+  window.dispatchEvent(new Event('offline'));
+}
 
 test('la app arranca en el recetario con la navegación completa', async () => {
   render(<App />);
@@ -113,4 +120,26 @@ test('una instalación nueva no ve el aviso de una migración que no vivió', as
   render(<App />);
   await waitFor(() => expect(screen.getByRole('navigation', { name: 'Secciones' })).toBeDefined());
   expect(screen.queryByText(/dejó de llevar la cuenta/)).toBeNull();
+});
+
+test('sin conexión, una línea avisa que todo sigue andando y lleva a la pantalla', async () => {
+  render(<App />);
+  expect(screen.queryByText(/Sin conexión\./)).toBeNull();
+
+  cortarLaConexion();
+  const aviso = await screen.findByRole('link', { name: /Sin conexión\. Todo lo que necesitás/ });
+  expect(aviso.getAttribute('href')).toBe('#/sin-conexion');
+});
+
+test('en la cocina el aviso de sin conexión no aparece', async () => {
+  window.location.hash = routeHash({ screen: 'cook', id: 'r01' });
+  try {
+    cortarLaConexion();
+    render(<App />);
+    await screen.findByRole('button', { name: 'Empezar a cocinar' });
+    expect(screen.queryByText(/Sin conexión\./)).toBeNull();
+  } finally {
+    window.location.hash = '';
+    useSession.getState().terminar();
+  }
 });

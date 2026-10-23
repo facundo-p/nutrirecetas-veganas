@@ -3,15 +3,12 @@ import { useCocciones } from '../../db/hooks';
 import type { Coccion } from '../../db/schema';
 import { midpoint } from '../../domain/interval';
 import { formatNumber } from '../common/format';
-import { IconEscudoB12, IconPlato } from '../icons/icons';
+import { IconPlato } from '../icons/icons';
 import { EncabezadoPantalla } from '../common/EncabezadoPantalla';
 import { Lamina } from '../common/Lamina';
+import { cuandoFue } from './cuando';
 
 /** El diario: qué se cocinó y qué se cambió. Lo que se comió no se registra. */
-
-function fechaLarga(iso: string): string {
-  return new Date(iso).toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' });
-}
 
 function CookingCard({ coccion }: { coccion: Coccion }) {
   const kcal = midpoint(coccion.nutricion_porcion.kcal.intervalo);
@@ -22,15 +19,14 @@ function CookingCard({ coccion }: { coccion: Coccion }) {
         <a className="coccion-nombre" href={routeHash({ screen: 'recipe', id: coccion.receta_id })}>
           {coccion.receta_nombre}
         </a>
-        <span className="coccion-fecha">{fechaLarga(coccion.fecha)}</span>
+        <time className="coccion-fecha" dateTime={coccion.fecha}>
+          {cuandoFue(coccion.fecha)}
+        </time>
       </header>
 
       <p className="coccion-porciones">
         <IconPlato /> rindió {formatNumber(coccion.porciones_rendidas, 1)}
         <span className="coccion-kcal cifra">{formatNumber(kcal, 0)} kcal/porción</span>
-        {coccion.nutricion_porcion.alerta_b12 && (
-          <IconEscudoB12 className="inline-icono icono-aviso" aria-label="lleva levadura nutricional" />
-        )}
       </p>
 
       {coccion.factor_escala !== 1 && (
@@ -61,7 +57,9 @@ export function DiaryScreen() {
 
   return (
     <>
-      <EncabezadoPantalla etiqueta="Diario" titulo="Lo que cocinaste" lamina="puerro" />
+      <EncabezadoPantalla etiqueta="Diario" titulo="Lo que cocinaste" lamina="puerro">
+        <p className="encabezado-bajada">Sirve para acordarte de qué salió bien, no para llevar la cuenta de nada.</p>
+      </EncabezadoPantalla>
 
       <p className="enlaces-secundarios">
         <a href={routeHash({ screen: 'profile' })}>Mi perfil</a> ·{' '}

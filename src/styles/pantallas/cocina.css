@@ -9,11 +9,11 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-3);
+  gap: var(--sp-2);
 }
 
 .linea-sesion {
-  padding-bottom: var(--sp-2);
+  padding-bottom: var(--sp-1);
   border-bottom: var(--borde-suave);
 }
 
@@ -25,23 +25,35 @@
   text-decoration: line-through;
 }
 
-.linea-sesion-check {
+/* El botón de sustituir va en el renglón del nombre: un renglón menos por ingrediente. */
+.linea-sesion-fila {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
+  gap: var(--sp-1);
+}
+
+.linea-sesion-check {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--sp-2);
   cursor: pointer;
-  min-height: 40px;
+  min-height: var(--toque-minimo);
 }
 
 .linea-sesion-check input {
-  width: 22px;
-  height: 22px;
+  width: var(--lado-check);
+  height: var(--lado-check);
   accent-color: var(--seleccion);
   flex-shrink: 0;
 }
 
+/* Base auto: si no entran, baja la cantidad entera en vez de partirse el nombre. */
 .linea-sesion-nombre {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: var(--fs-base);
 }
 
@@ -55,10 +67,41 @@
   font-size: var(--fs-sm);
   color: var(--tinta-suave);
   white-space: nowrap;
+  margin-left: auto;
 }
 
-.linea-sustitutos {
-  margin-left: calc(22px + var(--sp-2));
+/* Sin sustitutos, el lugar del botón queda: las cantidades siguen encolumnadas. */
+.linea-sesion-fila:not(:has(.boton-sustituir)) {
+  padding-right: calc(var(--toque-minimo) + var(--sp-1));
+}
+
+.boton-sustituir {
+  appearance: none;
+  border: none;
+  background: none;
+  flex-shrink: 0;
+  width: var(--toque-minimo);
+  height: var(--toque-minimo);
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-lg);
+  cursor: pointer;
+}
+
+.boton-sustituir[aria-expanded='true'] {
+  background: var(--superficie);
+  border-radius: var(--radio);
+}
+
+.linea-sesion .linea-funcion {
+  font-size: var(--fs-meta);
+  line-height: 1.3;
+  margin-left: calc(var(--lado-check) + var(--sp-2));
+}
+
+.linea-sesion > .sustitutos-opciones {
+  margin-left: calc(var(--lado-check) + var(--sp-2));
+  margin-bottom: var(--sp-1);
 }
 
 .sustitutos-opciones {

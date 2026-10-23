@@ -2,9 +2,11 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { usePerfil } from '../../db/hooks';
 import { savePerfil } from '../../db/repos';
 import type { ProfileData } from '../../db/schema';
+import { enOrdenCanonico } from '../../domain/aporte';
 import { ENTRENAMIENTO, NIVELES_ENTRENAMIENTO, PISO_POR_EDAD, type NivelEntrenamiento } from '../../domain/actividad';
 import { objetivosDelPerfil } from '../../domain/profile';
 import { getSeedIndex } from '../../seed';
+import { CuadradoDeNutriente } from '../common/CuadradoDeNutriente';
 import { formatNumber } from '../common/format';
 import { Informacion } from '../common/Informacion';
 
@@ -24,6 +26,8 @@ const DESTACADOS_POR_DEFECTO = ['hierro', 'b12', 'calcio', 'zinc', 'yodo', 'omeg
 export function ProfileScreen() {
   const idx = getSeedIndex();
   const perfilGuardado = usePerfil();
+  // El mismo orden y el mismo color que en Nutrientes: el perfil no tiene un orden propio que aprender.
+  const nutrientes = useMemo(() => enOrdenCanonico(idx.seed.nutrientes), [idx]);
 
   const [nombre, setNombre] = useState('');
   type SexoElegido = 'masculino' | 'femenino' | '';
@@ -50,8 +54,8 @@ export function ProfileScreen() {
 
   const objetivos = useMemo(() => {
     if (!perfilGuardado) return null;
-    return [...objetivosDelPerfil(perfilGuardado, idx.seed.nutrientes, new Date()).values()];
-  }, [perfilGuardado, idx]);
+    return [...objetivosDelPerfil(perfilGuardado, nutrientes, new Date()).values()];
+  }, [perfilGuardado, nutrientes]);
 
   const completo = sexo !== '' && /^\d{4}-\d{2}-\d{2}$/.test(nacimiento) && Number(peso) > 0;
 
@@ -103,7 +107,7 @@ export function ProfileScreen() {
             </p>
           </Informacion>
         </div>
-        <h1>{perfilGuardado ? 'Tus datos' : 'Contame de vos, si querés'}</h1>
+        <h1>{perfilGuardado ? 'Tu dosis diaria' : 'Contame de vos, si querés'}</h1>
       </header>
 
       <form className="formulario" onSubmit={(e) => void guardar(e)}>
@@ -183,14 +187,15 @@ export function ProfileScreen() {
 
         <fieldset className="campo">
           <legend className="campo-etiqueta">Nutrientes que te interesan</legend>
-          <div className="opciones">
-            {idx.seed.nutrientes.map((n) => (
+          <div className="opciones opciones-nutrientes">
+            {nutrientes.map((n) => (
               <label key={n.id} className="opcion">
                 <input
                   type="checkbox"
                   checked={destacados.includes(n.id)}
                   onChange={() => alternarDestacado(n.id)}
                 />
+                <CuadradoDeNutriente nutrienteId={n.id} />
                 <span>{n.nombre}</span>
               </label>
             ))}
@@ -209,7 +214,10 @@ export function ProfileScreen() {
           <ul className="lista-objetivos">
             {objetivos.map((o) => (
               <li key={o.nutriente_id} className="objetivo">
-                <span className="objetivo-nombre">{o.nombre}</span>
+                <span className="objetivo-nombre">
+                  <CuadradoDeNutriente nutrienteId={o.nutriente_id} />
+                  {o.nombre}
+                </span>
                 <span className="objetivo-valor">
                   <span className="cifra">
                     {formatNumber(o.valor, o.valor >= 100 ? 0 : 1)} {o.unidad}

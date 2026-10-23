@@ -41,6 +41,11 @@
   --p-curcuma: #cc944e;
   --p-mar: #5da6dd;
   --p-garbanzo: #d9cfa8;
+  --p-dificultad-1: #349a53;
+  --p-dificultad-2: #3ead5d;
+  --p-dificultad-3: #45be66;
+  --p-dificultad-4: #6fd98a;
+  --p-dificultad-5: #a6f0b8;
 
   /* ── contrato de roles ── */
 
@@ -97,6 +102,15 @@
   --estado-pendiente: var(--p-curcuma);
   --estado-favorita: var(--p-hueso);
   --chip-preparado: var(--p-liquen);
+
+  /* Dificultad: un solo verde que se oscurece (en musgo, se enciende) con el
+     nivel. Nada de rojo: lo difícil no es un peligro. Como relleno, ≥ 3:1
+     sobre musgo / musgo alto: 3,9 / 3,4 · 4,9 / 4,2 · 5,9 / 5,1 · 8,0 / 6,9 · 10,5 / 9,1. */
+  --dificultad-1: var(--p-dificultad-1);
+  --dificultad-2: var(--p-dificultad-2);
+  --dificultad-3: var(--p-dificultad-3);
+  --dificultad-4: var(--p-dificultad-4);
+  --dificultad-5: var(--p-dificultad-5);
 
   --precaucion: var(--p-curcuma);
   --exito: var(--p-brote);

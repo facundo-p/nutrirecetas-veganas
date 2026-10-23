@@ -4,7 +4,7 @@ import { puntoDeLinea } from '../../domain/aporte';
 import { nutrientesDeLosPasos, type LineaSesion } from '../../domain/session';
 import { getSeedIndex } from '../../seed';
 import type { Recipe } from '../../seed/schema';
-import { formatCantidad, legible } from '../common/format';
+import { formatCantidad, unidadCompleta } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import { useObjetivos } from '../common/useObjetivos';
@@ -157,7 +157,7 @@ function PasoAbierto({
               <span className="mesada-ingrediente-nombre">{linea.nombre}</span>
               <span className="mesada-ingrediente-cantidad cifra">
                 {formatCantidad(linea.cantidad)}{' '}
-                <span className="mesada-ingrediente-unidad">{legible(linea.unidad_display)}</span>
+                <span className="mesada-ingrediente-unidad">{unidadCompleta(linea)}</span>
               </span>
             </li>
           ))}

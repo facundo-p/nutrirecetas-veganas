@@ -1,4 +1,5 @@
 import type { BaseDeMedida } from '../../domain/nutrition';
+import { cabezaDeUnidad } from '../../domain/rounding';
 import { unidadDecible } from '../../domain/unidades-decibles';
 import type { Line } from '../../seed/schema';
 
@@ -29,7 +30,15 @@ export function legible(valorDeSemilla: string): string {
   return valorDeSemilla.replaceAll('_', ' ');
 }
 
-const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.75': '¾' };
+/** Los tercios entran porque la semilla los trae truncados (0,33 y 0,66 taza). */
+const GLIFO_DE_FRACCION: Record<string, string> = {
+  '0.25': '¼',
+  '0.33': '⅓',
+  '0.5': '½',
+  '0.66': '⅔',
+  '0.67': '⅔',
+  '0.75': '¾',
+};
 
 /**
  * Cantidad de una línea de receta. Media cebolla se escribe ½, no 0,5: las
@@ -37,14 +46,44 @@ const GLIFO_DE_CUARTO: Record<string, string> = { '0.25': '¼', '0.5': '½', '0.
  */
 export function formatCantidad(valor: number): string {
   const entero = Math.floor(valor);
-  const glifo = GLIFO_DE_CUARTO[String(Number((valor - entero).toFixed(2)))];
+  const glifo = GLIFO_DE_FRACCION[String(Number((valor - entero).toFixed(2)))];
   if (glifo === undefined) return formatNumber(valor, 1);
   return entero === 0 ? glifo : `${entero}${glifo}`;
 }
 
-/** «1½ taza»: la cantidad de una línea con su unidad, como la escribe la receta. */
+/**
+ * La unidad de una línea para leerla en una lista: la medida en palabra
+ * completa y lo que describe entre paréntesis. Abreviadas, «1½ cda jugo · 23 g»
+ * y «1½ cdta manzana · 8 g» se distinguían por una letra y parecían gramos mal
+ * calculados. Si la medida no se sabe decir (`mediana`, `en_gajos`), la unidad
+ * entera es la descripción y va como la trae la receta.
+ */
+function unidadDeLinea(linea: Pick<Line, 'cantidad' | 'unidad_display'>): {
+  medida: string;
+  detalle: string;
+} {
+  const unidad = unidadDecible(linea.unidad_display);
+  if (unidad === null) return { medida: legible(linea.unidad_display), detalle: '' };
+  const plural = unidad.siemprePlural === true || linea.cantidad > 1;
+  const resto = linea.unidad_display.trim().slice(cabezaDeUnidad(linea.unidad_display).length).replace(/^[.,;:]/, '');
+  const [, sufijo = '', cola = ''] = /^(?:_([^\s(+/]*))?\s*(.*)$/.exec(resto) ?? [];
+  const detalle = [sufijo && `(${legible(sufijo)})`, legible(cola)].filter(Boolean).join(' ');
+  return { medida: plural ? unidad.plural : unidad.singular, detalle: detalle && ` ${detalle}` };
+}
+
+export function unidadCompleta(linea: Pick<Line, 'cantidad' | 'unidad_display'>): string {
+  const { medida, detalle } = unidadDeLinea(linea);
+  return `${medida}${detalle}`;
+}
+
+/** «1½ tazas (cruda)»: la cantidad de una línea con su unidad. */
 export function cantidadConUnidad(linea: Pick<Line, 'cantidad' | 'unidad_display'>): string {
-  return `${formatCantidad(linea.cantidad)} ${legible(linea.unidad_display)}`;
+  return `${formatCantidad(linea.cantidad)} ${unidadCompleta(linea)}`;
+}
+
+/** «200 g (escurrido) · 200 g» dice dos veces lo mismo. */
+export function gramosRedundantes(linea: Pick<Line, 'cantidad' | 'unidad_display' | 'g_aprox'>): boolean {
+  return `${formatCantidad(linea.cantidad)} ${unidadDeLinea(linea).medida}` === `${formatGramos(linea.g_aprox)} g`;
 }
 
 const ARTICULO = {

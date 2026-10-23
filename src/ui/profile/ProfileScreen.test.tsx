@@ -121,4 +121,18 @@ describe('perfil', () => {
     expect(screen.getByText(/informa, no diagnostica/i)).toBeDefined();
     expect(screen.getByText(/embarazo, lactancia/i)).toBeDefined();
   });
+
+  test('los nutrientes van en el orden de Nutrientes, no en el de la semilla', () => {
+    render(<ProfileScreen />);
+    const casillas = screen.getAllByRole('checkbox').map((c) => c.closest('label')?.textContent);
+    expect(casillas.slice(0, 3)).toEqual(['Hierro', 'Calcio', 'Magnesio']);
+    expect(casillas.at(-1)).toBe('Colina');
+  });
+
+  test('con perfil guardado, el título deja de repetir el de Ajustes', async () => {
+    render(<ProfileScreen />);
+    await completarDatosMinimos();
+    fireEvent.click(screen.getByRole('button', { name: /Calcular mis objetivos/ }));
+    await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: 'Tu dosis diaria' })).toBeDefined());
+  });
 });

@@ -253,8 +253,8 @@
 
 .fila-receta-cuerpo {
   display: grid;
-  gap: var(--sp-3);
-  padding: var(--sp-5) 0 var(--sp-4);
+  gap: var(--sp-2);
+  padding: var(--sp-4) 0 var(--sp-3);
   text-decoration: none;
   color: inherit;
 }
@@ -285,7 +285,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--sp-1) var(--sp-4);
+  gap: var(--sp-1) var(--sp-3);
   font-size: var(--fs-meta);
   color: var(--tinta-suave);
 }

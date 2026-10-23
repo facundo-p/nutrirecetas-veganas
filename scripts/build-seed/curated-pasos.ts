@@ -25,7 +25,7 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   r14: [4, 2, 2, 2, 2, 2, 3, 1], // Fideos al pesto de albahaca y nueces con tomates asados
   r15: [3, 3, 1, 1, 1, 3, 2, 2, 3, 3, 3, 6], // Chili sin carne con cacao
   r16: [1, 1, 1, 1, 6, 2, 2, 2, 3], // Omelette de harina de garbanzo con verduras
-  r17: [3, 5, 1, 1, 1, 2, 2, 3, 1, 5, 6], // Guiso toscano de alubias y kale
+  r17: [3, 5, 1, 1, 1, 2, 2, 3, 6, 5, 6], // Guiso toscano de alubias y kale (el aceite crudo va al servir, #204)
   r18: [1, 1, 5, 5, 6, 6, 1, 6, 8, 4], // Dal de lentejas turcas con tadka
   r19: [1, 3, 3, 4, 4, 5, 5, 4], // Tabule de quinoa con menta
   r20: [1, 6, 2, 5, 3, 3, 6, 6, 2, 6], // Arroz integral salteado con edamame, champiñones y maní
@@ -48,10 +48,10 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   r27: [1, 5, 3, 3, 3, 3, 2, 5, 4, 4, 4, 4, 4, 4, 4, 6, 6], // Ensalada de arroz integral, lentejas y aliño cítrico
   r28: [1, 1, 6, 2, 2, 2, 2, 2, 3, 3, 7, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 7], // Ensalada de cuscús con verduras, hierbas y pasas
   r29: [1, 4, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4], // Ensalada de garbanzos, palta y tomate con aliño de comino
-  p01: [1, 1, 7, 7], // Leche de soja casera
+  p01: [1, 3, 7, 7], // Leche de soja casera
   p02: [1, 1], // Leche de coco casera
   p03: [1, 1, 2, 3, 3, 4, 1, 4], // Manteca vegana
-  p04: [1, 1, 4, 4, 4, 4, 5, 4], // Queso de maní (muzza fundente)
+  p04: [1, 2, 4, 4, 4, 4, 5, 4], // Queso de maní (muzza fundente)
   p05: [1, 2, 2, 2, 3, 3, 2, 5, 3, 2], // Quesofu (untable de tofu)
   p06: [1, 2, 2, 2, 2, 2, 2, 3], // Queso de papa (paparella)
   p07: [2, 2, 1, 2, 3, 4, 2], // Masa integral para tartas
@@ -79,7 +79,7 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   p29: [2, 2, 2, 2, 3, 3, 2, 3], // Budín de banana clásico
   p30: [3, 3, 3, 2, 2, 2, 2, 3, 2, 4], // Carrot cake liviana
   p31: [2, 2, 1, 1, 1, 4], // Pastafrola
-  p32: [2, 2, 1, 2, 2, 1, 2, 4, 4], // Brownies de aduki y avena
+  p32: [2, 2, 1, 2, 2, 2, 2, 4, 4], // Brownies de aduki y avena
   p33: [1, 2, 2, 2, 2, 2, 3], // Brownies de poroto y girasol
   p34: [3, 2, 4, 4, 4, 4, 5], // Brownies chocoporotos sin harina
   p35: [1, 2, 2, 2, 2, 2, 4], // Arroz con leche de coco
@@ -95,13 +95,3 @@ export const PASO_DE_CADA_LINEA: Record<string, ReadonlyArray<number | null>> = 
   p45: [1, 1, 1, 3, 1], // Crackers de masa madre
 };
 
-/**
- * Qué recetas ya dicen sus cantidades con tokens (#200). Mientras una receta no
- * esté acá, sus pasos siguen con los números escritos a mano y la ficha avisa al
- * escalar en vez de mentir. Estar en la lista activa las validaciones del build:
- * todo token resuelve a una línea de su paso, la unidad se sabe decir, y no
- * queda ningún número de cantidad escrito en la prosa.
- *
- * Cuando estén las 84, se borran la lista, el campo `pasos_escalables` y el aviso.
- */
-export const RECETAS_CON_PASOS_TOKENIZADOS: ReadonlySet<string> = new Set<string>(['r01', 'r02', 'r03', 'r04', 'r05', 'r06', 'r07', 'r08', 'r09', 'r10']);

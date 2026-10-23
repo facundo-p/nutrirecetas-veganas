@@ -6,7 +6,16 @@ import type { ObjetivosDeReferencia } from '../../domain/objetivos';
 import { FACTOR_MAX, FACTOR_MIN, factorDesdeLinea, lineaAGusto } from '../../domain/scaling';
 import { ingredientInSeason } from '../../domain/season';
 import { routeHash } from '../../app/router';
-import { cantidadConUnidad, cantidadEditable, currentMonth, formatCantidad, formatGramos, leerNumero, legible } from '../common/format';
+import {
+  cantidadConUnidad,
+  cantidadEditable,
+  currentMonth,
+  formatCantidad,
+  formatGramos,
+  gramosRedundantes,
+  leerNumero,
+  unidadCompleta,
+} from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { PuntoDeNutriente } from '../common/PuntoDeNutriente';
 import { IconAsterisco, IconSustituir, IconTemporada } from '../icons/icons';
@@ -59,7 +68,7 @@ function IngredientLine({
   const { nombre, esPreparado } = lineName(idx, line);
   const sustituido = line.ref.id !== original.ref.id;
   const enPico = line.ref.tipo === 'ingrediente' && ingredientInSeason(idx, line.ref.id, currentMonth());
-  const unidad = legible(line.unidad_display);
+  const unidad = unidadCompleta(line);
   const gramos = formatGramos(line.g_aprox);
   const resolubles = line.sustitutos.filter((s) => s.tipo === 'id');
   const textuales = line.sustitutos.filter((s) => s.tipo === 'texto');
@@ -96,7 +105,7 @@ function IngredientLine({
             <span className="linea-valor cifra">{formatCantidad(line.cantidad)}</span>
           )}{' '}
           <span className="linea-unidad">{unidad}</span>
-          {cantidadConUnidad(line) !== `${gramos} g` && <span className="linea-gramos"> · {gramos} g</span>}
+          {!gramosRedundantes(line) && <span className="linea-gramos"> · {gramos} g</span>}
         </span>
       </span>
       {/* La línea cambiada dice de qué viene aunque las notas estén apagadas:
@@ -235,6 +244,14 @@ export function ListaDeIngredientes({
       {factor !== 1 && aGusto.some(Boolean) && (
         <p className="nota-a-gusto">
           Los condimentos y las especias no escalan lineal: probá antes de sumar el último tercio.
+        </p>
+      )}
+      {/* Lee el flag y no los puntos: así aparece también cuando la levadura
+          viene adentro de un preparado. */}
+      {vista.nutrition.alerta_b12 && (
+        <p className="nota-b12">
+          Lleva levadura nutricional, que da B12 solo si la marca está fortificada, y acá casi ninguna lo está: por eso
+          el cálculo la deja en cero. <a href={routeHash({ screen: 'nutrient', id: 'b12' })}>Más sobre la B12</a>
         </p>
       )}
       <AvisosDeEscalado avisos={vista.avisos} />

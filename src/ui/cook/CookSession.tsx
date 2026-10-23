@@ -7,6 +7,7 @@ import { CustomizeStep } from './CustomizeStep';
 import { RegisterStep } from './RegisterStep';
 import { StepsView } from './StepsView';
 import { Informacion } from '../common/Informacion';
+import { IconSustituir } from '../icons/icons';
 
 /**
  * La sesión de cocina, en tres tiempos: personalizar lo que va a la olla,
@@ -61,6 +62,9 @@ export function CookSession({ recetaId, factor = 1 }: { recetaId: string; factor
               <p>
                 Desmarcá lo que no tenés, sustituí lo que quieras cambiar y agregá lo que sume. La nutrición se recalcula
                 sola.
+              </p>
+              <p>
+                <IconSustituir className="icono-sustituir" aria-hidden="true" /> abre los sustitutos de un ingrediente.
               </p>
             </Informacion>
           )}

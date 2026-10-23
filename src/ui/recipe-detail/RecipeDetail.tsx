@@ -6,13 +6,14 @@ import { formatMinutes, legible } from '../common/format';
 import { nutritionOf } from '../common/nutritionCache';
 import { useObjetivos } from '../common/useObjetivos';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
+import { Dificultad } from '../common/Dificultad';
+import { LeyendaDeIconos } from '../common/LeyendaDeIconos';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconHeladera, IconRamaBifurca, IconReloj } from '../icons/icons';
 import { useOverlay, usePerfil } from '../../db/hooks';
 import { estadoDeReceta } from '../../domain/estado';
 import { MenuDeEstado } from '../common/EstadoDeReceta';
 import { saveOverlay } from '../../db/repos';
 import { PortionScaler } from './PortionScaler';
-import { B12Alert } from './B12Alert';
 import { PanelDeAporte } from './PanelDeAporte';
 import { lineasQueAportan } from '../../domain/fuentes';
 import { RuleTips } from './RuleTips';
@@ -153,19 +154,26 @@ function Fuente({ idx, recipe }: { idx: SeedIndex; recipe: Recipe }) {
   );
 }
 
-/**
- * Lo que explica la ficha, detrás de su «i»: la B12 primero, cuando la receta
- * lleva levadura, y después cómo leer la lista y el panel de aporte.
- */
-function InfoDeLaFicha({ alertaB12, fuente }: { alertaB12: boolean; fuente: FuenteDeObjetivo }) {
+const ICONOS_DE_LA_FICHA = [
+  'mortero', 'flor', 'espiga', 'frasco', 'frasco-fermento', 'bandeja',
+  'reloj', 'dificultad', 'laurel', 'cuchara', 'asterisco', 'temporada',
+] as const;
+
+/** Lo que explica la ficha, detrás de su «i»: cómo leer los íconos, la lista y el panel de aporte. */
+function InfoDeLaFicha({ recipe, fuente }: { recipe: Recipe; fuente: FuenteDeObjetivo }) {
   return (
     <>
-      {alertaB12 && <B12Alert />}
+      <h3>Los íconos</h3>
+      <p>
+        {formatMinutes(recipe.tiempo_prep_min + recipe.tiempo_coccion_min)} en total:{' '}
+        {formatMinutes(recipe.tiempo_prep_min)} de preparación y {formatMinutes(recipe.tiempo_coccion_min)} de cocción.
+      </p>
+      <LeyendaDeIconos ids={ICONOS_DE_LA_FICHA} />
       <h3>Los ingredientes</h3>
       <p>
         Todo se guarda en gramos, así que la escala es exacta. El punto dice qué nutriente trae sobre todo cada
         ingrediente, con el mismo color que las barras del recetario: neutro si no trae ninguno con dato, y hueco si el
-        aporte es condicional. El asterisco marca lo que no se puede sacar.
+        aporte es condicional (la nota al pie de la lista dice por qué). El asterisco marca lo que no se puede sacar.
       </p>
       <h3>Qué aporta</h3>
       <p>
@@ -212,25 +220,24 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
         <h1 className={recipe.nombre.length > NOMBRE_LARGO ? 'ficha-titulo largo' : 'ficha-titulo'}>{recipe.nombre}</h1>
         <div className="detalle-meta ficha-meta">
           <span className="meta-item" title={label}>
-            <TypeIcon recipe={recipe} /> {label}
+            <TypeIcon recipe={recipe} />
           </span>
           <span className="meta-item">
             <IconReloj /> {formatMinutes(totalMin)}
-            <span className="meta-suave">
-              ({formatMinutes(recipe.tiempo_prep_min)} prep + {formatMinutes(recipe.tiempo_coccion_min)} cocción)
-            </span>
           </span>
-          <span className="meta-item">dificultad {recipe.dificultad}</span>
+          <span className="meta-item">
+            <Dificultad dificultad={recipe.dificultad} />
+          </span>
           {recipe.porciones_num === null && <span className="meta-item">rinde {recipe.porciones_display}</span>}
           {recipe.familia && <span className="meta-item">familia {legible(recipe.familia)}</span>}
           {recipe.candidata_clasica && (
             <span className="meta-item ficha-clasica">
-              <IconLaurel /> candidata a clásica
+              <IconLaurel role="img" aria-hidden={false} aria-label="candidata a clásica" />
             </span>
           )}
           {recipe.indulgente && (
             <span className="meta-item">
-              <IconCuchara className="icono-indulgente" /> indulgente
+              <IconCuchara className="icono-indulgente" role="img" aria-hidden={false} aria-label="indulgente" />
             </span>
           )}
           <MenuDeEstado
@@ -238,7 +245,7 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
             onChange={(estado) => void saveOverlay(recipe.id, { estado })}
           />
           <Informacion>
-            <InfoDeLaFicha alertaB12={vista.nutrition.alerta_b12} fuente={objetivos.fuente} />
+            <InfoDeLaFicha recipe={recipe} fuente={objetivos.fuente} />
           </Informacion>
         </div>
         {overlay?.nota && <p className="nota-usuario">Tu nota: «{overlay.nota}»</p>}
@@ -261,12 +268,6 @@ function FichaDeReceta({ recipe }: { recipe: Recipe }) {
 
       <section>
         <h2>Pasos</h2>
-        {!recipe.pasos_escalables && vista.factor !== 1 && (
-          <p className="aviso-pasos-viejos">
-            Ajustaste las cantidades, pero los pasos de esta receta todavía están escritos con las
-            originales: las que valen son las de la lista.
-          </p>
-        )}
         <ol className={vista.animando ? 'lista-pasos recalculando' : 'lista-pasos'}>
           {recipe.pasos.map((paso, i) => (
             <li key={i}>

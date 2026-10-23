@@ -27,3 +27,16 @@
   font-size: var(--fs-xs);
 }
 
+
+/* Veinte casillas: en dos columnas parejas se recorren de un vistazo. */
+.opciones-nutrientes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-1) var(--sp-3);
+}
+
+.objetivo-nombre {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}

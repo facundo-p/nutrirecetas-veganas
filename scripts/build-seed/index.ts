@@ -2,12 +2,13 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { INGREDIENT_CATEGORIES, INGREDIENT_NUTRIENT_KEYS, type Seed } from '../../src/seed/schema';
+import { resumenCortoDeGramos } from './informe-gramos';
 import { loadRawData } from './load';
 import { compileRule } from './rules-ast';
 import {
   transformEquivalences,
   transformGlossary,
-  transformIngredient,
+  transformIngredients,
   transformNutrient,
   transformRecipes,
   transformSeasonality,
@@ -22,7 +23,7 @@ export function buildSeed(): { seed: Seed; notes: string[] } {
   const raw = loadRawData();
   const notes: string[] = [];
 
-  const ingredientes = raw.ingredientes.map(transformIngredient);
+  const ingredientes = transformIngredients(raw.ingredientes);
   const nutrientes = raw.nutrientes.map(transformNutrient);
 
   const ruleCtx = {
@@ -60,6 +61,8 @@ export function buildSeed(): { seed: Seed; notes: string[] } {
     glosario: transformGlossary(raw.glosario),
     utensilios,
   };
+
+  notes.push(resumenCortoDeGramos(seedSinHash));
 
   const previous: Seed | null = existsSync(SEED_PATH)
     ? (JSON.parse(readFileSync(SEED_PATH, 'utf8')) as Seed)

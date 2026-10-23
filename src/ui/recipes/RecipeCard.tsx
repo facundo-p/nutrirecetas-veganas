@@ -1,10 +1,11 @@
 import type { Recipe } from '../../seed/schema';
 import type { EstadoDeReceta } from '../../domain/estado';
 import { fuerteDeAporte, NOMBRE_CORTO, type AporteDeReceta } from '../../domain/aporte';
-import { ChipDeEstado } from '../common/EstadoDeReceta';
+import { IconoDeEstado } from '../common/EstadoDeReceta';
 import { routeHash } from '../../app/router';
 import { formatMinutes, formatPorcentaje, MEDIDA_DE_BASE } from '../common/format';
 import { TypeIcon, typeInfo } from '../common/TypeIcon';
+import { Dificultad } from '../common/Dificultad';
 import { BarraDeAporte } from '../common/BarraDeAporte';
 import { IconCopoNieve, IconCuchara, IconLaurel, IconTemporada } from '../icons/icons';
 
@@ -32,7 +33,7 @@ export function RecipeCard({
   variantsOpen,
 }: Props) {
   const total = recipe.tiempo_prep_min + recipe.tiempo_coccion_min;
-  const { label, sello } = typeInfo(recipe);
+  const { label } = typeInfo(recipe);
   const fuerte = fuerteDeAporte(aporte.porcentajes);
   return (
     <article className="fila-receta">
@@ -47,9 +48,12 @@ export function RecipeCard({
         <BarraDeAporte porcentajes={aporte.porcentajes} />
         <span className="fila-receta-meta">
           <span className="meta-item" title={label}>
-            <TypeIcon recipe={recipe} /> {sello}
+            <TypeIcon recipe={recipe} />
           </span>
           <span className="meta-item">{formatMinutes(total)}</span>
+          <span className="meta-item">
+            <Dificultad dificultad={recipe.dificultad} />
+          </span>
           <span className="meta-item">
             {recipe.porciones_num !== null ? `rinde ${recipe.porciones_num}` : recipe.porciones_display}
           </span>
@@ -61,15 +65,15 @@ export function RecipeCard({
           )}
           {recipe.guarda?.freezer && (
             <span className="meta-item" title="va bien al freezer">
-              <IconCopoNieve className="icono-freezer" />
+              <IconCopoNieve className="icono-freezer" role="img" aria-hidden={false} aria-label="va bien al freezer" />
             </span>
           )}
           {inSeason && (
             <span className="meta-item icono-temporada" title="con ingredientes en temporada">
-              <IconTemporada /> temporada
+              <IconTemporada role="img" aria-hidden={false} aria-label="en temporada" />
             </span>
           )}
-          {estado !== 'sin-probar' && <ChipDeEstado estado={estado} />}
+          <IconoDeEstado estado={estado} />
         </span>
       </a>
       {variantCount > 0 && onToggleVariants && (

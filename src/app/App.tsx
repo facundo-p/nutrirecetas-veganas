@@ -14,11 +14,13 @@ import { ProfileScreen } from '../ui/profile/ProfileScreen';
 import { CookSession } from '../ui/cook/CookSession';
 import { DiaryScreen } from '../ui/diary/DiaryScreen';
 import { SettingsScreen } from '../ui/settings/SettingsScreen';
+import { OfflineScreen } from '../ui/offline/OfflineScreen';
 import { useMeta } from '../db/hooks';
 import { hayQueRecordarBackup, posponerRecordatorioBackup } from '../db/backup';
 import { marcarEsquemaVisto } from '../db/repos';
 import { IconCerrar } from '../ui/icons/icons';
-import { routeHash } from './router';
+import { routeHash, type Route } from './router';
+import { useEnLinea } from './conexion';
 
 function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
   switch (route.screen) {
@@ -45,6 +47,8 @@ function Screen({ route }: { route: ReturnType<typeof useRoute> }) {
       return <NutrientDetail id={route.id} />;
     case 'glossary':
       return <Glossary />;
+    case 'offline':
+      return <OfflineScreen />;
   }
 }
 
@@ -107,6 +111,26 @@ function AvisoDeMigracion() {
 }
 
 /**
+ * Sin conexión todo sigue andando: el aviso informa y lleva a la pantalla que
+ * lo detalla. En la cocina no aparece: ahí no hay nada que esperar de la red.
+ */
+function AvisoSinConexion({ route }: { route: Route }) {
+  const enLinea = useEnLinea();
+  const visible = !enLinea && route.screen !== 'cook' && route.screen !== 'offline';
+  // La región vive siempre: un lector de pantalla anuncia lo que aparece adentro, no una región nueva.
+  return (
+    <div className={visible ? 'banner banner-sin-conexion' : undefined} role="status">
+      {visible && (
+        <a className="banner-sin-conexion-enlace" href={routeHash({ screen: 'offline' })}>
+          <span className="banner-marca" aria-hidden="true" />
+          <span>Sin conexión. Todo lo que necesitás para cocinar está guardado.</span>
+        </a>
+      )}
+    </div>
+  );
+}
+
+/**
  * main y staging se instalan como dos PWA en el mismo celular. El nombre del
  * manifest las distingue en la pantalla de inicio; esta banda las distingue una
  * vez adentro, que es donde importa: acá se cocina y se registra de verdad.
@@ -157,6 +181,7 @@ export function App() {
       {!enLaMesada && <Nav route={route} />}
       <AvisoDeMigracion />
       <BackupReminder />
+      <AvisoSinConexion route={route} />
       <main className="contenido">
         <Screen route={route} />
       </main>

@@ -13,27 +13,23 @@ import {
  * reborde lateral en la tarjeta.
  */
 
-/**
- * `label` es la forma larga, para el title; `sello` la que entra en el sello de
- * la tarjeta, que a 390 px comparte renglón con el título de la receta.
- */
 const BY_TYPE = {
-  salada: { Icon: IconMortero, label: 'salada', sello: 'salada' },
-  combo: { Icon: IconBandeja, label: 'combo', sello: 'combo' },
-  dulce: { Icon: IconFlor, label: 'dulce', sello: 'dulce' },
-  pan: { Icon: IconEspiga, label: 'pan / masa', sello: 'pan' },
-  preparado: { Icon: IconFrasco, label: 'preparado', sello: 'preparado' },
-  conserva: { Icon: IconFrascoFermento, label: 'conserva / fermento', sello: 'conserva' },
+  salada: { Icon: IconMortero, label: 'salada' },
+  combo: { Icon: IconBandeja, label: 'combo' },
+  dulce: { Icon: IconFlor, label: 'dulce' },
+  pan: { Icon: IconEspiga, label: 'pan / masa' },
+  preparado: { Icon: IconFrasco, label: 'preparado' },
+  conserva: { Icon: IconFrascoFermento, label: 'conserva / fermento' },
 } as const;
 
 export function typeInfo(recipe: Pick<Recipe, 'tipo' | 'es_preparado'>) {
   // p08 es preparado de facto: el frasco manda sobre el mortero
-  const { Icon, label, sello } = recipe.es_preparado ? BY_TYPE.preparado : BY_TYPE[recipe.tipo];
-  return { Icon, label, sello };
+  const { Icon, label } = recipe.es_preparado ? BY_TYPE.preparado : BY_TYPE[recipe.tipo];
+  return { Icon, label };
 }
 
 /** El color lo pone `.icono-tipo` en el CSS: el componente solo dice qué significa. */
 export function TypeIcon({ recipe }: { recipe: Pick<Recipe, 'tipo' | 'es_preparado'> }) {
-  const { Icon } = typeInfo(recipe);
-  return <Icon className="icono-tipo" />;
+  const { Icon, label } = typeInfo(recipe);
+  return <Icon className="icono-tipo" role="img" aria-hidden={false} aria-label={label} />;
 }

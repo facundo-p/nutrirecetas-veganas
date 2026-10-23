@@ -35,13 +35,13 @@ export function FranjaDeNutriente({
 }
 
 /** Los seis nutrientes que más cubre, en orden canónico. */
-export function BarraDeAporte({ porcentajes }: { porcentajes: Porcentajes }) {
+export function BarraDeAporte({ porcentajes, clase }: { porcentajes: Porcentajes; clase?: string }) {
   const franjas = franjasDeAporte(porcentajes);
   const leidas = franjas.flatMap((f) => (f.nutriente ? [`${NOMBRE_CORTO[f.nutriente]} ${formatPorcentaje(f.porcentaje)}`] : []));
   const etiqueta = leidas.length > 0 ? `Cubre del día: ${leidas.join(', ')}` : 'Sin dato de ningún nutriente';
 
   return (
-    <div className="barra-aporte" role="img" aria-label={etiqueta}>
+    <div className={clase ? `barra-aporte ${clase}` : 'barra-aporte'} role="img" aria-label={etiqueta}>
       {franjas.map((f, i) =>
         f.nutriente ? (
           <FranjaDeNutriente

@@ -22,9 +22,9 @@ import { porcentajeAfirmableSolo, type ObjetivosDeReferencia } from './objetivos
  *
  * Tienen color los que importan para un vegano —más proteína y fibra— y además
  * tienen dato en suficientes ingredientes como para que un casillero diga algo.
- * El yodo es crítico y queda afuera: con dato en 3 de 158 ingredientes, su
- * casillero estaría vacío en 70 de 72 recetas, y vacío se lee "no tiene" cuando
- * la verdad es "no sabemos" (#169). B12 y vitamina D no vienen de la comida.
+ * El yodo es crítico y queda afuera: casi todo el de una receta viene de la sal,
+ * que es una pizca o una cucharadita estimada, y un casillero pintaría una
+ * precisión que no tiene (#169). B12 y vitamina D no vienen de la comida.
  *
  * El orden es canónico —minerales, vitaminas, macro y grasas— y no cambia: la
  * barra se lee igual aunque sus seis nutrientes cambien de receta en receta.
@@ -101,11 +101,15 @@ export function nutrienteConColor(id: string): NutrienteDeBarra | undefined {
   return esNutrienteDeBarra(id) ? id : undefined;
 }
 
-/** Los once con color primero y en su orden; después el resto, como los trae la semilla. */
+/** Los nueve sin color, en el orden de Nutrientes: primero los críticos que no entran a la barra. */
+export const ORDEN_SIN_COLOR = ['yodo', 'b12', 'vitd', 'b2', 'b6', 'vite', 'vitk', 'potasio', 'colina'] as const;
+
+/** Los once con color y después los nueve sin color. Uno que la semilla sume y no figure va al final, no desaparece. */
 export function enOrdenCanonico(nutrientes: Nutrient[]): Nutrient[] {
+  const orden: readonly string[] = [...ORDEN_BARRA, ...ORDEN_SIN_COLOR];
   const puesto = (n: Nutrient) => {
-    const i = (ORDEN_BARRA as readonly string[]).indexOf(n.id);
-    return i === -1 ? ORDEN_BARRA.length : i;
+    const i = orden.indexOf(n.id);
+    return i === -1 ? orden.length : i;
   };
   return [...nutrientes].sort((a, b) => puesto(a) - puesto(b));
 }

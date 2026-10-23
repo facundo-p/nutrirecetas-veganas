@@ -86,7 +86,7 @@ export function SettingsScreen() {
     <>
       <header className="encabezado-pantalla">
         <div className="fila-con-informacion">
-          <span className="etiqueta-seccion">Ajustes y datos</span>
+          <span className="etiqueta-seccion">Ajustes</span>
           <Informacion>
             <p>
               Todo lo tuyo vive solo en este dispositivo. Si borrás el sitio o cambiás de teléfono, el backup es lo único
@@ -95,7 +95,7 @@ export function SettingsScreen() {
             <p>En automático, la apariencia sigue al modo claro u oscuro del teléfono.</p>
           </Informacion>
         </div>
-        <h1>Tus datos</h1>
+        <h1>Ajustes y datos</h1>
       </header>
 
       <section className="bloque-ajustes">

@@ -28,7 +28,6 @@ function recipeStub(id: string, extra: Partial<Recipe> = {}): Recipe {
       },
     ],
     pasos: ['Listo.'],
-    pasos_escalables: false,
     secretos_chef: [],
     reglas: [],
     utensilios: [],

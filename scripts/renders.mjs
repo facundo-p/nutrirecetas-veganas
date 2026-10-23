@@ -1,6 +1,6 @@
 // Renders reproducibles de cierre de fase: screenshots reales de la app
 // (build de producción servido con vite preview) a 390 px y 1280 px.
-// Uso: npm run build && npm run renders [-- fase-2] [--tema=X]
+// Uso: npm run build && npm run renders [-- fase-2] [--tema=X] [--port=N]
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -23,7 +23,8 @@ const carpeta = `${fase}-tema-${tema}`;
 const OUT = join(ROOT, 'docs', 'renders', carpeta);
 mkdirSync(OUT, { recursive: true });
 
-const PORT = 4173;
+// elegible: el 4173 de vite preview puede estar tomado por otro proyecto
+const PORT = Number(args.find((a) => a.startsWith('--port='))?.slice(7) ?? 4173);
 const BASE = `http://localhost:${PORT}`;
 
 const RUTAS = [
@@ -44,6 +45,11 @@ const RUTAS = [
   ['nutrientes', '#/nutrientes'],
   ['nutriente-b12', '#/nutriente/b12'],
   ['glosario', '#/glosario'],
+  ['ingrediente-sin-dato', '#/ingrediente/hojas_verdes'],
+  ['ingrediente-levadura', '#/ingrediente/levadura_nutricional'],
+  ['sin-conexion', '#/sin-conexion'],
+  ['recetario-sin-conexion', '#/recetario'],
+  ['carga-inicial', '#/recetario'],
 ];
 
 const VIEWPORTS = [
@@ -52,7 +58,7 @@ const VIEWPORTS = [
 ];
 
 /**
- * El diario y Hoy no tienen nada que mostrar sin datos de usuario, así que el
+ * El diario no tiene nada que mostrar sin datos de usuario, así que el
  * script siembra un estado de demo determinista, con fechas relativas a hoy.
  * Vive solo acá: la app jamás escribe datos de ejemplo.
  */
@@ -133,7 +139,7 @@ await new Promise((resolve, reject) => {
     tx.objectStore('overlays').put({ receta_id: 'r01', estado: 'favorita', actualizado_en: iso(50) });
     tx.objectStore('overlays').put({ receta_id: 'r02', estado: 'pendiente', actualizado_en: iso(40) });
     // al día a propósito: con la marca vieja, el aviso de la migración saldría
-    // en las 24 capturas y no es lo que se viene a revisar
+    // en todas las capturas y no es lo que se viene a revisar
     tx.objectStore('meta').put({
       id: 1,
       user_schema_version: 5,
@@ -185,6 +191,20 @@ try {
       });
 
     for (const [name, hash] of RUTAS) {
+      // lo que se ve antes del bundle: sin JS, y sin el service worker, que
+      // serviría el JS desde su caché sin pasar por `route`
+      if (name === 'carga-inicial') {
+        const carga = await browser.newPage({ viewport, deviceScaleFactor: 2, serviceWorkers: 'block' });
+        await carga.route('**/*.js', (r) => r.abort());
+        await carga.goto(`${BASE}/?tema=${tema}${hash}`, { waitUntil: 'load' });
+        await carga.waitForTimeout(350);
+        await carga.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: true, animations: 'disabled' });
+        await carga.close();
+        console.log('✔', `${name}--${vpName}.png`);
+        continue;
+      }
+      const sinConexion = name.endsWith('sin-conexion');
+      if (sinConexion) await page.context().setOffline(true);
       await page.goto(`${BASE}/?tema=${tema}${hash}`, { waitUntil: 'networkidle' });
 
       // la sesión de cocina necesita un par de clics para llegar a los pasos. Con
@@ -232,6 +252,7 @@ try {
       await page.waitForTimeout(350); // fuentes variables
       // el modal es fijo: en una captura de página completa quedaría al fondo de todo
       await page.screenshot({ path: join(OUT, `${name}--${vpName}.png`), fullPage: name !== 'recetario-filtros' });
+      if (sinConexion) await page.context().setOffline(false);
       console.log('✔', `${name}--${vpName}.png`);
     }
     await page.close();

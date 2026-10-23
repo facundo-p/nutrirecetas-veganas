@@ -17,7 +17,8 @@ export type Route =
   | { screen: 'glossary' }
   | { screen: 'diary' }
   | { screen: 'profile' }
-  | { screen: 'settings' };
+  | { screen: 'settings' }
+  | { screen: 'offline' };
 
 /**
  * El factor de escala viaja en la ruta (`#/cocinar/r02/x2`), no en la query:
@@ -60,6 +61,8 @@ export function parseHash(hash: string): Route {
       return { screen: 'profile' };
     case 'ajustes':
       return { screen: 'settings' };
+    case 'sin-conexion':
+      return { screen: 'offline' };
     // `#/hoy` era la pantalla de inicio hasta la Fase 3. Sigue resolviendo
     // porque hay una PWA instalada con ese `start_url` y bookmarks vivos.
     case 'hoy':
@@ -96,6 +99,8 @@ export function routeHash(route: Route): string {
       return '#/perfil';
     case 'settings':
       return '#/ajustes';
+    case 'offline':
+      return '#/sin-conexion';
   }
 }
 

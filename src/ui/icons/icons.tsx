@@ -27,15 +27,6 @@ function Base({ children, ...props }: IconProps & { children: ReactNode }) {
   );
 }
 
-export function IconHojaPunteada(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20 4C10.5 4.5 4.5 10.5 4 20c9.5-.5 15.5-6.5 16-16Z" strokeDasharray="2.6 2.6" />
-      <path d="M5.5 18.5C9 14 13 10 18.5 5.5" strokeDasharray="2.6 2.6" />
-    </Base>
-  );
-}
-
 // ---------- ventanas de evaluación ----------
 
 export function IconSol(props: IconProps) {
@@ -95,6 +86,29 @@ export function IconCobertura(props: IconProps) {
     <Base {...props}>
       <circle cx="12" cy="12" r="8" />
       <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none" opacity="0.55" />
+    </Base>
+  );
+}
+
+const CASILLAS_DE_DIFICULTAD = [0, 1, 2, 3, 4] as const;
+
+/**
+ * Cinco casilleros iguales; `data-nivel` dice cuántos se llenan y de qué
+ * verde, y eso lo decide el CSS. Verde que se oscurece y no rojo: lo difícil
+ * no es un peligro.
+ */
+export function IconDificultad({ nivel = 3, className, ...props }: IconProps & { nivel?: 1 | 2 | 3 | 4 | 5 }) {
+  return (
+    <Base
+      viewBox="0 0 34 6"
+      strokeWidth={1}
+      className={className ? `icono-dificultad ${className}` : 'icono-dificultad'}
+      data-nivel={nivel}
+      {...props}
+    >
+      {CASILLAS_DE_DIFICULTAD.map((i) => (
+        <rect key={i} className="dificultad-casilla" x={i * 7 + 0.5} y="0.5" width="5" height="5" rx="1" />
+      ))}
     </Base>
   );
 }
@@ -191,15 +205,6 @@ export function IconReloj(props: IconProps) {
   );
 }
 
-export function IconLlama(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 3c1.2 3.2 5 5.2 5 9.8a5 5 0 0 1-10 0C7 8.2 10.8 6.2 12 3Z" />
-      <path d="M12 12.5c.9 1.3 2 2.1 2 3.6a2 2 0 0 1-4 0c0-1.5 1.1-2.3 2-3.6Z" />
-    </Base>
-  );
-}
-
 export function IconPlato(props: IconProps) {
   return (
     <Base {...props}>
@@ -258,27 +263,7 @@ export function IconTemporada(props: IconProps) {
   );
 }
 
-// ---------- alerta y extras ----------
-
-export function IconEscudoB12(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 3l7 2.6v4.9c0 4.9-2.9 8.3-7 10-4.1-1.7-7-5.1-7-10V5.6Z" />
-      <text
-        x="12"
-        y="13.6"
-        textAnchor="middle"
-        fontSize="6.2"
-        fontFamily="inherit"
-        fontWeight="700"
-        fill="currentColor"
-        stroke="none"
-      >
-        B12
-      </text>
-    </Base>
-  );
-}
+// ---------- extras ----------
 
 export function IconEstrellaBrotada(props: IconProps) {
   return (

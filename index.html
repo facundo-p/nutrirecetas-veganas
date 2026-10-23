@@ -24,7 +24,30 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Lo que se ve mientras baja el bundle; React lo reemplaza en el primer
+           render. Usa las clases reales (el test src/app/carga-inicial.test.ts
+           verifica que existan): lo primero que se dibuja es el sistema. -->
+      <div role="status" aria-label="Cargando el recetario">
+        <main class="contenido">
+          <header class="encabezado-pantalla encabezado-pantalla-con-accion">
+            <h1>Nutrirecetas</h1>
+          </header>
+          <div class="carga-progreso"></div>
+          <div class="barra-aporte carga-barra">
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          <svg class="franja" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true"><rect class="franja-fondo" width="100" height="1" /></svg>
+          </div>
+          <div class="esqueleto-fila"><span class="esqueleto-linea"></span><span class="esqueleto-linea esqueleto-linea-corta"></span></div>
+          <div class="esqueleto-fila"><span class="esqueleto-linea"></span><span class="esqueleto-linea esqueleto-linea-corta"></span></div>
+          <div class="esqueleto-fila"><span class="esqueleto-linea"></span><span class="esqueleto-linea esqueleto-linea-corta"></span></div>
+        </main>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

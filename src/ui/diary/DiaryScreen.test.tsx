@@ -40,6 +40,20 @@ describe('diario', () => {
     await waitFor(() => expect(screen.getByText(/Todavía no hay cocciones/)).toBeDefined());
   });
 
+  test('el encabezado dice para qué sirve, y no hay franja semanal que evalúe', async () => {
+    await addCoccion(coccion);
+    render(<DiaryScreen />);
+    await waitFor(() => screen.getByText('Pastel de papas'));
+    expect(screen.getByText(/no para llevar la cuenta de nada/)).toBeDefined();
+    expect(screen.queryByText(/siete días|promedio/)).toBeNull();
+  });
+
+  test('dice cuándo fue en corto', async () => {
+    await addCoccion({ ...coccion, fecha: new Date(Date.now() - 24 * 3600 * 1000).toISOString() });
+    render(<DiaryScreen />);
+    await waitFor(() => expect(screen.getByText('ayer')).toBeDefined());
+  });
+
   test('lista la cocción con sus variaciones, su nota y lo que rindió', async () => {
     await addCoccion(coccion);
 
@@ -60,9 +74,10 @@ describe('diario', () => {
     expect(screen.queryByText(/comiste|quedan/)).toBeNull();
   });
 
-  test('marca la alerta B12 de las cocciones que la llevan', async () => {
+  test('no repite la alerta B12: se explica solo en Nutrientes, aunque la cocción guarde el flag', async () => {
     await addCoccion(coccion);
     render(<DiaryScreen />);
-    await waitFor(() => expect(screen.getByLabelText(/levadura nutricional/)).toBeDefined());
+    await waitFor(() => screen.getByText('Pastel de papas'));
+    expect(screen.queryByLabelText(/levadura nutricional/)).toBeNull();
   });
 });

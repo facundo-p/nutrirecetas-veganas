@@ -561,3 +561,94 @@ de una auditoría ni de un test: de cocinar con ella.
 - **El matcher de imprescindibles leía el id adentro del token** y daba por
   nombrado lo que el paso ya no decía. El test ahora borra los tokens antes de
   buscar: una red que se mide a sí misma no mide nada.
+- **Las 84 migradas, el andamio afuera (#204–#207).** Sin la lista de
+  transición, `validarPasos` vale para toda receta y ya no hay aviso de «pasos
+  viejos». Casi todo el trabajo fueron medidas en letras («la taza y media»), que
+  el validador aprendió a cazar en #204: el render solo no alcanzaba.
+- **Una línea que suma dos usos no se tokeniza entera** («125 g masa + 150
+  crumble»): va «algo menos de la mitad» / «el resto». Partirla en dos datos es
+  la deuda.
+- **Tercios truncados** (0,33 / 0,66 taza) se leían «0,3 taza»; `formatCantidad`
+  conoce ⅓ y ⅔.
+
+### El guardia de gramos (2026-09-23, #209)
+
+- **El reporte no era el bug.** Facu vio «1½ de limón = 23 g» y «1½ de vinagre =
+  8 g» y dedujo que los gramos estaban mal. Eran `cda` y `cdta` de `p05` a ×1,5:
+  los dos a 1 g/ml, correctísimos. Lo que falla es que la lista pinta
+  `unidad_display` casi crudo y la única diferencia visible entre las dos líneas
+  es una letra, en el tamaño más chico. Reproducir el caso exacto antes de tocar
+  nada fue lo que separó un problema de UI de uno de datos.
+- **Pero la desconfianza estaba justificada.** `g_aprox` es el único campo del
+  dataset sin método, sin IC, sin rango y sin fuente. La auditoría de la Fase 1
+  verificó que estaba presente en el 100 % de las líneas y concluyó «es viable
+  como única fuente de cálculo»: presencia leída como plausibilidad. Nadie había
+  mirado que el azúcar impalpable pesa 150 g/taza contra 113 de King Arthur.
+- **La tolerancia no puede ser un porcentaje.** Sobre-reporta lo chico (0,7
+  contra 0,75 g de cúrcuma es 7 % y es redondeo puro) y sub-reporta lo grande
+  (el 8 % del aceite de coco son 18 g por taza, y es sistemático). Medio escalón
+  de `redondearPeso` dice literalmente «el dataset no podía escribirlo más
+  fino», y reusa la escalera de la app, así que guardia y escalado no pueden
+  discrepar. Comparación estricta marcaba 30 grupos; con medio escalón, 13 — y
+  lo que se cayó fue exactamente el ruido.
+- **13 / 13,3 / 13,5 g por cucharada de aceite no son tres tarifas**, son 13,5
+  redondeado al gramo en cada línea. Casi la mitad de las «incoherencias» que
+  encontré a ojo eran eso. Contar divergencias sin modelar el redondeo es contar
+  ruido.
+- **`ml` está en la familia `peso` de `rounding.ts`,** y eso es correcto para
+  redondear y falso para convertir: 40 ml de aceite son 36 g. El guardia reusa
+  `cabezaDeUnidad` —si discrepara con el escalado sería un bug por
+  construcción— pero no `familiaDeUnidad`. Dos preguntas parecidas, dos
+  funciones.
+- **Una inferencia no es una cita, y el informe lo tiene que decir.** Cuando la
+  unidad no nombra ninguna fila, el guardia infiere la pieza entera: «2 bananas
+  muy maduras» mide bananas. Funciona en 59 de 60 líneas, y falla en `p43`, que
+  cuenta 4 rodajas de calabaza y no 4 calabazas (esperado: 4800 g). La salida no
+  fue tapar el caso con un tope de magnitud —eso escondería un error real de
+  10×— sino marcar la referencia como «inferida» para que se lea que lo dudoso
+  es la inferencia, no el dato.
+- **Ante dos filas que empatan, `ambigua`.** Es la diferencia entre un guardia y
+  una heurística. Cuesta una decisión curada (`r19`, `taza_cruda_cocida_fria`) y
+  compra que ninguna elección quede tácita.
+
+### Menos alto en el celular (2026-09-25, #219 a #223)
+
+- **Un ícono con su nombre al lado no ahorra nada.** Los nombres pasan a la «i» con `LeyendaDeIconos`, que lee el catálogo del Glosario: una sola fuente de significados. La tarjeta del recetario bajó de ~171 a ~117 px y la ficha muestra 10 ingredientes en vez de 4.
+- **Una lámina flotante le roba ancho a lo que viene después**, no solo al título: con títulos cortos mandaba la «i» a otro renglón. `clear: both` en la meta.
+- **La dificultad no es un semáforo.** Facu descartó el rojo («se lee como peligro, como no lo intentes»): cinco casilleros iguales en un verde que se oscurece. El número de casilleros llenos lleva la información y el color la acompaña.
+- **Un agente por pantalla, en worktrees, funciona si las pantallas no comparten hoja.** Donde se cruzaban (la dificultad aparece en la tarjeta y en la ficha), fue en serie.
+- **Los gramos no se deciden eligiendo tablas ajenas** (#217): Facu los mide en su cocina y esas mediciones son la fuente.
+
+### Cobertura de los críticos (2026-10-07, #169)
+
+- **Un valor sin unidad propia se lee en la unidad del archivo.** El dataset declara «por 100 g» y tres ingredientes guardaron su yodo por gramo: la sal sumaba 2 µg por cucharadita en vez de 200. La `base` decía «por gramo» y nadie la leía: el motor no la mira. Antes de cargar datos nuevos, buscar los viejos que mienten en la escala.
+- **DEMO_KEY de FoodData Central da 10 pedidos por día**, no por hora: el `retry-after` del 429 lo dice. Una búsqueda con frases entre comillas unidas por `OR` trae 30 alimentos con todos sus nutrientes en un pedido; guardar esas respuestas y que el script las lea (`--desde`) salvó la carga.
+- **Elegir el alimento es decisión, traer el número no.** Los matches viven en `curated-tables.ts` (T17) y los valores en un archivo generado; el build no usa red y el test exige que cada ingrediente con huecos tenga una decisión escrita, match o motivo.
+
+## Fase 4 — El cromatograma, cierre (2026-10-07, #170)
+
+**Lo que se rompió o casi:**
+
+- **Un porcentaje que el rango no sostiene no se escribe.** La levadura decía ~2083 % de B12; con `porcentajeAfirmableSolo` dice «—». El ranking de recetas por nutriente sacó los rangos que arrancan en cero: B12 y vitamina D explican en vez de listar, y el calcio bajó de 40 a 35 puestos. Invariante 5; salió al mirar, no de un test.
+- **Los renders encontraron gramos secos con valores de cocido.** `lentejas_turcas`, `lentejas`, `arroz_*`, `quinoa`, `fideos`, `porotos_pallares` y `soja_grano` tienen `base` cocida, y ~20 líneas las pesan en seco (`taza_seca`, `g_secas`, `taza_cruda`). El motor no convierte: la sopa r01 da 8 g de proteína por porción en vez de ~18. Lo delató un número bajo, no un test; ningún golden lo cubre (#240).
+- **Una red que mira el texto crudo ve lo que nadie lee, por segunda y tercera vez.** El `#2` de `{aceitunas#2}` contaba como número suelto (#204) y «ningún paso nombra un código» rechazaba `{p08}` (#206, #207). Borrar los tokens antes de chequear, como el matcher de #199.
+- **Un filtro arreglado en un ranking y no en su gemelo** (#241): el de recetas ya dejaba afuera los rangos que arrancan en cero, el de ingredientes no, y la levadura encabezaba la B12 con 50 µg.
+- **El validador no ve una cantidad que se pierde.** Los CR de las tandas encontraron bicarbonato en «un poco», levadura sin proporción y un relleno sin cantidades: prosa válida para la red, inútil para cocinar. La revisión de la prosa sigue siendo humana.
+- **Lo que retoma al ingrediente después del token se nombra con el sustantivo.** «Cortarlo» después de «los 2 bloques» choca a ×2. Revisar a factor mínimo **y** a ×2.
+- **El handoff pedía datos que no existen, otra vez**: función por ingrediente y sustitutos con proporción. Se mostró lo que hay (`notas`, sustitutos juntados de las líneas) en vez de curar 158 frases.
+- **La carga inicial se cuida con las clases reales** (`carga-inicial.test.ts`). Para su render hubo que bloquear el service worker: servía el JS de su caché sin pasar por `route`.
+
+**Qué decisión cambió y por qué** (frente a la tabla de #170):
+
+- «Un solo tema» terminó en dos (#185). El contrato de tres capas lo absorbió sin tocar componentes; ΔE ≥ 21,8 / 25,3 contra el 15,2 del Cromatograma.
+- La B12 pasó de cuatro superficies a una (#166). La ficha guarda una nota que lee `alerta_b12`, no los puntos: el punto hueco solo ve la levadura suelta (el hueco se vio en #157).
+- Offline es inventario, no error: «Funciona / Espera a la conexión», sin color de aviso.
+- Entró lo que la épica no preveía —menos texto (#194), menos alto (#219–#223), cantidades de los pasos (#199–#207), guardia de gramos (#209)—. Lo pidió usar la app, no el handoff.
+
+**Orquestación:**
+
+- Un worktree por issue en paralelo anduvo con hojas separadas. `seed.json` se regenera al resolver conflictos, nunca a mano.
+- Dos PR de tandas paralelas tocaron el mismo test: se resolvió fijando el orden de merge, no fusionando.
+- GitHub GraphQL falló transitoriamente al mergear: reintentar, no forzar.
+- `Closes` en el PR de cierre cerraría la épica sin el OK de Facu: va `Refs`.
+- El puerto fijo de los renders (4173) chocó con otro proyecto: `--port=N`.

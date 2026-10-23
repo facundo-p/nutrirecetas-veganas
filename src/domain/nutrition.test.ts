@@ -35,7 +35,6 @@ function rec(id: string, extra: Partial<Recipe>): Recipe {
     tiempo_coccion_min: 5,
     lineas: [],
     pasos: ['x'],
-    pasos_escalables: false,
     secretos_chef: [],
     reglas: [],
     utensilios: [],

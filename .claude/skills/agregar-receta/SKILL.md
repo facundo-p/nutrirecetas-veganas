@@ -17,7 +17,13 @@ Vale para toda receta, nueva o corregida:
 
 1. Oración completa en rioplatense, con voseo. Nada de `;` y `+` como pegamento.
 2. Cada paso dice qué entra, dónde, a qué fuego y **cuál es la señal** para pasar al siguiente ("hasta que se deshacen solas"), no solo el minutaje.
-3. Todo ingrediente `imprescindible` aparece en algún paso, con su cantidad dicha con naturalidad ("los 400 g de garbanzos cocidos"). Los opcionales se marcan: "si la usás".
+3. Todo ingrediente `imprescindible` aparece en algún paso, nombrado en la prosa. **La cantidad nunca se escribe: se referencia** con un token de la línea, para que siga al escalador (#199):
+   - `{id}` rinde con artículo («los 400 g», «la taza»); `{~id}` sin artículo («¼ cucharadita»), mejor para especias en cuartos. `{id#2}` elige la segunda línea del mismo ingrediente en el paso.
+   - El sustantivo va afuera y lo que sigue concuerda con el ingrediente, no con la unidad: `{garbanzos} de garbanzos cocidos`, `{ajo} de ajo picado`. El token nunca es sujeto ni abre oración; nada de «de {id}» si puede rendir «de el diente».
+   - El token va en el paso donde T14 (`PASO_DE_CADA_LINEA`) pone la línea. Si la unidad no se sabe decir (`mediana`, `jugo`, `unidad`), el paso no dice la cantidad: «la cebolla», «el jugo del limón».
+   - Una línea repartida entre pasos o que suma dos usos va como proporción («la mitad de la harina», «el resto»); la despensa que no es línea, también («el triple de agua»).
+   - El build (`validarPasos`) rechaza cifras y medidas en letras («la taza y media») que no sean token; lo que es por unidad sigue con «por» («una cucharada por omelette»).
+   Los opcionales se marcan: "si la usás".
 4. El acompañamiento tiene su propio paso o se declara al principio.
 5. Los `secretos_chef` no se absorben: se muestran aparte en la app, y copiarlos en un paso hace leer lo mismo dos veces.
 6. 4 a 8 pasos (mínimo absoluto 3, solo para recetas genuinamente triviales). Antes que apilar tres acciones en uno, se parte.
@@ -45,6 +51,6 @@ Una lámina nueva: grabado de dominio público bajado **con OK de Facu** (nombre
 
 ## Verificación
 
-`npm test` corre los tests de T9 (`transform.test.ts`): cobertura de las 84, largo mínimo, imprescindibles nombrados, secretos no repetidos (ventana de 6 palabras), sin códigos. Si un paso viola algo, el test nombra la receta y el paso. Los de T15 exigen que las 84 salgan con lámina.
+`npm run seed` corre `validarPasos` (tokens que resuelven, unidades decibles, sin números escritos) y se mira cada receta a 1 porción, ×1 y ×2. `npm test` corre los tests de T9 (`transform.test.ts`): cobertura de las 84, largo mínimo, imprescindibles nombrados, secretos no repetidos (ventana de 6 palabras), sin códigos. Si un paso viola algo, el test nombra la receta y el paso. Los de T15 exigen que las 84 salgan con lámina.
 
 Toda entrada con `flag_gate: true` se lista en el gate de datos de la fase para que Facu la valide cocinando (`docs/decisiones-de-datos.md` § 8).
